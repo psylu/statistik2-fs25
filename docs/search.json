@@ -1,0 +1,297 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Datenanalyse mit R",
+    "section": "",
+    "text": "Überblick\nDiese Website enthält ein Online-Skript begleitend zur Vorlesung Statistik 2 (FS 2025) des Bachelorstudiums Psychologie (VPF) an der Universität Luzern.\nInhalt:\nZu Beginn einige wichtige Informationen zum Arbeiten mit der Website:\nTextbausteine dieser Website\nUm das Arbeiten mit dem Skript zu erleichten, enthält dieses verschiedene Bausteine, die unterschiedliche Funktionen haben:\nText\nDies ist ein Text inkl. mathematischer Formulierungen: \\(\\alpha = 5\\).\nCode\nCode ist Text, welcher in R ausgeführt werden kann. Wenn ein #-Zeichen davor steht, ist der Text “auskommentiert”, das bedeutet, dass R ihn nicht liest/ausführt.\n# Dies ist ein Kommentar, also auskommentierter Text. Er wird nicht ausgeführt.\n# Unten eine Zeile Code (ausführbarer Text):\nalpha = 5\nInfo-Blöcke\nInfo-Blöcke beinhalten Informationen, Aufgaben oder Lösungen.\nWebR-Konsolen\nIn den WebR-Blöcken können Sie direkt in Ihrem Browser Code eingeben und ausführen. Sie können den Code aus diesen Blöcken in R ebenfalls ausführen.",
+    "crumbs": [
+      "Überblick"
+    ]
+  },
+  {
+    "objectID": "index.html#weiteres",
+    "href": "index.html#weiteres",
+    "title": "Datenanalyse mit R",
+    "section": "Weiteres",
+    "text": "Weiteres\nTasten werden wie folgt beschrieben: Drücken Sie Ctrl-CCtrl-C um ausgewählten Code zu kopieren und Ctrl-VCtrl-V um ihn wieder einzufügen.",
+    "crumbs": [
+      "Überblick"
+    ]
+  },
+  {
+    "objectID": "r/installation.html",
+    "href": "r/installation.html",
+    "title": "1  Installation",
+    "section": "",
+    "text": "1.1 Step-by-Step Installation für Windows",
+    "crumbs": [
+      "R und RStudio",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "r/installation.html#sec-windows",
+    "href": "r/installation.html#sec-windows",
+    "title": "1  Installation",
+    "section": "",
+    "text": "1.1.1 Installation von R\nÖffnen Sie die Installations-Website. Wählen Sie Download R for Windows, um die neuste Version von R (4.4.2 Pile of Leaves) zu installieren.\n\n\n\n\n\n\nFigure 1.1: Startseite für die Installation von R und RStudio\n\n\n\nLaden Sie unter install R for the first time die Installationsdatei herunter.\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1.2: Installation von R: Auswahl des Betriebssystems\n\n\n\n\n\n\n\n\n\n\n\n\n\nFigure 1.3: Installation von R für Windows: Auswahl der R Version\n\n\n\n\n\n\nKlicken Sie auf Download R-4.4.2 for Windows.\n\n\n\n\n\n\nFigure 1.4: Installation von R für Windows: Downloadlink\n\n\n\nÖffnen Sie die Installationsdatei (oft im Ordner Downloads zu finden) und folgen Sie den Anweisungen. Falls untenstehend nicht anders erwähnt, behalten Sie die Standardeinstellungen bei.\n\nUnter_Select Setup Language_ wählen Sie am besten English als Sprache. Die englische Version macht es leichter im Internet Hilfe zu finden.\n\n\n\n\n\n\n\nFigure 1.5: Installation von R für Windows: Englisch\n\n\n\n\nAm besten speichern Sie R in einem Ordner auf dem Laufwerk C: ab. Hierfür benötigen Sie Admin-Rechte.\n\n\n\n\n\n\n\nFigure 1.6: Installation von R für Windows: Wählen des Speicherorts\n\n\n\nSobald das untenstehende Fenster erscheint, haben Sie R erfolgreich installiert.\n\n\n\n\n\n\nFigure 1.7: Installation von R für Windows: Erfolgreiche Installation\n\n\n\n\n\n1.1.2 Installation von RStudio\nWählen Sie Download RStudio Desktop for Windows, um die neuste Version von RStudio (2024.12.0+467) zu installieren.\n\n\n\n\n\n\nFigure 1.8: Startseite für die Installation von R und RStudio\n\n\n\nÖffnen Sie die Installationsdatei (oft im Ordner Downloads zu finden) und folgen Sie den Anweisungen. Falls untenstehend nicht anders erwähnt, behalten Sie die Standardeinstellungen bei.\nWenn Sie R und RStudio installiert haben, fahren Sie hier fort.",
+    "crumbs": [
+      "R und RStudio",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "r/installation.html#sec-macos",
+    "href": "r/installation.html#sec-macos",
+    "title": "1  Installation",
+    "section": "1.2 Step-by-Step Installation für MacOS",
+    "text": "1.2 Step-by-Step Installation für MacOS\n\n1.2.1 Installation von R\nÖffnen Sie die Installations-Website. Wählen Sie Download R for macOS, um die neuste Version von R (4.2.2 “Pile of Leaves”) zu installieren.\n\n\n\n\n\n\nFigure 1.9: Startseite für die Installation von R und RStudio\n\n\n\nLaden Sie die zu Ihrer Version von macOS passende Installationsdatei herunter. Beachten Sie, dass es zwei Versionen gibt. In der Regel gibt es eine Fehlermeldung, falls Sie einen Intel Prozessor (ältere Mac-Modelle, ca. vor 2021) haben und daher nicht die obere Version verwenden können.\n\n\n\n\n\n\nFigure 1.10: Installation von R für macOS: Downloadlink\n\n\n\nÖffnen Sie die Installationsdatei (oft im Ordner Downloads zu finden) und folgen Sie den Anweisungen. Falls die Auswahl erscheint, wählen Sie English als Sprache. Die englische Version macht es leichter im Internet Hilfe zu finden. Falls untenstehend nicht anders erwähnt, behalten Sie die Standardeinstellungen bei.\n\nSpeichern Sie R auf der Macintosh HD ab. In der Regel entspricht dies den Standardeinstellung und Sie müssen nichts anpassen. Sie benötigen hierfür Admin-Rechte.\n\n\n\n\n\n\n\nFigure 1.11: Installation von R für macOS: Startfenster\n\n\n\nSobald das untenstehende Fenster erscheint, haben Sie R erfolgreich installiert.\n\n\n\n\n\n\nFigure 1.12: Installation von R für macOS: Erfolgreiche Installation\n\n\n\n\n\n1.2.2 Installation von RStudio\nWählen Sie Download RStudio Desktop for MacOS, um die neuste Version von RStudio (2024.12.0+467) zu installieren.\n\n\n\n\n\n\nFigure 1.13: Startseite für die Installation von R und RStudio\n\n\n\nÖffnen Sie die Installationsdatei (oft im Ordner Downloads zu finden) und folgen Sie den Anweisungen. Falls untenstehend nicht anders erwähnt, behalten Sie die Standardeinstellungen bei.\nWenn Sie R und RStudio installiert haben, fahren Sie hier fort.",
+    "crumbs": [
+      "R und RStudio",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "r/installation.html#sec-setupstudio",
+    "href": "r/installation.html#sec-setupstudio",
+    "title": "1  Installation",
+    "section": "1.3 Einrichten von RStudio",
+    "text": "1.3 Einrichten von RStudio\nIn einem nächsten Schritt können wir RStudio konfigurieren, so dass wir gut damit arbeiten können.\n\n1.3.1 Verändern der Grundeinstellungen\nUnter Tools &gt; Global Options ... finden Sie viele Anpassungsmöglichkeiten für Ihre RStudio-Konfiguration.\nFolgende Anpassung empfehlen wir, weil dies hilft zukünftige Fehler zu vermeiden. Entfernen Sie die beiden Haken bei den eingefärbten Kästchen und wählen Sie die Option Never.\n\n\n\n\n\n\nFigure 1.14: Einrichten RStudio: Speicheroptionen\n\n\n\nWeiter können Sie hier beispielsweise unter Appereance die Farben und Schriftarten verändern.\n\n\n1.3.2 Informationen zu Ihrem Setup\nUm zu erfahren, wie Ihr installiertes Setup aussieht, können Sie folgende Befehle nutzen.\n\n# Informationen über das Betriebssystem\nSys.info()\n\n# Informationen über die R Version\nR.version\n\n# Informationen über die RStudio Version\nRStudio.Version()\n\nDiese Informationen sind unter Umständen sehr nützlich, wenn es ums Debugging/Beheben von Fehler geht.\n\n\n1.3.3 Speicherort der Packages\nFühren Sie folgenden Code in der Konsole aus, um zu erfahren in welchen Ordner RStudio Packages herunterlädt.\n\n.libPaths()",
+    "crumbs": [
+      "R und RStudio",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "r/installation.html#faq-installation",
+    "href": "r/installation.html#faq-installation",
+    "title": "1  Installation",
+    "section": "1.4 FAQ Installation",
+    "text": "1.4 FAQ Installation\nHier werden häufige Fragen beantwortet.\nZurzeit noch keine Fragen und Antworten vorhanden.\n\n\n\n\n\n\nHilfreiche Informationen und Anleitungen zur Installation\n\n\n\n\nPsyTeachR Website: Ausführliche Installationsanweisungen inkl. Screenshots und Videoanweisung (in Englisch).",
+    "crumbs": [
+      "R und RStudio",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "r/installation.html#footnotes",
+    "href": "r/installation.html#footnotes",
+    "title": "1  Installation",
+    "section": "",
+    "text": "Sie können R und RStudio selbstverständlich auch mit Linux installieren. Wir gehen in dieser Veranstaltung davon aus, dass Sie dies ohne zusätzliche Anleitung ausführen können. Für allfällige linuxspezifische Probleme können wir nur in begrenztem Rahmen Hilfe anbieten. Falls Sie die Expertise und Motivation haben eine Step-by-Step Anleitung für Linux zu schreiben, dürfen Sie sich gerne bei uns melden.↩︎",
+    "crumbs": [
+      "R und RStudio",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Installation</span>"
+    ]
+  },
+  {
+    "objectID": "r/help.html",
+    "href": "r/help.html",
+    "title": "2  Help center",
+    "section": "",
+    "text": "2.1 Hilfe in R",
+    "crumbs": [
+      "R und RStudio",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Help center</span>"
+    ]
+  },
+  {
+    "objectID": "r/help.html#hilfe-in-r",
+    "href": "r/help.html#hilfe-in-r",
+    "title": "2  Help center",
+    "section": "",
+    "text": "2.1.1 ?\nUm zu erfahren, was genau eine Funktion macht und welche Argumente sie benötigt, kann die leere Funktion mit einem Fragezeichen aufgerufen werden: ?cor().\n\n Konsole Tipp Lösung\n\n\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nWählen Sie eine Funktion aus und setzen Sie vorher ein ? ein.\nDrücken Sie Run Code.\n\n\n\n?cor()\n\nstarting httpd help server ... done\n\n\n\n\n\n\n\n2.1.2 HelpFenster in RStudio\nIm rechten unteren Quadranten finden Sie einen Reiter namens Help. Dort können Sie Namen von Packages oder Funktionen eingeben um zur Dokumentation zu gelangen.\n\n\n2.1.3 Autocomplete mit TabTab\nMit der Taste TabTab können Sie schauen, welche Vorschläge R Ihnen macht. So sehen Sie z.B. welche Argumente eine Funktion benötigt.",
+    "crumbs": [
+      "R und RStudio",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Help center</span>"
+    ]
+  },
+  {
+    "objectID": "r/help.html#bücher-und-tutorials",
+    "href": "r/help.html#bücher-und-tutorials",
+    "title": "2  Help center",
+    "section": "2.2 Bücher und Tutorials",
+    "text": "2.2 Bücher und Tutorials\nSehr geeignete Bücher und Websites sind im Folgenden aufgelistet. Der Vorteil dieser Quellen im Vergleich zu Suchmaschinen oder LLMs ist, dass die Informationen verifiziert sind.\n\nR for Data Science von Hadley Wickham\nData Skills for Reproducible Research\nIntroduction to R",
+    "crumbs": [
+      "R und RStudio",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Help center</span>"
+    ]
+  },
+  {
+    "objectID": "r/help.html#suchmaschinen",
+    "href": "r/help.html#suchmaschinen",
+    "title": "2  Help center",
+    "section": "2.3 Suchmaschinen",
+    "text": "2.3 Suchmaschinen\nUm weiterzukommen ist es oft hilfreich Suchmaschinen zu nutzen (Fehlermeldung in Suchmaschine kopieren). Oft hatten andere vorher schon dasselbe Problem.\nSuchmaschinen eignen sich oft für das Beheben von Problemen in dem man z.B.\n\ndie Fehlermeldung kopiert und in einer Suchmaschine eingibt.\ndas Stichwort R und das Ziel (z.B. Zusammenfügen mehrerer Variablen zu einem Datensatz) eingibt (meistens erzielt man bessere Resultate, wenn man das Ziel in Englisch formuliert).\nForen für Programmierprobleme sind beispielsweise StackOverfloW oder das Posit-Forum.",
+    "crumbs": [
+      "R und RStudio",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Help center</span>"
+    ]
+  },
+  {
+    "objectID": "r/help.html#llms",
+    "href": "r/help.html#llms",
+    "title": "2  Help center",
+    "section": "2.4 LLMs",
+    "text": "2.4 LLMs\nAuch ChatGPT zu fragen kann hilfreich sein (z.B. “Was bedeutet dieser Code? cor(x,y)”). Natürlich kann die Antwort von ChatGPT immer falsch sein und muss getestet und kritisch überprüft werden1.\nLLMs eignen sich oft zu Beginn nicht schlecht, da sie für “einfache” und “häufige” Probleme besser performen, als für Spezialfälle. Hierbei gilt es einige Punkte zu beachten:\n\nLLMs geben Code aus. Aber auch wenn dieser problemlos ausgeführt werden kann, muss trotzdem genau überprüft werden, ob der Code das richtige tut. Dieses Überprüfen kann unter Umständen genau so lange dauern, wie das Lesen und Verstehen der Dokumentation.\nDas Überprüfen von Code erfordert gewisse Grundkenntnisse. Das direkte Verwenden von Code ohne kompetente Prüfung ist in der Forschung unethisch!\nEs dürfen keine sensiblen Daten eingegeben werden.",
+    "crumbs": [
+      "R und RStudio",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Help center</span>"
+    ]
+  },
+  {
+    "objectID": "r/help.html#faq",
+    "href": "r/help.html#faq",
+    "title": "2  Help center",
+    "section": "2.5 FAQ",
+    "text": "2.5 FAQ\nWelche Werte enthält eine Variable / ein Datensatz?\n\nUm die Werte einer Variable oder eines Datensatzes zu sehen, schauen Sie in unter Environment(rechter oberer Quadrant in _RStudio) nach. Dort können Sie auf den blauen Pfeil klicken und die Infos “ausklappen”.\nGeben Sie den Namen der Variable/des Datensatzes in der Console ein und drücken Sie EnterEnter.\n\nWelche Argumente braucht eine Funktion?\n\nGeben Sie den Funktionsnamen ein und klicken Sie in die folgenden Klammern. Drücken Sie TabTab um Vorschläge zu sehen.\nGeben Sie ?FUNKTIONSNAMEein.\nSuchen Sie im rechten unteren Quadranten von RStudio unter Help nach dem Funktionsnamen.\nGeben Sie in einer Suchmaschine den Funktionsnamen und Stichworte zu Ihrem Ziel ein.\n\nBeim Laden von {tidyverse} gibt es eine Fehlermeldung.\n\nSehr wahrscheinlich ist dies einfach eine Warnung (Warning) und keine Fehlermeldung (Error). Es gibt andere Packages, die dieselben Funktionsnamen verwenden, das kann zu Konflikten führen. Laden Sie trotzdem das {tidyverse}.",
+    "crumbs": [
+      "R und RStudio",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Help center</span>"
+    ]
+  },
+  {
+    "objectID": "r/help.html#footnotes",
+    "href": "r/help.html#footnotes",
+    "title": "2  Help center",
+    "section": "",
+    "text": "↩︎",
+    "crumbs": [
+      "R und RStudio",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Help center</span>"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebungen.html",
+    "href": "uebungen/uebungen.html",
+    "title": "Informationen",
+    "section": "",
+    "text": "Dieses Kapitel enthält die Übungsmaterialien begleitend zur Vorlesung.\nTutoriat in den Übungsgruppen\nDie Aufgaben werden in den Übungsgruppen mit Tutoriat gemeinsam bearbeitet.\nArbeiten mit RProjekten \nErstellen Sie immer zuerst ein RProjekt für die Übung bevor Sie mit den Aufgaben beginnen und benennen Sie dieses Projekt z.B. nach der Übung: Uebung_7).\nTeilweise erhalten Sie für eine oder mehrere Übungen einen vorgefertigten Projekt-Ordner. Achtung: Beim Arbeiten mit Windows muss dieser Ordner vor dem Bearbeiten entzippt werden.\nDatensätze\nDie für die Übungen verwendeten Datensätze können am Anfang der Übungen per Link heruntergeladen werden.",
+    "crumbs": [
+      "Übungen",
+      "Informationen"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-01.html",
+    "href": "uebungen/uebung-01.html",
+    "title": "Übung 1",
+    "section": "",
+    "text": "Aufgabe 1.1. Installation von R und RStudio\nInstallieren Sie R und RStudio, wie in 1  Installation beschrieben.",
+    "crumbs": [
+      "Übungen",
+      "Übung 1"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-01.html#aufgabe-1.2-packages-installieren",
+    "href": "uebungen/uebung-01.html#aufgabe-1.2-packages-installieren",
+    "title": "Übung 1",
+    "section": "Aufgabe 1.2 Packages installieren",
+    "text": "Aufgabe 1.2 Packages installieren\nInstallieren Sie das Package {tidyverse} entweder über die Konsole oder über Tools.",
+    "crumbs": [
+      "Übungen",
+      "Übung 1"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-01.html#aufgabe-1.3-rproject-und-rskript-erstellen",
+    "href": "uebungen/uebung-01.html#aufgabe-1.3-rproject-und-rskript-erstellen",
+    "title": "Übung 1",
+    "section": "Aufgabe 1.3: RProject und RSkript erstellen",
+    "text": "Aufgabe 1.3: RProject und RSkript erstellen\n\nErstellen Sie (an einem für Sie geeigneten Ort auf Ihrem Rechner) einen Ordner für alle Übungen in Statistik 2 mit dem Namen Statistik2. \nÖffnen Sie RStudio und erstellen Sie in diesem Ordner ein RProject mit dem Namen Introduction_to_R.\nErstellen Sie in RStudio ein RSkript (Endung .R).\nSpeichern Sie dieses Skript im RProjekt-Ordner mit dem Namen IntroSkript ab.\nErstellen Sie im aktuellen RProjekt-Ordner einen Unterordner namens data. Laden Sie dann die Datensätze herunter und speichern Sie diese im data-Ordner.\n\n\nDatensatz 1: Link folgt\nDatensatz 2: Link folgt",
+    "crumbs": [
+      "Übungen",
+      "Übung 1"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-01.html#aufgabe-1.4-operatoren-und-funktionen-verwenden",
+    "href": "uebungen/uebung-01.html#aufgabe-1.4-operatoren-und-funktionen-verwenden",
+    "title": "Übung 1",
+    "section": "Aufgabe 1.4: Operatoren und Funktionen verwenden",
+    "text": "Aufgabe 1.4: Operatoren und Funktionen verwenden\n\nSchreiben Sie in das Skript untenstehenden Code und führen Sie diesen aus.\n\n\nlibrary(tidyverse)\nnumbers &lt;- c(43, 65, 23, 78, 34, 73, 69, 14, 37, 84)\n\nWie können Sie nun nachschauen, welche Werte in der Variable vorhanden sind?\n\nBerechnen Sie folgende Werte:\n\n\nMittelwert der Variable numbers.\nStandardabweichung der Variable numbers.\nSumme der Variable numbers\nWas passiert, wenn Sie die Variable numbers mit sich selber addieren (numbers + numbers) oder multiplizieren?\nWas passiert, wenn Sie die Wurzel nehmen?\n\n\nErstellen Sie eine Variable words mit den Wörtern yellow, green und red darin.\n\n\nWas passiert, wenn Sie den Mittelwert der Variable words berechnen?\nWelcher Wert wird ausgegeben?\nGibt es eine Warnung oder eine Fehlermeldung?\n\n\nWas passiert, wenn Sie die Variable words mit sich selber addieren?\n\n\nWelcher Wert wird ausgegeben?\nGibt es eine Warnung oder eine Fehlermeldung?\n\n\nDiskutieren Sie kurz zusammen: Wie unterscheiden sich Warnungen von Fehlermeldungen?",
+    "crumbs": [
+      "Übungen",
+      "Übung 1"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-01.html#aufgabe-1.5-rnotebook-erstellen-und-packages-laden",
+    "href": "uebungen/uebung-01.html#aufgabe-1.5-rnotebook-erstellen-und-packages-laden",
+    "title": "Übung 1",
+    "section": "Aufgabe 1.5: RNotebook erstellen und Packages laden",
+    "text": "Aufgabe 1.5: RNotebook erstellen und Packages laden\n\nErstellen Sie ein RNotebook und speichern Sie es unter dem Namen IntroNotebook ab.\nIdentifizieren Sie die 3 Bausteine eines Notebooks: Header, Textfeld und Codefeld mit folgenden Fragen:\n\n\nWoran erkennt man den Baustein?\nFür was eignet sich der Baustein besonders?\nFür was eignet sich der Baustein nicht?\n\n\nGeben Sie dem Notebook einen Titel.\nLaden Sie in einem Codefeld das Package {tidyverse} mit\n\n\nlibrary(tidyverse)\n\n\nBeschreiben Sie im Textfeld über dem Codefeld was der Code machen sollte.",
+    "crumbs": [
+      "Übungen",
+      "Übung 1"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-01.html#aufgabe-1.6-daten-einlesen",
+    "href": "uebungen/uebung-01.html#aufgabe-1.6-daten-einlesen",
+    "title": "Übung 1",
+    "section": "Aufgabe 1.6: Daten einlesen",
+    "text": "Aufgabe 1.6: Daten einlesen\nIn dieser Aufgabe arbeiten wir weiter mit dem RNotebook von oben.\n\nErstellen Sie ein neues Codefeld.\nLesen Sie den Datensatz dataexample_1.csv ein aus dem data-Ordner ein.\n\nGehen Sie dabei schrittweise vor:\n\nWelche Endungen hat die Datei?\nImportieren Sie die Daten mit dem GUI.\nLöschen Sie die Variable aus dem Environment.\nImportieren Sie den Datensatz mit Code. Verwenden Sie dafür den Variablennamen d1 für den Datensatz (bzw. d2 für den zweiten Datensatz).\n\n\nd1 &lt;- ...(\"data/...\")\n\nFühren Sie dieselben Schritte für dataexample_2.csv aus.\n\nd2 &lt;- ...\n\n\nDiskutieren Sie kurz zusammen:\n\n\nWas war schwierig? Was fällt Ihnen auf?\nWas sind Separators?\nWelcher Weg fällt Ihnen leichter?",
+    "crumbs": [
+      "Übungen",
+      "Übung 1"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-01.html#aufgabe-1.7-datensätze-anschauen",
+    "href": "uebungen/uebung-01.html#aufgabe-1.7-datensätze-anschauen",
+    "title": "Übung 1",
+    "section": "Aufgabe 1.7: Datensätze anschauen",
+    "text": "Aufgabe 1.7: Datensätze anschauen\nSchauen Sie sich die beiden Datensätze auf drei Arten an\n\nindem Sie im Environment darauf klicken.\nindem Sie den Namen der Variable eingeben (in der Konsole oder im RNotebook).\nindem Sie untenstehenden Code eingeben (... muss mit einer Variable ersetzt werden):\n\n\nglimpse(...)",
+    "crumbs": [
+      "Übungen",
+      "Übung 1"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-01.html#aufgabe-1.8-visualisieren-der-datensätze",
+    "href": "uebungen/uebung-01.html#aufgabe-1.8-visualisieren-der-datensätze",
+    "title": "Übung 1",
+    "section": "Aufgabe 1.8: Visualisieren der Datensätze",
+    "text": "Aufgabe 1.8: Visualisieren der Datensätze\n\nInstallieren Sie das Package {esquisse}.\nGeben Sie in der Konsole folgenden Code ein:\n\n\nesquisse::esquisser()\n\n\nSchauen Sie sich nacheinander die beiden Datensätze an.\n\n\nWelche Variablen gibt es und welches Skalenniveau haben diese?\nIst die Variable age normalverteilt?\nWelche Darstellungsform eignet sich am besten?\nLassen Sie sich für die beste Darstellung des Datensatzes einen Code ausgeben und speichern Sie diesen Ihrem RNotebook ab. Speichern Sie alle Änderungen in Ihrem RNotebook. Der Titel sollte nicht mehr in rot geschrieben sein und keinen Stern nach dem Namen haben.\n\n\nSchliessen Sie Ihr RProject und öffnen Sie es erneut.\nFalls nötig: Öffnen Sie ihr IntroNotebook wieder und führen Sie allen Code aus. Jetzt sollten Sie zum Schluss beide Grafiken haben.\n\nZeigen Sie einander die Grafiken und diskutieren Vor- und Nachteile der Darstellungsformen.\n\n\n\n\n\n\nBei Problemen…\n\n\n\nDer Einstieg ins Programmieren mit R ist nicht einfach. Falls Sie Fragen zu den Übungen haben, dürfen Sie diese zusätzlich in der R Sprechstunde nächste Woche stellen. Kommen Sie einfach mit Ihrem Computer vorbei und wir schauen es an.",
+    "crumbs": [
+      "Übungen",
+      "Übung 1"
+    ]
+  },
+  {
+    "objectID": "appendix/webrconsole.html",
+    "href": "appendix/webrconsole.html",
+    "title": "WebR Konsole",
+    "section": "",
+    "text": "In der WebR-Konsole können Sie R-Code ausführen. Erstellte Variablen werden gespeichert, so lange das Browserfenster nicht geschlossen wird.\n\n Konsole Tipp Lösung\n\n\nGeben Sie hier Code ein.\n\nPlease enable JavaScript to experience the dynamic code cell content on this page.\n\n\nPackages Laden Sie zuerst das {tidyverse} mit library(tidyverse).\nDatensätze\nEs stehen Ihnen folgende Datensätze zur Verfügung:\n\ncars\niris\n\nEs können weitere Datensätze durch das Laden von Packages genutzt werden:\n\npenguins aus {palmerpenguins}\n\n\n# Laden vom penguins-Datensatz aus dem {palmerpenguins} Package\nlibrary(palmerpenguins)\nd &lt;- penguins\n\n\n\n\nlibrary(tidyverse)\n\nglimpse(cars)\n\nRows: 50\nColumns: 2\n$ speed &lt;dbl&gt; 4, 4, 7, 7, 8, 9, 10, 10, 10, 11, 11, 12, 12, 12, 12, 13, 13, 13…\n$ dist  &lt;dbl&gt; 2, 10, 4, 22, 16, 10, 18, 26, 34, 17, 28, 14, 20, 24, 28, 26, 34…\n\nplot(cars)",
+    "crumbs": [
+      "Anhang",
+      "WebR Konsole"
+    ]
+  },
+  {
+    "objectID": "appendix/thanks.html",
+    "href": "appendix/thanks.html",
+    "title": "Danke",
+    "section": "",
+    "text": "Wir danken folgenden Personen herzlich für ihren Beitrag zu diesem Skript (alphabetische Reihenfolge).",
+    "crumbs": [
+      "Anhang",
+      "Danke"
+    ]
+  },
+  {
+    "objectID": "appendix/license.html",
+    "href": "appendix/license.html",
+    "title": "License",
+    "section": "",
+    "text": "This work is licensed under a Creative Commons Attribution-NonCommercial 4.0 International License.",
+    "crumbs": [
+      "Anhang",
+      "License"
+    ]
+  }
+]

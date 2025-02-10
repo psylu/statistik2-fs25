@@ -1,0 +1,58 @@
+project:
+  type: book
+  output-dir: docs
+book:
+  title: Datenanalyse mit R
+  subtitle: Statistik 2 FS2025
+  author: Gerda Wyssen & Mirjam Senn
+  date: Februar 2025
+  page-footer: Copyright 2025, Gerda Wyssen & Mirjam Senn
+  edition: 1
+  reader-mode: false
+  cover-image: imgs/favicon.png
+  favicon: imgs/favicon.png
+  site-url: https://psylu.github.io/statistik2-fs25
+  page-navigation: true
+  search: true
+  license: CC BY SA
+  chapters:
+  - index.qmd
+  - part: R und RStudio
+    chapters:
+    - r/installation.qmd
+#    - r/rrstudio.qmd
+#    - r/programmieren.qmd
+    - r/help.qmd
+  - part: Datenverarbeitung
+#    chapters:
+  - part: Datenvisualisierung
+#    chapters:
+  - part: Datenanalyse
+#    chapters:
+  - part: Übungen
+    chapters:
+    - uebungen/uebungen.qmd
+    - uebungen/uebung-01.qmd
+
+  - part: Anhang
+    chapters:
+    - appendix/webrconsole.qmd
+    - appendix/thanks.qmd
+    - appendix/license.qmd
+    
+number-depth: 3
+format:
+  html:
+    theme: flatly
+    fontsize: 12pt
+    page-layout: full
+    code-background: true
+    code-copy: true
+    code-overflow: wrap
+    link-external-newwindow: true
+    css: include/webex.css
+    include-after-body: include/webex.js
+  pdf:
+    documentclass: scrreprt
+filters: 
+  - webr

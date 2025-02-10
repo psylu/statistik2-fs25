@@ -1,0 +1,178 @@
+# Installation {#sec-installation}
+
+::: {.callout-note appearance="default" title="Inhalt"}
+
+- Step-by-Step Anleitung zum Installieren von _R_ und _RStudio_ für Windows und MacOS Betriebssysteme
+- Informationen zum Einrichten der Programmierumgebung
+
+:::
+
+Zuerst muss _R_ und dann _RStudio_ installiert werden. 
+Wählen Sie hierfür je nach Ihrem Betriebssystem^[Sie können _R_ und _RStudio_ selbstverständlich auch mit Linux installieren. Wir gehen in dieser Veranstaltung davon aus, dass Sie dies ohne zusätzliche Anleitung ausführen können. Für allfällige linuxspezifische Probleme können wir nur in begrenztem Rahmen Hilfe anbieten. Falls Sie die Expertise und Motivation haben eine Step-by-Step Anleitung für Linux zu schreiben, dürfen Sie sich gerne bei uns melden.] die passende Anleitung:
+
+- [Step-by-Step Installation für Windows](../r/installation.html#sec-windows)
+- [Step-by-Step Installation für Mac](../r/installation.html#sec-macos)
+
+<aside>
+Auf der Seite von Posit finden Sie zudem Versionen für Debian, Redhat, SUSE, and Ubuntu systems.
+</aside>
+
+<br>
+
+## Step-by-Step Installation für Windows {#sec-windows}
+
+### Installation von _R_
+
+Öffnen Sie [die Installations-Website](https://posit.co/download/rstudio-desktop/).
+Wählen Sie __Download R for Windows__, um die neuste Version von _R_ (__4.4.2__ _Pile of Leaves_) zu installieren.
+
+![Startseite für die Installation von R und RStudio](../imgs/install_r_rstudio_1.png){#fig-installation1 fig-alt="Screenshot der oben verlinkten Website." fig-align="left" width=70%}
+
+Laden Sie unter __install R for the first time__ die Installationsdatei herunter.
+
+
+::: {layout-nrow=2}
+![Installation von R: Auswahl des Betriebssystems](../imgs/install_r_1.png){#fig-installation2 fig-alt="Screenshot der oben verlinkten Website." fig-align="left" width=70%}
+
+![Installation von R für Windows: Auswahl der R Version](../imgs/install_r_2_windows.png){#fig-installation3 fig-alt="Screenshot der oben verlinkten Website." fig-align="left" width=70%} 
+:::
+
+Klicken Sie auf __Download R-4.4.2 for Windows__.
+
+![Installation von R für Windows: Downloadlink](../imgs/install_r_3_windows.png){#fig-installation4 fig-alt="Screenshot der oben verlinkten Website." fig-align="left" width=70%}
+
+Öffnen Sie die Installationsdatei (oft im Ordner `Downloads` zu finden) und folgen Sie den Anweisungen. 
+Falls untenstehend nicht anders erwähnt, behalten Sie die Standardeinstellungen bei.
+
+- Unter_Select Setup Language_ wählen Sie am besten _English_ als Sprache. 
+Die englische Version macht es leichter im Internet Hilfe zu finden.
+
+![Installation von R für Windows: Englisch](../imgs/install_r_4_startuplanguage.png){#fig-installation5 fig-alt="Screenshot des Aufforderungsfensters bei der die Sprache Englisch ausgewählt wurde." fig-align="center" width=50%}
+
+- Am besten speichern Sie _R_ in einem Ordner auf dem Laufwerk `C:` ab.
+Hierfür benötigen Sie Admin-Rechte.
+
+![Installation von R für Windows: Wählen des Speicherorts](../imgs/install_r_5_folder.png){#fig-installation6 fig-alt="Screenshot des Aufforderungsfensters bei der das Laufwerk `C:` ausgewählt wurde." fig-align="center" width=50%}
+
+Sobald das untenstehende Fenster erscheint, haben Sie _R_ erfolgreich installiert.
+
+![Installation von R für Windows: Erfolgreiche Installation](../imgs/install_r_6_success.png){#fig-installation7 fig-alt="Screenshot des Fensters, dass R erfolgreich installiert wurde." fig-align="left" width=70%}
+
+
+### Installation von _RStudio_
+
+Wählen Sie __Download RStudio Desktop for Windows__, um die neuste Version von _RStudio_ (_2024.12.0+467_) zu installieren.
+
+![Startseite für die Installation von R und RStudio](../imgs/install_r_rstudio_2.png){#fig-installation8 fig-alt="Screenshot der oben verlinkten Website." fig-align="left" width=70%}
+
+Öffnen Sie die Installationsdatei (oft im Ordner `Downloads` zu finden) und folgen Sie den Anweisungen. 
+Falls untenstehend nicht anders erwähnt, behalten Sie die Standardeinstellungen bei.
+
+
+__Wenn Sie _R_ und _RStudio_ installiert haben, fahren Sie [hier](../r/installation.html#sec-setuprstudio) fort.__
+
+
+
+## Step-by-Step Installation für MacOS {#sec-macos}
+
+
+### Installation von R
+
+Öffnen Sie [die Installations-Website](https://posit.co/download/rstudio-desktop/).
+Wählen Sie __Download R for macOS__, um die neuste Version von _R_ (4.2.2 "Pile of Leaves") zu installieren.
+
+![Startseite für die Installation von R und RStudio](../imgs/install_r_rstudio_1_mac.png){#fig-installation10 fig-alt="Screenshot der oben verlinkten Website." fig-align="left" width=70%}
+
+Laden Sie die zu Ihrer Version von macOS passende Installationsdatei herunter. Beachten Sie, dass es zwei Versionen gibt. In der Regel gibt es eine Fehlermeldung, falls Sie einen Intel Prozessor (ältere Mac-Modelle, ca. vor 2021) haben und daher nicht die obere Version verwenden können.   
+
+![Installation von R für macOS: Downloadlink](../imgs/install_r_2_mac.png){#fig-installation11 fig-alt="Screenshot der oben verlinkten Website." fig-align="left" width=70%}
+
+Öffnen Sie die Installationsdatei (oft im Ordner `Downloads` zu finden) und folgen Sie den Anweisungen. 
+Falls die Auswahl erscheint, wählen Sie _English_ als Sprache.
+Die englische Version macht es leichter im Internet Hilfe zu finden.
+Falls untenstehend nicht anders erwähnt, behalten Sie die Standardeinstellungen bei. 
+
+- Speichern Sie _R_ auf der `Macintosh HD` ab. In der Regel entspricht dies den Standardeinstellung und Sie müssen nichts anpassen. Sie benötigen hierfür Admin-Rechte.
+
+![Installation von R für macOS: Startfenster](../imgs/install_r_5_folder_mac.png){#fig-installation12 fig-alt="Screenshot des Aufforderungsfensters." fig-align="left" width=70%}
+
+Sobald das untenstehende Fenster erscheint, haben Sie _R_ erfolgreich installiert.
+
+![Installation von R für macOS: Erfolgreiche Installation](../imgs/install_r_6_success_mac.png){#fig-installation13 fig-alt="Screenshot des Fensters, dass R erfolgreich installiert wurde." fig-align="left" width=70%}
+
+
+### Installation von _RStudio_
+
+Wählen Sie __Download RStudio Desktop for MacOS__, um die neuste Version von _RStudio_ (_2024.12.0+467_) zu installieren.
+
+![Startseite für die Installation von R und RStudio](../imgs/install_r_rstudio_2_mac.png){#fig-installation14 fig-alt="Screenshot der oben verlinkten Website." fig-align="left" width=70%}
+
+Öffnen Sie die Installationsdatei (oft im Ordner `Downloads` zu finden) und folgen Sie den Anweisungen. 
+Falls untenstehend nicht anders erwähnt, behalten Sie die Standardeinstellungen bei.
+
+__Wenn Sie _R_ und _RStudio_ installiert haben, fahren Sie [hier](../r/installation.html#sec-setuprstudio) fort.__
+
+
+
+## Einrichten von _RStudio_ {#sec-setupstudio}
+
+In einem nächsten Schritt können wir _RStudio_ konfigurieren, so dass wir gut damit arbeiten können.
+
+### Verändern der Grundeinstellungen
+
+Unter `Tools` > `Global Options ...` finden Sie viele Anpassungsmöglichkeiten für Ihre _RStudio_-Konfiguration.
+
+Folgende Anpassung empfehlen wir, weil dies hilft zukünftige Fehler zu vermeiden. Entfernen Sie die beiden Haken bei den eingefärbten Kästchen und 
+wählen Sie die Option `Never`.
+
+![Einrichten RStudio: Speicheroptionen](../imgs/rstudio_options_general_h.png){#fig-installation15 fig-alt="Screenshot Options in RStudio." fig-align="left" width=70%}
+
+
+Weiter können Sie hier beispielsweise unter `Appereance` die Farben und Schriftarten verändern. 
+
+### Informationen zu Ihrem Setup {#sec-setup}
+
+Um zu erfahren, wie Ihr installiertes Setup aussieht, können Sie folgende Befehle nutzen.
+
+```{r}
+#| eval: false
+# Informationen über das Betriebssystem
+Sys.info()
+
+# Informationen über die R Version
+R.version
+
+# Informationen über die RStudio Version
+RStudio.Version()
+```
+
+Diese Informationen sind unter Umständen sehr nützlich, wenn es ums Debugging/Beheben von Fehler geht.
+
+### Speicherort der _Packages_
+
+Führen Sie folgenden Code in der Konsole aus, um zu erfahren in welchen Ordner _RStudio_ _Packages_ herunterlädt.
+
+```{r}
+#| eval: false
+.libPaths()
+```
+
+<!-- Dies kann geändert werden indem statt `NEUERPFAD` mit dem Pfad zum gewünschten Ordner ersetzt wird. -->
+
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- .libPaths("NEUERPFAD") -->
+<!-- ``` -->
+
+
+## FAQ Installation
+
+Hier werden häufige Fragen beantwortet.
+
+_Zurzeit noch keine Fragen und Antworten vorhanden._
+
+::: {.callout-note appearance="default" title="Hilfreiche Informationen und Anleitungen zur Installation"}
+
+* [PsyTeachR Website](https://psyteachr.github.io/RSetGo/): Ausführliche Installationsanweisungen inkl. Screenshots und Videoanweisung (in Englisch).
+
+:::

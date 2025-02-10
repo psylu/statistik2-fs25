@@ -1,0 +1,119 @@
+# Help center {#sec-help}
+
+In diesem Kapitel finden Sie verschiedene Hilfestellungen für die Arbeit mit _R_.
+
+Häufigste Fehlerquellen sind:
+
+- Tippfehler (z.B. `meann(x)`)
+
+- Fehlende oder unpassende Argumente (z.B. `hist()` mit zwei Variablen aufrufen: `hist(cars)`))
+
+- Reihenfolgen (z.B. Variable abrufen wollen, obwohl sie noch nicht erstellt wurde)
+
+Das __Debugging__, also das Beheben von Fehlern im Code, gehört zum Programmieren dazu.
+Lassen Sie sich nicht von Fehlermeldungen aus der Ruhe bringen.
+Schauen Sie zuerst, ob es sich "nur" um eine Warnung (`WARNING`) oder ob es sich tatsächlich um eine Fehlermeldung (`ERROR`) handelt. 
+Nur bei einem Fehler wird der Code nicht weiter ausgeführt.
+
+Wichtig ist dabei oft zu wissen, mit welchem Setup man arbeitet. Dies können Sie [hier](installation.qmd#sec-setup) herausfinden.
+
+## Hilfe in _R_
+
+### `?`
+
+Um zu erfahren, was genau eine Funktion macht und welche Argumente sie benötigt, kann die leere Funktion mit einem Fragezeichen aufgerufen werden: `?cor()`.
+ 
+::: {.panel-tabset}
+## {{< fa code >}}&emsp;Konsole
+
+```{webr-r}
+?cor()
+```
+
+## {{< fa regular helicopter >}}&emsp;Tipp
+
+Wählen Sie eine Funktion aus und setzen Sie vorher ein `?` ein.
+
+Drücken Sie `Run Code`.
+
+## {{< fa check >}}&emsp;Lösung
+
+```{r}
+?cor()
+```
+:::
+
+### `Help`Fenster in _RStudio_
+
+Im rechten unteren Quadranten finden Sie einen Reiter namens `Help`. 
+Dort können Sie Namen von _Packages_ oder Funktionen eingeben um zur Dokumentation zu gelangen.
+
+### Autocomplete mit {{< kbd Tab >}}
+
+Mit der Taste {{< kbd Tab >}} können Sie schauen, welche Vorschläge _R_ Ihnen macht.
+So sehen Sie z.B. welche Argumente eine Funktion benötigt.
+
+## Bücher und Tutorials
+
+Sehr geeignete Bücher und Websites sind im Folgenden aufgelistet. 
+Der Vorteil dieser Quellen im Vergleich zu Suchmaschinen oder LLMs ist, dass die Informationen verifiziert sind.
+
+- [R for Data Science von Hadley Wickham](https://r4ds.had.co.nz/)
+
+- [Data Skills for Reproducible Research](https://psyteachr.github.io/reprores-v3/)
+
+- [Introduction to R](https://cran.r-project.org/doc/manuals/R-intro.pdf)
+
+## Suchmaschinen
+
+Um weiterzukommen ist es oft hilfreich Suchmaschinen zu nutzen (Fehlermeldung in Suchmaschine kopieren). 
+Oft hatten andere vorher schon dasselbe Problem. 
+
+__Suchmaschinen__ eignen sich oft für das Beheben von Problemen in dem man z.B.
+
+- die Fehlermeldung kopiert und in einer Suchmaschine eingibt.
+
+- das Stichwort _R_ und das Ziel (z.B. _Zusammenfügen mehrerer Variablen zu einem Datensatz_) eingibt (meistens erzielt man bessere Resultate, wenn man das Ziel in Englisch formuliert).
+
+- Foren für Programmierprobleme sind beispielsweise _StackOverfloW_ oder das [Posit-Forum](https://forum.posit.co/).
+
+
+## LLMs
+
+Auch ChatGPT zu fragen kann hilfreich sein (z.B. "Was bedeutet dieser Code? cor(x,y)").
+Natürlich kann die Antwort von ChatGPT immer falsch sein und muss getestet und kritisch überprüft werden^[![](../imgs/groundtruth.png){width=70%}].
+
+__LLMs__ eignen sich oft zu Beginn nicht schlecht, da sie für "einfache" und "häufige" Probleme besser performen, als für Spezialfälle. Hierbei gilt es einige Punkte zu beachten:
+
+- LLMs geben `Code` aus. Aber auch wenn dieser problemlos ausgeführt werden kann, muss trotzdem genau überprüft werden, ob der Code das richtige tut. Dieses Überprüfen kann unter Umständen genau so lange dauern, wie das Lesen und Verstehen der Dokumentation.
+
+- Das Überprüfen von Code erfordert gewisse Grundkenntnisse. Das direkte Verwenden von Code ohne kompetente Prüfung ist in der Forschung unethisch!
+
+- Es dürfen keine sensiblen Daten eingegeben werden.
+
+## FAQ
+
+__Welche Werte enthält eine Variable / ein Datensatz?__
+
+- Um die Werte einer Variable oder eines Datensatzes zu sehen, schauen Sie in unter `Environment`(rechter oberer Quadrant in _RStudio) nach.
+Dort können Sie auf den blauen Pfeil klicken und die Infos "ausklappen".
+
+- Geben Sie den Namen der Variable/des Datensatzes in der `Console` ein und drücken Sie {{< kbd Enter >}}. 
+
+__Welche Argumente braucht eine Funktion?__
+
+- Geben Sie den Funktionsnamen ein und klicken Sie in die folgenden Klammern. Drücken Sie {{< kbd Tab >}} um Vorschläge zu sehen.
+
+- Geben Sie `?FUNKTIONSNAME`ein.
+
+- Suchen Sie im rechten unteren Quadranten von _RStudio_ unter `Help` nach dem Funktionsnamen.
+
+- Geben Sie in einer Suchmaschine den Funktionsnamen und Stichworte zu Ihrem Ziel ein.
+
+__Beim Laden von `{tidyverse}` gibt es eine Fehlermeldung.__
+
+- Sehr wahrscheinlich ist dies einfach eine Warnung (`Warning`) und keine Fehlermeldung (`Error`). Es gibt andere Packages, die dieselben Funktionsnamen verwenden, das kann zu Konflikten führen. Laden Sie trotzdem das `{tidyverse}`.
+
+<!-- https://statsandr.com/blog/top-10-errors-in-r/ -->
+ 
+ 

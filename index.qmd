@@ -1,0 +1,122 @@
+# Überblick {.unnumbered}
+
+Diese Website enthält ein Online-Skript begleitend zur Vorlesung __Statistik 2 (FS 2025)__ des Bachelorstudiums Psychologie (VPF) an der Universität Luzern.
+
+<br>
+
+__Inhalt:__
+
+- __Einführung in _R_ und _RStudio___: Starterinfo für die Installation, das Setup und das Programmieren mit _R_.
+- __Datenverarbeitung__: Einlesen, Transformieren und Zusammenfassen von Datensätzen
+- __Datenvisualisierung__: Visualisieren von Datensätzen
+- __Datenanalyse__: Anwendung von Analyseverfahren (Statistik 1 und 2)
+- __Übungen__
+
+<br>
+
+
+__Zu Beginn einige wichtige Informationen zum Arbeiten mit der Website:__
+
+- Die Website wird während des Semesters mit neuen Informationen aktualisiert.
+In der Vorlesung wird jeweils auf die relevanten Kapitel dieses Skripts verwiesen. 
+
+- Die Übungen sind auf der Website zu finden und werden in den Übungsgruppen bearbeitet. 
+Mehr Informationen zu den Übungen finden Sie unter [Übungen](uebungen/uebungen.html).
+
+- Da dieses Skript neu erstellt wurde, schätzen wir Ihr Feedback besonders. 
+Bei Fehlern oder Unklarheiten im Skript dürfen Sie sich gerne per Mail oder OLAT Forum bei den Dozentinnen melden. 
+Gerne teilen wir [hier](thanks.html) Ihren Namen als Danke und Anerkennung für Ihren Beitrag zu diesem Skript.
+(Bitte geben Sie uns per Mail/Forumbeitrag kurz Ihre schriftliche Einwilligung, z.B. mit _Credit: ok_.
+Wir teilen _keine_ Namen ohne ausdrückliche Einwilligung!)
+
+<br>
+
+__Textbausteine dieser Website__
+
+Um das Arbeiten mit dem Skript zu erleichten, enthält dieses verschiedene Bausteine, die unterschiedliche Funktionen haben:
+
+**Text**
+
+Dies ist ein Text inkl. mathematischer Formulierungen: $\alpha = 5$. 
+
+**Code**
+
+Code ist Text, welcher in _R_ ausgeführt werden kann. Wenn ein `#`-Zeichen davor steht, ist der Text "auskommentiert", das bedeutet, dass _R_ ihn nicht liest/ausführt. 
+
+```{r}
+#| eval: false
+# Dies ist ein Kommentar, also auskommentierter Text. Er wird nicht ausgeführt.
+# Unten eine Zeile Code (ausführbarer Text):
+alpha = 5
+```
+
+
+**Info-Blöcke**
+
+Info-Blöcke beinhalten Informationen, Aufgaben oder Lösungen.
+
+
+::: {.callout-note appearance="default" title="Informationen"}
+Hier finden Sie (weiterführende) Informationen zu den Inhalten.
+:::
+
+::: {.callout-caution appearance="default" title="Hands-on"}
+Hier finden Sie Hands-on Aufgaben um das Gelernte anzuwenden.
+:::
+
+::: {.callout-tip appearance="default" title="Lösungen oder Tipps" collapse=true}
+Hier finden Sie Lösungen zu den Aufgaben oder Tipps zum Vorgehen.
+:::
+
+
+**WebR-Konsolen**
+
+In den WebR-Blöcken können Sie direkt in Ihrem Browser Code eingeben und ausführen.
+Sie können den Code aus diesen Blöcken in _R_ ebenfalls ausführen.
+
+
+::: {.panel-tabset}
+## {{< fa code >}}&emsp;Konsole
+Geben Sie in die Konsole verschiedene mathematische Operationen ein:
+
+- $1+1+1$
+
+- $1000/10^2$
+
+- $\sqrt{144}$
+
+- $\sin60$
+
+```{webr-r}
+
+```
+
+
+## {{< fa regular helicopter >}}&emsp;Tipp
+
+| Operator | Operation | Beispiel |
+|---------|:-----|------:|
+| `+`     | Addition   |    `1+1` |
+| `-`     | Subtraktion  |   `1-1` |
+| `*`     | Multiplikation    | `1*1` |
+| `/`     | Division   |  `1/1` |
+| `sqrt()`  | Wurzel   |  `sqrt(1)` |
+| `sin()`    | Sinusfunktion   |  `sin(1)` |
+
+: Mathematische Operatoren in R {.hover}
+
+## {{< fa check >}}&emsp;Lösung
+
+```{r}
+1+1+1
+1000/(10^2)
+sqrt(144)
+sin(60)
+```
+
+:::
+
+
+## Weiteres
+
+Tasten werden wie folgt beschrieben: Drücken Sie {{< kbd Ctrl-C >}} um ausgewählten Code zu kopieren und {{< kbd Ctrl-V >}} um ihn wieder einzufügen.

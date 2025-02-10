@@ -1,0 +1,197 @@
+# Übung 1 {.unnumbered #sec-uebung-01}
+
+::: {.callout-note appearance="default" title="Lernziele dieser Übung"}
+Nach der heutigen Übung können Sie
+
+- _R_ und _RStudio_ installieren
+- Benutzeroberfläche und Einstellungen in _RStudio_ anpassen
+- _RProjekte_ erstellen
+- Code in _RNotebooks_ und _RSkripte_ schreiben und ausführen
+- Mathematische und logische Operatoren verwenden
+- Funktionen mit den passenden Argumenten verwenden
+- Variablen verschiedener Typen erstellen und abrufen
+- Datensätze einlesen und anschauen
+- Daten visualisieren
+- Hilfe fürs Debugging finden
+:::
+
+::: {.callout-tip appearance="default" title="Übungen ohne RStudio...:"}
+Falls bei der Installation unlösbare Probleme auftauchen, können Sie _R_ und _RStudio_ in der _R Sprechstunde_ nächste Woche installieren. Lösen Sie die Aufgaben ab _Aufgabe 1.4_ mit _WebR_ [hier](../appendix/webrconsole.qmd) und holen Sie _Aufgabe 1.1-1.3_ vor der nächsten Übung nach.
+:::
+
+## Aufgabe 1.1. Installation von R und RStudio
+
+Installieren Sie R und RStudio, wie in @sec-installation beschrieben.
+
+
+## Aufgabe 1.2 Packages installieren
+
+Installieren Sie das _Package_ {tidyverse} entweder über die Konsole oder über `Tools`. 
+<!-- ([hier](../r/rrstudio.qmd#packages) finden Sie die Anleitung dazu). -->
+
+
+## Aufgabe 1.3: RProject und RSkript erstellen
+
+a. Erstellen Sie (an einem für Sie geeigneten Ort auf Ihrem Rechner) einen Ordner für alle Übungen in Statistik 2 mit dem Namen `Statistik2`.
+<!-- (oder einem anderen passenden Namen gemäss den [Konventionen](../r/programmingbasics.qmd#namingconventions). -->
+
+b. Öffnen Sie _RStudio_ und erstellen Sie in diesem Ordner ein _RProject_ mit dem Namen _Introduction_to_R_.
+
+c. Erstellen Sie in _RStudio_ ein _RSkript_ (Endung `.R`).
+
+d. Speichern Sie dieses Skript im _RProjekt_-Ordner mit dem Namen _IntroSkript_ ab.
+
+e. Erstellen Sie im aktuellen _RProjekt_-Ordner einen Unterordner namens `data`. Laden Sie dann die Datensätze herunter und speichern Sie diese im `data`-Ordner.
+
+- Datensatz 1: Link folgt
+- Datensatz 2: Link folgt
+
+## Aufgabe 1.4: Operatoren und Funktionen verwenden
+
+a. Schreiben Sie in das Skript untenstehenden Code und führen Sie diesen aus.
+
+```{r}
+#| eval: false
+library(tidyverse)
+numbers <- c(43, 65, 23, 78, 34, 73, 69, 14, 37, 84)
+```
+
+Wie können Sie nun nachschauen, welche Werte in der Variable vorhanden sind?
+
+b. Berechnen Sie folgende Werte:
+
+- Mittelwert der Variable `numbers`.
+
+- Standardabweichung der Variable `numbers`.
+
+- Summe der Variable `numbers`
+
+- Was passiert, wenn Sie die Variable `numbers` mit sich selber addieren (`numbers + numbers`) oder multiplizieren?
+
+- Was passiert, wenn Sie die Wurzel nehmen?
+
+c. Erstellen Sie eine Variable `words` mit den Wörtern `yellow`, `green` und `red` darin.
+
+- Was passiert, wenn Sie den Mittelwert der Variable `words` berechnen?
+
+- Welcher Wert wird ausgegeben?
+
+- Gibt es eine Warnung oder eine Fehlermeldung?
+
+
+d. Was passiert, wenn Sie die Variable `words` mit sich selber addieren?
+
+- Welcher Wert wird ausgegeben?
+
+- Gibt es eine Warnung oder eine Fehlermeldung?
+
+
+e. Diskutieren Sie kurz zusammen: Wie unterscheiden sich Warnungen von Fehlermeldungen?
+
+
+## Aufgabe 1.5: RNotebook erstellen und Packages laden
+
+a. Erstellen Sie ein _RNotebook_ und speichern Sie es unter dem Namen _IntroNotebook_ ab.
+
+b. Identifizieren Sie die 3 Bausteine eines Notebooks: Header, Textfeld und Codefeld mit folgenden Fragen:
+
+- Woran erkennt man den Baustein?
+- Für was eignet sich der Baustein besonders?
+- Für was eignet sich der Baustein nicht?
+
+c. Geben Sie dem Notebook einen Titel.
+
+d. Laden Sie in einem Codefeld das _Package_ `{tidyverse}` mit 
+
+```{r}
+#| eval: false
+library(tidyverse)
+```
+
+e. Beschreiben Sie im Textfeld über dem Codefeld was der Code machen sollte.
+
+
+## Aufgabe 1.6: Daten einlesen
+
+In dieser Aufgabe arbeiten wir weiter mit dem _RNotebook_ von oben.
+
+a. Erstellen Sie ein neues Codefeld.
+
+
+b. Lesen Sie den Datensatz `dataexample_1.csv` ein aus dem `data`-Ordner ein.
+
+Gehen Sie dabei schrittweise vor:
+
+- Welche Endungen hat die Datei?
+
+- Importieren Sie die Daten mit dem GUI. 
+
+- Löschen Sie die Variable aus dem Environment.
+
+- Importieren Sie den Datensatz mit Code. Verwenden Sie dafür den Variablennamen `d1` für den Datensatz (bzw. `d2` für den zweiten Datensatz).
+
+```{r}
+#| eval: false
+d1 <- ...("data/...")
+```
+
+Führen Sie dieselben Schritte für `dataexample_2.csv` aus.
+
+```{r}
+#| eval: false
+d2 <- ...
+```
+
+d. Diskutieren Sie kurz zusammen: 
+
+- Was war schwierig? Was fällt Ihnen auf?
+- Was sind Separators?
+- Welcher Weg fällt Ihnen leichter?
+
+
+## Aufgabe 1.7: Datensätze anschauen
+
+Schauen Sie sich die beiden Datensätze auf drei Arten an 
+
+a. indem Sie im `Environment` darauf klicken.
+
+b. indem Sie den Namen der Variable eingeben (in der Konsole oder im _RNotebook_). 
+
+c. indem Sie untenstehenden Code eingeben (`...` muss mit einer Variable ersetzt werden):
+
+```{r}
+#| eval: false
+glimpse(...)
+```
+
+## Aufgabe 1.8: Visualisieren der Datensätze
+
+a. Installieren Sie das _Package_ {esquisse}.
+
+b. Geben Sie in der Konsole folgenden Code ein:
+
+```{r}
+#| eval: false
+esquisse::esquisser()
+```
+
+c. Schauen Sie sich nacheinander die beiden Datensätze an. 
+
+- Welche Variablen gibt es und welches Skalenniveau haben diese?
+
+- Ist die Variable `age` normalverteilt?
+
+- Welche Darstellungsform eignet sich am besten?
+
+- Lassen Sie sich für die beste Darstellung des Datensatzes einen Code ausgeben und speichern Sie diesen Ihrem _RNotebook_ ab. Speichern Sie alle Änderungen in Ihrem _RNotebook_. Der Titel sollte nicht mehr in rot geschrieben sein und keinen Stern nach dem Namen haben.
+
+d. Schliessen Sie Ihr _RProject_ und öffnen Sie es erneut.
+
+e. Falls nötig: Öffnen Sie ihr _IntroNotebook_ wieder und führen Sie allen Code aus.
+Jetzt sollten Sie zum Schluss beide Grafiken haben.
+
+__Zeigen Sie einander die Grafiken und diskutieren Vor- und Nachteile der Darstellungsformen.__
+
+::: {.callout-tip appearance="default" title="Bei Problemen..."}
+Der Einstieg ins Programmieren mit _R_ ist nicht einfach. Falls Sie Fragen zu den Übungen haben, dürfen Sie diese zusätzlich in der _R Sprechstunde_ nächste Woche stellen. Kommen Sie einfach mit Ihrem Computer vorbei und wir schauen es an.
+:::

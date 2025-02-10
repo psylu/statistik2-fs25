@@ -1,0 +1,52 @@
+# WebR Konsole {.unnumbered}
+
+In der WebR-Konsole können Sie _R_-Code ausführen. 
+Erstellte Variablen werden gespeichert, so lange das Browserfenster nicht geschlossen wird.
+
+::: {.panel-tabset}
+## {{< fa code >}}&emsp;Konsole
+
+Geben Sie hier Code ein.
+
+```{webr-r}
+
+```
+
+## {{< fa regular helicopter >}}&emsp;Tipp
+
+__Packages__
+
+Laden Sie zuerst das {tidyverse} mit `library(tidyverse)`.
+
+__Datensätze__
+
+Es stehen Ihnen folgende Datensätze zur Verfügung:
+
+- `cars`
+- `iris`
+
+Es können weitere Datensätze durch das Laden von Packages genutzt werden:
+
+- `penguins` aus [{palmerpenguins}](https://allisonhorst.github.io/palmerpenguins/)
+
+```{r}
+#| eval: false
+# Laden vom penguins-Datensatz aus dem {palmerpenguins} Package
+library(palmerpenguins)
+d <- penguins
+```
+
+
+## {{< fa check >}}&emsp;Lösung
+
+```{r}
+#| warning: false
+#| message: false
+library(tidyverse)
+
+glimpse(cars)
+
+plot(cars)
+```
+:::
+
