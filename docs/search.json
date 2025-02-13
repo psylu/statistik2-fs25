@@ -354,7 +354,7 @@
     "href": "uebungen/uebung-01.html#aufgabe-1.3-rproject-und-rskript-erstellen",
     "title": "Übung 1",
     "section": "Aufgabe 1.3: RProject und RSkript erstellen",
-    "text": "Aufgabe 1.3: RProject und RSkript erstellen\n\nErstellen Sie (an einem für Sie geeigneten Ort auf Ihrem Rechner) einen Ordner für alle Übungen in Statistik 2 mit dem Namen Statistik2. \nÖffnen Sie RStudio und erstellen Sie in diesem Ordner ein RProject mit dem Namen Introduction_to_R.\nErstellen Sie in RStudio ein RSkript (Endung .R).\nSpeichern Sie dieses Skript im RProjekt-Ordner mit dem Namen IntroSkript ab.\nErstellen Sie im aktuellen RProjekt-Ordner einen Unterordner namens data. Laden Sie dann die Datensätze herunter und speichern Sie diese im data-Ordner.\n\n\nDatensatz 1: Link folgt\nDatensatz 2: Link folgt",
+    "text": "Aufgabe 1.3: RProject und RSkript erstellen\n\nErstellen Sie (an einem für Sie geeigneten Ort auf Ihrem Rechner) einen Ordner für alle Übungen in Statistik 2 mit dem Namen Statistik2. \nÖffnen Sie RStudio und erstellen Sie in diesem Ordner ein RProject mit dem Namen Introduction_to_R.\nErstellen Sie in RStudio ein RSkript (Endung .R).\nSpeichern Sie dieses Skript im RProjekt-Ordner mit dem Namen IntroSkript ab.\nErstellen Sie im aktuellen RProjekt-Ordner einen Unterordner namens data. Laden Sie dann die Datensätze herunter und speichern Sie diese im data-Ordner.\n\n\nDatensatz 1\nDatensatz 2",
     "crumbs": [
       "Übungen",
       "Übung 1"
@@ -387,7 +387,7 @@
     "href": "uebungen/uebung-01.html#aufgabe-1.6-daten-einlesen",
     "title": "Übung 1",
     "section": "Aufgabe 1.6: Daten einlesen",
-    "text": "Aufgabe 1.6: Daten einlesen\nIn dieser Aufgabe arbeiten wir weiter mit dem RNotebook von oben.\n\nErstellen Sie ein neues Codefeld.\nLesen Sie den Datensatz dataexample_1.csv ein aus dem data-Ordner ein.\n\nGehen Sie dabei schrittweise vor:\n\nWelche Endungen hat die Datei?\nImportieren Sie die Daten mit dem GUI.\nLöschen Sie die Variable aus dem Environment.\nImportieren Sie den Datensatz mit Code. Verwenden Sie dafür den Variablennamen d1 für den Datensatz (bzw. d2 für den zweiten Datensatz).\n\n\nd1 &lt;- ...(\"data/...\")\n\nFühren Sie dieselben Schritte für dataexample_2.csv aus.\n\nd2 &lt;- ...\n\n\nDiskutieren Sie kurz zusammen:\n\n\nWas war schwierig? Was fällt Ihnen auf?\nWas sind Separators?\nWelcher Weg fällt Ihnen leichter?",
+    "text": "Aufgabe 1.6: Daten einlesen\nIn dieser Aufgabe arbeiten wir weiter mit dem RNotebook von oben.\n\nErstellen Sie ein neues Codefeld.\nLesen Sie den Datensatz stroop_data_sub-01.csv ein aus dem data-Ordner ein.\n\nGehen Sie dabei schrittweise vor:\n\nWelche Endungen hat die Datei?\nImportieren Sie die Daten mit dem GUI.\nLöschen Sie die Variable aus dem Environment.\nImportieren Sie den Datensatz mit Code. Verwenden Sie dafür den Variablennamen d1 für den Datensatz (bzw. d2 für den zweiten Datensatz).\n\n\nd1 &lt;- ...(\"data/...\")\n\nFühren Sie dieselben Schritte für stroop_data_sub-01.xlsx aus.\n\nd2 &lt;- ...\n\n\nDiskutieren Sie kurz zusammen:\n\n\nWas war schwierig? Was fällt Ihnen auf?\nWas sind Separators?\nWelcher Weg fällt Ihnen leichter?",
     "crumbs": [
       "Übungen",
       "Übung 1"

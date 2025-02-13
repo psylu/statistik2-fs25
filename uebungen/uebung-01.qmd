@@ -43,8 +43,8 @@ d. Speichern Sie dieses Skript im _RProjekt_-Ordner mit dem Namen _IntroSkript_ 
 
 e. Erstellen Sie im aktuellen _RProjekt_-Ordner einen Unterordner namens `data`. Laden Sie dann die Datensätze herunter und speichern Sie diese im `data`-Ordner.
 
-- Datensatz 1: Link folgt
-- Datensatz 2: Link folgt
+- [Datensatz 1](../data/stroop_data_sub-01.csv)
+- [Datensatz 2](../data/stroop_data_sub-01.xlsx)
 
 ## Aufgabe 1.4: Operatoren und Funktionen verwenden
 
@@ -117,8 +117,7 @@ In dieser Aufgabe arbeiten wir weiter mit dem _RNotebook_ von oben.
 
 a. Erstellen Sie ein neues Codefeld.
 
-
-b. Lesen Sie den Datensatz `dataexample_1.csv` ein aus dem `data`-Ordner ein.
+b. Lesen Sie den Datensatz `stroop_data_sub-01.csv` ein aus dem `data`-Ordner ein.
 
 Gehen Sie dabei schrittweise vor:
 
@@ -135,7 +134,7 @@ Gehen Sie dabei schrittweise vor:
 d1 <- ...("data/...")
 ```
 
-Führen Sie dieselben Schritte für `dataexample_2.csv` aus.
+Führen Sie dieselben Schritte für `stroop_data_sub-01.xlsx` aus.
 
 ```{r}
 #| eval: false
