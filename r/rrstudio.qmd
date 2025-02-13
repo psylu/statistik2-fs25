@@ -1,0 +1,186 @@
+# Basics R und RStudio {#sec-r}
+
+::: {.callout-note appearance="default" title="Inhalt"}
+
+- Überblick über das Arbeiten mit _R_ in _RStudio_
+- Erstellen und Nutzen von _RProjects_
+- Erstellen und Nutzen von Skripts und _Notebooks_
+:::
+
+## _R_, _RStudio_ und _WebR_
+[__R__](https://www.r-project.org/about.html) ist eine leistungsstarke Programmiersprache und eine Open-Source-Softwareumgebung.
+Sie wird in der Forschung für die Datenverarbeitung, statistische Datenanalyse und Datenvisualisierung eingesetzt.
+_R_ wird von Forschenden und Data Scientists weltweit verwendet, da eine breite Sammlung an Erweiterungen (Packages) zugänglich ist. 
+Dadurch, dass diese Packages kontinuierlich weiterentwickelt und neue Packages erstellt werden, bietet R umfangreiche "state of the art" Funktionen.
+_R_ kann für einfache Datenanalysen, wie auch für komplexe statistische Modelle und machine learning genutzt werden.
+
+<aside> 
+Genauere Informationen zu R in [deutsch](https://de.wikipedia.org/wiki/R_(Programmiersprache)) und [englisch](https://en.wikipedia.org/wiki/R_(programming_language)).
+</aside>
+
+[__RStudio__](https://posit.co/download/rstudio-desktop/) ist eine integrierte Entwicklungsumgebung (IDE) für die Programmiersprache _R_, die den Umgang mit _R_ vereinfacht und benutzerfreundlicher gestaltet. 
+In _RStudio_ kann Code geschrieben, ausgeführt und gespeichert werden.
+RStudio integriert Funktionen wie eine Konsole, ein Skriptfenster, eine Umgebung zur Verwaltung von Variablen und eine Historie der ausgeführten Befehle. 
+
+[__WebR__](../appendix/webrconsole.qmd) ermöglicht das Verwenden von _R_ mit einem Browser, z.B. auf der Kurswebsite.
+
+Arbeiten in _R_ und _RStudio_ eignet sich ideal für Datenverarbeitung, -analyse und -visualisierung aufgrund folgender Vorteile:
+
+- **leistungsstarke Funktionen** wie {tidyverse} und {ggplot2} für das Einlesen, Bearbeiten, Zusammenfassen und Visualisieren von Datensätzen
+
+- **Reproduzierbarkeit des Codes und wiederverwendbare sowie nachvollziehbare Analysen** ermöglicht durch abspeicherbare und gut kommentierbare Skripte
+
+- **Flexibilität** durch eine grosse Auswahl von _R_-Packages auf CRAN und die Möglichkeit, eigene Funktionen zu erstellen
+
+- **Aktualität** durch ständige Updates von _R_ und _R_-Packages mit modernen Analysefunktionen
+
+- **Zugänglichkeit**: kostenlos und Open-Source
+
+- **Support** durch aktive Community mit schneller Hilfe
+
+
+## Programmierumgebung _RStudio_
+
+Wenn Sie _RStudio_ öffnen, sehen Sie die Standardansicht. Links finden Sie die Konsole. Sobald Sie ein Code-File öffnen, erscheint dieses links oben.
+
+- __Skript__: In einem Skript können Sie Code schreiben und ausführen. Es können verschiedene Code-Files geöffnet werden, z.B. _RSkript_ und _RNotebooks_. Wenn Sie einen Datensatz anschauen, erscheint dieser auch in diesem Quadrant.
+
+- __Konsole__: Hier können Sie direkt Code eingeben und ausführen.
+
+- __Umgebung__: Hier finden Sie gespeicherte Objekte (z.B. Variablen). 
+
+- __Arbeitsverzeichnis__, __Plots__, __Packages__, _Help__, ...: Hier finden Sie diverse hilfreiche Informationen wie z.B. die Ordnerstruktur mit der Sie aktuell arbeiten (_working directory_), die Anzeige von Plots, welche _Packages_ installiert und geladen sind, Hilfe zu den einzelnen Funktionen, u.v.m.
+
+
+![](../imgs/rstudio_overview.png){#fig-rstudioenvironmen fig-alt="Startscreen beim Öffnen von RStudio." fig-align="left" width=100%}
+<aside>
+Bitte verändern Sie zu Beginn diese Ansicht nicht, denn wir werden der Einfachheit halber jeweils auf Quadranten hinweisen (z.B. Sie finden etwas im "linken oberen Quadranten"). 
+Wenn Sie die Fenster umstellen, wird diese Angabe nicht mehr zu Ihrer Konfiguration passen. Sobald Sie sich sicher fühlen, können Sie _RStudio_ Ihre Bedürfnissen anpassen.
+</aside>
+
+## _RProjekte_ {#sec-rprojects}
+
+In _RStudio_ gibt es die Möglichkeit mit _RProjekten_ zu arbeiten.
+Dies gibt Ihnen die Möglichkeit Ihren Code in Projekte zu strukturieren.
+Ein Projekt ist eine Einheit, in der Sie Daten und Analysecode bündeln möchten. 
+
+<aside>
+Wir werden in den Übungen jeweils mit Projekten arbeiten.
+</aside>
+
+_RProjekte_ haben zwei grosse Vorteile, die uns das Arbeiten in _RStudio_ vereinfachen:
+
+__1. _RProjekte_ sammeln zusammengehörige Daten und Code in einem Ordner.__
+So behalten Sie den Überblick, wo der Code für dieses Projekt zu finden ist. 
+Sobald Sie an etwas Neuem arbeiten, erstellen Sie einfach ein neues Projekt.
+
+__2. _RProjekte_ ermöglichen ein stabiles `working directory`.__
+
+Dort wo das _RProjekt_ abgelegt ist, beginnt _R_ zu suchen, wenn Sie einen Pfad eingeben.
+Das hat zur Folge, dass innerhalb eines _RProjekt_-Ordners die Pfade immer gleich bleiben, auch wenn Sie den Ordner an einen anderen Ort oder sogar auch einen anderen Computer verschieben. Ausserdem sind die Pfade oft viel kürzer.
+
+```{r}
+#| eval: false
+# Einlesen Daten ausserhalb eines Projekts
+d_ohne_projekt <- read.csv("C://User/nameName/Ordner/Unterordner/Unterunterordner/data/daten.csv")
+
+# Einlesen Daten aus dem Ordner data innerhalb eines Projekts
+d_mit_projekt <- read.csv("data/daten.csv")
+```
+
+
+::: {.callout-tip appearance="default" title="Projekt-Ordner" collapse=false}
+Überlegen Sie zu Beginn gut, wo Sie Ihre Projekte abspeichern möchten.
+
+Erstellen Sie dort einen `RProjects`-Ordner.
+
+Speichern Sie alle _RProjekte_ immer in diesem Ordner ab. 
+So behalten Sie den Überblick.
+:::
+
+### _RProjekt_ erstellen
+
+Unter `File` > `New Project` kann ein neues _RProjekt_ erstellt werden.
+
+![Erstellen eines _RProjects_](../imgs/rproject_create.png){fig-alt="Screenshot der Fenster für das Erstellen von RProjekten." fig-align="center" width=120%}
+Es empfiehlt sich bei _RProjekten_ eine Einstellungsänderung (`Tools`> `Project Options...`) vorzunehmen, so dass die aktuell gespeicherten Variablen bei jedem Schliessen vom Projekt gelöscht werden. 
+Dies verhindert, dass der aktuelle Code nur aufgrund früherer Speicherung läuft oder das falsche Variablen verwendet werden.
+
+![Einstellungen anpassen für _RProject_](../imgs/rprojects_dontsaveworkspace.png){fig-alt="Screenshot Dont save workspace." fig-align="center" width=100%}
+
+:::callout-caution
+## Hands-on: Erstellen eines RProjekt erstellen
+
+Erstellen Sie ein neues _RProjekt_ auf Ihrem Computer mit folgenden Schritten:
+
+1. Öffnen Sie _RStudio_.
+
+2. Erstellen Sie ein neues _RProjekt_.
+
+    - Klicken Sie dafür auf `File` > `New Project` > `New Directory` > `New Project`
+    
+    - Benennen Sie das Project `introduction_to_r` und speichern Sie es an einem sinnvollen Ort auf Ihrem Computer.
+    
+    - Klicken Sie auf `Create Project`.
+
+3. Passen Sie die Einstellungen unter `Tools` > `Project Options` an.
+
+4. Schauen Sie sich im rechten unteren Quadranten unter `Files` das aktuelle `working directory` an. Was passiert, wenn Sie nun auf Ihrem Computer im Ordnern des _RProjekts_ einen neuen Ordner namens `data` erstellen?
+
+5. Wo im Fenster von _RStudio_ finden Sie die Information, ob Sie gerade in einem Projekt arbeiten (und in welchem) oder nicht?
+
+:::
+
+:::callout-tip
+## Tipp: Namensgebung für Files und Variablen
+
+Wenn Sie Filenamen auswählen, achten Sie darauf dass diese [_machine-readable_](https://opendatahandbook.org/glossary/en/terms/machine-readable) sind:
+
+- keine Lücken (verwenden Sie stattdessen den `camelCase`, den `snake_case` oder `-`)
+
+- keine `ä`, `ö`, `ü` oder andere Sonderzeichen verwenden
+:::
+
+
+## Code schreiben und speichern
+
+In _RStudio_ können Sie Code auf verschiedene Arten schreiben, ausführen und speichern.
+
+__1. Code in der Konsole__
+
+Dies ist die einfachste Art Code zu schreiben und auszuführen. Sie können die Konsole (linker unterer Quadrant) direkt nutzen. 
+Schreiben Sie in die Konsole Code und drücken Sie {{< kbd Enter >}}, um diesen auszuführen. Code in der Konsole kann nicht gespeichert werden, er geht z.B. beim Schliessen von _RStudio_ verloren. Deshalb eignet sich die Konsole vor allem für schnelles und einmaliges Schreiben von Code. Beispiele dafür sind das Herunterladen von _Packages_, Ausprobieren von Code und kurzen Berechnungen, welche nicht gespeichert werden müssen.
+
+__2. Code in RSkripts__
+
+Wenn ein _RProjekt_ ein Ordner wäre, wären _RSkripts_ die Blätter. Ein neues _RSkript_ kann unter `File` > `New File` > `R Script` erstellt werden. _RSkripts_ sind simpel: Alles was geschrieben wird, kann als Code ausgeführt werden. Mit einer Ausnahmen: Wenn ein `#` am Anfang der Zeile steht, gilt die Zeile als auskommentiert und wird nicht ausgeführt.
+
+```{r}
+#| eval: false
+# Das hier ist auskommentierter Text. Er kann nicht als Code ausgeführt werden.
+1+1 # vor dem Hash steht Code, Text hinter dem Hash wird nicht ausgeführt.
+
+```
+
+__3. Code in RNotebooks__:
+
+Ein _RNotebook_ ist praktisch, wenn man Text und Code kombinieren möchte, aber man Text ohne das Auskommentieren (mit dem `#`) schreiben möchte. Dies ist beispielsweise der Fall, wenn man Details zu einer Analyse zu den Berechnungen hinzu schreiben möchte. Ein _RNotebook_ kann zudem "gerendert" werden, dass heisst, es kann damit ein `.html`- oder ein `.pdf`-File erstellt werden. Das ist besonders praktisch, wenn man seine Analyse mit jemanden teilen möchte, der/die kein _R_ benutzt (z.B. bei einer Publikation kann so der Code mit dem Artikel eingereicht werden).
+In einem _RNotebook_ ist Text grundsätzlich normaler Text. Code kann eingefügt werden, indem man ein Code-Feld einfügt. Weiter können auch Bilder eingefügt werden und der Text kann mit Kapiteln, fett/kursiv Schrift, etc. strukturiert werden.
+
+<aside>Für Interessierte: diese ganze Website ist mit Quarto-Files erstellt, die nach demselben Prinzip wie _RNotebooks_ funktionieren. Quarto-Files können ebenfalls in _RStudio_ erstellt und bearbeitet werden.</aside>
+
+
+## Erstellen und Verwenden von _RNotebooks_
+
+![](../imgs/rnotebook_1.png)
+
+![](../imgs/rnotebook_2.png)
+
+
+
+## Dateiformate
+
+- _RProjects_: `.Rproj`
+- _RSkripts_: `.R`
+- _RNotebooks_: `.Rmd`
+- gerenderte _RNotebooks_: `.html`, `.pdf`, etc.

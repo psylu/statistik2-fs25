@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>WebR Konsole – Datenanalyse mit R</title>
+<title>3&nbsp; Basics Programmieren – Datenanalyse mit R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../appendix/thanks.html" rel="next">
-<link href="../uebungen/uebung-01.html" rel="prev">
+<link href="../r/help.html" rel="next">
+<link href="../r/rrstudio.html" rel="prev">
 <link href="../imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -405,7 +405,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"","options":{"editor-quick-suggestions":"false","output":"true","editor-font-scale":"1","warning":"true","read-only":"false","autorun":"false","fig-width":7,"out-width":"700px","fig-height":5,"label":"unnamed-chunk-1","comment":"","classes":"","editor-max-height":"","dpi":72,"fig-cap":"","editor-word-wrap":"true","context":"interactive","message":"true","out-height":"","results":"markup"},"id":1}];
+globalThis.qwebrCellDetails = [{"id":1,"code":"1+1-4*2/15","options":{"read-only":"false","warning":"true","out-height":"","fig-cap":"","context":"interactive","editor-font-scale":"1","editor-quick-suggestions":"false","autorun":"false","editor-max-height":"","out-width":"700px","classes":"","editor-word-wrap":"true","results":"markup","output":"true","comment":"","message":"true","fig-width":7,"fig-height":5,"dpi":72,"label":"unnamed-chunk-1"}},{"id":2,"code":"","options":{"read-only":"false","warning":"true","out-height":"","fig-cap":"","context":"interactive","editor-font-scale":"1","editor-quick-suggestions":"false","autorun":"false","editor-max-height":"","out-width":"700px","classes":"","editor-word-wrap":"true","results":"markup","output":"true","comment":"","message":"true","fig-width":7,"fig-height":5,"dpi":72,"label":"unnamed-chunk-2"}},{"id":3,"code":"___ <- ___","options":{"read-only":"false","warning":"true","out-height":"","fig-cap":"","context":"interactive","editor-font-scale":"1","editor-quick-suggestions":"false","autorun":"false","editor-max-height":"","out-width":"700px","classes":"","editor-word-wrap":"true","results":"markup","output":"true","comment":"","message":"true","fig-width":7,"fig-height":5,"dpi":72,"label":"unnamed-chunk-3"}},{"id":4,"code":"x","options":{"read-only":"false","warning":"true","out-height":"","fig-cap":"","context":"interactive","editor-font-scale":"1","editor-quick-suggestions":"false","autorun":"false","editor-max-height":"","out-width":"700px","classes":"","editor-word-wrap":"true","results":"markup","output":"true","comment":"","message":"true","fig-width":7,"fig-height":5,"dpi":72,"label":"unnamed-chunk-4"}},{"id":5,"code":"numbers <- c(___)\nwords <- c(___)","options":{"read-only":"false","warning":"true","out-height":"","fig-cap":"","context":"interactive","editor-font-scale":"1","editor-quick-suggestions":"false","autorun":"false","editor-max-height":"","out-width":"700px","classes":"","editor-word-wrap":"true","results":"markup","output":"true","comment":"","message":"true","fig-width":7,"fig-height":5,"dpi":72,"label":"unnamed-chunk-5"}},{"id":6,"code":"y <- ___\nclass(y)","options":{"read-only":"false","warning":"true","out-height":"","fig-cap":"","context":"interactive","editor-font-scale":"1","editor-quick-suggestions":"false","autorun":"false","editor-max-height":"","out-width":"700px","classes":"","editor-word-wrap":"true","results":"markup","output":"true","comment":"","message":"true","fig-width":7,"fig-height":5,"dpi":72,"label":"unnamed-chunk-6"}},{"id":7,"code":"# Erstellen Sie den Datensatz\nd <- tibble(sub = c(\"sub-01\", \"sub-02\", \"sub-03\", \"sub-04\"),\n            age = c(43, ___, ___, ___),\n            ___ = c(89, 77, ___, ___)\n            )","options":{"read-only":"false","warning":"true","out-height":"","fig-cap":"","context":"interactive","editor-font-scale":"1","editor-quick-suggestions":"false","autorun":"false","editor-max-height":"","out-width":"700px","classes":"","editor-word-wrap":"true","results":"markup","output":"true","comment":"","message":"true","fig-width":7,"fig-height":5,"dpi":72,"label":"unnamed-chunk-7"}},{"id":8,"code":"","options":{"read-only":"false","warning":"true","out-height":"","fig-cap":"","context":"interactive","editor-font-scale":"1","editor-quick-suggestions":"false","autorun":"false","editor-max-height":"","out-width":"700px","classes":"","editor-word-wrap":"true","results":"markup","output":"true","comment":"","message":"true","fig-width":7,"fig-height":5,"dpi":72,"label":"unnamed-chunk-8"}},{"id":9,"code":"___ # fügen Sie hier den Code zum Generieren der Daten ein\nmean(data_iq)\nmedian(___)\n","options":{"read-only":"false","warning":"true","out-height":"","fig-cap":"","context":"interactive","editor-font-scale":"1","editor-quick-suggestions":"false","autorun":"false","editor-max-height":"","out-width":"700px","classes":"","editor-word-wrap":"true","results":"markup","output":"true","comment":"","message":"true","fig-width":7,"fig-height":5,"dpi":72,"label":"unnamed-chunk-9"}},{"id":10,"code":"glimpse(d)","options":{"read-only":"false","warning":"true","out-height":"","fig-cap":"","context":"interactive","editor-font-scale":"1","editor-quick-suggestions":"false","autorun":"false","editor-max-height":"","out-width":"700px","classes":"","editor-word-wrap":"true","results":"markup","output":"true","comment":"","message":"true","fig-width":7,"fig-height":5,"dpi":72,"label":"unnamed-chunk-10"}},{"id":11,"code":"___(cars)","options":{"read-only":"false","warning":"true","out-height":"","fig-cap":"","context":"interactive","editor-font-scale":"1","editor-quick-suggestions":"false","autorun":"false","editor-max-height":"","out-width":"700px","classes":"","editor-word-wrap":"true","results":"markup","output":"true","comment":"","message":"true","fig-width":7,"fig-height":5,"dpi":72,"label":"unnamed-chunk-11"}},{"id":12,"code":"cars$___","options":{"read-only":"false","warning":"true","out-height":"","fig-cap":"","context":"interactive","editor-font-scale":"1","editor-quick-suggestions":"false","autorun":"false","editor-max-height":"","out-width":"700px","classes":"","editor-word-wrap":"true","results":"markup","output":"true","comment":"","message":"true","fig-width":7,"fig-height":5,"dpi":72,"label":"unnamed-chunk-12"}},{"id":13,"code":"plot(___)","options":{"read-only":"false","warning":"true","out-height":"","fig-cap":"","context":"interactive","editor-font-scale":"1","editor-quick-suggestions":"false","autorun":"false","editor-max-height":"","out-width":"700px","classes":"","editor-word-wrap":"true","results":"markup","output":"true","comment":"","message":"true","fig-width":7,"fig-height":5,"dpi":72,"label":"unnamed-chunk-13"}},{"id":14,"code":"hist(___$___)","options":{"read-only":"false","warning":"true","out-height":"","fig-cap":"","context":"interactive","editor-font-scale":"1","editor-quick-suggestions":"false","autorun":"false","editor-max-height":"","out-width":"700px","classes":"","editor-word-wrap":"true","results":"markup","output":"true","comment":"","message":"true","fig-width":7,"fig-height":5,"dpi":72,"label":"unnamed-chunk-14"}},{"id":15,"code":"boxplot(___)","options":{"read-only":"false","warning":"true","out-height":"","fig-cap":"","context":"interactive","editor-font-scale":"1","editor-quick-suggestions":"false","autorun":"false","editor-max-height":"","out-width":"700px","classes":"","editor-word-wrap":"true","results":"markup","output":"true","comment":"","message":"true","fig-width":7,"fig-height":5,"dpi":72,"label":"unnamed-chunk-15"}}];
 
 </script>
 <script type="module">
@@ -1659,6 +1659,35 @@ globalThis.qwebrExecuteCode = async function (
 
 </script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../include/webex.css">
 </head>
@@ -1672,7 +1701,7 @@ globalThis.qwebrExecuteCode = async function (
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/webrconsole.html">Anhang</a></li><li class="breadcrumb-item"><a href="../appendix/webrconsole.html">WebR Konsole</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../r/installation.html">R und RStudio</a></li><li class="breadcrumb-item"><a href="../r/programmieren.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Basics Programmieren</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -1726,7 +1755,7 @@ globalThis.qwebrExecuteCode = async function (
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../r/programmieren.html" class="sidebar-item-text sidebar-link">
+  <a href="../r/programmieren.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Basics Programmieren</span></span></a>
   </div>
 </li>
@@ -1784,7 +1813,7 @@ globalThis.qwebrExecuteCode = async function (
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendix/webrconsole.html" class="sidebar-item-text sidebar-link active">
+  <a href="../appendix/webrconsole.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">WebR Konsole</span></a>
   </div>
 </li>
@@ -1807,11 +1836,33 @@ globalThis.qwebrExecuteCode = async function (
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#weshalb-programmieren-als-psychologin" id="toc-weshalb-programmieren-als-psychologin" class="nav-link active" data-scroll-target="#weshalb-programmieren-als-psychologin"><span class="header-section-number">3.1</span> Weshalb Programmieren als Psycholog:in?</a></li>
+  <li><a href="#wichtige-aspekte-von-programmiersprachen" id="toc-wichtige-aspekte-von-programmiersprachen" class="nav-link" data-scroll-target="#wichtige-aspekte-von-programmiersprachen"><span class="header-section-number">3.2</span> Wichtige Aspekte von Programmiersprachen</a></li>
+  <li><a href="#bausteine-von-programmiersprachen" id="toc-bausteine-von-programmiersprachen" class="nav-link" data-scroll-target="#bausteine-von-programmiersprachen"><span class="header-section-number">3.3</span> Bausteine von Programmiersprachen</a>
+  <ul class="collapse">
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages"><span class="header-section-number">3.3.1</span> Packages</a></li>
+  <li><a href="#mathematische-operatoren" id="toc-mathematische-operatoren" class="nav-link" data-scroll-target="#mathematische-operatoren"><span class="header-section-number">3.3.2</span> Mathematische Operatoren</a></li>
+  <li><a href="#variablen-in-r" id="toc-variablen-in-r" class="nav-link" data-scroll-target="#variablen-in-r"><span class="header-section-number">3.3.3</span> Variablen in R</a></li>
+  <li><a href="#datensätze" id="toc-datensätze" class="nav-link" data-scroll-target="#datensätze"><span class="header-section-number">3.3.4</span> Datensätze</a></li>
+  <li><a href="#funktionen-und-argumente" id="toc-funktionen-und-argumente" class="nav-link" data-scroll-target="#funktionen-und-argumente"><span class="header-section-number">3.3.5</span> Funktionen und Argumente</a></li>
+  </ul></li>
+  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling"><span class="header-section-number">3.4</span> Data wrangling</a></li>
+  <li><a href="#datenvisualisieren" id="toc-datenvisualisieren" class="nav-link" data-scroll-target="#datenvisualisieren"><span class="header-section-number">3.5</span> Datenvisualisieren</a>
+  <ul class="collapse">
+  <li><a href="#scatterplot" id="toc-scatterplot" class="nav-link" data-scroll-target="#scatterplot"><span class="header-section-number">3.5.1</span> Scatterplot</a></li>
+  <li><a href="#histogramme" id="toc-histogramme" class="nav-link" data-scroll-target="#histogramme"><span class="header-section-number">3.5.2</span> Histogramme</a></li>
+  <li><a href="#boxplots" id="toc-boxplots" class="nav-link" data-scroll-target="#boxplots"><span class="header-section-number">3.5.3</span> Boxplots</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content page-columns page-full column-body" id="quarto-document-content">
 <script src="https://cdn.jsdelivr.net/npm/monaco-editor@0.47.0/min/vs/loader.js"></script>
 <script type="module" id="qwebr-monaco-editor-init">
 
@@ -2097,14 +2148,14 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 }
 </script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/webrconsole.html">Anhang</a></li><li class="breadcrumb-item"><a href="../appendix/webrconsole.html">WebR Konsole</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../r/installation.html">R und RStudio</a></li><li class="breadcrumb-item"><a href="../r/programmieren.html"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Basics Programmieren</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">WebR Konsole</h1>
+<h1 class="title"><span id="sec-r-programmieren" class="quarto-section-identifier"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Basics Programmieren</span></span></h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -2116,50 +2167,691 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </header>
 
 
-<p>In der WebR-Konsole können Sie <em>R</em>-Code ausführen. Erstellte Variablen werden gespeichert, so lange das Browserfenster nicht geschlossen wird.</p>
+<section id="weshalb-programmieren-als-psychologin" class="level2" data-number="3.1">
+<h2 data-number="3.1" class="anchored" data-anchor-id="weshalb-programmieren-als-psychologin"><span class="header-section-number">3.1</span> Weshalb Programmieren als Psycholog:in?</h2>
+<p>Wir lernen in diesem Kurs das Programmieren nicht im luftleeren Raum, sondern anhand von Aufgaben und Problemen, die sich uns als Psycholog:innen stellen.</p>
+<blockquote class="blockquote">
+<p>“Psychologie erforscht das menschliche Erleben und Verhalten – sie untersucht, beschreibt und erklärt psychische Phänomene wie Gefühle, Entscheidungen, Gedanken, Motivationen oder Erinnerungen.”<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+</blockquote>
+<p>Die Psychologie ist eine empirische Wissenschaft. Das bedeutet, die Erkenntnisse der Wissenschaftlichen Psychologie werden durch das Erheben und Auswerten von Daten gewonnen. Hierfür brauchen wir nicht nur Wissen darüber, wie Daten systematisch erhoben werden können, sondern auch darüber, wie diese Daten verarbeitet, zusammengefasst, interpretiert und kommuniziert werden können.</p>
+<blockquote class="blockquote">
+<p>Wenn wir Daten verstehen wollen, müssen wir mit ihnen sprechen. Und eine Sprache, die uns dies ermöglicht ist R.</p>
+</blockquote>
+<p>Deshalb starten wir zu Beginn mit möglichst wenig trockenem Wissen, sondern erarbeiten uns das Programmierwissen nach und nach anhand von Beispielen aus der psychologischen Praxis. Sie müssen um mit Daten zu sprechen keine Programmiersprache perfekt beherrschen, sondern einfach genügend gut, um an die Informationen zu kommen, die Sie interessieren.</p>
+</section>
+<section id="wichtige-aspekte-von-programmiersprachen" class="level2" data-number="3.2">
+<h2 data-number="3.2" class="anchored" data-anchor-id="wichtige-aspekte-von-programmiersprachen"><span class="header-section-number">3.2</span> Wichtige Aspekte von Programmiersprachen</h2>
+<p>R ist eine Programmiersprache, wie beispielsweise auch Python, C, Java, MATLAB, etc. Wie gesprochene Sprachen (z.B. Englisch und Deutsch) haben Programmiersprachen andere Wörter aber ähnliche Strukturen. (Wenn Sie <em>R</em> lernen, wird es Ihnen also auch einfacher fallen andere Programmiersprachen zu erlernen.) Zudem erlernt man durch das Programmieren, grössere Arbeitsschritte in kleinere aufzuteilen, sich gezielt im Internet Hilfe zu suchen, Lösungen zu überprüfen und logisch vorzugehen.</p>
+<ul>
+<li><p>Grundsätzlich besteht Code aus <em>Text</em> welcher <em>ausgeführt</em> wird.</p></li>
+<li><p>Anders als bei gesprochenen Sprachen ist beim Programmieren fehlerfreier Text sehr wichtig. Wenn ein Funktionsname falsch geschrieben oder ein falsches Zeichen verwendet wird, kann der Code nicht ausgeführt werden oder falsche Ergebnisse produzieren. Ein häufiger Fehler ist auch, dass eine Klammer geöffnet <code>(</code> aber nicht wieder geschlossen <code>)</code> wird. Im Gegensatz zu anderen Programmiersprachen sind in <em>R</em> Einrückungen oder Leerzeichen irrelevant und werden nicht beachtet.</p></li>
+<li><p>Programmiersprachen enthalten verschiedene Bausteine wie Funktionen, Argumente, Abläufe (z.B. <em>loops</em>/Schleifen), Bedingungen (<em>conditional statements</em>), Objekte (<em>variables</em>), etc., die in einer bestimmtem Form/Reihenfolge aufgeschrieben werden. Sobald das Grundprinzip dieser Bausteine verinnerlicht wurde, wird die Anwendung von Programmiersprachen sehr viel einfacher. Dieses Wissen kann auch auf andere Programmiersprachen übertragen werden.</p></li>
+<li><p>Indem man sich an gewisse Konventionen bei der Speicherung von Code und Variablen hält, bleibt ein Skript übersichtlich und der Code ist leichter lesbar. In diesem Kurs verwenden wir R mit <em>R-Projects</em> und <em>Notebooks</em>, so dass die Datei-Struktur immer ähnlich aufgebaut ist. Zudem benennen wir Variablen nach bestimmten Regeln, um den Überblick zu behalten.</p></li>
+<li><p>Zuletzt ist es wichtig zu wissen, was zu tun ist, wenn der Code nicht läuft. <em>Debugging</em> bedeutet, dass man sich auf die Fehlersuche macht, weshalb z.B. ein Code nicht ausgeführt werden kann. Niemand schreibt fehlerfreien Code, oft entsteht Code durch <em>trial and error</em>. Fehlermeldungen sind also kein Grund zur Sorge, sondern ein wichtiger Bestandteil der Arbeit mit <em>R</em> und geben Hinweise, wo und wie man den Code anpassen muss.</p></li>
+</ul>
+</section>
+<section id="bausteine-von-programmiersprachen" class="level2 page-columns page-full" data-number="3.3">
+<h2 data-number="3.3" class="anchored" data-anchor-id="bausteine-von-programmiersprachen"><span class="header-section-number">3.3</span> Bausteine von Programmiersprachen</h2>
+<p>In diesem Unterkapitel werden die wichtigsten Bausteine von Programmiersprachen zusammengefasst. Es ist daher ok, wenn Sie zu Beginn nicht alles verstehen oder anwenden können. Sie können dieses Kapitel nutzen, um nachzuschlagen wie etwas funktioniert, sobald wir darauf stossen.</p>
+<p>Grundsätzlich gilt:</p>
+<blockquote class="blockquote">
+<p>«To understand computations in R, two slogans are helpful: Everything that exists is an object. Everything that happens is a function call.» J. M. Chambers<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
+</blockquote>
+<p>Es gibt also wichtige Grundbausteine, Objekte und Funktionsaurufe, die etwas mit diesen Objekten tun.</p>
+<ul>
+<li><p><strong>Objekte</strong> können erstellt und benannt, sowie bearbeitet werden. Beispiele dafür sind eine Variable, ein Datensatz.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p></li>
+<li><p><strong>Aufrufen von Funktionen</strong> lassen etwas passieren. Beispiele dafür ist das Verwenden von mathematischen Operatoren (<code>sqrt()</code> berechnet die Wurzel einer Zahl) oder das Aufrufen der Funktion <code>lm()</code>, die ein lineares Modell berechnet.</p></li>
+</ul>
+<p>In den folgenden Unterkapiteln wird auf folgende wichtige Bausteine in <em>R</em> eingegangen:</p>
+<ul>
+<li>Packages</li>
+<li>Variablen</li>
+<li>Datensätze</li>
+<li>Mathematische Operatoren</li>
+<li>Logische Operatoren</li>
+</ul>
+<section id="packages" class="level3 page-columns page-full" data-number="3.3.1">
+<h3 data-number="3.3.1" class="anchored" data-anchor-id="packages"><span class="header-section-number">3.3.1</span> Packages</h3>
+<p>Packages sind Sammlungen von Funktionen, die für das Programmieren genutzt werden können. Für das Bearbeiten von Daten eignen sich Funktionen aus dem <em>Package</em> <code>tidyverse</code>, eine Sammlung von verschiedenen, für <em>data science</em> sehr geeigneten <em>R Packages</em>. Funktionen aus dem <code>tidyverse</code> ermöglichen und vereinfachen viele Schritte der Datenverarbeitung. Im Folgenden werden die wichtigsten und häufigst verwendeten Funktionen beschrieben.</p>
+<p>Das <code>tidyverse</code> kann direkt in <em>R</em> heruntergeladen werden:</p>
+<aside>
+Mehr Informationen zum <code>tidyverse</code>finden Sie <a href="https://r4ds.had.co.nz/">hier</a>.
+</aside>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Download und Installieren des Packages (nur einmal ausführen)</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"tidyverse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Ein <em>Package</em> muss nur einmal heruntergeladen und <strong>installiert</strong> werden, danach ist es lokal auf dem Computer gespeichert. Aber: Jedes Mal wenn <em>R</em> geöffnet wird, müssen <em>Packages</em> wieder neu <strong>geladen</strong> werden.</p>
+<div class="cell" data-warnings="false" data-errors="false">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Package laden (bei jedem Öffnen von R zu Beginn des Skripts ausführen)</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(<span class="st">"tidyverse"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Sobald ein <em>Package</em> installiert ist, können die Funktionen auch verwendet werden ohne, dass das ganze <em>Package</em> mit <code>library()</code> geladen wird, indem die Funktion mit dem <em>Package</em>-Namen zusammen aufgerufen wird: <code>packagename::packagefunction()</code>. Dies macht Sinn, wenn verschiedene <em>Packages</em> dieselben Namen für verschiedene Funktionen nutzen und es so zu Konflikten kommt oder wenn nur eine Funktion aus einem <em>Package</em> verwendet werden soll und alle anderen sowieso nicht gebraucht werden.</p>
+</section>
+<section id="mathematische-operatoren" class="level3 page-columns page-full" data-number="3.3.2">
+<h3 data-number="3.3.2" class="anchored" data-anchor-id="mathematische-operatoren"><span class="header-section-number">3.3.2</span> Mathematische Operatoren</h3>
+<p><em>R</em> kann als einfacher Rechner verwendet werden, wenn man die Konsole oder die Rechnung in einem <em>Skript</em> / <em>RNotebook</em> ausführt.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">+</span><span class="dv">1-4</span><span class="sc">*</span><span class="dv">2</span><span class="sc">/</span><span class="dv">15</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.466667</code></pre>
+</div>
+</div>
+<p>Nach Ausführen des Codes wird unter der Konsole das Resultat - der <strong><em>Output</em></strong> - angezeigt. Die Zahl in Klammern, also <code>[1]</code> beschreibt die Zeilennummer. Dahinter wird der Output des ausgeführten Codes angezeigt.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page"><i class="fa-solid fa-code" aria-label="code"></i> Konsole</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><i class="fa-regular fa-helicopter" aria-label="helicopter"></i> Tipp</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false"><i class="fa-solid fa-check" aria-label="check"></i> Lösung</a></li></ul>
 <div class="tab-content">
 <div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
-<p>Geben Sie hier Code ein.</p>
+<p>Der Code in der <em>WebR</em>-Konsole kann gelöscht und durch anderen Code ersetzt werden. Es können auch andere Operatoren (z.B. <code>-</code>, <code>/</code> oder <code>*</code>) oder Funktionen (wie <code>sqrt</code>) genutzt werden.</p>
 <div id="qwebr-insertion-location-1"></div>
 <noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
 </div>
 <div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
-<p><strong>Packages</strong></p>
-<p>Laden Sie zuerst das {tidyverse} mit <code>library(tidyverse)</code>.</p>
-<p><strong>Datensätze</strong></p>
-<p>Es stehen Ihnen folgende Datensätze zur Verfügung:</p>
-<ul>
-<li><code>cars</code></li>
-<li><code>iris</code></li>
-</ul>
-<p>Es können weitere Datensätze durch das Laden von Packages genutzt werden:</p>
-<ul>
-<li><code>penguins</code> aus <a href="https://allisonhorst.github.io/palmerpenguins/">{palmerpenguins}</a></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Laden vom penguins-Datensatz aus dem {palmerpenguins} Package</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(palmerpenguins)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> penguins</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p>Drücken Sie <code>Run Code</code>.</p>
 </div>
 <div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">+</span><span class="dv">1</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>Rows: 50
-Columns: 2
-$ speed &lt;dbl&gt; 4, 4, 7, 7, 8, 9, 10, 10, 10, 11, 11, 12, 12, 12, 12, 13, 13, 13…
-$ dist  &lt;dbl&gt; 2, 10, 4, 22, 16, 10, 18, 26, 34, 17, 28, 14, 20, 24, 28, 26, 34…</code></pre>
+<pre><code>[1] 2</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<aside>
+Die <em>WebR</em> Konsole ergibt dieselben Outputs wie in <em>RStudio</em>, so kann auf der Website direkt Code geschrieben und ausgeführt werden, der auch in <em>RStudio</em> kopiert werden kann. Sobald ein grüner Pfeil und <code>Run Code</code> erscheint, ist WebR geladen und bereit. Mit <code>Run Code</code> kann der Code in der Konsole <em>ausgeführt</em> werden.
+</aside>
+<p>In dieser Tabelle finden Sie die wichtigsten mathematischen Operatoren. Am linken Rand wird die Zeilennummer des Codes angegeben analog zu einem <em>RSkript</em> oder <em>RNotebook</em>. Diese Zahl kann nicht geändert werden. Sie dient bei langem Code dazu sich zu orientieren oder den Fehler zu finden, wenn einer auftritt.</p>
+<table class="table-hover caption-top table">
+<caption>Mathematische Operatoren in R</caption>
+<colgroup>
+<col style="width: 26%">
+<col style="width: 23%">
+<col style="width: 23%">
+<col style="width: 26%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Operation</th>
+<th style="text-align: center;">Operator in Text</th>
+<th>Operator in R</th>
+<th>Beispielscode</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Addition</td>
+<td style="text-align: center;">+</td>
+<td><code>+</code></td>
+<td><code>3+2</code></td>
+</tr>
+<tr class="even">
+<td>Subtraktion</td>
+<td style="text-align: center;">-</td>
+<td><code>-</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Multiplikation</td>
+<td style="text-align: center;">*</td>
+<td><code>*</code></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Division</td>
+<td style="text-align: center;">/</td>
+<td><code>/</code></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>Potenz</td>
+<td style="text-align: center;">^</td>
+<td><code>^</code></td>
+<td><code>3^2</code></td>
+</tr>
+<tr class="even">
+<td>Wurzel</td>
+<td style="text-align: center;"><span class="math display">\[\sqrt{9}\]</span></td>
+<td><code>sqrt()</code></td>
+<td><code>sqrt(9)</code></td>
+</tr>
+<tr class="odd">
+<td>Exponentialfunktion</td>
+<td style="text-align: center;"><span class="math display">\[e^2\]</span></td>
+<td><code>exp()</code></td>
+<td><code>exp(3)</code></td>
+</tr>
+<tr class="even">
+<td>Logarithmus</td>
+<td style="text-align: center;"><span class="math display">\[log_e, log_10, log_{10}10\]</span></td>
+<td><code>log()</code>, <code>log10()</code></td>
+<td><code>log(10)</code>, <code>log10(10)</code></td>
+</tr>
+<tr class="odd">
+<td>Trigonometrische Funktionen</td>
+<td style="text-align: center;"><span class="math display">\[cos, sin, tan\]</span></td>
+<td><code>cos()</code>, <code>sin()</code>, <code>tan()</code></td>
+<td><code>cos(2)</code>, <code>sin(2)</code>, <code>tan(2)</code></td>
+</tr>
+</tbody>
+</table>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true"><i class="fa-solid fa-code" aria-label="code"></i> Konsole</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false"><i class="fa-regular fa-helicopter" aria-label="helicopter"></i> Tipp</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-3" role="tab" aria-controls="tabset-2-3" aria-selected="false"><i class="fa-solid fa-check" aria-label="check"></i> Lösung</a></li></ul>
+<div class="tab-content">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>Geben Sie in die Konsole folgende mathematische Operationen ein:</p>
+<ul>
+<li><p><span class="math inline">\(1+1+1\)</span></p></li>
+<li><p><span class="math inline">\(5*5\)</span></p></li>
+<li><p><span class="math inline">\(3*(4+3)\)</span></p></li>
+<li><p><span class="math inline">\(1000/10^2\)</span></p></li>
+<li><p><span class="math inline">\(\sqrt{144}\)</span></p></li>
+<li><p><span class="math inline">\(\sin60\)</span></p></li>
+</ul>
+<div id="qwebr-insertion-location-2"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>Schauen Sie in der untenstehenden Tabelle <em>Mathematische Operatoren in R</em> nach.</p>
+</div>
+<div id="tabset-2-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-3-tab">
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 3</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 25</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 21</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 12</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -0.3048106</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- ### Logische Operatoren -->
+<!-- The logical operators are <, <=, >, >=, == for exact equality and != for inequality. In addition -->
+<!-- if c1 and c2 are logical expressions, then c1 & c2 is their intersection (“and”), c1 | c2 is their -->
+<!-- union (“or”), and !c1 is the negation of c1 -->
+</section>
+<section id="variablen-in-r" class="level3 page-columns page-full" data-number="3.3.3">
+<h3 data-number="3.3.3" class="anchored" data-anchor-id="variablen-in-r"><span class="header-section-number">3.3.3</span> Variablen in R</h3>
+<p>Objekte können in R erstellt werden indem einer der beiden Zuweisungsoperatoren <code>=</code> oder <code>&lt;-</code> genutzt wird. In diesem Kurs arbeiten wir vor allem mit <code>&lt;-</code>.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> In den meisten Fällen ergibt <code>=</code> jedoch dasselbe Ergebnis.</p>
+<p><strong>Vor</strong> dem Zuweisungsoperator steht der Variablenname. <strong>Nach</strong> dem Zuweisungsoperator steht der Variablenwert bzw. die -werte.</p>
+<section id="einfache-variablen-vektoren" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="einfache-variablen-vektoren">Einfache Variablen: Vektoren</h4>
+<p>Die simpelsten Objekte in R sind Vektoren. Man kann sich dies vorstellen wie einen Wert (z.B. eine Zelle) oder eine Reihe von Werten (z.B. eine Spalte) einer Exceltabelle. Ein Vektor kann keinen, einen oder mehrere Werte enthalten. Matrizen können mehrere Vektoren desselben Datentyps kombinieren (z.B. mehrere Spalten in einer Exceltabelle). Datensätze (<code>data.frame</code> oder <code>tibble</code>) können Variablen unterschiedlicher Typen kombinieren. Es können also Buchstaben und Zahlen gemischt werden.</p>
+<p>Ein neue Variable kann mit einem Zuweisungsoperator erstellt werden.</p>
+<p>Hier ein paar Beispiele:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span> <span class="co"># Variable namens a mit dem Wert 5</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">=</span> <span class="dv">5</span> <span class="co"># Variable namens b mit dem Wert 5</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fl">6.45</span> <span class="co"># Variable namens c mit dem Wert 6.45</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="dv">5</span><span class="sc">*</span><span class="dv">3</span> <span class="co"># Variable namens d mit dem Wert ?</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Für das Erstellen der Variable muss der Code nicht nur geschrieben, sondern auch ausgeführt werden. Durch das Ausführen wird dem Objektnamen <code>a</code> den Wert 5 zugewiesen. Variablen können abgerufen werden, indem ihr Name eingegebn und ausgeführt wird:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 5</code></pre>
+</div>
+</div>
+<p>Diese Variable bleibt gespeichert/abrufbar, bis das <code>Environment</code> wieder gelöscht wird. Sie kann auch überschrieben werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">10</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>a</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 10</code></pre>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true"><i class="fa-solid fa-code" aria-label="code"></i> Konsole</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false"><i class="fa-regular fa-helicopter" aria-label="helicopter"></i> Tipp</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-3" role="tab" aria-controls="tabset-3-3" aria-selected="false"><i class="fa-solid fa-check" aria-label="check"></i> Lösung</a></li></ul>
+<div class="tab-content">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<ol type="1">
+<li><p>Erstellen Sie die obigen Variablen <code>a</code>,<code>b</code>, <code>c</code> und <code>d</code>.</p></li>
+<li><p>Rufen Sie die Variablen auf: Was haben Sie für Werte?</p></li>
+</ol>
+<div id="qwebr-insertion-location-3"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+<p>Setzen Sie vor dem Pfeil den Variablennamen ein.</p>
+<p>Setzen Sie nach dem Pfeil den Variablenwert ein.</p>
+<p>Drücken Sie <code>Run Code</code>.</p>
+</div>
+<div id="tabset-3-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a>a <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>b <span class="ot">&lt;-</span> <span class="dv">5</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>c <span class="ot">&lt;-</span> <span class="fl">6.45</span></span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="dv">5</span><span class="sc">*</span><span class="dv">3</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>Wird eine Variable aufgerufen, die nicht existiert, wird die Fehlermeldung <code>Error: object 'x' not found</code> ausgegeben. Das bedeutet das, dass die Variable <code>x</code> nicht auffindbar ist und daher nicht angezeigt werden kann.</p>
+<div id="qwebr-insertion-location-4"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p>Variablen können auch <strong>mehrere Werte</strong> enthalten. Einen Weg mehrere Werte in einer Variable zu speichern ist die Funktion <code>c()</code> zu nutzen.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a> Die Variable <code>y &lt;- c(23, 45, 34)</code> enthält die Werte <code>23</code>, <code>45</code> und <code>34</code>. Nicht numerische Werte, z.B. Wörter, werden jeweils in <code>"Anführungszeichen"</code> gesetzt: <code>z &lt;- c("ja", "nein", "vielleicht")</code>.</p>
+<aside>
+Faktoren können mit der Funktion <code>as.factor()</code> erstellt werden. Wenn z.B. <code>ja</code>, <code>nein</code> und <code>vielleicht</code> als Faktoren gespeichert werden sollen lautet der Code <code>z &lt;- as.factor(c("ja", "nein", "vielleicht"))</code>.
+</aside>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true"><i class="fa-solid fa-code" aria-label="code"></i> Konsole</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false"><i class="fa-regular fa-helicopter" aria-label="helicopter"></i> Tipp</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-3" role="tab" aria-controls="tabset-4-3" aria-selected="false"><i class="fa-solid fa-check" aria-label="check"></i> Lösung</a></li></ul>
+<div class="tab-content">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<p>Erstellen Sie eine Variable mit mehreren numerischen Werten und eine Variable mit mehreren Wörtern als Werte.</p>
+<div id="qwebr-insertion-location-5"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<p>Fügen Sie in die Klammer mehrere Werte ein. Numerische Werte/Zahlen können einfach eingegeben werden. Kategorische Werte/Wörter hingegen müssen in Anführungszeichen (<code>" "</code>) gesetzt werden.</p>
+<p>Drücken Sie <code>Run Code</code>.</p>
+</div>
+<div id="tabset-4-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">45</span>, <span class="dv">34</span>)</span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>words <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"ja"</span>, <span class="st">"nein"</span>, <span class="st">"vielleicht"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>Variablen können <strong>unterschiedliche Datentypen</strong> enthalten, z.B. Zahlen oder Wörter. Der <strong>Variablentyp</strong> (oder die <strong>Variablenklasse</strong>) entspricht dem zugewiesenen Wert bzw. den zugewiesenen Werten. Mit der Funktion <code>class()</code> kann erfragt werden, welchen Variablentyp eine Variable hat. In die Klammer wird der Variablennamen, also bspw. <code>y</code> eingesetzt.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true"><i class="fa-solid fa-code" aria-label="code"></i> Konsole</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false"><i class="fa-regular fa-helicopter" aria-label="helicopter"></i> Tipp</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-3" role="tab" aria-controls="tabset-5-3" aria-selected="false"><i class="fa-solid fa-check" aria-label="check"></i> Lösung</a></li></ul>
+<div class="tab-content">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<div id="qwebr-insertion-location-6"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<p>Definieren Sie eine Variable <code>y</code>.</p>
+<p>Fügen Sie in die Klammer nach <code>class</code> den Variablennamen ein.</p>
+<p>Sie können <code>y &lt;- ...</code> der nächsten Aufgabe kopieren und hier einsetzen, um sich den Variablentyp ausgeben zu lassen.</p>
+</div>
+<div id="tabset-5-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>y <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">23</span>, <span class="dv">45</span>, <span class="dv">34</span>)</span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(y)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<i class="fa-solid fa-circle-question" aria-label="circle-question"></i> Quiz: Variablentyp
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><br></p>
+<p>Welcher Variablentyp hat die Variable <code>y</code>?</p>
+<p><em>a.</em></p>
+<p><code>y &lt;- c(23, 34, 634, 234, 12, 34)</code></p>
+<p><select class="webex-select"><option value="blank"></option><option value="">character</option><option value="answer">numeric</option><option value="">factor</option><option value="">leer</option></select></p>
+<p><em>b.</em></p>
+<p><code>y &lt;- c("hallo", "a", "nein")</code></p>
+<p><select class="webex-select"><option value="blank"></option><option value="answer">character</option><option value="">numeric</option><option value="">factor</option><option value="">leer</option></select></p>
+<p><em>c.</em></p>
+<p><code>y &lt;- 0</code></p>
+<p><select class="webex-select"><option value="blank"></option><option value="">character</option><option value="answer">numeric</option><option value="">factor</option><option value="">leer</option></select></p>
+<p><em>d.</em></p>
+<p><code>y &lt;- NULL</code></p>
+<p><select class="webex-select"><option value="blank"></option><option value="">character</option><option value="">numeric</option><option value="">factor</option><option value="answer">leer</option></select></p>
+<p><em>e.</em></p>
+<p><code>y &lt;- as.factor(c("blue", "red", "yellow"))</code></p>
+<p><select class="webex-select"><option value="blank"></option><option value="">character</option><option value="">numeric</option><option value="answer">factor</option><option value="">leer</option></select></p>
+</div>
+</div>
+<p><br></p>
+</section>
+</section>
+<section id="datensätze" class="level3" data-number="3.3.4">
+<h3 data-number="3.3.4" class="anchored" data-anchor-id="datensätze"><span class="header-section-number">3.3.4</span> Datensätze</h3>
+<p>Objekte können nicht nur einen Vektor enthalten wie oben, sondern können auch ganze Datensätze sein. Also mehrere aneinandergereihte Vektoren (wie eine Exceltabelle). Datensätze können unterschiedliche Variablentypen enthalten.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true"><i class="fa-solid fa-code" aria-label="code"></i> Konsole</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false"><i class="fa-regular fa-helicopter" aria-label="helicopter"></i> Tipp</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-3" role="tab" aria-controls="tabset-6-3" aria-selected="false"><i class="fa-solid fa-check" aria-label="check"></i> Lösung</a></li></ul>
+<div class="tab-content">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<p>Erstellen Sie einen Datensatz mit 3 Variablen:</p>
+<ul>
+<li>Name: <code>sub</code>, Werte: <code>sub-01</code>, <code>sub-02</code>, <code>sub-03</code>, <code>sub-04</code></li>
+<li>Alter: <code>age</code>, Werte: <code>43</code>, <code>54</code>, <code>33</code>, <code>29</code></li>
+<li>Korrekte Antworten: <code>accuracy</code>, Werte: <code>89</code>, <code>77</code>, <code>95</code>, <code>98</code></li>
+</ul>
+<div id="qwebr-insertion-location-7"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<p>Fügen Sie bei allen <code>___</code> die fehlenden Werte ein und drücken Sie <code>Run Code</code>.</p>
+</div>
+<div id="tabset-6-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">sub =</span> <span class="fu">c</span>(<span class="st">"sub-01"</span>, <span class="st">"sub-02"</span>, <span class="st">"sub-03"</span>, <span class="st">"sub-04"</span>),</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">age =</span> <span class="fu">c</span>(<span class="dv">43</span>, <span class="dv">54</span>, <span class="dv">33</span>, <span class="dv">29</span>),</span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">accuracy =</span> <span class="fu">c</span>(<span class="dv">89</span>, <span class="dv">77</span>, <span class="dv">95</span>, <span class="dv">98</span>)</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>            )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+<p>Zusammenfassend können Variablen keinen, mehrere oder einen Wert haben. Sie können unterschiedliche oder identische Datentypen beinhalten.</p>
+<p><img src="../imgs/objects_variablesmatricesdataframes.png" class="img-fluid"></p>
+<!-- ### Funktionen und Argumente -->
+<!-- ### Objekte -->
+<!-- ### Workflows: Schleifen und Entscheidungen -->
+<!-- ### Debugging und Hilfe -->
+</section>
+<section id="funktionen-und-argumente" class="level3 page-columns page-full" data-number="3.3.5">
+<h3 data-number="3.3.5" class="anchored" data-anchor-id="funktionen-und-argumente"><span class="header-section-number">3.3.5</span> Funktionen und Argumente</h3>
+<p>Funktionen sind Befehle, die etwas ausführen. Um dies zu tun wir der Funktionsname und in den Klammern die Argumente angegeben. Bei jeder Funktion ist definiert, ob und wenn ja welche Argumente eingegeben werden müssen. Hierbei gibt es Argumente die unbedingt benötigt werden, und solche, die weggelassen werden können, dann werden die Standardeinstellungen genommen.</p>
+<p><strong>Beispiele für Funktionen</strong></p>
+<p>Die Funktion <code>mean()</code>berechnet den arithmetischen Mittelwert. In der Dokumentation (also z.B. durch eingeben von <code>?mean()</code> wird angegeben, dass <code>mean()</code> mindestens ein Argument benötigt, nämlich ein Objekt mit Zahlen darin oder mehrere Zahlen: mean(x, …)`.</p>
+<p><code>mean()</code> kann also mit einzelnen Zahlen als Argument verwendet werden:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(<span class="dv">100</span>, <span class="dv">88</span>, <span class="dv">115</span>, <span class="dv">102</span>, <span class="dv">104</span>, <span class="dv">96</span>, <span class="dv">85</span>, <span class="dv">112</span>, <span class="dv">98</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 100</code></pre>
+</div>
+</div>
+<p>Oder wir können mit der Funktion <code>c()</code> einen numerischen Vektor erstellen, und dann diesen Vektor als Argument verwenden:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mean with a numeric vector</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>iq <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">100</span>, <span class="dv">88</span>, <span class="dv">115</span>, <span class="dv">102</span>, <span class="dv">104</span>, <span class="dv">96</span>, <span class="dv">85</span>, <span class="dv">112</span>, <span class="dv">98</span>)</span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(iq)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 100</code></pre>
+</div>
+</div>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true"><i class="fa-solid fa-code" aria-label="code"></i> Konsole</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false"><i class="fa-regular fa-helicopter" aria-label="helicopter"></i> Tipp</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-3" role="tab" aria-controls="tabset-7-3" aria-selected="false"><i class="fa-solid fa-check" aria-label="check"></i> Lösung</a></li></ul>
+<div class="tab-content">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<p>Berechnen Sie den arithmetischen Mittelwert von</p>
+<p>346, 56, 23, 85, 234, 8, 4, 812, 34</p>
+<div id="qwebr-insertion-location-8"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<p>Erstellen Sie zuerst mit <code>c()</code> einen numerischen Vektor.</p>
+<p>Rufen Sie dann die Funktion <code>mean()</code> mit diesem Vektor als Argument auf.</p>
+</div>
+<div id="tabset-7-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>num_var <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">346</span>, <span class="dv">56</span>, <span class="dv">23</span>, <span class="dv">85</span>, <span class="dv">234</span>, <span class="dv">8</span>, <span class="dv">4</span>, <span class="dv">812</span>, <span class="dv">34</span>)</span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(num_var)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 178</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Wichtige Funktionen für statistische Berechnungen:</p>
+<ul>
+<li><code>mean()</code>: berechnet den Mittelwert</li>
+<li><code>median()</code>: berechnet den Median</li>
+<li><code>mode()</code>: berechnet den Modus</li>
+<li><code>sd()</code>: berechnet die Standardabweichung</li>
+<li><code>sum()</code>: berechnet die Summe</li>
+<li><code>min()</code>: extrahiert den kleinsten Wert</li>
+<li><code>max()</code>: extrahiert den grössten Wert <!-- - `scale()`: z-transformiert die Daten --></li>
+</ul>
+<div class="callout callout-style-simple callout-note no-icon callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<i class="fa-solid fa-circle-question" aria-label="circle-question"></i> Quiz: Funktionen nutzen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><br></p>
+<p>Dieser Code erstellt einen Variable mit 100 fiktiven IQ-Messungen.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>data_iq <span class="ot">&lt;-</span> <span class="fu">rnorm</span>(<span class="dv">100</span>, <span class="at">mean =</span> <span class="dv">100</span>, <span class="at">sd =</span> <span class="dv">15</span>) <span class="co"># diese Zeile generiert 100 Messungen</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Verwenden Sie die Konsole um die Variable zu erstellen mit dem obigen Code. Danach können Sie die Funktionen von oben nutzen um das Quiz zu beantworten.</p>
+<div id="qwebr-insertion-location-9"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+<p><br></p>
+<p><strong>a.</strong> Was ist der Mittelwert der Daten?</p>
+<p><select class="webex-select"><option value="blank"></option><option value="">ca. 50</option><option value="answer">ca. 100</option><option value="">ca. 1000</option></select></p>
+<p><strong>b.</strong> Was ist der Median der Daten?</p>
+<p><select class="webex-select"><option value="blank"></option><option value="">ca. 10</option><option value="">ca. 50</option><option value="answer">ca. 100</option></select></p>
+<p><strong>c.</strong> Was ist die Standardabweichung der Daten?</p>
+<p><select class="webex-select"><option value="blank"></option><option value="answer">ca. 15</option><option value="">ca. 50</option><option value="">ca. 100</option></select></p>
+<p><strong>d.</strong> Was ist die der maximale Wert?</p>
+<p><strong>e.</strong> Was ist der minimale Wert?</p>
+</div>
+</div>
+<aside>
+Alles hinter dem <code>#</code> wird nicht ausgeführt, es dient als Kommentar. So kann beschrieben werden, was eine Zeile Code genau macht, ohne dass diese mit dem Code interferiert.
+</aside>
+<!-- ### Packages -->
+<!-- Packages können mit der Funktion `install.packages()` installiert und mit `library()` geladen werden.  -->
+<!-- <aside> Zu Beginn der Website wird jeweils angegeben, welche Packages für Sie im Hintergrund schon geladen wurden. </aside> -->
+<!-- Wenn ein Package nicht geladen werden soll, aber eine Funktion daraus gebraucht wird, kann die Funktion nach dem Package-Name mit `::` aufgerufen werden: `packagename::funktionsname()`. -->
+<!-- ::: {.panel-tabset} -->
+<!-- ## &emsp;Konsole -->
+<!-- Laden Sie das Package `{ggplot2}`: -->
+<!-- ```{webr-r} -->
+<!-- library(___) -->
+<!-- ``` -->
+<!-- ## &emsp;Tipp -->
+<!-- Geben Sie innerhalb der Klammer den Packagename an (keine Anführungszeichen). -->
+<!-- ## &emsp;Lösung -->
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- library(ggplot2) -->
+<!-- ``` -->
+<!-- ::: -->
+</section>
+</section>
+<section id="data-wrangling" class="level2" data-number="3.4">
+<h2 data-number="3.4" class="anchored" data-anchor-id="data-wrangling"><span class="header-section-number">3.4</span> Data wrangling</h2>
+<p>Datensätze können in R einfach dargestellt und zusammengefasst werden.</p>
+<p>Mit der Funktion <code>glimpse()</code> kann der Datensatz angeschaut werden</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true"><i class="fa-solid fa-code" aria-label="code"></i> Konsole</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false"><i class="fa-regular fa-helicopter" aria-label="helicopter"></i> Tipp</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-3" role="tab" aria-controls="tabset-8-3" aria-selected="false"><i class="fa-solid fa-check" aria-label="check"></i> Lösung</a></li></ul>
+<div class="tab-content">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<p>Schauen Sie sich den oben erstellten Datensatz</p>
+<div id="qwebr-insertion-location-10"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<p>Falls <code>d</code> nicht angezeigt werden kann, erscheint die Fehlermeldung <code>Error: object 'd' not found</code>. Scrollen Sie nach oben und erstellen Sie den Datensatz <code>d</code>unter <strong>3. Objekte in R</strong>.</p>
+<p>Drücken Sie <code>Run Code</code>.</p>
+</div>
+<div id="tabset-8-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 4
+Columns: 3
+$ sub      &lt;chr&gt; "sub-01", "sub-02", "sub-03", "sub-04"
+$ age      &lt;dbl&gt; 43, 54, 33, 29
+$ accuracy &lt;dbl&gt; 89, 77, 95, 98</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Zum Üben gibt es in R Datensätze, die immer verfügbar sind, z.B. <code>cars</code>. In diesem Datensatz von 1920 werden verschiedene Autos und ihre Eigenschaften beschrieben.</p>
+<p>Mit <code>summary()</code> kann der Datensatz zusammengefasst werden, es werden automatisch die minimalen und maximalen Werte, Mittelwerte, etc. ausgegeben.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true"><i class="fa-solid fa-code" aria-label="code"></i> Konsole</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false"><i class="fa-regular fa-helicopter" aria-label="helicopter"></i> Tipp</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-3" role="tab" aria-controls="tabset-9-3" aria-selected="false"><i class="fa-solid fa-check" aria-label="check"></i> Lösung</a></li></ul>
+<div class="tab-content">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<p>Schauen Sie sich die Zusammenfassung von <code>cars</code> an:</p>
+<div id="qwebr-insertion-location-11"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<p>Verwenden Sie die Funktion <code>summary()</code>.</p>
+<p>Drücken Sie <code>Run Code</code>.</p>
+</div>
+<div id="tabset-9-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     speed           dist       
+ Min.   : 4.0   Min.   :  2.00  
+ 1st Qu.:12.0   1st Qu.: 26.00  
+ Median :15.0   Median : 36.00  
+ Mean   :15.4   Mean   : 42.98  
+ 3rd Qu.:19.0   3rd Qu.: 56.00  
+ Max.   :25.0   Max.   :120.00  </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Mit dem Operator <code>$</code> kann eine einzelne Variable aus dem Datensatz ausgewählt werden.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true"><i class="fa-solid fa-code" aria-label="code"></i> Konsole</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false"><i class="fa-regular fa-helicopter" aria-label="helicopter"></i> Tipp</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-3" role="tab" aria-controls="tabset-10-3" aria-selected="false"><i class="fa-solid fa-check" aria-label="check"></i> Lösung</a></li></ul>
+<div class="tab-content">
+<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
+<p>Schauen Sie sich die einzelnen Variablen von <code>cars</code> an.</p>
+<div id="qwebr-insertion-location-12"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
+<p>Wählen Sie aus den oben angezeigten Variablen eine aus und setzen Sie sie nach dem <code>$</code> ein.</p>
+<p>Beispiel: <code>speed</code> oder <code>dist</code>.</p>
+<p>Drücken Sie <code>Run Code</code>.</p>
+</div>
+<div id="tabset-10-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>speed</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]  4  4  7  7  8  9 10 10 10 11 11 12 12 12 12 13 13 13 13 14 14 14 14 15 15
+[26] 15 16 16 17 17 17 18 18 18 18 19 19 19 20 20 20 20 20 22 23 24 24 24 24 25</code></pre>
+</div>
+</div>
+<p>oder</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb36"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb36-1"><a href="#cb36-1" aria-hidden="true" tabindex="-1"></a>cars<span class="sc">$</span>dist</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1]   2  10   4  22  16  10  18  26  34  17  28  14  20  24  28  26  34  34  46
+[20]  26  36  60  80  20  26  54  32  40  32  40  50  42  56  76  84  36  46  68
+[39]  32  48  52  56  64  66  54  70  92  93 120  85</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="datenvisualisieren" class="level2 page-columns page-full" data-number="3.5">
+<h2 data-number="3.5" class="anchored" data-anchor-id="datenvisualisieren"><span class="header-section-number">3.5</span> Datenvisualisieren</h2>
+<p>Um Grafiken zu erstellen gibt es in R einfache Befehle, wie</p>
+<ul>
+<li><code>plot()</code></li>
+<li><code>hist()</code></li>
+<li><code>boxplot()</code></li>
+</ul>
+<aside>
+Komplexere und grafisch ansprechendere Plots können mit dem Package <code>{ggplot2}</code> erstellt werden. <a href="https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf">Cheatsheet für Interessierte</a>
+</aside>
+<p>In die Grafikfunktionen können teilweise ganze Datensätze als Argument eingegeben werden. Meistens brauchen die Funktionen aber die genauen Variablen, die geplottet werden sollen als Argumente. Die einzelnen Variablen können mit dem <code>$</code> spezifiziert werden (z.B. <code>cars$speed</code>).</p>
+<section id="scatterplot" class="level3" data-number="3.5.1">
+<h3 data-number="3.5.1" class="anchored" data-anchor-id="scatterplot"><span class="header-section-number">3.5.1</span> Scatterplot</h3>
+<p>Die Funktion <code>plot()</code> macht einen Scatterplot, zeichnet also immer die ersten beiden Werte zweier Variablen als Punkt. Dann die zweiten zwei Werte, usw.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true"><i class="fa-solid fa-code" aria-label="code"></i> Konsole</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false"><i class="fa-regular fa-helicopter" aria-label="helicopter"></i> Tipp</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-3" role="tab" aria-controls="tabset-11-3" aria-selected="false"><i class="fa-solid fa-check" aria-label="check"></i> Lösung</a></li></ul>
+<div class="tab-content">
+<div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
+<div id="qwebr-insertion-location-13"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+<div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
+<p>Setzen Sie den Namen des Datensatzes (z.B.<code>cars</code>) ein.</p>
+<p>Drücken Sie <code>Run Code</code>.</p>
+</div>
+<div id="tabset-11-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="webrconsole_files/figure-html/unnamed-chunk-2-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="programmieren_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="histogramme" class="level3" data-number="3.5.2">
+<h3 data-number="3.5.2" class="anchored" data-anchor-id="histogramme"><span class="header-section-number">3.5.2</span> Histogramme</h3>
+<p>Die Funktion <code>hist()</code> erstellt ein Histogramm. Dafür wird nur eine Variable benötigt. Es wird die Häufigkeit eines Werts in dieser Variable abgetragen.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true"><i class="fa-solid fa-code" aria-label="code"></i> Konsole</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false"><i class="fa-regular fa-helicopter" aria-label="helicopter"></i> Tipp</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-3" role="tab" aria-controls="tabset-12-3" aria-selected="false"><i class="fa-solid fa-check" aria-label="check"></i> Lösung</a></li></ul>
+<div class="tab-content">
+<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
+<div id="qwebr-insertion-location-14"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
+<p>Setzen Sie den Namen des Datensatzes (z.B.<code>cars</code>) ein. Setzen Sie hinter dem <code>$</code> einen Variablennamen ein.</p>
+<p>Drücken Sie <code>Run Code</code>.</p>
+</div>
+<div id="tabset-12-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a><span class="fu">hist</span>(cars<span class="sc">$</span>speed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="programmieren_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="boxplots" class="level3" data-number="3.5.3">
+<h3 data-number="3.5.3" class="anchored" data-anchor-id="boxplots"><span class="header-section-number">3.5.3</span> Boxplots</h3>
+<p>Die Funktion <code>boxplot()</code> erstellt ein Boxplot, mit Median und der 1. und 3. Quartile. Dafür wird nur eine Variable benötigt. Es kann aber auch ein Datensatz mit mehreren Variablen eingegeben werden. Dann werden mehrere Boxen geplottet.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true"><i class="fa-solid fa-code" aria-label="code"></i> Konsole</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-2" role="tab" aria-controls="tabset-13-2" aria-selected="false"><i class="fa-regular fa-helicopter" aria-label="helicopter"></i> Tipp</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-3" role="tab" aria-controls="tabset-13-3" aria-selected="false"><i class="fa-solid fa-check" aria-label="check"></i> Lösung</a></li></ul>
+<div class="tab-content">
+<div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
+<div id="qwebr-insertion-location-15"></div>
+<noscript>Please enable JavaScript to experience the dynamic code cell content on this page.</noscript>
+</div>
+<div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
+<p>Setzen Sie den Namen des Datensatzes (z.B.<code>cars</code>) ein. Setzen Sie hinter dem <code>$</code> einen Variablennamen ein um nur eine Variable zu plotten.</p>
+<p>Drücken Sie <code>Run Code</code>.</p>
+</div>
+<div id="tabset-13-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="fu">boxplot</span>(cars)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="programmieren_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -2169,6 +2861,18 @@ $ dist  &lt;dbl&gt; 2, 10, 4, 22, 16, 10, 18, 26, 34, 17, 28, 14, 20, 24, 28, 26
 </div>
 
 
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>https://www.unilu.ch/studium/studienangebot/bachelor/vpf/psychologie/<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Chambers, J.M.(2014): Object-Oriented Programming, Functional Programming and R. In: Statistical Science. Band 29, Nr. 2, S. 167–180, https://arxiv.org/abs/1409.3531<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p>auch Funktionen sind Objekte, was anfangs irritierend wirken kann, ist eigentlich recht logisch; als Analogie: auch wenn der Rechner ein Objekt ist, kann damit gerechnet werden (Funktionsaufruf).<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Der Zuweisungsoperator <code>-&gt;</code> zeigt klarer als das <code>=</code> auf, dass ein Wert zugewiesen wird und ist daher intuitiver.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><code>c()</code> ist wie die Plastikumhüllung für vier Tetrapack Milch. Sie fasst einfach mehrere Werte zusammen und zeigt <em>R</em>, dass diese in eine Variable gehören. So können 4 Werte mit einem “Henkel” (Variablennamen) herumgetragen werden.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
 <script>
@@ -2802,15 +3506,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../uebungen/uebung-01.html" class="pagination-link" aria-label="Übung 1">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Übung 1</span>
+      <a href="../r/rrstudio.html" class="pagination-link" aria-label="Basics R und RStudio">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics R und RStudio</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../appendix/thanks.html" class="pagination-link" aria-label="Danke">
-        <span class="nav-page-text">Danke</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../r/help.html" class="pagination-link" aria-label="Help center">
+        <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Help center</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

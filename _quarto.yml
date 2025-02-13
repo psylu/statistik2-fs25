@@ -20,8 +20,8 @@ book:
   - part: R und RStudio
     chapters:
     - r/installation.qmd
-#    - r/rrstudio.qmd
-#    - r/programmieren.qmd
+    - r/rrstudio.qmd
+    - r/programmieren.qmd
     - r/help.qmd
   - part: Datenverarbeitung
 #    chapters:

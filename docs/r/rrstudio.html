@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Übung 1 – Datenanalyse mit R</title>
+<title>2&nbsp; Basics R und RStudio – Datenanalyse mit R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../appendix/webrconsole.html" rel="next">
-<link href="../uebungen/uebungen.html" rel="prev">
+<link href="../r/programmieren.html" rel="next">
+<link href="../r/installation.html" rel="prev">
 <link href="../imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -76,6 +76,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../site_libs/quarto-contrib/kbd/kbd.js"></script>
+<link href="../site_libs/quarto-contrib/kbd/kbd.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -117,7 +119,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-01.html">Übung 1</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../r/installation.html">R und RStudio</a></li><li class="breadcrumb-item"><a href="../r/rrstudio.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics R und RStudio</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -165,7 +167,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../r/rrstudio.html" class="sidebar-item-text sidebar-link">
+  <a href="../r/rrstudio.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics R und RStudio</span></span></a>
   </div>
 </li>
@@ -212,7 +214,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../uebungen/uebung-01.html" class="sidebar-item-text sidebar-link active">
+  <a href="../uebungen/uebung-01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Übung 1</span></a>
   </div>
 </li>
@@ -257,23 +259,24 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#aufgabe-1.1.-installation-von-r-und-rstudio" id="toc-aufgabe-1.1.-installation-von-r-und-rstudio" class="nav-link active" data-scroll-target="#aufgabe-1.1.-installation-von-r-und-rstudio">Aufgabe 1.1. Installation von R und RStudio</a></li>
-  <li><a href="#aufgabe-1.2-packages-installieren" id="toc-aufgabe-1.2-packages-installieren" class="nav-link" data-scroll-target="#aufgabe-1.2-packages-installieren">Aufgabe 1.2 Packages installieren</a></li>
-  <li><a href="#aufgabe-1.3-rproject-und-rskript-erstellen" id="toc-aufgabe-1.3-rproject-und-rskript-erstellen" class="nav-link" data-scroll-target="#aufgabe-1.3-rproject-und-rskript-erstellen">Aufgabe 1.3: RProject und RSkript erstellen</a></li>
-  <li><a href="#aufgabe-1.4-operatoren-und-funktionen-verwenden" id="toc-aufgabe-1.4-operatoren-und-funktionen-verwenden" class="nav-link" data-scroll-target="#aufgabe-1.4-operatoren-und-funktionen-verwenden">Aufgabe 1.4: Operatoren und Funktionen verwenden</a></li>
-  <li><a href="#aufgabe-1.5-rnotebook-erstellen-und-packages-laden" id="toc-aufgabe-1.5-rnotebook-erstellen-und-packages-laden" class="nav-link" data-scroll-target="#aufgabe-1.5-rnotebook-erstellen-und-packages-laden">Aufgabe 1.5: RNotebook erstellen und Packages laden</a></li>
-  <li><a href="#aufgabe-1.6-daten-einlesen" id="toc-aufgabe-1.6-daten-einlesen" class="nav-link" data-scroll-target="#aufgabe-1.6-daten-einlesen">Aufgabe 1.6: Daten einlesen</a></li>
-  <li><a href="#aufgabe-1.7-datensätze-anschauen" id="toc-aufgabe-1.7-datensätze-anschauen" class="nav-link" data-scroll-target="#aufgabe-1.7-datensätze-anschauen">Aufgabe 1.7: Datensätze anschauen</a></li>
-  <li><a href="#aufgabe-1.8-visualisieren-der-datensätze" id="toc-aufgabe-1.8-visualisieren-der-datensätze" class="nav-link" data-scroll-target="#aufgabe-1.8-visualisieren-der-datensätze">Aufgabe 1.8: Visualisieren der Datensätze</a></li>
+  <li><a href="#r-rstudio-und-webr" id="toc-r-rstudio-und-webr" class="nav-link active" data-scroll-target="#r-rstudio-und-webr"><span class="header-section-number">2.1</span> <em>R</em>, <em>RStudio</em> und <em>WebR</em></a></li>
+  <li><a href="#programmierumgebung-rstudio" id="toc-programmierumgebung-rstudio" class="nav-link" data-scroll-target="#programmierumgebung-rstudio"><span class="header-section-number">2.2</span> Programmierumgebung <em>RStudio</em></a></li>
+  <li><a href="#sec-rprojects" id="toc-sec-rprojects" class="nav-link" data-scroll-target="#sec-rprojects"><span class="header-section-number">2.3</span> <em>RProjekte</em></a>
+  <ul class="collapse">
+  <li><a href="#rprojekt-erstellen" id="toc-rprojekt-erstellen" class="nav-link" data-scroll-target="#rprojekt-erstellen"><span class="header-section-number">2.3.1</span> <em>RProjekt</em> erstellen</a></li>
+  </ul></li>
+  <li><a href="#code-schreiben-und-speichern" id="toc-code-schreiben-und-speichern" class="nav-link" data-scroll-target="#code-schreiben-und-speichern"><span class="header-section-number">2.4</span> Code schreiben und speichern</a></li>
+  <li><a href="#erstellen-und-verwenden-von-rnotebooks" id="toc-erstellen-und-verwenden-von-rnotebooks" class="nav-link" data-scroll-target="#erstellen-und-verwenden-von-rnotebooks"><span class="header-section-number">2.5</span> Erstellen und Verwenden von <em>RNotebooks</em></a></li>
+  <li><a href="#dateiformate" id="toc-dateiformate" class="nav-link" data-scroll-target="#dateiformate"><span class="header-section-number">2.6</span> Dateiformate</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content">
+<main class="content page-columns page-full column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-01.html">Übung 1</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../r/installation.html">R und RStudio</a></li><li class="breadcrumb-item"><a href="../r/rrstudio.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics R und RStudio</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-uebung-01" class="quarto-section-identifier">Übung 1</span></h1>
+<h1 class="title"><span id="sec-r" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics R und RStudio</span></span></h1>
 </div>
 
 
@@ -290,205 +293,174 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled" title="Lernziele dieser Übung">
+<div class="callout callout-style-default callout-note callout-titled" title="Inhalt">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Lernziele dieser Übung
+Inhalt
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Nach der heutigen Übung können Sie</p>
 <ul>
-<li><em>R</em> und <em>RStudio</em> installieren</li>
-<li>Benutzeroberfläche und Einstellungen in <em>RStudio</em> anpassen</li>
-<li><em>RProjekte</em> erstellen</li>
-<li>Code in <em>RNotebooks</em> und <em>RSkripte</em> schreiben und ausführen</li>
-<li>Mathematische und logische Operatoren verwenden</li>
-<li>Funktionen mit den passenden Argumenten verwenden</li>
-<li>Variablen verschiedener Typen erstellen und abrufen</li>
-<li>Datensätze einlesen und anschauen</li>
-<li>Daten visualisieren</li>
-<li>Hilfe fürs Debugging finden</li>
+<li>Überblick über das Arbeiten mit <em>R</em> in <em>RStudio</em></li>
+<li>Erstellen und Nutzen von <em>RProjects</em></li>
+<li>Erstellen und Nutzen von Skripts und <em>Notebooks</em></li>
 </ul>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Übungen ohne RStudio...:">
+<section id="r-rstudio-und-webr" class="level2 page-columns page-full" data-number="2.1">
+<h2 data-number="2.1" class="anchored" data-anchor-id="r-rstudio-und-webr"><span class="header-section-number">2.1</span> <em>R</em>, <em>RStudio</em> und <em>WebR</em></h2>
+<p><a href="https://www.r-project.org/about.html"><strong>R</strong></a> ist eine leistungsstarke Programmiersprache und eine Open-Source-Softwareumgebung. Sie wird in der Forschung für die Datenverarbeitung, statistische Datenanalyse und Datenvisualisierung eingesetzt. <em>R</em> wird von Forschenden und Data Scientists weltweit verwendet, da eine breite Sammlung an Erweiterungen (Packages) zugänglich ist. Dadurch, dass diese Packages kontinuierlich weiterentwickelt und neue Packages erstellt werden, bietet R umfangreiche “state of the art” Funktionen. <em>R</em> kann für einfache Datenanalysen, wie auch für komplexe statistische Modelle und machine learning genutzt werden.</p>
+<aside>
+Genauere Informationen zu R in <a href="https://de.wikipedia.org/wiki/R_(Programmiersprache)">deutsch</a> und <a href="https://en.wikipedia.org/wiki/R_(programming_language)">englisch</a>.
+</aside>
+<p><a href="https://posit.co/download/rstudio-desktop/"><strong>RStudio</strong></a> ist eine integrierte Entwicklungsumgebung (IDE) für die Programmiersprache <em>R</em>, die den Umgang mit <em>R</em> vereinfacht und benutzerfreundlicher gestaltet. In <em>RStudio</em> kann Code geschrieben, ausgeführt und gespeichert werden. RStudio integriert Funktionen wie eine Konsole, ein Skriptfenster, eine Umgebung zur Verwaltung von Variablen und eine Historie der ausgeführten Befehle.</p>
+<p><a href="../appendix/webrconsole.html"><strong>WebR</strong></a> ermöglicht das Verwenden von <em>R</em> mit einem Browser, z.B. auf der Kurswebsite.</p>
+<p>Arbeiten in <em>R</em> und <em>RStudio</em> eignet sich ideal für Datenverarbeitung, -analyse und -visualisierung aufgrund folgender Vorteile:</p>
+<ul>
+<li><p><strong>leistungsstarke Funktionen</strong> wie {tidyverse} und {ggplot2} für das Einlesen, Bearbeiten, Zusammenfassen und Visualisieren von Datensätzen</p></li>
+<li><p><strong>Reproduzierbarkeit des Codes und wiederverwendbare sowie nachvollziehbare Analysen</strong> ermöglicht durch abspeicherbare und gut kommentierbare Skripte</p></li>
+<li><p><strong>Flexibilität</strong> durch eine grosse Auswahl von <em>R</em>-Packages auf CRAN und die Möglichkeit, eigene Funktionen zu erstellen</p></li>
+<li><p><strong>Aktualität</strong> durch ständige Updates von <em>R</em> und <em>R</em>-Packages mit modernen Analysefunktionen</p></li>
+<li><p><strong>Zugänglichkeit</strong>: kostenlos und Open-Source</p></li>
+<li><p><strong>Support</strong> durch aktive Community mit schneller Hilfe</p></li>
+</ul>
+</section>
+<section id="programmierumgebung-rstudio" class="level2 page-columns page-full" data-number="2.2">
+<h2 data-number="2.2" class="anchored" data-anchor-id="programmierumgebung-rstudio"><span class="header-section-number">2.2</span> Programmierumgebung <em>RStudio</em></h2>
+<p>Wenn Sie <em>RStudio</em> öffnen, sehen Sie die Standardansicht. Links finden Sie die Konsole. Sobald Sie ein Code-File öffnen, erscheint dieses links oben.</p>
+<ul>
+<li><p><strong>Skript</strong>: In einem Skript können Sie Code schreiben und ausführen. Es können verschiedene Code-Files geöffnet werden, z.B. <em>RSkript</em> und <em>RNotebooks</em>. Wenn Sie einen Datensatz anschauen, erscheint dieser auch in diesem Quadrant.</p></li>
+<li><p><strong>Konsole</strong>: Hier können Sie direkt Code eingeben und ausführen.</p></li>
+<li><p><strong>Umgebung</strong>: Hier finden Sie gespeicherte Objekte (z.B. Variablen).</p></li>
+<li><p><strong>Arbeitsverzeichnis</strong>, <strong>Plots</strong>, <strong>Packages</strong>, _Help__, …: Hier finden Sie diverse hilfreiche Informationen wie z.B. die Ordnerstruktur mit der Sie aktuell arbeiten (<em>working directory</em>), die Anzeige von Plots, welche <em>Packages</em> installiert und geladen sind, Hilfe zu den einzelnen Funktionen, u.v.m.</p></li>
+</ul>
+<img src="../imgs/rstudio_overview.png" id="fig-rstudioenvironmen" class="img-fluid quarto-figure quarto-figure-left anchored" style="width:100.0%" alt="Startscreen beim Öffnen von RStudio.">
+<aside>
+Bitte verändern Sie zu Beginn diese Ansicht nicht, denn wir werden der Einfachheit halber jeweils auf Quadranten hinweisen (z.B. Sie finden etwas im “linken oberen Quadranten”). Wenn Sie die Fenster umstellen, wird diese Angabe nicht mehr zu Ihrer Konfiguration passen. Sobald Sie sich sicher fühlen, können Sie <em>RStudio</em> Ihre Bedürfnissen anpassen.
+</aside>
+</section>
+<section id="sec-rprojects" class="level2 page-columns page-full" data-number="2.3">
+<h2 data-number="2.3" class="anchored" data-anchor-id="sec-rprojects"><span class="header-section-number">2.3</span> <em>RProjekte</em></h2>
+<p>In <em>RStudio</em> gibt es die Möglichkeit mit <em>RProjekten</em> zu arbeiten. Dies gibt Ihnen die Möglichkeit Ihren Code in Projekte zu strukturieren. Ein Projekt ist eine Einheit, in der Sie Daten und Analysecode bündeln möchten.</p>
+<aside>
+Wir werden in den Übungen jeweils mit Projekten arbeiten.
+</aside>
+<p><em>RProjekte</em> haben zwei grosse Vorteile, die uns das Arbeiten in <em>RStudio</em> vereinfachen:</p>
+<p><strong>1. <em>RProjekte</em> sammeln zusammengehörige Daten und Code in einem Ordner.</strong> So behalten Sie den Überblick, wo der Code für dieses Projekt zu finden ist. Sobald Sie an etwas Neuem arbeiten, erstellen Sie einfach ein neues Projekt.</p>
+<p><strong>2. <em>RProjekte</em> ermöglichen ein stabiles <code>working directory</code>.</strong></p>
+<p>Dort wo das <em>RProjekt</em> abgelegt ist, beginnt <em>R</em> zu suchen, wenn Sie einen Pfad eingeben. Das hat zur Folge, dass innerhalb eines <em>RProjekt</em>-Ordners die Pfade immer gleich bleiben, auch wenn Sie den Ordner an einen anderen Ort oder sogar auch einen anderen Computer verschieben. Ausserdem sind die Pfade oft viel kürzer.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einlesen Daten ausserhalb eines Projekts</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>d_ohne_projekt <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C://User/nameName/Ordner/Unterordner/Unterunterordner/data/daten.csv"</span>)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Einlesen Daten aus dem Ordner data innerhalb eines Projekts</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>d_mit_projekt <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/daten.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Projekt-Ordner">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Projekt-Ordner
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>Überlegen Sie zu Beginn gut, wo Sie Ihre Projekte abspeichern möchten.</p>
+<p>Erstellen Sie dort einen <code>RProjects</code>-Ordner.</p>
+<p>Speichern Sie alle <em>RProjekte</em> immer in diesem Ordner ab. So behalten Sie den Überblick.</p>
+</div>
+</div>
+</div>
+<section id="rprojekt-erstellen" class="level3" data-number="2.3.1">
+<h3 data-number="2.3.1" class="anchored" data-anchor-id="rprojekt-erstellen"><span class="header-section-number">2.3.1</span> <em>RProjekt</em> erstellen</h3>
+<p>Unter <code>File</code> &gt; <code>New Project</code> kann ein neues <em>RProjekt</em> erstellt werden.</p>
+<p><img src="../imgs/rproject_create.png" class="img-fluid quarto-figure quarto-figure-center" style="width:120.0%" alt="Screenshot der Fenster für das Erstellen von RProjekten."> Es empfiehlt sich bei <em>RProjekten</em> eine Einstellungsänderung (<code>Tools</code>&gt; <code>Project Options...</code>) vorzunehmen, so dass die aktuell gespeicherten Variablen bei jedem Schliessen vom Projekt gelöscht werden. Dies verhindert, dass der aktuelle Code nur aufgrund früherer Speicherung läuft oder das falsche Variablen verwendet werden.</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../imgs/rprojects_dontsaveworkspace.png" class="img-fluid figure-img" style="width:100.0%" alt="Screenshot Dont save workspace."></p>
+<figcaption>Einstellungen anpassen für <em>RProject</em></figcaption>
+</figure>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Übungen ohne RStudio…:
+Hands-on: Erstellen eines RProjekt erstellen
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Falls bei der Installation unlösbare Probleme auftauchen, können Sie <em>R</em> und <em>RStudio</em> in der <em>R Sprechstunde</em> nächste Woche installieren. Lösen Sie die Aufgaben ab <em>Aufgabe 1.4</em> mit <em>WebR</em> <a href="../appendix/webrconsole.html">hier</a> und holen Sie <em>Aufgabe 1.1-1.3</em> vor der nächsten Übung nach.</p>
+<p>Erstellen Sie ein neues <em>RProjekt</em> auf Ihrem Computer mit folgenden Schritten:</p>
+<ol type="1">
+<li><p>Öffnen Sie <em>RStudio</em>.</p></li>
+<li><p>Erstellen Sie ein neues <em>RProjekt</em>.</p>
+<ul>
+<li><p>Klicken Sie dafür auf <code>File</code> &gt; <code>New Project</code> &gt; <code>New Directory</code> &gt; <code>New Project</code></p></li>
+<li><p>Benennen Sie das Project <code>introduction_to_r</code> und speichern Sie es an einem sinnvollen Ort auf Ihrem Computer.</p></li>
+<li><p>Klicken Sie auf <code>Create Project</code>.</p></li>
+</ul></li>
+<li><p>Passen Sie die Einstellungen unter <code>Tools</code> &gt; <code>Project Options</code> an.</p></li>
+<li><p>Schauen Sie sich im rechten unteren Quadranten unter <code>Files</code> das aktuelle <code>working directory</code> an. Was passiert, wenn Sie nun auf Ihrem Computer im Ordnern des <em>RProjekts</em> einen neuen Ordner namens <code>data</code> erstellen?</p></li>
+<li><p>Wo im Fenster von <em>RStudio</em> finden Sie die Information, ob Sie gerade in einem Projekt arbeiten (und in welchem) oder nicht?</p></li>
+</ol>
 </div>
 </div>
-<section id="aufgabe-1.1.-installation-von-r-und-rstudio" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-1.1.-installation-von-r-und-rstudio">Aufgabe 1.1. Installation von R und RStudio</h2>
-<p>Installieren Sie R und RStudio, wie in <a href="../r/installation.html" class="quarto-xref"><span>1&nbsp; Installation</span></a> beschrieben.</p>
-</section>
-<section id="aufgabe-1.2-packages-installieren" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-1.2-packages-installieren">Aufgabe 1.2 Packages installieren</h2>
-<p>Installieren Sie das <em>Package</em> {tidyverse} entweder über die Konsole oder über <code>Tools</code>. <!-- ([hier](../r/rrstudio.qmd#packages) finden Sie die Anleitung dazu). --></p>
-</section>
-<section id="aufgabe-1.3-rproject-und-rskript-erstellen" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-1.3-rproject-und-rskript-erstellen">Aufgabe 1.3: RProject und RSkript erstellen</h2>
-<ol type="a">
-<li><p>Erstellen Sie (an einem für Sie geeigneten Ort auf Ihrem Rechner) einen Ordner für alle Übungen in Statistik 2 mit dem Namen <code>Statistik2</code>. <!-- (oder einem anderen passenden Namen gemäss den [Konventionen](../r/programmingbasics.qmd#namingconventions). --></p></li>
-<li><p>Öffnen Sie <em>RStudio</em> und erstellen Sie in diesem Ordner ein <em>RProject</em> mit dem Namen <em>Introduction_to_R</em>.</p></li>
-<li><p>Erstellen Sie in <em>RStudio</em> ein <em>RSkript</em> (Endung <code>.R</code>).</p></li>
-<li><p>Speichern Sie dieses Skript im <em>RProjekt</em>-Ordner mit dem Namen <em>IntroSkript</em> ab.</p></li>
-<li><p>Erstellen Sie im aktuellen <em>RProjekt</em>-Ordner einen Unterordner namens <code>data</code>. Laden Sie dann die Datensätze herunter und speichern Sie diese im <code>data</code>-Ordner.</p></li>
-</ol>
-<ul>
-<li>Datensatz 1: Link folgt</li>
-<li>Datensatz 2: Link folgt</li>
-</ul>
-</section>
-<section id="aufgabe-1.4-operatoren-und-funktionen-verwenden" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-1.4-operatoren-und-funktionen-verwenden">Aufgabe 1.4: Operatoren und Funktionen verwenden</h2>
-<ol type="a">
-<li>Schreiben Sie in das Skript untenstehenden Code und führen Sie diesen aus.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">43</span>, <span class="dv">65</span>, <span class="dv">23</span>, <span class="dv">78</span>, <span class="dv">34</span>, <span class="dv">73</span>, <span class="dv">69</span>, <span class="dv">14</span>, <span class="dv">37</span>, <span class="dv">84</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Wie können Sie nun nachschauen, welche Werte in der Variable vorhanden sind?</p>
-<ol start="2" type="a">
-<li>Berechnen Sie folgende Werte:</li>
-</ol>
-<ul>
-<li><p>Mittelwert der Variable <code>numbers</code>.</p></li>
-<li><p>Standardabweichung der Variable <code>numbers</code>.</p></li>
-<li><p>Summe der Variable <code>numbers</code></p></li>
-<li><p>Was passiert, wenn Sie die Variable <code>numbers</code> mit sich selber addieren (<code>numbers + numbers</code>) oder multiplizieren?</p></li>
-<li><p>Was passiert, wenn Sie die Wurzel nehmen?</p></li>
-</ul>
-<ol start="3" type="a">
-<li>Erstellen Sie eine Variable <code>words</code> mit den Wörtern <code>yellow</code>, <code>green</code> und <code>red</code> darin.</li>
-</ol>
-<ul>
-<li><p>Was passiert, wenn Sie den Mittelwert der Variable <code>words</code> berechnen?</p></li>
-<li><p>Welcher Wert wird ausgegeben?</p></li>
-<li><p>Gibt es eine Warnung oder eine Fehlermeldung?</p></li>
-</ul>
-<ol start="4" type="a">
-<li>Was passiert, wenn Sie die Variable <code>words</code> mit sich selber addieren?</li>
-</ol>
-<ul>
-<li><p>Welcher Wert wird ausgegeben?</p></li>
-<li><p>Gibt es eine Warnung oder eine Fehlermeldung?</p></li>
-</ul>
-<ol start="5" type="a">
-<li>Diskutieren Sie kurz zusammen: Wie unterscheiden sich Warnungen von Fehlermeldungen?</li>
-</ol>
-</section>
-<section id="aufgabe-1.5-rnotebook-erstellen-und-packages-laden" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-1.5-rnotebook-erstellen-und-packages-laden">Aufgabe 1.5: RNotebook erstellen und Packages laden</h2>
-<ol type="a">
-<li><p>Erstellen Sie ein <em>RNotebook</em> und speichern Sie es unter dem Namen <em>IntroNotebook</em> ab.</p></li>
-<li><p>Identifizieren Sie die 3 Bausteine eines Notebooks: Header, Textfeld und Codefeld mit folgenden Fragen:</p></li>
-</ol>
-<ul>
-<li>Woran erkennt man den Baustein?</li>
-<li>Für was eignet sich der Baustein besonders?</li>
-<li>Für was eignet sich der Baustein nicht?</li>
-</ul>
-<ol start="3" type="a">
-<li><p>Geben Sie dem Notebook einen Titel.</p></li>
-<li><p>Laden Sie in einem Codefeld das <em>Package</em> <code>{tidyverse}</code> mit</p></li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="5" type="a">
-<li>Beschreiben Sie im Textfeld über dem Codefeld was der Code machen sollte.</li>
-</ol>
-</section>
-<section id="aufgabe-1.6-daten-einlesen" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-1.6-daten-einlesen">Aufgabe 1.6: Daten einlesen</h2>
-<p>In dieser Aufgabe arbeiten wir weiter mit dem <em>RNotebook</em> von oben.</p>
-<ol type="a">
-<li><p>Erstellen Sie ein neues Codefeld.</p></li>
-<li><p>Lesen Sie den Datensatz <code>dataexample_1.csv</code> ein aus dem <code>data</code>-Ordner ein.</p></li>
-</ol>
-<p>Gehen Sie dabei schrittweise vor:</p>
-<ul>
-<li><p>Welche Endungen hat die Datei?</p></li>
-<li><p>Importieren Sie die Daten mit dem GUI.</p></li>
-<li><p>Löschen Sie die Variable aus dem Environment.</p></li>
-<li><p>Importieren Sie den Datensatz mit Code. Verwenden Sie dafür den Variablennamen <code>d1</code> für den Datensatz (bzw. <code>d2</code> für den zweiten Datensatz).</p></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> <span class="fu">...</span>(<span class="st">"data/..."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Führen Sie dieselben Schritte für <code>dataexample_2.csv</code> aus.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="4" type="a">
-<li>Diskutieren Sie kurz zusammen:</li>
-</ol>
-<ul>
-<li>Was war schwierig? Was fällt Ihnen auf?</li>
-<li>Was sind Separators?</li>
-<li>Welcher Weg fällt Ihnen leichter?</li>
-</ul>
-</section>
-<section id="aufgabe-1.7-datensätze-anschauen" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-1.7-datensätze-anschauen">Aufgabe 1.7: Datensätze anschauen</h2>
-<p>Schauen Sie sich die beiden Datensätze auf drei Arten an</p>
-<ol type="a">
-<li><p>indem Sie im <code>Environment</code> darauf klicken.</p></li>
-<li><p>indem Sie den Namen der Variable eingeben (in der Konsole oder im <em>RNotebook</em>).</p></li>
-<li><p>indem Sie untenstehenden Code eingeben (<code>...</code> muss mit einer Variable ersetzt werden):</p></li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="aufgabe-1.8-visualisieren-der-datensätze" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-1.8-visualisieren-der-datensätze">Aufgabe 1.8: Visualisieren der Datensätze</h2>
-<ol type="a">
-<li><p>Installieren Sie das <em>Package</em> {esquisse}.</p></li>
-<li><p>Geben Sie in der Konsole folgenden Code ein:</p></li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>esquisse<span class="sc">::</span><span class="fu">esquisser</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="3" type="a">
-<li>Schauen Sie sich nacheinander die beiden Datensätze an.</li>
-</ol>
-<ul>
-<li><p>Welche Variablen gibt es und welches Skalenniveau haben diese?</p></li>
-<li><p>Ist die Variable <code>age</code> normalverteilt?</p></li>
-<li><p>Welche Darstellungsform eignet sich am besten?</p></li>
-<li><p>Lassen Sie sich für die beste Darstellung des Datensatzes einen Code ausgeben und speichern Sie diesen Ihrem <em>RNotebook</em> ab. Speichern Sie alle Änderungen in Ihrem <em>RNotebook</em>. Der Titel sollte nicht mehr in rot geschrieben sein und keinen Stern nach dem Namen haben.</p></li>
-</ul>
-<ol start="4" type="a">
-<li><p>Schliessen Sie Ihr <em>RProject</em> und öffnen Sie es erneut.</p></li>
-<li><p>Falls nötig: Öffnen Sie ihr <em>IntroNotebook</em> wieder und führen Sie allen Code aus. Jetzt sollten Sie zum Schluss beide Grafiken haben.</p></li>
-</ol>
-<p><strong>Zeigen Sie einander die Grafiken und diskutieren Vor- und Nachteile der Darstellungsformen.</strong></p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Bei Problemen...">
+<div class="callout callout-style-default callout-tip callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Bei Problemen…
+Tipp: Namensgebung für Files und Variablen
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Der Einstieg ins Programmieren mit <em>R</em> ist nicht einfach. Falls Sie Fragen zu den Übungen haben, dürfen Sie diese zusätzlich in der <em>R Sprechstunde</em> nächste Woche stellen. Kommen Sie einfach mit Ihrem Computer vorbei und wir schauen es an.</p>
+<p>Wenn Sie Filenamen auswählen, achten Sie darauf dass diese <a href="https://opendatahandbook.org/glossary/en/terms/machine-readable"><em>machine-readable</em></a> sind:</p>
+<ul>
+<li><p>keine Lücken (verwenden Sie stattdessen den <code>camelCase</code>, den <code>snake_case</code> oder <code>-</code>)</p></li>
+<li><p>keine <code>ä</code>, <code>ö</code>, <code>ü</code> oder andere Sonderzeichen verwenden</p></li>
+</ul>
 </div>
 </div>
+</section>
+</section>
+<section id="code-schreiben-und-speichern" class="level2 page-columns page-full" data-number="2.4">
+<h2 data-number="2.4" class="anchored" data-anchor-id="code-schreiben-und-speichern"><span class="header-section-number">2.4</span> Code schreiben und speichern</h2>
+<p>In <em>RStudio</em> können Sie Code auf verschiedene Arten schreiben, ausführen und speichern.</p>
+<p><strong>1. Code in der Konsole</strong></p>
+<p>Dies ist die einfachste Art Code zu schreiben und auszuführen. Sie können die Konsole (linker unterer Quadrant) direkt nutzen. Schreiben Sie in die Konsole Code und drücken Sie <kbd aria-hidden="true">Enter</kbd><span class="visually-hidden">Enter</span>, um diesen auszuführen. Code in der Konsole kann nicht gespeichert werden, er geht z.B. beim Schliessen von <em>RStudio</em> verloren. Deshalb eignet sich die Konsole vor allem für schnelles und einmaliges Schreiben von Code. Beispiele dafür sind das Herunterladen von <em>Packages</em>, Ausprobieren von Code und kurzen Berechnungen, welche nicht gespeichert werden müssen.</p>
+<p><strong>2. Code in RSkripts</strong></p>
+<p>Wenn ein <em>RProjekt</em> ein Ordner wäre, wären <em>RSkripts</em> die Blätter. Ein neues <em>RSkript</em> kann unter <code>File</code> &gt; <code>New File</code> &gt; <code>R Script</code> erstellt werden. <em>RSkripts</em> sind simpel: Alles was geschrieben wird, kann als Code ausgeführt werden. Mit einer Ausnahmen: Wenn ein <code>#</code> am Anfang der Zeile steht, gilt die Zeile als auskommentiert und wird nicht ausgeführt.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Das hier ist auskommentierter Text. Er kann nicht als Code ausgeführt werden.</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">+</span><span class="dv">1</span> <span class="co"># vor dem Hash steht Code, Text hinter dem Hash wird nicht ausgeführt.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>3. Code in RNotebooks</strong>:</p>
+<p>Ein <em>RNotebook</em> ist praktisch, wenn man Text und Code kombinieren möchte, aber man Text ohne das Auskommentieren (mit dem <code>#</code>) schreiben möchte. Dies ist beispielsweise der Fall, wenn man Details zu einer Analyse zu den Berechnungen hinzu schreiben möchte. Ein <em>RNotebook</em> kann zudem “gerendert” werden, dass heisst, es kann damit ein <code>.html</code>- oder ein <code>.pdf</code>-File erstellt werden. Das ist besonders praktisch, wenn man seine Analyse mit jemanden teilen möchte, der/die kein <em>R</em> benutzt (z.B. bei einer Publikation kann so der Code mit dem Artikel eingereicht werden). In einem <em>RNotebook</em> ist Text grundsätzlich normaler Text. Code kann eingefügt werden, indem man ein Code-Feld einfügt. Weiter können auch Bilder eingefügt werden und der Text kann mit Kapiteln, fett/kursiv Schrift, etc. strukturiert werden.</p>
+<aside>
+Für Interessierte: diese ganze Website ist mit Quarto-Files erstellt, die nach demselben Prinzip wie <em>RNotebooks</em> funktionieren. Quarto-Files können ebenfalls in <em>RStudio</em> erstellt und bearbeitet werden.
+</aside>
+</section>
+<section id="erstellen-und-verwenden-von-rnotebooks" class="level2" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="erstellen-und-verwenden-von-rnotebooks"><span class="header-section-number">2.5</span> Erstellen und Verwenden von <em>RNotebooks</em></h2>
+<p><img src="../imgs/rnotebook_1.png" class="img-fluid"></p>
+<p><img src="../imgs/rnotebook_2.png" class="img-fluid"></p>
+</section>
+<section id="dateiformate" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="dateiformate"><span class="header-section-number">2.6</span> Dateiformate</h2>
+<ul>
+<li><em>RProjects</em>: <code>.Rproj</code></li>
+<li><em>RSkripts</em>: <code>.R</code></li>
+<li><em>RNotebooks</em>: <code>.Rmd</code></li>
+<li>gerenderte <em>RNotebooks</em>: <code>.html</code>, <code>.pdf</code>, etc.</li>
+</ul>
 
 
 </section>
@@ -1127,13 +1099,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../uebungen/uebungen.html" class="pagination-link" aria-label="Informationen">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Informationen</span>
+      <a href="../r/installation.html" class="pagination-link" aria-label="Installation">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../appendix/webrconsole.html" class="pagination-link" aria-label="WebR Konsole">
-        <span class="nav-page-text">WebR Konsole</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../r/programmieren.html" class="pagination-link" aria-label="Basics Programmieren">
+        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Basics Programmieren</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

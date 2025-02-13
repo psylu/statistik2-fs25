@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Help center – Datenanalyse mit R</title>
+<title>4&nbsp; Help center – Datenanalyse mit R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -65,7 +65,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
 <link href="../uebungen/uebungen.html" rel="next">
-<link href="../r/installation.html" rel="prev">
+<link href="../r/programmieren.html" rel="prev">
 <link href="../imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -407,7 +407,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"code":"?cor()","options":{"classes":"","read-only":"false","autorun":"false","message":"true","output":"true","results":"markup","label":"unnamed-chunk-1","editor-font-scale":"1","warning":"true","editor-max-height":"","editor-quick-suggestions":"false","editor-word-wrap":"true","out-width":"700px","out-height":"","fig-height":5,"context":"interactive","comment":"","fig-width":7,"dpi":72,"fig-cap":""},"id":1}];
+globalThis.qwebrCellDetails = [{"id":1,"options":{"fig-height":5,"out-width":"700px","out-height":"","editor-font-scale":"1","read-only":"false","dpi":72,"editor-word-wrap":"true","fig-cap":"","context":"interactive","editor-max-height":"","label":"unnamed-chunk-1","comment":"","editor-quick-suggestions":"false","autorun":"false","results":"markup","warning":"true","output":"true","classes":"","fig-width":7,"message":"true"},"code":"?cor()"}];
 
 </script>
 <script type="module">
@@ -1674,7 +1674,7 @@ globalThis.qwebrExecuteCode = async function (
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../r/installation.html">R und RStudio</a></li><li class="breadcrumb-item"><a href="../r/help.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Help center</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../r/installation.html">R und RStudio</a></li><li class="breadcrumb-item"><a href="../r/help.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Help center</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -1722,8 +1722,20 @@ globalThis.qwebrExecuteCode = async function (
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../r/rrstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics R und RStudio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/programmieren.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Basics Programmieren</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../r/help.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Help center</span></span></a>
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Help center</span></span></a>
   </div>
 </li>
       </ul>
@@ -1802,16 +1814,16 @@ globalThis.qwebrExecuteCode = async function (
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#hilfe-in-r" id="toc-hilfe-in-r" class="nav-link active" data-scroll-target="#hilfe-in-r"><span class="header-section-number">2.1</span> Hilfe in <em>R</em></a>
+  <li><a href="#hilfe-in-r" id="toc-hilfe-in-r" class="nav-link active" data-scroll-target="#hilfe-in-r"><span class="header-section-number">4.1</span> Hilfe in <em>R</em></a>
   <ul class="collapse">
-  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">2.1.1</span> <code>?</code></a></li>
-  <li><a href="#helpfenster-in-rstudio" id="toc-helpfenster-in-rstudio" class="nav-link" data-scroll-target="#helpfenster-in-rstudio"><span class="header-section-number">2.1.2</span> <code>Help</code>Fenster in <em>RStudio</em></a></li>
-  <li><a href="#autocomplete-mit" id="toc-autocomplete-mit" class="nav-link" data-scroll-target="#autocomplete-mit"><span class="header-section-number">2.1.3</span> Autocomplete mit <kbd aria-hidden="true">Tab</kbd><span class="visually-hidden">Tab</span></a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"><span class="header-section-number">4.1.1</span> <code>?</code></a></li>
+  <li><a href="#helpfenster-in-rstudio" id="toc-helpfenster-in-rstudio" class="nav-link" data-scroll-target="#helpfenster-in-rstudio"><span class="header-section-number">4.1.2</span> <code>Help</code>Fenster in <em>RStudio</em></a></li>
+  <li><a href="#autocomplete-mit" id="toc-autocomplete-mit" class="nav-link" data-scroll-target="#autocomplete-mit"><span class="header-section-number">4.1.3</span> Autocomplete mit <kbd aria-hidden="true">Tab</kbd><span class="visually-hidden">Tab</span></a></li>
   </ul></li>
-  <li><a href="#bücher-und-tutorials" id="toc-bücher-und-tutorials" class="nav-link" data-scroll-target="#bücher-und-tutorials"><span class="header-section-number">2.2</span> Bücher und Tutorials</a></li>
-  <li><a href="#suchmaschinen" id="toc-suchmaschinen" class="nav-link" data-scroll-target="#suchmaschinen"><span class="header-section-number">2.3</span> Suchmaschinen</a></li>
-  <li><a href="#llms" id="toc-llms" class="nav-link" data-scroll-target="#llms"><span class="header-section-number">2.4</span> LLMs</a></li>
-  <li><a href="#faq" id="toc-faq" class="nav-link" data-scroll-target="#faq"><span class="header-section-number">2.5</span> FAQ</a></li>
+  <li><a href="#bücher-und-tutorials" id="toc-bücher-und-tutorials" class="nav-link" data-scroll-target="#bücher-und-tutorials"><span class="header-section-number">4.2</span> Bücher und Tutorials</a></li>
+  <li><a href="#suchmaschinen" id="toc-suchmaschinen" class="nav-link" data-scroll-target="#suchmaschinen"><span class="header-section-number">4.3</span> Suchmaschinen</a></li>
+  <li><a href="#llms" id="toc-llms" class="nav-link" data-scroll-target="#llms"><span class="header-section-number">4.4</span> LLMs</a></li>
+  <li><a href="#faq" id="toc-faq" class="nav-link" data-scroll-target="#faq"><span class="header-section-number">4.5</span> FAQ</a></li>
   </ul>
 </nav>
     </div>
@@ -2102,9 +2114,9 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 }
 </script>
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../r/installation.html">R und RStudio</a></li><li class="breadcrumb-item"><a href="../r/help.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Help center</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../r/installation.html">R und RStudio</a></li><li class="breadcrumb-item"><a href="../r/help.html"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Help center</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-help" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Help center</span></span></h1>
+<h1 class="title"><span id="sec-help" class="quarto-section-identifier"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Help center</span></span></h1>
 </div>
 
 
@@ -2130,10 +2142,10 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </ul>
 <p>Das <strong>Debugging</strong>, also das Beheben von Fehlern im Code, gehört zum Programmieren dazu. Lassen Sie sich nicht von Fehlermeldungen aus der Ruhe bringen. Schauen Sie zuerst, ob es sich “nur” um eine Warnung (<code>WARNING</code>) oder ob es sich tatsächlich um eine Fehlermeldung (<code>ERROR</code>) handelt. Nur bei einem Fehler wird der Code nicht weiter ausgeführt.</p>
 <p>Wichtig ist dabei oft zu wissen, mit welchem Setup man arbeitet. Dies können Sie <a href="../r/installation.html#sec-setup">hier</a> herausfinden.</p>
-<section id="hilfe-in-r" class="level2" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="hilfe-in-r"><span class="header-section-number">2.1</span> Hilfe in <em>R</em></h2>
-<section id="section" class="level3" data-number="2.1.1">
-<h3 data-number="2.1.1" class="anchored" data-anchor-id="section"><span class="header-section-number">2.1.1</span> <code>?</code></h3>
+<section id="hilfe-in-r" class="level2" data-number="4.1">
+<h2 data-number="4.1" class="anchored" data-anchor-id="hilfe-in-r"><span class="header-section-number">4.1</span> Hilfe in <em>R</em></h2>
+<section id="section" class="level3" data-number="4.1.1">
+<h3 data-number="4.1.1" class="anchored" data-anchor-id="section"><span class="header-section-number">4.1.1</span> <code>?</code></h3>
 <p>Um zu erfahren, was genau eine Funktion macht und welche Argumente sie benötigt, kann die leere Funktion mit einem Fragezeichen aufgerufen werden: <code>?cor()</code>.</p>
 <div class="tabset-margin-container"></div><div class="panel-tabset">
 <ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page"><i class="fa-solid fa-code" aria-label="code"></i> Konsole</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false"><i class="fa-regular fa-helicopter" aria-label="helicopter"></i> Tipp</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false"><i class="fa-solid fa-check" aria-label="check"></i> Lösung</a></li></ul>
@@ -2157,17 +2169,17 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </div>
 </div>
 </section>
-<section id="helpfenster-in-rstudio" class="level3" data-number="2.1.2">
-<h3 data-number="2.1.2" class="anchored" data-anchor-id="helpfenster-in-rstudio"><span class="header-section-number">2.1.2</span> <code>Help</code>Fenster in <em>RStudio</em></h3>
+<section id="helpfenster-in-rstudio" class="level3" data-number="4.1.2">
+<h3 data-number="4.1.2" class="anchored" data-anchor-id="helpfenster-in-rstudio"><span class="header-section-number">4.1.2</span> <code>Help</code>Fenster in <em>RStudio</em></h3>
 <p>Im rechten unteren Quadranten finden Sie einen Reiter namens <code>Help</code>. Dort können Sie Namen von <em>Packages</em> oder Funktionen eingeben um zur Dokumentation zu gelangen.</p>
 </section>
-<section id="autocomplete-mit" class="level3" data-number="2.1.3">
-<h3 data-number="2.1.3" class="anchored" data-anchor-id="autocomplete-mit"><span class="header-section-number">2.1.3</span> Autocomplete mit <kbd aria-hidden="true">Tab</kbd><span class="visually-hidden">Tab</span></h3>
+<section id="autocomplete-mit" class="level3" data-number="4.1.3">
+<h3 data-number="4.1.3" class="anchored" data-anchor-id="autocomplete-mit"><span class="header-section-number">4.1.3</span> Autocomplete mit <kbd aria-hidden="true">Tab</kbd><span class="visually-hidden">Tab</span></h3>
 <p>Mit der Taste <kbd aria-hidden="true">Tab</kbd><span class="visually-hidden">Tab</span> können Sie schauen, welche Vorschläge <em>R</em> Ihnen macht. So sehen Sie z.B. welche Argumente eine Funktion benötigt.</p>
 </section>
 </section>
-<section id="bücher-und-tutorials" class="level2" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="bücher-und-tutorials"><span class="header-section-number">2.2</span> Bücher und Tutorials</h2>
+<section id="bücher-und-tutorials" class="level2" data-number="4.2">
+<h2 data-number="4.2" class="anchored" data-anchor-id="bücher-und-tutorials"><span class="header-section-number">4.2</span> Bücher und Tutorials</h2>
 <p>Sehr geeignete Bücher und Websites sind im Folgenden aufgelistet. Der Vorteil dieser Quellen im Vergleich zu Suchmaschinen oder LLMs ist, dass die Informationen verifiziert sind.</p>
 <ul>
 <li><p><a href="https://r4ds.had.co.nz/">R for Data Science von Hadley Wickham</a></p></li>
@@ -2175,8 +2187,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <li><p><a href="https://cran.r-project.org/doc/manuals/R-intro.pdf">Introduction to R</a></p></li>
 </ul>
 </section>
-<section id="suchmaschinen" class="level2" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="suchmaschinen"><span class="header-section-number">2.3</span> Suchmaschinen</h2>
+<section id="suchmaschinen" class="level2" data-number="4.3">
+<h2 data-number="4.3" class="anchored" data-anchor-id="suchmaschinen"><span class="header-section-number">4.3</span> Suchmaschinen</h2>
 <p>Um weiterzukommen ist es oft hilfreich Suchmaschinen zu nutzen (Fehlermeldung in Suchmaschine kopieren). Oft hatten andere vorher schon dasselbe Problem.</p>
 <p><strong>Suchmaschinen</strong> eignen sich oft für das Beheben von Problemen in dem man z.B.</p>
 <ul>
@@ -2185,8 +2197,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <li><p>Foren für Programmierprobleme sind beispielsweise <em>StackOverfloW</em> oder das <a href="https://forum.posit.co/">Posit-Forum</a>.</p></li>
 </ul>
 </section>
-<section id="llms" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="llms"><span class="header-section-number">2.4</span> LLMs</h2>
+<section id="llms" class="level2" data-number="4.4">
+<h2 data-number="4.4" class="anchored" data-anchor-id="llms"><span class="header-section-number">4.4</span> LLMs</h2>
 <p>Auch ChatGPT zu fragen kann hilfreich sein (z.B. “Was bedeutet dieser Code? cor(x,y)”). Natürlich kann die Antwort von ChatGPT immer falsch sein und muss getestet und kritisch überprüft werden<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>.</p>
 <p><strong>LLMs</strong> eignen sich oft zu Beginn nicht schlecht, da sie für “einfache” und “häufige” Probleme besser performen, als für Spezialfälle. Hierbei gilt es einige Punkte zu beachten:</p>
 <ul>
@@ -2195,8 +2207,8 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 <li><p>Es dürfen keine sensiblen Daten eingegeben werden.</p></li>
 </ul>
 </section>
-<section id="faq" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="faq"><span class="header-section-number">2.5</span> FAQ</h2>
+<section id="faq" class="level2" data-number="4.5">
+<h2 data-number="4.5" class="anchored" data-anchor-id="faq"><span class="header-section-number">4.5</span> FAQ</h2>
 <p><strong>Welche Werte enthält eine Variable / ein Datensatz?</strong></p>
 <ul>
 <li><p>Um die Werte einer Variable oder eines Datensatzes zu sehen, schauen Sie in unter <code>Environment</code>(rechter oberer Quadrant in _RStudio) nach. Dort können Sie auf den blauen Pfeil klicken und die Infos “ausklappen”.</p></li>
@@ -2858,8 +2870,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../r/installation.html" class="pagination-link" aria-label="Installation">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation</span></span>
+      <a href="../r/programmieren.html" class="pagination-link" aria-label="Basics Programmieren">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Basics Programmieren</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
