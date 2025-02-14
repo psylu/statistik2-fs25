@@ -142,7 +142,7 @@ Wenn Sie Filenamen auswählen, achten Sie darauf dass diese [_machine-readable_]
 :::
 
 
-## Code schreiben und speichern
+## Code schreiben, ausführen und speichern
 
 In _RStudio_ können Sie Code auf verschiedene Arten schreiben, ausführen und speichern.
 
@@ -162,12 +162,29 @@ Wenn ein _RProjekt_ ein Ordner wäre, wären _RSkripts_ die Blätter. Ein neues 
 
 ```
 
+Um den Code auszuführen, gibt es zwei Möglichkeiten:
+
+- Code anwählen und {{< kbd Ctrl-Enter >}} eingeben
+- Code anwählen und oben das Symbol `Run` drücken
+
 __3. Code in RNotebooks__:
 
 Ein _RNotebook_ ist praktisch, wenn man Text und Code kombinieren möchte, aber man Text ohne das Auskommentieren (mit dem `#`) schreiben möchte. Dies ist beispielsweise der Fall, wenn man Details zu einer Analyse zu den Berechnungen hinzu schreiben möchte. Ein _RNotebook_ kann zudem "gerendert" werden, dass heisst, es kann damit ein `.html`- oder ein `.pdf`-File erstellt werden. Das ist besonders praktisch, wenn man seine Analyse mit jemanden teilen möchte, der/die kein _R_ benutzt (z.B. bei einer Publikation kann so der Code mit dem Artikel eingereicht werden).
-In einem _RNotebook_ ist Text grundsätzlich normaler Text. Code kann eingefügt werden, indem man ein Code-Feld einfügt. Weiter können auch Bilder eingefügt werden und der Text kann mit Kapiteln, fett/kursiv Schrift, etc. strukturiert werden.
+
+In einem _RNotebook_ ist Text grundsätzlich normaler Text. Code kann eingefügt werden, indem man ein Code-Feld (Chunk) einfügt.
+Ein neuer Codechunk wird eingefügt mit der Tastenkombination {{< kbd Ctrl-Alt-I >}} oder unter `Code` > `Insert Chunk`.^[Der Codechunk kann auch selber erstellt werden, indem die Backticks etc. eingegeben werden, aber das ist eher aufwändig.]
+
+Um den Code auszuführen, gibt es drei Möglichkeiten:
+
+- Code anwählen und {{< kbd Ctrl-Enter >}} eingeben
+- oben rechts beim Codechunk `Run` drücken
+- oben rechts beim _RNotebook_ `Run` drücken ()
+
+Weiter können auch Bilder eingefügt werden und der Text kann mit Kapiteln, fett/kursiv Schrift, etc. strukturiert werden.
 
 <aside>Für Interessierte: diese ganze Website ist mit Quarto-Files erstellt, die nach demselben Prinzip wie _RNotebooks_ funktionieren. Quarto-Files können ebenfalls in _RStudio_ erstellt und bearbeitet werden.</aside>
+
+- 
 
 
 ## Erstellen und Verwenden von _RNotebooks_

@@ -343,12 +343,12 @@ Lernziele dieser Übung
 <li><p>Öffnen Sie <em>RStudio</em> und erstellen Sie in diesem Ordner ein <em>RProject</em> mit dem Namen <em>Introduction_to_R</em>.</p></li>
 <li><p>Erstellen Sie in <em>RStudio</em> ein <em>RSkript</em> (Endung <code>.R</code>).</p></li>
 <li><p>Speichern Sie dieses Skript im <em>RProjekt</em>-Ordner mit dem Namen <em>IntroSkript</em> ab.</p></li>
-<li><p>Erstellen Sie im aktuellen <em>RProjekt</em>-Ordner einen Unterordner namens <code>data</code>. Laden Sie dann die Datensätze herunter und speichern Sie diese im <code>data</code>-Ordner.</p></li>
-</ol>
+<li><p>Erstellen Sie im aktuellen <em>RProjekt</em>-Ordner einen Unterordner namens <code>data</code>. Laden Sie dann die Datensätze herunter und speichern Sie diese im <code>data</code>-Ordner.</p>
 <ul>
 <li><a href="../data/stroop_data_sub-01.csv">Datensatz 1</a></li>
 <li><a href="../data/stroop_data_sub-01.xlsx">Datensatz 2</a></li>
-</ul>
+</ul></li>
+</ol>
 </section>
 <section id="aufgabe-1.4-operatoren-und-funktionen-verwenden" class="level2">
 <h2 class="anchored" data-anchor-id="aufgabe-1.4-operatoren-und-funktionen-verwenden">Aufgabe 1.4: Operatoren und Funktionen verwenden</h2>
@@ -361,46 +361,37 @@ Lernziele dieser Übung
 </div>
 <p>Wie können Sie nun nachschauen, welche Werte in der Variable vorhanden sind?</p>
 <ol start="2" type="a">
-<li>Berechnen Sie folgende Werte:</li>
-</ol>
+<li><p>Berechnen Sie folgende Werte:</p>
 <ul>
 <li><p>Mittelwert der Variable <code>numbers</code>.</p></li>
 <li><p>Standardabweichung der Variable <code>numbers</code>.</p></li>
 <li><p>Summe der Variable <code>numbers</code></p></li>
 <li><p>Was passiert, wenn Sie die Variable <code>numbers</code> mit sich selber addieren (<code>numbers + numbers</code>) oder multiplizieren?</p></li>
 <li><p>Was passiert, wenn Sie die Wurzel nehmen?</p></li>
-</ul>
-<ol start="3" type="a">
-<li>Erstellen Sie eine Variable <code>words</code> mit den Wörtern <code>yellow</code>, <code>green</code> und <code>red</code> darin.</li>
-</ol>
+</ul></li>
+<li><p>Erstellen Sie eine Variable <code>words</code> mit den Wörtern <code>yellow</code>, <code>green</code> und <code>red</code> darin.</p>
 <ul>
 <li><p>Was passiert, wenn Sie den Mittelwert der Variable <code>words</code> berechnen?</p></li>
 <li><p>Welcher Wert wird ausgegeben?</p></li>
 <li><p>Gibt es eine Warnung oder eine Fehlermeldung?</p></li>
-</ul>
-<ol start="4" type="a">
-<li>Was passiert, wenn Sie die Variable <code>words</code> mit sich selber addieren?</li>
-</ol>
+</ul></li>
+<li><p>Was passiert, wenn Sie die Variable <code>words</code> mit sich selber addieren?</p>
 <ul>
 <li><p>Welcher Wert wird ausgegeben?</p></li>
 <li><p>Gibt es eine Warnung oder eine Fehlermeldung?</p></li>
-</ul>
-<ol start="5" type="a">
-<li>Diskutieren Sie kurz zusammen: Wie unterscheiden sich Warnungen von Fehlermeldungen?</li>
+</ul></li>
+<li><p>Diskutieren Sie kurz zusammen: Wie unterscheiden sich Warnungen von Fehlermeldungen?</p></li>
 </ol>
 </section>
 <section id="aufgabe-1.5-rnotebook-erstellen-und-packages-laden" class="level2">
 <h2 class="anchored" data-anchor-id="aufgabe-1.5-rnotebook-erstellen-und-packages-laden">Aufgabe 1.5: RNotebook erstellen und Packages laden</h2>
 <ol type="a">
 <li><p>Erstellen Sie ein <em>RNotebook</em> und speichern Sie es unter dem Namen <em>IntroNotebook</em> ab.</p></li>
-<li><p>Identifizieren Sie die 3 Bausteine eines Notebooks: Header, Textfeld und Codefeld mit folgenden Fragen:</p></li>
-</ol>
+<li><p>Identifizieren Sie die 3 Bausteine eines Notebooks: Header, Textfeld und Codefeld mit folgenden Fragen:</p>
 <ul>
 <li>Woran erkennt man den Baustein?</li>
-<li>Für was eignet sich der Baustein besonders?</li>
-<li>Für was eignet sich der Baustein nicht?</li>
-</ul>
-<ol start="3" type="a">
+<li>Für was eignet sich der Baustein besonders und für nicht?</li>
+</ul></li>
 <li><p>Geben Sie dem Notebook einen Titel.</p></li>
 <li><p>Laden Sie in einem Codefeld das <em>Package</em> <code>{tidyverse}</code> mit</p></li>
 </ol>
@@ -416,36 +407,36 @@ Lernziele dieser Übung
 <p>In dieser Aufgabe arbeiten wir weiter mit dem <em>RNotebook</em> von oben.</p>
 <ol type="a">
 <li><p>Erstellen Sie ein neues Codefeld.</p></li>
-<li><p>Lesen Sie den Datensatz <code>stroop_data_sub-01.csv</code> ein aus dem <code>data</code>-Ordner ein.</p></li>
-</ol>
-<p>Gehen Sie dabei schrittweise vor:</p>
+<li><p>Lesen Sie den Datensatz <code>stroop_data_sub-01.csv</code> ein aus dem <code>data</code>-Ordner ein. Gehen Sie dabei schrittweise vor:</p>
 <ul>
 <li><p>Welche Endungen hat die Datei?</p></li>
 <li><p>Importieren Sie die Daten mit dem GUI.</p></li>
 <li><p>Löschen Sie die Variable aus dem Environment.</p></li>
 <li><p>Importieren Sie den Datensatz mit Code. Verwenden Sie dafür den Variablennamen <code>d1</code> für den Datensatz (bzw. <code>d2</code> für den zweiten Datensatz).</p></li>
-</ul>
+</ul></li>
+</ol>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> <span class="fu">...</span>(<span class="st">"data/..."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Führen Sie dieselben Schritte für <code>stroop_data_sub-01.xlsx</code> aus.</p>
+<p>Führen Sie dieselben Schritte für <code>stroop_data_sub-01.xlsx</code> aus. Denken Sie daran, dass die Einlesefunktion für <code>.xlsx</code>-Dateien aus dem Package {readxl} stammt und sie dieses zuerst laden müssen.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ol start="4" type="a">
-<li>Diskutieren Sie kurz zusammen:</li>
-</ol>
+<li><p>Diskutieren Sie kurz zusammen:</p>
 <ul>
 <li>Was war schwierig? Was fällt Ihnen auf?</li>
 <li>Was sind Separators?</li>
 <li>Welcher Weg fällt Ihnen leichter?</li>
-</ul>
+</ul></li>
+</ol>
 </section>
 <section id="aufgabe-1.7-datensätze-anschauen" class="level2">
 <h2 class="anchored" data-anchor-id="aufgabe-1.7-datensätze-anschauen">Aufgabe 1.7: Datensätze anschauen</h2>
 <p>Schauen Sie sich die beiden Datensätze auf drei Arten an</p>
 <ol type="a">
-<li><p>indem Sie im <code>Environment</code> darauf klicken.</p></li>
+<li><p>indem Sie im <code>Environment</code> mit dem Pfeil den Datensatz aufklappen.</p></li>
+<li><p>indem Sie im <code>Environment</code> auf den Namen doppelklicken.</p></li>
 <li><p>indem Sie den Namen der Variable eingeben (in der Konsole oder im <em>RNotebook</em>).</p></li>
 <li><p>indem Sie untenstehenden Code eingeben (<code>...</code> muss mit einer Variable ersetzt werden):</p></li>
 </ol>
@@ -462,20 +453,41 @@ Lernziele dieser Übung
 <div class="cell">
 <div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>esquisse<span class="sc">::</span><span class="fu">esquisser</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<div id="fig-esquisse" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-esquisse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../imgs/esquisser.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-esquisse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1: Auswahl des Datensatzes in <code>Equisser</code>
+</figcaption>
+</figure>
+</div>
 <ol start="3" type="a">
-<li>Schauen Sie sich nacheinander die beiden Datensätze an.</li>
-</ol>
+<li><p>Schauen Sie sich nacheinander die beiden Datensätze an.</p>
 <ul>
 <li><p>Welche Variablen gibt es und welches Skalenniveau haben diese?</p></li>
-<li><p>Ist die Variable <code>age</code> normalverteilt?</p></li>
+<li><p>Ist die Variable <code>rt</code> normalverteilt?</p></li>
 <li><p>Welche Darstellungsform eignet sich am besten?</p></li>
-<li><p>Lassen Sie sich für die beste Darstellung des Datensatzes einen Code ausgeben und speichern Sie diesen Ihrem <em>RNotebook</em> ab. Speichern Sie alle Änderungen in Ihrem <em>RNotebook</em>. Der Titel sollte nicht mehr in rot geschrieben sein und keinen Stern nach dem Namen haben.</p></li>
-</ul>
+<li><p>Lassen Sie sich für die beste Darstellung des Datensatzes einen Code ausgeben.</p></li>
+<li><p>Speichern Sie Ihr <em>RNotebook</em> ab. Speichern Sie alle Änderungen in Ihrem <em>RNotebook</em>. Der Titel sollte nicht mehr in rot geschrieben sein und keinen Stern nach dem Namen haben.</p></li>
+</ul></li>
+</ol>
+<div id="fig-esquisse2" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-esquisse2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../imgs/esquisser2.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:80.0%">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-esquisse2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2: Beispiel <code>Equisser</code>
+</figcaption>
+</figure>
+</div>
 <ol start="4" type="a">
 <li><p>Schliessen Sie Ihr <em>RProject</em> und öffnen Sie es erneut.</p></li>
-<li><p>Falls nötig: Öffnen Sie ihr <em>IntroNotebook</em> wieder und führen Sie allen Code aus. Jetzt sollten Sie zum Schluss beide Grafiken haben.</p></li>
+<li><p>Falls nötig: Öffnen Sie ihr <em>IntroNotebook</em> wieder und führen Sie Ihren Code mit <code>Run all</code> aus. Jetzt sollten Sie zum Schluss zwei Grafiken haben.</p></li>
+<li><p>Zeigen Sie einander die Grafiken und diskutieren Vor- und Nachteile der Darstellungsformen.</p></li>
 </ol>
-<p><strong>Zeigen Sie einander die Grafiken und diskutieren Vor- und Nachteile der Darstellungsformen.</strong></p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Bei Problemen...">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">

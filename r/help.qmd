@@ -75,7 +75,7 @@ __Suchmaschinen__ eignen sich oft für das Beheben von Problemen in dem man z.B.
 
 - das Stichwort _R_ und das Ziel (z.B. _Zusammenfügen mehrerer Variablen zu einem Datensatz_) eingibt (meistens erzielt man bessere Resultate, wenn man das Ziel in Englisch formuliert).
 
-- Foren für Programmierprobleme sind beispielsweise _StackOverfloW_ oder das [Posit-Forum](https://forum.posit.co/).
+- Foren für Programmierprobleme sind beispielsweise _StackOverflow_ oder das [Posit-Forum](https://forum.posit.co/).
 
 
 ## LLMs

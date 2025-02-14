@@ -43,8 +43,8 @@ d. Speichern Sie dieses Skript im _RProjekt_-Ordner mit dem Namen _IntroSkript_ 
 
 e. Erstellen Sie im aktuellen _RProjekt_-Ordner einen Unterordner namens `data`. Laden Sie dann die Datensätze herunter und speichern Sie diese im `data`-Ordner.
 
-- [Datensatz 1](../data/stroop_data_sub-01.csv)
-- [Datensatz 2](../data/stroop_data_sub-01.xlsx)
+    - [Datensatz 1](../data/stroop_data_sub-01.csv)
+    - [Datensatz 2](../data/stroop_data_sub-01.xlsx)
 
 ## Aufgabe 1.4: Operatoren und Funktionen verwenden
 
@@ -60,30 +60,31 @@ Wie können Sie nun nachschauen, welche Werte in der Variable vorhanden sind?
 
 b. Berechnen Sie folgende Werte:
 
-- Mittelwert der Variable `numbers`.
+    - Mittelwert der Variable `numbers`.
 
-- Standardabweichung der Variable `numbers`.
+    - Standardabweichung der Variable `numbers`.
 
-- Summe der Variable `numbers`
+    - Summe der Variable `numbers`
 
-- Was passiert, wenn Sie die Variable `numbers` mit sich selber addieren (`numbers + numbers`) oder multiplizieren?
+    - Was passiert, wenn Sie die Variable `numbers` mit sich selber addieren (`numbers + numbers`) oder multiplizieren?
 
-- Was passiert, wenn Sie die Wurzel nehmen?
+    - Was passiert, wenn Sie die Wurzel nehmen?
+
 
 c. Erstellen Sie eine Variable `words` mit den Wörtern `yellow`, `green` und `red` darin.
 
-- Was passiert, wenn Sie den Mittelwert der Variable `words` berechnen?
-
-- Welcher Wert wird ausgegeben?
-
-- Gibt es eine Warnung oder eine Fehlermeldung?
+    - Was passiert, wenn Sie den Mittelwert der Variable `words` berechnen?
+  
+    - Welcher Wert wird ausgegeben?
+  
+    - Gibt es eine Warnung oder eine Fehlermeldung?
 
 
 d. Was passiert, wenn Sie die Variable `words` mit sich selber addieren?
 
-- Welcher Wert wird ausgegeben?
+    - Welcher Wert wird ausgegeben?
 
-- Gibt es eine Warnung oder eine Fehlermeldung?
+    - Gibt es eine Warnung oder eine Fehlermeldung?
 
 
 e. Diskutieren Sie kurz zusammen: Wie unterscheiden sich Warnungen von Fehlermeldungen?
@@ -95,9 +96,8 @@ a. Erstellen Sie ein _RNotebook_ und speichern Sie es unter dem Namen _IntroNote
 
 b. Identifizieren Sie die 3 Bausteine eines Notebooks: Header, Textfeld und Codefeld mit folgenden Fragen:
 
-- Woran erkennt man den Baustein?
-- Für was eignet sich der Baustein besonders?
-- Für was eignet sich der Baustein nicht?
+    - Woran erkennt man den Baustein?
+    - Für was eignet sich der Baustein besonders und für nicht?
 
 c. Geben Sie dem Notebook einen Titel.
 
@@ -117,17 +117,15 @@ In dieser Aufgabe arbeiten wir weiter mit dem _RNotebook_ von oben.
 
 a. Erstellen Sie ein neues Codefeld.
 
-b. Lesen Sie den Datensatz `stroop_data_sub-01.csv` ein aus dem `data`-Ordner ein.
+b. Lesen Sie den Datensatz `stroop_data_sub-01.csv` ein aus dem `data`-Ordner ein. Gehen Sie dabei schrittweise vor:
 
-Gehen Sie dabei schrittweise vor:
+    - Welche Endungen hat die Datei?
 
-- Welche Endungen hat die Datei?
+    - Importieren Sie die Daten mit dem GUI. 
 
-- Importieren Sie die Daten mit dem GUI. 
+    - Löschen Sie die Variable aus dem Environment.
 
-- Löschen Sie die Variable aus dem Environment.
-
-- Importieren Sie den Datensatz mit Code. Verwenden Sie dafür den Variablennamen `d1` für den Datensatz (bzw. `d2` für den zweiten Datensatz).
+    - Importieren Sie den Datensatz mit Code. Verwenden Sie dafür den Variablennamen `d1` für den Datensatz (bzw. `d2` für den zweiten Datensatz).
 
 ```{r}
 #| eval: false
@@ -135,6 +133,7 @@ d1 <- ...("data/...")
 ```
 
 Führen Sie dieselben Schritte für `stroop_data_sub-01.xlsx` aus.
+Denken Sie daran, dass die Einlesefunktion für `.xlsx`-Dateien aus dem Package {readxl} stammt und sie dieses zuerst laden müssen.
 
 ```{r}
 #| eval: false
@@ -143,20 +142,22 @@ d2 <- ...
 
 d. Diskutieren Sie kurz zusammen: 
 
-- Was war schwierig? Was fällt Ihnen auf?
-- Was sind Separators?
-- Welcher Weg fällt Ihnen leichter?
+    - Was war schwierig? Was fällt Ihnen auf?
+    - Was sind Separators?
+    - Welcher Weg fällt Ihnen leichter?
 
 
 ## Aufgabe 1.7: Datensätze anschauen
 
 Schauen Sie sich die beiden Datensätze auf drei Arten an 
 
-a. indem Sie im `Environment` darauf klicken.
+a. indem Sie im `Environment` mit dem Pfeil den Datensatz aufklappen.
 
-b. indem Sie den Namen der Variable eingeben (in der Konsole oder im _RNotebook_). 
+b. indem Sie im `Environment` auf den Namen doppelklicken.
 
-c. indem Sie untenstehenden Code eingeben (`...` muss mit einer Variable ersetzt werden):
+c. indem Sie den Namen der Variable eingeben (in der Konsole oder im _RNotebook_). 
+
+d. indem Sie untenstehenden Code eingeben (`...` muss mit einer Variable ersetzt werden):
 
 ```{r}
 #| eval: false
@@ -174,22 +175,28 @@ b. Geben Sie in der Konsole folgenden Code ein:
 esquisse::esquisser()
 ```
 
-c. Schauen Sie sich nacheinander die beiden Datensätze an. 
+![Auswahl des Datensatzes in `Equisser`](../imgs/esquisser.png){#fig-esquisse fig-align="left" width=80%}
 
-- Welche Variablen gibt es und welches Skalenniveau haben diese?
+c. Schauen Sie sich nacheinander die beiden Datensätze an.
 
-- Ist die Variable `age` normalverteilt?
+    - Welche Variablen gibt es und welches Skalenniveau haben diese?
 
-- Welche Darstellungsform eignet sich am besten?
+    - Ist die Variable `rt` normalverteilt?
 
-- Lassen Sie sich für die beste Darstellung des Datensatzes einen Code ausgeben und speichern Sie diesen Ihrem _RNotebook_ ab. Speichern Sie alle Änderungen in Ihrem _RNotebook_. Der Titel sollte nicht mehr in rot geschrieben sein und keinen Stern nach dem Namen haben.
+    - Welche Darstellungsform eignet sich am besten?
+
+    - Lassen Sie sich für die beste Darstellung des Datensatzes einen Code ausgeben.
+
+    - Speichern Sie Ihr _RNotebook_ ab. Speichern Sie alle Änderungen in Ihrem _RNotebook_. Der Titel sollte nicht mehr in rot geschrieben sein und keinen Stern nach dem Namen haben.
+    
+![Beispiel `Equisser`](../imgs/esquisser2.png){#fig-esquisse2 fig-align="left" width=80%}
 
 d. Schliessen Sie Ihr _RProject_ und öffnen Sie es erneut.
 
-e. Falls nötig: Öffnen Sie ihr _IntroNotebook_ wieder und führen Sie allen Code aus.
-Jetzt sollten Sie zum Schluss beide Grafiken haben.
+e. Falls nötig: Öffnen Sie ihr _IntroNotebook_ wieder und führen Sie Ihren Code mit `Run all` aus.
+Jetzt sollten Sie zum Schluss zwei Grafiken haben.
 
-__Zeigen Sie einander die Grafiken und diskutieren Vor- und Nachteile der Darstellungsformen.__
+f. Zeigen Sie einander die Grafiken und diskutieren Vor- und Nachteile der Darstellungsformen.
 
 ::: {.callout-tip appearance="default" title="Bei Problemen..."}
 Der Einstieg ins Programmieren mit _R_ ist nicht einfach. Falls Sie Fragen zu den Übungen haben, dürfen Sie diese zusätzlich in der _R Sprechstunde_ nächste Woche stellen. Kommen Sie einfach mit Ihrem Computer vorbei und wir schauen es an.
