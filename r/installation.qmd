@@ -61,7 +61,7 @@ Sobald das untenstehende Fenster erscheint, haben Sie _R_ erfolgreich installier
 
 ### Installation von _RStudio_
 
-Wählen Sie __Download RStudio Desktop for Windows__, um die neuste Version von _RStudio_ (_2024.12.0+467_) zu installieren.
+Wählen Sie __Download RStudio Desktop for Windows__, um die neuste Version von _RStudio_ zu installieren.
 
 ![Startseite für die Installation von R und RStudio](../imgs/install_r_rstudio_2.png){#fig-installation8 fig-alt="Screenshot der oben verlinkten Website." fig-align="left" width=70%}
 
@@ -103,7 +103,7 @@ Sobald das untenstehende Fenster erscheint, haben Sie _R_ erfolgreich installier
 
 ### Installation von _RStudio_
 
-Wählen Sie __Download RStudio Desktop for MacOS__, um die neuste Version von _RStudio_ (_2024.12.0+467_) zu installieren.
+Wählen Sie __Download RStudio Desktop for MacOS__, um die neuste Version von _RStudio_ zu installieren.
 
 ![Startseite für die Installation von R und RStudio](../imgs/install_r_rstudio_2_mac.png){#fig-installation14 fig-alt="Screenshot der oben verlinkten Website." fig-align="left" width=70%}
 
