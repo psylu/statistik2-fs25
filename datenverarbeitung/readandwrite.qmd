@@ -1,0 +1,67 @@
+# Datensätze einlesen und schreiben
+
+Datensätze können verschiedene Formate haben.
+Das Dateiformat erkennt man an der Datei-Endung (z.B. `.xlsx` für Exceldateien).
+Je nach Format müssen Datensätze unterschiedlich eingelesen werden.
+Bevor mit dem Einlesen begonnen wird, ist es daher immer wichtig zu wissen, in welchem Format der Datensatz geschrieben ist.
+
+Es gibt zwei Vorgehensweisen zum Einlesen von Datensätzen: im GUI oder mit Code.
+
+## Einlesen mit dem GUI
+
+Im rechten oberen Quadranten unter dem Reiter `Environment` findet sich die Fläche `Import Datset`.
+Hier muss ausgewählt werden, welches Dateiformat der Datensatz hat.
+Danach können weitere Einstellungen vorgenommen werden, wie z.B.
+- soll die oberste Zeile als _Variablennamen_ erkannt werden?
+- welche Trennzeichen (_separators_ oder _delimiters_) sollen verwendet werden (z.B. `,`)
+etc. 
+
+Dieses Vorgehen hat drei Vorteile:
+
+- Die Funktion zum Einlesen muss nicht bekannt sein, _RStudio_ übernimmt das.
+- Eine Direktansicht zeigt, wie der Datensatz mit den vorgenommenen Einstellungen aussehen würde.
+- _RStudio_ gibt zum Schluss automatisch Code aus, welcher verwendet wurde. Dieser kann für zukünftiges Einlesen dieses Datensatzes verwendet werden.
+
+## Einlesen mit Code
+
+Das Einlesen eines Datensatzes mit Code eignet sich vor allem für das Automatisieren des Vorgangs. 
+Mit Code muss nicht jedesmal im GUI angeklickt werden wie der Datensatz eingelesen werden soll, sondern wird automatisch immer gleich und mit wenig Aufwand geladen.
+
+### Einlesen eines `.csv`-Files
+
+```{r}
+#| eval: false
+# Einlesen eines .csv-Files
+new_csv_data <- read.csv("data/nameoftheCSVfile.csv")
+```
+
+Weitere Einstellungen:
+
+- `header = FALSE`: die oberste Zeile wird nicht als Variablennamen eingelesen (Standardeinstellung `header = TRUE`)
+- `sep = ";"`: ein Semikolon wird als Zellentrennungszeichen angenommen (Standardeinstellung `sep = ","`)
+
+### Einlesen eines `.xlsx`-Files
+
+```{r}
+#| eval: false
+# Einlesen eines .xlsx-Files
+library(readxl)
+new_xlsx_data <- read_xlsx("data/nameoftheEXCELfile.xlsx")
+```
+
+Weitere Einstellungen:
+
+- `col_names = FALSE`: die oberste Zeile wird nicht als Variablennamen eingelesen (Standardeinstellung `col_names = TRUE`)
+
+### Funktionen zum Einlesen von Datensätzen
+
+| Dateiformat     | Import Dataset (GUI)         | Code (Funktion)                  | Code (Argumente)           | Code-Beispiel                                |
+|-----------------|------------------------------|----------------------------------|----------------------------|----------------------------------------------|
+| `.csv`          | From text                    | `read.csv()`                     | file, (header), (sep), ... | `read.csv(file = "data/nameofthefile.csv")`  |
+| `.xlsx`  | From Excel                   | `readxl::read_xlsx()` | path, (sheet), (col_names), ...     | `readxl::read_xlsx(path = "data/nameofthefile.csv")`|
+| `.sav`   | From SPSS                    | `haven::read_sav()`    | file, ...                  | `haven::read_sav(file = "data/nameofthefile.sav")`  |
+| `.txt`          | From text                    | `read.delim()`                   | file, (delim), (col_names) | `read_delim(file = "data/nameofthefile.txt")`|
+| `.sas7bdat`     | From SAS                     | ...                              |                            |                                              |
+| `.dta`          | From Stata                   | ...                              |                            |                                              |
+
+: Einlesen von Datensätzen {.hover}

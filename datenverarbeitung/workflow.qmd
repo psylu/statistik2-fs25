@@ -1,0 +1,20 @@
+# Workflow
+
+Zur Analyse von Daten gehören viele einzelne Schritte in _R_.
+Um den Überblick zu behalten hilft es die wichtigsten Prozesse zu kennen.
+
+- __Import__: Importieren des Datensatzes
+-  __Tidy__: Bereinigen des Datensatzes (z.B. Identifizieren von fehlenden Werten)
+- __Transform__: Transformieren des Datensatzes (z.B. Erstellen neuer Variablen, Umformattierung von _long_ zu _wide_)
+- __Visualize__: Visualisieren des Datensatzes
+- __Model__: Analysieren des Datensatzes (z.B. Ausführen eines _t_-Tests)
+- __Communicate__: Kommunizieren der Daten, Analysen und Schlussfolgerungen
+
+Das Transformieren, Visualisieren und Modellieren dient dazu, die Daten zu verstehen und daraus Schlussfolgerungen ziehen zu können.
+
+![Wichtige Schritte im Data Science Prozess.^[Wickham, H., Çetinkaya-Rundel, M., Grolemund, G. (2025). R for Data Science (2e). https://r4ds.hadley.nz] ](../imgs/process_datawrangling.png){#fig-tidyverseworkflow}
+
+
+::: {.callout-note appearance="default" title="Wollen Sie mehr darüber wissen?"}
+Hier finden Sie das Buch [_R for Data Science_](https://r4ds.hadley.nz/)
+:::

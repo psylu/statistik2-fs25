@@ -328,6 +328,50 @@
     ]
   },
   {
+    "objectID": "datenverarbeitung/workflow.html#footnotes",
+    "href": "datenverarbeitung/workflow.html#footnotes",
+    "title": "5  Workflow",
+    "section": "",
+    "text": "Wickham, H., Çetinkaya-Rundel, M., Grolemund, G. (2025). R for Data Science (2e). https://r4ds.hadley.nz↩︎",
+    "crumbs": [
+      "Datenverarbeitung",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Workflow</span>"
+    ]
+  },
+  {
+    "objectID": "datenverarbeitung/readandwrite.html",
+    "href": "datenverarbeitung/readandwrite.html",
+    "title": "6  Datensätze einlesen und schreiben",
+    "section": "",
+    "text": "6.1 Einlesen mit dem GUI\nIm rechten oberen Quadranten unter dem Reiter Environment findet sich die Fläche Import Datset. Hier muss ausgewählt werden, welches Dateiformat der Datensatz hat. Danach können weitere Einstellungen vorgenommen werden, wie z.B. - soll die oberste Zeile als Variablennamen erkannt werden? - welche Trennzeichen (separators oder delimiters) sollen verwendet werden (z.B. ,) etc.\nDieses Vorgehen hat drei Vorteile:",
+    "crumbs": [
+      "Datenverarbeitung",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Datensätze einlesen und schreiben</span>"
+    ]
+  },
+  {
+    "objectID": "datenverarbeitung/readandwrite.html#einlesen-mit-dem-gui",
+    "href": "datenverarbeitung/readandwrite.html#einlesen-mit-dem-gui",
+    "title": "6  Datensätze einlesen und schreiben",
+    "section": "",
+    "text": "Die Funktion zum Einlesen muss nicht bekannt sein, RStudio übernimmt das.\nEine Direktansicht zeigt, wie der Datensatz mit den vorgenommenen Einstellungen aussehen würde.\nRStudio gibt zum Schluss automatisch Code aus, welcher verwendet wurde. Dieser kann für zukünftiges Einlesen dieses Datensatzes verwendet werden.",
+    "crumbs": [
+      "Datenverarbeitung",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Datensätze einlesen und schreiben</span>"
+    ]
+  },
+  {
+    "objectID": "datenverarbeitung/readandwrite.html#einlesen-mit-code",
+    "href": "datenverarbeitung/readandwrite.html#einlesen-mit-code",
+    "title": "6  Datensätze einlesen und schreiben",
+    "section": "6.2 Einlesen mit Code",
+    "text": "6.2 Einlesen mit Code\nDas Einlesen eines Datensatzes mit Code eignet sich vor allem für das Automatisieren des Vorgangs. Mit Code muss nicht jedesmal im GUI angeklickt werden wie der Datensatz eingelesen werden soll, sondern wird automatisch immer gleich und mit wenig Aufwand geladen.\n\n6.2.1 Einlesen eines .csv-Files\n\n# Einlesen eines .csv-Files\nnew_csv_data &lt;- read.csv(\"data/nameoftheCSVfile.csv\")\n\nWeitere Einstellungen:\n\nheader = FALSE: die oberste Zeile wird nicht als Variablennamen eingelesen (Standardeinstellung header = TRUE)\nsep = \";\": ein Semikolon wird als Zellentrennungszeichen angenommen (Standardeinstellung sep = \",\")\n\n\n\n6.2.2 Einlesen eines .xlsx-Files\n\n# Einlesen eines .xlsx-Files\nlibrary(readxl)\nnew_xlsx_data &lt;- read_xlsx(\"data/nameoftheEXCELfile.xlsx\")\n\nWeitere Einstellungen:\n\ncol_names = FALSE: die oberste Zeile wird nicht als Variablennamen eingelesen (Standardeinstellung col_names = TRUE)\n\n\n\n6.2.3 Funktionen zum Einlesen von Datensätzen\n\nEinlesen von Datensätzen\n\n\n\n\n\n\n\n\n\nDateiformat\nImport Dataset (GUI)\nCode (Funktion)\nCode (Argumente)\nCode-Beispiel\n\n\n\n\n.csv\nFrom text\nread.csv()\nfile, (header), (sep), …\nread.csv(file = \"data/nameofthefile.csv\")\n\n\n.xlsx\nFrom Excel\nreadxl::read_xlsx()\npath, (sheet), (col_names), …\nreadxl::read_xlsx(path = \"data/nameofthefile.csv\")\n\n\n.sav\nFrom SPSS\nhaven::read_sav()\nfile, …\nhaven::read_sav(file = \"data/nameofthefile.sav\")\n\n\n.txt\nFrom text\nread.delim()\nfile, (delim), (col_names)\nread_delim(file = \"data/nameofthefile.txt\")\n\n\n.sas7bdat\nFrom SAS\n…\n\n\n\n\n.dta\nFrom Stata\n…",
+    "crumbs": [
+      "Datenverarbeitung",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Datensätze einlesen und schreiben</span>"
+    ]
+  },
+  {
     "objectID": "uebungen/uebungen.html",
     "href": "uebungen/uebungen.html",
     "title": "Informationen",

@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Übung 1 – Datenanalyse mit R</title>
+<title>5&nbsp; Workflow – Datenanalyse mit R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,40 +20,6 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
-/* CSS for syntax highlighting */
-pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { line-height: 1.25; }
-pre > code.sourceCode > span:empty { height: 1.2em; }
-.sourceCode { overflow: visible; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-div.sourceCode { margin: 1em 0; }
-pre.sourceCode { margin: 0; }
-@media screen {
-div.sourceCode { overflow: auto; }
-}
-@media print {
-pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
-}
-pre.numberSource code
-  { counter-reset: source-line 0; }
-pre.numberSource code > span
-  { position: relative; left: -4em; counter-increment: source-line; }
-pre.numberSource code > span > a:first-child::before
-  { content: counter(source-line);
-    position: relative; left: -1em; text-align: right; vertical-align: baseline;
-    border: none; display: inline-block;
-    -webkit-touch-callout: none; -webkit-user-select: none;
-    -khtml-user-select: none; -moz-user-select: none;
-    -ms-user-select: none; user-select: none;
-    padding: 0 4px; width: 4em;
-  }
-pre.numberSource { margin-left: 3em;  padding-left: 4px; }
-div.sourceCode
-  {   }
-@media screen {
-pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
-}
 </style>
 
 
@@ -64,8 +30,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../appendix/webrconsole.html" rel="next">
-<link href="../uebungen/uebungen.html" rel="prev">
+<link href="../datenverarbeitung/readandwrite.html" rel="next">
+<link href="../r/help.html" rel="prev">
 <link href="../imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -117,7 +83,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-01.html">Übung 1</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenverarbeitung/workflow.html">Datenverarbeitung</a></li><li class="breadcrumb-item"><a href="../datenverarbeitung/workflow.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -194,7 +160,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../datenverarbeitung/workflow.html" class="sidebar-item-text sidebar-link">
+  <a href="../datenverarbeitung/workflow.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></span></a>
   </div>
 </li>
@@ -231,7 +197,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../uebungen/uebung-01.html" class="sidebar-item-text sidebar-link active">
+  <a href="../uebungen/uebung-01.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Übung 1</span></a>
   </div>
 </li>
@@ -271,33 +237,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#aufgabe-1.1.-installation-von-r-und-rstudio" id="toc-aufgabe-1.1.-installation-von-r-und-rstudio" class="nav-link active" data-scroll-target="#aufgabe-1.1.-installation-von-r-und-rstudio">Aufgabe 1.1. Installation von R und RStudio</a></li>
-  <li><a href="#aufgabe-1.2-packages-installieren" id="toc-aufgabe-1.2-packages-installieren" class="nav-link" data-scroll-target="#aufgabe-1.2-packages-installieren">Aufgabe 1.2 Packages installieren</a></li>
-  <li><a href="#aufgabe-1.3-rproject-und-rskript-erstellen" id="toc-aufgabe-1.3-rproject-und-rskript-erstellen" class="nav-link" data-scroll-target="#aufgabe-1.3-rproject-und-rskript-erstellen">Aufgabe 1.3: RProject und RSkript erstellen</a></li>
-  <li><a href="#aufgabe-1.4-operatoren-und-funktionen-verwenden" id="toc-aufgabe-1.4-operatoren-und-funktionen-verwenden" class="nav-link" data-scroll-target="#aufgabe-1.4-operatoren-und-funktionen-verwenden">Aufgabe 1.4: Operatoren und Funktionen verwenden</a></li>
-  <li><a href="#aufgabe-1.5-rnotebook-erstellen-und-packages-laden" id="toc-aufgabe-1.5-rnotebook-erstellen-und-packages-laden" class="nav-link" data-scroll-target="#aufgabe-1.5-rnotebook-erstellen-und-packages-laden">Aufgabe 1.5: RNotebook erstellen und Packages laden</a></li>
-  <li><a href="#aufgabe-1.6-daten-einlesen" id="toc-aufgabe-1.6-daten-einlesen" class="nav-link" data-scroll-target="#aufgabe-1.6-daten-einlesen">Aufgabe 1.6: Daten einlesen</a></li>
-  <li><a href="#aufgabe-1.7-datensätze-anschauen" id="toc-aufgabe-1.7-datensätze-anschauen" class="nav-link" data-scroll-target="#aufgabe-1.7-datensätze-anschauen">Aufgabe 1.7: Datensätze anschauen</a></li>
-  <li><a href="#aufgabe-1.8-visualisieren-der-datensätze" id="toc-aufgabe-1.8-visualisieren-der-datensätze" class="nav-link" data-scroll-target="#aufgabe-1.8-visualisieren-der-datensätze">Aufgabe 1.8: Visualisieren der Datensätze</a></li>
-  </ul>
-</nav>
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
+        
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content">
+<main class="content column-page-right" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-01.html">Übung 1</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenverarbeitung/workflow.html">Datenverarbeitung</a></li><li class="breadcrumb-item"><a href="../datenverarbeitung/workflow.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-uebung-01" class="quarto-section-identifier">Übung 1</span></h1>
+<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-body">
+<div class="quarto-title-meta column-page-right">
 
     
   
@@ -309,219 +262,46 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled" title="Lernziele dieser Übung">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Lernziele dieser Übung
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Nach der heutigen Übung können Sie</p>
+<p>Zur Analyse von Daten gehören viele einzelne Schritte in <em>R</em>. Um den Überblick zu behalten hilft es die wichtigsten Prozesse zu kennen.</p>
 <ul>
-<li><em>R</em> und <em>RStudio</em> installieren</li>
-<li>Benutzeroberfläche und Einstellungen in <em>RStudio</em> anpassen</li>
-<li><em>RProjekte</em> erstellen</li>
-<li>Code in <em>RNotebooks</em> und <em>RSkripte</em> schreiben und ausführen</li>
-<li>Mathematische und logische Operatoren verwenden</li>
-<li>Funktionen mit den passenden Argumenten verwenden</li>
-<li>Variablen verschiedener Typen erstellen und abrufen</li>
-<li>Datensätze einlesen und anschauen</li>
-<li>Daten visualisieren</li>
-<li>Hilfe fürs Debugging finden</li>
+<li><strong>Import</strong>: Importieren des Datensatzes</li>
+<li><strong>Tidy</strong>: Bereinigen des Datensatzes (z.B. Identifizieren von fehlenden Werten)</li>
+<li><strong>Transform</strong>: Transformieren des Datensatzes (z.B. Erstellen neuer Variablen, Umformattierung von <em>long</em> zu <em>wide</em>)</li>
+<li><strong>Visualize</strong>: Visualisieren des Datensatzes</li>
+<li><strong>Model</strong>: Analysieren des Datensatzes (z.B. Ausführen eines <em>t</em>-Tests)</li>
+<li><strong>Communicate</strong>: Kommunizieren der Daten, Analysen und Schlussfolgerungen</li>
 </ul>
+<p>Das Transformieren, Visualisieren und Modellieren dient dazu, die Daten zu verstehen und daraus Schlussfolgerungen ziehen zu können.</p>
+<div id="fig-tidyverseworkflow" class="quarto-float quarto-figure quarto-figure-center anchored">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-tidyverseworkflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="../imgs/process_datawrangling.png" class="img-fluid figure-img">
 </div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tidyverseworkflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;5.1: Wichtige Schritte im Data Science Prozess.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+</figcaption>
+</figure>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Übungen ohne RStudio...:">
+<div class="callout callout-style-default callout-note callout-titled" title="Wollen Sie mehr darüber wissen?">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Übungen ohne RStudio…:
+Wollen Sie mehr darüber wissen?
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Falls bei der Installation unlösbare Probleme auftauchen, können Sie <em>R</em> und <em>RStudio</em> in der <em>R Sprechstunde</em> nächste Woche installieren. Lösen Sie die Aufgaben ab <em>Aufgabe 1.4</em> mit <em>WebR</em> <a href="../appendix/webrconsole.html">hier</a> und holen Sie <em>Aufgabe 1.1-1.3</em> vor der nächsten Übung nach.</p>
-</div>
-</div>
-<section id="aufgabe-1.1.-installation-von-r-und-rstudio" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-1.1.-installation-von-r-und-rstudio">Aufgabe 1.1. Installation von R und RStudio</h2>
-<p>Installieren Sie R und RStudio, wie in <a href="../r/installation.html" class="quarto-xref"><span>1&nbsp; Installation</span></a> beschrieben.</p>
-</section>
-<section id="aufgabe-1.2-packages-installieren" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-1.2-packages-installieren">Aufgabe 1.2 Packages installieren</h2>
-<p>Installieren Sie das <em>Package</em> {tidyverse} entweder über die Konsole oder über <code>Tools</code>. <!-- ([hier](../r/rrstudio.qmd#packages) finden Sie die Anleitung dazu). --></p>
-</section>
-<section id="aufgabe-1.3-rproject-und-rskript-erstellen" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-1.3-rproject-und-rskript-erstellen">Aufgabe 1.3: RProject und RSkript erstellen</h2>
-<ol type="a">
-<li><p>Erstellen Sie (an einem für Sie geeigneten Ort auf Ihrem Rechner) einen Ordner für alle Übungen in Statistik 2 mit dem Namen <code>Statistik2</code>. <!-- (oder einem anderen passenden Namen gemäss den [Konventionen](../r/programmingbasics.qmd#namingconventions). --></p></li>
-<li><p>Öffnen Sie <em>RStudio</em> und erstellen Sie in diesem Ordner ein <em>RProject</em> mit dem Namen <em>Introduction_to_R</em>.</p></li>
-<li><p>Erstellen Sie in <em>RStudio</em> ein <em>RSkript</em> (Endung <code>.R</code>).</p></li>
-<li><p>Speichern Sie dieses Skript im <em>RProjekt</em>-Ordner mit dem Namen <em>IntroSkript</em> ab.</p></li>
-<li><p>Erstellen Sie im aktuellen <em>RProjekt</em>-Ordner einen Unterordner namens <code>data</code>. Laden Sie dann die Datensätze herunter und speichern Sie diese im <code>data</code>-Ordner.</p>
-<ul>
-<li><a href="../data/stroop_data_sub-01.csv">Datensatz 1</a></li>
-<li><a href="../data/stroop_data_sub-01.xlsx">Datensatz 2</a></li>
-</ul></li>
-</ol>
-</section>
-<section id="aufgabe-1.4-operatoren-und-funktionen-verwenden" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-1.4-operatoren-und-funktionen-verwenden">Aufgabe 1.4: Operatoren und Funktionen verwenden</h2>
-<ol type="a">
-<li>Schreiben Sie in das Skript untenstehenden Code und führen Sie diesen aus.</li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>numbers <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">43</span>, <span class="dv">65</span>, <span class="dv">23</span>, <span class="dv">78</span>, <span class="dv">34</span>, <span class="dv">73</span>, <span class="dv">69</span>, <span class="dv">14</span>, <span class="dv">37</span>, <span class="dv">84</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Wie können Sie nun nachschauen, welche Werte in der Variable vorhanden sind?</p>
-<ol start="2" type="a">
-<li><p>Berechnen Sie folgende Werte:</p>
-<ul>
-<li><p>Mittelwert der Variable <code>numbers</code>.</p></li>
-<li><p>Standardabweichung der Variable <code>numbers</code>.</p></li>
-<li><p>Summe der Variable <code>numbers</code></p></li>
-<li><p>Was passiert, wenn Sie die Variable <code>numbers</code> mit sich selber addieren (<code>numbers + numbers</code>) oder multiplizieren?</p></li>
-<li><p>Was passiert, wenn Sie die Wurzel nehmen?</p></li>
-</ul></li>
-<li><p>Erstellen Sie eine Variable <code>words</code> mit den Wörtern <code>yellow</code>, <code>green</code> und <code>red</code> darin.</p>
-<ul>
-<li><p>Was passiert, wenn Sie den Mittelwert der Variable <code>words</code> berechnen?</p></li>
-<li><p>Welcher Wert wird ausgegeben?</p></li>
-<li><p>Gibt es eine Warnung oder eine Fehlermeldung?</p></li>
-</ul></li>
-<li><p>Was passiert, wenn Sie die Variable <code>words</code> mit sich selber addieren?</p>
-<ul>
-<li><p>Welcher Wert wird ausgegeben?</p></li>
-<li><p>Gibt es eine Warnung oder eine Fehlermeldung?</p></li>
-</ul></li>
-<li><p>Diskutieren Sie kurz zusammen: Wie unterscheiden sich Warnungen von Fehlermeldungen?</p></li>
-</ol>
-</section>
-<section id="aufgabe-1.5-rnotebook-erstellen-und-packages-laden" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-1.5-rnotebook-erstellen-und-packages-laden">Aufgabe 1.5: RNotebook erstellen und Packages laden</h2>
-<ol type="a">
-<li><p>Erstellen Sie ein <em>RNotebook</em> und speichern Sie es unter dem Namen <em>IntroNotebook</em> ab.</p></li>
-<li><p>Identifizieren Sie die 3 Bausteine eines Notebooks: Header, Textfeld und Codefeld mit folgenden Fragen:</p>
-<ul>
-<li>Woran erkennt man den Baustein?</li>
-<li>Für was eignet sich der Baustein besonders und für nicht?</li>
-</ul></li>
-<li><p>Geben Sie dem Notebook einen Titel.</p></li>
-<li><p>Laden Sie in einem Codefeld das <em>Package</em> <code>{tidyverse}</code> mit</p></li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="5" type="a">
-<li>Beschreiben Sie im Textfeld über dem Codefeld was der Code machen sollte.</li>
-</ol>
-</section>
-<section id="aufgabe-1.6-daten-einlesen" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-1.6-daten-einlesen">Aufgabe 1.6: Daten einlesen</h2>
-<p>In dieser Aufgabe arbeiten wir weiter mit dem <em>RNotebook</em> von oben.</p>
-<ol type="a">
-<li><p>Erstellen Sie ein neues Codefeld.</p></li>
-<li><p>Lesen Sie den Datensatz <code>stroop_data_sub-01.csv</code> ein aus dem <code>data</code>-Ordner ein. Gehen Sie dabei schrittweise vor:</p>
-<ul>
-<li><p>Welche Endungen hat die Datei?</p></li>
-<li><p>Importieren Sie die Daten mit dem GUI.</p></li>
-<li><p>Löschen Sie die Variable aus dem Environment.</p></li>
-<li><p>Importieren Sie den Datensatz mit Code. Verwenden Sie dafür den Variablennamen <code>d1</code> für den Datensatz (bzw. <code>d2</code> für den zweiten Datensatz).</p></li>
-</ul></li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> <span class="fu">...</span>(<span class="st">"data/..."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p>Führen Sie dieselben Schritte für <code>stroop_data_sub-01.xlsx</code> aus. Denken Sie daran, dass die Einlesefunktion für <code>.xlsx</code>-Dateien aus dem Package {readxl} stammt und sie dieses zuerst laden müssen.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ol start="4" type="a">
-<li><p>Diskutieren Sie kurz zusammen:</p>
-<ul>
-<li>Was war schwierig? Was fällt Ihnen auf?</li>
-<li>Was sind Separators?</li>
-<li>Welcher Weg fällt Ihnen leichter?</li>
-</ul></li>
-</ol>
-</section>
-<section id="aufgabe-1.7-datensätze-anschauen" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-1.7-datensätze-anschauen">Aufgabe 1.7: Datensätze anschauen</h2>
-<p>Schauen Sie sich die beiden Datensätze auf drei Arten an</p>
-<ol type="a">
-<li><p>indem Sie im <code>Environment</code> mit dem Pfeil den Datensatz aufklappen.</p></li>
-<li><p>indem Sie im <code>Environment</code> auf den Namen doppelklicken.</p></li>
-<li><p>indem Sie den Namen der Variable eingeben (in der Konsole oder im <em>RNotebook</em>).</p></li>
-<li><p>indem Sie untenstehenden Code eingeben (<code>...</code> muss mit einer Variable ersetzt werden):</p></li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(...)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-</section>
-<section id="aufgabe-1.8-visualisieren-der-datensätze" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-1.8-visualisieren-der-datensätze">Aufgabe 1.8: Visualisieren der Datensätze</h2>
-<ol type="a">
-<li><p>Installieren Sie das <em>Package</em> {esquisse}.</p></li>
-<li><p>Geben Sie in der Konsole folgenden Code ein:</p></li>
-</ol>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>esquisse<span class="sc">::</span><span class="fu">esquisser</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div id="fig-esquisse" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-esquisse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../imgs/esquisser.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-esquisse-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;1: Auswahl des Datensatzes in <code>Equisser</code>
-</figcaption>
-</figure>
-</div>
-<ol start="3" type="a">
-<li><p>Schauen Sie sich nacheinander die beiden Datensätze an.</p>
-<ul>
-<li><p>Welche Variablen gibt es und welches Skalenniveau haben diese?</p></li>
-<li><p>Ist die Variable <code>rt</code> normalverteilt?</p></li>
-<li><p>Welche Darstellungsform eignet sich am besten?</p></li>
-<li><p>Lassen Sie sich für die beste Darstellung des Datensatzes einen Code ausgeben.</p></li>
-<li><p>Speichern Sie Ihr <em>RNotebook</em> ab. Speichern Sie alle Änderungen in Ihrem <em>RNotebook</em>. Der Titel sollte nicht mehr in rot geschrieben sein und keinen Stern nach dem Namen haben.</p></li>
-</ul></li>
-</ol>
-<div id="fig-esquisse2" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-esquisse2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../imgs/esquisser2.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:80.0%">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-esquisse2-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;2: Beispiel <code>Equisser</code>
-</figcaption>
-</figure>
-</div>
-<ol start="4" type="a">
-<li><p>Schliessen Sie Ihr <em>RProject</em> und öffnen Sie es erneut.</p></li>
-<li><p>Falls nötig: Öffnen Sie ihr <em>IntroNotebook</em> wieder und führen Sie Ihren Code mit <code>Run all</code> aus. Jetzt sollten Sie zum Schluss zwei Grafiken haben.</p></li>
-<li><p>Zeigen Sie einander die Grafiken und diskutieren Vor- und Nachteile der Darstellungsformen.</p></li>
-</ol>
-<div class="callout callout-style-default callout-tip callout-titled" title="Bei Problemen...">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Bei Problemen…
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Der Einstieg ins Programmieren mit <em>R</em> ist nicht einfach. Falls Sie Fragen zu den Übungen haben, dürfen Sie diese zusätzlich in der <em>R Sprechstunde</em> nächste Woche stellen. Kommen Sie einfach mit Ihrem Computer vorbei und wir schauen es an.</p>
+<p>Hier finden Sie das Buch <a href="https://r4ds.hadley.nz/"><em>R for Data Science</em></a></p>
 </div>
 </div>
 
 
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Wickham, H., Çetinkaya-Rundel, M., Grolemund, G. (2025). R for Data Science (2e). https://r4ds.hadley.nz<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -1156,15 +936,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-body">
+<nav class="page-navigation column-page-right">
   <div class="nav-page nav-page-previous">
-      <a href="../uebungen/uebungen.html" class="pagination-link" aria-label="Informationen">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Informationen</span>
+      <a href="../r/help.html" class="pagination-link" aria-label="Help center">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Help center</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../appendix/webrconsole.html" class="pagination-link" aria-label="WebR Konsole">
-        <span class="nav-page-text">WebR Konsole</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../datenverarbeitung/readandwrite.html" class="pagination-link" aria-label="Datensätze einlesen und schreiben">
+        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Datensätze einlesen und schreiben</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

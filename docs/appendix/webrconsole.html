@@ -405,7 +405,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"code":"","options":{"out-width":"700px","results":"markup","editor-font-scale":"1","fig-height":5,"output":"true","dpi":72,"editor-max-height":"","message":"true","classes":"","fig-width":7,"warning":"true","comment":"","context":"interactive","editor-word-wrap":"true","autorun":"false","label":"unnamed-chunk-1","out-height":"","fig-cap":"","read-only":"false","editor-quick-suggestions":"false"}}];
+globalThis.qwebrCellDetails = [{"id":1,"options":{"out-width":"700px","out-height":"","editor-quick-suggestions":"false","read-only":"false","fig-cap":"","classes":"","results":"markup","label":"unnamed-chunk-1","fig-width":7,"comment":"","dpi":72,"fig-height":5,"warning":"true","output":"true","editor-font-scale":"1","editor-word-wrap":"true","message":"true","context":"interactive","autorun":"false","editor-max-height":""},"code":""}];
 
 </script>
 <script type="module">
@@ -1739,8 +1739,27 @@ globalThis.qwebrExecuteCode = async function (
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Datenverarbeitung</span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Datenverarbeitung</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenverarbeitung/workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenverarbeitung/readandwrite.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Datensätze einlesen und schreiben</span></span></a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <span class="sidebar-item-text sidebar-link text-start">

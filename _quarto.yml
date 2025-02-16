@@ -24,7 +24,10 @@ book:
     - r/programmieren.qmd
     - r/help.qmd
   - part: Datenverarbeitung
-#    chapters:
+    chapters:
+    - datenverarbeitung/workflow.qmd
+    - datenverarbeitung/readandwrite.qmd
+  
   - part: Datenvisualisierung
 #    chapters:
   - part: Datenanalyse
