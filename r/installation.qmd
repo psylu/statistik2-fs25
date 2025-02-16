@@ -114,7 +114,7 @@ __Wenn Sie _R_ und _RStudio_ installiert haben, fahren Sie [hier](../r/installat
 
 
 
-## Einrichten von _RStudio_ {#sec-setupstudio}
+## Einrichten von _RStudio_ {#sec-setuprstudio}
 
 In einem nächsten Schritt können wir _RStudio_ konfigurieren, so dass wir gut damit arbeiten können.
 

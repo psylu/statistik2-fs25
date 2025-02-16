@@ -334,13 +334,13 @@ Lernziele dieser Übung
 </ul>
 </div>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Übungen ohne RStudio...:">
+<div class="callout callout-style-default callout-tip callout-titled" title="Übungen ohne RStudio">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Übungen ohne RStudio…:
+Übungen ohne RStudio
 </div>
 </div>
 <div class="callout-body-container callout-body">
@@ -359,13 +359,13 @@ Lernziele dieser Übung
 <h2 class="anchored" data-anchor-id="aufgabe-1.3-rproject-und-rskript-erstellen">Aufgabe 1.3: RProject und RSkript erstellen</h2>
 <ol type="a">
 <li><p>Erstellen Sie (an einem für Sie geeigneten Ort auf Ihrem Rechner) einen Ordner für alle Übungen in Statistik 2 mit dem Namen <code>Statistik2</code>. <!-- (oder einem anderen passenden Namen gemäss den [Konventionen](../r/programmingbasics.qmd#namingconventions). --></p></li>
-<li><p>Öffnen Sie <em>RStudio</em> und erstellen Sie in diesem Ordner ein <em>RProject</em> mit dem Namen <em>Introduction_to_R</em>.</p></li>
+<li><p>Öffnen Sie <em>RStudio</em> und erstellen Sie in diesem Ordner ein <em>RProject</em> mit dem Namen <code>introduction_to_r</code>.</p></li>
 <li><p>Erstellen Sie in <em>RStudio</em> ein <em>RSkript</em> (Endung <code>.R</code>).</p></li>
-<li><p>Speichern Sie dieses Skript im <em>RProjekt</em>-Ordner mit dem Namen <em>IntroSkript</em> ab.</p></li>
+<li><p>Speichern Sie dieses Skript im <em>RProjekt</em>-Ordner mit dem Namen <code>introskript</code> ab.</p></li>
 <li><p>Erstellen Sie im aktuellen <em>RProjekt</em>-Ordner einen Unterordner namens <code>data</code>. Laden Sie dann die Datensätze herunter und speichern Sie diese im <code>data</code>-Ordner.</p>
 <ul>
-<li><a href="../data/stroop_data_sub-01.csv">Datensatz 1</a></li>
-<li><a href="../data/stroop_data_sub-01.xlsx">Datensatz 2</a></li>
+<li><a href="../data/stroop_data_sub-001.csv">Datensatz 1</a></li>
+<li><a href="../data/stroop_data_sub-001.xlsx">Datensatz 2</a></li>
 </ul></li>
 </ol>
 </section>
@@ -405,11 +405,11 @@ Lernziele dieser Übung
 <section id="aufgabe-1.5-rnotebook-erstellen-und-packages-laden" class="level2">
 <h2 class="anchored" data-anchor-id="aufgabe-1.5-rnotebook-erstellen-und-packages-laden">Aufgabe 1.5: RNotebook erstellen und Packages laden</h2>
 <ol type="a">
-<li><p>Erstellen Sie ein <em>RNotebook</em> und speichern Sie es unter dem Namen <em>IntroNotebook</em> ab.</p></li>
+<li><p>Erstellen Sie ein <em>RNotebook</em> und speichern Sie es unter dem Namen <code>intronotebook</code> ab.</p></li>
 <li><p>Identifizieren Sie die 3 Bausteine eines Notebooks: Header, Textfeld und Codefeld mit folgenden Fragen:</p>
 <ul>
 <li>Woran erkennt man den Baustein?</li>
-<li>Für was eignet sich der Baustein besonders und für nicht?</li>
+<li>Für was eignet sich der Baustein besonders und für was nicht?</li>
 </ul></li>
 <li><p>Geben Sie dem Notebook einen Titel.</p></li>
 <li><p>Laden Sie in einem Codefeld das <em>Package</em> <code>{tidyverse}</code> mit</p></li>
@@ -426,7 +426,7 @@ Lernziele dieser Übung
 <p>In dieser Aufgabe arbeiten wir weiter mit dem <em>RNotebook</em> von oben.</p>
 <ol type="a">
 <li><p>Erstellen Sie ein neues Codefeld.</p></li>
-<li><p>Lesen Sie den Datensatz <code>stroop_data_sub-01.csv</code> ein aus dem <code>data</code>-Ordner ein. Gehen Sie dabei schrittweise vor:</p>
+<li><p>Lesen Sie den Datensatz <code>stroop_data_sub-001.csv</code> aus dem <code>data</code>-Ordner ein. Gehen Sie dabei schrittweise vor:</p>
 <ul>
 <li><p>Welche Endungen hat die Datei?</p></li>
 <li><p>Importieren Sie die Daten mit dem GUI.</p></li>
@@ -437,7 +437,7 @@ Lernziele dieser Übung
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>d1 <span class="ot">&lt;-</span> <span class="fu">...</span>(<span class="st">"data/..."</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p>Führen Sie dieselben Schritte für <code>stroop_data_sub-01.xlsx</code> aus. Denken Sie daran, dass die Einlesefunktion für <code>.xlsx</code>-Dateien aus dem Package {readxl} stammt und sie dieses zuerst laden müssen.</p>
+<p>Führen Sie dieselben Schritte für <code>stroop_data_sub-001.xlsx</code> aus. Denken Sie daran, dass die Einlesefunktion für <code>.xlsx</code>-Dateien aus dem Package {readxl} stammt und sie dieses zuerst laden müssen.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>d2 <span class="ot">&lt;-</span> ...</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -452,7 +452,7 @@ Lernziele dieser Übung
 </section>
 <section id="aufgabe-1.7-datensätze-anschauen" class="level2">
 <h2 class="anchored" data-anchor-id="aufgabe-1.7-datensätze-anschauen">Aufgabe 1.7: Datensätze anschauen</h2>
-<p>Schauen Sie sich die beiden Datensätze auf drei Arten an</p>
+<p>Schauen Sie sich die beiden Datensätze auf vier Arten an:</p>
 <ol type="a">
 <li><p>indem Sie im <code>Environment</code> mit dem Pfeil den Datensatz aufklappen.</p></li>
 <li><p>indem Sie im <code>Environment</code> auf den Namen doppelklicken.</p></li>
@@ -466,11 +466,18 @@ Lernziele dieser Übung
 <section id="aufgabe-1.8-visualisieren-der-datensätze" class="level2">
 <h2 class="anchored" data-anchor-id="aufgabe-1.8-visualisieren-der-datensätze">Aufgabe 1.8: Visualisieren der Datensätze</h2>
 <ol type="a">
-<li><p>Installieren Sie das <em>Package</em> {esquisse}.</p></li>
-<li><p>Geben Sie in der Konsole folgenden Code ein:</p></li>
+<li>Installieren Sie das <em>Package</em> {esquisse}. Verwenden Sie hierzu entweder den Reiter <code>Tools</code>&gt; <code>Install Packages...</code> oder ergänzen Sie den untenstehenden Code.</li>
 </ol>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>esquisse<span class="sc">::</span><span class="fu">esquisser</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ergänzen Sie diesen Code und schreiben Sie ihn in die Konsole und NICHT ins RNotebook.</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">__</span>(<span class="st">"esquisse"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Wieso sollte das Package nicht im <em>RNotebook</em> installiert werden?</p>
+<ol start="2" type="a">
+<li>Geben Sie in der Konsole folgenden Code ein:</li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>esquisse<span class="sc">::</span><span class="fu">esquisser</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div id="fig-esquisse" class="quarto-float quarto-figure quarto-figure-left anchored" data-fig-align="left">
 <figure class="quarto-float quarto-float-fig figure">
@@ -504,7 +511,8 @@ Figure&nbsp;2: Beispiel <code>Equisser</code>
 </div>
 <ol start="4" type="a">
 <li><p>Schliessen Sie Ihr <em>RProject</em> und öffnen Sie es erneut.</p></li>
-<li><p>Falls nötig: Öffnen Sie ihr <em>IntroNotebook</em> wieder und führen Sie Ihren Code mit <code>Run all</code> aus. Jetzt sollten Sie zum Schluss zwei Grafiken haben.</p></li>
+<li><p>Falls nötig: Öffnen Sie ihr <code>intronotebook.Rmd</code>-File wieder. Dies können Sie unter <code>File</code> &gt; <code>Open File</code> tun oder im rechten unteren Quadranten unter <code>Files</code>.</p></li>
+<li><p>Führen Sie Ihren Code mit <code>Run all</code> aus. Jetzt sollten Sie zum Schluss zwei Grafiken haben.</p></li>
 <li><p>Zeigen Sie einander die Grafiken und diskutieren Vor- und Nachteile der Darstellungsformen.</p></li>
 </ol>
 <div class="callout callout-style-default callout-tip callout-titled" title="Bei Problemen...">

@@ -11,8 +11,9 @@ __Arbeiten mit _RProjekten_ __
 Erstellen Sie immer zuerst ein [_RProjekt_](../r/rrstudio.html#sec-rprojects) für die Übung bevor Sie mit den Aufgaben beginnen und benennen Sie dieses Projekt z.B. nach der Übung: _Uebung_7_).
 
 Teilweise erhalten Sie für eine oder mehrere Übungen einen vorgefertigten Projekt-Ordner.
-Achtung: Beim Arbeiten mit Windows muss dieser Ordner vor dem Bearbeiten entzippt werden.
+Achtung: Ordner müssen vor dem Bearbeiten entzippt werden.
 
 __Datensätze__
 
 Die für die Übungen verwendeten Datensätze können am Anfang der Übungen per Link heruntergeladen werden.
+

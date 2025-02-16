@@ -57,10 +57,10 @@ Weitere Einstellungen:
 
 | Dateiformat     | Import Dataset (GUI)         | Code (Funktion)                  | Code (Argumente)           | Code-Beispiel                                |
 |-----------------|------------------------------|----------------------------------|----------------------------|----------------------------------------------|
-| `.csv`          | From text                    | `read.csv()`                     | file, (header), (sep), ... | `read.csv(file = "data/nameofthefile.csv")`  |
-| `.xlsx`  | From Excel                   | `readxl::read_xlsx()` | path, (sheet), (col_names), ...     | `readxl::read_xlsx(path = "data/nameofthefile.csv")`|
-| `.sav`   | From SPSS                    | `haven::read_sav()`    | file, ...                  | `haven::read_sav(file = "data/nameofthefile.sav")`  |
-| `.txt`          | From text                    | `read.delim()`                   | file, (delim), (col_names) | `read_delim(file = "data/nameofthefile.txt")`|
+| `.csv`          | From text                    | `read.csv()`                     | file, (header), (sep), ... | `read.csv(file = "data/datafile.csv")`  |
+| `.xlsx`  | From Excel                   | `readxl::read_xlsx()` | path, (sheet), (col_names), ...     | `readxl::read_xlsx(path = "data/datafile.xlsx")`|
+| `.sav`   | From SPSS                    | `haven::read_sav()`    | file, ...                  | `haven::read_sav(file = "data/datafile.sav")`  |
+| `.txt`          | From text                    | `read.delim()`                   | file, (delim), (col_names) | `read_delim(file = "data/datafile.txt")`|
 | `.sas7bdat`     | From SAS                     | ...                              |                            |                                              |
 | `.dta`          | From Stata                   | ...                              |                            |                                              |
 

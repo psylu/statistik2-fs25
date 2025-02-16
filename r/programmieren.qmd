@@ -4,14 +4,14 @@
 
 Wir lernen in diesem Kurs das Programmieren nicht im luftleeren Raum, sondern anhand von Aufgaben und Problemen, die sich uns als Psycholog:innen stellen.
 
-> "Psychologie erforscht das menschliche Erleben und Verhalten – sie untersucht, beschreibt und erklärt psychische Phänomene wie Gefühle, Entscheidungen, Gedanken, Motivationen oder Erinnerungen."^[https://www.unilu.ch/studium/studienangebot/bachelor/vpf/psychologie/] 
+> "Psychologie erforscht das menschliche Erleben und Verhalten – sie untersucht, beschreibt und erklärt psychische Phänomene wie Gefühle, Entscheidungen, Gedanken, Motivationen oder Erinnerungen."^[https://www.unilu.ch/studium/studienangebot/bachelor/vpf/psychologie/](https://www.unilu.ch/studium/studienangebot/bachelor/vpf/psychologie/)
 
 Die Psychologie ist eine empirische Wissenschaft. Das bedeutet, die Erkenntnisse der Wissenschaftlichen Psychologie werden durch das Erheben und Auswerten von Daten gewonnen. Hierfür brauchen wir nicht nur Wissen darüber, wie Daten systematisch erhoben werden können, sondern auch darüber, wie diese Daten verarbeitet, zusammengefasst, interpretiert und kommuniziert werden können.
 
-> Wenn wir Daten verstehen wollen, müssen wir mit ihnen sprechen. Und eine Sprache, die uns dies ermöglicht ist R.
+> Wenn wir Daten verstehen wollen, müssen wir mit ihnen sprechen. Und eine Sprache, die uns dies ermöglicht, ist R.
 
 Deshalb starten wir zu Beginn mit möglichst wenig trockenem Wissen, sondern erarbeiten uns das Programmierwissen nach und nach anhand von Beispielen aus der psychologischen Praxis.
-Sie müssen um mit Daten zu sprechen keine Programmiersprache perfekt beherrschen, sondern einfach genügend gut, um an die Informationen zu kommen, die Sie interessieren.
+Sie müssen, um mit Daten zu sprechen, keine Programmiersprache perfekt beherrschen, sondern nur genügend gut, um an die Informationen zu kommen, die Sie interessieren.
 
 
 
@@ -25,7 +25,7 @@ Zudem erlernt man durch das Programmieren, grössere Arbeitsschritte in kleinere
 
 - Anders als bei gesprochenen Sprachen ist beim Programmieren fehlerfreier Text sehr wichtig. Wenn ein Funktionsname falsch geschrieben oder ein falsches Zeichen verwendet wird, kann der Code nicht ausgeführt werden oder falsche Ergebnisse produzieren. Ein häufiger Fehler ist auch, dass eine Klammer geöffnet `(` aber nicht wieder geschlossen `)` wird. Im Gegensatz zu anderen Programmiersprachen sind in _R_ Einrückungen oder Leerzeichen irrelevant und werden nicht beachtet.
 
-- Programmiersprachen enthalten verschiedene Bausteine wie Funktionen, Argumente, Abläufe (z.B. *loops*/Schleifen), Bedingungen (*conditional statements*), Objekte (*variables*), etc., die in einer bestimmtem Form/Reihenfolge aufgeschrieben werden. Sobald das Grundprinzip dieser Bausteine verinnerlicht wurde, wird die Anwendung von Programmiersprachen sehr viel einfacher. Dieses Wissen kann auch auf andere Programmiersprachen übertragen werden.
+- Programmiersprachen enthalten verschiedene Bausteine wie Funktionen, Argumente, Abläufe (z.B. *loops*/Schleifen), Bedingungen (*conditional statements*), Objekte (*variables*), etc., die in einer bestimmten Form/Reihenfolge aufgeschrieben werden. Sobald das Grundprinzip dieser Bausteine verinnerlicht wurde, wird die Anwendung von Programmiersprachen sehr viel einfacher. Dieses Wissen kann auch auf andere Programmiersprachen übertragen werden.
 
 - Indem man sich an gewisse Konventionen bei der Speicherung von Code und Variablen hält, bleibt ein Skript übersichtlich und der Code ist leichter lesbar. In diesem Kurs verwenden wir R mit *R-Projects* und *Notebooks*, so dass die Datei-Struktur immer ähnlich aufgebaut ist. Zudem benennen wir Variablen nach bestimmten Regeln, um den Überblick zu behalten.
 
@@ -116,7 +116,7 @@ Drücken Sie `Run Code`.
 ## {{< fa check >}}&emsp;Lösung
 
 ```{r}
-1+1
+1+1-4*2/15
 ```
 :::
 
@@ -138,7 +138,7 @@ Am linken Rand wird die Zeilennummer des Codes angegeben analog zu einem _RSkrip
 | Potenz                       	|            ^            	| `^`                       	| `3^2`                        	|
 | Wurzel                       	|         $$\sqrt{9}$$        	| `sqrt()`                  	| `sqrt(9)`                    	|
 | Exponentialfunktion          	|           $$e^2$$           	| `exp()`                   	| `exp(3)`                     	|
-| Logarithmus                  	| $$log_e, log_10, log_{10}10$$ 	| `log()`, `log10()`        	| `log(10)`, `log10(10)`       	|
+| Logarithmus                  	| $$log_{e}, log_{10}, log_{10}10$$ 	| `log()`, `log10()`        	| `log(10)`, `log10(10)`       	|
 | Trigonometrische  Funktionen 	| $$cos, sin, tan$$            	| `cos()`, `sin()`, `tan()` 	| `cos(2)`, `sin(2)`, `tan(2)` 	|
 
 : Mathematische Operatoren in R {.hover}
@@ -193,7 +193,7 @@ sin(60)
 ### Variablen in R
 
 Objekte können in R erstellt werden indem einer der beiden Zuweisungsoperatoren `=` oder `<-` genutzt wird.
-In diesem Kurs arbeiten wir vor allem mit `<-`.^[Der Zuweisungsoperator `->` zeigt klarer als das `=` auf, dass ein Wert zugewiesen wird und ist daher intuitiver.]
+In diesem Kurs arbeiten wir vor allem mit `<-`.^[Der Zuweisungsoperator `<-` zeigt klarer als das `=` auf, dass ein Wert zugewiesen wird und ist daher intuitiver.]
 In den meisten Fällen ergibt `=` jedoch dasselbe Ergebnis.
 
 **Vor** dem Zuweisungsoperator steht der Variablenname. 
@@ -207,7 +207,7 @@ Matrizen können mehrere Vektoren desselben Datentyps kombinieren (z.B. mehrere 
 Datensätze (`data.frame` oder `tibble`) können Variablen unterschiedlicher Typen kombinieren. 
 Es können also Buchstaben und Zahlen gemischt werden.
 
-Ein neue Variable kann mit einem Zuweisungsoperator erstellt werden.
+Eine neue Variable kann mit einem Zuweisungsoperator erstellt werden.
 
 Hier ein paar Beispiele:
 
@@ -220,7 +220,7 @@ d <- 5*3 # Variable namens d mit dem Wert ?
 
 Für das Erstellen der Variable muss der Code nicht nur geschrieben, sondern auch ausgeführt werden.
 Durch das Ausführen wird dem Objektnamen `a` den Wert 5 zugewiesen.
-Variablen können abgerufen werden, indem ihr Name eingegebn und ausgeführt wird:
+Variablen können abgerufen werden, indem ihr Name eingegeben und ausgeführt wird:
 
 ```{r}
 a
@@ -264,7 +264,7 @@ d <- 5*3
 :::
 
 Wird eine Variable aufgerufen, die nicht existiert, wird die Fehlermeldung `Error: object 'x' not found` ausgegeben. 
-Das bedeutet das, dass die Variable `x` nicht auffindbar ist und daher nicht angezeigt werden kann. 
+Das bedeutet, dass die Variable `x` nicht auffindbar ist und daher nicht angezeigt werden kann. 
 
 ```{webr-r}
 x
@@ -444,7 +444,7 @@ Sie können unterschiedliche oder identische Datentypen beinhalten.
 ### Funktionen und Argumente
 
 Funktionen sind Befehle, die etwas ausführen.
-Um dies zu tun wir der Funktionsname und in den Klammern die Argumente angegeben. 
+Um dies zu tun, wird der Funktionsname und in den Klammern die Argumente angegeben. 
 Bei jeder Funktion ist definiert, ob und wenn ja welche Argumente eingegeben werden müssen. 
 Hierbei gibt es Argumente die unbedingt benötigt werden, und solche, die weggelassen werden können, dann werden die Standardeinstellungen genommen.
 
@@ -600,7 +600,7 @@ Mit der Funktion `glimpse()` kann der Datensatz angeschaut werden
 ::: {.panel-tabset}
 ## {{< fa code >}}&emsp;Konsole
 
-Schauen Sie sich den oben erstellten Datensatz
+Schauen Sie sich den oben erstellten Datensatz an.
 
 ```{webr-r}
 glimpse(d)

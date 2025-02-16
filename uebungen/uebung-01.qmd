@@ -15,7 +15,7 @@ Nach der heutigen Übung können Sie
 - Hilfe fürs Debugging finden
 :::
 
-::: {.callout-tip appearance="default" title="Übungen ohne RStudio...:"}
+::: {.callout-tip appearance="default" title="Übungen ohne RStudio"}
 Falls bei der Installation unlösbare Probleme auftauchen, können Sie _R_ und _RStudio_ in der _R Sprechstunde_ nächste Woche installieren. Lösen Sie die Aufgaben ab _Aufgabe 1.4_ mit _WebR_ [hier](../appendix/webrconsole.qmd) und holen Sie _Aufgabe 1.1-1.3_ vor der nächsten Übung nach.
 :::
 
@@ -35,16 +35,16 @@ Installieren Sie das _Package_ {tidyverse} entweder über die Konsole oder über
 a. Erstellen Sie (an einem für Sie geeigneten Ort auf Ihrem Rechner) einen Ordner für alle Übungen in Statistik 2 mit dem Namen `Statistik2`.
 <!-- (oder einem anderen passenden Namen gemäss den [Konventionen](../r/programmingbasics.qmd#namingconventions). -->
 
-b. Öffnen Sie _RStudio_ und erstellen Sie in diesem Ordner ein _RProject_ mit dem Namen _Introduction_to_R_.
+b. Öffnen Sie _RStudio_ und erstellen Sie in diesem Ordner ein _RProject_ mit dem Namen `introduction_to_r`.
 
 c. Erstellen Sie in _RStudio_ ein _RSkript_ (Endung `.R`).
 
-d. Speichern Sie dieses Skript im _RProjekt_-Ordner mit dem Namen _IntroSkript_ ab.
+d. Speichern Sie dieses Skript im _RProjekt_-Ordner mit dem Namen `introskript` ab.
 
 e. Erstellen Sie im aktuellen _RProjekt_-Ordner einen Unterordner namens `data`. Laden Sie dann die Datensätze herunter und speichern Sie diese im `data`-Ordner.
 
-    - [Datensatz 1](../data/stroop_data_sub-01.csv)
-    - [Datensatz 2](../data/stroop_data_sub-01.xlsx)
+    - [Datensatz 1](../data/stroop_data_sub-001.csv)
+    - [Datensatz 2](../data/stroop_data_sub-001.xlsx)
 
 ## Aufgabe 1.4: Operatoren und Funktionen verwenden
 
@@ -92,12 +92,12 @@ e. Diskutieren Sie kurz zusammen: Wie unterscheiden sich Warnungen von Fehlermel
 
 ## Aufgabe 1.5: RNotebook erstellen und Packages laden
 
-a. Erstellen Sie ein _RNotebook_ und speichern Sie es unter dem Namen _IntroNotebook_ ab.
+a. Erstellen Sie ein _RNotebook_ und speichern Sie es unter dem Namen `intronotebook` ab.
 
 b. Identifizieren Sie die 3 Bausteine eines Notebooks: Header, Textfeld und Codefeld mit folgenden Fragen:
 
     - Woran erkennt man den Baustein?
-    - Für was eignet sich der Baustein besonders und für nicht?
+    - Für was eignet sich der Baustein besonders und für was nicht?
 
 c. Geben Sie dem Notebook einen Titel.
 
@@ -117,7 +117,7 @@ In dieser Aufgabe arbeiten wir weiter mit dem _RNotebook_ von oben.
 
 a. Erstellen Sie ein neues Codefeld.
 
-b. Lesen Sie den Datensatz `stroop_data_sub-01.csv` ein aus dem `data`-Ordner ein. Gehen Sie dabei schrittweise vor:
+b. Lesen Sie den Datensatz `stroop_data_sub-001.csv` aus dem `data`-Ordner ein. Gehen Sie dabei schrittweise vor:
 
     - Welche Endungen hat die Datei?
 
@@ -132,7 +132,7 @@ b. Lesen Sie den Datensatz `stroop_data_sub-01.csv` ein aus dem `data`-Ordner ei
 d1 <- ...("data/...")
 ```
 
-Führen Sie dieselben Schritte für `stroop_data_sub-01.xlsx` aus.
+Führen Sie dieselben Schritte für `stroop_data_sub-001.xlsx` aus.
 Denken Sie daran, dass die Einlesefunktion für `.xlsx`-Dateien aus dem Package {readxl} stammt und sie dieses zuerst laden müssen.
 
 ```{r}
@@ -149,7 +149,7 @@ d. Diskutieren Sie kurz zusammen:
 
 ## Aufgabe 1.7: Datensätze anschauen
 
-Schauen Sie sich die beiden Datensätze auf drei Arten an 
+Schauen Sie sich die beiden Datensätze auf vier Arten an: 
 
 a. indem Sie im `Environment` mit dem Pfeil den Datensatz aufklappen.
 
@@ -166,7 +166,15 @@ glimpse(...)
 
 ## Aufgabe 1.8: Visualisieren der Datensätze
 
-a. Installieren Sie das _Package_ {esquisse}.
+a. Installieren Sie das _Package_ {esquisse}. Verwenden Sie hierzu entweder den Reiter `Tools`> `Install Packages...` oder ergänzen Sie den untenstehenden Code. 
+
+```{r}
+#| eval: false
+# Ergänzen Sie diesen Code und schreiben Sie ihn in die Konsole und NICHT ins RNotebook.
+__("esquisse")
+```
+
+Wieso sollte das Package nicht im _RNotebook_ installiert werden?
 
 b. Geben Sie in der Konsole folgenden Code ein:
 
@@ -193,10 +201,12 @@ c. Schauen Sie sich nacheinander die beiden Datensätze an.
 
 d. Schliessen Sie Ihr _RProject_ und öffnen Sie es erneut.
 
-e. Falls nötig: Öffnen Sie ihr _IntroNotebook_ wieder und führen Sie Ihren Code mit `Run all` aus.
-Jetzt sollten Sie zum Schluss zwei Grafiken haben.
+e. Falls nötig: Öffnen Sie ihr `intronotebook.Rmd`-File wieder. Dies können Sie unter `File` > `Open File` tun oder im rechten unteren Quadranten unter `Files`.
 
-f. Zeigen Sie einander die Grafiken und diskutieren Vor- und Nachteile der Darstellungsformen.
+
+f. Führen Sie Ihren Code mit `Run all` aus. Jetzt sollten Sie zum Schluss zwei Grafiken haben.
+
+g. Zeigen Sie einander die Grafiken und diskutieren Vor- und Nachteile der Darstellungsformen.
 
 ::: {.callout-tip appearance="default" title="Bei Problemen..."}
 Der Einstieg ins Programmieren mit _R_ ist nicht einfach. Falls Sie Fragen zu den Übungen haben, dürfen Sie diese zusätzlich in der _R Sprechstunde_ nächste Woche stellen. Kommen Sie einfach mit Ihrem Computer vorbei und wir schauen es an.
