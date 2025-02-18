@@ -7,7 +7,7 @@ Nach der heutigen Übung können Sie
 - Benutzeroberfläche und Einstellungen in _RStudio_ anpassen
 - _RProjekte_ erstellen
 - Code in _RNotebooks_ und _RSkripte_ schreiben und ausführen
-- Mathematische und logische Operatoren verwenden
+- Mathematische Operatoren verwenden
 - Funktionen mit den passenden Argumenten verwenden
 - Variablen verschiedener Typen erstellen und abrufen
 - Datensätze einlesen und anschauen
@@ -204,7 +204,8 @@ d. Schliessen Sie Ihr _RProject_ und öffnen Sie es erneut.
 e. Falls nötig: Öffnen Sie ihr `intronotebook.Rmd`-File wieder. Dies können Sie unter `File` > `Open File` tun oder im rechten unteren Quadranten unter `Files`.
 
 
-f. Führen Sie Ihren Code mit `Run all` aus. Jetzt sollten Sie zum Schluss zwei Grafiken haben.
+f. Führen Sie Ihren Code mit `Run all` aus. Jetzt sollten Sie zum Schluss eine Grafik angezeigt erhalten.
+
 
 g. Zeigen Sie einander die Grafiken und diskutieren Vor- und Nachteile der Darstellungsformen.
 

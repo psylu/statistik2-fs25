@@ -62,21 +62,23 @@ In den folgenden Unterkapiteln wird auf folgende wichtige Bausteine in _R_ einge
 ### Packages
 
 Packages sind Sammlungen von Funktionen, die für das Programmieren genutzt werden können.
-Für das Bearbeiten von Daten eignen sich Funktionen aus dem _Package_ `tidyverse`, eine Sammlung von verschiedenen, für _data science_ sehr geeigneten _R Packages_. 
-Funktionen aus dem `tidyverse` ermöglichen und vereinfachen viele Schritte der Datenverarbeitung. 
-Im Folgenden werden die wichtigsten und häufigst verwendeten Funktionen beschrieben. 
+Packages können mit der Funktion `install.packages()` installiert und mit der Funktion `library()` geladen werden.
 
-Das `tidyverse` kann direkt in _R_ heruntergeladen werden:
+Ein Beispiel für ein Package ist das {tidyverse}. 
+Es enthält eine Sammlung von verschiedenen, für _Data Science_ sehr geeigneten Funktionen, welche viele Schritte der Datenverarbeitung ermöglichen und vereinfachen.
 
 <aside>Mehr Informationen zum `tidyverse`finden Sie [hier](https://r4ds.had.co.nz/).</aside>
 
+Das `tidyverse` kann direkt in _R_ heruntergeladen werden:
+
 ```{r}
 #| eval: FALSE
-# Download und Installieren des Packages (nur einmal ausführen)
+# Download und installieren des Packages (nur einmal in der Konsole ausführen)
 install.packages("tidyverse")
 ```
 
-Ein _Package_ muss nur einmal heruntergeladen und __installiert__ werden, danach ist es lokal auf dem Computer gespeichert. Aber: Jedes Mal wenn _R_ geöffnet wird, müssen _Packages_ wieder neu __geladen__ werden.
+Ein _Package_ muss __nur einmal__ heruntergeladen und __installiert__ werden, danach ist es lokal auf dem Computer gespeichert. 
+Aber: Jedes Mal wenn _RStudio_ geöffnet wird, müssen _Packages_ wieder neu __geladen__ werden.
 
 ```{r}
 #| warnings: FALSE
@@ -86,7 +88,50 @@ Ein _Package_ muss nur einmal heruntergeladen und __installiert__ werden, danach
 library("tidyverse") 
 ```
 
+<!-- Wenn nicht das ganze Package geladen werden soll, aber eine Funktion daraus gebraucht wird, kann die Funktion nach dem Package-Name mit `::` aufgerufen werden: `packagename::funktionsname()`. -->
+
 Sobald ein _Package_ installiert ist, können die Funktionen auch verwendet werden ohne, dass das ganze _Package_ mit `library()` geladen wird, indem die Funktion mit dem _Package_-Namen zusammen aufgerufen wird: `packagename::packagefunction()`. Dies macht Sinn, wenn verschiedene _Packages_ dieselben Namen für verschiedene Funktionen nutzen und es so zu Konflikten kommt oder wenn nur eine Funktion aus einem _Package_ verwendet werden soll und alle anderen sowieso nicht gebraucht werden.
+
+```{r}
+#| eval: false
+# Aufrufen Funktion aus Package ohne Laden
+tidyverse::tibble()
+```
+
+
+<!-- ### Packages -->
+
+<!--  -->
+
+<!-- <aside> Zu Beginn der Website wird jeweils angegeben, welche Packages für Sie im Hintergrund schon geladen wurden. </aside> -->
+
+<!-- Wenn ein Package nicht geladen werden soll, aber eine Funktion daraus gebraucht wird, kann die Funktion nach dem Package-Name mit `::` aufgerufen werden: `packagename::funktionsname()`. -->
+
+<!-- ::: {.panel-tabset} -->
+<!-- ## {{< fa code >}}&emsp;Konsole -->
+
+<!-- Laden Sie das Package `{ggplot2}`: -->
+
+<!-- ```{webr-r} -->
+<!-- library(___) -->
+
+<!-- ``` -->
+
+<!-- ## {{< fa regular helicopter >}}&emsp;Tipp -->
+
+<!-- Geben Sie innerhalb der Klammer den Packagename an (keine Anführungszeichen). -->
+
+<!-- ## {{< fa check >}}&emsp;Lösung -->
+
+<!-- ```{r} -->
+<!-- #| eval: false -->
+
+<!-- library(ggplot2) -->
+<!-- ``` -->
+
+
+<!-- ::: -->
+
 
 ### Mathematische Operatoren
 
@@ -143,6 +188,7 @@ Am linken Rand wird die Zeilennummer des Codes angegeben analog zu einem _RSkrip
 
 : Mathematische Operatoren in R {.hover}
 
+<br>
 
 ::: {.panel-tabset}
 ## {{< fa code >}}&emsp;Konsole
@@ -499,7 +545,6 @@ Wichtige Funktionen für statistische Berechnungen:
 
 - `mean()`: berechnet den Mittelwert
 - `median()`: berechnet den Median
-- `mode()`: berechnet den Modus
 - `sd()`: berechnet die Standardabweichung
 - `sum()`: berechnet die Summe
 - `min()`: extrahiert den kleinsten Wert
@@ -519,7 +564,7 @@ Dieser Code erstellt einen Variable mit 100 fiktiven IQ-Messungen.
 data_iq <- rnorm(100, mean = 100, sd = 15) # diese Zeile generiert 100 Messungen
 ```
 
-Verwenden Sie die Konsole um die Variable zu erstellen mit dem obigen Code.
+Verwenden Sie die Konsole, um die Variable `data_iq` zu erstellen mit dem obigen Code.
 Danach können Sie die Funktionen von oben nutzen um das Quiz zu beantworten.
 
 
@@ -546,9 +591,9 @@ __c.__ Was ist die Standardabweichung der Daten?
 
 `r webexercises::mcq(c(answer = "ca. 15", "ca. 50", "ca. 100"))`
 
-__d.__ Was ist die der maximale Wert?
+__d.__ Was ist die der maximale Wert? (keine Quiz-Antwort möglich da Werte unterschiedlich) 
 
-__e.__ Was ist der minimale Wert?
+__e.__ Was ist der minimale Wert? (keine Quiz-Antwort möglich da Werte unterschiedlich) 
 
 :::
 
@@ -556,39 +601,6 @@ __e.__ Was ist der minimale Wert?
 Alles hinter dem `#` wird nicht ausgeführt, es dient als Kommentar.
 So kann beschrieben werden, was eine Zeile Code genau macht, ohne dass diese mit dem Code interferiert.
 </aside>
-
-<!-- ### Packages -->
-
-<!-- Packages können mit der Funktion `install.packages()` installiert und mit `library()` geladen werden.  -->
-
-<!-- <aside> Zu Beginn der Website wird jeweils angegeben, welche Packages für Sie im Hintergrund schon geladen wurden. </aside> -->
-
-<!-- Wenn ein Package nicht geladen werden soll, aber eine Funktion daraus gebraucht wird, kann die Funktion nach dem Package-Name mit `::` aufgerufen werden: `packagename::funktionsname()`. -->
-
-<!-- ::: {.panel-tabset} -->
-<!-- ## {{< fa code >}}&emsp;Konsole -->
-
-<!-- Laden Sie das Package `{ggplot2}`: -->
-
-<!-- ```{webr-r} -->
-<!-- library(___) -->
-
-<!-- ``` -->
-
-<!-- ## {{< fa regular helicopter >}}&emsp;Tipp -->
-
-<!-- Geben Sie innerhalb der Klammer den Packagename an (keine Anführungszeichen). -->
-
-<!-- ## {{< fa check >}}&emsp;Lösung -->
-
-<!-- ```{r} -->
-<!-- #| eval: false -->
-
-<!-- library(ggplot2) -->
-<!-- ``` -->
-
-
-<!-- ::: -->
 
 
 ## Data wrangling

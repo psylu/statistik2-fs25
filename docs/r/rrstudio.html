@@ -285,8 +285,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#rprojekt-erstellen" id="toc-rprojekt-erstellen" class="nav-link" data-scroll-target="#rprojekt-erstellen"><span class="header-section-number">2.3.1</span> <em>RProjekt</em> erstellen</a></li>
   </ul></li>
   <li><a href="#code-schreiben-ausführen-und-speichern" id="toc-code-schreiben-ausführen-und-speichern" class="nav-link" data-scroll-target="#code-schreiben-ausführen-und-speichern"><span class="header-section-number">2.4</span> Code schreiben, ausführen und speichern</a></li>
-  <li><a href="#erstellen-und-verwenden-von-rnotebooks" id="toc-erstellen-und-verwenden-von-rnotebooks" class="nav-link" data-scroll-target="#erstellen-und-verwenden-von-rnotebooks"><span class="header-section-number">2.5</span> Erstellen und Verwenden von <em>RNotebooks</em></a></li>
-  <li><a href="#dateiformate" id="toc-dateiformate" class="nav-link" data-scroll-target="#dateiformate"><span class="header-section-number">2.6</span> Dateiformate</a></li>
+  <li><a href="#rnotebooks" id="toc-rnotebooks" class="nav-link" data-scroll-target="#rnotebooks"><span class="header-section-number">2.5</span> <em>RNotebooks</em></a>
+  <ul class="collapse">
+  <li><a href="#erstellen-eines-neuen-rnotebooks" id="toc-erstellen-eines-neuen-rnotebooks" class="nav-link" data-scroll-target="#erstellen-eines-neuen-rnotebooks"><span class="header-section-number">2.5.1</span> Erstellen eines neuen <em>RNotebooks</em></a></li>
+  <li><a href="#header" id="toc-header" class="nav-link" data-scroll-target="#header"><span class="header-section-number">2.5.2</span> Header</a></li>
+  <li><a href="#codechunks" id="toc-codechunks" class="nav-link" data-scroll-target="#codechunks"><span class="header-section-number">2.5.3</span> Codechunks</a></li>
+  <li><a href="#textfeld" id="toc-textfeld" class="nav-link" data-scroll-target="#textfeld"><span class="header-section-number">2.5.4</span> Textfeld</a></li>
+  </ul></li>
+  <li><a href="#übersicht-dateiformate" id="toc-übersicht-dateiformate" class="nav-link" data-scroll-target="#übersicht-dateiformate"><span class="header-section-number">2.6</span> Übersicht Dateiformate</a></li>
   </ul>
 </nav>
     </div>
@@ -450,7 +456,7 @@ Tipp: Namensgebung für Files und Variablen
 </div>
 </section>
 </section>
-<section id="code-schreiben-ausführen-und-speichern" class="level2 page-columns page-full" data-number="2.4">
+<section id="code-schreiben-ausführen-und-speichern" class="level2" data-number="2.4">
 <h2 data-number="2.4" class="anchored" data-anchor-id="code-schreiben-ausführen-und-speichern"><span class="header-section-number">2.4</span> Code schreiben, ausführen und speichern</h2>
 <p>In <em>RStudio</em> können Sie Code auf verschiedene Arten schreiben, ausführen und speichern.</p>
 <p><strong>1. Code in der Konsole</strong></p>
@@ -467,29 +473,52 @@ Tipp: Namensgebung für Files und Variablen
 <li>Code anwählen und oben das Symbol <code>Run</code> drücken</li>
 </ul>
 <p><strong>3. Code in RNotebooks</strong>:</p>
-<p>Ein <em>RNotebook</em> ist praktisch, wenn man Text und Code kombinieren möchte, aber man Text ohne das Auskommentieren (mit dem <code>#</code>) schreiben möchte. Dies ist beispielsweise der Fall, wenn man Details zu einer Analyse zu den Berechnungen hinzu schreiben möchte. Ein <em>RNotebook</em> kann zudem “gerendert” werden, dass heisst, es kann damit ein <code>.html</code>- oder ein <code>.pdf</code>-File erstellt werden. Das ist besonders praktisch, wenn man seine Analyse mit jemanden teilen möchte, der/die kein <em>R</em> benutzt (z.B. bei einer Publikation kann so der Code mit dem Artikel eingereicht werden).</p>
-<p>In einem <em>RNotebook</em> ist Text grundsätzlich normaler Text. Code kann eingefügt werden, indem man ein Code-Feld (Chunk) einfügt. Ein neuer Codechunk wird eingefügt mit der Tastenkombination <kbd aria-hidden="true">Ctrl</kbd><span class="visually-hidden">Ctrl</span> + <kbd aria-hidden="true">Alt</kbd><span class="visually-hidden">Alt</span> +<kbd aria-hidden="true">I</kbd><span class="visually-hidden">I</span> / <kbd aria-hidden="true">Option</kbd><span class="visually-hidden">Option</span> +<kbd aria-hidden="true">Command</kbd><span class="visually-hidden">Command</span> + <kbd aria-hidden="true">I</kbd><span class="visually-hidden">I</span> oder unter <code>Code</code> &gt; <code>Insert Chunk</code>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p>Ein <em>RNotebooks</em>, <em>RMarkdown-</em> oder <em>Quarto-Files</em> ist praktisch, wenn man Text und Code kombinieren möchte, aber man Text ohne das Auskommentieren (mit dem <code>#</code>) schreiben möchte. Dies ist beispielsweise der Fall, wenn man Details zu einer Analyse zu den Berechnungen hinzu schreiben möchte. Ein <em>RNotebook</em> kann zudem “gerendert” werden, dass heisst, es kann damit ein <code>.html</code>- oder ein <code>.pdf</code>-File erstellt werden. Das ist besonders praktisch, wenn man seine Analyse mit jemanden teilen möchte, der/die kein <em>R</em> benutzt (z.B. bei einer Publikation kann so der Code mit dem Artikel eingereicht werden).</p>
+<p>In einem <em>RNotebook</em> ist Text grundsätzlich normaler Text. Nur Text in einem Code-Feld (Chunk) wird als Code erkannt. Um den Code auszuführen, gibt es drei Möglichkeiten:</p>
+<ul>
+<li>Code anwählen und <kbd aria-hidden="true">Ctrl</kbd><span class="visually-hidden">Ctrl</span> + <kbd aria-hidden="true">Enter</kbd><span class="visually-hidden">Enter</span> eingeben</li>
+<li>oben rechts beim Codechunk <code>Run</code> drücken</li>
+<li>oben rechts beim <em>RNotebook</em> <code>Run</code> drücken</li>
+</ul>
+</section>
+<section id="rnotebooks" class="level2 page-columns page-full" data-number="2.5">
+<h2 data-number="2.5" class="anchored" data-anchor-id="rnotebooks"><span class="header-section-number">2.5</span> <em>RNotebooks</em></h2>
+<section id="erstellen-eines-neuen-rnotebooks" class="level3" data-number="2.5.1">
+<h3 data-number="2.5.1" class="anchored" data-anchor-id="erstellen-eines-neuen-rnotebooks"><span class="header-section-number">2.5.1</span> Erstellen eines neuen <em>RNotebooks</em></h3>
+<p>Unter <code>File</code> &gt; <code>RNotebook</code> kann ein neues <em>RNotebook</em> erstellt werden.</p>
+<p><img src="../imgs/rnotebook_1.png" class="img-fluid"></p>
+<p><img src="../imgs/rnotebook_2.png" class="img-fluid"></p>
+</section>
+<section id="header" class="level3" data-number="2.5.2">
+<h3 data-number="2.5.2" class="anchored" data-anchor-id="header"><span class="header-section-number">2.5.2</span> Header</h3>
+<p>Der Header beschreibt den Teil zwischen den <code>---</code> ganz oben im <em>RNotebook</em>. Dort kann der Titel des <em>RNotebooks</em> geändert werden. Zudem wird dort definiert, zu was das <em>RNotebook</em> gerendert wird (z.B. PDF, html, etc.)</p>
+</section>
+<section id="codechunks" class="level3" data-number="2.5.3">
+<h3 data-number="2.5.3" class="anchored" data-anchor-id="codechunks"><span class="header-section-number">2.5.3</span> Codechunks</h3>
+<p>Code wird in den Code-Chunks eingegeben und ausgeführt. Ein neuer Code-Chunk wird eingefügt mit der Tastenkombination <kbd aria-hidden="true">Ctrl</kbd><span class="visually-hidden">Ctrl</span> + <kbd aria-hidden="true">Alt</kbd><span class="visually-hidden">Alt</span> +<kbd aria-hidden="true">I</kbd><span class="visually-hidden">I</span> / <kbd aria-hidden="true">Option</kbd><span class="visually-hidden">Option</span> +<kbd aria-hidden="true">Command</kbd><span class="visually-hidden">Command</span> + <kbd aria-hidden="true">I</kbd><span class="visually-hidden">I</span> oder unter <code>Code</code> &gt; <code>Insert Chunk</code>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>Um den Code auszuführen, gibt es drei Möglichkeiten:</p>
 <ul>
 <li>Code anwählen und <kbd aria-hidden="true">Ctrl</kbd><span class="visually-hidden">Ctrl</span> + <kbd aria-hidden="true">Enter</kbd><span class="visually-hidden">Enter</span> eingeben</li>
 <li>oben rechts beim Codechunk <code>Run</code> drücken</li>
 <li>oben rechts beim <em>RNotebook</em> <code>Run</code> drücken</li>
 </ul>
-<p>Weiter können auch Bilder eingefügt werden und der Text kann mit Kapiteln, <strong>fett</strong>/<em>kursiv</em> Schrift, etc. strukturiert werden.</p>
+<p>Code kann auch auskommentiert werden mit <code>#</code></p>
+</section>
+<section id="textfeld" class="level3 page-columns page-full" data-number="2.5.4">
+<h3 data-number="2.5.4" class="anchored" data-anchor-id="textfeld"><span class="header-section-number">2.5.4</span> Textfeld</h3>
+<p>Alles was nicht im Header oder in einem Codechunk steht, wird als Text erkannt und nicht als Code ausgeführt. Text kann in R Markdown Files nicht nur geschrieben, sondern auch relativ simpel formatiert werden mit Kapiteln, <strong>fett</strong>/<em>kursiv</em> Schrift, etc. strukturiert werden.</p>
+<aside>
+Cheatsheet für RMarkdown zum <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown-2.0.pdf">herunterladen</a>
+</aside>
+<p>Weiter können Links, Bilder, Dataoutputs, etc. eingefügt werden. Dies macht dieses Format sehr praktisch für das Erstellen von reproduzierbaren Datenanalysen-Reports.</p>
 <aside>
 Für Interessierte: diese ganze Website ist mit Quarto-Files erstellt, die nach demselben Prinzip wie <em>RNotebooks</em> funktionieren. Quarto-Files können ebenfalls in <em>RStudio</em> erstellt und bearbeitet werden.
 </aside>
-<ul>
-<li></li>
-</ul>
 </section>
-<section id="erstellen-und-verwenden-von-rnotebooks" class="level2" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="erstellen-und-verwenden-von-rnotebooks"><span class="header-section-number">2.5</span> Erstellen und Verwenden von <em>RNotebooks</em></h2>
-<p><img src="../imgs/rnotebook_1.png" class="img-fluid"></p>
-<p><img src="../imgs/rnotebook_2.png" class="img-fluid"></p>
 </section>
-<section id="dateiformate" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="dateiformate"><span class="header-section-number">2.6</span> Dateiformate</h2>
+<section id="übersicht-dateiformate" class="level2" data-number="2.6">
+<h2 data-number="2.6" class="anchored" data-anchor-id="übersicht-dateiformate"><span class="header-section-number">2.6</span> Übersicht Dateiformate</h2>
+<p>In einem <em>RProjekt</em>-Ordner finden sich nach der Arbeit damit viele Dateien. Die wichtigsten sind:</p>
 <ul>
 <li><em>RProjects</em>: <code>.Rproj</code></li>
 <li><em>RSkripts</em>: <code>.R</code></li>
@@ -502,7 +531,7 @@ Für Interessierte: diese ganze Website ist mit Quarto-Files erstellt, die nach 
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>Der Codechunk kann auch selber erstellt werden, indem die Backticks etc. eingegeben werden, aber das ist eher aufwändig.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Der Code-Chunk kann auch selber erstellt werden, indem die Backticks etc. eingegeben werden, aber das ist eher aufwändig.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

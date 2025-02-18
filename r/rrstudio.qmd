@@ -169,10 +169,35 @@ Um den Code auszuführen, gibt es zwei Möglichkeiten:
 
 __3. Code in RNotebooks__:
 
-Ein _RNotebook_ ist praktisch, wenn man Text und Code kombinieren möchte, aber man Text ohne das Auskommentieren (mit dem `#`) schreiben möchte. Dies ist beispielsweise der Fall, wenn man Details zu einer Analyse zu den Berechnungen hinzu schreiben möchte. Ein _RNotebook_ kann zudem "gerendert" werden, dass heisst, es kann damit ein `.html`- oder ein `.pdf`-File erstellt werden. Das ist besonders praktisch, wenn man seine Analyse mit jemanden teilen möchte, der/die kein _R_ benutzt (z.B. bei einer Publikation kann so der Code mit dem Artikel eingereicht werden).
+Ein _RNotebooks_, _RMarkdown-_ oder _Quarto-Files_ ist praktisch, wenn man Text und Code kombinieren möchte, aber man Text ohne das Auskommentieren (mit dem `#`) schreiben möchte. Dies ist beispielsweise der Fall, wenn man Details zu einer Analyse zu den Berechnungen hinzu schreiben möchte. Ein _RNotebook_ kann zudem "gerendert" werden, dass heisst, es kann damit ein `.html`- oder ein `.pdf`-File erstellt werden. Das ist besonders praktisch, wenn man seine Analyse mit jemanden teilen möchte, der/die kein _R_ benutzt (z.B. bei einer Publikation kann so der Code mit dem Artikel eingereicht werden).
 
-In einem _RNotebook_ ist Text grundsätzlich normaler Text. Code kann eingefügt werden, indem man ein Code-Feld (Chunk) einfügt.
-Ein neuer Codechunk wird eingefügt mit der Tastenkombination {{< kbd Ctrl >}} + {{< kbd Alt >}} +{{< kbd I >}} / {{< kbd Option >}} +{{< kbd Command >}} + {{< kbd I >}} oder unter `Code` > `Insert Chunk`.^[Der Codechunk kann auch selber erstellt werden, indem die Backticks etc. eingegeben werden, aber das ist eher aufwändig.]
+In einem _RNotebook_ ist Text grundsätzlich normaler Text. Nur Text in einem Code-Feld (Chunk) wird als Code erkannt. 
+Um den Code auszuführen, gibt es drei Möglichkeiten:
+
+- Code anwählen und {{< kbd Ctrl >}} + {{< kbd Enter >}} eingeben
+- oben rechts beim Codechunk `Run` drücken
+- oben rechts beim _RNotebook_ `Run` drücken 
+
+
+## _RNotebooks_
+
+### Erstellen eines neuen _RNotebooks_
+
+Unter `File` > `RNotebook` kann ein neues _RNotebook_ erstellt werden.
+
+![](../imgs/rnotebook_1.png)
+
+![](../imgs/rnotebook_2.png)
+
+### Header
+Der Header beschreibt den Teil zwischen den `---` ganz oben im _RNotebook_.
+Dort kann der Titel des _RNotebooks_ geändert werden.
+Zudem wird dort definiert, zu was das _RNotebook_ gerendert wird (z.B. PDF, html, etc.)
+
+
+### Codechunks
+Code wird in den Code-Chunks eingegeben und ausgeführt.
+Ein neuer Code-Chunk wird eingefügt mit der Tastenkombination {{< kbd Ctrl >}} + {{< kbd Alt >}} +{{< kbd I >}} / {{< kbd Option >}} +{{< kbd Command >}} + {{< kbd I >}} oder unter `Code` > `Insert Chunk`.^[Der Code-Chunk kann auch selber erstellt werden, indem die Backticks etc. eingegeben werden, aber das ist eher aufwändig.]
 
 Um den Code auszuführen, gibt es drei Möglichkeiten:
 
@@ -180,22 +205,24 @@ Um den Code auszuführen, gibt es drei Möglichkeiten:
 - oben rechts beim Codechunk `Run` drücken
 - oben rechts beim _RNotebook_ `Run` drücken 
 
-Weiter können auch Bilder eingefügt werden und der Text kann mit Kapiteln, __fett__/_kursiv_ Schrift, etc. strukturiert werden.
+Code kann auch auskommentiert werden mit `#`
+
+### Textfeld
+Alles was nicht im Header oder in einem Codechunk steht, wird als Text erkannt und nicht als Code ausgeführt.
+Text kann in R Markdown Files nicht nur geschrieben, sondern auch relativ simpel formatiert werden mit Kapiteln, __fett__/_kursiv_ Schrift, etc. strukturiert werden.
+
+<aside>Cheatsheet für RMarkdown zum [herunterladen](https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown-2.0.pdf)</aside>
+
+Weiter können Links, Bilder, Dataoutputs, etc. eingefügt werden. 
+Dies macht dieses Format sehr praktisch für das Erstellen von reproduzierbaren Datenanalysen-Reports.
 
 <aside>Für Interessierte: diese ganze Website ist mit Quarto-Files erstellt, die nach demselben Prinzip wie _RNotebooks_ funktionieren. Quarto-Files können ebenfalls in _RStudio_ erstellt und bearbeitet werden.</aside>
 
-- 
 
+## Übersicht Dateiformate
 
-## Erstellen und Verwenden von _RNotebooks_
-
-![](../imgs/rnotebook_1.png)
-
-![](../imgs/rnotebook_2.png)
-
-
-
-## Dateiformate
+In einem _RProjekt_-Ordner finden sich nach der Arbeit damit viele Dateien.
+Die wichtigsten sind:
 
 - _RProjects_: `.Rproj`
 - _RSkripts_: `.R`
