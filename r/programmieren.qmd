@@ -6,13 +6,18 @@ Wir lernen in diesem Kurs das Programmieren nicht im luftleeren Raum, sondern an
 
 > "Psychologie erforscht das menschliche Erleben und Verhalten – sie untersucht, beschreibt und erklärt psychische Phänomene wie Gefühle, Entscheidungen, Gedanken, Motivationen oder Erinnerungen."^[https://www.unilu.ch/studium/studienangebot/bachelor/vpf/psychologie/](https://www.unilu.ch/studium/studienangebot/bachelor/vpf/psychologie/)
 
-Die Psychologie ist eine empirische Wissenschaft. Das bedeutet, die Erkenntnisse der Wissenschaftlichen Psychologie werden durch das Erheben und Auswerten von Daten gewonnen. Hierfür brauchen wir nicht nur Wissen darüber, wie Daten systematisch erhoben werden können, sondern auch darüber, wie diese Daten verarbeitet, zusammengefasst, interpretiert und kommuniziert werden können.
+Die Psychologie ist eine empirische Wissenschaft. Das bedeutet, die Erkenntnisse der Wissenschaftlichen Psychologie werden zu einem grossen Teil durch das Erheben und Auswerten von Daten gewonnen. Hierfür brauchen wir nicht nur Wissen darüber, wie Daten systematisch erhoben werden können, sondern auch darüber, wie diese Daten verarbeitet, zusammengefasst, interpretiert und kommuniziert werden können.
 
 > Wenn wir Daten verstehen wollen, müssen wir mit ihnen sprechen. Und eine Sprache, die uns dies ermöglicht, ist R.
 
-Deshalb starten wir zu Beginn mit möglichst wenig trockenem Wissen, sondern erarbeiten uns das Programmierwissen nach und nach anhand von Beispielen aus der psychologischen Praxis.
-Sie müssen, um mit Daten zu sprechen, keine Programmiersprache perfekt beherrschen, sondern nur genügend gut, um an die Informationen zu kommen, die Sie interessieren.
+Die Methodenausbildung befähigt dazu 
 
+- die Qualität von Studien und einzelnen Aussagen kritisch zu hinterfragen und einzuordnen.
+- zu beurteilen, ob erhobene Daten, das statistische Verfahren und die wissenschaftliche Aussage zueinander passen.
+- Daten selbstständig zu erheben und zu analysieren, um wissenschaftliche Aussagen machen zu können zu den interessierenden Fragen in allen Feldern der Psychologie.
+
+Deshalb starten wir zu Beginn mit möglichst wenig trockenem Wissen, sondern erarbeiten uns das Programmierwissen nach und nach anhand von Beispielen aus der psychologischen Praxis.
+Sie müssen, um mit Daten zu sprechen, keine Programmiersprache perfekt beherrschen, sondern nur genügend gut, um die Informationen zu erhalten, die Sie interessieren.
 
 
 ## Wichtige Aspekte von Programmiersprachen

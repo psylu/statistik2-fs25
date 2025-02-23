@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../uebungen/uebungen.html" rel="next">
+<link href="../datenverarbeitung/transform.html" rel="next">
 <link href="../datenverarbeitung/workflow.html" rel="prev">
 <link href="../imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -204,6 +204,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
  <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Datensätze einlesen und schreiben</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenverarbeitung/transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Datensätze bearbeiten</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -283,6 +289,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#einlesen-eines-.xlsx-files" id="toc-einlesen-eines-.xlsx-files" class="nav-link" data-scroll-target="#einlesen-eines-.xlsx-files"><span class="header-section-number">6.2.2</span> Einlesen eines <code>.xlsx</code>-Files</a></li>
   <li><a href="#funktionen-zum-einlesen-von-datensätzen" id="toc-funktionen-zum-einlesen-von-datensätzen" class="nav-link" data-scroll-target="#funktionen-zum-einlesen-von-datensätzen"><span class="header-section-number">6.2.3</span> Funktionen zum Einlesen von Datensätzen</a></li>
   </ul></li>
+  <li><a href="#datensätze-speichern-write.csv" id="toc-datensätze-speichern-write.csv" class="nav-link" data-scroll-target="#datensätze-speichern-write.csv"><span class="header-section-number">6.3</span> Datensätze speichern: <code>write.csv()</code></a></li>
   </ul>
 </nav>
     </div>
@@ -327,7 +334,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <h3 data-number="6.2.1" class="anchored" data-anchor-id="einlesen-eines-.csv-files"><span class="header-section-number">6.2.1</span> Einlesen eines <code>.csv</code>-Files</h3>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einlesen eines .csv-Files</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>new_csv_data <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/nameoftheCSVfile.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>data_csv <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/nameoftheCSVfile.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Weitere Einstellungen:</p>
 <ul>
@@ -340,7 +347,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einlesen eines .xlsx-Files</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(readxl)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>new_xlsx_data <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/nameoftheEXCELfile.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>data_xlsx <span class="ot">&lt;-</span> <span class="fu">read_xlsx</span>(<span class="st">"data/nameoftheEXCELfile.xlsx"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Weitere Einstellungen:</p>
 <ul>
@@ -412,9 +419,48 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </tr>
 </tbody>
 </table>
+<div class="callout callout-style-default callout-caution callout-titled" title="Einlesen eines Datensatzes">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Einlesen eines Datensatzes
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Öffnen Sie Ihr <em>RProjekt</em> <code>introduction_to_r</code> auf Ihrem Computer und öffnen Sie Ihr <em>RNotebook</em> <code>intro_datawangling</code>. Falls Sie kein <em>RProjekt</em> und <em>RNotebook</em> mit diesem Namen haben, folgen Sie den Anweisungen im <a href="https://psylu.github.io/statistik2-fs25/r/rrstudio.html">Kapitel 2: Basics R und RStudio</a>.</p></li>
+<li><p>Laden Sie den Datensatz herunter und speichern Sie ihn im <code>data</code>-Ordner Ihres <em>RProjekts</em>.</p>
+<ul>
+<li><a href="../data/readingskills.csv"><code>readingskills.csv</code></a> <a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+</ul></li>
+<li><p>Lesen Sie den Datensatz ein über <code>Import Dataset</code> oder mit <code>read.csv()</code>.</p></li>
+<li><p>Checken Sie, ob das Einlesen einwandfrei geklappt hat, indem Sie den Datensatz unter <code>Environment</code> anwählen oder mit dem untenstehenden Code:</p></li>
+</ol>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data_csv)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(data_xlsx)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="datensätze-speichern-write.csv" class="level2" data-number="6.3">
+<h2 data-number="6.3" class="anchored" data-anchor-id="datensätze-speichern-write.csv"><span class="header-section-number">6.3</span> Datensätze speichern: <code>write.csv()</code></h2>
+<p>Mit der Funktion <code>write.csv()</code> kann eine neue Datei geschrieben werden. Hierzu braucht die Funktion den Datensatz sowie den Namen und Pfad der neuen Datei. Das Argument <code>row.names = FALSE</code> verhindert, dass eine Spalte Zeilennummern eingefügt wird.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(d, <span class="at">file =</span> <span class="st">"data/neuerdatensatz.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 
 
 </section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Der Datensatz ist Teil des Packages <a href="https://vincentarelbundock.github.io/Rdatasets/doc/betareg/ReadingSkills.html">{betareg}</a>. Quelle: Smithson M, Verkuilen J (2006). A Better Lemon Squeezer? Maximum-Likelihood Regression with Beta-Distributed Dependent Variables. Psychological Methods, 11(7), 54–71.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
@@ -1056,8 +1102,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../uebungen/uebungen.html" class="pagination-link" aria-label="Informationen">
-        <span class="nav-page-text">Informationen</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../datenverarbeitung/transform.html" class="pagination-link" aria-label="Datensätze bearbeiten">
+        <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Datensätze bearbeiten</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

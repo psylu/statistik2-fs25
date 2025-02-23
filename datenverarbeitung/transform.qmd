@@ -1,0 +1,450 @@
+# Datensätze bearbeiten
+
+```{r}
+#| include: false
+# Set working directory of R
+knitr::opts_knit$set(root.dir = '../')
+```
+
+:::{.callout-note appearance="default" title="Voraussetzungen"}
+
+- Package {tidyverse} ist installiert.
+- _RProject_ namens `introduction_to_r` mit Datenordner `data` aus [Kapitel: Basics R und RStudio](https://psylu.github.io/statistik2-fs25/r/rrstudio.html).
+- _RNotebook_ namens `intro_datawrangling` aus [Kapitel: Basics R und RStudio](https://psylu.github.io/statistik2-fs25/r/rrstudio.html).
+- Datensatz `readingskills.csv` in Ordner `data` [Kapitel: Datensätze einlesen und schreiben](https://psylu.github.io/statistik2-fs25/datenverarbeitung/readandwrite.html)
+:::
+
+In diesem Kapitel werden die wichtigsten Funktionen für die Datenverarbeitung in R behandelt.
+Die Funktionen können mit dem Package {tidyverse} installiert werden.
+
+### Laden der notwendigen Packages und Daten
+
+Zu Beginn muss das {tidyverse} geladen und der Beispielsdatensatz eingelesen werden.
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+d <- read.csv("data/readingskills.csv")
+```
+
+## Datensatz kennenlernen und anschauen
+
+Bei der Arbeit mit einem neuen Datensatz ist es wichtig, sich zu Beginn mit den enthaltenen Daten bekannzumachen.
+Hierzu können folgende Fragen gestellt werden:
+
+- Welche Variablen sind enthalten?
+- Welche Informationen enthalten diese?
+- Welches Format haben sie? (Skalenniveau, Variablentyp)
+- Was sind die maximal / minimal möglichen Werte?
+- Wie sind nicht vorhandene Werte codiert?
+- Ist der Datensatz im _Long-Format_ oder im _Wide-Format_ oder gemischt aufgebaut?
+
+Im Idealfall besteht ein _Data Dictionary_, welches diese Informationen kurz und knapp zusammenfasst.
+
+:::{.callout-note appearance="default" title="Datensatz `readingskills.csv`"}
+
+In diesem Kapitel wird der Beispielsdatensatz `readingskills.csv` verwendet.
+
+Der Datensatz stammt aus dem Package [{betareg}](https://vincentarelbundock.github.io/Rdatasets/doc/betareg/ReadingSkills.html).
+
+Er enthält Daten von 44 Kindern im Alter zwischen acht und zwölf Jahren über die Lesegenauigkeit, IQ-Wert aus einem nonverbalen Intelligenztest, und ob sie Dyslexie haben oder nicht.^[Smithson M, Verkuilen J (2006). A Better Lemon Squeezer? Maximum-Likelihood Regression with Beta-Distributed Dependent Variables. Psychological Methods, 11(7), 54–71.]
+
+| variable | label | type | values | source | transformations | missings | 
+|------|------|------|------|------|------|------|
+| participant identification | `id` | character, factor | "sub-001" to "sub-44" | raw | anonymized variable "participant" | NA |
+| dyslexia diagnosis | `dyslexia` | character, factor | "no", "yes" | raw | | NA|
+| z-score in nonverbal `iq_zscore` | iq-zscore | numeric| apprx. -2 to 2 | raw | z-transformed | NA |
+| reading performance | `accuracy` | numeric | 0 to 1 | raw | transformed from points to percent / 100 | NA |
+
+: Data-Dictionary des `readingskills`-Datensatzes {.hover}
+
+Der Datensatz wurde für dieses Kapitel noch mit einer zusätzlichen Variable und zwei zusätzlichen Versuchspersonen ergänzt.
+Finden Sie diese?
+:::
+
+Um den Datensatz zu erkunden, gibt es viele verschiedene Wege.
+
+### Datensatz erkunden im GUI
+
+Der Datensatz kann angeschaut werden, in dem im `Environment`-Fenster darauf geklickt wird:
+
+- Bei Klick auf das blaue Dreieck, erscheint eine Liste mit den Variablen.
+- Bei Doppelklick auf den Datensatz, wird eine Tabelle geöffnet.
+
+Praktisch ist hier, dass die Variablen in der Tabelle ein Format haben, dass man sich von anderen Tabellenverarbeitungsprogrammen, wie z.B. Excel, gewöhnt ist.
+Variablen können so auch mit wenig Aufwand der Grösse nach geordnet werden.
+
+### Datensatz erkunden durch Aufrufen des Datensatznamens
+
+Der Datensatz kann durch Aufrufen des Datensatznames in die Konsole ausgeben werden:
+
+```{r}
+d
+```
+
+### Datensatz erkunden mit Funktionen
+
+Nützliche Funktionen zum Erkunden eines Datensatzes sind zudem `glimpse()`
+
+```{r}
+glimpse(d)
+```
+
+und `head()`.
+
+```{r}
+head(d)
+```
+
+### Datensatz erkunden durch Zusammenfassen
+
+Mit der Funktion `summary()`kann eine kurze Übersicht über den Datensatz erstellt werden:
+
+```{r}
+summary(d)
+```
+
+## Einzelne Variablen ausgeben
+
+Einzelne Variablen können angeschaut werden, indem das `$` Zeichen verwendet wird:
+
+```{r}
+d$id
+```
+
+
+## Verwenden der Pipe: `|>` oder `%>%`
+
+In _R_ kann die _Pipe_ verwendet werden, um mehrere Datenverarbeitungsschritte aneinander zu hängen. 
+Damit spart man sich aufwändige Zwischenschritte und vermeidet das Erstellen von immer neuen Datensätzen. 
+Statt zwei einzelne Datenverarbeitungsschritte zu machen wie oben, können mehrere Schritte (hier Daten einlesen und anzeigen) zusammengefasst werden, in dem nach Zeilenende eine _Pipe_ eingefügt wird:
+
+<aside>Wann _Pipes_ ungeeignet sind wird [hier](https://r4ds.had.co.nz/pipes.html#when-not-to-use-the-pipe) beschrieben.</aside>
+
+```{r}
+#| eval: FALSE
+d <- read.csv("data/readingskills.csv") |>
+    glimpse()
+```
+
+Die _Base R Pipe `|>` und die _`magritter` _Pipe_ `%>%`_ unterscheiden sich nur in Details. Für dieses Kapitel spielt es keine Rolle, welche _Pipe_ verwendet wird.
+
+:::{.callout-tip appearance="default" title="Tipp" collapse="true"}
+
+Achtung: Wenn zu Beginn ein `<-` oder `=` verwendet wird, wird __alles__ was nach der Pipe kommt den Datensatz verändern. Wird z.B. der Code ...
+
+```{r}
+#| eval: FALSE
+d <- read.csv("data/readingskills.csv") |>
+    head()
+```
+
+...eingegeben, besteht der Datensatz `d` dann nur noch aus 6 Zeilen, weil `head()` nur die obersten 6 Zeilen anzeigt. 
+
+Wird die Pipe ohne `<-` oder `=` verwendet, bleibt der Datensatz unverändert:
+
+```{r}
+#| eval: FALSE
+d |>
+    head()
+```
+::: 
+
+
+## Datensatz bearbeiten oder neuer Datensatz erstellen
+
+Der Datensatz kann, z.B. für das Visualisieren oder für die Analyse, verändert werden. 
+Hierbei kann entweder der bestehende Datensatz, also `d`, überschrieben werden, oder es kann eine neuer Datensatz erstellt werden.
+
+<aside>Wird der eingelesene Datensatz angepasst, wird __keine__ Veränderung an der Datensatz-Datei (z.B. `readingskills.csv`) vorgenommen. Um diese zu verändern, muss eine neue Datei geschrieben werden, z.B. mit `write.csv()`.).</aside>
+
+
+## Variablen auswählen: `select()`
+
+Ein komplexer Datensatz mit sehr vielen Variablen wird oft für die Analyse aus Gründen der Einfachheit oder Anonymisierung reduziert. 
+Das bedeutet, dass man die nötigen Variablen auswählt, und nur mit diesem reduzierten Datensatz weiterarbeitet. 
+Hierzu eignet sich die Funktion `select()` sehr gut: Mit `select(.data, variablenname, ...)` können die zu behaltenden Variablen ausgewählt werden. 
+Wird ein `!` vor einen Variablennamen gesetzt, wird die Variable __nicht__ behalten, sondern alle anderen Variablen bleiben im Datensatz.
+
+Mit `select()` können Variablen innerhalb des Datensatzes sortiert und umbenannt werden, damit der Datensatz so strukturiert ist, dass er sich für die Analyse/Visualisierung eignet.
+
+_Beispiele:_
+
+```{r}
+#| eval: FALSE
+# Variablen id und accuracy behalten ohne Pipe
+d_simpler <- select(d, id, accuracy)
+
+# Variablen id und accuracy behalten mit Pipe
+d_simpler <- d |> select(id, accuracy)
+
+# Variablen id und accuracy mit umgekehrter Reihenfolge behalten mit Pipe
+d_simpler <- d |> select(accuracy, id)
+
+# alle Variablen ausser id behalten
+d_simpler <- d |> select(!id)
+
+# Variablennamen verändern
+d_simpler <- d |> select(iq_value = iq_zscore)
+```
+
+
+
+Sollen mehrere Variablen am Stück ausgewählt werden, kann die erste Variable in der Reihe (z.B. `word`) und die letzte in der Reihe (z.B. `congruent`) als `word:congruent` eingeben, dann werden auch alle dazwischen liegenden Variablen ausgewählt.
+
+```{r}
+d_simpler <- d |> select(id:accuracy)
+```
+
+
+:::{.callout-caution appearance="default" title="Hands-on: Variablen auswählen"}
+Variablen, die nicht verwendet werden aber persönliche Informationen enthalten, können zur Anonymisierung entfernt werden.
+Welche Variable wurde zum Originaldatensatz hinzugefügt und könnte (wenn sie nicht erfunden wäre) persönliche Informationen der Kinder enthalten, die für die weiteren Analysen nicht nötig sind?
+
+Überschreiben Sie den Datensatz `d` mit einer anonymisierten Version.
+
+Untenstehend finden Sie ein Beispiel, wie der Datensatz danach aussehen könnte.
+:::
+
+:::{.callout-tip appearance="default" title="Lösung: Variablen auswählen" collapse="true"}
+
+Die Variable `name` enthält persönliche Angaben, die irrelevant für die Datenanalyse/-visualisierung sind.
+
+```{r}
+d <- d |>
+  select(id, 
+         dyslexia, 
+         iq_zscore, 
+         accuracy)
+glimpse(d)
+```
+:::
+
+## Messungen auswählen: `filter()`
+
+Mit der Funktion `filter()` können bestimmte Beobachtungen oder Untergruppen ausgewählt werden. Hierfür muss in der Funktion `filter(.data, filter, ...)` der Datensatz, die betreffende Variable, sowie eine Bedingung eingegeben werden. 
+Es wird die ganze Zeile im Datensatz behalten in der die Variable der angegebenen Bedingung entspricht.
+
+_Beispiele:_
+
+```{r}
+#| eval: FALSE
+# nur Messungen (Zeilen) der Person sub-01 werden behalten
+d_filtered <- filter(d, id == "sub-01")
+
+# dasselbe mit der Pipe
+d_filtered <- d |> filter(id == "sub-01")
+
+# nur Messungen (Zeilen) mit accuracy über 0.5 werden behalten
+d_filtered <- d |> filter(accuracy > 0.5)
+
+# nur Messungen (Zeilen) der Kinder mit Dyslexie werden behalten
+d_filtered <- d |> filter(dyslexia == "yes")
+
+# nur Messungen (Zeilen) der Kinder die nicht Dyslexie: ja haben werden behalten
+d_filtered <- d |> filter(dyslexia != "yes")
+
+# nur Messungen (Zeilen) mit accuracy zwischen 0.5 und 0.8 werden behalten
+d_filtered <- d |> filter(accuracy > 0.5 & accuracy < 0.8)
+
+# nur Messungen (Zeilen) mit iq_zscore grösser oder gleich gross wie 1 behalten
+d_filtered <- d |> filter(iq_zscore >= 1)
+```
+
+Es kann auch mehrere Male hintereinander die `filter()`-Funktion aufgerufen werden:
+
+```{r}
+# mehrere Filter verwenden
+d_filtered <- d |> 
+    filter(id != "NA") |>
+    filter(iq_zscore <= 1)
+```
+
+:::{.callout-caution appearance="default" title="Hands-on: Daten filtern"}
+Drei Messungen (Zeilen) sind ungültig.
+Schauen Sie zuerst den Datensatz an, um zu erkennen, welche es sind.
+
+Überschreiben Sie den Datensatz `d` und behalten Sie nur die gültigen Messungen (44 Messungen).
+:::
+
+:::{.callout-tip appearance="default" title="Lösung: Daten filtern" collapse="true"}
+
+```{r}
+d <- d|>
+  filter(id != "NA") |>
+  filter(iq_zscore != "NA") |>
+  filter(accuracy <= 1)
+```
+
+:::
+
+## Neue Variablen generieren und verändern: `mutate()` und `case_when()`
+
+Mit der `mutate(.data, …)` Funktion können im Datensatz neue Variablen generiert oder bestehende Varaiablen verändert werden. 
+
+_Beispiel:_
+
+```{r}
+#| eval: FALSE
+# Neue Variablen erstellen
+d_new <- d |>
+    mutate(num_variable = 1.434,
+           chr_variable = "1.434",
+           sum_of_variable = accuracy + 1,
+           copy_variable = word)
+
+# Bestehende Variablen verändern
+d_new <- d_new |>
+    mutate(accuracy = accuracy * 100) # z.B. um Accuracy zu Percent correct zu transformieren
+```
+
+Mit `case_when()` kann eine neue Variable erstellt werden in Abhängigkeit von Werten anderer Variablen. Damit kann z.B. eine Variable `passed` erstellt werden, für alle Werte die genügend guten Leseresultate entsprechen.
+
+_Beispiel:_
+
+```{r}
+#| eval: FALSE
+d_condvariable <- d |>
+    mutate(grade = case_when(accuracy) > 0.7 ~ "passed",
+                                     rt <= 0.7 ~ "failed",
+                                     .default = NA)
+```
+
+Es können immer auch vorher definierte Variablen eingesetzt werden in die Funktionen, solange die Variable den richtigen Variablentyp hat:
+
+```{r}
+#| eval: FALSE
+
+CUTOFF = 0.7
+d_grades <- d |>
+    mutate(grade = case_when(accuracy) > CUTOFF ~ "pass",
+                                     rt <= CUTOFF ~ "fail",
+                                     .default = NA))
+```
+
+
+:::{.callout-caution appearance="default" title="Hands-on: Variablen generieren und verändern"}
+
+- Erstellen Sie im Datensatz `d_grades` eine neue Variable mit dem Namen `researcher`, den Ihren Namen enthält.
+
+- Erstellen Sie zudem eine Variable `grade`, mit `pass` für `accuracy`-Werten über 0.9 und mit `fail` für `accuracy`-Werten unter 0.9.
+
+- Schauen Sie den Datensatz an: Wie viele Kinder hätten bestanden bei diesem Cut-off?
+:::
+
+:::{.callout-tip appearance="default" title="Lösung: Variablen generieren und verändern" collapse="true"}
+
+```{r}
+CUTOFF = 0.9
+
+d_grades <- d |>
+  mutate(
+    researcher = "Vorname Nachname",
+    grade = case_when(accuracy >= CUTOFF ~ "pass",
+                      accuracy <= CUTOFF ~ "fail",
+                      .default = NA)
+  )
+
+d_grades$grade
+```
+
+:::
+
+
+## Variablentyp verändern: `as.factor()`, `as.numeric()`, ...
+
+Variablen können verschiedene Tyoen haben, sie können z.B. kategoriale (`factor`, `character`) oder numerische (`integer`, `numeric`, `double`) Informationen enthalten. 
+Beim Einlesen "rät" _R_, welche Klasse eine Variable hat. 
+Teilweise ist es praktisch dies zu ändern für die weitere Analyse.
+
+Wenn wir eine Variable zu einem Faktor machen möchten, verwenden wir `as.factor()`. 
+Dies macht z.B. Sinn, wenn die Versuchspersonennummer als Zahl eingelesen wurde. 
+Um von einem Faktor zu einer numerischen Variable zu kommen, verwenden wir `as.numeric()`.
+
+```{r}
+#| eval: false
+# Die Variable "id" zu einem Faktor machen
+d <- d |> 
+    mutate(id = as.factor(id))
+```
+
+:::{.callout-caution appearance="default" title="Hands-on: Variablentyp verändern"}
+
+Schauen Sie sich den Datensatz mit `glimpse()` an. 
+Welche Variablentypen enthält Ihr Datensatz und was bedeuten Sie?
+
+Verändern Sie alle `character`-Variablen (`chr`) zu `factor`-Variablen.
+
+Wieviele Levels haben die Variablen nun?
+:::
+
+:::{.callout-tip appearance="default" title="Lösung: Variablentyp verändern" collapse="true"}
+
+```{r}
+d <- d |> 
+  mutate(id = as.factor(id),
+         dyslexia = as.factor(dyslexia))
+```
+
+:::
+
+
+## Daten gruppieren und zusammenfassen: `group_by()` und `summarise()`
+
+Mit diesen beiden Funktionen könne Datensätze effizient gruppiert und zusammengefasst werden.
+
+```{r}
+# Nach Diagnose gruppieren und Accuracy zusammenfassen
+d |> group_by(dyslexia) |>
+    summarise(mean_acc = mean(accuracy),
+              sd_acc = sd(accuracy))
+
+```
+
+:::{.callout-caution appearance="default" title="Hands-on: Datensätze gruppieren und zusammenfassen"}
+
+Erstellen Sie einen neuen Datensatz `d_summary` wie folgt:
+
+- Gruppieren Sie den Datensatz für Dyslexia (ja / nein)
+
+- Fassen Sie für diese Gruppen die durchschnittliche Accuracy und der durchschnittliche IQ-Wert zusammen sowie die Standardabweichungen zusammen.
+
+Unterscheiden sich die Accuracy und IQ-Werte zwischen den Gruppen?
+
+:::
+
+:::{.callout-tip appearance="default" title="Lösung: Datensätze gruppieren und zusammenfassen" collapse="true"}
+
+```{r}
+d_summary <- d |> 
+  group_by(dyslexia) |>
+  summarise(mean_acc = mean(accuracy),
+          sd_acc = sd(accuracy),
+          mean_iq = mean(iq_zscore),
+          sd_iq = sd(iq_zscore))
+d_summary
+```
+
+:::
+
+## Datensätze speichern: `write.csv()`
+
+:::{.callout-caution appearance="default" title="Hands-on: Neuer Datensatz abspeichern"}
+
+Speichern Sie den bearbeiteten Datensatz als Datei ab 
+
+```{r}
+write.csv(d, "data/readingskills_clean.csv", row.names = FALSE)
+```
+
+:::
+
+
+
+<!-- ## Zusammenfassung -->
+
+<!-- tabelle einfügen. -->
+
+<!-- : Wichtigste Funktionen zum Transformieren von Datensätzen {.hover} -->
+

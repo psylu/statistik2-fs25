@@ -109,7 +109,7 @@ Dies verhindert, dass der aktuelle Code nur aufgrund früherer Speicherung läuf
 ![Einstellungen anpassen für _RProject_](../imgs/rprojects_dontsaveworkspace.png){fig-alt="Screenshot Dont save workspace." fig-align="center" width=100%}
 
 :::callout-caution
-## Hands-on: Erstellen eines RProjekt erstellen
+## Hands-on: Erstellen eines RProjekts
 
 Erstellen Sie ein neues _RProjekt_ auf Ihrem Computer mit folgenden Schritten:
 
@@ -183,7 +183,7 @@ Um den Code auszuführen, gibt es drei Möglichkeiten:
 
 ### Erstellen eines neuen _RNotebooks_
 
-Unter `File` > `RNotebook` kann ein neues _RNotebook_ erstellt werden.
+Unter `File` > `New File` > `R Notebook` kann ein neues _RNotebook_ erstellt werden.
 
 ![](../imgs/rnotebook_1.png)
 
@@ -218,6 +218,27 @@ Dies macht dieses Format sehr praktisch für das Erstellen von reproduzierbaren 
 
 <aside>Für Interessierte: diese ganze Website ist mit Quarto-Files erstellt, die nach demselben Prinzip wie _RNotebooks_ funktionieren. Quarto-Files können ebenfalls in _RStudio_ erstellt und bearbeitet werden.</aside>
 
+:::{.callout-caution appearance="default" title="Erstellen eines RNotebooks"}
+
+Erstellen Sie ein neues _RNotebook_ mit folgenden Schritten:
+
+1. Öffnen Sie Ihr _RProjekt_ in _RStudio_ (falls nicht noch offen).
+
+2. Erstellen Sie ein neues _RNotebook_.
+
+    - Klicken Sie dafür auf `File` > `New File` > `R Notebook`.
+    
+    - Benennen Sie das _RNotebook_ `intro_datawrangling` und speichern Sie es im _RProjekt_-Ordner ab.
+
+3. Passen Sie den Titel an.
+
+4. Schreiben Sie Text in das Textfeld.
+
+5. Schreiben Sie eine Zeile Code in den Code-Chunk.
+
+6. Drücken Sie __Knit__, um das Dokument zu rendern.
+
+:::
 
 ## Übersicht Dateiformate
 

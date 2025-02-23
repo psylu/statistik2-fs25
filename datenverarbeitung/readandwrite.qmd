@@ -32,7 +32,7 @@ Mit Code muss nicht jedesmal im GUI angeklickt werden wie der Datensatz eingeles
 ```{r}
 #| eval: false
 # Einlesen eines .csv-Files
-new_csv_data <- read.csv("data/nameoftheCSVfile.csv")
+data_csv <- read.csv("data/nameoftheCSVfile.csv")
 ```
 
 Weitere Einstellungen:
@@ -46,7 +46,7 @@ Weitere Einstellungen:
 #| eval: false
 # Einlesen eines .xlsx-Files
 library(readxl)
-new_xlsx_data <- read_xlsx("data/nameoftheEXCELfile.xlsx")
+data_xlsx <- read_xlsx("data/nameoftheEXCELfile.xlsx")
 ```
 
 Weitere Einstellungen:
@@ -65,3 +65,47 @@ Weitere Einstellungen:
 | `.dta`          | From Stata                   | ...                              |                            |                                              |
 
 : Einlesen von Datensätzen {.hover}
+
+
+
+:::{.callout-caution appearance="default" title="Einlesen eines Datensatzes"}
+
+1. Öffnen Sie Ihr _RProjekt_ `introduction_to_r` auf Ihrem Computer und öffnen Sie Ihr _RNotebook_ `intro_datawangling`. Falls Sie kein _RProjekt_ und _RNotebook_ mit diesem Namen haben, folgen Sie den Anweisungen im [Kapitel 2: Basics R und RStudio](https://psylu.github.io/statistik2-fs25/r/rrstudio.html).
+
+2. Laden Sie den Datensatz herunter und speichern Sie ihn im `data`-Ordner Ihres _RProjekts_.
+  
+    - [`readingskills.csv`](../data/readingskills.csv) ^[Der Datensatz ist Teil des Packages [{betareg}](https://vincentarelbundock.github.io/Rdatasets/doc/betareg/ReadingSkills.html). Quelle: Smithson M, Verkuilen J (2006). A Better Lemon Squeezer? Maximum-Likelihood Regression with Beta-Distributed Dependent Variables. Psychological Methods, 11(7), 54–71.]
+  
+3. Lesen Sie den Datensatz ein über `Import Dataset` oder mit `read.csv()`.
+
+4. Checken Sie, ob das Einlesen einwandfrei geklappt hat, indem Sie den Datensatz unter `Environment` anwählen oder mit dem untenstehenden Code:
+
+
+```{r}
+#| eval: false
+library(tidyverse)
+glimpse(data_csv)
+glimpse(data_xlsx)
+```
+
+:::
+
+
+## Datensätze speichern: `write.csv()`
+
+Mit der Funktion `write.csv()` kann eine neue Datei geschrieben werden.
+Hierzu braucht die Funktion den Datensatz sowie den Namen und Pfad der neuen Datei.
+Das Argument `row.names = FALSE` verhindert, dass eine Spalte Zeilennummern eingefügt wird.
+
+```{r}
+#| eval: false
+write.csv(d, file = "data/neuerdatensatz.csv", row.names = FALSE)
+
+```
+
+
+
+
+
+
+

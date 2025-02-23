@@ -27,7 +27,8 @@ book:
     chapters:
     - datenverarbeitung/workflow.qmd
     - datenverarbeitung/readandwrite.qmd
-  
+    - datenverarbeitung/transform.qmd
+    
   - part: Datenvisualisierung
 #    chapters:
   - part: Datenanalyse

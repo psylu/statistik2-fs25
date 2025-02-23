@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>7&nbsp; Datensätze bearbeiten – Datenanalyse mit R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../uebungen/uebungen.html" rel="next">
+<link href="../datenverarbeitung/readandwrite.html" rel="prev">
+<link href="../imgs/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../include/webex.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenverarbeitung/workflow.html">Datenverarbeitung</a></li><li class="breadcrumb-item"><a href="../datenverarbeitung/transform.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Datensätze bearbeiten</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Datenanalyse mit R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Überblick</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">R und RStudio</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/rrstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics R und RStudio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/programmieren.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Basics Programmieren</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/help.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Help center</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Datenverarbeitung</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenverarbeitung/workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenverarbeitung/readandwrite.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Datensätze einlesen und schreiben</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenverarbeitung/transform.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Datensätze bearbeiten</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Datenvisualisierung</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Datenanalyse</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Übungen</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebungen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Informationen</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 1</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Anhang</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/webrconsole.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">WebR Konsole</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/thanks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Danke</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/license.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">License</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#laden-der-notwendigen-packages-und-daten" id="toc-laden-der-notwendigen-packages-und-daten" class="nav-link active" data-scroll-target="#laden-der-notwendigen-packages-und-daten"><span class="header-section-number">7.0.1</span> Laden der notwendigen Packages und Daten</a></li>
+  <li><a href="#datensatz-kennenlernen-und-anschauen" id="toc-datensatz-kennenlernen-und-anschauen" class="nav-link" data-scroll-target="#datensatz-kennenlernen-und-anschauen"><span class="header-section-number">7.1</span> Datensatz kennenlernen und anschauen</a>
+  <ul class="collapse">
+  <li><a href="#datensatz-erkunden-im-gui" id="toc-datensatz-erkunden-im-gui" class="nav-link" data-scroll-target="#datensatz-erkunden-im-gui"><span class="header-section-number">7.1.1</span> Datensatz erkunden im GUI</a></li>
+  <li><a href="#datensatz-erkunden-durch-aufrufen-des-datensatznamens" id="toc-datensatz-erkunden-durch-aufrufen-des-datensatznamens" class="nav-link" data-scroll-target="#datensatz-erkunden-durch-aufrufen-des-datensatznamens"><span class="header-section-number">7.1.2</span> Datensatz erkunden durch Aufrufen des Datensatznamens</a></li>
+  <li><a href="#datensatz-erkunden-mit-funktionen" id="toc-datensatz-erkunden-mit-funktionen" class="nav-link" data-scroll-target="#datensatz-erkunden-mit-funktionen"><span class="header-section-number">7.1.3</span> Datensatz erkunden mit Funktionen</a></li>
+  <li><a href="#datensatz-erkunden-durch-zusammenfassen" id="toc-datensatz-erkunden-durch-zusammenfassen" class="nav-link" data-scroll-target="#datensatz-erkunden-durch-zusammenfassen"><span class="header-section-number">7.1.4</span> Datensatz erkunden durch Zusammenfassen</a></li>
+  </ul></li>
+  <li><a href="#einzelne-variablen-ausgeben" id="toc-einzelne-variablen-ausgeben" class="nav-link" data-scroll-target="#einzelne-variablen-ausgeben"><span class="header-section-number">7.2</span> Einzelne Variablen ausgeben</a></li>
+  <li><a href="#verwenden-der-pipe-oder" id="toc-verwenden-der-pipe-oder" class="nav-link" data-scroll-target="#verwenden-der-pipe-oder"><span class="header-section-number">7.3</span> Verwenden der Pipe: <code>|&gt;</code> oder <code>%&gt;%</code></a></li>
+  <li><a href="#datensatz-bearbeiten-oder-neuer-datensatz-erstellen" id="toc-datensatz-bearbeiten-oder-neuer-datensatz-erstellen" class="nav-link" data-scroll-target="#datensatz-bearbeiten-oder-neuer-datensatz-erstellen"><span class="header-section-number">7.4</span> Datensatz bearbeiten oder neuer Datensatz erstellen</a></li>
+  <li><a href="#variablen-auswählen-select" id="toc-variablen-auswählen-select" class="nav-link" data-scroll-target="#variablen-auswählen-select"><span class="header-section-number">7.5</span> Variablen auswählen: <code>select()</code></a></li>
+  <li><a href="#messungen-auswählen-filter" id="toc-messungen-auswählen-filter" class="nav-link" data-scroll-target="#messungen-auswählen-filter"><span class="header-section-number">7.6</span> Messungen auswählen: <code>filter()</code></a></li>
+  <li><a href="#neue-variablen-generieren-und-verändern-mutate-und-case_when" id="toc-neue-variablen-generieren-und-verändern-mutate-und-case_when" class="nav-link" data-scroll-target="#neue-variablen-generieren-und-verändern-mutate-und-case_when"><span class="header-section-number">7.7</span> Neue Variablen generieren und verändern: <code>mutate()</code> und <code>case_when()</code></a></li>
+  <li><a href="#variablentyp-verändern-as.factor-as.numeric" id="toc-variablentyp-verändern-as.factor-as.numeric" class="nav-link" data-scroll-target="#variablentyp-verändern-as.factor-as.numeric"><span class="header-section-number">7.8</span> Variablentyp verändern: <code>as.factor()</code>, <code>as.numeric()</code>, …</a></li>
+  <li><a href="#daten-gruppieren-und-zusammenfassen-group_by-und-summarise" id="toc-daten-gruppieren-und-zusammenfassen-group_by-und-summarise" class="nav-link" data-scroll-target="#daten-gruppieren-und-zusammenfassen-group_by-und-summarise"><span class="header-section-number">7.9</span> Daten gruppieren und zusammenfassen: <code>group_by()</code> und <code>summarise()</code></a></li>
+  <li><a href="#datensätze-speichern-write.csv" id="toc-datensätze-speichern-write.csv" class="nav-link" data-scroll-target="#datensätze-speichern-write.csv"><span class="header-section-number">7.10</span> Datensätze speichern: <code>write.csv()</code></a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenverarbeitung/workflow.html">Datenverarbeitung</a></li><li class="breadcrumb-item"><a href="../datenverarbeitung/transform.html"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Datensätze bearbeiten</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Datensätze bearbeiten</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<div class="callout callout-style-default callout-note callout-titled" title="Voraussetzungen">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Voraussetzungen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Package {tidyverse} ist installiert.</li>
+<li><em>RProject</em> namens <code>introduction_to_r</code> mit Datenordner <code>data</code> aus <a href="https://psylu.github.io/statistik2-fs25/r/rrstudio.html">Kapitel: Basics R und RStudio</a>.</li>
+<li><em>RNotebook</em> namens <code>intro_datawrangling</code> aus <a href="https://psylu.github.io/statistik2-fs25/r/rrstudio.html">Kapitel: Basics R und RStudio</a>.</li>
+<li>Datensatz <code>readingskills.csv</code> in Ordner <code>data</code> <a href="https://psylu.github.io/statistik2-fs25/datenverarbeitung/readandwrite.html">Kapitel: Datensätze einlesen und schreiben</a></li>
+</ul>
+</div>
+</div>
+<p>In diesem Kapitel werden die wichtigsten Funktionen für die Datenverarbeitung in R behandelt. Die Funktionen können mit dem Package {tidyverse} installiert werden.</p>
+<section id="laden-der-notwendigen-packages-und-daten" class="level3" data-number="7.0.1">
+<h3 data-number="7.0.1" class="anchored" data-anchor-id="laden-der-notwendigen-packages-und-daten"><span class="header-section-number">7.0.1</span> Laden der notwendigen Packages und Daten</h3>
+<p>Zu Beginn muss das {tidyverse} geladen und der Beispielsdatensatz eingelesen werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/readingskills.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="datensatz-kennenlernen-und-anschauen" class="level2" data-number="7.1">
+<h2 data-number="7.1" class="anchored" data-anchor-id="datensatz-kennenlernen-und-anschauen"><span class="header-section-number">7.1</span> Datensatz kennenlernen und anschauen</h2>
+<p>Bei der Arbeit mit einem neuen Datensatz ist es wichtig, sich zu Beginn mit den enthaltenen Daten bekannzumachen. Hierzu können folgende Fragen gestellt werden:</p>
+<ul>
+<li>Welche Variablen sind enthalten?</li>
+<li>Welche Informationen enthalten diese?</li>
+<li>Welches Format haben sie? (Skalenniveau, Variablentyp)</li>
+<li>Was sind die maximal / minimal möglichen Werte?</li>
+<li>Wie sind nicht vorhandene Werte codiert?</li>
+<li>Ist der Datensatz im <em>Long-Format</em> oder im <em>Wide-Format</em> oder gemischt aufgebaut?</li>
+</ul>
+<p>Im Idealfall besteht ein <em>Data Dictionary</em>, welches diese Informationen kurz und knapp zusammenfasst.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Datensatz `readingskills.csv`">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Datensatz <code>readingskills.csv</code>
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In diesem Kapitel wird der Beispielsdatensatz <code>readingskills.csv</code> verwendet.</p>
+<p>Der Datensatz stammt aus dem Package <a href="https://vincentarelbundock.github.io/Rdatasets/doc/betareg/ReadingSkills.html">{betareg}</a>.</p>
+<p>Er enthält Daten von 44 Kindern im Alter zwischen acht und zwölf Jahren über die Lesegenauigkeit, IQ-Wert aus einem nonverbalen Intelligenztest, und ob sie Dyslexie haben oder nicht.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<table class="table-hover caption-top table">
+<caption>Data-Dictionary des <code>readingskills</code>-Datensatzes</caption>
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>variable</th>
+<th>label</th>
+<th>type</th>
+<th>values</th>
+<th>source</th>
+<th>transformations</th>
+<th>missings</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>participant identification</td>
+<td><code>id</code></td>
+<td>character, factor</td>
+<td>“sub-001” to “sub-44”</td>
+<td>raw</td>
+<td>anonymized variable “participant”</td>
+<td>NA</td>
+</tr>
+<tr class="even">
+<td>dyslexia diagnosis</td>
+<td><code>dyslexia</code></td>
+<td>character, factor</td>
+<td>“no”, “yes”</td>
+<td>raw</td>
+<td></td>
+<td>NA</td>
+</tr>
+<tr class="odd">
+<td>z-score in nonverbal <code>iq_zscore</code></td>
+<td>iq-zscore</td>
+<td>numeric</td>
+<td>apprx. -2 to 2</td>
+<td>raw</td>
+<td>z-transformed</td>
+<td>NA</td>
+</tr>
+<tr class="even">
+<td>reading performance</td>
+<td><code>accuracy</code></td>
+<td>numeric</td>
+<td>0 to 1</td>
+<td>raw</td>
+<td>transformed from points to percent / 100</td>
+<td>NA</td>
+</tr>
+</tbody>
+</table>
+<p>Der Datensatz wurde für dieses Kapitel noch mit einer zusätzlichen Variable und zwei zusätzlichen Versuchspersonen ergänzt. Finden Sie diese?</p>
+</div>
+</div>
+<p>Um den Datensatz zu erkunden, gibt es viele verschiedene Wege.</p>
+<section id="datensatz-erkunden-im-gui" class="level3" data-number="7.1.1">
+<h3 data-number="7.1.1" class="anchored" data-anchor-id="datensatz-erkunden-im-gui"><span class="header-section-number">7.1.1</span> Datensatz erkunden im GUI</h3>
+<p>Der Datensatz kann angeschaut werden, in dem im <code>Environment</code>-Fenster darauf geklickt wird:</p>
+<ul>
+<li>Bei Klick auf das blaue Dreieck, erscheint eine Liste mit den Variablen.</li>
+<li>Bei Doppelklick auf den Datensatz, wird eine Tabelle geöffnet.</li>
+</ul>
+<p>Praktisch ist hier, dass die Variablen in der Tabelle ein Format haben, dass man sich von anderen Tabellenverarbeitungsprogrammen, wie z.B. Excel, gewöhnt ist. Variablen können so auch mit wenig Aufwand der Grösse nach geordnet werden.</p>
+</section>
+<section id="datensatz-erkunden-durch-aufrufen-des-datensatznamens" class="level3" data-number="7.1.2">
+<h3 data-number="7.1.2" class="anchored" data-anchor-id="datensatz-erkunden-durch-aufrufen-des-datensatznamens"><span class="header-section-number">7.1.2</span> Datensatz erkunden durch Aufrufen des Datensatznamens</h3>
+<p>Der Datensatz kann durch Aufrufen des Datensatznames in die Konsole ausgeben werden:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>d</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       id dyslexia iq_zscore accuracy name
+1  sub-01       no     0.827  0.88386   ZU
+2  sub-02       no     0.590  0.76524   SD
+3  sub-03       no     0.471  0.91508   VE
+4  sub-04       no     1.144  0.98376   WE
+5  sub-05       no    -0.676  0.88386   WD
+6  sub-06       no    -0.795  0.70905   TE
+7  sub-07       no    -0.281  0.77148   GW
+8  sub-08       no    -0.914  1.00000   QS
+9  sub-09       no    -0.043  1.00000   XC
+10 sub-10       no     0.907  1.00000   WS
+11 sub-11       no     0.511  1.00000   DD
+12 sub-12       no     1.223  1.00000   HR
+13 sub-13       no     0.590  1.00000   VE
+14 sub-14       no     1.856  1.00000   AM
+15 sub-15       no    -0.399  1.00000   AH
+16 sub-16       no     0.590  1.00000   ER
+17 sub-17       no    -0.043  0.70281   ZW
+18 sub-18       no     1.738  1.00000   BE
+19 sub-19       no     0.471  0.66535   WE
+20 sub-20       no     1.619  1.00000   EH
+21 sub-21       no     1.144  0.95878   IA
+22 sub-22       no    -0.201  1.00000   AD
+23 sub-23       no    -0.281  0.73402   PW
+24 sub-24       no     0.590  0.64662   AO
+25 sub-25       no     1.777  1.00000   EP
+26 sub-26      yes    -0.083  0.57794   DE
+27 sub-27      yes    -0.162  0.64038   AS
+28 sub-28      yes    -0.795  0.45932   LA
+29 sub-29      yes    -0.281  0.65286   RG
+30 sub-30      yes    -0.874  0.60916   AL
+31 sub-31      yes     0.313  0.60916   IF
+32 sub-32      yes     0.709  0.54048   PF
+33 sub-33      yes     1.223  0.57170   BN
+34 sub-34      yes    -1.230  0.70281   NO
+35 sub-35      yes    -0.162  0.56546   IS
+36 sub-36      yes    -0.993  0.53424   IV
+37 sub-37      yes    -1.191  0.57794   ML
+38 sub-38      yes    -1.745  0.69032   OW
+39 sub-39      yes    -1.745  0.54673   MF
+40 sub-40      yes    -0.439  0.68408   LK
+41 sub-41      yes    -1.666  0.59043   MW
+42 sub-42      yes    -1.507  0.62165   ME
+43 sub-43      yes    -0.518  0.67159   QE
+44 sub-44      yes    -1.270  0.66535   DF
+45 sub-98      yes        NA  3.00000   PE
+46   &lt;NA&gt;       no     0.300  0.70000   KW
+47 sub-99       no     0.400 99.00000   TS</code></pre>
+</div>
+</div>
+</section>
+<section id="datensatz-erkunden-mit-funktionen" class="level3" data-number="7.1.3">
+<h3 data-number="7.1.3" class="anchored" data-anchor-id="datensatz-erkunden-mit-funktionen"><span class="header-section-number">7.1.3</span> Datensatz erkunden mit Funktionen</h3>
+<p>Nützliche Funktionen zum Erkunden eines Datensatzes sind zudem <code>glimpse()</code></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 47
+Columns: 5
+$ id        &lt;chr&gt; "sub-01", "sub-02", "sub-03", "sub-04", "sub-05", "sub-06", …
+$ dyslexia  &lt;chr&gt; "no", "no", "no", "no", "no", "no", "no", "no", "no", "no", …
+$ iq_zscore &lt;dbl&gt; 0.827, 0.590, 0.471, 1.144, -0.676, -0.795, -0.281, -0.914, …
+$ accuracy  &lt;dbl&gt; 0.88386, 0.76524, 0.91508, 0.98376, 0.88386, 0.70905, 0.7714…
+$ name      &lt;chr&gt; "ZU", "SD", "VE", "WE", "WD", "TE", "GW", "QS", "XC", "WS", …</code></pre>
+</div>
+</div>
+<p>und <code>head()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      id dyslexia iq_zscore accuracy name
+1 sub-01       no     0.827  0.88386   ZU
+2 sub-02       no     0.590  0.76524   SD
+3 sub-03       no     0.471  0.91508   VE
+4 sub-04       no     1.144  0.98376   WE
+5 sub-05       no    -0.676  0.88386   WD
+6 sub-06       no    -0.795  0.70905   TE</code></pre>
+</div>
+</div>
+</section>
+<section id="datensatz-erkunden-durch-zusammenfassen" class="level3" data-number="7.1.4">
+<h3 data-number="7.1.4" class="anchored" data-anchor-id="datensatz-erkunden-durch-zusammenfassen"><span class="header-section-number">7.1.4</span> Datensatz erkunden durch Zusammenfassen</h3>
+<p>Mit der Funktion <code>summary()</code>kann eine kurze Übersicht über den Datensatz erstellt werden:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>      id              dyslexia           iq_zscore          accuracy      
+ Length:47          Length:47          Min.   :-1.7450   Min.   : 0.4593  
+ Class :character   Class :character   1st Qu.:-0.7652   1st Qu.: 0.6310  
+ Mode  :character   Mode  :character   Median :-0.0630   Median : 0.7090  
+                                       Mean   : 0.0152   Mean   : 2.9113  
+                                       3rd Qu.: 0.5900   3rd Qu.: 1.0000  
+                                       Max.   : 1.8560   Max.   :99.0000  
+                                       NA's   :1                          
+     name          
+ Length:47         
+ Class :character  
+ Mode  :character  
+                   
+                   
+                   
+                   </code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="einzelne-variablen-ausgeben" class="level2" data-number="7.2">
+<h2 data-number="7.2" class="anchored" data-anchor-id="einzelne-variablen-ausgeben"><span class="header-section-number">7.2</span> Einzelne Variablen ausgeben</h2>
+<p>Einzelne Variablen können angeschaut werden, indem das <code>$</code> Zeichen verwendet wird:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>d<span class="sc">$</span>id</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "sub-01" "sub-02" "sub-03" "sub-04" "sub-05" "sub-06" "sub-07" "sub-08"
+ [9] "sub-09" "sub-10" "sub-11" "sub-12" "sub-13" "sub-14" "sub-15" "sub-16"
+[17] "sub-17" "sub-18" "sub-19" "sub-20" "sub-21" "sub-22" "sub-23" "sub-24"
+[25] "sub-25" "sub-26" "sub-27" "sub-28" "sub-29" "sub-30" "sub-31" "sub-32"
+[33] "sub-33" "sub-34" "sub-35" "sub-36" "sub-37" "sub-38" "sub-39" "sub-40"
+[41] "sub-41" "sub-42" "sub-43" "sub-44" "sub-98" NA       "sub-99"</code></pre>
+</div>
+</div>
+</section>
+<section id="verwenden-der-pipe-oder" class="level2 page-columns page-full" data-number="7.3">
+<h2 data-number="7.3" class="anchored" data-anchor-id="verwenden-der-pipe-oder"><span class="header-section-number">7.3</span> Verwenden der Pipe: <code>|&gt;</code> oder <code>%&gt;%</code></h2>
+<p>In <em>R</em> kann die <em>Pipe</em> verwendet werden, um mehrere Datenverarbeitungsschritte aneinander zu hängen. Damit spart man sich aufwändige Zwischenschritte und vermeidet das Erstellen von immer neuen Datensätzen. Statt zwei einzelne Datenverarbeitungsschritte zu machen wie oben, können mehrere Schritte (hier Daten einlesen und anzeigen) zusammengefasst werden, in dem nach Zeilenende eine <em>Pipe</em> eingefügt wird:</p>
+<aside>
+Wann <em>Pipes</em> ungeeignet sind wird <a href="https://r4ds.had.co.nz/pipes.html#when-not-to-use-the-pipe">hier</a> beschrieben.
+</aside>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/readingskills.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Die <em>Base R Pipe <code>|&gt;</code> und die </em><code>magritter</code> <em>Pipe</em> <code>%&gt;%</code>_ unterscheiden sich nur in Details. Für dieses Kapitel spielt es keine Rolle, welche <em>Pipe</em> verwendet wird.</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Tipp">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tipp
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Achtung: Wenn zu Beginn ein <code>&lt;-</code> oder <code>=</code> verwendet wird, wird <strong>alles</strong> was nach der Pipe kommt den Datensatz verändern. Wird z.B. der Code …</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/readingskills.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>…eingegeben, besteht der Datensatz <code>d</code> dann nur noch aus 6 Zeilen, weil <code>head()</code> nur die obersten 6 Zeilen anzeigt.</p>
+<p>Wird die Pipe ohne <code>&lt;-</code> oder <code>=</code> verwendet, bleibt der Datensatz unverändert:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">|&gt;</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">head</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="datensatz-bearbeiten-oder-neuer-datensatz-erstellen" class="level2 page-columns page-full" data-number="7.4">
+<h2 data-number="7.4" class="anchored" data-anchor-id="datensatz-bearbeiten-oder-neuer-datensatz-erstellen"><span class="header-section-number">7.4</span> Datensatz bearbeiten oder neuer Datensatz erstellen</h2>
+<p>Der Datensatz kann, z.B. für das Visualisieren oder für die Analyse, verändert werden. Hierbei kann entweder der bestehende Datensatz, also <code>d</code>, überschrieben werden, oder es kann eine neuer Datensatz erstellt werden.</p>
+<aside>
+Wird der eingelesene Datensatz angepasst, wird <strong>keine</strong> Veränderung an der Datensatz-Datei (z.B. <code>readingskills.csv</code>) vorgenommen. Um diese zu verändern, muss eine neue Datei geschrieben werden, z.B. mit <code>write.csv()</code>.).
+</aside>
+</section>
+<section id="variablen-auswählen-select" class="level2" data-number="7.5">
+<h2 data-number="7.5" class="anchored" data-anchor-id="variablen-auswählen-select"><span class="header-section-number">7.5</span> Variablen auswählen: <code>select()</code></h2>
+<p>Ein komplexer Datensatz mit sehr vielen Variablen wird oft für die Analyse aus Gründen der Einfachheit oder Anonymisierung reduziert. Das bedeutet, dass man die nötigen Variablen auswählt, und nur mit diesem reduzierten Datensatz weiterarbeitet. Hierzu eignet sich die Funktion <code>select()</code> sehr gut: Mit <code>select(.data, variablenname, ...)</code> können die zu behaltenden Variablen ausgewählt werden. Wird ein <code>!</code> vor einen Variablennamen gesetzt, wird die Variable <strong>nicht</strong> behalten, sondern alle anderen Variablen bleiben im Datensatz.</p>
+<p>Mit <code>select()</code> können Variablen innerhalb des Datensatzes sortiert und umbenannt werden, damit der Datensatz so strukturiert ist, dass er sich für die Analyse/Visualisierung eignet.</p>
+<p><em>Beispiele:</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Variablen id und accuracy behalten ohne Pipe</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>d_simpler <span class="ot">&lt;-</span> <span class="fu">select</span>(d, id, accuracy)</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Variablen id und accuracy behalten mit Pipe</span></span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>d_simpler <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">select</span>(id, accuracy)</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Variablen id und accuracy mit umgekehrter Reihenfolge behalten mit Pipe</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>d_simpler <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">select</span>(accuracy, id)</span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a><span class="co"># alle Variablen ausser id behalten</span></span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>d_simpler <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="sc">!</span>id)</span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Variablennamen verändern</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>d_simpler <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">select</span>(<span class="at">iq_value =</span> iq_zscore)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Sollen mehrere Variablen am Stück ausgewählt werden, kann die erste Variable in der Reihe (z.B. <code>word</code>) und die letzte in der Reihe (z.B. <code>congruent</code>) als <code>word:congruent</code> eingeben, dann werden auch alle dazwischen liegenden Variablen ausgewählt.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>d_simpler <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">select</span>(id<span class="sc">:</span>accuracy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Variablen auswählen">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hands-on: Variablen auswählen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Variablen, die nicht verwendet werden aber persönliche Informationen enthalten, können zur Anonymisierung entfernt werden. Welche Variable wurde zum Originaldatensatz hinzugefügt und könnte (wenn sie nicht erfunden wäre) persönliche Informationen der Kinder enthalten, die für die weiteren Analysen nicht nötig sind?</p>
+<p>Überschreiben Sie den Datensatz <code>d</code> mit einer anonymisierten Version.</p>
+<p>Untenstehend finden Sie ein Beispiel, wie der Datensatz danach aussehen könnte.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Lösung: Variablen auswählen">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Lösung: Variablen auswählen
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-5" class="callout-5-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Die Variable <code>name</code> enthält persönliche Angaben, die irrelevant für die Datenanalyse/-visualisierung sind.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, </span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>         dyslexia, </span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a>         iq_zscore, </span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a>         accuracy)</span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 47
+Columns: 4
+$ id        &lt;chr&gt; "sub-01", "sub-02", "sub-03", "sub-04", "sub-05", "sub-06", …
+$ dyslexia  &lt;chr&gt; "no", "no", "no", "no", "no", "no", "no", "no", "no", "no", …
+$ iq_zscore &lt;dbl&gt; 0.827, 0.590, 0.471, 1.144, -0.676, -0.795, -0.281, -0.914, …
+$ accuracy  &lt;dbl&gt; 0.88386, 0.76524, 0.91508, 0.98376, 0.88386, 0.70905, 0.7714…</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="messungen-auswählen-filter" class="level2" data-number="7.6">
+<h2 data-number="7.6" class="anchored" data-anchor-id="messungen-auswählen-filter"><span class="header-section-number">7.6</span> Messungen auswählen: <code>filter()</code></h2>
+<p>Mit der Funktion <code>filter()</code> können bestimmte Beobachtungen oder Untergruppen ausgewählt werden. Hierfür muss in der Funktion <code>filter(.data, filter, ...)</code> der Datensatz, die betreffende Variable, sowie eine Bedingung eingegeben werden. Es wird die ganze Zeile im Datensatz behalten in der die Variable der angegebenen Bedingung entspricht.</p>
+<p><em>Beispiele:</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># nur Messungen (Zeilen) der Person sub-01 werden behalten</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>d_filtered <span class="ot">&lt;-</span> <span class="fu">filter</span>(d, id <span class="sc">==</span> <span class="st">"sub-01"</span>)</span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a><span class="co"># dasselbe mit der Pipe</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>d_filtered <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">filter</span>(id <span class="sc">==</span> <span class="st">"sub-01"</span>)</span>
+<span id="cb19-6"><a href="#cb19-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-7"><a href="#cb19-7" aria-hidden="true" tabindex="-1"></a><span class="co"># nur Messungen (Zeilen) mit accuracy über 0.5 werden behalten</span></span>
+<span id="cb19-8"><a href="#cb19-8" aria-hidden="true" tabindex="-1"></a>d_filtered <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">filter</span>(accuracy <span class="sc">&gt;</span> <span class="fl">0.5</span>)</span>
+<span id="cb19-9"><a href="#cb19-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-10"><a href="#cb19-10" aria-hidden="true" tabindex="-1"></a><span class="co"># nur Messungen (Zeilen) der Kinder mit Dyslexie werden behalten</span></span>
+<span id="cb19-11"><a href="#cb19-11" aria-hidden="true" tabindex="-1"></a>d_filtered <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">filter</span>(dyslexia <span class="sc">==</span> <span class="st">"yes"</span>)</span>
+<span id="cb19-12"><a href="#cb19-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-13"><a href="#cb19-13" aria-hidden="true" tabindex="-1"></a><span class="co"># nur Messungen (Zeilen) der Kinder die nicht Dyslexie: ja haben werden behalten</span></span>
+<span id="cb19-14"><a href="#cb19-14" aria-hidden="true" tabindex="-1"></a>d_filtered <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">filter</span>(dyslexia <span class="sc">!=</span> <span class="st">"yes"</span>)</span>
+<span id="cb19-15"><a href="#cb19-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-16"><a href="#cb19-16" aria-hidden="true" tabindex="-1"></a><span class="co"># nur Messungen (Zeilen) mit accuracy zwischen 0.5 und 0.8 werden behalten</span></span>
+<span id="cb19-17"><a href="#cb19-17" aria-hidden="true" tabindex="-1"></a>d_filtered <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">filter</span>(accuracy <span class="sc">&gt;</span> <span class="fl">0.5</span> <span class="sc">&amp;</span> accuracy <span class="sc">&lt;</span> <span class="fl">0.8</span>)</span>
+<span id="cb19-18"><a href="#cb19-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb19-19"><a href="#cb19-19" aria-hidden="true" tabindex="-1"></a><span class="co"># nur Messungen (Zeilen) mit iq_zscore grösser oder gleich gross wie 1 behalten</span></span>
+<span id="cb19-20"><a href="#cb19-20" aria-hidden="true" tabindex="-1"></a>d_filtered <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> <span class="fu">filter</span>(iq_zscore <span class="sc">&gt;=</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Es kann auch mehrere Male hintereinander die <code>filter()</code>-Funktion aufgerufen werden:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># mehrere Filter verwenden</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>d_filtered <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> </span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(id <span class="sc">!=</span> <span class="st">"NA"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(iq_zscore <span class="sc">&lt;=</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Daten filtern">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hands-on: Daten filtern
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Drei Messungen (Zeilen) sind ungültig. Schauen Sie zuerst den Datensatz an, um zu erkennen, welche es sind.</p>
+<p>Überschreiben Sie den Datensatz <code>d</code> und behalten Sie nur die gültigen Messungen (44 Messungen).</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Lösung: Daten filtern">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-7-contents" aria-controls="callout-7" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Lösung: Daten filtern
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-7" class="callout-7-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d<span class="sc">|&gt;</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(id <span class="sc">!=</span> <span class="st">"NA"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(iq_zscore <span class="sc">!=</span> <span class="st">"NA"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(accuracy <span class="sc">&lt;=</span> <span class="dv">1</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="neue-variablen-generieren-und-verändern-mutate-und-case_when" class="level2" data-number="7.7">
+<h2 data-number="7.7" class="anchored" data-anchor-id="neue-variablen-generieren-und-verändern-mutate-und-case_when"><span class="header-section-number">7.7</span> Neue Variablen generieren und verändern: <code>mutate()</code> und <code>case_when()</code></h2>
+<p>Mit der <code>mutate(.data, …)</code> Funktion können im Datensatz neue Variablen generiert oder bestehende Varaiablen verändert werden.</p>
+<p><em>Beispiel:</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Neue Variablen erstellen</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>d_new <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">num_variable =</span> <span class="fl">1.434</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">chr_variable =</span> <span class="st">"1.434"</span>,</span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">sum_of_variable =</span> accuracy <span class="sc">+</span> <span class="dv">1</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">copy_variable =</span> word)</span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Bestehende Variablen verändern</span></span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>d_new <span class="ot">&lt;-</span> d_new <span class="sc">|&gt;</span></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">accuracy =</span> accuracy <span class="sc">*</span> <span class="dv">100</span>) <span class="co"># z.B. um Accuracy zu Percent correct zu transformieren</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Mit <code>case_when()</code> kann eine neue Variable erstellt werden in Abhängigkeit von Werten anderer Variablen. Damit kann z.B. eine Variable <code>passed</code> erstellt werden, für alle Werte die genügend guten Leseresultate entsprechen.</p>
+<p><em>Beispiel:</em></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>d_condvariable <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">grade =</span> <span class="fu">case_when</span>(accuracy) <span class="sc">&gt;</span> <span class="fl">0.7</span> <span class="sc">~</span> <span class="st">"passed"</span>,</span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>                                     rt <span class="sc">&lt;=</span> <span class="fl">0.7</span> <span class="sc">~</span> <span class="st">"failed"</span>,</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">.default =</span> <span class="cn">NA</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Es können immer auch vorher definierte Variablen eingesetzt werden in die Funktionen, solange die Variable den richtigen Variablentyp hat:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>CUTOFF <span class="ot">=</span> <span class="fl">0.7</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>d_grades <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">grade =</span> <span class="fu">case_when</span>(accuracy) <span class="sc">&gt;</span> CUTOFF <span class="sc">~</span> <span class="st">"pass"</span>,</span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>                                     rt <span class="sc">&lt;=</span> CUTOFF <span class="sc">~</span> <span class="st">"fail"</span>,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">.default =</span> <span class="cn">NA</span>)<span class="er">)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Variablen generieren und verändern">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hands-on: Variablen generieren und verändern
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Erstellen Sie im Datensatz <code>d_grades</code> eine neue Variable mit dem Namen <code>researcher</code>, den Ihren Namen enthält.</p></li>
+<li><p>Erstellen Sie zudem eine Variable <code>grade</code>, mit <code>pass</code> für <code>accuracy</code>-Werten über 0.9 und mit <code>fail</code> für <code>accuracy</code>-Werten unter 0.9.</p></li>
+<li><p>Schauen Sie den Datensatz an: Wie viele Kinder hätten bestanden bei diesem Cut-off?</p></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Lösung: Variablen generieren und verändern">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-9-contents" aria-controls="callout-9" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Lösung: Variablen generieren und verändern
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-9" class="callout-9-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>CUTOFF <span class="ot">=</span> <span class="fl">0.9</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>d_grades <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span></span>
+<span id="cb25-4"><a href="#cb25-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb25-5"><a href="#cb25-5" aria-hidden="true" tabindex="-1"></a>    <span class="at">researcher =</span> <span class="st">"Vorname Nachname"</span>,</span>
+<span id="cb25-6"><a href="#cb25-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">grade =</span> <span class="fu">case_when</span>(accuracy <span class="sc">&gt;=</span> CUTOFF <span class="sc">~</span> <span class="st">"pass"</span>,</span>
+<span id="cb25-7"><a href="#cb25-7" aria-hidden="true" tabindex="-1"></a>                      accuracy <span class="sc">&lt;=</span> CUTOFF <span class="sc">~</span> <span class="st">"fail"</span>,</span>
+<span id="cb25-8"><a href="#cb25-8" aria-hidden="true" tabindex="-1"></a>                      <span class="at">.default =</span> <span class="cn">NA</span>)</span>
+<span id="cb25-9"><a href="#cb25-9" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb25-10"><a href="#cb25-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb25-11"><a href="#cb25-11" aria-hidden="true" tabindex="-1"></a>d_grades<span class="sc">$</span>grade</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "fail" "fail" "pass" "pass" "fail" "fail" "fail" "pass" "pass" "pass"
+[11] "pass" "pass" "pass" "pass" "pass" "pass" "fail" "pass" "fail" "pass"
+[21] "pass" "pass" "fail" "fail" "pass" "fail" "fail" "fail" "fail" "fail"
+[31] "fail" "fail" "fail" "fail" "fail" "fail" "fail" "fail" "fail" "fail"
+[41] "fail" "fail" "fail" "fail"</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="variablentyp-verändern-as.factor-as.numeric" class="level2" data-number="7.8">
+<h2 data-number="7.8" class="anchored" data-anchor-id="variablentyp-verändern-as.factor-as.numeric"><span class="header-section-number">7.8</span> Variablentyp verändern: <code>as.factor()</code>, <code>as.numeric()</code>, …</h2>
+<p>Variablen können verschiedene Tyoen haben, sie können z.B. kategoriale (<code>factor</code>, <code>character</code>) oder numerische (<code>integer</code>, <code>numeric</code>, <code>double</code>) Informationen enthalten. Beim Einlesen “rät” <em>R</em>, welche Klasse eine Variable hat. Teilweise ist es praktisch dies zu ändern für die weitere Analyse.</p>
+<p>Wenn wir eine Variable zu einem Faktor machen möchten, verwenden wir <code>as.factor()</code>. Dies macht z.B. Sinn, wenn die Versuchspersonennummer als Zahl eingelesen wurde. Um von einem Faktor zu einer numerischen Variable zu kommen, verwenden wir <code>as.numeric()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Die Variable "id" zu einem Faktor machen</span></span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> </span>
+<span id="cb27-3"><a href="#cb27-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">as.factor</span>(id))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Variablentyp verändern">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hands-on: Variablentyp verändern
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Schauen Sie sich den Datensatz mit <code>glimpse()</code> an. Welche Variablentypen enthält Ihr Datensatz und was bedeuten Sie?</p>
+<p>Verändern Sie alle <code>character</code>-Variablen (<code>chr</code>) zu <code>factor</code>-Variablen.</p>
+<p>Wieviele Levels haben die Variablen nun?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Lösung: Variablentyp verändern">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-11-contents" aria-controls="callout-11" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Lösung: Variablentyp verändern
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-11" class="callout-11-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> </span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">as.factor</span>(id),</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">dyslexia =</span> <span class="fu">as.factor</span>(dyslexia))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="daten-gruppieren-und-zusammenfassen-group_by-und-summarise" class="level2" data-number="7.9">
+<h2 data-number="7.9" class="anchored" data-anchor-id="daten-gruppieren-und-zusammenfassen-group_by-und-summarise"><span class="header-section-number">7.9</span> Daten gruppieren und zusammenfassen: <code>group_by()</code> und <code>summarise()</code></h2>
+<p>Mit diesen beiden Funktionen könne Datensätze effizient gruppiert und zusammengefasst werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nach Diagnose gruppieren und Accuracy zusammenfassen</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>d <span class="sc">|&gt;</span> <span class="fu">group_by</span>(dyslexia) <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">summarise</span>(<span class="at">mean_acc =</span> <span class="fu">mean</span>(accuracy),</span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">sd_acc =</span> <span class="fu">sd</span>(accuracy))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  dyslexia mean_acc sd_acc
+  &lt;fct&gt;       &lt;dbl&gt;  &lt;dbl&gt;
+1 no          0.905 0.129 
+2 yes         0.606 0.0637</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Datensätze gruppieren und zusammenfassen">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hands-on: Datensätze gruppieren und zusammenfassen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Erstellen Sie einen neuen Datensatz <code>d_summary</code> wie folgt:</p>
+<ul>
+<li><p>Gruppieren Sie den Datensatz für Dyslexia (ja / nein)</p></li>
+<li><p>Fassen Sie für diese Gruppen die durchschnittliche Accuracy und der durchschnittliche IQ-Wert zusammen sowie die Standardabweichungen zusammen.</p></li>
+</ul>
+<p>Unterscheiden sich die Accuracy und IQ-Werte zwischen den Gruppen?</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-tip callout-titled" title="Lösung: Datensätze gruppieren und zusammenfassen">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-13-contents" aria-controls="callout-13" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Lösung: Datensätze gruppieren und zusammenfassen
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-13" class="callout-13-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>d_summary <span class="ot">&lt;-</span> d <span class="sc">|&gt;</span> </span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(dyslexia) <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_acc =</span> <span class="fu">mean</span>(accuracy),</span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">sd_acc =</span> <span class="fu">sd</span>(accuracy),</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">mean_iq =</span> <span class="fu">mean</span>(iq_zscore),</span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">sd_iq =</span> <span class="fu">sd</span>(iq_zscore))</span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>d_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 5
+  dyslexia mean_acc sd_acc mean_iq sd_iq
+  &lt;fct&gt;       &lt;dbl&gt;  &lt;dbl&gt;   &lt;dbl&gt; &lt;dbl&gt;
+1 no          0.905 0.129    0.497 0.819
+2 yes         0.606 0.0637  -0.653 0.838</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="datensätze-speichern-write.csv" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="datensätze-speichern-write.csv"><span class="header-section-number">7.10</span> Datensätze speichern: <code>write.csv()</code></h2>
+<div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Neuer Datensatz abspeichern">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hands-on: Neuer Datensatz abspeichern
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Speichern Sie den bearbeiteten Datensatz als Datei ab</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(d, <span class="st">"data/readingskills_clean.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+<!-- ## Zusammenfassung -->
+<!-- tabelle einfügen. -->
+<!-- : Wichtigste Funktionen zum Transformieren von Datensätzen {.hover} -->
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Smithson M, Verkuilen J (2006). A Better Lemon Squeezer? Maximum-Likelihood Regression with Beta-Distributed Dependent Variables. Psychological Methods, 11(7), 54–71.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Show Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Show Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/psylu\.github\.io\/statistik2-fs25");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../datenverarbeitung/readandwrite.html" class="pagination-link" aria-label="Datensätze einlesen und schreiben">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Datensätze einlesen und schreiben</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../uebungen/uebungen.html" class="pagination-link" aria-label="Informationen">
+        <span class="nav-page-text">Informationen</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2025, Gerda Wyssen &amp; Mirjam Senn</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>
