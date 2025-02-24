@@ -84,8 +84,7 @@ Weitere Einstellungen:
 ```{r}
 #| eval: false
 library(tidyverse)
-glimpse(data_csv)
-glimpse(data_xlsx)
+glimpse(___)
 ```
 
 :::
