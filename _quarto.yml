@@ -28,11 +28,11 @@ book:
     - datenverarbeitung/workflow.qmd
     - datenverarbeitung/readandwrite.qmd
     - datenverarbeitung/transform.qmd
-    
   - part: Datenvisualisierung
 #    chapters:
   - part: Datenanalyse
-#    chapters:
+    chapters:
+    - datenanalyse/descriptive.qmd
   - part: Übungen
     chapters:
     - uebungen/uebungen.qmd

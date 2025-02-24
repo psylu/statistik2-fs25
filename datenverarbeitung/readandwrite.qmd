@@ -70,7 +70,7 @@ Weitere Einstellungen:
 
 :::{.callout-caution appearance="default" title="Einlesen eines Datensatzes"}
 
-1. Öffnen Sie Ihr _RProjekt_ `introduction_to_r` auf Ihrem Computer und öffnen Sie Ihr _RNotebook_ `intro_datawangling`. Falls Sie kein _RProjekt_ und _RNotebook_ mit diesem Namen haben, folgen Sie den Anweisungen im [Kapitel 2: Basics R und RStudio](https://psylu.github.io/statistik2-fs25/r/rrstudio.html).
+1. Öffnen Sie Ihr _RProjekt_ `introduction_to_r` auf Ihrem Computer und öffnen Sie Ihr _RNotebook_ `intro_datawangling`. Falls Sie kein _RProjekt_ und _RNotebook_ mit diesem Namen haben, folgen Sie den Anweisungen im [Kapitel: Basics R und RStudio](https://psylu.github.io/statistik2-fs25/r/rrstudio.html).
 
 2. Laden Sie den Datensatz herunter und speichern Sie ihn im `data`-Ordner Ihres _RProjekts_.
   

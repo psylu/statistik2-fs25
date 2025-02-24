@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Informationen – Datenanalyse mit R</title>
+<title>8&nbsp; Deskriptive Statistik – Datenanalyse mit R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../uebungen/uebung-01.html" rel="next">
-<link href="../datenanalyse/descriptive.html" rel="prev">
+<link href="../uebungen/uebungen.html" rel="next">
+<link href="../datenverarbeitung/transform.html" rel="prev">
 <link href="../imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -83,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Informationen</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenanalyse/descriptive.html">Datenanalyse</a></li><li class="breadcrumb-item"><a href="../datenanalyse/descriptive.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Deskriptive Statistik</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -193,7 +227,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../datenanalyse/descriptive.html" class="sidebar-item-text sidebar-link">
+  <a href="../datenanalyse/descriptive.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Deskriptive Statistik</span></span></a>
   </div>
 </li>
@@ -210,7 +244,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../uebungen/uebungen.html" class="sidebar-item-text sidebar-link active">
+  <a href="../uebungen/uebungen.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Informationen</span></a>
   </div>
 </li>
@@ -256,20 +290,32 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#laden-der-notwendigen-packages-und-daten" id="toc-laden-der-notwendigen-packages-und-daten" class="nav-link active" data-scroll-target="#laden-der-notwendigen-packages-und-daten"><span class="header-section-number">8.0.1</span> Laden der notwendigen Packages und Daten</a></li>
+  <li><a href="#minimale-und-maximale-werte-min-und-max" id="toc-minimale-und-maximale-werte-min-und-max" class="nav-link" data-scroll-target="#minimale-und-maximale-werte-min-und-max"><span class="header-section-number">8.1</span> Minimale und maximale Werte: <code>min()</code> und <code>max()</code></a></li>
+  <li><a href="#lagemasse-mittelwert-und-median" id="toc-lagemasse-mittelwert-und-median" class="nav-link" data-scroll-target="#lagemasse-mittelwert-und-median"><span class="header-section-number">8.2</span> Lagemasse: Mittelwert und Median</a></li>
+  <li><a href="#streumasse-standardabweichung-und-varianz" id="toc-streumasse-standardabweichung-und-varianz" class="nav-link" data-scroll-target="#streumasse-standardabweichung-und-varianz"><span class="header-section-number">8.3</span> Streumasse: Standardabweichung und Varianz</a></li>
+  <li><a href="#zusammenfassen-mit-summary" id="toc-zusammenfassen-mit-summary" class="nav-link" data-scroll-target="#zusammenfassen-mit-summary"><span class="header-section-number">8.4</span> Zusammenfassen mit <code>summary()</code></a></li>
+  <li><a href="#zusammenfassen-mit-describe" id="toc-zusammenfassen-mit-describe" class="nav-link" data-scroll-target="#zusammenfassen-mit-describe"><span class="header-section-number">8.5</span> Zusammenfassen mit <code>describe()</code></a></li>
+  <li><a href="#zusammenhangsmasse-kovariation-und-korrelation" id="toc-zusammenhangsmasse-kovariation-und-korrelation" class="nav-link" data-scroll-target="#zusammenhangsmasse-kovariation-und-korrelation"><span class="header-section-number">8.6</span> Zusammenhangsmasse: Kovariation und Korrelation</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content page-columns page-full column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Informationen</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenanalyse/descriptive.html">Datenanalyse</a></li><li class="breadcrumb-item"><a href="../datenanalyse/descriptive.html"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Deskriptive Statistik</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-uebungen" class="quarto-section-identifier">Informationen</span></h1>
+<h1 class="title"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Deskriptive Statistik</span></h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -281,16 +327,302 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Dieses Kapitel enthält die Übungsmaterialien begleitend zur Vorlesung.</p>
-<p><strong>Tutoriat in den Übungsgruppen</strong></p>
-<p>Die Aufgaben werden in den Übungsgruppen mit Tutoriat gemeinsam bearbeitet.</p>
-<p><strong>Arbeiten mit <em>RProjekten</em> </strong></p>
-<p>Erstellen Sie immer zuerst ein <a href="../r/rrstudio.html#sec-rprojects"><em>RProjekt</em></a> für die Übung bevor Sie mit den Aufgaben beginnen und benennen Sie dieses Projekt z.B. nach der Übung: <em>Uebung_7</em>).</p>
-<p>Teilweise erhalten Sie für eine oder mehrere Übungen einen vorgefertigten Projekt-Ordner. Achtung: Ordner müssen vor dem Bearbeiten entzippt werden.</p>
-<p><strong>Datensätze</strong></p>
-<p>Die für die Übungen verwendeten Datensätze können am Anfang der Übungen per Link heruntergeladen werden.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Voraussetzungen">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Voraussetzungen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Package {tidyverse} ist installiert.</li>
+<li><em>RProject</em> namens <code>introduction_to_r</code> mit Datenordner <code>data</code> aus <a href="https://psylu.github.io/statistik2-fs25/r/rrstudio.html">Kapitel: Basics R und RStudio</a>.</li>
+<li><em>RNotebook</em> namens <code>descriptive_statistics</code>.</li>
+<li>Datensatz <code>readingskills_clean.csv</code> in Ordner <code>data</code> aus <a href="https://psylu.github.io/statistik2-fs25/datenverarbeitung/readandwrite.html">Kapitel: Datensätze bearbeiten</a> oder <a href="../data/readingskills_clean.csv">hier</a> herunterladen und in <code>data</code>-Ordner speichern.</li>
+</ul>
+</div>
+</div>
+<p>In diesem Kapitel werden die wichtigsten Funktionen für das Zusammenfassen von Werten (Deskriptivstatistik) behandelt.</p>
+<section id="laden-der-notwendigen-packages-und-daten" class="level3" data-number="8.0.1">
+<h3 data-number="8.0.1" class="anchored" data-anchor-id="laden-der-notwendigen-packages-und-daten"><span class="header-section-number">8.0.1</span> Laden der notwendigen Packages und Daten</h3>
+<p>Zu Beginn muss das {tidyverse} geladen und der Beispielsdatensatz eingelesen werden. Die beiden Variablen <code>id</code> und <code>dyslexia</code> werden zu Faktoren transformiert.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/readingskills_clean.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">as.factor</span>(id),</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">dyslexia =</span> <span class="fu">as.factor</span>(dyslexia))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Datensatz `readingskills.csv`">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Datensatz <code>readingskills.csv</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>In diesem Kapitel wird der Beispielsdatensatz <code>readingskills.csv</code> verwendet.</p>
+<p>Der Datensatz stammt aus dem Package <a href="https://vincentarelbundock.github.io/Rdatasets/doc/betareg/ReadingSkills.html">{betareg}</a>.</p>
+<p>Er enthält Daten von 44 Kindern im Alter zwischen acht und zwölf Jahren über die Lesegenauigkeit, IQ-Wert aus einem nonverbalen Intelligenztest, und ob sie Dyslexie haben oder nicht.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<table class="table-hover caption-top table">
+<caption>Data-Dictionary des <code>readingskills</code>-Datensatzes</caption>
+<colgroup>
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+<col style="width: 14%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>variable</th>
+<th>label</th>
+<th>type</th>
+<th>values</th>
+<th>source</th>
+<th>transformations</th>
+<th>missings</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>participant identification</td>
+<td><code>id</code></td>
+<td>character, factor</td>
+<td><code>"sub-01"</code> to <code>"sub-44"</code></td>
+<td>raw</td>
+<td>anonymized variable “participant”</td>
+<td><code>NA</code></td>
+</tr>
+<tr class="even">
+<td>dyslexia diagnosis</td>
+<td><code>dyslexia</code></td>
+<td>character, factor</td>
+<td><code>"no"</code>, <code>"yes"</code></td>
+<td>raw</td>
+<td></td>
+<td><code>NA</code></td>
+</tr>
+<tr class="odd">
+<td>z-score in nonverbal IQ-test</td>
+<td><code>iq_zscore</code></td>
+<td>numeric</td>
+<td>apprx. <code>-2</code> to <code>2</code></td>
+<td>raw</td>
+<td>z-transformed</td>
+<td><code>NA</code></td>
+</tr>
+<tr class="even">
+<td>reading performance</td>
+<td><code>accuracy</code></td>
+<td>numeric</td>
+<td><code>0</code> to <code>1</code></td>
+<td>raw</td>
+<td>transformed from points to proportion</td>
+<td><code>NA</code></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 44
+Columns: 4
+$ id        &lt;fct&gt; sub-01, sub-02, sub-03, sub-04, sub-05, sub-06, sub-07, sub-…
+$ dyslexia  &lt;fct&gt; no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, …
+$ iq_zscore &lt;dbl&gt; 0.827, 0.590, 0.471, 1.144, -0.676, -0.795, -0.281, -0.914, …
+$ accuracy  &lt;dbl&gt; 0.88386, 0.76524, 0.91508, 0.98376, 0.88386, 0.70905, 0.7714…</code></pre>
+</div>
+</div>
+</section>
+<section id="minimale-und-maximale-werte-min-und-max" class="level2" data-number="8.1">
+<h2 data-number="8.1" class="anchored" data-anchor-id="minimale-und-maximale-werte-min-und-max"><span class="header-section-number">8.1</span> Minimale und maximale Werte: <code>min()</code> und <code>max()</code></h2>
+<p>Für einzelne Variablen kann der minimale Wert und der maximale Wert ausgegeben werden:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(d<span class="sc">$</span>accuracy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.45932</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">max</span>(d<span class="sc">$</span>accuracy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1</code></pre>
+</div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Minimale und maximale Werte">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hands-on: Minimale und maximale Werte
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Was passiert, wenn</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">min</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>eingegeben wird? Was bedeutet die Fehlermeldung?</p>
+</div>
+</div>
+</section>
+<section id="lagemasse-mittelwert-und-median" class="level2" data-number="8.2">
+<h2 data-number="8.2" class="anchored" data-anchor-id="lagemasse-mittelwert-und-median"><span class="header-section-number">8.2</span> Lagemasse: Mittelwert und Median</h2>
+<p>Für einzelne Variablen kann der Mittelwert mit <code>mean()</code> und der Median mit <code>median()</code> ausgegeben werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(d<span class="sc">$</span>accuracy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7757161</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">median</span>(d<span class="sc">$</span>accuracy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.70593</code></pre>
+</div>
+</div>
+</section>
+<section id="streumasse-standardabweichung-und-varianz" class="level2" data-number="8.3">
+<h2 data-number="8.3" class="anchored" data-anchor-id="streumasse-standardabweichung-und-varianz"><span class="header-section-number">8.3</span> Streumasse: Standardabweichung und Varianz</h2>
+<p>Die Standardabweichung kann mit <code>sd()</code> ausgegeben werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sd</span>(d<span class="sc">$</span>accuracy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1826967</code></pre>
+</div>
+</div>
+<p>Die Varianz kann mit <code>var()</code> ausgegeben werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">var</span>(d<span class="sc">$</span>accuracy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.03337808</code></pre>
+</div>
+</div>
+</section>
+<section id="zusammenfassen-mit-summary" class="level2" data-number="8.4">
+<h2 data-number="8.4" class="anchored" data-anchor-id="zusammenfassen-mit-summary"><span class="header-section-number">8.4</span> Zusammenfassen mit <code>summary()</code></h2>
+<p>Mit der Funktion <code>summary()</code> werden alle Variablen im Datensatz zusammengefasst.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       id     dyslexia   iq_zscore             accuracy     
+ sub-01 : 1   no :25   Min.   :-1.7450000   Min.   :0.4593  
+ sub-02 : 1   yes:19   1st Qu.:-0.7950000   1st Qu.:0.6185  
+ sub-03 : 1            Median :-0.1225000   Median :0.7059  
+ sub-04 : 1            Mean   :-0.0000227   Mean   :0.7757  
+ sub-05 : 1            3rd Qu.: 0.6197500   3rd Qu.:1.0000  
+ sub-06 : 1            Max.   : 1.8560000   Max.   :1.0000  
+ (Other):38                                                 </code></pre>
+</div>
+</div>
+<p>Um die Werte als Variable zu erhalten, kann mit <code>summary()</code> ein Objekt erstellt und aufgerufen werden:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>d_summary <span class="ot">&lt;-</span> <span class="fu">summary</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Summary">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hands-on: Summary
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Wieso werden nicht für alle Variablen dieselben Informationen ausgegeben?</p>
+<p>Für welche Variablen gibt <code>summary()</code> folgende Informationen heraus:</p>
+<ul>
+<li>minimaler und maximaler Wert</li>
+<li>Mittelwert und Median</li>
+<li>Anzahl der vorhandenen Messungen pro Faktorstufe</li>
+</ul>
+</div>
+</div>
+</section>
+<section id="zusammenfassen-mit-describe" class="level2 page-columns page-full" data-number="8.5">
+<h2 data-number="8.5" class="anchored" data-anchor-id="zusammenfassen-mit-describe"><span class="header-section-number">8.5</span> Zusammenfassen mit <code>describe()</code></h2>
+<p>Im Package {Hmisc} ist die Funktion <code>describe()</code> enthalten, mit der deskriptive Angaben über den Datensatz herausgegeben werden.</p>
+<aside>
+Falls {Hmisc} noch nicht installiert ist können Sie dies mit <code>install.packages("Hmisc")</code> in der Konsole (nicht im Skript!) tun.
+</aside>
+<div class="cell" data-messages="false" data-warnings="false">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>Hmisc<span class="sc">::</span><span class="fu">describe</span>(d)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>d 
+
+ 4  Variables      44  Observations
+--------------------------------------------------------------------------------
+id 
+       n  missing distinct 
+      44        0       44 
+
+lowest : sub-01 sub-02 sub-03 sub-04 sub-05, highest: sub-40 sub-41 sub-42 sub-43 sub-44
+--------------------------------------------------------------------------------
+dyslexia 
+       n  missing distinct 
+      44        0        2 
+                      
+Value         no   yes
+Frequency     25    19
+Proportion 0.568 0.432
+--------------------------------------------------------------------------------
+iq_zscore 
+         n    missing   distinct       Info       Mean    pMedian        Gmd 
+        44          0         32      0.999 -2.273e-05    -0.0035      1.159 
+       .05        .10        .25        .50        .75        .90        .95 
+   -1.6421    -1.2580    -0.7950    -0.1225     0.6198     1.2230     1.7202 
+
+lowest : -1.745 -1.666 -1.507 -1.27  -1.23 , highest: 1.223  1.619  1.738  1.777  1.856 
+--------------------------------------------------------------------------------
+accuracy 
+       n  missing distinct     Info     Mean  pMedian      Gmd      .05 
+      44        0       27    0.974   0.7757   0.7858   0.2064   0.5414 
+     .10      .25      .50      .75      .90      .95 
+  0.5673   0.6185   0.7059   1.0000   1.0000   1.0000 
+
+lowest : 0.45932 0.53424 0.54048 0.54673 0.56546
+highest: 0.88386 0.91508 0.95878 0.98376 1      
+--------------------------------------------------------------------------------</code></pre>
+</div>
+</div>
+<aside>
+{Hmisc} wird hier nicht geladen, sondern vor die Funktion gesetzt, da dieses Package Funktionsnamen verwendet, die auch in {tidyverse} vorkommen.
+</aside>
+</section>
+<section id="zusammenhangsmasse-kovariation-und-korrelation" class="level2" data-number="8.6">
+<h2 data-number="8.6" class="anchored" data-anchor-id="zusammenhangsmasse-kovariation-und-korrelation"><span class="header-section-number">8.6</span> Zusammenhangsmasse: Kovariation und Korrelation</h2>
+<p>Die Kovarianz zweier Variablen kann mit <code>cov()</code> berechnet werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cov</span>(d<span class="sc">$</span>accuracy, d<span class="sc">$</span>iq_zscore)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.1038148</code></pre>
+</div>
+</div>
+<p>Die Korrelation zweier Variablen kann mit <code>cor()</code> berechnet werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">cor</span>(d<span class="sc">$</span>accuracy, d<span class="sc">$</span>iq_zscore)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5681996</code></pre>
+</div>
+</div>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Smithson M, Verkuilen J (2006). A Better Lemon Squeezer? Maximum-Likelihood Regression with Beta-Distributed Dependent Variables. Psychological Methods, 11(7), 54–71.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
 <script>
@@ -924,15 +1256,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../datenanalyse/descriptive.html" class="pagination-link" aria-label="Deskriptive Statistik">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Deskriptive Statistik</span></span>
+      <a href="../datenverarbeitung/transform.html" class="pagination-link" aria-label="Datensätze bearbeiten">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Datensätze bearbeiten</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../uebungen/uebung-01.html" class="pagination-link" aria-label="Übung 1">
-        <span class="nav-page-text">Übung 1</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../uebungen/uebungen.html" class="pagination-link" aria-label="Informationen">
+        <span class="nav-page-text">Informationen</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

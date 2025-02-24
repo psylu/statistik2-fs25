@@ -1,0 +1,149 @@
+# Deskriptive Statistik
+
+```{r}
+#| include: false
+# Set working directory of R
+knitr::opts_knit$set(root.dir = '../')
+```
+
+:::{.callout-note appearance="default" title="Voraussetzungen"}
+
+- Package {tidyverse} ist installiert.
+- _RProject_ namens `introduction_to_r` mit Datenordner `data` aus [Kapitel: Basics R und RStudio](https://psylu.github.io/statistik2-fs25/r/rrstudio.html).
+- _RNotebook_ namens `descriptive_statistics`.
+- Datensatz `readingskills_clean.csv` in Ordner `data` aus [Kapitel: Datensätze bearbeiten](https://psylu.github.io/statistik2-fs25/datenverarbeitung/readandwrite.html) oder [hier](../data/readingskills_clean.csv) herunterladen und in `data`-Ordner speichern.
+:::
+
+In diesem Kapitel werden die wichtigsten Funktionen für das Zusammenfassen von Werten (Deskriptivstatistik) behandelt.
+
+### Laden der notwendigen Packages und Daten
+
+Zu Beginn muss das {tidyverse} geladen und der Beispielsdatensatz eingelesen werden.
+Die beiden Variablen `id` und `dyslexia` werden zu Faktoren transformiert.
+
+```{r}
+#| message: false
+#| warning: false
+library(tidyverse)
+d <- read.csv("data/readingskills_clean.csv") |>
+  mutate(id = as.factor(id),
+         dyslexia = as.factor(dyslexia))
+```
+
+:::{.callout-note appearance="default" title="Datensatz `readingskills.csv`" collapse="true"}
+
+In diesem Kapitel wird der Beispielsdatensatz `readingskills.csv` verwendet.
+
+Der Datensatz stammt aus dem Package [{betareg}](https://vincentarelbundock.github.io/Rdatasets/doc/betareg/ReadingSkills.html).
+
+Er enthält Daten von 44 Kindern im Alter zwischen acht und zwölf Jahren über die Lesegenauigkeit, IQ-Wert aus einem nonverbalen Intelligenztest, und ob sie Dyslexie haben oder nicht.^[Smithson M, Verkuilen J (2006). A Better Lemon Squeezer? Maximum-Likelihood Regression with Beta-Distributed Dependent Variables. Psychological Methods, 11(7), 54–71.]
+
+| variable | label | type | values | source | transformations | missings | 
+|------|------|------|------|------|------|------|
+| participant identification | `id` | character, factor | `"sub-01"` to `"sub-44"` | raw | anonymized variable "participant" | `NA` |
+| dyslexia diagnosis | `dyslexia` | character, factor | `"no"`, `"yes"` | raw | | `NA`|
+| z-score in nonverbal IQ-test | `iq_zscore` | numeric| apprx. `-2` to `2` | raw | z-transformed | `NA` |
+| reading performance | `accuracy` | numeric | `0` to `1` | raw | transformed from points to proportion | `NA` |
+
+: Data-Dictionary des `readingskills`-Datensatzes {.hover}
+
+:::
+
+```{r}
+glimpse(d)
+```
+## Minimale und maximale Werte: `min()` und `max()`
+
+Für einzelne Variablen kann der minimale Wert und der maximale Wert ausgegeben werden:
+
+```{r}
+min(d$accuracy)
+max(d$accuracy)
+```
+
+:::{.callout-caution appearance="default" title="Hands-on: Minimale und maximale Werte"}
+
+Was passiert, wenn 
+
+```{r}
+#| eval: false
+min(d)
+```
+
+eingegeben wird? Was bedeutet die Fehlermeldung?
+:::
+
+## Lagemasse: Mittelwert und Median
+
+Für einzelne Variablen kann der Mittelwert mit `mean()` und der Median mit `median()` ausgegeben werden.
+
+```{r}
+mean(d$accuracy)
+median(d$accuracy)
+```
+
+## Streumasse: Standardabweichung und Varianz
+
+Die Standardabweichung kann mit `sd()` ausgegeben werden.
+
+```{r}
+sd(d$accuracy)
+```
+
+Die Varianz kann mit `var()` ausgegeben werden.
+
+```{r}
+var(d$accuracy)
+```
+
+## Zusammenfassen mit `summary()`
+
+Mit der Funktion `summary()` werden alle Variablen im Datensatz zusammengefasst.
+
+```{r}
+summary(d)
+```
+Um die Werte als Variable zu erhalten, kann mit `summary()` ein Objekt erstellt und aufgerufen werden:
+
+```{r}
+d_summary <- summary(d)
+```
+
+:::{.callout-caution appearance="default" title="Hands-on: Summary"}
+
+Wieso werden nicht für alle Variablen dieselben Informationen ausgegeben?
+
+Für welche Variablen gibt `summary()` folgende Informationen heraus:
+
+- minimaler und maximaler Wert
+- Mittelwert und Median
+- Anzahl der vorhandenen Messungen pro Faktorstufe
+:::
+
+## Zusammenfassen mit `describe()`
+
+Im Package {Hmisc} ist die Funktion `describe()` enthalten, mit der deskriptive Angaben über den Datensatz herausgegeben werden.
+
+<aside>Falls {Hmisc} noch nicht installiert ist können Sie dies mit `install.packages("Hmisc")` in der Konsole (nicht im Skript!) tun. </aside>
+
+```{r}
+#| messages: false
+#| warnings: false
+Hmisc::describe(d)
+```
+
+<aside>{Hmisc} wird hier nicht geladen, sondern vor die Funktion gesetzt, da dieses Package Funktionsnamen verwendet, die auch in {tidyverse} vorkommen.</aside>
+
+## Zusammenhangsmasse: Kovariation und Korrelation
+
+Die Kovarianz zweier Variablen kann  mit `cov()` berechnet werden.
+
+```{r}
+cov(d$accuracy, d$iq_zscore)
+```
+
+Die Korrelation zweier Variablen kann  mit `cor()` berechnet werden.
+
+```{r}
+cor(d$accuracy, d$iq_zscore)
+```

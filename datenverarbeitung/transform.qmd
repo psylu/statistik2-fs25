@@ -11,7 +11,7 @@ knitr::opts_knit$set(root.dir = '../')
 - Package {tidyverse} ist installiert.
 - _RProject_ namens `introduction_to_r` mit Datenordner `data` aus [Kapitel: Basics R und RStudio](https://psylu.github.io/statistik2-fs25/r/rrstudio.html).
 - _RNotebook_ namens `intro_datawrangling` aus [Kapitel: Basics R und RStudio](https://psylu.github.io/statistik2-fs25/r/rrstudio.html).
-- Datensatz `readingskills.csv` in Ordner `data` [Kapitel: Datensätze einlesen und schreiben](https://psylu.github.io/statistik2-fs25/datenverarbeitung/readandwrite.html)
+- Datensatz `readingskills.csv` in Ordner `data` [Kapitel: Datensätze einlesen und schreiben](https://psylu.github.io/statistik2-fs25/datenverarbeitung/readandwrite.html) oder [hier](../data/readingskills.csv) herunterladen und in `data`-Ordner speichern.
 :::
 
 In diesem Kapitel werden die wichtigsten Funktionen für die Datenverarbeitung in R behandelt.
@@ -52,10 +52,10 @@ Er enthält Daten von 44 Kindern im Alter zwischen acht und zwölf Jahren über 
 
 | variable | label | type | values | source | transformations | missings | 
 |------|------|------|------|------|------|------|
-| participant identification | `id` | character, factor | "sub-001" to "sub-44" | raw | anonymized variable "participant" | NA |
-| dyslexia diagnosis | `dyslexia` | character, factor | "no", "yes" | raw | | NA|
-| z-score in nonverbal `iq_zscore` | iq-zscore | numeric| apprx. -2 to 2 | raw | z-transformed | NA |
-| reading performance | `accuracy` | numeric | 0 to 1 | raw | transformed from points to percent / 100 | NA |
+| participant identification | `id` | character, factor | `"sub-01"` to `"sub-44"` | raw | anonymized variable "participant" | `NA` |
+| dyslexia diagnosis | `dyslexia` | character, factor | `"no"`, `"yes"` | raw | | `NA`|
+| z-score in nonverbal IQ-test | `iq_zscore` | numeric| apprx. `-2` to `2` | raw | z-transformed | `NA` |
+| reading performance | `accuracy` | numeric | `0` to `1` | raw | transformed from points to proportion | `NA` |
 
 : Data-Dictionary des `readingskills`-Datensatzes {.hover}
 

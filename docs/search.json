@@ -365,7 +365,7 @@
     "href": "datenverarbeitung/readandwrite.html#einlesen-mit-code",
     "title": "6  Datensätze einlesen und schreiben",
     "section": "6.2 Einlesen mit Code",
-    "text": "6.2 Einlesen mit Code\nDas Einlesen eines Datensatzes mit Code eignet sich vor allem für das Automatisieren des Vorgangs. Mit Code muss nicht jedesmal im GUI angeklickt werden wie der Datensatz eingelesen werden soll, sondern wird automatisch immer gleich und mit wenig Aufwand geladen.\n\n6.2.1 Einlesen eines .csv-Files\n\n# Einlesen eines .csv-Files\ndata_csv &lt;- read.csv(\"data/nameoftheCSVfile.csv\")\n\nWeitere Einstellungen:\n\nheader = FALSE: die oberste Zeile wird nicht als Variablennamen eingelesen (Standardeinstellung header = TRUE)\nsep = \";\": ein Semikolon wird als Zellentrennungszeichen angenommen (Standardeinstellung sep = \",\")\n\n\n\n6.2.2 Einlesen eines .xlsx-Files\n\n# Einlesen eines .xlsx-Files\nlibrary(readxl)\ndata_xlsx &lt;- read_xlsx(\"data/nameoftheEXCELfile.xlsx\")\n\nWeitere Einstellungen:\n\ncol_names = FALSE: die oberste Zeile wird nicht als Variablennamen eingelesen (Standardeinstellung col_names = TRUE)\n\n\n\n6.2.3 Funktionen zum Einlesen von Datensätzen\n\nEinlesen von Datensätzen\n\n\n\n\n\n\n\n\n\nDateiformat\nImport Dataset (GUI)\nCode (Funktion)\nCode (Argumente)\nCode-Beispiel\n\n\n\n\n.csv\nFrom text\nread.csv()\nfile, (header), (sep), …\nread.csv(file = \"data/datafile.csv\")\n\n\n.xlsx\nFrom Excel\nreadxl::read_xlsx()\npath, (sheet), (col_names), …\nreadxl::read_xlsx(path = \"data/datafile.xlsx\")\n\n\n.sav\nFrom SPSS\nhaven::read_sav()\nfile, …\nhaven::read_sav(file = \"data/datafile.sav\")\n\n\n.txt\nFrom text\nread.delim()\nfile, (delim), (col_names)\nread_delim(file = \"data/datafile.txt\")\n\n\n.sas7bdat\nFrom SAS\n…\n\n\n\n\n.dta\nFrom Stata\n…\n\n\n\n\n\n\n\n\n\n\n\nEinlesen eines Datensatzes\n\n\n\n\nÖffnen Sie Ihr RProjekt introduction_to_r auf Ihrem Computer und öffnen Sie Ihr RNotebook intro_datawangling. Falls Sie kein RProjekt und RNotebook mit diesem Namen haben, folgen Sie den Anweisungen im Kapitel 2: Basics R und RStudio.\nLaden Sie den Datensatz herunter und speichern Sie ihn im data-Ordner Ihres RProjekts.\n\nreadingskills.csv 1\n\nLesen Sie den Datensatz ein über Import Dataset oder mit read.csv().\nChecken Sie, ob das Einlesen einwandfrei geklappt hat, indem Sie den Datensatz unter Environment anwählen oder mit dem untenstehenden Code:\n\n\nlibrary(tidyverse)\nglimpse(data_csv)\nglimpse(data_xlsx)",
+    "text": "6.2 Einlesen mit Code\nDas Einlesen eines Datensatzes mit Code eignet sich vor allem für das Automatisieren des Vorgangs. Mit Code muss nicht jedesmal im GUI angeklickt werden wie der Datensatz eingelesen werden soll, sondern wird automatisch immer gleich und mit wenig Aufwand geladen.\n\n6.2.1 Einlesen eines .csv-Files\n\n# Einlesen eines .csv-Files\ndata_csv &lt;- read.csv(\"data/nameoftheCSVfile.csv\")\n\nWeitere Einstellungen:\n\nheader = FALSE: die oberste Zeile wird nicht als Variablennamen eingelesen (Standardeinstellung header = TRUE)\nsep = \";\": ein Semikolon wird als Zellentrennungszeichen angenommen (Standardeinstellung sep = \",\")\n\n\n\n6.2.2 Einlesen eines .xlsx-Files\n\n# Einlesen eines .xlsx-Files\nlibrary(readxl)\ndata_xlsx &lt;- read_xlsx(\"data/nameoftheEXCELfile.xlsx\")\n\nWeitere Einstellungen:\n\ncol_names = FALSE: die oberste Zeile wird nicht als Variablennamen eingelesen (Standardeinstellung col_names = TRUE)\n\n\n\n6.2.3 Funktionen zum Einlesen von Datensätzen\n\nEinlesen von Datensätzen\n\n\n\n\n\n\n\n\n\nDateiformat\nImport Dataset (GUI)\nCode (Funktion)\nCode (Argumente)\nCode-Beispiel\n\n\n\n\n.csv\nFrom text\nread.csv()\nfile, (header), (sep), …\nread.csv(file = \"data/datafile.csv\")\n\n\n.xlsx\nFrom Excel\nreadxl::read_xlsx()\npath, (sheet), (col_names), …\nreadxl::read_xlsx(path = \"data/datafile.xlsx\")\n\n\n.sav\nFrom SPSS\nhaven::read_sav()\nfile, …\nhaven::read_sav(file = \"data/datafile.sav\")\n\n\n.txt\nFrom text\nread.delim()\nfile, (delim), (col_names)\nread_delim(file = \"data/datafile.txt\")\n\n\n.sas7bdat\nFrom SAS\n…\n\n\n\n\n.dta\nFrom Stata\n…\n\n\n\n\n\n\n\n\n\n\n\nEinlesen eines Datensatzes\n\n\n\n\nÖffnen Sie Ihr RProjekt introduction_to_r auf Ihrem Computer und öffnen Sie Ihr RNotebook intro_datawangling. Falls Sie kein RProjekt und RNotebook mit diesem Namen haben, folgen Sie den Anweisungen im Kapitel: Basics R und RStudio.\nLaden Sie den Datensatz herunter und speichern Sie ihn im data-Ordner Ihres RProjekts.\n\nreadingskills.csv 1\n\nLesen Sie den Datensatz ein über Import Dataset oder mit read.csv().\nChecken Sie, ob das Einlesen einwandfrei geklappt hat, indem Sie den Datensatz unter Environment anwählen oder mit dem untenstehenden Code:\n\n\nlibrary(tidyverse)\nglimpse(data_csv)\nglimpse(data_xlsx)",
     "crumbs": [
       "Datenverarbeitung",
       "<span class='chapter-number'>6</span>  <span class='chapter-title'>Datensätze einlesen und schreiben</span>"
@@ -409,7 +409,7 @@
     "href": "datenverarbeitung/transform.html#datensatz-kennenlernen-und-anschauen",
     "title": "7  Datensätze bearbeiten",
     "section": "7.1 Datensatz kennenlernen und anschauen",
-    "text": "7.1 Datensatz kennenlernen und anschauen\nBei der Arbeit mit einem neuen Datensatz ist es wichtig, sich zu Beginn mit den enthaltenen Daten bekannzumachen. Hierzu können folgende Fragen gestellt werden:\n\nWelche Variablen sind enthalten?\nWelche Informationen enthalten diese?\nWelches Format haben sie? (Skalenniveau, Variablentyp)\nWas sind die maximal / minimal möglichen Werte?\nWie sind nicht vorhandene Werte codiert?\nIst der Datensatz im Long-Format oder im Wide-Format oder gemischt aufgebaut?\n\nIm Idealfall besteht ein Data Dictionary, welches diese Informationen kurz und knapp zusammenfasst.\n\n\n\n\n\n\nDatensatz readingskills.csv\n\n\n\nIn diesem Kapitel wird der Beispielsdatensatz readingskills.csv verwendet.\nDer Datensatz stammt aus dem Package {betareg}.\nEr enthält Daten von 44 Kindern im Alter zwischen acht und zwölf Jahren über die Lesegenauigkeit, IQ-Wert aus einem nonverbalen Intelligenztest, und ob sie Dyslexie haben oder nicht.1\n\nData-Dictionary des readingskills-Datensatzes\n\n\n\n\n\n\n\n\n\n\n\nvariable\nlabel\ntype\nvalues\nsource\ntransformations\nmissings\n\n\n\n\nparticipant identification\nid\ncharacter, factor\n“sub-001” to “sub-44”\nraw\nanonymized variable “participant”\nNA\n\n\ndyslexia diagnosis\ndyslexia\ncharacter, factor\n“no”, “yes”\nraw\n\nNA\n\n\nz-score in nonverbal iq_zscore\niq-zscore\nnumeric\napprx. -2 to 2\nraw\nz-transformed\nNA\n\n\nreading performance\naccuracy\nnumeric\n0 to 1\nraw\ntransformed from points to percent / 100\nNA\n\n\n\nDer Datensatz wurde für dieses Kapitel noch mit einer zusätzlichen Variable und zwei zusätzlichen Versuchspersonen ergänzt. Finden Sie diese?\n\n\nUm den Datensatz zu erkunden, gibt es viele verschiedene Wege.\n\n7.1.1 Datensatz erkunden im GUI\nDer Datensatz kann angeschaut werden, in dem im Environment-Fenster darauf geklickt wird:\n\nBei Klick auf das blaue Dreieck, erscheint eine Liste mit den Variablen.\nBei Doppelklick auf den Datensatz, wird eine Tabelle geöffnet.\n\nPraktisch ist hier, dass die Variablen in der Tabelle ein Format haben, dass man sich von anderen Tabellenverarbeitungsprogrammen, wie z.B. Excel, gewöhnt ist. Variablen können so auch mit wenig Aufwand der Grösse nach geordnet werden.\n\n\n7.1.2 Datensatz erkunden durch Aufrufen des Datensatznamens\nDer Datensatz kann durch Aufrufen des Datensatznames in die Konsole ausgeben werden:\n\nd\n\n       id dyslexia iq_zscore accuracy name\n1  sub-01       no     0.827  0.88386   ZU\n2  sub-02       no     0.590  0.76524   SD\n3  sub-03       no     0.471  0.91508   VE\n4  sub-04       no     1.144  0.98376   WE\n5  sub-05       no    -0.676  0.88386   WD\n6  sub-06       no    -0.795  0.70905   TE\n7  sub-07       no    -0.281  0.77148   GW\n8  sub-08       no    -0.914  1.00000   QS\n9  sub-09       no    -0.043  1.00000   XC\n10 sub-10       no     0.907  1.00000   WS\n11 sub-11       no     0.511  1.00000   DD\n12 sub-12       no     1.223  1.00000   HR\n13 sub-13       no     0.590  1.00000   VE\n14 sub-14       no     1.856  1.00000   AM\n15 sub-15       no    -0.399  1.00000   AH\n16 sub-16       no     0.590  1.00000   ER\n17 sub-17       no    -0.043  0.70281   ZW\n18 sub-18       no     1.738  1.00000   BE\n19 sub-19       no     0.471  0.66535   WE\n20 sub-20       no     1.619  1.00000   EH\n21 sub-21       no     1.144  0.95878   IA\n22 sub-22       no    -0.201  1.00000   AD\n23 sub-23       no    -0.281  0.73402   PW\n24 sub-24       no     0.590  0.64662   AO\n25 sub-25       no     1.777  1.00000   EP\n26 sub-26      yes    -0.083  0.57794   DE\n27 sub-27      yes    -0.162  0.64038   AS\n28 sub-28      yes    -0.795  0.45932   LA\n29 sub-29      yes    -0.281  0.65286   RG\n30 sub-30      yes    -0.874  0.60916   AL\n31 sub-31      yes     0.313  0.60916   IF\n32 sub-32      yes     0.709  0.54048   PF\n33 sub-33      yes     1.223  0.57170   BN\n34 sub-34      yes    -1.230  0.70281   NO\n35 sub-35      yes    -0.162  0.56546   IS\n36 sub-36      yes    -0.993  0.53424   IV\n37 sub-37      yes    -1.191  0.57794   ML\n38 sub-38      yes    -1.745  0.69032   OW\n39 sub-39      yes    -1.745  0.54673   MF\n40 sub-40      yes    -0.439  0.68408   LK\n41 sub-41      yes    -1.666  0.59043   MW\n42 sub-42      yes    -1.507  0.62165   ME\n43 sub-43      yes    -0.518  0.67159   QE\n44 sub-44      yes    -1.270  0.66535   DF\n45 sub-98      yes        NA  3.00000   PE\n46   &lt;NA&gt;       no     0.300  0.70000   KW\n47 sub-99       no     0.400 99.00000   TS\n\n\n\n\n7.1.3 Datensatz erkunden mit Funktionen\nNützliche Funktionen zum Erkunden eines Datensatzes sind zudem glimpse()\n\nglimpse(d)\n\nRows: 47\nColumns: 5\n$ id        &lt;chr&gt; \"sub-01\", \"sub-02\", \"sub-03\", \"sub-04\", \"sub-05\", \"sub-06\", …\n$ dyslexia  &lt;chr&gt; \"no\", \"no\", \"no\", \"no\", \"no\", \"no\", \"no\", \"no\", \"no\", \"no\", …\n$ iq_zscore &lt;dbl&gt; 0.827, 0.590, 0.471, 1.144, -0.676, -0.795, -0.281, -0.914, …\n$ accuracy  &lt;dbl&gt; 0.88386, 0.76524, 0.91508, 0.98376, 0.88386, 0.70905, 0.7714…\n$ name      &lt;chr&gt; \"ZU\", \"SD\", \"VE\", \"WE\", \"WD\", \"TE\", \"GW\", \"QS\", \"XC\", \"WS\", …\n\n\nund head().\n\nhead(d)\n\n      id dyslexia iq_zscore accuracy name\n1 sub-01       no     0.827  0.88386   ZU\n2 sub-02       no     0.590  0.76524   SD\n3 sub-03       no     0.471  0.91508   VE\n4 sub-04       no     1.144  0.98376   WE\n5 sub-05       no    -0.676  0.88386   WD\n6 sub-06       no    -0.795  0.70905   TE\n\n\n\n\n7.1.4 Datensatz erkunden durch Zusammenfassen\nMit der Funktion summary()kann eine kurze Übersicht über den Datensatz erstellt werden:\n\nsummary(d)\n\n      id              dyslexia           iq_zscore          accuracy      \n Length:47          Length:47          Min.   :-1.7450   Min.   : 0.4593  \n Class :character   Class :character   1st Qu.:-0.7652   1st Qu.: 0.6310  \n Mode  :character   Mode  :character   Median :-0.0630   Median : 0.7090  \n                                       Mean   : 0.0152   Mean   : 2.9113  \n                                       3rd Qu.: 0.5900   3rd Qu.: 1.0000  \n                                       Max.   : 1.8560   Max.   :99.0000  \n                                       NA's   :1                          \n     name          \n Length:47         \n Class :character  \n Mode  :character",
+    "text": "7.1 Datensatz kennenlernen und anschauen\nBei der Arbeit mit einem neuen Datensatz ist es wichtig, sich zu Beginn mit den enthaltenen Daten bekannzumachen. Hierzu können folgende Fragen gestellt werden:\n\nWelche Variablen sind enthalten?\nWelche Informationen enthalten diese?\nWelches Format haben sie? (Skalenniveau, Variablentyp)\nWas sind die maximal / minimal möglichen Werte?\nWie sind nicht vorhandene Werte codiert?\nIst der Datensatz im Long-Format oder im Wide-Format oder gemischt aufgebaut?\n\nIm Idealfall besteht ein Data Dictionary, welches diese Informationen kurz und knapp zusammenfasst.\n\n\n\n\n\n\nDatensatz readingskills.csv\n\n\n\nIn diesem Kapitel wird der Beispielsdatensatz readingskills.csv verwendet.\nDer Datensatz stammt aus dem Package {betareg}.\nEr enthält Daten von 44 Kindern im Alter zwischen acht und zwölf Jahren über die Lesegenauigkeit, IQ-Wert aus einem nonverbalen Intelligenztest, und ob sie Dyslexie haben oder nicht.1\n\nData-Dictionary des readingskills-Datensatzes\n\n\n\n\n\n\n\n\n\n\n\nvariable\nlabel\ntype\nvalues\nsource\ntransformations\nmissings\n\n\n\n\nparticipant identification\nid\ncharacter, factor\n\"sub-01\" to \"sub-44\"\nraw\nanonymized variable “participant”\nNA\n\n\ndyslexia diagnosis\ndyslexia\ncharacter, factor\n\"no\", \"yes\"\nraw\n\nNA\n\n\nz-score in nonverbal IQ-test\niq_zscore\nnumeric\napprx. -2 to 2\nraw\nz-transformed\nNA\n\n\nreading performance\naccuracy\nnumeric\n0 to 1\nraw\ntransformed from points to proportion\nNA\n\n\n\nDer Datensatz wurde für dieses Kapitel noch mit einer zusätzlichen Variable und zwei zusätzlichen Versuchspersonen ergänzt. Finden Sie diese?\n\n\nUm den Datensatz zu erkunden, gibt es viele verschiedene Wege.\n\n7.1.1 Datensatz erkunden im GUI\nDer Datensatz kann angeschaut werden, in dem im Environment-Fenster darauf geklickt wird:\n\nBei Klick auf das blaue Dreieck, erscheint eine Liste mit den Variablen.\nBei Doppelklick auf den Datensatz, wird eine Tabelle geöffnet.\n\nPraktisch ist hier, dass die Variablen in der Tabelle ein Format haben, dass man sich von anderen Tabellenverarbeitungsprogrammen, wie z.B. Excel, gewöhnt ist. Variablen können so auch mit wenig Aufwand der Grösse nach geordnet werden.\n\n\n7.1.2 Datensatz erkunden durch Aufrufen des Datensatznamens\nDer Datensatz kann durch Aufrufen des Datensatznames in die Konsole ausgeben werden:\n\nd\n\n       id dyslexia iq_zscore accuracy name\n1  sub-01       no     0.827  0.88386   ZU\n2  sub-02       no     0.590  0.76524   SD\n3  sub-03       no     0.471  0.91508   VE\n4  sub-04       no     1.144  0.98376   WE\n5  sub-05       no    -0.676  0.88386   WD\n6  sub-06       no    -0.795  0.70905   TE\n7  sub-07       no    -0.281  0.77148   GW\n8  sub-08       no    -0.914  1.00000   QS\n9  sub-09       no    -0.043  1.00000   XC\n10 sub-10       no     0.907  1.00000   WS\n11 sub-11       no     0.511  1.00000   DD\n12 sub-12       no     1.223  1.00000   HR\n13 sub-13       no     0.590  1.00000   VE\n14 sub-14       no     1.856  1.00000   AM\n15 sub-15       no    -0.399  1.00000   AH\n16 sub-16       no     0.590  1.00000   ER\n17 sub-17       no    -0.043  0.70281   ZW\n18 sub-18       no     1.738  1.00000   BE\n19 sub-19       no     0.471  0.66535   WE\n20 sub-20       no     1.619  1.00000   EH\n21 sub-21       no     1.144  0.95878   IA\n22 sub-22       no    -0.201  1.00000   AD\n23 sub-23       no    -0.281  0.73402   PW\n24 sub-24       no     0.590  0.64662   AO\n25 sub-25       no     1.777  1.00000   EP\n26 sub-26      yes    -0.083  0.57794   DE\n27 sub-27      yes    -0.162  0.64038   AS\n28 sub-28      yes    -0.795  0.45932   LA\n29 sub-29      yes    -0.281  0.65286   RG\n30 sub-30      yes    -0.874  0.60916   AL\n31 sub-31      yes     0.313  0.60916   IF\n32 sub-32      yes     0.709  0.54048   PF\n33 sub-33      yes     1.223  0.57170   BN\n34 sub-34      yes    -1.230  0.70281   NO\n35 sub-35      yes    -0.162  0.56546   IS\n36 sub-36      yes    -0.993  0.53424   IV\n37 sub-37      yes    -1.191  0.57794   ML\n38 sub-38      yes    -1.745  0.69032   OW\n39 sub-39      yes    -1.745  0.54673   MF\n40 sub-40      yes    -0.439  0.68408   LK\n41 sub-41      yes    -1.666  0.59043   MW\n42 sub-42      yes    -1.507  0.62165   ME\n43 sub-43      yes    -0.518  0.67159   QE\n44 sub-44      yes    -1.270  0.66535   DF\n45 sub-98      yes        NA  3.00000   PE\n46   &lt;NA&gt;       no     0.300  0.70000   KW\n47 sub-99       no     0.400 99.00000   TS\n\n\n\n\n7.1.3 Datensatz erkunden mit Funktionen\nNützliche Funktionen zum Erkunden eines Datensatzes sind zudem glimpse()\n\nglimpse(d)\n\nRows: 47\nColumns: 5\n$ id        &lt;chr&gt; \"sub-01\", \"sub-02\", \"sub-03\", \"sub-04\", \"sub-05\", \"sub-06\", …\n$ dyslexia  &lt;chr&gt; \"no\", \"no\", \"no\", \"no\", \"no\", \"no\", \"no\", \"no\", \"no\", \"no\", …\n$ iq_zscore &lt;dbl&gt; 0.827, 0.590, 0.471, 1.144, -0.676, -0.795, -0.281, -0.914, …\n$ accuracy  &lt;dbl&gt; 0.88386, 0.76524, 0.91508, 0.98376, 0.88386, 0.70905, 0.7714…\n$ name      &lt;chr&gt; \"ZU\", \"SD\", \"VE\", \"WE\", \"WD\", \"TE\", \"GW\", \"QS\", \"XC\", \"WS\", …\n\n\nund head().\n\nhead(d)\n\n      id dyslexia iq_zscore accuracy name\n1 sub-01       no     0.827  0.88386   ZU\n2 sub-02       no     0.590  0.76524   SD\n3 sub-03       no     0.471  0.91508   VE\n4 sub-04       no     1.144  0.98376   WE\n5 sub-05       no    -0.676  0.88386   WD\n6 sub-06       no    -0.795  0.70905   TE\n\n\n\n\n7.1.4 Datensatz erkunden durch Zusammenfassen\nMit der Funktion summary()kann eine kurze Übersicht über den Datensatz erstellt werden:\n\nsummary(d)\n\n      id              dyslexia           iq_zscore          accuracy      \n Length:47          Length:47          Min.   :-1.7450   Min.   : 0.4593  \n Class :character   Class :character   1st Qu.:-0.7652   1st Qu.: 0.6310  \n Mode  :character   Mode  :character   Median :-0.0630   Median : 0.7090  \n                                       Mean   : 0.0152   Mean   : 2.9113  \n                                       3rd Qu.: 0.5900   3rd Qu.: 1.0000  \n                                       Max.   : 1.8560   Max.   :99.0000  \n                                       NA's   :1                          \n     name          \n Length:47         \n Class :character  \n Mode  :character",
     "crumbs": [
       "Datenverarbeitung",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Datensätze bearbeiten</span>"
@@ -504,6 +504,17 @@
     ]
   },
   {
+    "objectID": "datenverarbeitung/transform.html#datensätze-speichern-write.csv",
+    "href": "datenverarbeitung/transform.html#datensätze-speichern-write.csv",
+    "title": "7  Datensätze bearbeiten",
+    "section": "7.10 Datensätze speichern: write.csv()",
+    "text": "7.10 Datensätze speichern: write.csv()\n\n\n\n\n\n\nHands-on: Neuer Datensatz abspeichern\n\n\n\nSpeichern Sie den bearbeiteten Datensatz als Datei ab\n\nwrite.csv(d, \"data/readingskills_clean.csv\", row.names = FALSE)",
+    "crumbs": [
+      "Datenverarbeitung",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Datensätze bearbeiten</span>"
+    ]
+  },
+  {
     "objectID": "datenverarbeitung/transform.html#footnotes",
     "href": "datenverarbeitung/transform.html#footnotes",
     "title": "7  Datensätze bearbeiten",
@@ -512,6 +523,94 @@
     "crumbs": [
       "Datenverarbeitung",
       "<span class='chapter-number'>7</span>  <span class='chapter-title'>Datensätze bearbeiten</span>"
+    ]
+  },
+  {
+    "objectID": "datenanalyse/descriptive.html",
+    "href": "datenanalyse/descriptive.html",
+    "title": "8  Deskriptive Statistik",
+    "section": "",
+    "text": "8.0.1 Laden der notwendigen Packages und Daten\nZu Beginn muss das {tidyverse} geladen und der Beispielsdatensatz eingelesen werden. Die beiden Variablen id und dyslexia werden zu Faktoren transformiert.\nlibrary(tidyverse)\nd &lt;- read.csv(\"data/readingskills_clean.csv\") |&gt;\n  mutate(id = as.factor(id),\n         dyslexia = as.factor(dyslexia))\nglimpse(d)\n\nRows: 44\nColumns: 4\n$ id        &lt;fct&gt; sub-01, sub-02, sub-03, sub-04, sub-05, sub-06, sub-07, sub-…\n$ dyslexia  &lt;fct&gt; no, no, no, no, no, no, no, no, no, no, no, no, no, no, no, …\n$ iq_zscore &lt;dbl&gt; 0.827, 0.590, 0.471, 1.144, -0.676, -0.795, -0.281, -0.914, …\n$ accuracy  &lt;dbl&gt; 0.88386, 0.76524, 0.91508, 0.98376, 0.88386, 0.70905, 0.7714…",
+    "crumbs": [
+      "Datenanalyse",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Deskriptive Statistik</span>"
+    ]
+  },
+  {
+    "objectID": "datenanalyse/descriptive.html#minimale-und-maximale-werte-min-und-max",
+    "href": "datenanalyse/descriptive.html#minimale-und-maximale-werte-min-und-max",
+    "title": "8  Deskriptive Statistik",
+    "section": "8.1 Minimale und maximale Werte: min() und max()",
+    "text": "8.1 Minimale und maximale Werte: min() und max()\nFür einzelne Variablen kann der minimale Wert und der maximale Wert ausgegeben werden:\n\nmin(d$accuracy)\n\n[1] 0.45932\n\nmax(d$accuracy)\n\n[1] 1\n\n\n\n\n\n\n\n\nHands-on: Minimale und maximale Werte\n\n\n\nWas passiert, wenn\n\nmin(d)\n\neingegeben wird? Was bedeutet die Fehlermeldung?",
+    "crumbs": [
+      "Datenanalyse",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Deskriptive Statistik</span>"
+    ]
+  },
+  {
+    "objectID": "datenanalyse/descriptive.html#lagemasse-mittelwert-und-median",
+    "href": "datenanalyse/descriptive.html#lagemasse-mittelwert-und-median",
+    "title": "8  Deskriptive Statistik",
+    "section": "8.2 Lagemasse: Mittelwert und Median",
+    "text": "8.2 Lagemasse: Mittelwert und Median\nFür einzelne Variablen kann der Mittelwert mit mean() und der Median mit median() ausgegeben werden.\n\nmean(d$accuracy)\n\n[1] 0.7757161\n\nmedian(d$accuracy)\n\n[1] 0.70593",
+    "crumbs": [
+      "Datenanalyse",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Deskriptive Statistik</span>"
+    ]
+  },
+  {
+    "objectID": "datenanalyse/descriptive.html#streumasse-standardabweichung-und-varianz",
+    "href": "datenanalyse/descriptive.html#streumasse-standardabweichung-und-varianz",
+    "title": "8  Deskriptive Statistik",
+    "section": "8.3 Streumasse: Standardabweichung und Varianz",
+    "text": "8.3 Streumasse: Standardabweichung und Varianz\nDie Standardabweichung kann mit sd() ausgegeben werden.\n\nsd(d$accuracy)\n\n[1] 0.1826967\n\n\nDie Varianz kann mit var() ausgegeben werden.\n\nvar(d$accuracy)\n\n[1] 0.03337808",
+    "crumbs": [
+      "Datenanalyse",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Deskriptive Statistik</span>"
+    ]
+  },
+  {
+    "objectID": "datenanalyse/descriptive.html#zusammenfassen-mit-summary",
+    "href": "datenanalyse/descriptive.html#zusammenfassen-mit-summary",
+    "title": "8  Deskriptive Statistik",
+    "section": "8.4 Zusammenfassen mit summary()",
+    "text": "8.4 Zusammenfassen mit summary()\nMit der Funktion summary() werden alle Variablen im Datensatz zusammengefasst.\n\nsummary(d)\n\n       id     dyslexia   iq_zscore             accuracy     \n sub-01 : 1   no :25   Min.   :-1.7450000   Min.   :0.4593  \n sub-02 : 1   yes:19   1st Qu.:-0.7950000   1st Qu.:0.6185  \n sub-03 : 1            Median :-0.1225000   Median :0.7059  \n sub-04 : 1            Mean   :-0.0000227   Mean   :0.7757  \n sub-05 : 1            3rd Qu.: 0.6197500   3rd Qu.:1.0000  \n sub-06 : 1            Max.   : 1.8560000   Max.   :1.0000  \n (Other):38                                                 \n\n\nUm die Werte als Variable zu erhalten, kann mit summary() ein Objekt erstellt und aufgerufen werden:\n\nd_summary &lt;- summary(d)\n\n\n\n\n\n\n\nHands-on: Summary\n\n\n\nWieso werden nicht für alle Variablen dieselben Informationen ausgegeben?\nFür welche Variablen gibt summary() folgende Informationen heraus:\n\nminimaler und maximaler Wert\nMittelwert und Median\nAnzahl der vorhandenen Messungen pro Faktorstufe",
+    "crumbs": [
+      "Datenanalyse",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Deskriptive Statistik</span>"
+    ]
+  },
+  {
+    "objectID": "datenanalyse/descriptive.html#zusammenfassen-mit-describe",
+    "href": "datenanalyse/descriptive.html#zusammenfassen-mit-describe",
+    "title": "8  Deskriptive Statistik",
+    "section": "8.5 Zusammenfassen mit describe()",
+    "text": "8.5 Zusammenfassen mit describe()\nIm Package {Hmisc} ist die Funktion describe() enthalten, mit der deskriptive Angaben über den Datensatz herausgegeben werden.\n\nFalls {Hmisc} noch nicht installiert ist können Sie dies mit install.packages(\"Hmisc\") in der Konsole (nicht im Skript!) tun.\n\n\nHmisc::describe(d)\n\nd \n\n 4  Variables      44  Observations\n--------------------------------------------------------------------------------\nid \n       n  missing distinct \n      44        0       44 \n\nlowest : sub-01 sub-02 sub-03 sub-04 sub-05, highest: sub-40 sub-41 sub-42 sub-43 sub-44\n--------------------------------------------------------------------------------\ndyslexia \n       n  missing distinct \n      44        0        2 \n                      \nValue         no   yes\nFrequency     25    19\nProportion 0.568 0.432\n--------------------------------------------------------------------------------\niq_zscore \n         n    missing   distinct       Info       Mean    pMedian        Gmd \n        44          0         32      0.999 -2.273e-05    -0.0035      1.159 \n       .05        .10        .25        .50        .75        .90        .95 \n   -1.6421    -1.2580    -0.7950    -0.1225     0.6198     1.2230     1.7202 \n\nlowest : -1.745 -1.666 -1.507 -1.27  -1.23 , highest: 1.223  1.619  1.738  1.777  1.856 \n--------------------------------------------------------------------------------\naccuracy \n       n  missing distinct     Info     Mean  pMedian      Gmd      .05 \n      44        0       27    0.974   0.7757   0.7858   0.2064   0.5414 \n     .10      .25      .50      .75      .90      .95 \n  0.5673   0.6185   0.7059   1.0000   1.0000   1.0000 \n\nlowest : 0.45932 0.53424 0.54048 0.54673 0.56546\nhighest: 0.88386 0.91508 0.95878 0.98376 1      \n--------------------------------------------------------------------------------\n\n\n\n{Hmisc} wird hier nicht geladen, sondern vor die Funktion gesetzt, da dieses Package Funktionsnamen verwendet, die auch in {tidyverse} vorkommen.",
+    "crumbs": [
+      "Datenanalyse",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Deskriptive Statistik</span>"
+    ]
+  },
+  {
+    "objectID": "datenanalyse/descriptive.html#zusammenhangsmasse-kovariation-und-korrelation",
+    "href": "datenanalyse/descriptive.html#zusammenhangsmasse-kovariation-und-korrelation",
+    "title": "8  Deskriptive Statistik",
+    "section": "8.6 Zusammenhangsmasse: Kovariation und Korrelation",
+    "text": "8.6 Zusammenhangsmasse: Kovariation und Korrelation\nDie Kovarianz zweier Variablen kann mit cov() berechnet werden.\n\ncov(d$accuracy, d$iq_zscore)\n\n[1] 0.1038148\n\n\nDie Korrelation zweier Variablen kann mit cor() berechnet werden.\n\ncor(d$accuracy, d$iq_zscore)\n\n[1] 0.5681996",
+    "crumbs": [
+      "Datenanalyse",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Deskriptive Statistik</span>"
+    ]
+  },
+  {
+    "objectID": "datenanalyse/descriptive.html#footnotes",
+    "href": "datenanalyse/descriptive.html#footnotes",
+    "title": "8  Deskriptive Statistik",
+    "section": "",
+    "text": "Smithson M, Verkuilen J (2006). A Better Lemon Squeezer? Maximum-Likelihood Regression with Beta-Distributed Dependent Variables. Psychological Methods, 11(7), 54–71.↩︎",
+    "crumbs": [
+      "Datenanalyse",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Deskriptive Statistik</span>"
     ]
   },
   {
@@ -644,17 +743,6 @@
     "crumbs": [
       "Anhang",
       "License"
-    ]
-  },
-  {
-    "objectID": "datenverarbeitung/transform.html#datensätze-speichern-write.csv",
-    "href": "datenverarbeitung/transform.html#datensätze-speichern-write.csv",
-    "title": "7  Datensätze bearbeiten",
-    "section": "7.10 Datensätze speichern: write.csv()",
-    "text": "7.10 Datensätze speichern: write.csv()\n\n\n\n\n\n\nHands-on: Neuer Datensatz abspeichern\n\n\n\nSpeichern Sie den bearbeiteten Datensatz als Datei ab\n\nwrite.csv(d, \"data/readingskills_clean.csv\", row.names = FALSE)",
-    "crumbs": [
-      "Datenverarbeitung",
-      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Datensätze bearbeiten</span>"
     ]
   }
 ]
