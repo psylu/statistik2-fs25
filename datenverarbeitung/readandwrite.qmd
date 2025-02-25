@@ -105,6 +105,3 @@ write.csv(d, file = "data/neuerdatensatz.csv", row.names = FALSE)
 
 
 
-
-
-

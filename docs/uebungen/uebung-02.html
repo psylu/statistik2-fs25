@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Informationen – Datenanalyse mit R</title>
+<title>Übung 2 – Datenanalyse mit R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../uebungen/uebung-01.html" rel="next">
-<link href="../datenanalyse/descriptive.html" rel="prev">
+<link href="../appendix/webrconsole.html" rel="next">
+<link href="../uebungen/uebung-01.html" rel="prev">
 <link href="../imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -83,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Informationen</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-02.html">Übung 2</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -210,7 +244,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../uebungen/uebungen.html" class="sidebar-item-text sidebar-link active">
+  <a href="../uebungen/uebungen.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Informationen</span></a>
   </div>
 </li>
@@ -222,7 +256,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../uebungen/uebung-02.html" class="sidebar-item-text sidebar-link">
+  <a href="../uebungen/uebung-02.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Übung 2</span></a>
   </div>
 </li>
@@ -262,20 +296,31 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#aufgabe-2.1-help" id="toc-aufgabe-2.1-help" class="nav-link active" data-scroll-target="#aufgabe-2.1-help">Aufgabe 2.1: Help</a></li>
+  <li><a href="#aufgabe-2.2-datensatz-formate-und-data-dictionaries" id="toc-aufgabe-2.2-datensatz-formate-und-data-dictionaries" class="nav-link" data-scroll-target="#aufgabe-2.2-datensatz-formate-und-data-dictionaries">Aufgabe 2.2: Datensatz-Formate und Data Dictionaries</a></li>
+  <li><a href="#aufgabe-2.3-data-cleaning" id="toc-aufgabe-2.3-data-cleaning" class="nav-link" data-scroll-target="#aufgabe-2.3-data-cleaning">Aufgabe 2.3: Data cleaning</a></li>
+  <li><a href="#aufgabe-2.4-deskriptivstatistik" id="toc-aufgabe-2.4-deskriptivstatistik" class="nav-link" data-scroll-target="#aufgabe-2.4-deskriptivstatistik">Aufgabe 2.4: Deskriptivstatistik</a></li>
+  <li><a href="#aufgabe-2.5-visualisierung" id="toc-aufgabe-2.5-visualisierung" class="nav-link" data-scroll-target="#aufgabe-2.5-visualisierung">Aufgabe 2.5: Visualisierung</a></li>
+  <li><a href="#aufgabe-2.6-zusatzaufgabe" id="toc-aufgabe-2.6-zusatzaufgabe" class="nav-link" data-scroll-target="#aufgabe-2.6-zusatzaufgabe">Aufgabe 2.6: Zusatzaufgabe</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Informationen</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-02.html">Übung 2</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-uebungen" class="quarto-section-identifier">Informationen</span></h1>
+<h1 class="title"><span id="sec-uebung-02" class="quarto-section-identifier">Übung 2</span></h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -287,16 +332,276 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Dieses Kapitel enthält die Übungsmaterialien begleitend zur Vorlesung.</p>
-<p><strong>Tutoriat in den Übungsgruppen</strong></p>
-<p>Die Aufgaben werden in den Übungsgruppen mit Tutoriat gemeinsam bearbeitet.</p>
-<p><strong>Arbeiten mit <em>RProjekten</em> </strong></p>
-<p>Erstellen Sie immer zuerst ein <a href="../r/rrstudio.html#sec-rprojects"><em>RProjekt</em></a> für die Übung bevor Sie mit den Aufgaben beginnen und benennen Sie dieses Projekt z.B. nach der Übung: <em>Uebung_7</em>).</p>
-<p>Teilweise erhalten Sie für eine oder mehrere Übungen einen vorgefertigten Projekt-Ordner. Achtung: Ordner müssen vor dem Bearbeiten entzippt werden.</p>
-<p><strong>Datensätze</strong></p>
-<p>Die für die Übungen verwendeten Datensätze können am Anfang der Übungen per Link heruntergeladen werden.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Lernziele dieser Übung">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Lernziele dieser Übung
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Nach der heutigen Übung können Sie</p>
+<ul>
+<li>Datensätze einlesen</li>
+<li>Datensätze explorieren</li>
+<li>Datensätze bereinigen</li>
+<li>Neue Variablen erstellen</li>
+<li>Daten gruppieren und zusammenfassen</li>
+<li>mit Deskriptivstatistik Fragen beantworten</li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Voraussetzungen">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Voraussetzungen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Packages {tidyverse}, {Hmisc} und {esquisse} sind installiert.</li>
+<li><em>RProject</em> namens <code>introduction_to_r</code> mit Datenordner <code>data</code> aus <a href="https://psylu.github.io/statistik2-fs25/r/rrstudio.html">Kapitel: Basics R und RStudio</a>.</li>
+<li>Die folgenden Datensätze sind im <code>data</code>-Ordner des <em>RProjects</em> <code>introduction_to_r</code> gespeichert:
+<ul>
+<li><a href="../data/readingskills_clean.csv"><code>readingskills_clean.csv</code></a></li>
+<li><a href="../data/experiment1.csv"><code>experiment1.csv</code></a></li>
+<li><a href="../data/experiment2.csv"><code>experiment2.csv</code></a></li>
+<li><a href="../data/milgram.csv"><code>milgram.csv</code></a></li>
+</ul></li>
+<li>Datensatz <code>readingskills_clean.csv</code> in Ordner <code>data</code> aus <a href="https://psylu.github.io/statistik2-fs25/datenverarbeitung/readandwrite.html">Kapitel: Datensätze bearbeiten</a> oder <a href="../data/readingskills_clean.csv">hier</a> herunterladen und in <code>data</code>-Ordner speichern.</li>
+</ul>
+</div>
+</div>
+<section id="aufgabe-2.1-help" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-2.1-help">Aufgabe 2.1: Help</h2>
+<p>Finden Sie heraus, was diese Funktionen tun, welche Argumente sie benötigen und welchen Output sie generieren. Wählen Sie verschiedene Wege die Aufgabe zu lösen (z.B. Suchmaschine, Help in R, ?function, Autocomplete mit Tab).</p>
+<ul>
+<li><code>glimpse()</code></li>
+<li><code>unique()</code></li>
+<li><code>write.csv()</code></li>
+<li><code>var()</code></li>
+<li><code>sum()</code></li>
+</ul>
+<p><br></p>
+</section>
+<section id="aufgabe-2.2-datensatz-formate-und-data-dictionaries" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-2.2-datensatz-formate-und-data-dictionaries">Aufgabe 2.2: Datensatz-Formate und Data Dictionaries</h2>
+<p><strong>a.</strong> Laden Sie das Package {tidyverse}.</p>
+<p><strong>b.</strong> Lesen Sie die 3 Datensätze ein:</p>
+<ul>
+<li><code>readingskills.csv</code></li>
+<li><code>experiment1.csv</code></li>
+<li><code>experiment2.csv</code></li>
+</ul>
+<p><strong>c.</strong> Bestimmen Sie für jeden Datensatz, welches Format der Datensatz hat_ <em>Long</em> oder <em>Wide</em>. <a href="../datenverarbeitung/workflow.html">Mehr Infos zu den Formaten finden Sie hier.</a></p>
+<p><strong>d.</strong> Schreiben Sie für jeden der Datensätze ein <em>Data Dictionary</em> mit den unten vorgegebenen Spalten.</p>
+<p><em>Tipps:</em></p>
+<ul>
+<li><p>Sie können das <em>Data Dictionary</em> auf Papier, in einem Textprogramm, oder auch im <em>RNotebook</em> erstellen. Tabellen mit Markdown können z.B. auf <a href="https://www.tablesgenerator.com/markdown_tables">dieser Website</a> erstellt und dann ins <em>RNotebook</em> kopiert werden.</p></li>
+<li><p>Den Variablentyp sehen Sie z.B. im <code>Environment</code>, wenn Sie den Datensatz aufklappen, oder wenn Sie die Funktion <code>glimpse()</code> nutzen.</p></li>
+<li><p>Finden Sie den kleinsten und grössten Wert bequem mit <code>min()</code> und <code>max()</code> heraus. Hierzu müssen Sie als Argument für die Funktion <code>datensatznamen$variable</code> verwenden.</p></li>
+</ul>
+<table class="table-hover caption-top table">
+<caption>Beispiel Data-Dictionary</caption>
+<colgroup>
+<col style="width: 23%">
+<col style="width: 20%">
+<col style="width: 56%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variablennamen</th>
+<th>Variablentyp</th>
+<th>Range (kleinster Wert, grösster Wert)</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>z.B. <code>id</code></td>
+<td>character</td>
+<td><code>sub-01</code> bis <code>sub-55</code></td>
+</tr>
+<tr class="even">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+<tr class="odd">
+<td>…</td>
+<td>…</td>
+<td>…</td>
+</tr>
+</tbody>
+</table>
+<p><strong>e.</strong> Löschen Sie zum Ende dieser Aufgabe alle Variablen (gespeicherten Datensätze) aus dem <code>Environment</code> im oberen rechten Quadranten, indem Sie auf das Besen-Icon klicken.</p>
+<p><br></p>
+</section>
+<section id="aufgabe-2.3-data-cleaning" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-2.3-data-cleaning">Aufgabe 2.3: Data cleaning</h2>
+<p><strong>a.</strong> Lesen Sie die Beschreibung zum Datensatz <code>milgram.csv</code> und beantworten Sie folgende Frage:</p>
+<p>Welche Hypothese haben Sie: In welcher Gruppe (1, 2, 3) haben die Personen das Experiment am unethischsten “gerated” (also die tiefsten Werte angeben?). Stellen Sie hier einfach eine Vermutung auf ohne die Daten anzuschauen.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Datensatz `milgram.csv`">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Datensatz <code>milgram.csv</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p>In dieser Aufgabe wird mit dem Datensatz <code>milgram.csv</code> gearbeitet.</p>
+<p>Der Datensatz stammt aus dem Package <a href="https://vincentarelbundock.github.io/Rdatasets/doc/Stat2Data/Milgram.html">{Stat2Data}</a>. Sie müssen dieses Package nicht installieren, sondern können einen angepassten Datensatz zu Beginn dieser Übung herunterladen.</p>
+<p>Der Datensatz stammt nicht direkt vom <a href="https://de.wikipedia.org/wiki/Milgram-Experiment">Milgram Experiment</a>, sondern von einer Folgestudie.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+<p><em>Beschreibung:</em></p>
+<blockquote class="blockquote">
+<p>Eine der berühmtesten und verstörendsten psychologischen Studien des 20. Jahrhunderts fand im Labor von Stanley Milgram an der Yale University statt. Milgrams Probanden wurden gebeten, die Antworten eines „Lernenden“ zu überwachen und einen Knopf zu drücken, um Schocks auszulösen, wenn der Lernende eine falsche Antwort gab. Je mehr falsche Antworten, desto stärker der Schock. Sogar Milgram selbst war von den Ergebnissen überrascht: Jeder seiner Probanden versetzte einem langsamen „Lernenden“ als Strafe für wiederholte falsche Antworten einen seiner Meinung nach gefährlichen 300-Volt-Schock. Auch wenn die „Schocks“ nicht real waren und der „Lernende“ in das Geheimnis eingeweiht war, lösten die Ergebnisse eine hitzige Debatte über Ethik und Experimente mit Menschen aus. Um die Einstellungen zu diesem Thema zu untersuchen, führte die Harvard-Doktorandin Maryann de Mateo ein randomisiertes Vergleichsexperiment durch. Ihre Probanden waren 37 High-School-Lehrer, die nichts von der Milgram-Studie wussten. Per Zufall ordnete Maryann jeden Lehrer einer von drei Behandlungsgruppen zu:</p>
+</blockquote>
+<blockquote class="blockquote">
+<ul>
+<li><strong>Gruppe 1 (Tatsächliche Ergebnisse der echten Milgramstudie)</strong>: Jeder High-School-Lehrer in dieser Gruppe las eine Beschreibung von Milgrams Studie, einschliesslich der tatsächlichen Ergebnisse, dass jeder Proband einen sehr starken „Schock“ lieferte.</li>
+</ul>
+</blockquote>
+<blockquote class="blockquote">
+<ul>
+<li><strong>Gruppe 2 (Viele kamen der Bitte nach)</strong>: Jeder High-School-Lehrer las die gleiche Beschreibung wie die High-School-Lehrer in Gruppe 1, mit der Ausnahme, dass die tatsächlichen Ergebnisse durch gefälschte Ergebnisse ersetzt wurden und viele, aber nicht alle Probanden sich daran hielten einen sehr starken “Schock” zu geben.</li>
+</ul>
+</blockquote>
+<blockquote class="blockquote">
+<ul>
+<li><strong>Gruppe 3 (Die meisten lehnten ab)</strong>: Für die High-School-Lehrer dieser Gruppe hiess es in den gefälschten Ergebnissen, dass sich die meisten Probanden weigerten, einen sehr starken “Schock” abzugeben.</li>
+</ul>
+</blockquote>
+<blockquote class="blockquote">
+<p>Nach der Lektüre der Beschreibung wurde jeder High-School-Lehrer gebeten, die Studie danach zu bewerten, wie ethisch er sie fand, von 1 (überhaupt nicht ethisch) bis 9 (völlig ethisch).</p>
+</blockquote>
+</div>
+</div>
+</div>
+<p><strong>b.</strong> Lesen Sie den Datensatz <code>milgram.csv</code> ein und speichern Sie ihn in die Variable <code>d_milgram</code>.</p>
+<p><strong>c.</strong> Schauen Sie den Datensatz mit <code>glimpse()</code> oder <code>head()</code> an.</p>
+<p><strong>d.</strong> Erstellen Sie ein <em>Data Dictionary</em>, wie in <em>Aufgabe 2.2</em>.</p>
+<ul>
+<li>Nutzen Sie die Funktionen <code>min()</code> und <code>max()</code> für numerische Variablen.</li>
+<li>Nutzen Sie die Funktion <code>unique()</code> für nicht-numerische Variablen.</li>
+</ul>
+<p><strong>e.</strong> Schauen Sie sich den Datensatz nochmals an, indem Sie im <code>Environment</code> darauf doppelklicken. Nutzen Sie zusätzlich die Funktion <code>describe()</code> aus dem {Hmisc}-Package (laden Sie das Package nicht dafür, sondern nutzen Sie die Syntax <code>packagename::functionname()</code>)</p>
+<p>Beantworten Sie dann folgende Fragen zum Datensatz:</p>
+<ul>
+<li><p>Welche Gruppennummer entspricht welcher Bedingung (<code>condition</code>)?</p></li>
+<li><p>In welcher Variable finden sich die Ethik-Ratings?</p></li>
+<li><p>Was fällt Ihnen zu den Datenpunkten auf? Was müsste getan werden bevor mit der Analyse begonnen wird?</p></li>
+</ul>
+<p><strong>f.</strong> Bereinigen Sie den Datensatz und speichern Sie ihn in der Variable <code>d_milgram_clean</code>. Es müssen zum Schluss folgende Kriterien erfüllt sein:</p>
+<ul>
+<li>Die Versuchspersonenidentifikationsvariable heisst <code>id</code>.</li>
+<li>Alle Messungen (Zeilen) mit <code>NA</code>-Werten wurden gelöscht.</li>
+<li>Keine Versuchspersonennummer kommt doppelt vor.</li>
+<li>Die Variable <code>score</code> heisst <code>ethic_rating</code>.</li>
+</ul>
+<p>Zur Überprüfung:</p>
+<ul>
+<li>Der bereinigte Datensatz heisst <code>d_milgram_clean</code> und ist im <em>Long</em>-Format.</li>
+<li>Er enthält 3 Variablen: <code>id</code>, <code>condition</code>, <code>ethic_rating</code>.</li>
+<li>Er enthält 37 Messungen (obs)</li>
+</ul>
+<p><strong>g.</strong> Nutzen Sie nochmals die Funktion <code>describe()</code>: Wo gibt es einen Unterschied?</p>
+<p><strong>h.</strong> Speichern Sie den neuen Datensatz mit der folgenden Zeile ab:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(d_milgram_clean, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+</section>
+<section id="aufgabe-2.4-deskriptivstatistik" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-2.4-deskriptivstatistik">Aufgabe 2.4: Deskriptivstatistik</h2>
+<p>Jetzt können wir die Gruppen in den verschiedenenen Bedingungen vergleichen.</p>
+<p><strong>a.</strong> Berechnen Sie für jede Gruppe den Mittelwert und die Standardabweichung der Ethik-Ratings.</p>
+<p>Gehen Sie hierzu wie folgt vor:</p>
+<ul>
+<li><p>Nehmen Sie den <strong>bereinigten</strong> Datensatz</p></li>
+<li><p>Gruppieren Sie den Datensatz nach Bedingungen</p></li>
+<li><p>Berechnen Sie den Mittelwert und die Standardabweichung</p></li>
+<li><p>Erstellen mit den obigen Schritten einen neue Variable namens <code>d_milgram_summary</code>.</p></li>
+</ul>
+<p><strong>b.</strong> Lassen Sie sich die Resultate anzeigen indem Sie die Variable aufrufen. Welche Gruppe hat das Milgram-Experiment am höchsten eingeschätzt bezüglich der Ethik? Überrascht Sie das Resultat?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>d_milgram_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+</section>
+<section id="aufgabe-2.5-visualisierung" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-2.5-visualisierung">Aufgabe 2.5: Visualisierung</h2>
+<p>Erstellen Sie eine Abbildung, welche die Ratings in den drei Gruppen aufzeigt. Zeigen Sie einander Ihre Grafiken.</p>
+<ul>
+<li>Was funktioniert gut?</li>
+<li>Welche Formen eignen sich weniger?</li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="Tipp">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tipp
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Sie können mehrere Formen übereinanderlegen. Informative Grafiken haben oft ein zusammenfassende Form (z.B. Boxplot) und Formen, die die Datenpunkte aufzeigen.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>esquisse<span class="sc">::</span><span class="fu">esquisser</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+</section>
+<section id="aufgabe-2.6-zusatzaufgabe" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-2.6-zusatzaufgabe">Aufgabe 2.6: Zusatzaufgabe</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Zusatzaufgaben">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Zusatzaufgaben
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Dies ist eine Zusatzaufgabe für Fortgeschrittene. Sie muss nicht gelöst werden.</strong></p>
+</div>
+</div>
+<p>Schauen Sie sich den Datensatz <code>readingskills_clean.csv</code> an:</p>
+<ul>
+<li>Vergleichen Sie die Gruppenmittelwerte, in dem Sie den Datensatz gruppieren und zusammenfassen. Unterscheiden sich die Kinder mit und ohne Dyslexie in der Leseleistung? Und im IQ?</li>
+<li>Berechnen Sie die Korrelation von Leseleistung und IQ. Über alle Kinder gesehen, hängen die beiden Werte zusammen?</li>
+<li>Berechnen Sie die Korrelation von Leseleistung und IQ für Kinder mit und ohne Dyslexie. Was fällt Ihnen auf?</li>
+<li>Visualisieren Sie die Daten.</li>
+<li>Kopieren Sie den Code von <code>esquisser</code> und versuchen Sie diesen in Ihrem <em>RNotebook</em> zu modifizieren.</li>
+</ul>
+<p><em>Forschungsfragen:</em></p>
+<ul>
+<li>Unterscheiden sich Kinder mit und ohne Dyslexie in Leseleistung und IQ?</li>
+<li>Wie hängen Leseleistung und IQ in diesem Datensatz zusammen?</li>
+<li>Unterscheidet sich der Zusammenhang von IQ und Leseleistung zwischen den Gruppen in seiner Stärke?</li>
+</ul>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>DiMatteo, Mary Ann (1972): “An experimental study of attitudes toward deception” by Mary Ann DiMatteo. Unpublished manuscript, Department of Psychology and Social Relations, Harvard University. <a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
 <script>
@@ -930,15 +1235,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../datenanalyse/descriptive.html" class="pagination-link" aria-label="Deskriptive Statistik">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Deskriptive Statistik</span></span>
+      <a href="../uebungen/uebung-01.html" class="pagination-link" aria-label="Übung 1">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Übung 1</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../uebungen/uebung-01.html" class="pagination-link" aria-label="Übung 1">
-        <span class="nav-page-text">Übung 1</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../appendix/webrconsole.html" class="pagination-link" aria-label="WebR Konsole">
+        <span class="nav-page-text">WebR Konsole</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

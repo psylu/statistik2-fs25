@@ -18,3 +18,26 @@ Das Transformieren, Visualisieren und Modellieren dient dazu, die Daten zu verst
 ::: {.callout-note appearance="default" title="Wollen Sie mehr darüber wissen?"}
 Hier finden Sie das Buch [_R for Data Science_](https://r4ds.hadley.nz/)
 :::
+
+## Datensatz-Formate
+
+Datensätze können im _Long_-Format und im _Wide_-Format formattiert sein.
+
+
+### _Long_-Format
+
+- Jede Variable (jede gemessene Eigenschaft) entspricht einer Spalte (column)
+- Jede Messung entspricht einer Zeile (row)
+
+Wird eine Variable innerhalb einer Person mehrmals gemessen (z.B. error), dann hat jede Messung eine neue Zeile und die anderen Variablenwerte werden wiederholt (z.B. `id`).
+Dieses Format eignet sich sehr gut für die Datenvisualisierung und für die Datenanalyse in R.
+
+### _Wide_-Format
+
+- Jede Einheit hat eine Zeile (row)
+- Jede Messung entspricht einer Spalte (column)
+
+Dieses Format eignet sich, um fehlende Werte schnell zu entdecken und um Daten einzugeben.
+
+
+![Long und Wide Format](../imgs/longwide.jpg)

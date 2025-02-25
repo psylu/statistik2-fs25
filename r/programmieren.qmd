@@ -153,7 +153,7 @@ Dahinter wird der Output des ausgeführten Codes angezeigt.
 ::: {.panel-tabset}
 ## {{< fa code >}}&emsp;Konsole
 Der Code in der _WebR_-Konsole kann gelöscht und durch anderen Code ersetzt werden.
-Es können auch andere Operatoren (z.B. `-`, `/` oder `*`) oder Funktionen (wie `sqrt`) genutzt werden.
+Es können auch andere Operatoren (z.B. `-`, `/` oder `*`) oder Funktionen (wie `sqrt()`) genutzt werden.
 
 ```{webr-r}
 1+1-4*2/15
@@ -322,7 +322,7 @@ x
 ```
 
 Variablen können auch __mehrere Werte__ enthalten. 
-Einen Weg mehrere Werte in einer Variable zu speichern ist die Funktion `c()` zu nutzen.^[`c()` ist wie die Plastikumhüllung für vier Tetrapack Milch. Sie fasst einfach mehrere Werte zusammen und zeigt _R_, dass diese in eine Variable gehören. So können 4 Werte mit einem "Henkel" (Variablennamen) herumgetragen werden.]
+Einen Weg mehrere Werte in einer Variable zu speichern ist die Funktion `c()` zu nutzen.^[`c()` ist wie die Plastikumhüllung für vier Tetrapack Milch. Sie fasst einfach mehrere Werte zusammen und zeigt _R_, dass diese in eine Variable gehören. So können 4 Werte mit einem "Henkel" (Variablennamen) herumgetragen werden. ![`c()`-Funktion](../imgs/columnfunction.png)]
 Die Variable `y <- c(23, 45, 34)` enthält die Werte `23`, `45` und `34`.
 Nicht numerische Werte, z.B. Wörter, werden jeweils in `"Anführungszeichen"` gesetzt: `z <- c("ja", "nein", "vielleicht")`.
 

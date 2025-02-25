@@ -37,6 +37,7 @@ book:
     chapters:
     - uebungen/uebungen.qmd
     - uebungen/uebung-01.qmd
+    - uebungen/uebung-02.qmd
 
   - part: Anhang
     chapters:

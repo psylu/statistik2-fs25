@@ -1,0 +1,264 @@
+# Übung 2 {.unnumbered #sec-uebung-02}
+
+::: {.callout-note appearance="default" title="Lernziele dieser Übung"}
+Nach der heutigen Übung können Sie
+
+- Datensätze einlesen
+- Datensätze explorieren
+- Datensätze bereinigen
+- Neue Variablen erstellen
+- Daten gruppieren und zusammenfassen
+- mit Deskriptivstatistik Fragen beantworten
+:::
+
+
+```{r}
+#| include: false
+# Set working directory of R
+knitr::opts_knit$set(root.dir = '../')
+```
+
+:::{.callout-note appearance="default" title="Voraussetzungen"}
+
+- Packages {tidyverse}, {Hmisc} und {esquisse} sind installiert.
+- _RProject_ namens `introduction_to_r` mit Datenordner `data` aus [Kapitel: Basics R und RStudio](https://psylu.github.io/statistik2-fs25/r/rrstudio.html).
+- Die folgenden Datensätze sind im `data`-Ordner des _RProjects_ `introduction_to_r` gespeichert:
+    - [`readingskills_clean.csv`](../data/readingskills_clean.csv)
+    - [`experiment1.csv`](../data/experiment1.csv)
+    - [`experiment2.csv`](../data/experiment2.csv)
+    - [`milgram.csv`](../data/milgram.csv)
+    
+- Datensatz `readingskills_clean.csv` in Ordner `data` aus [Kapitel: Datensätze bearbeiten](https://psylu.github.io/statistik2-fs25/datenverarbeitung/readandwrite.html) oder [hier](../data/readingskills_clean.csv) herunterladen und in `data`-Ordner speichern.
+:::
+
+## Aufgabe 2.1: Datensatz-Formate
+
+__a.__ Laden Sie das Package {tidyverse}.
+
+```{r}
+library(tidyverse)
+```
+
+__b.__ Lesen Sie die 3 Datensätze ein:
+
+- `readingskills.csv`
+- `experiment1.csv`
+- `experiment2.csv`
+
+__c.__ Bestimmen Sie für jeden Datensatz, welches Format der Datensatz hat_ _Long_ oder _Wide_. [Mehr Infos zu den Formaten finden Sie hier.](../datenverarbeitung/workflow.html)
+
+> readingskills: long
+> experiment1: wide
+> experiment2: beides
+
+__d.__ Schreiben Sie für jeden der Datensätze ein _Data Dictionary_ mit den unten vorgegebenen Spalten. 
+
+_Tipps:_
+
+- Sie können das _Data Dictionary_ auf Papier, in einem Textprogramm, oder auch im _RNotebook_ erstellen. 
+Tabellen mit Markdown können z.B. auf [dieser Website](https://www.tablesgenerator.com/markdown_tables) erstellt und dann ins _RNotebook_ kopiert werden.
+
+- Den Variablentyp sehen Sie z.B. im `Environment`, wenn Sie den Datensatz aufklappen, oder wenn Sie die Funktion `glimpse()` nutzen.
+
+- Finden Sie den kleinsten und grössten Wert bequem mit `min()` und `max()` heraus. Hierzu müssen Sie als Argument für die Funktion `datensatznamen$variable` verwenden.
+
+| Variablennamen | Variablentyp | Range (kleinster Wert, grösster Wert) |
+|----------------|--------------|---------------------------------------|
+|  z.B. `id`     | character    | `sub-01` bis `sub-55`                 |
+| ...            | ...          | ...                                   |
+| ...            | ...          | ...                                   |
+
+: Beispiel Data-Dictionary {.hover}
+
+__e.__ Löschen Sie zum Ende dieser Aufgabe alle Variablen (gespeicherten Datensätze) aus dem `Environment` im oberen rechten Quadranten, indem Sie auf das Besen-Icon klicken.
+
+<br>
+
+## Aufgabe 2.2
+
+__a.__ Lesen Sie die Beschreibung zum Datensatz `milgram.csv` und beantworten Sie folgende Frage:
+
+Welche Hypothese haben Sie: In welcher Gruppe (1, 2, 3) haben die Personen das Experiment am unethischsten "gerated" (also die tiefsten Werte angeben?). Stellen Sie hier einfach eine Vermutung auf ohne die Daten anzuschauen.
+
+
+:::{.callout-note appearance="default" title="Datensatz `milgram.csv`" collapse="false"}
+
+In dieser Aufgabe wird mit dem Datensatz `milgram.csv` gearbeitet.
+
+Der Datensatz stammt aus dem Package [{Stat2Data}](https://vincentarelbundock.github.io/Rdatasets/doc/Stat2Data/Milgram.html).
+Sie müssen dieses Package nicht installieren, sondern können einen angepassten Datensatz zu Beginn dieser Übung herunterladen.
+
+Der Datensatz stammt nicht direkt vom [Milgram Experiment](https://de.wikipedia.org/wiki/Milgram-Experiment), sondern von einer Folgestudie.^[DiMatteo, Mary Ann (1972): "An experimental study of attitudes toward deception" by Mary Ann DiMatteo. Unpublished manuscript, Department of Psychology and Social Relations, Harvard University. ]
+
+_Beschreibung:_
+
+> Eine der berühmtesten und verstörendsten psychologischen Studien des 20. Jahrhunderts fand im Labor von Stanley Milgram an der Yale University statt. Milgrams Probanden wurden gebeten, die Antworten eines „Lernenden“ zu überwachen und einen Knopf zu drücken, um Schocks auszulösen, wenn der Lernende eine falsche Antwort gab. 
+Je mehr falsche Antworten, desto stärker der Schock. 
+Sogar Milgram selbst war von den Ergebnissen überrascht: Jeder seiner Probanden versetzte einem langsamen „Lernenden“ als Strafe für wiederholte falsche Antworten einen seiner Meinung nach gefährlichen 300-Volt-Schock. 
+Auch wenn die „Schocks“ nicht real waren und der „Lernende“ in das Geheimnis eingeweiht war, lösten die Ergebnisse eine hitzige Debatte über Ethik und Experimente mit Menschen aus. 
+Um die Einstellungen zu diesem Thema zu untersuchen, führte die Harvard-Doktorandin Maryann de Mateo ein randomisiertes Vergleichsexperiment durch. Ihre Probanden waren 37 High-School-Lehrer, die nichts von der Milgram-Studie wussten. Per Zufall ordnete Maryann jeden Lehrer einer von drei Behandlungsgruppen zu:
+
+>    - __Gruppe 1 (Tatsächliche Ergebnisse der echten Milgramstudie)__: Jeder High-School-Lehrer in dieser Gruppe las eine Beschreibung von Milgrams Studie, einschliesslich der tatsächlichen Ergebnisse, dass jeder Proband einen sehr starken „Schock“ lieferte.
+
+>    - __Gruppe 2 (Viele kamen der Bitte nach)__: Jeder High-School-Lehrer las die gleiche Beschreibung wie die High-School-Lehrer in Gruppe 1, mit der Ausnahme, dass die tatsächlichen Ergebnisse durch gefälschte Ergebnisse ersetzt wurden und viele, aber nicht alle Probanden sich daran hielten einen sehr starken "Schock" zu geben.
+
+>    - __Gruppe 3 (Die meisten lehnten ab)__: Für die High-School-Lehrer dieser Gruppe hiess es in den gefälschten Ergebnissen, dass sich die meisten Probanden weigerten, einen sehr starken "Schock" abzugeben.
+
+> Nach der Lektüre der Beschreibung wurde jeder High-School-Lehrer gebeten, die Studie danach zu bewerten, wie ethisch er sie fand, von 1 (überhaupt nicht ethisch) bis 9 (völlig ethisch).
+
+:::
+
+
+__b.__ Lesen Sie den Datensatz `milgram.csv` ein und speichern Sie ihn in die Variable `d_milgram`. 
+
+```{r}
+d_milgram <- read.csv("data/milgram.csv")
+glimpse(d_milgram)
+```
+__c.__ Schauen Sie den Datensatz mit `glimpse()` oder `head()` an.
+
+
+__d.__ Erstellen Sie ein _Data Dictionary_, wie in _Aufgabe 2.1_.
+
+- Nutzen Sie die Funktionen `min()` und `max()` für numerische Variablen.
+- Nutzen Sie die Funktion `unique()` für nicht-numerische Variablen.
+
+```{r}
+unique(d_milgram$ID.OF.PARTiciPANT)
+```
+
+__e.__ Schauen Sie sich den Datensatz nochmals an, indem Sie im `Environment` darauf doppelklicken.
+Nutzen Sie zusätzlich die Funktion `describe()` aus dem {Hmisc}-Package (laden Sie das Package nicht dafür, sondern nutzen Sie die Syntax `packagename::functionname()`)
+
+Beantworten Sie dann folgende Fragen zum Datensatz:
+
+- Welche Gruppennummer entspricht welcher Bedingung (`condition`)?
+
+> 1: `Actual`, 2: `Complied`, 3: `Refused`
+
+- In welcher Variable finden sich die Ethik-Ratings?
+
+>  `score`
+
+- Was fällt Ihnen zu den Datenpunkten auf? Was müsste getan werden bevor mit der Analyse begonnen wird?
+
+> `NA`: fehlende Werte, doppelte Versuchspersonennummer (`sub-18`), unpraktischer Variablenname bei VersuchspersonenID, `score` ist uninformativ
+
+__f.__ Bereinigen Sie den Datensatz und speichern Sie ihn in der Variable `d_milgram_clean`. Es müssen zum Schluss folgende Kriterien erfüllt sein:
+
+- Die Versuchspersonenidentifikationsvariable heisst `id`.
+- Alle Messungen (Zeilen) mit `NA`-Werten wurden gelöscht.
+- Keine Versuchspersonennummer kommt doppelt vor.
+- Die Variable `score` heisst `ethic_rating`.
+
+Zur Überprüfung:
+
+- Der bereinigte Datensatz heisst `d_milgram_clean` und ist im _Long_-Format.
+- Er enthält 3 Variablen: `id`, `condition`, `ethic_rating`.
+- Er enthält 37 Messungen (obs)
+
+```{r}
+d_milgram_clean <- d_milgram |>
+  select(id = ID.OF.PARTiciPANT,
+         condition,
+         ethic_rating = score) |>
+  filter(id != "NA",
+         condition != "NA",
+         ethic_rating != "NA")
+```
+
+__g.__ Nutzen Sie nochmals die Funktion `describe()`: Wo gibt es einen Unterschied?
+
+__h.__ Speichern Sie den neuen Datensatz mit der folgenden Zeile ab:
+
+```{r}
+write.csv(d_milgram_clean, row.names = FALSE)
+```
+
+
+## Aufgabe 2.3: Deskriptivstatistik
+
+Jetzt können wir die Gruppen in den verschiedenenen Bedingungen vergleichen.
+
+__a.__ Berechnen Sie für jede Gruppe den Mittelwert und die Standardabweichung der Ethik-Ratings.
+
+Gehen Sie hierzu wie folgt vor:
+
+- Nehmen Sie den __bereinigten__ Datensatz
+
+- Gruppieren Sie den Datensatz nach Bedingungen
+
+- Berechnen Sie den Mittelwert und die Standardabweichung
+
+- Erstellen mit den obigen Schritten einen neue Variable namens `d_milgram_summary`.
+
+
+```{r}
+d_milgram_summary <- d_milgram_clean |>
+  group_by(condition) |>
+  summarise(mean_ethic_rating = mean(ethic_rating),
+            sd_ethic_rating = sd(ethic_rating))
+d_milgram_summary
+```
+
+__b.__ Welche Gruppe hat das Milgram-Experiment am höchsten eingeschätzt bezüglich der Ethik? Überrascht Sie das Resultat?
+
+## Aufgabe 2.4: Visualisierung
+
+Erstellen Sie eine Abbildung, welche die Ratings in den drei Gruppen aufzeigt. Zeigen Sie einander Ihre Grafiken.
+
+- Was funktioniert gut?
+- Welche Formen eignen sich weniger?
+
+:::{.callout-tip appearance="default" title="Tipp" collapse="true"}
+
+Sie können mehrere Formen übereinanderlegen.
+Informative Grafiken haben oft ein zusammenfassende Form (z.B. Boxplot) und Formen, die die Datenpunkte aufzeigen.
+
+:::
+
+```{r}
+#| eval: false
+esquisse::esquisser()
+```
+
+
+```{r}
+ggplot(d_milgram_clean) +
+ aes(x = condition, y = ethic_rating) +
+ geom_boxplot(fill = "#ADB7CA") +
+ geom_jitter() +
+ theme_minimal() +
+ theme(axis.text.y = element_text(size = 14L), axis.text.x = element_text(size = 14L), 
+ legend.text = element_text(size = 14L), legend.title = element_text(size = 14L))
+
+```
+
+
+
+## Aufgabe 2.5: Zusatzaufgabe
+
+:::{.callout-tip appearance="default" title="Zusatzaufgaben"}
+
+__Dies ist eine Zusatzaufgabe für Fortgeschrittene. Sie muss nicht gelöst werden.__
+
+:::
+
+Schauen Sie sich den Datensatz `readingskills_clean.csv` an:
+
+- Vergleichen Sie die Gruppenmittelwerte, in dem Sie den Datensatz gruppieren und zusammenfassen. Unterscheiden sich die Kinder mit und ohne Dyslexie in der Leseleistung? Und im IQ?
+- Berechnen Sie die Korrelation von Leseleistung und IQ. Über alle Kinder gesehen, hängen die beiden Werte zusammen?
+- Berechnen Sie die Korrelation von Leseleistung und IQ für Kinder mit und ohne Dyslexie. Was fällt Ihnen auf?
+- Visualisieren Sie die Daten.
+- Kopieren Sie den Code von `esquisser` und versuchen Sie diesen in Ihrem _RNotebook_ zu modifizieren.
+
+
+_Forschungsfragen:_
+
+- Unterscheiden sich Kinder mit und ohne Dyslexie in Leseleistung und IQ?
+- Wie hängen Leseleistung und IQ in diesem Datensatz zusammen? 
+- Unterscheidet sich der Zusammenhang von IQ und Leseleistung zwischen den Gruppen in seiner Stärke? 
+
+
+
+

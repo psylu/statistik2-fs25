@@ -18,7 +18,6 @@ Nach der heutigen Übung können Sie
 ::: {.callout-tip appearance="default" title="Übungen ohne RStudio"}
 Falls bei der Installation unlösbare Probleme auftauchen, können Sie _R_ und _RStudio_ in der _R Sprechstunde_ nächste Woche installieren. Lösen Sie die Aufgaben ab _Aufgabe 1.4_ mit _WebR_ [hier](../appendix/webrconsole.qmd) und holen Sie _Aufgabe 1.1-1.3_ vor der nächsten Übung nach.
 :::
-
 ## Aufgabe 1.1. Installation von R und RStudio
 
 Installieren Sie R und RStudio, wie in @sec-installation beschrieben.
