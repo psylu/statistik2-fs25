@@ -407,7 +407,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"code":"?cor()","options":{"output":"true","editor-quick-suggestions":"false","message":"true","dpi":72,"fig-cap":"","out-height":"","context":"interactive","results":"markup","classes":"","fig-height":5,"warning":"true","label":"unnamed-chunk-1","out-width":"700px","comment":"","editor-max-height":"","fig-width":7,"editor-word-wrap":"true","editor-font-scale":"1","autorun":"false","read-only":"false"}}];
+globalThis.qwebrCellDetails = [{"code":"?cor()","id":1,"options":{"comment":"","label":"unnamed-chunk-1","editor-word-wrap":"true","out-width":"700px","warning":"true","editor-quick-suggestions":"false","read-only":"false","editor-max-height":"","dpi":72,"message":"true","context":"interactive","classes":"","output":"true","fig-cap":"","fig-height":5,"fig-width":7,"autorun":"false","editor-font-scale":"1","out-height":"","results":"markup"}}];
 
 </script>
 <script type="module">
@@ -1830,6 +1830,12 @@ globalThis.qwebrExecuteCode = async function (
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
+  <a href="../appendix/faq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FAQ</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
   <a href="../appendix/webrconsole.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">WebR Konsole</span></a>
   </div>
@@ -2253,23 +2259,7 @@ globalThis.qwebrCreateMonacoEditorInstance = function (cellData) {
 </section>
 <section id="faq" class="level2" data-number="4.5">
 <h2 data-number="4.5" class="anchored" data-anchor-id="faq"><span class="header-section-number">4.5</span> FAQ</h2>
-<p><strong>Welche Werte enthält eine Variable / ein Datensatz?</strong></p>
-<ul>
-<li><p>Um die Werte einer Variable oder eines Datensatzes zu sehen, schauen Sie in unter <code>Environment</code>(rechter oberer Quadrant in _RStudio) nach. Dort können Sie auf den blauen Pfeil klicken und die Infos “ausklappen”.</p></li>
-<li><p>Geben Sie den Namen der Variable/des Datensatzes in der <code>Console</code> ein und drücken Sie <kbd aria-hidden="true">Enter</kbd><span class="visually-hidden">Enter</span>.</p></li>
-</ul>
-<p><strong>Welche Argumente braucht eine Funktion?</strong></p>
-<ul>
-<li><p>Geben Sie den Funktionsnamen ein und klicken Sie in die folgenden Klammern. Drücken Sie <kbd aria-hidden="true">Tab</kbd><span class="visually-hidden">Tab</span> um Vorschläge zu sehen.</p></li>
-<li><p>Geben Sie <code>?FUNKTIONSNAME</code>ein.</p></li>
-<li><p>Suchen Sie im rechten unteren Quadranten von <em>RStudio</em> unter <code>Help</code> nach dem Funktionsnamen.</p></li>
-<li><p>Geben Sie in einer Suchmaschine den Funktionsnamen und Stichworte zu Ihrem Ziel ein.</p></li>
-</ul>
-<p><strong>Beim Laden von <code>{tidyverse}</code> gibt es eine Fehlermeldung.</strong></p>
-<ul>
-<li>Sehr wahrscheinlich ist dies einfach eine Warnung (<code>Warning</code>) und keine Fehlermeldung (<code>Error</code>). Es gibt andere Packages, die dieselben Funktionsnamen verwenden, das kann zu Konflikten führen. Laden Sie trotzdem das <code>{tidyverse}</code>.</li>
-</ul>
-<!-- https://statsandr.com/blog/top-10-errors-in-r/ -->
+<p><a href="../appendix/faq.html">Hier</a> finden Sie FAQs und Antworten dieses Kurses.</p>
 
 
 </section>

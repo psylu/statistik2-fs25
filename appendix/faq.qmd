@@ -1,0 +1,46 @@
+# FAQ {.unnumbered #sec-thanks}
+
+
+
+## Variablen und Funktionen
+
+__Welche Werte enthält eine Variable / ein Datensatz?__
+
+- Um die Werte einer Variable oder eines Datensatzes zu sehen, schauen Sie in unter `Environment`(rechter oberer Quadrant in _RStudio) nach.
+Dort können Sie auf den blauen Pfeil klicken und die Infos "ausklappen".
+
+- Geben Sie den Namen der Variable/des Datensatzes in der `Console` ein und drücken Sie {{< kbd Enter >}}. 
+
+__Welche Argumente braucht eine Funktion?__
+
+- Geben Sie den Funktionsnamen ein und klicken Sie in die folgenden Klammern. Drücken Sie {{< kbd Tab >}} um Vorschläge zu sehen.
+
+- Geben Sie `?FUNKTIONSNAME`ein.
+
+- Suchen Sie im rechten unteren Quadranten von _RStudio_ unter `Help` nach dem Funktionsnamen.
+
+- Geben Sie in einer Suchmaschine den Funktionsnamen und Stichworte zu Ihrem Ziel ein.
+
+
+## Packages
+
+__Beim Laden von `{tidyverse}` gibt es eine Fehlermeldung.__
+
+- Sehr wahrscheinlich ist dies einfach eine Warnung (`Warning`) und keine Fehlermeldung (`Error`). Es gibt andere Packages, die dieselben Funktionsnamen verwenden, das kann zu Konflikten führen. Laden Sie trotzdem das `{tidyverse}`.
+
+<!-- https://statsandr.com/blog/top-10-errors-in-r/ -->
+
+
+## Website
+
+__Die Website lädt nicht.__
+
+- Wahrscheinlich verwenden Sie einen relativ alten Browser. Versuchen Sie einen anderen Browser aus. Melden Sie sich sonst mit der Version Ihres Webbrowsers bei uns.
+
+__Der Datensatz wird nicht heruntergeladen, sondern im Browserfenster oder im Programm _numbers_ (Mac) geöffnet.__
+
+- Machen Sie einen Rechtsklick auf den Download-Link und wählen Sie `save as...`.
+- Verwenden Sie einen anderen Browser als Safari.
+
+
+

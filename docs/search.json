@@ -310,7 +310,7 @@
     "href": "r/help.html#faq",
     "title": "4  Help center",
     "section": "4.5 FAQ",
-    "text": "4.5 FAQ\nWelche Werte enthält eine Variable / ein Datensatz?\n\nUm die Werte einer Variable oder eines Datensatzes zu sehen, schauen Sie in unter Environment(rechter oberer Quadrant in _RStudio) nach. Dort können Sie auf den blauen Pfeil klicken und die Infos “ausklappen”.\nGeben Sie den Namen der Variable/des Datensatzes in der Console ein und drücken Sie EnterEnter.\n\nWelche Argumente braucht eine Funktion?\n\nGeben Sie den Funktionsnamen ein und klicken Sie in die folgenden Klammern. Drücken Sie TabTab um Vorschläge zu sehen.\nGeben Sie ?FUNKTIONSNAMEein.\nSuchen Sie im rechten unteren Quadranten von RStudio unter Help nach dem Funktionsnamen.\nGeben Sie in einer Suchmaschine den Funktionsnamen und Stichworte zu Ihrem Ziel ein.\n\nBeim Laden von {tidyverse} gibt es eine Fehlermeldung.\n\nSehr wahrscheinlich ist dies einfach eine Warnung (Warning) und keine Fehlermeldung (Error). Es gibt andere Packages, die dieselben Funktionsnamen verwenden, das kann zu Konflikten führen. Laden Sie trotzdem das {tidyverse}.",
+    "text": "4.5 FAQ\nHier finden Sie FAQs und Antworten dieses Kurses.",
     "crumbs": [
       "R und RStudio",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>Help center</span>"
@@ -761,7 +761,7 @@
     "href": "uebungen/uebung-02.html#aufgabe-2.2-datensatz-formate-und-data-dictionaries",
     "title": "Übung 2",
     "section": "Aufgabe 2.2: Datensatz-Formate und Data Dictionaries",
-    "text": "Aufgabe 2.2: Datensatz-Formate und Data Dictionaries\na. Laden Sie das Package {tidyverse}.\nb. Lesen Sie die 3 Datensätze ein:\n\nreadingskills.csv\nexperiment1.csv\nexperiment2.csv\n\nc. Bestimmen Sie für jeden Datensatz, welches Format der Datensatz hat_ Long oder Wide. Mehr Infos zu den Formaten finden Sie hier.\nd. Schreiben Sie für jeden der Datensätze ein Data Dictionary mit den unten vorgegebenen Spalten.\nTipps:\n\nSie können das Data Dictionary auf Papier, in einem Textprogramm, oder auch im RNotebook erstellen. Tabellen mit Markdown können z.B. auf dieser Website erstellt und dann ins RNotebook kopiert werden.\nDen Variablentyp sehen Sie z.B. im Environment, wenn Sie den Datensatz aufklappen, oder wenn Sie die Funktion glimpse() nutzen.\nFinden Sie den kleinsten und grössten Wert bequem mit min() und max() heraus. Hierzu müssen Sie als Argument für die Funktion datensatznamen$variable verwenden.\n\n\nBeispiel Data-Dictionary\n\n\n\n\n\n\n\nVariablennamen\nVariablentyp\nRange (kleinster Wert, grösster Wert)\n\n\n\n\nz.B. id\ncharacter\nsub-01 bis sub-55\n\n\n…\n…\n…\n\n\n…\n…\n…\n\n\n\ne. Löschen Sie zum Ende dieser Aufgabe alle Variablen (gespeicherten Datensätze) aus dem Environment im oberen rechten Quadranten, indem Sie auf das Besen-Icon klicken.",
+    "text": "Aufgabe 2.2: Datensatz-Formate und Data Dictionaries\na. Laden Sie das Package {tidyverse}.\nb. Lesen Sie die 3 Datensätze ein:\n\nreadingskills_clean.csv\nexperiment1.csv\nexperiment2.csv\n\nc. Bestimmen Sie für jeden Datensatz, welches Format der Datensatz hat_ Long oder Wide. Mehr Infos zu den Formaten finden Sie hier.\nd. Schreiben Sie für jeden der Datensätze ein Data Dictionary mit den unten vorgegebenen Spalten.\nTipps:\n\nSie können das Data Dictionary auf Papier, in einem Textprogramm, oder auch im RNotebook erstellen. Tabellen mit Markdown können z.B. auf dieser Website erstellt und dann ins RNotebook kopiert werden.\nDen Variablentyp sehen Sie z.B. im Environment, wenn Sie den Datensatz aufklappen, oder wenn Sie die Funktion glimpse() nutzen.\nFinden Sie den kleinsten und grössten Wert bequem mit min() und max() heraus. Hierzu müssen Sie als Argument für die Funktion datensatznamen$variable verwenden.\n\n\nBeispiel Data-Dictionary\n\n\n\n\n\n\n\nVariablennamen\nVariablentyp\nRange (kleinster Wert, grösster Wert)\n\n\n\n\nz.B. id\ncharacter\nsub-01 bis sub-55\n\n\n…\n…\n…\n\n\n…\n…\n…\n\n\n\ne. Löschen Sie zum Ende dieser Aufgabe alle Variablen (gespeicherten Datensätze) aus dem Environment im oberen rechten Quadranten, indem Sie auf das Besen-Icon klicken.",
     "crumbs": [
       "Übungen",
       "Übung 2"
@@ -772,7 +772,7 @@
     "href": "uebungen/uebung-02.html#aufgabe-2.3-data-cleaning",
     "title": "Übung 2",
     "section": "Aufgabe 2.3: Data cleaning",
-    "text": "Aufgabe 2.3: Data cleaning\na. Lesen Sie die Beschreibung zum Datensatz milgram.csv und beantworten Sie folgende Frage:\nWelche Hypothese haben Sie: In welcher Gruppe (1, 2, 3) haben die Personen das Experiment am unethischsten “gerated” (also die tiefsten Werte angeben?). Stellen Sie hier einfach eine Vermutung auf ohne die Daten anzuschauen.\n\n\n\n\n\n\nDatensatz milgram.csv\n\n\n\n\n\nIn dieser Aufgabe wird mit dem Datensatz milgram.csv gearbeitet.\nDer Datensatz stammt aus dem Package {Stat2Data}. Sie müssen dieses Package nicht installieren, sondern können einen angepassten Datensatz zu Beginn dieser Übung herunterladen.\nDer Datensatz stammt nicht direkt vom Milgram Experiment, sondern von einer Folgestudie.1\nBeschreibung:\n\nEine der berühmtesten und verstörendsten psychologischen Studien des 20. Jahrhunderts fand im Labor von Stanley Milgram an der Yale University statt. Milgrams Probanden wurden gebeten, die Antworten eines „Lernenden“ zu überwachen und einen Knopf zu drücken, um Schocks auszulösen, wenn der Lernende eine falsche Antwort gab. Je mehr falsche Antworten, desto stärker der Schock. Sogar Milgram selbst war von den Ergebnissen überrascht: Jeder seiner Probanden versetzte einem langsamen „Lernenden“ als Strafe für wiederholte falsche Antworten einen seiner Meinung nach gefährlichen 300-Volt-Schock. Auch wenn die „Schocks“ nicht real waren und der „Lernende“ in das Geheimnis eingeweiht war, lösten die Ergebnisse eine hitzige Debatte über Ethik und Experimente mit Menschen aus. Um die Einstellungen zu diesem Thema zu untersuchen, führte die Harvard-Doktorandin Maryann de Mateo ein randomisiertes Vergleichsexperiment durch. Ihre Probanden waren 37 High-School-Lehrer, die nichts von der Milgram-Studie wussten. Per Zufall ordnete Maryann jeden Lehrer einer von drei Behandlungsgruppen zu:\n\n\n\nGruppe 1 (Tatsächliche Ergebnisse der echten Milgramstudie): Jeder High-School-Lehrer in dieser Gruppe las eine Beschreibung von Milgrams Studie, einschliesslich der tatsächlichen Ergebnisse, dass jeder Proband einen sehr starken „Schock“ lieferte.\n\n\n\n\nGruppe 2 (Viele kamen der Bitte nach): Jeder High-School-Lehrer las die gleiche Beschreibung wie die High-School-Lehrer in Gruppe 1, mit der Ausnahme, dass die tatsächlichen Ergebnisse durch gefälschte Ergebnisse ersetzt wurden und viele, aber nicht alle Probanden sich daran hielten einen sehr starken “Schock” zu geben.\n\n\n\n\nGruppe 3 (Die meisten lehnten ab): Für die High-School-Lehrer dieser Gruppe hiess es in den gefälschten Ergebnissen, dass sich die meisten Probanden weigerten, einen sehr starken “Schock” abzugeben.\n\n\n\nNach der Lektüre der Beschreibung wurde jeder High-School-Lehrer gebeten, die Studie danach zu bewerten, wie ethisch er sie fand, von 1 (überhaupt nicht ethisch) bis 9 (völlig ethisch).\n\n\n\n\nb. Lesen Sie den Datensatz milgram.csv ein und speichern Sie ihn in die Variable d_milgram.\nc. Schauen Sie den Datensatz mit glimpse() oder head() an.\nd. Erstellen Sie ein Data Dictionary, wie in Aufgabe 2.2.\n\nNutzen Sie die Funktionen min() und max() für numerische Variablen.\nNutzen Sie die Funktion unique() für nicht-numerische Variablen.\n\ne. Schauen Sie sich den Datensatz nochmals an, indem Sie im Environment darauf doppelklicken. Nutzen Sie zusätzlich die Funktion describe() aus dem {Hmisc}-Package (laden Sie das Package nicht dafür, sondern nutzen Sie die Syntax packagename::functionname())\nBeantworten Sie dann folgende Fragen zum Datensatz:\n\nWelche Gruppennummer entspricht welcher Bedingung (condition)?\nIn welcher Variable finden sich die Ethik-Ratings?\nWas fällt Ihnen zu den Datenpunkten auf? Was müsste getan werden bevor mit der Analyse begonnen wird?\n\nf. Bereinigen Sie den Datensatz und speichern Sie ihn in der Variable d_milgram_clean. Es müssen zum Schluss folgende Kriterien erfüllt sein:\n\nDie Versuchspersonenidentifikationsvariable heisst id.\nAlle Messungen (Zeilen) mit NA-Werten wurden gelöscht.\nKeine Versuchspersonennummer kommt doppelt vor.\nDie Variable score heisst ethic_rating.\n\nZur Überprüfung:\n\nDer bereinigte Datensatz heisst d_milgram_clean und ist im Long-Format.\nEr enthält 3 Variablen: id, condition, ethic_rating.\nEr enthält 37 Messungen (obs)\n\ng. Nutzen Sie nochmals die Funktion describe(): Wo gibt es einen Unterschied?\nh. Speichern Sie den neuen Datensatz mit der folgenden Zeile ab:\n\nwrite.csv(d_milgram_clean, row.names = FALSE)",
+    "text": "Aufgabe 2.3: Data cleaning\na. Lesen Sie die Beschreibung zum Datensatz milgram.csv und beantworten Sie folgende Frage:\nWelche Hypothese haben Sie: In welcher Gruppe (1, 2, 3) haben die Personen das Experiment am stärksten als “unethisch” empfunden (also im Rating von 1 (überhaupt nicht ethisch) bis 9 (völlig ethisch) die tiefsten Werte angegeben)? Stellen Sie hier einfach eine Vermutung auf ohne die Daten anzuschauen.\n\n\n\n\n\n\nDatensatz milgram.csv\n\n\n\n\n\nIn dieser Aufgabe wird mit dem Datensatz milgram.csv gearbeitet.\nDer Datensatz stammt aus dem Package {Stat2Data}. Sie müssen dieses Package nicht installieren, sondern können einen angepassten Datensatz zu Beginn dieser Übung herunterladen.\nDer Datensatz stammt nicht direkt vom Milgram Experiment, sondern von einer Folgestudie.1\nBeschreibung:\n\nEine der berühmtesten und verstörendsten psychologischen Studien des 20. Jahrhunderts fand im Labor von Stanley Milgram an der Yale University statt. Milgrams Probanden wurden gebeten, die Antworten eines „Lernenden“ zu überwachen und einen Knopf zu drücken, um Schocks auszulösen, wenn der Lernende eine falsche Antwort gab. Je mehr falsche Antworten, desto stärker der Schock. Sogar Milgram selbst war von den Ergebnissen überrascht: Jeder seiner Probanden versetzte einem langsamen „Lernenden“ als Strafe für wiederholte falsche Antworten einen seiner Meinung nach gefährlichen 300-Volt-Schock. Auch wenn die „Schocks“ nicht real waren und der „Lernende“ in das Geheimnis eingeweiht war, lösten die Ergebnisse eine hitzige Debatte über Ethik und Experimente mit Menschen aus. Um die Einstellungen zu diesem Thema zu untersuchen, führte die Harvard-Doktorandin Maryann de Mateo ein randomisiertes Vergleichsexperiment durch. Ihre Probanden waren 37 High-School-Lehrer, die nichts von der Milgram-Studie wussten. Per Zufall ordnete Maryann jeden Lehrer einer von drei Behandlungsgruppen zu:\n\n\n\nGruppe 1 (Tatsächliche Ergebnisse der echten Milgramstudie): Jeder High-School-Lehrer in dieser Gruppe las eine Beschreibung von Milgrams Studie, einschliesslich der tatsächlichen Ergebnisse, dass jeder Proband einen sehr starken „Schock“ lieferte.\n\n\n\n\nGruppe 2 (Viele kamen der Bitte nach): Jeder High-School-Lehrer las die gleiche Beschreibung wie die High-School-Lehrer in Gruppe 1, mit der Ausnahme, dass die tatsächlichen Ergebnisse durch gefälschte Ergebnisse ersetzt wurden und viele, aber nicht alle Probanden sich daran hielten einen sehr starken “Schock” zu geben.\n\n\n\n\nGruppe 3 (Die meisten lehnten ab): Für die High-School-Lehrer dieser Gruppe hiess es in den gefälschten Ergebnissen, dass sich die meisten Probanden weigerten, einen sehr starken “Schock” abzugeben.\n\n\n\nNach der Lektüre der Beschreibung wurde jeder High-School-Lehrer gebeten, die Studie danach zu bewerten, wie ethisch er sie fand, von 1 (überhaupt nicht ethisch) bis 9 (völlig ethisch).\n\n\n\n\nb. Lesen Sie den Datensatz milgram.csv ein und speichern Sie ihn in die Variable d_milgram.\nc. Schauen Sie den Datensatz mit glimpse() oder head() an.\nd. Erstellen Sie ein Data Dictionary, wie in Aufgabe 2.2.\n\nNutzen Sie die Funktionen min() und max() für numerische Variablen.\nNutzen Sie die Funktion unique() für nicht-numerische Variablen.\n\ne. Schauen Sie sich den Datensatz nochmals an, indem Sie im Environment darauf doppelklicken. Nutzen Sie zusätzlich die Funktion describe() aus dem {Hmisc}-Package. Laden Sie das Package nicht dafür, sondern nutzen Sie die Syntax packagename::functionname().\nBeantworten Sie dann folgende Fragen zum Datensatz:\n\nWelche Gruppennummer entspricht welcher Bedingung (condition)?\nIn welcher Variable finden sich die Ethik-Ratings?\nWas fällt Ihnen zu den Datenpunkten auf? Was müsste getan werden bevor mit der Analyse begonnen wird?\n\nf. Bereinigen Sie den Datensatz und speichern Sie ihn in der Variable d_milgram_clean. Es müssen zum Schluss folgende Kriterien erfüllt sein:\n\nDie Versuchspersonenidentifikationsvariable heisst id.\nAlle Messungen (Zeilen) mit NA-Werten wurden gelöscht.\nKeine Versuchspersonennummer kommt doppelt vor.\nDie Variable score heisst ethic_rating.\n\nZur Überprüfung:\n\nDer bereinigte Datensatz heisst d_milgram_clean und ist im Long-Format.\nEr enthält 3 Variablen: id, condition, ethic_rating.\nEr enthält 37 Messungen (obs)\n\ng. Nutzen Sie nochmals die Funktion describe(): Wo gibt es einen Unterschied?\nh. Speichern Sie den neuen Datensatz mit der folgenden Zeile ab:\n\nwrite.csv(d_milgram_clean, row.names = FALSE)",
     "crumbs": [
       "Übungen",
       "Übung 2"
@@ -783,7 +783,7 @@
     "href": "uebungen/uebung-02.html#aufgabe-2.4-deskriptivstatistik",
     "title": "Übung 2",
     "section": "Aufgabe 2.4: Deskriptivstatistik",
-    "text": "Aufgabe 2.4: Deskriptivstatistik\nJetzt können wir die Gruppen in den verschiedenenen Bedingungen vergleichen.\na. Berechnen Sie für jede Gruppe den Mittelwert und die Standardabweichung der Ethik-Ratings.\nGehen Sie hierzu wie folgt vor:\n\nNehmen Sie den bereinigten Datensatz\nGruppieren Sie den Datensatz nach Bedingungen\nBerechnen Sie den Mittelwert und die Standardabweichung\nErstellen mit den obigen Schritten einen neue Variable namens d_milgram_summary.\n\nb. Lassen Sie sich die Resultate anzeigen indem Sie die Variable aufrufen. Welche Gruppe hat das Milgram-Experiment am höchsten eingeschätzt bezüglich der Ethik? Überrascht Sie das Resultat?\n\nd_milgram_summary",
+    "text": "Aufgabe 2.4: Deskriptivstatistik\nJetzt können wir die Gruppen in den verschiedenenen Bedingungen vergleichen.\na. Berechnen Sie für jede Gruppe den Mittelwert und die Standardabweichung der Ethik-Ratings.\nGehen Sie hierzu wie folgt vor:\n\nNehmen Sie den bereinigten Datensatz\nGruppieren Sie den Datensatz nach Bedingungen (Experimentalgruppen).\nBerechnen Sie den Mittelwert und die Standardabweichung für alle drei Bedingungen.\nErstellen mit den obigen Schritten einen neue Variable namens d_milgram_summary.\n\nb. Lassen Sie sich die Resultate anzeigen indem Sie die Variable aufrufen. Welche Gruppe hat das Milgram-Experiment am höchsten eingeschätzt bezüglich der Ethik? Überrascht Sie das Resultat?\n\nd_milgram_summary",
     "crumbs": [
       "Übungen",
       "Übung 2"
@@ -805,7 +805,7 @@
     "href": "uebungen/uebung-02.html#aufgabe-2.6-zusatzaufgabe",
     "title": "Übung 2",
     "section": "Aufgabe 2.6: Zusatzaufgabe",
-    "text": "Aufgabe 2.6: Zusatzaufgabe\n\n\n\n\n\n\nZusatzaufgaben\n\n\n\nDies ist eine Zusatzaufgabe für Fortgeschrittene. Sie muss nicht gelöst werden.\n\n\nSchauen Sie sich den Datensatz readingskills_clean.csv an:\n\nVergleichen Sie die Gruppenmittelwerte, in dem Sie den Datensatz gruppieren und zusammenfassen. Unterscheiden sich die Kinder mit und ohne Dyslexie in der Leseleistung? Und im IQ?\nBerechnen Sie die Korrelation von Leseleistung und IQ. Über alle Kinder gesehen, hängen die beiden Werte zusammen?\nBerechnen Sie die Korrelation von Leseleistung und IQ für Kinder mit und ohne Dyslexie. Was fällt Ihnen auf?\nVisualisieren Sie die Daten.\nKopieren Sie den Code von esquisser und versuchen Sie diesen in Ihrem RNotebook zu modifizieren.\n\nForschungsfragen:\n\nUnterscheiden sich Kinder mit und ohne Dyslexie in Leseleistung und IQ?\nWie hängen Leseleistung und IQ in diesem Datensatz zusammen?\nUnterscheidet sich der Zusammenhang von IQ und Leseleistung zwischen den Gruppen in seiner Stärke?",
+    "text": "Aufgabe 2.6: Zusatzaufgabe\n\n\n\n\n\n\nZusatzaufgaben\n\n\n\nDies ist eine Zusatzaufgabe für Fortgeschrittene. Sie muss nicht gelöst werden.\n\n\nSchauen Sie sich den Datensatz readingskills_clean.csv an:\n\nVergleichen Sie die Gruppenmittelwerte, in dem Sie den Datensatz gruppieren und zusammenfassen. Unterscheiden sich die Kinder mit und ohne Dyslexie in der Leseleistung? Und im IQ?\nBerechnen Sie die Korrelation von Leseleistung und IQ. Hängen die beiden Werte zusammen?\nBerechnen Sie die Korrelation von Leseleistung und IQ separat für Kinder mit und ohne Dyslexie. Was fällt Ihnen auf?\nVisualisieren Sie die Daten.\nKopieren Sie den Code von esquisser und versuchen Sie diesen in Ihrem RNotebook zu modifizieren.\n\nForschungsfragen:\n\nUnterscheiden sich Kinder mit und ohne Dyslexie in Leseleistung und IQ?\nWie hängen Leseleistung und IQ in diesem Datensatz zusammen?\nUnterscheidet sich der Zusammenhang von IQ und Leseleistung zwischen den Gruppen in seiner Stärke?",
     "crumbs": [
       "Übungen",
       "Übung 2"
@@ -820,6 +820,50 @@
     "crumbs": [
       "Übungen",
       "Übung 2"
+    ]
+  },
+  {
+    "objectID": "appendix/faq.html",
+    "href": "appendix/faq.html",
+    "title": "FAQ",
+    "section": "",
+    "text": "Variablen und Funktionen\nWelche Werte enthält eine Variable / ein Datensatz?\nWelche Argumente braucht eine Funktion?",
+    "crumbs": [
+      "Anhang",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "appendix/faq.html#variablen-und-funktionen",
+    "href": "appendix/faq.html#variablen-und-funktionen",
+    "title": "FAQ",
+    "section": "",
+    "text": "Um die Werte einer Variable oder eines Datensatzes zu sehen, schauen Sie in unter Environment(rechter oberer Quadrant in _RStudio) nach. Dort können Sie auf den blauen Pfeil klicken und die Infos “ausklappen”.\nGeben Sie den Namen der Variable/des Datensatzes in der Console ein und drücken Sie EnterEnter.\n\n\n\nGeben Sie den Funktionsnamen ein und klicken Sie in die folgenden Klammern. Drücken Sie TabTab um Vorschläge zu sehen.\nGeben Sie ?FUNKTIONSNAMEein.\nSuchen Sie im rechten unteren Quadranten von RStudio unter Help nach dem Funktionsnamen.\nGeben Sie in einer Suchmaschine den Funktionsnamen und Stichworte zu Ihrem Ziel ein.",
+    "crumbs": [
+      "Anhang",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "appendix/faq.html#packages",
+    "href": "appendix/faq.html#packages",
+    "title": "FAQ",
+    "section": "Packages",
+    "text": "Packages\nBeim Laden von {tidyverse} gibt es eine Fehlermeldung.\n\nSehr wahrscheinlich ist dies einfach eine Warnung (Warning) und keine Fehlermeldung (Error). Es gibt andere Packages, die dieselben Funktionsnamen verwenden, das kann zu Konflikten führen. Laden Sie trotzdem das {tidyverse}.",
+    "crumbs": [
+      "Anhang",
+      "FAQ"
+    ]
+  },
+  {
+    "objectID": "appendix/faq.html#website",
+    "href": "appendix/faq.html#website",
+    "title": "FAQ",
+    "section": "Website",
+    "text": "Website\nDie Website lädt nicht.\n\nWahrscheinlich verwenden Sie einen relativ alten Browser. Versuchen Sie einen anderen Browser aus. Melden Sie sich sonst mit der Version Ihres Webbrowsers bei uns.\n\nDer Datensatz wird nicht heruntergeladen, sondern im Browserfenster oder im Programm numbers (Mac) geöffnet.\n\nMachen Sie einen Rechtsklick auf den Download-Link und wählen Sie save as....\nVerwenden Sie einen anderen Browser als Safari.",
+    "crumbs": [
+      "Anhang",
+      "FAQ"
     ]
   },
   {
@@ -838,7 +882,7 @@
     "href": "appendix/thanks.html",
     "title": "Danke",
     "section": "",
-    "text": "Wir danken folgenden Personen herzlich für ihren Beitrag zu diesem Skript (alphabetische Reihenfolge).",
+    "text": "Wir danken folgenden Personen herzlich für ihren Beitrag zu diesem Skript (alphabetische Reihenfolge).\n\nLiv Noelle Bachmann",
     "crumbs": [
       "Anhang",
       "Danke"

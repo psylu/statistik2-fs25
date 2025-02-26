@@ -41,6 +41,7 @@ book:
 
   - part: Anhang
     chapters:
+    - appendix/faq.qmd
     - appendix/webrconsole.qmd
     - appendix/thanks.qmd
     - appendix/license.qmd

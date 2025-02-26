@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Übung 2 – Datenanalyse mit R</title>
+<title>uebung-02-solution</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -57,287 +57,31 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </style>
 
 
-<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="../site_libs/quarto-nav/headroom.min.js"></script>
-<script src="../site_libs/clipboard/clipboard.min.js"></script>
-<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="../site_libs/quarto-search/fuse.min.js"></script>
-<script src="../site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="../">
-<link href="../appendix/faq.html" rel="next">
-<link href="../uebungen/uebung-01.html" rel="prev">
-<link href="../imgs/favicon.png" rel="icon" type="image/png">
-<script src="../site_libs/quarto-html/quarto.js"></script>
-<script src="../site_libs/quarto-html/popper.min.js"></script>
-<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="../site_libs/quarto-html/anchor.min.js"></script>
-<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script id="quarto-search-options" type="application/json">{
-  "location": "sidebar",
-  "copy-button": false,
-  "collapse-after": 3,
-  "panel-placement": "start",
-  "type": "textbox",
-  "limit": 50,
-  "keyboard-shortcut": [
-    "f",
-    "/",
-    "s"
-  ],
-  "show-item-context": false,
-  "language": {
-    "search-no-results-text": "No results",
-    "search-matching-documents-text": "matching documents",
-    "search-copy-link-title": "Copy link to search",
-    "search-hide-matches-text": "Hide additional matches",
-    "search-more-match-text": "more match in this document",
-    "search-more-matches-text": "more matches in this document",
-    "search-clear-button-title": "Clear",
-    "search-text-placeholder": "",
-    "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit",
-    "search-label": "Search"
-  }
-}</script>
+<script src="uebung-02-solution_files/libs/clipboard/clipboard.min.js"></script>
+<script src="uebung-02-solution_files/libs/quarto-html/quarto.js"></script>
+<script src="uebung-02-solution_files/libs/quarto-html/popper.min.js"></script>
+<script src="uebung-02-solution_files/libs/quarto-html/tippy.umd.min.js"></script>
+<script src="uebung-02-solution_files/libs/quarto-html/anchor.min.js"></script>
+<link href="uebung-02-solution_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="uebung-02-solution_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="uebung-02-solution_files/libs/bootstrap/bootstrap.min.js"></script>
+<link href="uebung-02-solution_files/libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="uebung-02-solution_files/libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 
 
-<link rel="stylesheet" href="../include/webex.css">
 </head>
 
-<body class="nav-sidebar floating">
+<body class="fullcontent">
 
-<div id="quarto-search-results"></div>
-  <header id="quarto-header" class="headroom fixed-top">
-  <nav class="quarto-secondary-nav">
-    <div class="container-fluid d-flex">
-      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-        <i class="bi bi-layout-text-sidebar-reverse"></i>
-      </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-02.html">Übung 2</a></li></ol></nav>
-        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
-        </a>
-      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
-        <i class="bi bi-search"></i>
-      </button>
-    </div>
-  </nav>
-</header>
-<!-- content -->
-<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
-<!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
-    <div class="pt-lg-2 mt-2 text-left sidebar-header">
-    <div class="sidebar-title mb-0 py-0">
-      <a href="../">Datenanalyse mit R</a> 
-    </div>
-      </div>
-        <div class="mt-2 flex-shrink-0 align-items-center">
-        <div class="sidebar-search">
-        <div id="quarto-search" class="" title="Search"></div>
-        </div>
-        </div>
-    <div class="sidebar-menu-container"> 
-    <ul class="list-unstyled mt-1">
-        <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../index.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Überblick</span></a>
-  </div>
-</li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
- <span class="menu-text">R und RStudio</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../r/installation.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../r/rrstudio.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics R und RStudio</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../r/programmieren.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Basics Programmieren</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../r/help.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Help center</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
- <span class="menu-text">Datenverarbeitung</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../datenverarbeitung/workflow.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../datenverarbeitung/readandwrite.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Datensätze einlesen und schreiben</span></span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../datenverarbeitung/transform.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Datensätze bearbeiten</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Datenvisualisierung</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
- <span class="menu-text">Datenanalyse</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../datenanalyse/descriptive.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Deskriptive Statistik</span></span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
- <span class="menu-text">Übungen</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../uebungen/uebungen.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Informationen</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../uebungen/uebung-01.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Übung 1</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../uebungen/uebung-02.html" class="sidebar-item-text sidebar-link active">
- <span class="menu-text">Übung 2</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
- <span class="menu-text">Anhang</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../appendix/faq.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">FAQ</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../appendix/webrconsole.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">WebR Konsole</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../appendix/thanks.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">Danke</span></a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../appendix/license.html" class="sidebar-item-text sidebar-link">
- <span class="menu-text">License</span></a>
-  </div>
-</li>
-      </ul>
-  </li>
-    </ul>
-    </div>
-</nav>
-<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
-<!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        <nav id="TOC" role="doc-toc" class="toc-active">
-    <h2 id="toc-title">Table of contents</h2>
-   
-  <ul>
-  <li><a href="#aufgabe-2.1-help" id="toc-aufgabe-2.1-help" class="nav-link active" data-scroll-target="#aufgabe-2.1-help">Aufgabe 2.1: Help</a></li>
-  <li><a href="#aufgabe-2.2-datensatz-formate-und-data-dictionaries" id="toc-aufgabe-2.2-datensatz-formate-und-data-dictionaries" class="nav-link" data-scroll-target="#aufgabe-2.2-datensatz-formate-und-data-dictionaries">Aufgabe 2.2: Datensatz-Formate und Data Dictionaries</a></li>
-  <li><a href="#aufgabe-2.3-data-cleaning" id="toc-aufgabe-2.3-data-cleaning" class="nav-link" data-scroll-target="#aufgabe-2.3-data-cleaning">Aufgabe 2.3: Data cleaning</a></li>
-  <li><a href="#aufgabe-2.4-deskriptivstatistik" id="toc-aufgabe-2.4-deskriptivstatistik" class="nav-link" data-scroll-target="#aufgabe-2.4-deskriptivstatistik">Aufgabe 2.4: Deskriptivstatistik</a></li>
-  <li><a href="#aufgabe-2.5-visualisierung" id="toc-aufgabe-2.5-visualisierung" class="nav-link" data-scroll-target="#aufgabe-2.5-visualisierung">Aufgabe 2.5: Visualisierung</a></li>
-  <li><a href="#aufgabe-2.6-zusatzaufgabe" id="toc-aufgabe-2.6-zusatzaufgabe" class="nav-link" data-scroll-target="#aufgabe-2.6-zusatzaufgabe">Aufgabe 2.6: Zusatzaufgabe</a></li>
-  </ul>
-</nav>
-    </div>
-<!-- main -->
-<main class="content column-body" id="quarto-document-content">
+<div id="quarto-content" class="page-columns page-rows-contents page-layout-article">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-02.html">Übung 2</a></li></ol></nav>
-<div class="quarto-title">
-<h1 class="title"><span id="sec-uebung-02" class="quarto-section-identifier">Übung 2</span></h1>
-</div>
+<main class="content" id="quarto-document-content">
 
 
 
-<div class="quarto-title-meta column-body">
 
-    
-  
-    
-  </div>
-  
-
-
-</header>
-
-
+<section id="sec-uebung-02" class="level1 unnumbered">
+<h1 class="unnumbered">Übung 2</h1>
 <div class="callout callout-style-default callout-note callout-titled" title="Lernziele dieser Übung">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -372,7 +116,6 @@ Voraussetzungen
 <ul>
 <li>Packages {tidyverse}, {Hmisc} und {esquisse} sind installiert.</li>
 <li><em>RProject</em> namens <code>introduction_to_r</code> mit Datenordner <code>data</code> aus <a href="https://psylu.github.io/statistik2-fs25/r/rrstudio.html">Kapitel: Basics R und RStudio</a>.</li>
-<li>Neues <em>RNotebook</em> namens <code>uebung-02</code> im <em>RProject</em>-Ordner</li>
 <li>Die folgenden Datensätze sind im <code>data</code>-Ordner des <em>RProjects</em> <code>introduction_to_r</code> gespeichert:
 <ul>
 <li><a href="../data/readingskills_clean.csv"><code>readingskills_clean.csv</code></a></li>
@@ -380,32 +123,38 @@ Voraussetzungen
 <li><a href="../data/experiment2.csv"><code>experiment2.csv</code></a></li>
 <li><a href="../data/milgram.csv"><code>milgram.csv</code></a></li>
 </ul></li>
+<li>Datensatz <code>readingskills_clean.csv</code> in Ordner <code>data</code> aus <a href="https://psylu.github.io/statistik2-fs25/datenverarbeitung/readandwrite.html">Kapitel: Datensätze bearbeiten</a> oder <a href="../data/readingskills_clean.csv">hier</a> herunterladen und in <code>data</code>-Ordner speichern.</li>
 </ul>
 </div>
 </div>
-<p><br></p>
-<section id="aufgabe-2.1-help" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-2.1-help">Aufgabe 2.1: Help</h2>
-<p>Finden Sie heraus, was diese Funktionen tun, welche Argumente sie benötigen und welchen Output sie generieren. Wählen Sie verschiedene Wege die Aufgabe zu lösen (z.B. Suchmaschine, Help in R, ?function, Autocomplete mit Tab).</p>
-<ul>
-<li><code>glimpse()</code></li>
-<li><code>unique()</code></li>
-<li><code>write.csv()</code></li>
-<li><code>var()</code></li>
-<li><code>sum()</code></li>
-</ul>
-<p><br></p>
-</section>
-<section id="aufgabe-2.2-datensatz-formate-und-data-dictionaries" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-2.2-datensatz-formate-und-data-dictionaries">Aufgabe 2.2: Datensatz-Formate und Data Dictionaries</h2>
+<section id="aufgabe-2.1-datensatz-formate" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-2.1-datensatz-formate">Aufgabe 2.1: Datensatz-Formate</h2>
 <p><strong>a.</strong> Laden Sie das Package {tidyverse}.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
+</div>
+</div>
 <p><strong>b.</strong> Lesen Sie die 3 Datensätze ein:</p>
 <ul>
-<li><code>readingskills_clean.csv</code></li>
+<li><code>readingskills.csv</code></li>
 <li><code>experiment1.csv</code></li>
 <li><code>experiment2.csv</code></li>
 </ul>
 <p><strong>c.</strong> Bestimmen Sie für jeden Datensatz, welches Format der Datensatz hat_ <em>Long</em> oder <em>Wide</em>. <a href="../datenverarbeitung/workflow.html">Mehr Infos zu den Formaten finden Sie hier.</a></p>
+<blockquote class="blockquote">
+<p>readingskills: long experiment1: wide experiment2: beides</p>
+</blockquote>
 <p><strong>d.</strong> Schreiben Sie für jeden der Datensätze ein <em>Data Dictionary</em> mit den unten vorgegebenen Spalten.</p>
 <p><em>Tipps:</em></p>
 <ul>
@@ -448,10 +197,10 @@ Voraussetzungen
 <p><strong>e.</strong> Löschen Sie zum Ende dieser Aufgabe alle Variablen (gespeicherten Datensätze) aus dem <code>Environment</code> im oberen rechten Quadranten, indem Sie auf das Besen-Icon klicken.</p>
 <p><br></p>
 </section>
-<section id="aufgabe-2.3-data-cleaning" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-2.3-data-cleaning">Aufgabe 2.3: Data cleaning</h2>
+<section id="aufgabe-2.2" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-2.2">Aufgabe 2.2</h2>
 <p><strong>a.</strong> Lesen Sie die Beschreibung zum Datensatz <code>milgram.csv</code> und beantworten Sie folgende Frage:</p>
-<p>Welche Hypothese haben Sie: In welcher Gruppe (1, 2, 3) haben die Personen das Experiment am stärksten als “unethisch” empfunden (also im Rating von 1 (überhaupt nicht ethisch) bis 9 (völlig ethisch) die tiefsten Werte angegeben)? Stellen Sie hier einfach eine Vermutung auf ohne die Daten anzuschauen.</p>
+<p>Welche Hypothese haben Sie: In welcher Gruppe (1, 2, 3) haben die Personen das Experiment am unethischsten “gerated” (also die tiefsten Werte angeben?). Stellen Sie hier einfach eine Vermutung auf ohne die Daten anzuschauen.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Datensatz `milgram.csv`">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -493,19 +242,54 @@ Datensatz <code>milgram.csv</code>
 </div>
 </div>
 <p><strong>b.</strong> Lesen Sie den Datensatz <code>milgram.csv</code> ein und speichern Sie ihn in die Variable <code>d_milgram</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>d_milgram <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/milgram.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(d_milgram)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 41
+Columns: 4
+$ ID.OF.PARTiciPANT &lt;chr&gt; "sub-00", "sub-01", "sub-02", "sub-03", "sub-04", "s…
+$ group             &lt;int&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2, 2, 2, 2…
+$ condition         &lt;chr&gt; NA, "Actual", "Actual", "Actual", "Actual", "Actual"…
+$ score             &lt;int&gt; 5, 6, 1, 7, 2, 1, 7, 3, 4, 1, 1, 1, 6, 3, 1, 3, 7, 6…</code></pre>
+</div>
+</div>
 <p><strong>c.</strong> Schauen Sie den Datensatz mit <code>glimpse()</code> oder <code>head()</code> an.</p>
-<p><strong>d.</strong> Erstellen Sie ein <em>Data Dictionary</em>, wie in <em>Aufgabe 2.2</em>.</p>
+<p><strong>d.</strong> Erstellen Sie ein <em>Data Dictionary</em>, wie in <em>Aufgabe 2.1</em>.</p>
 <ul>
 <li>Nutzen Sie die Funktionen <code>min()</code> und <code>max()</code> für numerische Variablen.</li>
 <li>Nutzen Sie die Funktion <code>unique()</code> für nicht-numerische Variablen.</li>
 </ul>
-<p><strong>e.</strong> Schauen Sie sich den Datensatz nochmals an, indem Sie im <code>Environment</code> darauf doppelklicken. Nutzen Sie zusätzlich die Funktion <code>describe()</code> aus dem {Hmisc}-Package. Laden Sie das Package nicht dafür, sondern nutzen Sie die Syntax <code>packagename::functionname()</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(d_milgram<span class="sc">$</span>ID.OF.PARTiciPANT)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "sub-00" "sub-01" "sub-02" "sub-03" "sub-04" "sub-05" "sub-06" "sub-07"
+ [9] "sub-08" "sub-09" "sub-10" "sub-11" "sub-12" "sub-13" "sub-14" "sub-15"
+[17] "sub-16" "sub-17" "sub-18" "sub-19" "sub-20" "sub-21" "sub-22" "sub-23"
+[25] "sub-24" "sub-25" "sub-26" "sub-27" "sub-28" "sub-29" "sub-30" "sub-31"
+[33] "sub-32" "sub-33" "sub-34" "sub-35" "sub-36" "sub-37" "sub-38" NA      </code></pre>
+</div>
+</div>
+<p><strong>e.</strong> Schauen Sie sich den Datensatz nochmals an, indem Sie im <code>Environment</code> darauf doppelklicken. Nutzen Sie zusätzlich die Funktion <code>describe()</code> aus dem {Hmisc}-Package (laden Sie das Package nicht dafür, sondern nutzen Sie die Syntax <code>packagename::functionname()</code>)</p>
 <p>Beantworten Sie dann folgende Fragen zum Datensatz:</p>
 <ul>
-<li><p>Welche Gruppennummer entspricht welcher Bedingung (<code>condition</code>)?</p></li>
-<li><p>In welcher Variable finden sich die Ethik-Ratings?</p></li>
-<li><p>Was fällt Ihnen zu den Datenpunkten auf? Was müsste getan werden bevor mit der Analyse begonnen wird?</p></li>
+<li>Welche Gruppennummer entspricht welcher Bedingung (<code>condition</code>)?</li>
 </ul>
+<blockquote class="blockquote">
+<p>1: <code>Actual</code>, 2: <code>Complied</code>, 3: <code>Refused</code></p>
+</blockquote>
+<ul>
+<li>In welcher Variable finden sich die Ethik-Ratings?</li>
+</ul>
+<blockquote class="blockquote">
+<p><code>score</code></p>
+</blockquote>
+<ul>
+<li>Was fällt Ihnen zu den Datenpunkten auf? Was müsste getan werden bevor mit der Analyse begonnen wird?</li>
+</ul>
+<blockquote class="blockquote">
+<p><code>NA</code>: fehlende Werte, doppelte Versuchspersonennummer (<code>sub-18</code>), unpraktischer Variablenname bei VersuchspersonenID, <code>score</code> ist uninformativ</p>
+</blockquote>
 <p><strong>f.</strong> Bereinigen Sie den Datensatz und speichern Sie ihn in der Variable <code>d_milgram_clean</code>. Es müssen zum Schluss folgende Kriterien erfüllt sein:</p>
 <ul>
 <li>Die Versuchspersonenidentifikationsvariable heisst <code>id</code>.</li>
@@ -519,32 +303,91 @@ Datensatz <code>milgram.csv</code>
 <li>Er enthält 3 Variablen: <code>id</code>, <code>condition</code>, <code>ethic_rating</code>.</li>
 <li>Er enthält 37 Messungen (obs)</li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>d_milgram_clean <span class="ot">&lt;-</span> d_milgram <span class="sc">|&gt;</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="at">id =</span> ID.OF.PARTiciPANT,</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>         condition,</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">ethic_rating =</span> score) <span class="sc">|&gt;</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(id <span class="sc">!=</span> <span class="st">"NA"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>         condition <span class="sc">!=</span> <span class="st">"NA"</span>,</span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>         ethic_rating <span class="sc">!=</span> <span class="st">"NA"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>g.</strong> Nutzen Sie nochmals die Funktion <code>describe()</code>: Wo gibt es einen Unterschied?</p>
 <p><strong>h.</strong> Speichern Sie den neuen Datensatz mit der folgenden Zeile ab:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(d_milgram_clean, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(d_milgram_clean, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>"id","condition","ethic_rating"
+"sub-01","Actual",6
+"sub-02","Actual",1
+"sub-03","Actual",7
+"sub-04","Actual",2
+"sub-05","Actual",1
+"sub-06","Actual",7
+"sub-07","Actual",3
+"sub-08","Actual",4
+"sub-09","Actual",1
+"sub-10","Actual",1
+"sub-11","Actual",1
+"sub-12","Actual",6
+"sub-13","Actual",3
+"sub-14","Complied",1
+"sub-15","Complied",3
+"sub-16","Complied",7
+"sub-17","Complied",6
+"sub-18","Complied",7
+"sub-19","Complied",4
+"sub-20","Complied",3
+"sub-21","Complied",1
+"sub-22","Complied",1
+"sub-23","Complied",2
+"sub-24","Complied",5
+"sub-25","Complied",5
+"sub-26","Complied",5
+"sub-27","Refused",5
+"sub-28","Refused",7
+"sub-29","Refused",7
+"sub-30","Refused",6
+"sub-31","Refused",6
+"sub-32","Refused",6
+"sub-33","Refused",7
+"sub-34","Refused",2
+"sub-35","Refused",6
+"sub-36","Refused",3
+"sub-37","Refused",6</code></pre>
 </div>
-<p><br></p>
+</div>
 </section>
-<section id="aufgabe-2.4-deskriptivstatistik" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-2.4-deskriptivstatistik">Aufgabe 2.4: Deskriptivstatistik</h2>
+<section id="aufgabe-2.3-deskriptivstatistik" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-2.3-deskriptivstatistik">Aufgabe 2.3: Deskriptivstatistik</h2>
 <p>Jetzt können wir die Gruppen in den verschiedenenen Bedingungen vergleichen.</p>
 <p><strong>a.</strong> Berechnen Sie für jede Gruppe den Mittelwert und die Standardabweichung der Ethik-Ratings.</p>
 <p>Gehen Sie hierzu wie folgt vor:</p>
 <ul>
 <li><p>Nehmen Sie den <strong>bereinigten</strong> Datensatz</p></li>
-<li><p>Gruppieren Sie den Datensatz nach Bedingungen (Experimentalgruppen).</p></li>
-<li><p>Berechnen Sie den Mittelwert und die Standardabweichung für alle drei Bedingungen.</p></li>
+<li><p>Gruppieren Sie den Datensatz nach Bedingungen</p></li>
+<li><p>Berechnen Sie den Mittelwert und die Standardabweichung</p></li>
 <li><p>Erstellen mit den obigen Schritten einen neue Variable namens <code>d_milgram_summary</code>.</p></li>
 </ul>
-<p><strong>b.</strong> Lassen Sie sich die Resultate anzeigen indem Sie die Variable aufrufen. Welche Gruppe hat das Milgram-Experiment am höchsten eingeschätzt bezüglich der Ethik? Überrascht Sie das Resultat?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>d_milgram_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>d_milgram_summary <span class="ot">&lt;-</span> d_milgram_clean <span class="sc">|&gt;</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(condition) <span class="sc">|&gt;</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_ethic_rating =</span> <span class="fu">mean</span>(ethic_rating),</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_ethic_rating =</span> <span class="fu">sd</span>(ethic_rating))</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>d_milgram_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  condition mean_ethic_rating sd_ethic_rating
+  &lt;chr&gt;                 &lt;dbl&gt;           &lt;dbl&gt;
+1 Actual                 3.31            2.43
+2 Complied               3.85            2.19
+3 Refused                5.55            1.63</code></pre>
 </div>
-<p><br></p>
+</div>
+<p><strong>b.</strong> Welche Gruppe hat das Milgram-Experiment am höchsten eingeschätzt bezüglich der Ethik? Überrascht Sie das Resultat?</p>
 </section>
-<section id="aufgabe-2.5-visualisierung" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-2.5-visualisierung">Aufgabe 2.5: Visualisierung</h2>
+<section id="aufgabe-2.4-visualisierung" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-2.4-visualisierung">Aufgabe 2.4: Visualisierung</h2>
 <p>Erstellen Sie eine Abbildung, welche die Ratings in den drei Gruppen aufzeigt. Zeigen Sie einander Ihre Grafiken.</p>
 <ul>
 <li>Was funktioniert gut?</li>
@@ -567,12 +410,27 @@ Tipp
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>esquisse<span class="sc">::</span><span class="fu">esquisser</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>esquisse<span class="sc">::</span><span class="fu">esquisser</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><br></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(d_milgram_clean) <span class="sc">+</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a> <span class="fu">aes</span>(<span class="at">x =</span> condition, <span class="at">y =</span> ethic_rating) <span class="sc">+</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a> <span class="fu">geom_boxplot</span>(<span class="at">fill =</span> <span class="st">"#ADB7CA"</span>) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a> <span class="fu">geom_jitter</span>() <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a> <span class="fu">theme</span>(<span class="at">axis.text.y =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>L), <span class="at">axis.text.x =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>L), </span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a> <span class="at">legend.text =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>L), <span class="at">legend.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">14</span>L))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="uebung-02-solution_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
-<section id="aufgabe-2.6-zusatzaufgabe" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-2.6-zusatzaufgabe">Aufgabe 2.6: Zusatzaufgabe</h2>
+<section id="aufgabe-2.5-zusatzaufgabe" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-2.5-zusatzaufgabe">Aufgabe 2.5: Zusatzaufgabe</h2>
 <div class="callout callout-style-default callout-tip callout-titled" title="Zusatzaufgaben">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -589,8 +447,8 @@ Zusatzaufgaben
 <p>Schauen Sie sich den Datensatz <code>readingskills_clean.csv</code> an:</p>
 <ul>
 <li>Vergleichen Sie die Gruppenmittelwerte, in dem Sie den Datensatz gruppieren und zusammenfassen. Unterscheiden sich die Kinder mit und ohne Dyslexie in der Leseleistung? Und im IQ?</li>
-<li>Berechnen Sie die Korrelation von Leseleistung und IQ. Hängen die beiden Werte zusammen?</li>
-<li>Berechnen Sie die Korrelation von Leseleistung und IQ separat für Kinder mit und ohne Dyslexie. Was fällt Ihnen auf?</li>
+<li>Berechnen Sie die Korrelation von Leseleistung und IQ. Über alle Kinder gesehen, hängen die beiden Werte zusammen?</li>
+<li>Berechnen Sie die Korrelation von Leseleistung und IQ für Kinder mit und ohne Dyslexie. Was fällt Ihnen auf?</li>
 <li>Visualisieren Sie die Daten.</li>
 <li>Kopieren Sie den Code von <code>esquisser</code> und versuchen Sie diesen in Ihrem <em>RNotebook</em> zu modifizieren.</li>
 </ul>
@@ -600,223 +458,17 @@ Zusatzaufgaben
 <li>Wie hängen Leseleistung und IQ in diesem Datensatz zusammen?</li>
 <li>Unterscheidet sich der Zusammenhang von IQ und Leseleistung zwischen den Gruppen in seiner Stärke?</li>
 </ul>
-
-
 </section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
 <ol>
 <li id="fn1"><p>DiMatteo, Mary Ann (1972): “An experimental study of attitudes toward deception” by Mary Ann DiMatteo. Unpublished manuscript, Department of Psychology and Social Relations, Harvard University. <a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
-</section>
-
-</main> <!-- /main -->
-<script>
-
-/* update total correct if #webex-total_correct exists */
-update_total_correct = function() {
-  console.log("webex: update total_correct");
-
-  var t = document.getElementsByClassName("webex-total_correct");
-  for (var i = 0; i < t.length; i++) {
-    p = t[i].parentElement;
-    var correct = p.getElementsByClassName("webex-correct").length;
-    var solvemes = p.getElementsByClassName("webex-solveme").length;
-    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
-    var selects = p.getElementsByClassName("webex-select").length;
-
-    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
-  }
-}
-
-/* webex-solution button toggling function */
-b_func = function() {
-  console.log("webex: toggle hide");
-
-  var cl = this.parentElement.classList;
-  if (cl.contains('open')) {
-    cl.remove("open");
-  } else {
-    cl.add("open");
-  }
-}
-
-/* check answers */
-check_func = function() {
-  console.log("webex: check answers");
-
-  var cl = this.parentElement.classList;
-  if (cl.contains('unchecked')) {
-    cl.remove("unchecked");
-    this.innerHTML = "Hide Answers";
-  } else {
-    cl.add("unchecked");
-    this.innerHTML = "Show Answers";
-  }
-}
-
-/* function for checking solveme answers */
-solveme_func = function(e) {
-  console.log("webex: check solveme");
-
-  var real_answers = JSON.parse(this.dataset.answer);
-  var my_answer = this.value;
-  var cl = this.classList;
-  if (cl.contains("ignorecase")) {
-    my_answer = my_answer.toLowerCase();
-  }
-  if (cl.contains("nospaces")) {
-    my_answer = my_answer.replace(/ /g, "")
-  }
-
-  if (my_answer == "") {
-    cl.remove("webex-correct");
-    cl.remove("webex-incorrect");
-  } else if (real_answers.includes(my_answer)) {
-    cl.add("webex-correct");
-    cl.remove("webex-incorrect");
-  } else {
-    cl.add("webex-incorrect");
-    cl.remove("webex-correct");
-  }
-
-  // match numeric answers within a specified tolerance
-  if(this.dataset.tol > 0){
-    var tol = JSON.parse(this.dataset.tol);
-    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
-    if (matches.reduce((a, b) => a + b, 0) > 0) {
-      cl.add("webex-correct");
-    } else {
-      cl.remove("webex-correct");
-    }
-  }
-
-  // added regex bit
-  if (cl.contains("regex")){
-    answer_regex = RegExp(real_answers.join("|"))
-    if (answer_regex.test(my_answer)) {
-      cl.add("webex-correct");
-    }
-  }
-
-  update_total_correct();
-}
-
-/* function for checking select answers */
-select_func = function(e) {
-  console.log("webex: check select");
-
-  var cl = this.classList
-
-  /* add style */
-  cl.remove("webex-incorrect");
-  cl.remove("webex-correct");
-  if (this.value == "answer") {
-    cl.add("webex-correct");
-  } else if (this.value != "blank") {
-    cl.add("webex-incorrect");
-  }
-
-  update_total_correct();
-}
-
-/* function for checking radiogroups answers */
-radiogroups_func = function(e) {
-  console.log("webex: check radiogroups");
-
-  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
-  var cl = checked_button.parentElement.classList;
-  var labels = checked_button.parentElement.parentElement.children;
-
-  /* get rid of styles */
-  for (i = 0; i < labels.length; i++) {
-    labels[i].classList.remove("webex-incorrect");
-    labels[i].classList.remove("webex-correct");
-  }
-
-  /* add style */
-  if (checked_button.value == "answer") {
-    cl.add("webex-correct");
-  } else {
-    cl.add("webex-incorrect");
-  }
-
-  update_total_correct();
-}
-
-window.onload = function() {
-  console.log("webex onload");
-  /* set up solution buttons */
-  var buttons = document.getElementsByTagName("button");
-
-  for (var i = 0; i < buttons.length; i++) {
-    if (buttons[i].parentElement.classList.contains('webex-solution')) {
-      buttons[i].onclick = b_func;
-    }
-  }
-
-  var check_sections = document.getElementsByClassName("webex-check");
-  console.log("check:", check_sections.length);
-  for (var i = 0; i < check_sections.length; i++) {
-    check_sections[i].classList.add("unchecked");
-
-    let btn = document.createElement("button");
-    btn.innerHTML = "Show Answers";
-    btn.classList.add("webex-check-button");
-    btn.onclick = check_func;
-    check_sections[i].appendChild(btn);
-
-    let spn = document.createElement("span");
-    spn.classList.add("webex-total_correct");
-    check_sections[i].appendChild(spn);
-  }
-
-  /* set up webex-solveme inputs */
-  var solveme = document.getElementsByClassName("webex-solveme");
-
-  for (var i = 0; i < solveme.length; i++) {
-    /* make sure input boxes don't auto-anything */
-    solveme[i].setAttribute("autocomplete","off");
-    solveme[i].setAttribute("autocorrect", "off");
-    solveme[i].setAttribute("autocapitalize", "off");
-    solveme[i].setAttribute("spellcheck", "false");
-    solveme[i].value = "";
-
-    /* adjust answer for ignorecase or nospaces */
-    var cl = solveme[i].classList;
-    var real_answer = solveme[i].dataset.answer;
-    if (cl.contains("ignorecase")) {
-      real_answer = real_answer.toLowerCase();
-    }
-    if (cl.contains("nospaces")) {
-      real_answer = real_answer.replace(/ /g, "");
-    }
-    solveme[i].dataset.answer = real_answer;
-
-    /* attach checking function */
-    solveme[i].onkeyup = solveme_func;
-    solveme[i].onchange = solveme_func;
-
-    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
-  }
-
-  /* set up radiogroups */
-  var radiogroups = document.getElementsByClassName("webex-radiogroup");
-  for (var i = 0; i < radiogroups.length; i++) {
-    radiogroups[i].onchange = radiogroups_func;
-  }
-
-  /* set up selects */
-  var selects = document.getElementsByClassName("webex-select");
-  for (var i = 0; i < selects.length; i++) {
-    selects[i].onchange = select_func;
-    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
-  }
-
-  update_total_correct();
-}
-
-</script>
+</section></div></main>
+<!-- /main column -->
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -909,7 +561,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
     var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
     var mailtoRegex = new RegExp(/^mailto:/);
-      var filterRegex = new RegExp("https:\/\/psylu\.github\.io\/statistik2-fs25");
+      var filterRegex = new RegExp('/' + window.location.host + '/');
     var isInternal = (href) => {
         return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
     }
@@ -923,11 +575,6 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         if (link.dataset.originalHref !== undefined) {
           link.href = link.dataset.originalHref;
         }
-          // target, if specified
-          link.setAttribute("target", "_blank");
-          if (link.getAttribute("rel") === null) {
-            link.setAttribute("rel", "noopener");
-          }
       }
     }
   function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
@@ -1242,32 +889,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-body">
-  <div class="nav-page nav-page-previous">
-      <a href="../uebungen/uebung-01.html" class="pagination-link" aria-label="Übung 1">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Übung 1</span>
-      </a>          
-  </div>
-  <div class="nav-page nav-page-next">
-      <a href="../appendix/faq.html" class="pagination-link" aria-label="FAQ">
-        <span class="nav-page-text">FAQ</span> <i class="bi bi-arrow-right-short"></i>
-      </a>
-  </div>
-</nav>
 </div> <!-- /content -->
-<footer class="footer">
-  <div class="nav-footer">
-    <div class="nav-footer-left">
-      &nbsp;
-    </div>   
-    <div class="nav-footer-center">
-<p>Copyright 2025, Gerda Wyssen &amp; Mirjam Senn</p>
-</div>
-    <div class="nav-footer-right">
-      &nbsp;
-    </div>
-  </div>
-</footer>
 
 
 

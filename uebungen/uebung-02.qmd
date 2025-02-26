@@ -22,6 +22,7 @@ knitr::opts_knit$set(root.dir = '../')
 
 - Packages {tidyverse}, {Hmisc} und {esquisse} sind installiert.
 - _RProject_ namens `introduction_to_r` mit Datenordner `data` aus [Kapitel: Basics R und RStudio](https://psylu.github.io/statistik2-fs25/r/rrstudio.html).
+- Neues _RNotebook_ namens `uebung-02` im _RProject_-Ordner
 - Die folgenden Datensätze sind im `data`-Ordner des _RProjects_ `introduction_to_r` gespeichert:
     - [`readingskills_clean.csv`](../data/readingskills_clean.csv)
     - [`experiment1.csv`](../data/experiment1.csv)
@@ -53,7 +54,7 @@ __a.__ Laden Sie das Package {tidyverse}.
 
 __b.__ Lesen Sie die 3 Datensätze ein:
 
-- `readingskills.csv`
+- `readingskills_clean.csv`
 - `experiment1.csv`
 - `experiment2.csv`
 
@@ -87,7 +88,7 @@ __e.__ Löschen Sie zum Ende dieser Aufgabe alle Variablen (gespeicherten Datens
 
 __a.__ Lesen Sie die Beschreibung zum Datensatz `milgram.csv` und beantworten Sie folgende Frage:
 
-Welche Hypothese haben Sie: In welcher Gruppe (1, 2, 3) haben die Personen das Experiment am unethischsten "gerated" (also die tiefsten Werte angeben?). Stellen Sie hier einfach eine Vermutung auf ohne die Daten anzuschauen.
+Welche Hypothese haben Sie: In welcher Gruppe (1, 2, 3) haben die Personen das Experiment am stärksten als "unethisch" empfunden (also im Rating von 1 (überhaupt nicht ethisch) bis 9 (völlig ethisch) die tiefsten Werte angegeben)? Stellen Sie hier einfach eine Vermutung auf ohne die Daten anzuschauen.
 
 
 :::{.callout-note appearance="default" title="Datensatz `milgram.csv`" collapse="false"}
@@ -130,7 +131,7 @@ __d.__ Erstellen Sie ein _Data Dictionary_, wie in _Aufgabe 2.2_.
 - Nutzen Sie die Funktion `unique()` für nicht-numerische Variablen.
 
 __e.__ Schauen Sie sich den Datensatz nochmals an, indem Sie im `Environment` darauf doppelklicken.
-Nutzen Sie zusätzlich die Funktion `describe()` aus dem {Hmisc}-Package (laden Sie das Package nicht dafür, sondern nutzen Sie die Syntax `packagename::functionname()`)
+Nutzen Sie zusätzlich die Funktion `describe()` aus dem {Hmisc}-Package. Laden Sie das Package nicht dafür, sondern nutzen Sie die Syntax `packagename::functionname()`.
 
 Beantworten Sie dann folgende Fragen zum Datensatz:
 
@@ -178,9 +179,9 @@ Gehen Sie hierzu wie folgt vor:
 
 - Nehmen Sie den __bereinigten__ Datensatz
 
-- Gruppieren Sie den Datensatz nach Bedingungen
+- Gruppieren Sie den Datensatz nach Bedingungen (Experimentalgruppen).
 
-- Berechnen Sie den Mittelwert und die Standardabweichung
+- Berechnen Sie den Mittelwert und die Standardabweichung für alle drei Bedingungen.
 
 - Erstellen mit den obigen Schritten einen neue Variable namens `d_milgram_summary`.
 
@@ -226,8 +227,8 @@ __Dies ist eine Zusatzaufgabe für Fortgeschrittene. Sie muss nicht gelöst werd
 Schauen Sie sich den Datensatz `readingskills_clean.csv` an:
 
 - Vergleichen Sie die Gruppenmittelwerte, in dem Sie den Datensatz gruppieren und zusammenfassen. Unterscheiden sich die Kinder mit und ohne Dyslexie in der Leseleistung? Und im IQ?
-- Berechnen Sie die Korrelation von Leseleistung und IQ. Über alle Kinder gesehen, hängen die beiden Werte zusammen?
-- Berechnen Sie die Korrelation von Leseleistung und IQ für Kinder mit und ohne Dyslexie. Was fällt Ihnen auf?
+- Berechnen Sie die Korrelation von Leseleistung und IQ. Hängen die beiden Werte zusammen?
+- Berechnen Sie die Korrelation von Leseleistung und IQ separat für Kinder mit und ohne Dyslexie. Was fällt Ihnen auf?
 - Visualisieren Sie die Daten.
 - Kopieren Sie den Code von `esquisser` und versuchen Sie diesen in Ihrem _RNotebook_ zu modifizieren.
 
