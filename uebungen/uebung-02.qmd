@@ -27,8 +27,6 @@ knitr::opts_knit$set(root.dir = '../')
     - [`experiment1.csv`](../data/experiment1.csv)
     - [`experiment2.csv`](../data/experiment2.csv)
     - [`milgram.csv`](../data/milgram.csv)
-    
-- Datensatz `readingskills_clean.csv` in Ordner `data` aus [Kapitel: Datensätze bearbeiten](https://psylu.github.io/statistik2-fs25/datenverarbeitung/readandwrite.html) oder [hier](../data/readingskills_clean.csv) herunterladen und in `data`-Ordner speichern.
 :::
 
 <br>
