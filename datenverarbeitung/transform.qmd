@@ -292,7 +292,7 @@ d_new <- d |>
     mutate(num_variable = 1.434,
            chr_variable = "1.434",
            sum_of_variable = accuracy + 1,
-           copy_variable = word)
+           copy_variable = accuracy)
 
 # Bestehende Variablen verändern
 d_new <- d_new |>
@@ -306,9 +306,9 @@ _Beispiel:_
 ```{r}
 #| eval: FALSE
 d_condvariable <- d |>
-    mutate(grade = case_when(accuracy) > 0.7 ~ "passed",
-                                     rt <= 0.7 ~ "failed",
-                                     .default = NA)
+    mutate(grade = case_when(accuracy > 0.7 ~ "passed",
+                             accuracy <= 0.7 ~ "failed",
+                             .default = NA))
 ```
 
 Es können immer auch vorher definierte Variablen eingesetzt werden in die Funktionen, solange die Variable den richtigen Variablentyp hat:
@@ -317,10 +317,11 @@ Es können immer auch vorher definierte Variablen eingesetzt werden in die Funkt
 #| eval: FALSE
 
 CUTOFF = 0.7
-d_grades <- d |>
-    mutate(grade = case_when(accuracy) > CUTOFF ~ "pass",
-                                     rt <= CUTOFF ~ "fail",
-                                     .default = NA))
+
+d_condvariable <- d |>
+    mutate(grade = case_when(accuracy > CUTOFF ~ "passed",
+                             accuracy <= CUTOFF ~ "failed",
+                             .default = NA))
 ```
 
 
@@ -341,7 +342,7 @@ CUTOFF = 0.9
 d_grades <- d |>
   mutate(
     researcher = "Vorname Nachname",
-    grade = case_when(accuracy >= CUTOFF ~ "pass",
+    grade = case_when(accuracy > CUTOFF ~ "pass",
                       accuracy <= CUTOFF ~ "fail",
                       .default = NA)
   )
