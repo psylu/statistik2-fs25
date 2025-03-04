@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Workflow – Datenanalyse mit R</title>
+<title>Übung 4 – Datenanalyse mit R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../datenverarbeitung/readandwrite.html" rel="next">
-<link href="../r/help.html" rel="prev">
+<link href="../appendix/faq.html" rel="next">
+<link href="../uebungen/uebung-02.html" rel="prev">
 <link href="../imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -70,6 +104,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../include/webex.css">
 </head>
@@ -83,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenverarbeitung/workflow.html">Datenverarbeitung</a></li><li class="breadcrumb-item"><a href="../datenverarbeitung/workflow.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-04.html">Übung 4</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -160,7 +223,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../datenverarbeitung/workflow.html" class="sidebar-item-text sidebar-link active">
+  <a href="../datenverarbeitung/workflow.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></span></a>
   </div>
 </li>
@@ -240,7 +303,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../uebungen/uebung-04.html" class="sidebar-item-text sidebar-link">
+  <a href="../uebungen/uebung-04.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Übung 4</span></a>
   </div>
 </li>
@@ -291,20 +354,19 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#datensatz-formate" id="toc-datensatz-formate" class="nav-link active" data-scroll-target="#datensatz-formate"><span class="header-section-number">5.1</span> Datensatz-Formate</a>
-  <ul class="collapse">
-  <li><a href="#long-format" id="toc-long-format" class="nav-link" data-scroll-target="#long-format"><span class="header-section-number">5.1.1</span> <em>Long</em>-Format</a></li>
-  <li><a href="#wide-format" id="toc-wide-format" class="nav-link" data-scroll-target="#wide-format"><span class="header-section-number">5.1.2</span> <em>Wide</em>-Format</a></li>
-  </ul></li>
+  <li><a href="#aufgabe-4.1-projektumgebung-erstellen" id="toc-aufgabe-4.1-projektumgebung-erstellen" class="nav-link active" data-scroll-target="#aufgabe-4.1-projektumgebung-erstellen">Aufgabe 4.1: Projektumgebung erstellen</a></li>
+  <li><a href="#aufgabe-4.2-t-test-ausführen" id="toc-aufgabe-4.2-t-test-ausführen" class="nav-link" data-scroll-target="#aufgabe-4.2-t-test-ausführen">Aufgabe 4.2: T-Test ausführen</a></li>
+  <li><a href="#aufgabe-4.3-t-test-ausführen" id="toc-aufgabe-4.3-t-test-ausführen" class="nav-link" data-scroll-target="#aufgabe-4.3-t-test-ausführen">Aufgabe 4.3: T-Test ausführen</a></li>
+  <li><a href="#aufgabe-4.4-zusatzaufgabe" id="toc-aufgabe-4.4-zusatzaufgabe" class="nav-link" data-scroll-target="#aufgabe-4.4-zusatzaufgabe">Aufgabe 4.4: Zusatzaufgabe</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content">
+<main class="content page-columns page-full column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenverarbeitung/workflow.html">Datenverarbeitung</a></li><li class="breadcrumb-item"><a href="../datenverarbeitung/workflow.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-04.html">Übung 4</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></h1>
+<h1 class="title"><span id="sec-uebung-04" class="quarto-section-identifier">Übung 4</span></h1>
 </div>
 
 
@@ -321,72 +383,331 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Zur Analyse von Daten gehören viele einzelne Schritte in <em>R</em>. Um den Überblick zu behalten hilft es die wichtigsten Prozesse zu kennen.</p>
-<ul>
-<li><strong>Import</strong>: Importieren des Datensatzes</li>
-<li><strong>Tidy</strong>: Bereinigen des Datensatzes (z.B. Identifizieren von fehlenden Werten)</li>
-<li><strong>Transform</strong>: Transformieren des Datensatzes (z.B. Erstellen neuer Variablen, Umformattierung von <em>long</em> zu <em>wide</em>)</li>
-<li><strong>Visualize</strong>: Visualisieren des Datensatzes</li>
-<li><strong>Model</strong>: Analysieren des Datensatzes (z.B. Ausführen eines <em>t</em>-Tests)</li>
-<li><strong>Communicate</strong>: Kommunizieren der Daten, Analysen und Schlussfolgerungen</li>
-</ul>
-<p>Das Transformieren, Visualisieren und Modellieren dient dazu, die Daten zu verstehen und daraus Schlussfolgerungen ziehen zu können.</p>
-<div id="fig-tidyverseworkflow" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-tidyverseworkflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../imgs/process_datawrangling.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tidyverseworkflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.1: Wichtige Schritte im Data Science Prozess.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
-</figcaption>
-</figure>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Wollen Sie mehr darüber wissen?">
+<div class="callout callout-style-default callout-note callout-titled" title="Lernziele dieser Übung">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Wollen Sie mehr darüber wissen?
+Lernziele dieser Übung
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Hier finden Sie das Buch <a href="https://r4ds.hadley.nz/"><em>R for Data Science</em></a></p>
-</div>
-</div>
-<section id="datensatz-formate" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="datensatz-formate"><span class="header-section-number">5.1</span> Datensatz-Formate</h2>
-<p>Datensätze können im <em>Long</em>-Format und im <em>Wide</em>-Format formattiert sein.</p>
-<section id="long-format" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="long-format"><span class="header-section-number">5.1.1</span> <em>Long</em>-Format</h3>
+<p>Nach der heutigen Übung können Sie</p>
 <ul>
-<li>Jede Variable (jede gemessene Eigenschaft) entspricht einer Spalte (column)</li>
-<li>Jede Messung entspricht einer Zeile (row)</li>
+<li><em>R</em> und <em>RStudio</em> zur Analyse von Daten verwenden</li>
+<li>Hypothesen zum Vergleich zweier Stichprobenmittelwerte (<em>t</em>-Test für unabhängige und <em>t</em>-Test für abhängige Stichproben) überprüfen</li>
 </ul>
-<p>Wird eine Variable innerhalb einer Person mehrmals gemessen (z.B. error), dann hat jede Messung eine neue Zeile und die anderen Variablenwerte werden wiederholt (z.B. <code>id</code>). Dieses Format eignet sich sehr gut für die Datenvisualisierung und für die Datenanalyse in R.</p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Voraussetzungen">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Voraussetzungen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ul>
+<li>Packages {tidyverse}, {Hmisc} und {esquisse} sind installiert.</li>
+<li><em>RProject</em> namens <code>ttests</code> mit Datenordner <code>data</code> <a href="https://psylu.github.io/statistik2-fs25/r/rrstudio.html">siehe Kapitel: Basics R und RStudio</a>.</li>
+<li>Die folgenden Datensätze sind im <code>data</code>-Ordner des <em>RProjects</em> <code>ttests</code> gespeichert:
+<ul>
+<li><a href="../data/couples_quality.csv"><code>couples_quality.csv</code></a></li>
+<li><a href="../data/couples_extraversion.csv"><code>couples_extraversion.csv</code></a></li>
+</ul></li>
+<li>Neues <em>RNotebook</em> namens <code>uebung-04</code> im <em>RProject</em>-Ordner</li>
+</ul>
+</div>
+</div>
+<p><br></p>
+<section id="aufgabe-4.1-projektumgebung-erstellen" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-4.1-projektumgebung-erstellen">Aufgabe 4.1: Projektumgebung erstellen</h2>
+<p><em>Falls obige Anforderungen noch nicht erfüllt:</em></p>
+<p><strong>a.</strong> Erstellen Sie ein neues <em>RProjekt</em> namens <em>ttests</em>.</p>
+<p><strong>b.</strong> Erstellen Sie einen Ordner <em>data</em> im Projektordner und speichern Sie darin alle Datensätze:</p>
+<ul>
+<li><a href="../data/couples_quality.csv"><code>couples_quality.csv</code></a></li>
+<li><a href="../data/couples_extraversion.csv"><code>couples_extraversion.csv</code></a></li>
+</ul>
+<p><strong>c.</strong> Erstellen ein <em>RNotebook</em> names <em>uebung-04</em>.</p>
 </section>
-<section id="wide-format" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="wide-format"><span class="header-section-number">5.1.2</span> <em>Wide</em>-Format</h3>
-<ul>
-<li>Jede Einheit hat eine Zeile (row)</li>
-<li>Jede Messung entspricht einer Spalte (column)</li>
-</ul>
-<p>Dieses Format eignet sich, um fehlende Werte schnell zu entdecken und um Daten einzugeben.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../imgs/longwide.jpg" class="img-fluid figure-img"></p>
-<figcaption>Long und Wide Format</figcaption>
-</figure>
+<section id="aufgabe-4.2-t-test-ausführen" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-4.2-t-test-ausführen">Aufgabe 4.2: T-Test ausführen</h2>
+<p>Sie wollen untersuchen, ob sich die Beziehungsqualität von Paaren durch ein Kommunikationstraining verbessern lässt. Sie untersucht daher zwei Gruppen mit je 30 Paaren. Eine Gruppe erhält während zwei Monaten ein Kommunikationstraining (KT). Die andere Gruppe erhält in diesen zwei Monaten ein Rechtschreibetraining (RT) mit gleicher Intensität. Das Signifikanzniveau wird auf <span class="math inline">\(\alpha=0.05\)</span> festgelegt.</p>
+<p>Nach zwei Monaten werden alle Paare zu ihrer Beziehungsqualität befragt.</p>
+<p>Forschungsfrage: Besteht ein signifikanter Unterschied in der Einschätzung der Beziehungsqualität zwischen den beiden Gruppen?</p>
+<p>Bearbeiten Sie nun Schritt für Schritt folgende Aufgaben:</p>
+<p><strong>a.</strong> Wie lautet die <span class="math inline">\(H_0\)</span> und wie die <span class="math inline">\(H_1\)</span>? Welches Signifikanzniveau wurde festgelegt?</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(H_0\)</span>: Die Mittelwerte der beiden Gruppen (Kommunikationstraining vs.&nbsp;Rechtsschreibetraining) unterscheiden sich nicht bezüglich der Beziehungsqualität, d.h. die Differenz ist 0.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><span class="math inline">\(H_1\)</span>: Die Mittelwerte der beiden Gruppen (Kommunikationstraining vs.&nbsp;Rechtsschreibetraining) unterscheiden sich bezüglich der Beziehungsqualität, d.h. die Differenz ist ungleich 0.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Ungerichtete Hypothese auf dem <span class="math inline">\(\alpha=0.05\)</span>-Niveau.</p>
+</blockquote>
+<p><strong>b.</strong> Lesen Sie den Datensatz <code>couples_quality.csv</code> ein und speichern Sie ihn in die Variable <code>d_quality</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──
+✔ dplyr     1.1.4     ✔ readr     2.1.5
+✔ forcats   1.0.0     ✔ stringr   1.5.1
+✔ ggplot2   3.5.1     ✔ tibble    3.2.1
+✔ lubridate 1.9.4     ✔ tidyr     1.3.1
+✔ purrr     1.0.2     
+── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──
+✖ dplyr::filter() masks stats::filter()
+✖ dplyr::lag()    masks stats::lag()
+ℹ Use the conflicted package (&lt;http://conflicted.r-lib.org/&gt;) to force all conflicts to become errors</code></pre>
 </div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>d_quality <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/couples_quality.csv"</span>)</span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(d_quality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 150
+Columns: 3
+$ id        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1…
+$ condition &lt;chr&gt; "KT", "RS", "KT", "RS", "KT", "RS", "KT", "RS", "KT", "RS", …
+$ quality   &lt;dbl&gt; 18.79, 23.48, 25.49, 21.85, 35.75, 29.39, 24.58, 24.78, 26.1…</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Wie schaffe ich es, dass Condition ein “Factor” bleibt? Oder nochmals hier definieren? Ansonsten gibt der levene-Test eine Warnung.</p>
+</blockquote>
+<p><strong>c.</strong> Schauen Sie sich die Variablen und die Deskriptivstatistik an. Wie lauten die Mittelwerte und die Standardabweichungen der beiden Gruppen? Was fällt Ihnen auf?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Tipp">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tipp
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li><p>Gruppieren Sie den Datensatz nach Bedingungen.</p></li>
+<li><p>Berechnen Sie den Mittelwert und die Standardabweichung</p></li>
+<li><p>Erstellen mit den obigen Schritten einen neue Variable namens <code>d_quality_summary</code>.</p></li>
+</ul>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>d_quality_summary <span class="ot">&lt;-</span> d_quality <span class="sc">|&gt;</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(condition) <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_quality =</span> <span class="fu">mean</span>(quality),</span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_quality =</span> <span class="fu">sd</span>(quality))</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>d_quality_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  condition mean_quality sd_quality
+  &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;
+1 KT                25.5       5.45
+2 RS                23.8       5.64</code></pre>
+</div>
+</div>
+<p><strong>d.</strong> Welchen statistischen Test führen Sie durch?</p>
+<blockquote class="blockquote">
+<p>Es muss ein t-Test für unabhängige Stichproben verwendet werden, da die beiden Gruppen unabhängig sind (keine natürlichen Paare oder Messwiederholung).</p>
+</blockquote>
+<p><strong>e.</strong> Überprüfen Sie die Voraussetzung der Varianzhomogenität für diesen Test.</p>
+<blockquote class="blockquote">
+<p>Die Varianzhomogenität überprüfen wir mit dem Levene-Test. Wir können dazu das Package {car} verwenden. Der Levene-Test ist auf dem 5%-Niveau nicht signifikant, daher wird Homoskedastizität angenommen.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">leveneTest</span>(quality <span class="sc">~</span> condition, <span class="at">data =</span> d_quality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning in leveneTest.default(y = y, group = group, ...): group coerced to
+factor.</code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Levene's Test for Homogeneity of Variance (center = median)
+       Df F value Pr(&gt;F)
+group   1  0.1842 0.6684
+      148               </code></pre>
+</div>
+</div>
+<p><strong>f.</strong> Wie lautet Ihre Testenscheidung?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test für unabhängige Stichproben durchführen</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">formula =</span> quality <span class="sc">~</span> condition,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> d_quality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  quality by condition
+t = 1.8339, df = 148, p-value = 0.06868
+alternative hypothesis: true difference in means between group KT and group RS is not equal to 0
+95 percent confidence interval:
+ -0.128904  3.453171
+sample estimates:
+mean in group KT mean in group RS 
+        25.51040         23.84827 </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>effsize<span class="sc">::</span><span class="fu">cohen.d</span>(<span class="at">formula =</span> quality <span class="sc">~</span> condition, <span class="at">data =</span> d_quality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Cohen's d
+
+d estimate: 0.2994742 (small)
+95 percent confidence interval:
+      lower       upper 
+-0.02502902  0.62397745 </code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>TBA: Interpretation.</p>
+</blockquote>
+<div class="callout callout-style-default callout-tip callout-titled" title="Zusatzaufgaben">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Zusatzaufgaben
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Weitere Möglichkeiten, um mit diesem Datensatz zu arbeiten:</p>
+<ul>
+<li><p>Berechnen Sie eine A-priori Poweranalyse. Hierfür darf der Datensatz nicht verwendet werden, da diese VOR der Datenerhebung durchgeführt werden muss.</p></li>
+<li><p>Erstellen Sie einen Boxplot aus den Daten und überprüfen Sie visuell, ob sich die Gruppen und die Varianzen unterscheiden. Was fällt Ihnen auf?</p></li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="aufgabe-4.3-t-test-ausführen" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="aufgabe-4.3-t-test-ausführen">Aufgabe 4.3: T-Test ausführen</h2>
+<p>Sei fragen sich, ob das Sprichwort “Gegensätze ziehen sich an” bei romantischen Paaren zutrifft. Sie untersuchen daher, ob sich die Persönlichkeitsmerkmale von Partnern unterscheiden und haben dazu bei 250 Paaren das Persönlichkeitsmerkmals <em>Extraversion</em> erhoben. Die abhängige Variable <em>Extraversion</em> wurde jeweils bei beiden Partner mit dem gleichen Messinstrument erhoben.</p>
+<aside>
+<a href="https://journals.sagepub.com/doi/full/10.1177/0265407511431183">Publikation</a>
+</aside>
+<p>Das Signifikanzniveau wird auf <span class="math inline">\(\alpha=0.05\)</span> festgelegt.</p>
+<p>Bearbeiten Sie nun Schritt für Schritt folgende Aufgaben:</p>
+<p><strong>a.</strong> Wie lautet die <span class="math inline">\(H_0\)</span> und wie die <span class="math inline">\(H_1\)</span>? Welches Signifikanzniveau wurde festgelegt?</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(H_0\)</span>: tba</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><span class="math inline">\(H_1\)</span>: tba</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Ungerichtete Hypothese auf dem <span class="math inline">\(\alpha=0.05\)</span>-Niveau.</p>
+</blockquote>
+<p><strong>b.</strong> Lesen Sie den Datensatz <code>couples_extraversion.csv</code> ein und speichern Sie ihn in die Variable <code>d_extraversion</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>d_extraversion <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/couples_extraversion.csv"</span>)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(d_extraversion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 125
+Columns: 3
+$ id     &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, …
+$ extra1 &lt;dbl&gt; 30.85, 30.82, 20.77, 26.79, 28.25, 22.65, 27.49, 36.07, 31.99, …
+$ extra2 &lt;dbl&gt; 33.97, 30.37, 22.16, 31.65, 29.34, 18.30, 26.57, 35.76, 34.05, …</code></pre>
+</div>
+</div>
+<p><strong>c.</strong> Schauen Sie sich die Variablen und die Deskriptivstatistik an.</p>
+<ul>
+<li><p>In welchem Format ist der Datensatz? Inwiefer unterscheidet er sich zu Aufgabe 4.2.?</p></li>
+<li><p>Wie lauten die Mittelwerte und die Standardabweichungen der beiden Variablen? Was fällt Ihnen auf?</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>d_extraversion_summary <span class="ot">&lt;-</span> d_extraversion <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(extra1), <span class="fu">sd</span>(extra1),</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">mean</span>(extra2), <span class="fu">sd</span>(extra2))</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>d_extraversion_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mean(extra1) sd(extra1) mean(extra2) sd(extra2)
+1     28.93912   5.073961     29.79656    5.05109</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Es handelt sich um einen Datensatz im <code>wide</code>-Format. Im Gegensatz zu Aufgabe 4.2.</p>
+</blockquote>
+<p><strong>d.</strong> Welchen statistischen Test führen Sie durch?</p>
+<blockquote class="blockquote">
+<p>Es muss ein t-Test für abhängige Stichproben verwendet werden, da die beiden Gruppen abhängig sind (natürlichen Paare). Dies führt dazu, dass ich die Partner:innen ähnlicher sind und daher nicht “zufällig” geordnet sind.</p>
+</blockquote>
+<p><strong>d.</strong> Welche Voraussetzungen müssen für den Test erfüllt sein? Welche überprüfen wir?</p>
+<blockquote class="blockquote">
+<p>Die Varianzhomogenität muss nicht erfüllt sein, daher wird kein Levene-Test durchgeführt.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Normalverteilung setzen wir zum aktuellen Zeitpunkt voraus.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Weitere ev. ergänzen</p>
+</blockquote>
+<p><strong>e.</strong> Wie lautet Ihre Testenscheidung? Was geschieht, wenn Sie statt <code>paired = TRUE``paired = FALSE</code> verwenden?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test für abhängige Stichproben durchführen</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(d_extraversion<span class="sc">$</span>extra1, d_extraversion<span class="sc">$</span>extra2, </span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> d_extraversion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  d_extraversion$extra1 and d_extraversion$extra2
+t = -2.2816, df = 124, p-value = 0.02422
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ -1.6012755 -0.1136045
+sample estimates:
+mean difference 
+       -0.85744 </code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Der Test wird nun signifikant.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>ACHTUNG noch prüfen hier, da bei FALSE der Welch-Test verwendet wird. Meiner Meinung nach nun zu komplex.</p>
+</blockquote>
+</section>
+<section id="aufgabe-4.4-zusatzaufgabe" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-4.4-zusatzaufgabe">Aufgabe 4.4: Zusatzaufgabe</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Zusatzaufgaben">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Zusatzaufgaben
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Dies ist eine Zusatzaufgabe und muss nicht gelöst werden.</strong></p>
+</div>
+</div>
+<p>Diskutieren Sie folgende Fragen:</p>
+<ul>
+<li><p>Wie könnte das Design des Experiments der Aufgabe 4.3 verbessert werden?</p>
+<ul>
+<li>Welche Probleme könnten bei dem bestehenden Design auftreten? (z.B. das fälschlicherweise ein Effekt angenommen wird, obwohl keiner existiert?)</li>
+<li>Welche zusätzlichen Messzeitpunkte könnten aufschlussreiche Daten liefern?</li>
+<li>Könnten die Daten dieses verbesserten Designs mit einem unabhängigen oder abhängigen <em>t</em>-Tests analysiert werden?</li>
+</ul></li>
+</ul>
 
 
-</section>
-</section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>Wickham, H., Çetinkaya-Rundel, M., Grolemund, G. (2025). R for Data Science (2e). https://r4ds.hadley.nz<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
 </section>
 
 </main> <!-- /main -->
@@ -1023,13 +1344,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../r/help.html" class="pagination-link" aria-label="Help center">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Help center</span></span>
+      <a href="../uebungen/uebung-02.html" class="pagination-link" aria-label="Übung 2">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Übung 2</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../datenverarbeitung/readandwrite.html" class="pagination-link" aria-label="Datensätze einlesen und schreiben">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Datensätze einlesen und schreiben</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../appendix/faq.html" class="pagination-link" aria-label="FAQ">
+        <span class="nav-page-text">FAQ</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

@@ -1,0 +1,229 @@
+# Übung 4 {.unnumbered #sec-uebung-04}
+
+```{r}
+#| include: false
+# Set working directory of R
+knitr::opts_knit$set(root.dir = '../')
+```
+
+
+::: {.callout-note appearance="default" title="Lernziele dieser Übung"}
+Nach der heutigen Übung können Sie
+
+- _R_ und _RStudio_ zur Analyse von Daten verwenden
+- Hypothesen zum Vergleich zweier Stichprobenmittelwerte (_t_-Test für unabhängige und _t_-Test für abhängige Stichproben) überprüfen
+:::
+
+:::{.callout-note appearance="default" title="Voraussetzungen"}
+
+- Packages {tidyverse}, {Hmisc} und {esquisse} sind installiert.
+- _RProject_ namens `ttests` mit Datenordner `data` [siehe Kapitel: Basics R und RStudio](https://psylu.github.io/statistik2-fs25/r/rrstudio.html).
+- Die folgenden Datensätze sind im `data`-Ordner des _RProjects_ `ttests` gespeichert:
+    - [`couples_quality.csv`](../data/couples_quality.csv)
+    - [`couples_extraversion.csv`](../data/couples_extraversion.csv)
+- Neues _RNotebook_ namens `uebung-04` im _RProject_-Ordner
+:::
+
+<br>
+
+## Aufgabe 4.1: Projektumgebung erstellen
+
+_Falls obige Anforderungen noch nicht erfüllt:_
+
+__a.__ Erstellen Sie ein neues _RProjekt_ namens _ttests_.
+
+__b.__ Erstellen Sie einen Ordner _data_ im Projektordner und speichern Sie darin alle Datensätze:
+
+  - [`couples_quality.csv`](../data/couples_quality.csv)
+  - [`couples_extraversion.csv`](../data/couples_extraversion.csv)
+  
+__c.__ Erstellen ein _RNotebook_ names _uebung-04_.
+
+
+## Aufgabe 4.2: T-Test ausführen
+
+Sie wollen untersuchen, ob sich die Beziehungsqualität von Paaren durch ein Kommunikationstraining verbessern lässt. Sie untersucht daher zwei Gruppen mit je 30 Paaren. Eine Gruppe erhält während zwei Monaten ein Kommunikationstraining (KT). Die andere Gruppe erhält in diesen zwei Monaten ein Rechtschreibetraining (RT) mit gleicher Intensität. Das Signifikanzniveau wird auf $\alpha=0.05$ festgelegt.
+
+Nach zwei Monaten werden alle Paare zu ihrer Beziehungsqualität befragt. 
+
+Forschungsfrage: Besteht ein signifikanter Unterschied in der Einschätzung der Beziehungsqualität zwischen den beiden Gruppen?
+
+Bearbeiten Sie nun Schritt für Schritt folgende Aufgaben: 
+
+__a.__  Wie lautet die $H_0$ und wie die $H_1$? Welches Signifikanzniveau wurde festgelegt?
+
+> $H_0$: Die Mittelwerte der beiden Gruppen (Kommunikationstraining vs. Rechtsschreibetraining) unterscheiden sich nicht bezüglich der Beziehungsqualität, d.h. die Differenz ist 0.  
+
+> $H_1$: Die Mittelwerte der beiden Gruppen (Kommunikationstraining vs. Rechtsschreibetraining) unterscheiden sich bezüglich der Beziehungsqualität, d.h. die Differenz ist ungleich 0.
+
+> Ungerichtete Hypothese auf dem $\alpha=0.05$-Niveau.
+
+
+__b.__ Lesen Sie den Datensatz `couples_quality.csv` ein und speichern Sie ihn in die Variable `d_quality`. 
+
+```{r}
+library(tidyverse)
+
+d_quality <- read.csv("data/couples_quality.csv")
+glimpse(d_quality)
+```
+
+> Wie schaffe ich es, dass Condition ein "Factor" bleibt? Oder nochmals hier definieren? Ansonsten gibt der levene-Test eine Warnung. 
+
+__c.__ Schauen Sie sich die Variablen und die Deskriptivstatistik an. Wie lauten die Mittelwerte und die Standardabweichungen der beiden Gruppen? Was fällt Ihnen auf?
+
+:::{.callout-tip appearance="default" title="Tipp" collapse="true"}
+
+- Gruppieren Sie den Datensatz nach Bedingungen.
+
+- Berechnen Sie den Mittelwert und die Standardabweichung
+
+- Erstellen mit den obigen Schritten einen neue Variable namens `d_quality_summary`.
+
+:::
+
+
+```{r}
+d_quality_summary <- d_quality |>
+  group_by(condition) |>
+  summarise(mean_quality = mean(quality),
+            sd_quality = sd(quality))
+d_quality_summary
+```
+
+
+__d.__  Welchen statistischen Test führen Sie durch?
+
+> Es muss ein t-Test für unabhängige Stichproben verwendet werden, da die beiden Gruppen unabhängig sind (keine natürlichen Paare oder Messwiederholung). 
+
+__e.__  Überprüfen Sie die Voraussetzung der Varianzhomogenität für diesen Test. 
+
+> Die Varianzhomogenität überprüfen wir mit dem Levene-Test. Wir können dazu das Package {car} verwenden.
+> Der Levene-Test ist auf dem 5%-Niveau nicht signifikant, daher wird Homoskedastizität angenommen. 
+
+```{r, message=FALSE}
+car::leveneTest(quality ~ condition, data = d_quality)
+
+```
+
+__f.__  Wie lautet Ihre Testenscheidung?
+
+```{r}
+# t-Test für unabhängige Stichproben durchführen
+t.test(formula = quality ~ condition,
+       alternative = "two.sided",
+       var.equal = TRUE,
+       data = d_quality)
+
+```
+
+```{r}
+# Effektgrösse berechnen
+effsize::cohen.d(formula = quality ~ condition, data = d_quality)
+```
+> TBA: Interpretation. 
+
+::: {.callout-tip appearance="default" title="Zusatzaufgaben" collapse=true}
+
+Weitere Möglichkeiten, um mit diesem Datensatz zu arbeiten:
+
+- Berechnen Sie eine A-priori Poweranalyse. Hierfür darf der Datensatz nicht verwendet werden, da diese VOR der Datenerhebung durchgeführt werden muss. 
+
+- Erstellen Sie einen Boxplot aus den Daten und überprüfen Sie visuell, ob sich die Gruppen und die Varianzen unterscheiden. Was fällt Ihnen auf?
+
+:::
+
+
+
+## Aufgabe 4.3: T-Test ausführen
+
+Sei fragen sich, ob das Sprichwort "Gegensätze ziehen sich an" bei romantischen Paaren zutrifft. Sie untersuchen daher, ob sich die Persönlichkeitsmerkmale von Partnern unterscheiden und haben dazu bei 250 Paaren das Persönlichkeitsmerkmals _Extraversion_ erhoben. Die abhängige Variable _Extraversion_ wurde jeweils bei beiden Partner mit dem gleichen Messinstrument erhoben. 
+
+<aside> [Publikation](https://journals.sagepub.com/doi/full/10.1177/0265407511431183) </aside>
+
+Das Signifikanzniveau wird auf $\alpha=0.05$ festgelegt.
+
+
+Bearbeiten Sie nun Schritt für Schritt folgende Aufgaben: 
+
+__a.__  Wie lautet die $H_0$ und wie die $H_1$? Welches Signifikanzniveau wurde festgelegt?
+
+> $H_0$: tba  
+
+> $H_1$: tba
+
+> Ungerichtete Hypothese auf dem $\alpha=0.05$-Niveau.
+
+
+__b.__ Lesen Sie den Datensatz `couples_extraversion.csv` ein und speichern Sie ihn in die Variable `d_extraversion`. 
+
+```{r}
+d_extraversion <- read.csv("data/couples_extraversion.csv")
+glimpse(d_extraversion)
+```
+
+__c.__ Schauen Sie sich die Variablen und die Deskriptivstatistik an. 
+
+- In welchem Format ist der Datensatz? Inwiefer unterscheidet er sich zu Aufgabe 4.2.?
+
+- Wie lauten die Mittelwerte und die Standardabweichungen der beiden Variablen? Was fällt Ihnen auf?
+
+```{r}
+d_extraversion_summary <- d_extraversion |>
+  summarise(mean(extra1), sd(extra1),
+            mean(extra2), sd(extra2))
+d_extraversion_summary
+```
+
+
+> Es handelt sich um einen Datensatz im `wide`-Format. Im Gegensatz zu Aufgabe 4.2.
+
+
+__d.__  Welchen statistischen Test führen Sie durch?
+
+> Es muss ein t-Test für abhängige Stichproben verwendet werden, da die beiden Gruppen abhängig sind (natürlichen Paare). Dies führt dazu, dass ich die Partner:innen ähnlicher sind und daher nicht "zufällig" geordnet sind. 
+
+
+__d.__  Welche Voraussetzungen müssen für den Test erfüllt sein? Welche überprüfen wir? 
+
+> Die Varianzhomogenität muss nicht erfüllt sein, daher wird kein Levene-Test durchgeführt.
+
+> Normalverteilung setzen wir zum aktuellen Zeitpunkt voraus. 
+
+> Weitere ev. ergänzen
+
+
+__e.__  Wie lautet Ihre Testenscheidung? Was geschieht, wenn Sie statt `paired = TRUE``paired = FALSE` verwenden?
+
+```{r}
+# t-Test für abhängige Stichproben durchführen
+t.test(d_extraversion$extra1, d_extraversion$extra2, 
+       alternative = "two.sided",
+       paired = TRUE,
+       data = d_extraversion)
+
+```
+> Der Test wird nun signifikant. 
+
+> ACHTUNG noch prüfen hier, da bei FALSE der Welch-Test verwendet wird. Meiner Meinung nach nun zu komplex. 
+
+
+## Aufgabe 4.4: Zusatzaufgabe
+
+
+:::{.callout-tip appearance="default" title="Zusatzaufgaben"}
+
+__Dies ist eine Zusatzaufgabe und muss nicht gelöst werden.__
+
+:::
+
+Diskutieren Sie folgende Fragen:
+
+- Wie könnte das Design des Experiments der Aufgabe 4.3 verbessert werden? 
+
+    - Welche Probleme könnten bei dem bestehenden Design auftreten? (z.B. das fälschlicherweise ein Effekt angenommen wird, obwohl keiner existiert?)
+    - Welche zusätzlichen Messzeitpunkte könnten aufschlussreiche Daten liefern?
+    - Könnten die Daten dieses verbesserten Designs mit einem unabhängigen oder abhängigen _t_-Tests analysiert werden?
+
+
+

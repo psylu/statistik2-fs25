@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Workflow – Datenanalyse mit R</title>
+<title>10&nbsp; t-Test für abhängige Stichproben – Datenanalyse mit R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -30,8 +30,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../datenverarbeitung/readandwrite.html" rel="next">
-<link href="../r/help.html" rel="prev">
+<link href="../uebungen/uebungen.html" rel="next">
+<link href="../datenanalyse/ttest_unabhaengig.html" rel="prev">
 <link href="../imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -83,7 +83,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenverarbeitung/workflow.html">Datenverarbeitung</a></li><li class="breadcrumb-item"><a href="../datenverarbeitung/workflow.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenanalyse/descriptive.html">Datenanalyse</a></li><li class="breadcrumb-item"><a href="../datenanalyse/ttest_abhaengig.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><em>t</em>-Test für abhängige Stichproben</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -160,7 +160,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../datenverarbeitung/workflow.html" class="sidebar-item-text sidebar-link active">
+  <a href="../datenverarbeitung/workflow.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></span></a>
   </div>
 </li>
@@ -201,7 +201,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../datenanalyse/ttest_abhaengig.html" class="sidebar-item-text sidebar-link">
+  <a href="../datenanalyse/ttest_abhaengig.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><em>t</em>-Test für abhängige Stichproben</span></span></a>
   </div>
 </li>
@@ -291,10 +291,12 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#datensatz-formate" id="toc-datensatz-formate" class="nav-link active" data-scroll-target="#datensatz-formate"><span class="header-section-number">5.1</span> Datensatz-Formate</a>
+  <li><a href="#anwendungsbereich" id="toc-anwendungsbereich" class="nav-link active" data-scroll-target="#anwendungsbereich"><span class="header-section-number">10.1</span> Anwendungsbereich</a></li>
+  <li><a href="#voraussetzungen" id="toc-voraussetzungen" class="nav-link" data-scroll-target="#voraussetzungen"><span class="header-section-number">10.2</span> Voraussetzungen</a>
   <ul class="collapse">
-  <li><a href="#long-format" id="toc-long-format" class="nav-link" data-scroll-target="#long-format"><span class="header-section-number">5.1.1</span> <em>Long</em>-Format</a></li>
-  <li><a href="#wide-format" id="toc-wide-format" class="nav-link" data-scroll-target="#wide-format"><span class="header-section-number">5.1.2</span> <em>Wide</em>-Format</a></li>
+  <li><a href="#unabhängigkeit-der-messwerte" id="toc-unabhängigkeit-der-messwerte" class="nav-link" data-scroll-target="#unabhängigkeit-der-messwerte"><span class="header-section-number">10.2.1</span> Unabhängigkeit der Messwerte</a></li>
+  <li><a href="#metrisches-skalenniveau-und-normalverteilung-der-av" id="toc-metrisches-skalenniveau-und-normalverteilung-der-av" class="nav-link" data-scroll-target="#metrisches-skalenniveau-und-normalverteilung-der-av"><span class="header-section-number">10.2.2</span> Metrisches Skalenniveau und Normalverteilung (der AV)</a></li>
+  <li><a href="#homogenität-der-populationsvarianzen-homoskedastizität" id="toc-homogenität-der-populationsvarianzen-homoskedastizität" class="nav-link" data-scroll-target="#homogenität-der-populationsvarianzen-homoskedastizität"><span class="header-section-number">10.2.3</span> Homogenität der Populationsvarianzen (Homoskedastizität)</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -302,9 +304,9 @@ ul.task-list li input[type="checkbox"] {
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenverarbeitung/workflow.html">Datenverarbeitung</a></li><li class="breadcrumb-item"><a href="../datenverarbeitung/workflow.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenanalyse/descriptive.html">Datenanalyse</a></li><li class="breadcrumb-item"><a href="../datenanalyse/ttest_abhaengig.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><em>t</em>-Test für abhängige Stichproben</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></h1>
+<h1 class="title"><span id="sec-t-test-dep" class="quarto-section-identifier"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><em>t</em>-Test für abhängige Stichproben</span></span></h1>
 </div>
 
 
@@ -321,72 +323,45 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Zur Analyse von Daten gehören viele einzelne Schritte in <em>R</em>. Um den Überblick zu behalten hilft es die wichtigsten Prozesse zu kennen.</p>
+<section id="anwendungsbereich" class="level2" data-number="10.1">
+<h2 data-number="10.1" class="anchored" data-anchor-id="anwendungsbereich"><span class="header-section-number">10.1</span> Anwendungsbereich</h2>
+<p>Mit <em>t</em>-Tests für abhängige Stichproben wird untersucht, wie sich genau zwei verbundene Gruppen in einem intervallskalierten Mass unterscheiden. Verbunden bedeutet hierbei, dass die Daten einer Person z.B. zu zwei Messzeitpunkten erhoben werden.</p>
+<p>Was bedeutet »abhängige Stichproben«?</p>
 <ul>
-<li><strong>Import</strong>: Importieren des Datensatzes</li>
-<li><strong>Tidy</strong>: Bereinigen des Datensatzes (z.B. Identifizieren von fehlenden Werten)</li>
-<li><strong>Transform</strong>: Transformieren des Datensatzes (z.B. Erstellen neuer Variablen, Umformattierung von <em>long</em> zu <em>wide</em>)</li>
-<li><strong>Visualize</strong>: Visualisieren des Datensatzes</li>
-<li><strong>Model</strong>: Analysieren des Datensatzes (z.B. Ausführen eines <em>t</em>-Tests)</li>
-<li><strong>Communicate</strong>: Kommunizieren der Daten, Analysen und Schlussfolgerungen</li>
+<li>Messwiederholung</li>
+<li>Natürliche Paare</li>
+<li>Parallelisierung der Stichproben</li>
 </ul>
-<p>Das Transformieren, Visualisieren und Modellieren dient dazu, die Daten zu verstehen und daraus Schlussfolgerungen ziehen zu können.</p>
-<div id="fig-tidyverseworkflow" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-tidyverseworkflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../imgs/process_datawrangling.png" class="img-fluid figure-img">
-</div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tidyverseworkflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.1: Wichtige Schritte im Data Science Prozess.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
-</figcaption>
-</figure>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Wollen Sie mehr darüber wissen?">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Wollen Sie mehr darüber wissen?
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Hier finden Sie das Buch <a href="https://r4ds.hadley.nz/"><em>R for Data Science</em></a></p>
-</div>
-</div>
-<section id="datensatz-formate" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="datensatz-formate"><span class="header-section-number">5.1</span> Datensatz-Formate</h2>
-<p>Datensätze können im <em>Long</em>-Format und im <em>Wide</em>-Format formattiert sein.</p>
-<section id="long-format" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="long-format"><span class="header-section-number">5.1.1</span> <em>Long</em>-Format</h3>
+<p><strong>Typische Fragestellungen</strong>:</p>
 <ul>
-<li>Jede Variable (jede gemessene Eigenschaft) entspricht einer Spalte (column)</li>
-<li>Jede Messung entspricht einer Zeile (row)</li>
+<li><p><em>Wie unterscheidet sich Symptomausprägung Y einer Person vor und nach einem Treatment X?</em></p></li>
+<li><p><em>Wie unterscheidet sich Partner:in A von Partner:in B in der Fähigkeit Y?</em></p></li>
+<li><p><em>Wie unterscheidet sich das Verhalten eine Person in Situation A zu Situation B?</em></p></li>
 </ul>
-<p>Wird eine Variable innerhalb einer Person mehrmals gemessen (z.B. error), dann hat jede Messung eine neue Zeile und die anderen Variablenwerte werden wiederholt (z.B. <code>id</code>). Dieses Format eignet sich sehr gut für die Datenvisualisierung und für die Datenanalyse in R.</p>
+<p><strong>Beispiele</strong>:</p>
+<blockquote class="blockquote">
+<p>ADD</p>
+</blockquote>
 </section>
-<section id="wide-format" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="wide-format"><span class="header-section-number">5.1.2</span> <em>Wide</em>-Format</h3>
+<section id="voraussetzungen" class="level2" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="voraussetzungen"><span class="header-section-number">10.2</span> Voraussetzungen</h2>
+<section id="unabhängigkeit-der-messwerte" class="level3" data-number="10.2.1">
+<h3 data-number="10.2.1" class="anchored" data-anchor-id="unabhängigkeit-der-messwerte"><span class="header-section-number">10.2.1</span> Unabhängigkeit der Messwerte</h3>
+<p>Die Messwerte <em>innerhalb</em> der beiden Stichproben müssen voneinander unabhängig sein. Das bedeutet, bei beiden Stichproben muss es sich um einfache, voneinander unabhängige Zufallsstichproben handeln.</p>
+</section>
+<section id="metrisches-skalenniveau-und-normalverteilung-der-av" class="level3" data-number="10.2.2">
+<h3 data-number="10.2.2" class="anchored" data-anchor-id="metrisches-skalenniveau-und-normalverteilung-der-av"><span class="header-section-number">10.2.2</span> Metrisches Skalenniveau und Normalverteilung (der AV)</h3>
+<p>Das Merkmal <em>Y</em>, also die AV, muss in den beiden Teilpopulationen stetig und normalverteilt sein. Bei der UV handelt es sich um eine dichotome Gruppenvariable.</p>
+<p>Der Wilcoxon-Rangsummen-Test kann verwendet werden, wenn der Mittelwert nicht zur Bestimmung der zentralen Tendenz verwendet werden kann. Man greift auf dieses Verfahren u.a. auch dann zurück, wenn das Merkmal <em>Y</em> in den beiden Subpopulationen nicht normalverteilt ist und die Stichprobe zu klein ist, um von der Robustheit des <em>t</em>-Tests ausgehen zu können.</p>
 <ul>
-<li>Jede Einheit hat eine Zeile (row)</li>
-<li>Jede Messung entspricht einer Spalte (column)</li>
+<li>Verletzung der Normalverteilungsannahme: [folgt, wird nicht in diesem Semester besprochen]</li>
 </ul>
-<p>Dieses Format eignet sich, um fehlende Werte schnell zu entdecken und um Daten einzugeben.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../imgs/longwide.jpg" class="img-fluid figure-img"></p>
-<figcaption>Long und Wide Format</figcaption>
-</figure>
-</div>
+</section>
+<section id="homogenität-der-populationsvarianzen-homoskedastizität" class="level3" data-number="10.2.3">
+<h3 data-number="10.2.3" class="anchored" data-anchor-id="homogenität-der-populationsvarianzen-homoskedastizität"><span class="header-section-number">10.2.3</span> Homogenität der Populationsvarianzen (Homoskedastizität)</h3>
 
 
 </section>
-</section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>Wickham, H., Çetinkaya-Rundel, M., Grolemund, G. (2025). R for Data Science (2e). https://r4ds.hadley.nz<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
 </section>
 
 </main> <!-- /main -->
@@ -1023,13 +998,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../r/help.html" class="pagination-link" aria-label="Help center">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Help center</span></span>
+      <a href="../datenanalyse/ttest_unabhaengig.html" class="pagination-link" aria-label="*t*-Test für unabhängige Stichproben">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><em>t</em>-Test für unabhängige Stichproben</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../datenverarbeitung/readandwrite.html" class="pagination-link" aria-label="Datensätze einlesen und schreiben">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Datensätze einlesen und schreiben</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../uebungen/uebungen.html" class="pagination-link" aria-label="Informationen">
+        <span class="nav-page-text">Informationen</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

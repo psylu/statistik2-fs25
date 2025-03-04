@@ -1,0 +1,50 @@
+# *t*-Test für abhängige Stichproben {#sec-t-test-dep}
+
+## Anwendungsbereich
+Mit *t*-Tests für abhängige Stichproben wird untersucht, wie sich genau zwei verbundene Gruppen in einem intervallskalierten Mass unterscheiden. Verbunden bedeutet hierbei, dass die Daten einer Person z.B. zu zwei Messzeitpunkten erhoben werden.
+
+Was bedeutet »abhängige Stichproben«?
+
+- Messwiederholung
+- Natürliche Paare
+- Parallelisierung der Stichproben
+
+
+__Typische Fragestellungen__:
+
+- _Wie unterscheidet sich Symptomausprägung Y einer Person vor und nach einem Treatment X?_
+
+- *Wie unterscheidet sich Partner:in A von Partner:in B in der Fähigkeit Y?*
+
+- *Wie unterscheidet sich das Verhalten eine Person in Situation A zu Situation B?*
+
+
+__Beispiele__:
+
+> ADD
+
+
+## Voraussetzungen
+
+### Unabhängigkeit der Messwerte
+
+Die Messwerte _innerhalb_ der beiden Stichproben müssen voneinander unabhängig sein. Das bedeutet, bei beiden Stichproben muss es sich um einfache, voneinander unabhängige Zufallsstichproben handeln. 
+
+
+### Metrisches Skalenniveau und Normalverteilung (der AV)
+
+Das Merkmal _Y_, also die AV, muss in den beiden Teilpopulationen stetig und normalverteilt sein. Bei der UV handelt es sich um eine dichotome Gruppenvariable. 
+
+Der Wilcoxon-Rangsummen-Test kann verwendet werden, wenn der Mittelwert nicht zur Bestimmung der zentralen Tendenz verwendet werden kann. Man greift auf dieses Verfahren u.a. auch dann zurück, wenn das Merkmal _Y_ in den beiden Subpopulationen nicht normalverteilt ist und die Stichprobe zu klein ist, um von der Robustheit des _t_-Tests ausgehen zu können.
+
+- Verletzung der Normalverteilungsannahme: [folgt, wird nicht in diesem Semester besprochen]
+
+
+### Homogenität der Populationsvarianzen (Homoskedastizität)
+
+
+
+
+
+
+
