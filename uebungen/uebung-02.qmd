@@ -58,7 +58,7 @@ __b.__ Lesen Sie die 3 Datensätze ein:
 - `experiment1.csv`
 - `experiment2.csv`
 
-__c.__ Bestimmen Sie für jeden Datensatz, welches Format der Datensatz hat_ _Long_ oder _Wide_. [Mehr Infos zu den Formaten finden Sie hier.](../datenverarbeitung/workflow.html)
+__c.__ Bestimmen Sie für jeden Datensatz, welches Format der Datensatz hat _Long_ oder _Wide_. [Mehr Infos zu den Formaten finden Sie hier.](../datenverarbeitung/workflow.html)
 
 
 __d.__ Schreiben Sie für jeden der Datensätze ein _Data Dictionary_ mit den unten vorgegebenen Spalten. 
@@ -130,6 +130,9 @@ __d.__ Erstellen Sie ein _Data Dictionary_, wie in _Aufgabe 2.2_.
 - Nutzen Sie die Funktionen `min()` und `max()` für numerische Variablen.
 - Nutzen Sie die Funktion `unique()` für nicht-numerische Variablen.
 
+<aside> Die Funktionen `min()` und `max()` funktionieren nicht gut, wenn Sie `NA`s im Datensatz haben. Falls dies der Fall ist wird Ihnen einfach `NA` angezeigt, statt einer Zahl. Sie können z.B. stattdessen `summary()` verwenden und wissen nun, dass Sie im Datensatz die `NA`s noch anschauen müssen beim Vorverarbeiten. </aside>
+
+
 __e.__ Schauen Sie sich den Datensatz nochmals an, indem Sie im `Environment` darauf doppelklicken.
 Nutzen Sie zusätzlich die Funktion `describe()` aus dem {Hmisc}-Package. Laden Sie das Package nicht dafür, sondern nutzen Sie die Syntax `packagename::functionname()`.
 
@@ -155,16 +158,16 @@ Zur Überprüfung:
 
 - Der bereinigte Datensatz heisst `d_milgram_clean` und ist im _Long_-Format.
 - Er enthält 3 Variablen: `id`, `condition`, `ethic_rating`.
-- Er enthält 37 Messungen (obs)
+- Er enthält 37 Messungen (`obs` steht für _observations_, also Messungen)
 
 
-__g.__ Nutzen Sie nochmals die Funktion `describe()`: Wo gibt es einen Unterschied?
+__g.__ Nutzen Sie nochmals die Funktion `describe()`: Wo gibt es einen Unterschied? Schauen Sie, ob Sie `min()` und `max()` nun nutzen können.
 
 __h.__ Speichern Sie den neuen Datensatz mit der folgenden Zeile ab:
 
 ```{r}
 #| eval: false
-write.csv(d_milgram_clean, row.names = FALSE)
+write.csv(d_milgram_clean, "data/milgram_clean.csv", row.names = FALSE)
 ```
 
 <br>

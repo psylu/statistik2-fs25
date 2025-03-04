@@ -21,7 +21,10 @@ Wichtig ist dabei oft zu wissen, mit welchem Setup man arbeitet. Dies können Si
 
 ### `?`
 
-Um zu erfahren, was genau eine Funktion macht und welche Argumente sie benötigt, kann die leere Funktion mit einem Fragezeichen aufgerufen werden: `?cor()`.
+Um zu erfahren, was genau eine Funktion macht und welche Argumente sie benötigt, kann die leere Funktion mit einem Fragezeichen aufgerufen werden: `?cor()`. 
+Dies funktioniert nur, wenn das Package in dem sich die Funktion befindet geladen ist! 
+
+<aside> Wird zum Beispiel `?glimpse()` eingegeben bevor das {tidyverse} geladen ist, gibt _R_ eine Fehlermeldung aus. </aside>
  
 ::: {.panel-tabset}
 ## {{< fa code >}}&emsp;Konsole

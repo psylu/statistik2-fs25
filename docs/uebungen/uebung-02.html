@@ -317,7 +317,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </nav>
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content">
+<main class="content page-columns page-full column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-02.html">Übung 2</a></li></ol></nav>
 <div class="quarto-title">
@@ -405,7 +405,7 @@ Voraussetzungen
 <li><code>experiment1.csv</code></li>
 <li><code>experiment2.csv</code></li>
 </ul>
-<p><strong>c.</strong> Bestimmen Sie für jeden Datensatz, welches Format der Datensatz hat_ <em>Long</em> oder <em>Wide</em>. <a href="../datenverarbeitung/workflow.html">Mehr Infos zu den Formaten finden Sie hier.</a></p>
+<p><strong>c.</strong> Bestimmen Sie für jeden Datensatz, welches Format der Datensatz hat <em>Long</em> oder <em>Wide</em>. <a href="../datenverarbeitung/workflow.html">Mehr Infos zu den Formaten finden Sie hier.</a></p>
 <p><strong>d.</strong> Schreiben Sie für jeden der Datensätze ein <em>Data Dictionary</em> mit den unten vorgegebenen Spalten.</p>
 <p><em>Tipps:</em></p>
 <ul>
@@ -448,7 +448,7 @@ Voraussetzungen
 <p><strong>e.</strong> Löschen Sie zum Ende dieser Aufgabe alle Variablen (gespeicherten Datensätze) aus dem <code>Environment</code> im oberen rechten Quadranten, indem Sie auf das Besen-Icon klicken.</p>
 <p><br></p>
 </section>
-<section id="aufgabe-2.3-data-cleaning" class="level2">
+<section id="aufgabe-2.3-data-cleaning" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="aufgabe-2.3-data-cleaning">Aufgabe 2.3: Data cleaning</h2>
 <p><strong>a.</strong> Lesen Sie die Beschreibung zum Datensatz <code>milgram.csv</code> und beantworten Sie folgende Frage:</p>
 <p>Welche Hypothese haben Sie: In welcher Gruppe (1, 2, 3) haben die Personen das Experiment am stärksten als “unethisch” empfunden (also im Rating von 1 (überhaupt nicht ethisch) bis 9 (völlig ethisch) die tiefsten Werte angegeben)? Stellen Sie hier einfach eine Vermutung auf ohne die Daten anzuschauen.</p>
@@ -499,6 +499,9 @@ Datensatz <code>milgram.csv</code>
 <li>Nutzen Sie die Funktionen <code>min()</code> und <code>max()</code> für numerische Variablen.</li>
 <li>Nutzen Sie die Funktion <code>unique()</code> für nicht-numerische Variablen.</li>
 </ul>
+<aside>
+Die Funktionen <code>min()</code> und <code>max()</code> funktionieren nicht gut, wenn Sie <code>NA</code>s im Datensatz haben. Falls dies der Fall ist wird Ihnen einfach <code>NA</code> angezeigt, statt einer Zahl. Sie können z.B. stattdessen <code>summary()</code> verwenden und wissen nun, dass Sie im Datensatz die <code>NA</code>s noch anschauen müssen beim Vorverarbeiten.
+</aside>
 <p><strong>e.</strong> Schauen Sie sich den Datensatz nochmals an, indem Sie im <code>Environment</code> darauf doppelklicken. Nutzen Sie zusätzlich die Funktion <code>describe()</code> aus dem {Hmisc}-Package. Laden Sie das Package nicht dafür, sondern nutzen Sie die Syntax <code>packagename::functionname()</code>.</p>
 <p>Beantworten Sie dann folgende Fragen zum Datensatz:</p>
 <ul>
@@ -517,12 +520,12 @@ Datensatz <code>milgram.csv</code>
 <ul>
 <li>Der bereinigte Datensatz heisst <code>d_milgram_clean</code> und ist im <em>Long</em>-Format.</li>
 <li>Er enthält 3 Variablen: <code>id</code>, <code>condition</code>, <code>ethic_rating</code>.</li>
-<li>Er enthält 37 Messungen (obs)</li>
+<li>Er enthält 37 Messungen (<code>obs</code> steht für <em>observations</em>, also Messungen)</li>
 </ul>
-<p><strong>g.</strong> Nutzen Sie nochmals die Funktion <code>describe()</code>: Wo gibt es einen Unterschied?</p>
+<p><strong>g.</strong> Nutzen Sie nochmals die Funktion <code>describe()</code>: Wo gibt es einen Unterschied? Schauen Sie, ob Sie <code>min()</code> und <code>max()</code> nun nutzen können.</p>
 <p><strong>h.</strong> Speichern Sie den neuen Datensatz mit der folgenden Zeile ab:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(d_milgram_clean, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(d_milgram_clean, <span class="st">"data/milgram_clean.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><br></p>
 </section>
