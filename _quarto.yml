@@ -60,7 +60,7 @@ format:
     page-layout: full
     code-background: true
     code-copy: true
-    code-overflow: wrap
+    #code-overflow: wrap
     link-external-newwindow: true
     css: include/webex.css
     include-after-body: include/webex.js

@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -70,6 +104,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../include/webex.css">
 </head>
@@ -292,17 +355,26 @@ ul.task-list li input[type="checkbox"] {
    
   <ul>
   <li><a href="#anwendungsbereich" id="toc-anwendungsbereich" class="nav-link active" data-scroll-target="#anwendungsbereich"><span class="header-section-number">10.1</span> Anwendungsbereich</a></li>
-  <li><a href="#voraussetzungen" id="toc-voraussetzungen" class="nav-link" data-scroll-target="#voraussetzungen"><span class="header-section-number">10.2</span> Voraussetzungen</a>
+  <li><a href="#voraussetzungen" id="toc-voraussetzungen" class="nav-link" data-scroll-target="#voraussetzungen"><span class="header-section-number">10.2</span> Voraussetzungen</a></li>
+  <li><a href="#grundkonzepte-und-vorgehen" id="toc-grundkonzepte-und-vorgehen" class="nav-link" data-scroll-target="#grundkonzepte-und-vorgehen"><span class="header-section-number">10.3</span> Grundkonzepte und Vorgehen</a>
   <ul class="collapse">
-  <li><a href="#unabhängigkeit-der-messwerte" id="toc-unabhängigkeit-der-messwerte" class="nav-link" data-scroll-target="#unabhängigkeit-der-messwerte"><span class="header-section-number">10.2.1</span> Unabhängigkeit der Messwerte</a></li>
-  <li><a href="#metrisches-skalenniveau-und-normalverteilung-der-av" id="toc-metrisches-skalenniveau-und-normalverteilung-der-av" class="nav-link" data-scroll-target="#metrisches-skalenniveau-und-normalverteilung-der-av"><span class="header-section-number">10.2.2</span> Metrisches Skalenniveau und Normalverteilung (der AV)</a></li>
-  <li><a href="#homogenität-der-populationsvarianzen-homoskedastizität" id="toc-homogenität-der-populationsvarianzen-homoskedastizität" class="nav-link" data-scroll-target="#homogenität-der-populationsvarianzen-homoskedastizität"><span class="header-section-number">10.2.3</span> Homogenität der Populationsvarianzen (Homoskedastizität)</a></li>
+  <li><a href="#planung" id="toc-planung" class="nav-link" data-scroll-target="#planung"><span class="header-section-number">10.3.1</span> Planung</a></li>
+  <li><a href="#vorverarbeitung" id="toc-vorverarbeitung" class="nav-link" data-scroll-target="#vorverarbeitung"><span class="header-section-number">10.3.2</span> Vorverarbeitung</a></li>
+  <li><a href="#analyse" id="toc-analyse" class="nav-link" data-scroll-target="#analyse"><span class="header-section-number">10.3.3</span> Analyse</a></li>
+  <li><a href="#schlussfolgerungen" id="toc-schlussfolgerungen" class="nav-link" data-scroll-target="#schlussfolgerungen"><span class="header-section-number">10.3.4</span> Schlussfolgerungen</a></li>
+  </ul></li>
+  <li><a href="#anwendungsbeispiel-in-r" id="toc-anwendungsbeispiel-in-r" class="nav-link" data-scroll-target="#anwendungsbeispiel-in-r"><span class="header-section-number">10.4</span> Anwendungsbeispiel in R</a>
+  <ul class="collapse">
+  <li><a href="#planung-1" id="toc-planung-1" class="nav-link" data-scroll-target="#planung-1"><span class="header-section-number">10.4.1</span> Planung</a></li>
+  <li><a href="#vorverarbeitung-1" id="toc-vorverarbeitung-1" class="nav-link" data-scroll-target="#vorverarbeitung-1"><span class="header-section-number">10.4.2</span> Vorverarbeitung</a></li>
+  <li><a href="#analyse-1" id="toc-analyse-1" class="nav-link" data-scroll-target="#analyse-1"><span class="header-section-number">10.4.3</span> Analyse</a></li>
+  <li><a href="#schlussfolgerungen-1" id="toc-schlussfolgerungen-1" class="nav-link" data-scroll-target="#schlussfolgerungen-1"><span class="header-section-number">10.4.4</span> Schlussfolgerungen</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content">
+<main class="content page-columns page-full column-body" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenanalyse/descriptive.html">Datenanalyse</a></li><li class="breadcrumb-item"><a href="../datenanalyse/ttest_abhaengig.html"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><em>t</em>-Test für abhängige Stichproben</span></a></li></ol></nav>
 <div class="quarto-title">
@@ -325,43 +397,467 @@ ul.task-list li input[type="checkbox"] {
 
 <section id="anwendungsbereich" class="level2" data-number="10.1">
 <h2 data-number="10.1" class="anchored" data-anchor-id="anwendungsbereich"><span class="header-section-number">10.1</span> Anwendungsbereich</h2>
-<p>Mit <em>t</em>-Tests für abhängige Stichproben wird untersucht, wie sich genau zwei verbundene Gruppen in einem intervallskalierten Mass unterscheiden. Verbunden bedeutet hierbei, dass die Daten einer Person z.B. zu zwei Messzeitpunkten erhoben werden.</p>
-<p>Was bedeutet »abhängige Stichproben«?</p>
-<ul>
-<li>Messwiederholung</li>
-<li>Natürliche Paare</li>
-<li>Parallelisierung der Stichproben</li>
-</ul>
+<p>Mit <em>t</em>-Tests für abhängige Stichproben wird untersucht, wie sich zwei verbundene Gruppen in einem intervallskalierten Mass unterscheiden.</p>
+<p>Abhängige/verbundene Stichproben bedeutet hierbei, dass die Daten einer Person zu zwei Messzeitpunkten (in zwei Bedingungen) erhoben werden. Verbunden kann ebenfalls bedeuten, dass die Daten zweier Personen erhoben werden, die nicht unabhängig voneinander sind (z.B. Paare, Geschwister, Kontrollpersonen etc.).</p>
+<p>Abhängigkeit/Verbundenheit kann entstehen durch: - Messwiederholung - Natürliche Paare - Parallelisierung der Stichproben</p>
 <p><strong>Typische Fragestellungen</strong>:</p>
 <ul>
 <li><p><em>Wie unterscheidet sich Symptomausprägung Y einer Person vor und nach einem Treatment X?</em></p></li>
 <li><p><em>Wie unterscheidet sich Partner:in A von Partner:in B in der Fähigkeit Y?</em></p></li>
-<li><p><em>Wie unterscheidet sich das Verhalten eine Person in Situation A zu Situation B?</em></p></li>
+<li><p><em>Wie unterscheidet sich das Verhalten einer Person in Situation A von dem in Situation B?</em></p></li>
 </ul>
-<p><strong>Beispiele</strong>:</p>
+<!-- __Beispiele__: -->
+<!-- > ADD -->
+</section>
+<section id="voraussetzungen" class="level2 page-columns page-full" data-number="10.2">
+<h2 data-number="10.2" class="anchored" data-anchor-id="voraussetzungen"><span class="header-section-number">10.2</span> Voraussetzungen</h2>
+<table class="table-hover caption-top table">
+<caption><strong>Voraussetzungen <em>t</em>-Test für abhängige Stichproben</strong>, Überprüfung und mögliche Alternativen bei Verletzung der Annahmen</caption>
+<thead>
+<tr class="header">
+<th>Voraussetzung</th>
+<th>Beschreibung</th>
+<th>Vorgehen bei Verletzung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Abhängige Variable</td>
+<td>Eine abhängige Variable mit metrischem Skalenniveau. Die Differenzvariable (gemessener Unterschied zwischen jedem Paar) muss in der Population normalverteilt sein (bei genügend grosser Stichprobe ist der <em>t</em>-Test robust).</td>
+<td>Transformieren der Variable oder Verwenden von non-parametrischen Verfahren: Der Wilcoxon-Vorzeichen-Rangtest kann verwendet werden, wenn der Mittelwert nicht zur Bestimmung der zentralen Tendenz verwendet werden kann. Man greift auf dieses Verfahren u.a. auch dann zurück, wenn die Stichprobe zu klein ist, um von der Robustheit des <em>t</em>-Tests ausgehen zu können.</td>
+</tr>
+<tr class="even">
+<td>Unabhängige Variable</td>
+<td>Eine unabhängige Variable mit zwei Stufen (dichotome Gruppenvariable).</td>
+<td>Verwenden eines anderen statistischen Verfahrens (z.B. Regression) oder Dichotomisierung der UV mittels Mediansplit (z.B. Alter von Zahl zu “jung” und “alt”).</td>
+</tr>
+<tr class="odd">
+<td>Unabhängigkeit der Messwerte</td>
+<td>Die Messwerte <em>innerhalb</em> der beiden Stichproben sind voneinander unabhängig. Es handelt sich um einfache, innerhalb der Stichprobe voneinander unabhängigen, Zufallsstichproben.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Abhängigkeit der Gruppen/Stichproben</td>
+<td>Die Messwerte <em>zwischen</em> den beiden Stichproben sind verbunden (abhängige Gruppen).</td>
+<td>Bei unabhängigen Gruppen kann ein <em>t</em>-Test für unabhängige Stichproben verwendet werden (siehe <a href="../datenanalyse/ttest_unabhaengig.html">Kapitel: t-Test für abhängige Stichproben</a>)</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<aside>
+Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transformationen oder non-parametrische Verfahren) wird in diesem Semester nicht eingegangen.
+</aside>
+</section>
+<section id="grundkonzepte-und-vorgehen" class="level2 page-columns page-full" data-number="10.3">
+<h2 data-number="10.3" class="anchored" data-anchor-id="grundkonzepte-und-vorgehen"><span class="header-section-number">10.3</span> Grundkonzepte und Vorgehen</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../imgs/flowchart_analysis.png" class="img-fluid figure-img"></p>
+<figcaption>Allgemeiner Workflow der Datenanalyse</figcaption>
+</figure>
+</div>
+<section id="planung" class="level3 page-columns page-full" data-number="10.3.1">
+<h3 data-number="10.3.1" class="anchored" data-anchor-id="planung"><span class="header-section-number">10.3.1</span> Planung</h3>
+<section id="statistische-hypothesen-und-signifikanzniveau-festlegen" class="level4">
+<h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen"><strong>1. Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
+<p><strong>Ungerichtete Hypothesen:</strong></p>
+<p><span class="math inline">\(H_0\)</span>: Die Populationsmittelwerte unterscheiden sich nicht (d.h. haben eine Differenz gleich 0) <span class="math inline">\(\mu_1 = \mu_2\)</span> oder <span class="math inline">\(\mu_D = 0\)</span></p>
+<p><span class="math inline">\(H_1\)</span>: Die Populationsmittelwerte unterscheiden sich (d.h. haben eine Differenz ungleich 0) <span class="math inline">\(\mu_1 \neq \mu_2\)</span> oder <span class="math inline">\(\mu_D \neq 0\)</span></p>
+<p><strong>Gerichtete Hypothesen:</strong></p>
+<p>Hypothesen können auch gerichtet formuliert werden (die Populationsmittelwerte sind grösser/kleiner in einer Gruppe):</p>
+<p><span class="math inline">\(H_0\)</span>: Der Mittelwert der Gruppe 1 ist kleiner oder gleich gross wie der Mittelwert der Gruppe 2 <span class="math inline">\(\quad \mu_1 \leq \mu_2\)</span></p>
+<p><span class="math inline">\(H_1\)</span>: Der Mittelwert der Gruppe 1 ist grösser als der Mittelwert der Gruppe 2 <span class="math inline">\(\quad \mu_1 &gt; \mu_2\)</span>.</p>
+<p>oder</p>
+<p><span class="math inline">\(H_0\)</span>: Der Mittelwert der Gruppe 1 ist grösser oder gleich gross wie der Mittelwert der Gruppe 2 <span class="math inline">\(\quad \mu_1 \geq \mu_2\)</span></p>
+<p><span class="math inline">\(H_1\)</span>: Der Mittelwert der Gruppe 1 ist kleiner als der Mittelwert der Gruppe 2 <span class="math inline">\(\quad \mu_1 &lt; \mu_2\)</span>.</p>
+<p><strong>Signifikanzniveau:</strong></p>
+<p>Wird ein Signifikanzniveau von <span class="math inline">\(\alpha = 0.05\)</span> festgelegt, bedeutet dies, dass bei der Verwerfung der Nullhypothese eine 5% Wahrscheinlichkeit besteht, dass eigentlich kein Unterschied besteht und irrtümlicherweise einer angenommen wurde.</p>
+</section>
+<section id="a-priori-poweranalyse-durchführen" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="a-priori-poweranalyse-durchführen"><strong>2. A-priori Poweranalyse durchführen</strong></h4>
+<p>Vor der Datenerhebung soll eine a-priori Poweranalyse durchgeführt werden. Einerseits kann damit ermittelt werden, wie viel Power (Teststärke) der Test hat, um einen Effekt von vordefinierter Grösse (z.B. einen grossen Effekt von <span class="math inline">\(d=0.8\)</span>) zu entdecken. Andererseits kann berechnet werden, wie gross die Stichprobe sein sollte, um einen Effekt bestimmter Grösse und eine festgelegte Teststärke zu erreichen.</p>
+<aside>
+Ein Wert über <span class="math inline">\(0.57\)</span> gilt gemäss den Konventionen für <span class="math inline">\(\delta\)</span> -Masse nach Cohen (1988) als <em>grosser</em> Effekt.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+</aside>
+</section>
+</section>
+<section id="vorverarbeitung" class="level3" data-number="10.3.2">
+<h3 data-number="10.3.2" class="anchored" data-anchor-id="vorverarbeitung"><span class="header-section-number">10.3.2</span> Vorverarbeitung</h3>
+<section id="daten-einlesen-vorverarbeiten-und-visualisieren" class="level4">
+<h4 class="anchored" data-anchor-id="daten-einlesen-vorverarbeiten-und-visualisieren"><strong>3. Daten einlesen, vorverarbeiten und visualisieren</strong></h4>
+<p>Zuerst müssen die Daten eingelesen und bereinigt werden. Daten können diagnostisch visualisiert werden, um z.B. fehlende Werte zu entdecken oder Verteilungen der Daten visuell beurteilen und Extremwerte zu identifizieren.</p>
+<p>Für den <em>t</em>-Test werden die Daten hier in einem <code>wide</code>-Format benötigt. Für die Visualisierung wird eine Datensatz im <code>long</code>-Format benötigt.</p>
+</section>
+<section id="voraussetzungen-überprüfen" class="level4">
+<h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen"><strong>4. Voraussetzungen überprüfen</strong></h4>
+<ul>
+<li><strong>Normalverteilung der Differenzen</strong></li>
+</ul>
+<p>Ob die Differenzen der Messwerte approximativ normalverteilt sind, kann z.B. visuell mit einem Plot oder dem Shapiro-Wilk-Test überprüft werden.</p>
+</section>
+</section>
+<section id="analyse" class="level3 page-columns page-full" data-number="10.3.3">
+<h3 data-number="10.3.3" class="anchored" data-anchor-id="analyse"><span class="header-section-number">10.3.3</span> Analyse</h3>
+<section id="deskriptivstatistik-und-visualisierung" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="deskriptivstatistik-und-visualisierung"><strong>5. Deskriptivstatistik und Visualisierung</strong></h4>
+<p>Bei Gruppenunterschieden wird für jede Gruppe ein Lagemass (z.B. Mittelwert oder Median) sowie ein Streumass (z.B. Standardabweichung, Standardfehler, Konfidenzintervall) berechnet. Das Lagemass stellt die durchschnittliche Merkmalsausprägung in den beiden Gruppen dar. Das Streumass zeigt den Streubereich der Daten auf.</p>
+<aside>
+Genauere Informationen zu Lage- und Streumassen sind im <a href="../datenanalyse/descriptive.html">Kapitel: Deskriptive Statistik</a> zu finden.
+</aside>
+<p>Zur Visualisierung von Gruppenunterschieden eignen sich Lagemasse mit Fehlerbalken. Boxplots eignen sich beispielsweise gut, um Grösse des Gruppenunterschiedes (Effekts) und die Kohärenz der Datenpunkte (Ähnlichkeit der Werte innerhalb einer Bedingung/Gruppe) zu beurteilen.</p>
+<p>Durch die Visualisierung der Rohwerte, kann die Verteilung der Messungen gut eingeschätzt werden und Extremwerte werden deutlich sichtbar. Bei zu vielen Datenpunkten führt das Visualisieren der Rohwerte zu unübersichtlichen Grafiken.</p>
+</section>
+<section id="teststatistik-berechnen" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="teststatistik-berechnen"><strong>6. Teststatistik berechnen</strong></h4>
+<p>Um zu überprüfen, ob die beiden Mittelwerte signifikant unterschiedlich sind, muss die Teststatistik berechnet werden. Die Verteilung der Teststatistik folgt einer sogenannten <em>t</em>-Verteilung, die durch die Anzahl Freiheitsgrade (df) definiert ist.</p>
+<p>Der <em>t</em>-Test für abhängige Stichproben wird über die Differenz der Messwertpaare (intraindividuelle Differenzwerte) ermittelt.</p>
+<p>Dazu werden zuerst die Differenzen aller Mittelwertspaare gebildet: <span class="math inline">\(d_m=x_{m_1}-x_{m_2}\)</span></p>
+<p>Daraus wird der Mittelwert und die Standardabweichung der Differenz berechnet, wobei <span class="math inline">\(n\)</span> der Anzahl der Messwertpaare entspricht:</p>
+<ul>
+<li><p>Mittelwert: <span class="math inline">\(\overline{x}_D=\frac{\sum^n_{m=1} d_m}{n}\)</span></p></li>
+<li><p>Standardabweichung: <span class="math inline">\(\hat{\sigma}_D=\sqrt{\frac{\sum^n_{m=1} (d_m-\overline{x}_D)^2}{n-1}}\)</span></p></li>
+</ul>
+<p>Die empirische Prüfgrösse wird mit Hilfe des geschätzten Standardfehlers berechnet:</p>
+<ul>
+<li><p>Geschätzter Standardfehler: <span class="math inline">\(\hat{\sigma}_{x_D}=\frac{\hat{\sigma}_D}{\sqrt n}\)</span></p></li>
+<li><p>Empirische Prüfgrösse: <span class="math inline">\(t_{x_D}=\frac{\overline{x}_D}{\hat{\sigma}_{x_D}}\)</span></p></li>
+<li><p>Die Freiheitsgrad lassen sich für einen abhängigen <em>t</em>-Test berechnen durch: <span class="math inline">\(df=n-1\)</span></p></li>
+</ul>
+<p>Nun muss die berechnete empirische Prüfgrösse <em>t</em> auf Signifikanz überprüft werden. Dazu wird der Wert mit dem kritischen Wert der durch die Freiheitsgrade bestimmten <em>t</em>-Verteilung verglichen. Der kritische Wert kann in einer <a href="https://www.beltz.de/fileadmin/beltz/downloads/OnlinematerialienPVU/28201_Eid/05_Verteilungstabellen/Tab.A.03.pdf">Tabelle</a> abgelesen werden.</p>
+<ul>
+<li><p>Die <span class="math inline">\(H_0\)</span> wird beibehalten, wenn die empirische Prüfgrösse <strong>kleiner</strong> als der kritische Wert ist. Die Gruppen unterscheiden sich nicht signifikant bzw. die Gruppenvariable hat keinen Einfluss auf die AV.</p></li>
+<li><p>Die <span class="math inline">\(H_0\)</span> wird abgelehnt, wenn die empirische Prüfgrösse <strong>grösser</strong> als der kritische Wert ist. Die Gruppen unterscheiden sich signifikant bzw. die Gruppenvariable hat einen Einfluss auf die AV.</p></li>
+</ul>
+<aside>
+Bei gerichteten Hypothesen müssen die Aussagen entsprechend angepasst werden.
+</aside>
+</section>
+<section id="effektstärke" class="level4">
+<h4 class="anchored" data-anchor-id="effektstärke"><strong>7. Effektstärke</strong></h4>
+<p>Die Effektgrösse beim <em>t</em>-Test für abhängige Stichproben sagt etwas darüber aus, wie gross der Unterschied zwischen den beiden Populationsmittelwerten ist.</p>
+<p>Die standardisierte Effektgrösse kann folgendermassen berechnet werden:</p>
+<p><span class="math inline">\(d=\frac{\overline{x}_D}{\hat\sigma_{D}}\)</span></p>
+<p>Die Konventionen nach Cohen (1988) lauten hier:</p>
+<p><span class="math inline">\(|d|=\approx 0.14\)</span>: kleiner Effekt</p>
+<p><span class="math inline">\(|d|=\approx 0.35\)</span>: mittelgrosser Effekt</p>
+<p><span class="math inline">\(|d|=\approx 0.57\)</span>: grosser Effekt</p>
+</section>
+</section>
+<section id="schlussfolgerungen" class="level3" data-number="10.3.4">
+<h3 data-number="10.3.4" class="anchored" data-anchor-id="schlussfolgerungen"><span class="header-section-number">10.3.4</span> Schlussfolgerungen</h3>
+<section id="ergebnisse-interpretieren-und-berichten" class="level4">
+<h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten"><strong>8. Ergebnisse interpretieren und berichten</strong></h4>
+<p>Je grösser der empirische <em>t</em>-Wert ist, desto stärker spricht dies gegen die Nullhypothese.</p>
+<p>Meistens werden in psychologischen Publikationen die Stichprobenmittelwerte und ihre geschätzten Populationsstandardabweichungen (Stichprobenstandardabweichungen) sowie die <em>t</em>-Statistik, ihre Freiheitsgrade und der <em>p</em>-Wert (also der Wahrscheinlichkeit dieses oder eines noch extremeren <em>t</em>-Wertes unter Annahme der Nullhypothese) berichtet.</p>
+<p>Falls der exakte <em>p</em>-Wert sehr klein ist, beispielsweise <span class="math inline">\(p=0.00000012\)</span> bzw. kleiner als <span class="math inline">\(0.001\)</span>, wird dies folgendermassen notiert: <span class="math inline">\(p &lt; .001\)</span>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <blockquote class="blockquote">
-<p>ADD</p>
+<p>Die kognitive Leistung von Personen vor und nach dem Treatment <em>X</em> unterscheidet sich nicht signifikant, <em>t</em>(15) = 0.75, <em>p</em> = .47.</p>
 </blockquote>
 </section>
-<section id="voraussetzungen" class="level2" data-number="10.2">
-<h2 data-number="10.2" class="anchored" data-anchor-id="voraussetzungen"><span class="header-section-number">10.2</span> Voraussetzungen</h2>
-<section id="unabhängigkeit-der-messwerte" class="level3" data-number="10.2.1">
-<h3 data-number="10.2.1" class="anchored" data-anchor-id="unabhängigkeit-der-messwerte"><span class="header-section-number">10.2.1</span> Unabhängigkeit der Messwerte</h3>
-<p>Die Messwerte <em>innerhalb</em> der beiden Stichproben müssen voneinander unabhängig sein. Das bedeutet, bei beiden Stichproben muss es sich um einfache, voneinander unabhängige Zufallsstichproben handeln.</p>
 </section>
-<section id="metrisches-skalenniveau-und-normalverteilung-der-av" class="level3" data-number="10.2.2">
-<h3 data-number="10.2.2" class="anchored" data-anchor-id="metrisches-skalenniveau-und-normalverteilung-der-av"><span class="header-section-number">10.2.2</span> Metrisches Skalenniveau und Normalverteilung (der AV)</h3>
-<p>Das Merkmal <em>Y</em>, also die AV, muss in den beiden Teilpopulationen stetig und normalverteilt sein. Bei der UV handelt es sich um eine dichotome Gruppenvariable.</p>
-<p>Der Wilcoxon-Rangsummen-Test kann verwendet werden, wenn der Mittelwert nicht zur Bestimmung der zentralen Tendenz verwendet werden kann. Man greift auf dieses Verfahren u.a. auch dann zurück, wenn das Merkmal <em>Y</em> in den beiden Subpopulationen nicht normalverteilt ist und die Stichprobe zu klein ist, um von der Robustheit des <em>t</em>-Tests ausgehen zu können.</p>
+</section>
+<section id="anwendungsbeispiel-in-r" class="level2 page-columns page-full" data-number="10.4">
+<h2 data-number="10.4" class="anchored" data-anchor-id="anwendungsbeispiel-in-r"><span class="header-section-number">10.4</span> Anwendungsbeispiel in R</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Beispiel: Social Media Experiment">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Beispiel: Social Media Experiment
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In einem Experiment wurden 50 Versuchspersonen vor und nach dem Scrollen und Lesen von Nachrichten auf einer Social Media Plattform befragt, wie stark sie Zukunftsängste empfinden. Die Zukunftsangst wurde zu Messzeitpunkt 1 (kurz <strong>vor</strong> dem Lesen/Scrollen) und zu Messzeitpunkt 2 (kurz <strong>nach</strong> dem Lesen/Scrollen) gemessen. Hierfür gaben die Versuchspersonen mit einem digitalen Schieber auf einer durchgehenden Skala von 0 bis 10 an, wie stark ihnen die Zukunft Angst macht.</p>
 <ul>
-<li>Verletzung der Normalverteilungsannahme: [folgt, wird nicht in diesem Semester besprochen]</li>
+<li>Die <em>unabhängige Variable</em> war der Messzeitpunkt (dichotom): vorher (pre) und nachher (post).</li>
+<li>Die <em>abhängige Variable</em> war das Rating der Zukunftsangst.</li>
 </ul>
+</div>
+</div>
+<section id="planung-1" class="level3 page-columns page-full" data-number="10.4.1">
+<h3 data-number="10.4.1" class="anchored" data-anchor-id="planung-1"><span class="header-section-number">10.4.1</span> Planung</h3>
+<section id="statistische-hypothesen-und-signifikanzniveau-festlegen-1" class="level4">
+<h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen-1"><strong>1. Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
+<p><span class="math inline">\(H_0\)</span>: Die Stimmung hat keinen Einfluss auf die Leistung: <span class="math inline">\(\mu_1=\mu_2\)</span></p>
+<p><span class="math inline">\(H_1\)</span>: Die Stimmung hat einen Einfluss auf die Leistung: <span class="math inline">\(\mu_1 \neq\mu_2\)</span></p>
+<p>Das Alphaniveau wird auf <span class="math inline">\(5 \%\)</span> festgelegt. Da es sich um eine ungerichtete Hypothese handelt, wird zweiseitig getestet.</p>
 </section>
-<section id="homogenität-der-populationsvarianzen-homoskedastizität" class="level3" data-number="10.2.3">
-<h3 data-number="10.2.3" class="anchored" data-anchor-id="homogenität-der-populationsvarianzen-homoskedastizität"><span class="header-section-number">10.2.3</span> Homogenität der Populationsvarianzen (Homoskedastizität)</h3>
+<section id="a-priori-poweranalyse-durchführen-1" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="a-priori-poweranalyse-durchführen-1"><strong>2. A-priori Poweranalyse durchführen</strong></h4>
+<ul>
+<li><code>n</code>: Anzahl Paare</li>
+<li><code>d</code>: Effektgrösse</li>
+<li><code>sig.level</code>: <span class="math inline">\(\alpha\)</span> (Fehler 1. Art)</li>
+<li><code>alternative</code>: <span class="math inline">\(H_1\)</span> gerichtet (<code>greater</code>oder <code>less</code>) oder ungerichtet (<code>two-sided</code>)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Package laden</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pwr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A-priori Poweranalyse</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Power berechnen</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">power.t.test</span>(<span class="at">n =</span> <span class="dv">50</span>, <span class="co"># Anzahl Versuchspersonen/Paare</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">delta =</span> <span class="fl">0.57</span>, <span class="co"># Mittelwertsunterschied</span></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">sd =</span> <span class="dv">1</span>, <span class="co"># Standardabweichung</span></span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>             <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="co"># Signifikanzlevel</span></span>
+<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>             <span class="at">type =</span> <span class="st">"paired"</span>, <span class="co"># abhängig: "paired"</span></span>
+<span id="cb1-11"><a href="#cb1-11" aria-hidden="true" tabindex="-1"></a>             <span class="at">strict =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb1-12"><a href="#cb1-12" aria-hidden="true" tabindex="-1"></a>             <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Paired t test power calculation 
+
+              n = 50
+          delta = 0.57
+             sd = 1
+      sig.level = 0.05
+          power = 0.9767248
+    alternative = two.sided
+
+NOTE: n is number of *pairs*, sd is std.dev. of *differences* within pairs</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stichprobengrösse berechnen</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">0.35</span>, </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">power =</span> <span class="fl">0.8</span>, </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>           <span class="at">sig.level =</span> <span class="fl">0.05</span>, </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>           <span class="at">type =</span> <span class="st">"paired"</span>,</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>           <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Paired t test power calculation 
+
+              n = 66.01882
+              d = 0.35
+      sig.level = 0.05
+          power = 0.8
+    alternative = two.sided
+
+NOTE: n is number of *pairs*</code></pre>
+</div>
+</div>
+<aside>
+Beim ersten Verwenden muss das Package {pwr} heruntergeladen/installiert werden, z.B. in der Konsole mit <code>install.packages("pwr")</code>.
+</aside>
+<p>Eine Teststärke (Power) von 0.98 bedeutet, dass die Wahrscheinlichkeit 98% beträgt, einen tatsächlich vorhandenen Effekt mit einer Effektstärke von 0.57 zu finden.</p>
+<p>Um mit einer Teststärke von 80% einen mittelgrossen Effekt von <span class="math inline">\(d=0.35\)</span> zu finden, wird eine Stichprobe von mindestens <span class="math inline">\(n=67\)</span> Personen benötigt.</p>
+</section>
+</section>
+<section id="vorverarbeitung-1" class="level3 page-columns page-full" data-number="10.4.2">
+<h3 data-number="10.4.2" class="anchored" data-anchor-id="vorverarbeitung-1"><span class="header-section-number">10.4.2</span> Vorverarbeitung</h3>
+<section id="daten-einlesen-und-vorverarbeiten" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="daten-einlesen-und-vorverarbeiten"><strong>3. Daten einlesen und vorverarbeiten</strong></h4>
+<div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Beispieldatensatz Stimmungsexperiment vorverarbeiten">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hands-on: Beispieldatensatz Stimmungsexperiment vorverarbeiten
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p><strong>Daten herunterladen und einlesen</strong></p>
+<p><a href="../data/ttests.zip">Hier</a> kann der Projektordner mit den Daten heruntergeladen werden. Vor dem ersten Verwenden muss der Ordner entzippt werden, dann kann das <em>RProject</em> namens <code>ttests.Rproj</code> geöffnet werden. Der Ordner enthält</p>
+<ul>
+<li><em>RProject</em> namens <code>ttest.Rproj</code></li>
+<li>Datensatz <code>fear.csv</code> in <code>data</code>-Ordner</li>
+<li><em>RNotebook</em> namens <code>dependent_ttest.Rmd</code></li>
+<li>(die weiteren Dateien werden für den <em>t</em>-Test für unabhängige Stichproben und die Übung 4 verwendet.)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Package laden</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Daten laden und anschauen</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>d_fear <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/fear.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">glimpse</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 50
+Columns: 3
+$ id        &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 1…
+$ fear_pre  &lt;dbl&gt; 5.1, 6.3, 2.3, 3.3, 8.3, 3.6, 5.0, 0.8, 2.5, 3.4, 9.9, 7.2, …
+$ fear_post &lt;dbl&gt; 10.0, 7.1, 9.3, 8.9, 7.0, 9.1, 9.2, 8.7, 4.1, 4.5, 9.2, 9.8,…</code></pre>
+</div>
+</div>
+<p><strong>Datensatz transformieren</strong></p>
+<p>Für den <em>t</em>-Test werden die Daten in einem <code>long</code> Format benötigt. Daher müssen die Daten vom bisherigen <code>wide</code> Format in ein <code>long</code> Format umstrukturiert werden, Die Variable <code>id</code> wird mit <code>as.factor()</code> in einen Faktor konvertiert.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datenformat für Deskriptivstatistik und Visualisierung</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># von wide zu long transformieren</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>d_fear_long <span class="ot">&lt;-</span> d_fear <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(fear_pre, fear_post),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"timepoint"</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">"fear_"</span>, </span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"fear"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>   <span class="fu">select</span>(id, timepoint, fear)</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># id (Subjekt-ID) und t (Gruppenvariable) als Faktor definieren</span></span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>d_fear_long <span class="ot">&lt;-</span> d_fear_long <span class="sc">|&gt;</span> </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">as.factor</span>(id)) <span class="sc">|&gt;</span> </span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">timepoint =</span> <span class="fu">factor</span>(timepoint, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"pre"</span>, <span class="st">"post"</span>)))</span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz anzeigen</span></span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>d_fear_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 100 × 3
+   id    timepoint  fear
+   &lt;fct&gt; &lt;fct&gt;     &lt;dbl&gt;
+ 1 1     pre         5.1
+ 2 1     post       10  
+ 3 2     pre         6.3
+ 4 2     post        7.1
+ 5 3     pre         2.3
+ 6 3     post        9.3
+ 7 4     pre         3.3
+ 8 4     post        8.9
+ 9 5     pre         8.3
+10 5     post        7  
+# ℹ 90 more rows</code></pre>
+</div>
+</div>
+
+</div>
+</div>
+</div><aside class="callout-2-contents callout-collapse collapse callout-margin-content">
+Hier konvertieren wir die Variable <code>timepoint</code> zu einem Faktor mit der Funktion <code>factor()</code>, so können wir im Argument <code>levels = ...</code> eingeben, dass die Stufe <code>pre</code> vor der Stufe <code>post</code> kommen soll (entgegen der automatisch alphabetischen Reihenfolge). Dies macht den Plot logischer, da dann <code>pre</code> links und <code>post</code> rechts dargestellt wird.
+</aside>
+</section>
+<section id="voraussetzungen-überprüfen-1" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen-1"><strong>4. Voraussetzungen überprüfen</strong></h4>
+<p>Der <em>t</em>-Test setzt voraus, dass die Differenzen der Messungen in beiden Gruppen normalverteilt sind.</p>
+<aside>
+Die Voraussetzung der Normalverteilung wird in diesem Semester nicht überprüft. Zur Überprüfung der Normalverteilung können Plots dienen oder der Shapiro-Wilk-Test (<code>shapiro.test(data$variable)</code>.
+</aside>
+</section>
+</section>
+<section id="analyse-1" class="level3" data-number="10.4.3">
+<h3 data-number="10.4.3" class="anchored" data-anchor-id="analyse-1"><span class="header-section-number">10.4.3</span> Analyse</h3>
+<section id="deskriptivstatisik-und-visualisierung" class="level4">
+<h4 class="anchored" data-anchor-id="deskriptivstatisik-und-visualisierung"><strong>5. Deskriptivstatisik und Visualisierung</strong></h4>
+<p>Für die deskriptive Statistik können die Daten nach Bedingung gruppiert und dann die Kennwerte berechnet werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nach condition gruppieren und performance zusammenfassen</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>d_summary <span class="ot">&lt;-</span> d_fear_long <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(timepoint) <span class="sc">|&gt;</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_fear =</span> <span class="fu">mean</span>(fear),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_fear =</span> <span class="fu">sd</span>(fear))</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>d_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  timepoint mean_fear sd_fear
+  &lt;fct&gt;         &lt;dbl&gt;   &lt;dbl&gt;
+1 pre            4.32    2.62
+2 post           6.38    2.72</code></pre>
+</div>
+</div>
+<p>Mit einem Boxplot kann die Verteilung der Werte angeschaut und die beiden Gruppen visuell miteinander verglichen werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>p_boxplot <span class="ot">&lt;-</span> d_fear_long <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> timepoint, <span class="at">y =</span> fear)) <span class="sc">+</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">colour =</span> timepoint), <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">height =</span> <span class="dv">0</span>, <span class="at">width =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> timepoint, <span class="at">y =</span> fear, <span class="at">group =</span> id), <span class="at">alpha =</span> <span class="fl">0.15</span>) <span class="sc">+</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="dv">0</span>, <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"pre"</span> <span class="ot">=</span> <span class="st">"red4"</span>,</span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"post"</span> <span class="ot">=</span> <span class="st">"blue4"</span>)) <span class="sc">+</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Effect of Social Media on Fear from the Future"</span>,</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Paired t-Test"</span>,</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Timepoint"</span>,</span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Future Fear Score"</span>) <span class="sc">+</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>p_boxplot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ttest_abhaengig_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="teststatistik-berechnen-1" class="level4">
+<h4 class="anchored" data-anchor-id="teststatistik-berechnen-1"><strong>6. Teststatistik berechnen</strong></h4>
+<p><strong>Berechnung Teststatistik in R mit der Funktion <code>t.test</code></strong></p>
+<p>Der <em>t</em>-Test für abhängige Stichproben kann mit der Funktion <code>t.test()</code> durchgeführt werden. Hierbei wird ein Datensatz im <strong>wide</strong>-Format benötigt.</p>
+<ul>
+<li><code>y</code>: Abhängige Variable (metrisch)</li>
+<li><code>x</code>: Unabhängige Variable (Bedingung oder Gruppenvariable)</li>
+<li><code>alternative</code>: festlegen, ob die <span class="math inline">\(H_1\)</span> gerichtet (<code>greater</code>oder <code>less</code>) oder ungerichtet (<code>two-sided</code>) ist</li>
+<li><code>var.equal</code>: festlegen, ob die Annahme homogener Varianzen zutrifft (<code>TRUE</code>) oder nicht (<code>FALSE</code>)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test für unabhängige Stichproben durchführen</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> d_fear<span class="sc">$</span>fear_post, <span class="co"># av t2</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> d_fear<span class="sc">$</span>fear_pre, <span class="co"># av t1</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Paired t-test
+
+data:  d_fear$fear_post and d_fear$fear_pre
+t = 3.9751, df = 49, p-value = 0.000231
+alternative hypothesis: true mean difference is not equal to 0
+95 percent confidence interval:
+ 1.017604 3.098396
+sample estimates:
+mean difference 
+          2.058 </code></pre>
+</div>
+</div>
+<p>Die Mittelwerte zwischen den beiden Messzeitpunkten unterscheiden sich signifikant auf dem <span class="math inline">\(5 \%\)</span>-Niveau. Die Nullhypothese, wonach sich die beiden Mittelwerte nicht unterscheiden kann verworfen werden. Das Lesen/Scrollen durch Social Media Posts beeinflusst somit die empfundene Zukunftsangst.</p>
+</section>
+<section id="effektstärke-bestimmen" class="level4">
+<h4 class="anchored" data-anchor-id="effektstärke-bestimmen"><strong>7. Effektstärke bestimmen</strong></h4>
+<p><strong>Berechnung der Effektgrösse (Cohen’s <em>d</em>)</strong></p>
+<p>Nun kann noch die Effektgrösse mit <code>cohen.d(formula = y ~ x, data)</code> aus dem Package {effsize} berechnet werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>effsize<span class="sc">::</span><span class="fu">cohen.d</span>(d_fear<span class="sc">$</span>fear_post, <span class="co"># av t2</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                 d_fear<span class="sc">$</span>fear_pre, <span class="co"># av t1</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Cohen's d
+
+d estimate: 0.7699901 (medium)
+95 percent confidence interval:
+   lower    upper 
+0.332312 1.207668 </code></pre>
+</div>
+</div>
+<p>Die Effektgrösse liegt bei <span class="math inline">\(d = 0.77\)</span>. Es handelt sich nach der Taxonomie von Cohen (1988) um einen <strong>grossen</strong> Effekt.</p>
+<!-- # ```{r} -->
+<!-- # effsize::cohen.d(formula = fear ~ timepoint | Subject(id),  # av ~ uv -->
+<!-- #                  data = d_fear_long, -->
+<!-- #                  paired = TRUE) -->
+<!-- # ``` -->
+</section>
+</section>
+<section id="schlussfolgerungen-1" class="level3" data-number="10.4.4">
+<h3 data-number="10.4.4" class="anchored" data-anchor-id="schlussfolgerungen-1"><span class="header-section-number">10.4.4</span> Schlussfolgerungen</h3>
+<section id="ergebnisse-interpretieren-und-berichten-1" class="level4">
+<h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten-1"><strong>8. Ergebnisse interpretieren und berichten</strong></h4>
+<p>Das Ergebnis ist auf dem <span class="math inline">\(5 \%\)</span>-Niveau signifikant und die Nullhypothese kann somit verworfen werden: Die Stimmung beeinflusst die kognitive Leistungsfähigkeit. Es handelt sich nach der Taxonomie von Cohen (1988) um einen grossen Effekt (<span class="math inline">\(d = 0.77\)</span>).</p>
+<blockquote class="blockquote">
+<p>“We examined whether doom-scrolling on social media has an effect on the immediate experience of fear of the future. There was a significant difference between pre and post measurement, <em>t</em>(49) = 3.98, <em>p</em> &lt; .001, <em>d</em> = 0.77). Participants reported significantly higher fear of the future after reading/scrolling through social media posts (<em>M</em> = 6.38, <em>SD</em> = 2.72) compared to before (<em>M</em> = 4.32, <em>SD</em> = 2.62). This indicates a large effect of social media on experiences of fear of the future according to Cohen’s convention (1988).”</p>
+</blockquote>
 
 
 </section>
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Eid, M., Gollwitzer, M., &amp; Schmitt, M. (2017). Statistik und Forschungsmethoden: Mit Online-Materialien (5., korrigierte Auflage). Beltz. S. 374<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
 </section>
 
 </main> <!-- /main -->
