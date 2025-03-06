@@ -653,7 +653,7 @@ Beim ersten Verwenden muss das Package {pwr} heruntergeladen/installiert werden,
 <section id="daten-einlesen-und-vorverarbeiten" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="daten-einlesen-und-vorverarbeiten"><strong>3. Daten einlesen und vorverarbeiten</strong></h4>
 <div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Beispieldatensatz Social-Media-Experiment vorverarbeiten">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -662,7 +662,7 @@ Hands-on: Beispieldatensatz Social-Media-Experiment vorverarbeiten
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p><strong>Daten herunterladen und einlesen</strong></p>
 <p><a href="../data/ttests.zip">Hier</a> kann der Projektordner mit den Daten heruntergeladen werden. Vor dem ersten Verwenden muss der Ordner entzippt werden, dann kann das <em>RProject</em> namens <code>ttests.Rproj</code> geöffnet werden. Der Ordner enthält</p>
@@ -731,7 +731,7 @@ $ fear_post &lt;dbl&gt; 10.0, 7.1, 9.3, 8.9, 7.0, 9.1, 9.2, 8.7, 4.1, 4.5, 9.2, 
 
 </div>
 </div>
-</div><aside class="callout-2-contents callout-collapse collapse callout-margin-content">
+</div><aside class="callout-2-contents callout-collapse collapse show callout-margin-content">
 Hier konvertieren wir die Variable <code>timepoint</code> zu einem Faktor mit der Funktion <code>factor()</code>, so können wir im Argument <code>levels = ...</code> eingeben, dass die Stufe <code>pre</code> vor der Stufe <code>post</code> kommen soll (entgegen der automatisch alphabetischen Reihenfolge). Dies macht den Plot logischer, da dann <code>pre</code> links und <code>post</code> rechts dargestellt wird.
 </aside>
 </section>
@@ -836,27 +836,16 @@ mean difference
 </div>
 </div>
 <p>Die Mittelwerte zwischen den beiden Messzeitpunkten unterscheiden sich signifikant auf dem <span class="math inline">\(5 \%\)</span>-Niveau. Die Nullhypothese, wonach sich die beiden Mittelwerte nicht unterscheiden kann verworfen werden. Das Lesen/Scrollen durch Social Media Posts beeinflusst somit die empfundene Zukunftsangst.</p>
-</section>
-<section id="effektstärke-bestimmen" class="level4">
-<h4 class="anchored" data-anchor-id="effektstärke-bestimmen"><strong>7. Effektstärke bestimmen</strong></h4>
-<p><strong>Berechnung der Effektgrösse (Cohen’s <em>d</em>)</strong></p>
-<p>Nun kann noch die Effektgrösse mit <code>cohen.d(x, y, paired = TRUE)</code> aus dem Package {effsize} berechnet werden.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>effsize<span class="sc">::</span><span class="fu">cohen.d</span>(d_fear<span class="sc">$</span>fear_post, <span class="co"># av t2</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                 d_fear<span class="sc">$</span>fear_pre, <span class="co"># av t1</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Cohen's d
-
-d estimate: 0.7699901 (medium)
-95 percent confidence interval:
-   lower    upper 
-0.332312 1.207668 </code></pre>
-</div>
-</div>
-<p>Die Effektgrösse liegt bei <span class="math inline">\(d = 0.77\)</span>. Es handelt sich nach der Taxonomie von Cohen (1988) um einen <strong>grossen</strong> Effekt.</p>
+<!-- #### __7. Effektstärke bestimmen__ -->
+<!-- __Berechnung der Effektgrösse (Cohen's _d_)__ -->
+<!-- Nun kann noch die Effektgrösse mit `cohen.d(x, y, paired = TRUE)` aus dem Package {effsize} berechnet werden.  -->
+<!-- ```{r} -->
+<!-- # Effektgrösse berechnen -->
+<!-- effsize::cohen.d(d_fear$fear_post, # av t2 -->
+<!--                  d_fear$fear_pre, # av t1 -->
+<!--                  paired = TRUE) -->
+<!-- ``` -->
+<!-- Die Effektgrösse liegt bei $d = 0.77$. Es handelt sich nach der Taxonomie von Cohen (1988) um einen __grossen__ Effekt. -->
 <!-- # ```{r} -->
 <!-- # effsize::cohen.d(formula = fear ~ timepoint | Subject(id),  # av ~ uv -->
 <!-- #                  data = d_fear_long, -->
@@ -881,7 +870,7 @@ d estimate: 0.7699901 (medium)
 <hr>
 <ol>
 <li id="fn1"><p>Eid, M., Gollwitzer, M., &amp; Schmitt, M. (2017). Statistik und Forschungsmethoden: Mit Online-Materialien (5., korrigierte Auflage). Beltz. S. 374<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf">https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

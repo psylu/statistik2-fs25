@@ -65,9 +65,17 @@ __Bearbeiten Sie nun Schritt für Schritt folgende Aufgaben:__
 
 __a.__  Muss gerichtet oder ungerichtet getestet werden? Wie lautet die $H_0$ und die $H_1$? 
 
+> Ungerichtetes Testen: "Besteht ein Unterschied..."
+
+> $H_0$: Die Mittelwerte der beiden Gruppen (Kommunikationstraining vs. Rechtsschreibetraining) unterscheiden sich nicht bezüglich der Beziehungsqualität, d.h. die Differenz ist 0. $\mu_{KT} = \mu_{RS}$
+
+> $H_1$: Die Mittelwerte der beiden Gruppen (Kommunikationstraining vs. Rechtsschreibetraining) unterscheiden sich bezüglich der Beziehungsqualität, d.h. die Differenz ist ungleich 0. $\mu_{KT} \neq \mu_{RS}$
 
 __b.__ Welches Signifikanzniveau wurde festgelegt? Was bedeutet das?
 
+> $\alpha=0.05$-Niveau.
+
+> Wird ein Signifikanzniveau von $\alpha = 0.05$ festgelegt, bedeutet dies, dass bei der Verwerfung der Nullhypothese eine 5% Wahrscheinlichkeit besteht, dass eigentlich kein Unterschied besteht und irrtümlicherweise einer angenommen wurde.
 
 __c.__ Laden Sie das Package {tidyverse}. Lesen Sie den Datensatz `couples_quality.csv` aus dem Ordner `data` ein und speichern Sie ihn in die Variable `d_quality`. 
 
@@ -79,12 +87,25 @@ ___ <- read.csv("___/___")
 glimpse(___)
 ```
 
+```{r}
+#| eval: false
+library(tidyverse)
+
+d_quality <- read.csv("data/couples_quality.csv")
+glimpse(d_quality)
+```
+
 __d.__ Konvertieren Sie `id` zu einem Faktor, da Versuchspersonenidentifikationen ja keine numerischen Werte haben, sondern nominalskaliert sind (z.B. ist Versuchsperson 10 ja nicht doppelt so viel wie Versuchsperson 5). Der Datensatz sollte danach immer noch `d_quality` heissen.
 
 ```{r}
 #| eval: false
 d_quality <- d_quality |>
   mutate(id = ___(id))
+```
+
+```{r}
+d_quality <- d_quality |>
+  mutate(id = as.factor(id))
 ```
 
 ::: {.callout-tip appearance="default" title="Tipp" collapse="true"}
@@ -108,7 +129,6 @@ _Vorgehen_:
 
 - Schauen Sie sich die Werte in `d_quality_summary` an.
 
-
 :::{.callout-tip appearance="default" title="Tipp" collapse="true"}
 
 - Beginnen Sie mit `d_quality_summary <- ___`. Fügen Sie den Namen des Datensatzes ein.
@@ -123,6 +143,7 @@ _Vorgehen_:
 
 :::
 
+
 ```{r}
 #| eval: false
 ___ <- ___ |>
@@ -132,11 +153,21 @@ ___ <- ___ |>
 d_quality_summary
 ```
 
+```{r}
+d_quality_summary <- d_quality |>
+  group_by(condition) |>
+  summarise(mean_quality = mean(quality),
+            sd_quality = sd(quality))
+d_quality_summary
+```
+
+> Tiefere Mittelwerte der Beziehungsqualität in der "RS"-Gruppe im Vergleich zur "KT"-Gruppe. Die Standardabweichungen sind sehr ähnlich.
 
 __f.__  Welchen statistischen Test führen Sie durch?
 
+> Es muss ein t-Test für unabhängige Stichproben verwendet werden, da die beiden Gruppen unabhängig sind (keine natürlichen Paare oder Messwiederholung): Da die Paare nicht "aufgetrennt" werden, sondern in die Gruppen eingeteilt und pro Paar nur __ein__ Wert erhoben wurde. 
 
-__g.__  Überprüfen Sie die Voraussetzung der Varianzhomogenität für diesen Test. Was bedeutet das Ergebnis des Levene-Tests? 
+__g.__  Überprüfen Sie die Voraussetzung der Varianzhomogenität für diesen Test. 
 
 Die Varianzhomogenität wird mit dem Levene-Test überprüft. Dafür kann das Package {car} verwendet werden.
 
@@ -146,6 +177,15 @@ car::___(___ ~ ___, # av ~ uv
          data = ___) # dataset
 ```
 
+
+```{r, message=FALSE}
+car::leveneTest(quality ~ condition, data = d_quality)
+
+```
+
+Was bedeutet das Ergebnis des Levene-Tests? 
+
+> Der Levene-Test ist auf dem 5%-Niveau nicht signifikant, daher wird Homoskedastizität angenommen. 
 
 __h.__  Führen Sie einen t-Test mit der Funktion `t.test()` durch. Wie lautet Ihre Testentscheidung?
 
@@ -158,6 +198,14 @@ t.test(formula = ___ ~ ___, # av ~ uv
        data = ___) # dataset
 ```
 
+```{r}
+# t-Test für unabhängige Stichproben durchführen
+t.test(formula = quality ~ condition,
+       alternative = "two.sided",
+       var.equal = TRUE,
+       data = d_quality)
+
+```
 
 __i.__ Berechnen Sie die Effektgrösse mit der Funktion `cohen.d()` aus dem Package {effsize}. Wie gross ist der Effekt nach Cohen (1998)? 
 
@@ -169,6 +217,10 @@ ___::___(formula = ___ ~ ___, # av ~ uv
 
 ```
 
+```{r}
+# Effektgrösse berechnen
+effsize::cohen.d(formula = quality ~ condition, data = d_quality)
+```
 
 __j.__ Interpretation und Berichten
 
@@ -202,11 +254,20 @@ __Bearbeiten Sie nun Schritt für Schritt folgende Aufgaben:__
 
 __a.__  Muss gerichtet oder ungerichtet getestet werden? Wie lautet die $H_0$ und die $H_1$? 
 
+> Ungerichtetes Testen: "Unterscheiden sich..."
+
+> $H_0$: Die Mittelwerte der beiden Messungen (Partner A vs. Partner B) unterscheiden sich nicht bezüglich der Ausprägung von Extraversion, d.h. die Differenz ist 0. $\mu_{A} = \mu_{B}$
+
+> $H_1$: Die Mittelwerte der beiden Messungen (Partner A vs. Partner B) unterscheiden sich bezüglich der Ausprägung von Extraversion, d.h. die Differenz ist ungleich 0. $\mu_{A} \neq \mu_{B}$
 
 __b.__ Welches Signifikanzniveau wurde festgelegt? Was bedeutet das?
 
+> $\alpha=0.05$-Niveau.
+
+> Wird ein Signifikanzniveau von $\alpha = 0.05$ festgelegt, bedeutet dies, dass bei der Verwerfung der Nullhypothese eine 5% Wahrscheinlichkeit besteht, dass eigentlich kein Unterschied besteht und irrtümlicherweise einer angenommen wurde.
 
 __c.__ Lesen Sie den Datensatz `couples_extraversion.csv` aus dem `data` Ordner ein und speichern Sie ihn in die Variable `d_extraversion`. 
+
 
 ```{r}
 #| eval: false
@@ -214,9 +275,17 @@ ___ <- read.csv("___/___")
 glimpse(___)
 ```
 
+```{r}
+d_extraversion <- read.csv("data/couples_extraversion.csv")
+glimpse(d_extraversion)
+```
+
 __d.__ Schauen Sie sich die Variablen und die Deskriptivstatistik an. 
 
 - In welchem Format ist der Datensatz? Inwiefern unterscheidet er sich zu Aufgabe 4.2.?
+
+
+> Es handelt sich um einen Datensatz im `wide`-Format. Im Gegensatz zu Aufgabe 4.2.
 
 
 - Wie lauten die Mittelwerte und die Standardabweichungen der Variablen? Was fällt Ihnen auf?
@@ -231,14 +300,29 @@ d_extraversion_summary <- ___ |>
 d_extraversion_summary
 ```
 
+
+```{r}
+d_extraversion_summary <- d_extraversion |>
+  summarise(mean_extra1 = mean(extra1), 
+            sd_extra1 = sd(extra1),
+            mean_extra2 = mean(extra2), 
+            sd_extra2 = sd(extra2))
+d_extraversion_summary
+```
+
 __e.__  Welchen statistischen Test führen Sie durch?
+
+> Es muss ein t-Test für abhängige Stichproben verwendet werden, da die beiden Gruppen abhängig sind (natürlichen Paare). 
 
 
 __f.__  Welche Voraussetzungen müssen für den Test erfüllt sein? Welche überprüfen wir? 
 
+> Die Varianzhomogenität muss nicht erfüllt sein, daher wird kein Levene-Test durchgeführt.
+
+> Normalverteilung setzen wir zum aktuellen Zeitpunkt voraus. 
+
 
 __g.__  Führen Sie einen t-Test mit der Funktion `t.test()` durch. Wie lautet Ihre Testentscheidung?
-
 
 ```{r}
 #| eval: false
@@ -249,6 +333,16 @@ t.test(d_extraversion$___, d_extraversion$___, #av1, av2
        data = ___) # Datensatz
 ```
 
+```{r}
+# t-Test für abhängige Stichproben durchführen
+t.test(d_extraversion$extra1, d_extraversion$extra2, 
+       alternative = "two.sided",
+       paired = TRUE,
+       data = d_extraversion)
+```
+
+> Es muss ein paired t-test durchgeführt werden. Der p-Wert ist 0.024, d.h. es gibt einen signifikanten Unterschied innerhalb der Paare.
+
 __h.__ Berechnen Sie die Effektgrösse mit der Funktion `cohen.d()` aus dem Package {effsize}. Wie gross ist der Effekt nach Cohen (1998)? 
 
 ```{r}
@@ -257,6 +351,13 @@ __h.__ Berechnen Sie die Effektgrösse mit der Funktion `cohen.d()` aus dem Pack
 ___::cohen.d(___$___, # av 1
                  ___$___, # av 2
                  paired = ___) #TRUE: abhängig, FALSE: unabhängig
+```
+
+```{r}
+# Effektgrösse berechnen
+effsize::cohen.d(d_extraversion$extra1, # av 1
+                 d_extraversion$extra2, # av 2
+                 paired = TRUE)
 ```
 
 __i.__ Interpretation und Berichten
@@ -274,9 +375,13 @@ Weitere Möglichkeiten, um mit diesem Datensatz zu arbeiten:
 
 - Erstellen Sie einen Boxplot aus den Daten und überprüfen Sie visuell, ob sich die Gruppen und die Varianzen unterscheiden. Nutzen Sie hierfür `esquisse::esquisser()` Was fällt Ihnen auf?
 
+> Daten im _Wide_-Format eignen sich schlecht zum visualisieren. Die Werte scheinen zusammenzuhängen.
+
 :::
 
-<br>
+
+
+
 
 ## Aufgabe 4.4: Zusatzaufgabe
 
@@ -288,7 +393,7 @@ __Zusatzaufgaben müssen nicht gelöst werden.__
 
 Diskutieren Sie folgende Fragen:
 
-- Wie könnte das Design des Experiments der Aufgabe 4.2 verbessert werden? 
+- Wie könnte das Design des Experiments der Aufgabe 4.3 verbessert werden? 
 
     - Welche Probleme könnten bei dem bestehenden Design auftreten? (z.B. das fälschlicherweise ein Effekt angenommen wird, obwohl keiner existiert?)
     - Welche zusätzlichen Messzeitpunkte könnten aufschlussreiche Daten liefern?

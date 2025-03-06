@@ -4,7 +4,7 @@
 
 Wir lernen in diesem Kurs das Programmieren nicht im luftleeren Raum, sondern anhand von Aufgaben und Problemen, die sich uns als Psycholog:innen stellen.
 
-> "Psychologie erforscht das menschliche Erleben und Verhalten – sie untersucht, beschreibt und erklärt psychische Phänomene wie Gefühle, Entscheidungen, Gedanken, Motivationen oder Erinnerungen."^[https://www.unilu.ch/studium/studienangebot/bachelor/vpf/psychologie/](https://www.unilu.ch/studium/studienangebot/bachelor/vpf/psychologie/)
+> "Psychologie erforscht das menschliche Erleben und Verhalten – sie untersucht, beschreibt und erklärt psychische Phänomene wie Gefühle, Entscheidungen, Gedanken, Motivationen oder Erinnerungen."^[[https://www.unilu.ch/studium/studienangebot/bachelor/vpf/psychologie/](https://www.unilu.ch/studium/studienangebot/bachelor/vpf/psychologie/)]
 
 Die Psychologie ist eine empirische Wissenschaft. Das bedeutet, die Erkenntnisse der Wissenschaftlichen Psychologie werden zu einem grossen Teil durch das Erheben und Auswerten von Daten gewonnen. Hierfür brauchen wir nicht nur Wissen darüber, wie Daten systematisch erhoben werden können, sondern auch darüber, wie diese Daten verarbeitet, zusammengefasst, interpretiert und kommuniziert werden können.
 
@@ -48,11 +48,11 @@ Grundsätzlich gilt:
 
 > «To understand computations in R, two slogans are helpful: 
 Everything that exists is an object. 
-Everything that happens is a function call.» J. M. Chambers^[Chambers, J.M.(2014): Object-Oriented Programming, Functional Programming and R. In: Statistical Science. Band 29, Nr. 2, S. 167–180, https://arxiv.org/abs/1409.3531]
+Everything that happens is a function call.» J. M. Chambers^[[Chambers, J.M.(2014): Object-Oriented Programming, Functional Programming and R. In: Statistical Science. Band 29, Nr. 2, S. 167–180, https://arxiv.org/abs/1409.3531](https://arxiv.org/abs/1409.3531)]
 
 Es gibt also wichtige Grundbausteine, Objekte und Funktionsaurufe, die etwas mit diesen Objekten tun.
 
-- __Objekte__ können erstellt und benannt, sowie bearbeitet werden. Beispiele dafür sind eine Variable, ein Datensatz.^[auch Funktionen sind Objekte, was anfangs irritierend wirken kann, ist eigentlich recht logisch; als Analogie: auch wenn der Rechner ein Objekt ist, kann damit gerechnet werden (Funktionsaufruf).]
+- __Objekte__ können erstellt und benannt, sowie bearbeitet werden. Beispiele dafür sind eine Variable, ein Datensatz.^[Auch Funktionen sind Objekte. Das kann anfangs irritierend wirken, ist aber eigentlich recht logisch. Als Analogie: Auch wenn ein Rechner (Funktion) ein Objekt ist, kann damit gerechnet werden (Funktionsaufruf).]
 
 - __Aufrufen von Funktionen__ lassen etwas passieren. Beispiele dafür ist das Verwenden von mathematischen Operatoren (`sqrt()` berechnet die Wurzel einer Zahl) oder das Aufrufen der Funktion `lm()`, die ein lineares Modell berechnet.
 
@@ -322,7 +322,7 @@ x
 ```
 
 Variablen können auch __mehrere Werte__ enthalten. 
-Einen Weg mehrere Werte in einer Variable zu speichern ist die Funktion `c()` zu nutzen.^[`c()` ist wie die Plastikumhüllung für vier Tetrapack Milch. Sie fasst einfach mehrere Werte zusammen und zeigt _R_, dass diese in eine Variable gehören. So können 4 Werte mit einem "Henkel" (Variablennamen) herumgetragen werden. ![`c()`-Funktion](../imgs/columnfunction.png)]
+Einen Weg mehrere Werte in einer Variable zu speichern ist die Funktion `c()` zu nutzen.^[`c()` ist wie die Plastikumhüllung für sechs Tetrapack Milch. Sie fasst einfach mehrere Werte zusammen und zeigt _R_, dass diese in eine Variable gehören. So können sechs Werte mit einem "Henkel" (Variablennamen) herumgetragen werden. ![`c()`-Funktion](../imgs/columnfunction.png)]
 Die Variable `y <- c(23, 45, 34)` enthält die Werte `23`, `45` und `34`.
 Nicht numerische Werte, z.B. Wörter, werden jeweils in `"Anführungszeichen"` gesetzt: `z <- c("ja", "nein", "vielleicht")`.
 

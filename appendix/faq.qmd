@@ -1,6 +1,21 @@
 # FAQ {.unnumbered #sec-thanks}
 
+## Datensätze einlesen
 
+__Der Datensatz kann nicht geöffnet werden mit dem vorgegebenen Code?__
+
+Die zwei häufigsten Gründe sind
+
+- _Speicherort_: Das File ist nicht in dem Ordner gespeichert in dem _R_ sucht.
+    - Überprüfen Sie im `Files`-Bereich (rechter unterer Quadrant), ob das File am richtigen Ort gespeichert wurde.
+    - Überprüfen Sie, ob der Pfad in der Einlesefunktion stimmt.
+
+- _Separators/Delimiters_: Jedes File hat ein Kennzeichen für die nächste Spalte, z.B. Kommas, Semikolons, Tabs, etc.
+Das Problem beim Einlesen geschieht oft, wenn nach dem Herunterladen der `.csv`- Datensatz z.B. in Excel geöffnet wird.
+Beim Abspeichern mit Excel verändern sich die _Separators_ (z.B. von `,` zu `;`) und der vorgegebene Code kann nicht ausgeführt werden.
+    - Verwenden von `Import Dataset`, um sich den Code ausgeben zu lassen.
+    - Datensatz nochmals herunterladen und abspeichern ohne ihn in Excel (o.a. Programm) zu öffnen.
+    - Verändern des Argumentes, welches Separator/Delimiters spezifiziert  (`sep = ...`, `delim = ...`).
 
 ## Variablen und Funktionen
 
@@ -21,6 +36,10 @@ __Welche Argumente braucht eine Funktion?__
 
 - Geben Sie in einer Suchmaschine den Funktionsnamen und Stichworte zu Ihrem Ziel ein.
 
+## Die Funktion `summarise()` ergibt eine Fehlermeldung
+
+- Laden Sie das {tidyverse} Package mit `library(tidyverse)`
+- Gehen Sie sicher, dass Sie `summarise()` und nicht `summarize()` verwenden.
 
 ## Packages
 

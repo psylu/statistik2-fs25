@@ -293,7 +293,9 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#variablen-und-funktionen" id="toc-variablen-und-funktionen" class="nav-link active" data-scroll-target="#variablen-und-funktionen">Variablen und Funktionen</a></li>
+  <li><a href="#datensätze-einlesen" id="toc-datensätze-einlesen" class="nav-link active" data-scroll-target="#datensätze-einlesen">Datensätze einlesen</a></li>
+  <li><a href="#variablen-und-funktionen" id="toc-variablen-und-funktionen" class="nav-link" data-scroll-target="#variablen-und-funktionen">Variablen und Funktionen</a></li>
+  <li><a href="#die-funktion-summarise-ergibt-eine-fehlermeldung" id="toc-die-funktion-summarise-ergibt-eine-fehlermeldung" class="nav-link" data-scroll-target="#die-funktion-summarise-ergibt-eine-fehlermeldung">Die Funktion <code>summarise()</code> ergibt eine Fehlermeldung</a></li>
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
   <li><a href="#website" id="toc-website" class="nav-link" data-scroll-target="#website">Website</a></li>
   </ul>
@@ -321,6 +323,24 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<section id="datensätze-einlesen" class="level2">
+<h2 class="anchored" data-anchor-id="datensätze-einlesen">Datensätze einlesen</h2>
+<p><strong>Der Datensatz kann nicht geöffnet werden mit dem vorgegebenen Code?</strong></p>
+<p>Die zwei häufigsten Gründe sind</p>
+<ul>
+<li><em>Speicherort</em>: Das File ist nicht in dem Ordner gespeichert in dem <em>R</em> sucht.
+<ul>
+<li>Überprüfen Sie im <code>Files</code>-Bereich (rechter unterer Quadrant), ob das File am richtigen Ort gespeichert wurde.</li>
+<li>Überprüfen Sie, ob der Pfad in der Einlesefunktion stimmt.</li>
+</ul></li>
+<li><em>Separators/Delimiters</em>: Jedes File hat ein Kennzeichen für die nächste Spalte, z.B. Kommas, Semikolons, Tabs, etc. Das Problem beim Einlesen geschieht oft, wenn nach dem Herunterladen der <code>.csv</code>- Datensatz z.B. in Excel geöffnet wird. Beim Abspeichern mit Excel verändern sich die <em>Separators</em> (z.B. von <code>,</code> zu <code>;</code>) und der vorgegebene Code kann nicht ausgeführt werden.
+<ul>
+<li>Verwenden von <code>Import Dataset</code>, um sich den Code ausgeben zu lassen.</li>
+<li>Datensatz nochmals herunterladen und abspeichern ohne ihn in Excel (o.a. Programm) zu öffnen.</li>
+<li>Verändern des Argumentes, welches Separator/Delimiters spezifiziert (<code>sep = ...</code>, <code>delim = ...</code>).</li>
+</ul></li>
+</ul>
+</section>
 <section id="variablen-und-funktionen" class="level2">
 <h2 class="anchored" data-anchor-id="variablen-und-funktionen">Variablen und Funktionen</h2>
 <p><strong>Welche Werte enthält eine Variable / ein Datensatz?</strong></p>
@@ -334,6 +354,13 @@ ul.task-list li input[type="checkbox"] {
 <li><p>Geben Sie <code>?FUNKTIONSNAME</code>ein.</p></li>
 <li><p>Suchen Sie im rechten unteren Quadranten von <em>RStudio</em> unter <code>Help</code> nach dem Funktionsnamen.</p></li>
 <li><p>Geben Sie in einer Suchmaschine den Funktionsnamen und Stichworte zu Ihrem Ziel ein.</p></li>
+</ul>
+</section>
+<section id="die-funktion-summarise-ergibt-eine-fehlermeldung" class="level2">
+<h2 class="anchored" data-anchor-id="die-funktion-summarise-ergibt-eine-fehlermeldung">Die Funktion <code>summarise()</code> ergibt eine Fehlermeldung</h2>
+<ul>
+<li>Laden Sie das {tidyverse} Package mit <code>library(tidyverse)</code></li>
+<li>Gehen Sie sicher, dass Sie <code>summarise()</code> und nicht <code>summarize()</code> verwenden.</li>
 </ul>
 </section>
 <section id="packages" class="level2">

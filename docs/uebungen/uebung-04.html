@@ -354,10 +354,10 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#aufgabe-4.1-projektumgebung-erstellen" id="toc-aufgabe-4.1-projektumgebung-erstellen" class="nav-link active" data-scroll-target="#aufgabe-4.1-projektumgebung-erstellen">Aufgabe 4.1: Projektumgebung erstellen</a></li>
+  <li><a href="#aufgabe-4.1-projektumgebung" id="toc-aufgabe-4.1-projektumgebung" class="nav-link active" data-scroll-target="#aufgabe-4.1-projektumgebung">Aufgabe 4.1: Projektumgebung</a></li>
   <li><a href="#aufgabe-4.2-t-test-ausführen" id="toc-aufgabe-4.2-t-test-ausführen" class="nav-link" data-scroll-target="#aufgabe-4.2-t-test-ausführen">Aufgabe 4.2: T-Test ausführen</a></li>
   <li><a href="#aufgabe-4.3-t-test-ausführen" id="toc-aufgabe-4.3-t-test-ausführen" class="nav-link" data-scroll-target="#aufgabe-4.3-t-test-ausführen">Aufgabe 4.3: T-Test ausführen</a></li>
-  <li><a href="#aufgabe-4.4-zusatzaufgaben" id="toc-aufgabe-4.4-zusatzaufgaben" class="nav-link" data-scroll-target="#aufgabe-4.4-zusatzaufgaben">Aufgabe 4.4: Zusatzaufgaben</a></li>
+  <li><a href="#aufgabe-4.4-zusatzaufgabe" id="toc-aufgabe-4.4-zusatzaufgabe" class="nav-link" data-scroll-target="#aufgabe-4.4-zusatzaufgabe">Aufgabe 4.4: Zusatzaufgabe</a></li>
   </ul>
 </nav>
     </div>
@@ -426,7 +426,7 @@ Voraussetzungen
 <div class="callout-body-container callout-body">
 <ol type="1">
 <li><p>Packages {tidyverse}, {Hmisc}, {esquisse}, {pwr}, {car}, {effsize} sind installiert.</p></li>
-<li><p><a href="../data/ttest.zip">Hier</a> kann der Projektordner mit den Daten heruntergeladen werden. Vor dem ersten Verwenden muss der Ordner entzippt werden, dann kann das <em>RProject</em> namens <code>ttests.Rproj</code> geöffnet werden. Der Ordner enthält:</p></li>
+<li><p><a href="../data/ttests.zip">Hier</a> kann der Projektordner mit den Daten heruntergeladen werden. Vor dem ersten Verwenden muss der Ordner entzippt werden, dann kann das <em>RProject</em> namens <code>ttests.Rproj</code> geöffnet werden. Der Ordner enthält:</p></li>
 </ol>
 <ul>
 <li><em>RProject</em> namens <code>ttest.Rproj</code></li>
@@ -440,20 +440,20 @@ Voraussetzungen
 </div>
 </div>
 <p><br></p>
-<section id="aufgabe-4.1-projektumgebung-erstellen" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-4.1-projektumgebung-erstellen">Aufgabe 4.1: Projektumgebung erstellen</h2>
+<section id="aufgabe-4.1-projektumgebung" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-4.1-projektumgebung">Aufgabe 4.1: Projektumgebung</h2>
 <p><em>Falls obige Anforderungen noch nicht erfüllt:</em></p>
 <ul>
 <li>Laden Sie den Projektordner herunter und entzippen Sie den Ordner.</li>
+<li>Öffnen Sie das <em>RProjekt</em> <code>ttests</code>.</li>
 <li>Installieren Sie die benötigten Packages (falls noch nicht geschehen:
 <ul>
 <li>das Package {pwr} in der Konsole mit <code>install.packages("pwr")</code> oder mit <code>Tools</code> &gt; <code>Install Packages...</code></li>
 <li>das Package {car} in der Konsole mit <code>install.packages("car")</code> oder mit <code>Tools</code> &gt; <code>Install Packages...</code></li>
 <li>das Package {effsize} in der Konsole mit <code>install.packages("effsize")</code> oder mit <code>Tools</code> &gt; <code>Install Packages...</code></li>
 </ul></li>
+<li>Erstellen ein <em>RNotebook</em> names <code>uebung-04</code>.</li>
 </ul>
-<p><strong>a.</strong> Öffnen Sie das <em>RProjekt</em> <code>ttests</code>.</p>
-<p><strong>b.</strong> Erstellen ein <em>RNotebook</em> names <code>uebung-04</code>.</p>
 </section>
 <section id="aufgabe-4.2-t-test-ausführen" class="level2">
 <h2 class="anchored" data-anchor-id="aufgabe-4.2-t-test-ausführen">Aufgabe 4.2: T-Test ausführen</h2>
@@ -463,27 +463,18 @@ Voraussetzungen
 <p><br></p>
 <p><strong>Bearbeiten Sie nun Schritt für Schritt folgende Aufgaben:</strong></p>
 <p><strong>a.</strong> Muss gerichtet oder ungerichtet getestet werden? Wie lautet die <span class="math inline">\(H_0\)</span> und die <span class="math inline">\(H_1\)</span>?</p>
-<blockquote class="blockquote">
-<p>Ungerichtetes Testen: “Besteht ein Unterschied…”</p>
-</blockquote>
-<blockquote class="blockquote">
-<p><span class="math inline">\(H_0\)</span>: Die Mittelwerte der beiden Gruppen (Kommunikationstraining vs.&nbsp;Rechtsschreibetraining) unterscheiden sich nicht bezüglich der Beziehungsqualität, d.h. die Differenz ist 0. <span class="math inline">\(\mu_{KT} = \mu_{RS}\)</span></p>
-</blockquote>
-<blockquote class="blockquote">
-<p><span class="math inline">\(H_1\)</span>: Die Mittelwerte der beiden Gruppen (Kommunikationstraining vs.&nbsp;Rechtsschreibetraining) unterscheiden sich bezüglich der Beziehungsqualität, d.h. die Differenz ist ungleich 0. <span class="math inline">\(\mu_{KT} \neq \mu_{RS}\)</span></p>
-</blockquote>
 <p><strong>b.</strong> Welches Signifikanzniveau wurde festgelegt? Was bedeutet das?</p>
-<blockquote class="blockquote">
-<p><span class="math inline">\(\alpha=0.05\)</span>-Niveau.</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>Wird ein Signifikanzniveau von <span class="math inline">\(\alpha = 0.05\)</span> festgelegt, bedeutet dies, dass bei der Verwerfung der Nullhypothese eine 5% Wahrscheinlichkeit besteht, dass eigentlich kein Unterschied besteht und irrtümlicherweise einer angenommen wurde.</p>
-</blockquote>
-<p><strong>c.</strong> Lesen Sie den Datensatz <code>couples_quality.csv</code> aus dem Ordner <code>data</code> ein und speichern Sie ihn in die Variable <code>d_quality</code>.</p>
+<p><strong>c.</strong> Laden Sie das Package {tidyverse}. Lesen Sie den Datensatz <code>couples_quality.csv</code> aus dem Ordner <code>data</code> ein und speichern Sie ihn in die Variable <code>d_quality</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">___</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>___ <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"___/___"</span>)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <p><strong>d.</strong> Konvertieren Sie <code>id</code> zu einem Faktor, da Versuchspersonenidentifikationen ja keine numerischen Werte haben, sondern nominalskaliert sind (z.B. ist Versuchsperson 10 ja nicht doppelt so viel wie Versuchsperson 5). Der Datensatz sollte danach immer noch <code>d_quality</code> heissen.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>d_quality <span class="ot">&lt;-</span> d_quality <span class="sc">|&gt;</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">as.factor</span>(id))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>d_quality <span class="ot">&lt;-</span> d_quality <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">___</span>(id))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <div class="callout callout-style-default callout-tip callout-titled" title="Tipp">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
@@ -536,95 +527,32 @@ Tipp
 </div>
 </div>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>d_quality_summary <span class="ot">&lt;-</span> d_quality <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(condition) <span class="sc">|&gt;</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_quality =</span> <span class="fu">mean</span>(quality),</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_quality =</span> <span class="fu">sd</span>(quality))</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>d_quality_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 2 × 3
-  condition mean_quality sd_quality
-  &lt;chr&gt;            &lt;dbl&gt;      &lt;dbl&gt;
-1 KT                25.5       5.45
-2 RS                23.8       5.64</code></pre>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>___ <span class="ot">&lt;-</span> ___ <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(___) <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_quality =</span> <span class="fu">mean</span>(___),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_quality =</span> <span class="fu">sd</span>(___))</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>d_quality_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<blockquote class="blockquote">
-<p>Tiefere Mittelwerte der Beziehungsqualität in der “RS”-Gruppe im Vergleich zur “KT”-Gruppe. Die Standardabweichungen sind sehr ähnlich.</p>
-</blockquote>
 <p><strong>f.</strong> Welchen statistischen Test führen Sie durch?</p>
-<blockquote class="blockquote">
-<p>Es muss ein t-Test für unabhängige Stichproben verwendet werden, da die beiden Gruppen unabhängig sind (keine natürlichen Paare oder Messwiederholung): Da die Paare nicht “aufgetrennt” werden, sondern in die Gruppen eingeteilt und pro Paar nur <strong>ein</strong> Wert erhoben wurde.</p>
-</blockquote>
-<p><strong>g.</strong> Überprüfen Sie die Voraussetzung der Varianzhomogenität für diesen Test.</p>
+<p><strong>g.</strong> Überprüfen Sie die Voraussetzung der Varianzhomogenität für diesen Test. Was bedeutet das Ergebnis des Levene-Tests?</p>
 <p>Die Varianzhomogenität wird mit dem Levene-Test überprüft. Dafür kann das Package {car} verwendet werden.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">___</span>(___ <span class="sc">~</span> ___, <span class="co"># av ~ uv</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> ___) <span class="co"># dataset</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">leveneTest</span>(quality <span class="sc">~</span> condition, <span class="at">data =</span> d_quality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning in leveneTest.default(y = y, group = group, ...): group coerced to
-factor.</code></pre>
-</div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Levene's Test for Homogeneity of Variance (center = median)
-       Df F value Pr(&gt;F)
-group   1  0.1842 0.6684
-      148               </code></pre>
-</div>
-</div>
-<p>Was bedeutet das Ergebnis des Levene-Tests?</p>
-<blockquote class="blockquote">
-<p>Der Levene-Test ist auf dem 5%-Niveau nicht signifikant, daher wird Homoskedastizität angenommen.</p>
-</blockquote>
 <p><strong>h.</strong> Führen Sie einen t-Test mit der Funktion <code>t.test()</code> durch. Wie lautet Ihre Testentscheidung?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test für unabhängige Stichproben durchführen</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">formula =</span> ___ <span class="sc">~</span> ___, <span class="co"># av ~ uv</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"___"</span>, <span class="co"># one.sided or two.sided</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> ___) <span class="co"># dataset</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test für unabhängige Stichproben durchführen</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">formula =</span> quality <span class="sc">~</span> condition,</span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> d_quality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Two Sample t-test
-
-data:  quality by condition
-t = 1.8339, df = 148, p-value = 0.06868
-alternative hypothesis: true difference in means between group KT and group RS is not equal to 0
-95 percent confidence interval:
- -0.128904  3.453171
-sample estimates:
-mean in group KT mean in group RS 
-        25.51040         23.84827 </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test für unabhängige Stichproben durchführen</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">formula =</span> ___ <span class="sc">~</span> ___, <span class="co"># av ~ uv</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"___"</span>, <span class="co"># one.sided or two.sided</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> ___) <span class="co"># dataset</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>i.</strong> Berechnen Sie die Effektgrösse mit der Funktion <code>cohen.d()</code> aus dem Package {effsize}. Wie gross ist der Effekt nach Cohen (1998)?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>___<span class="sc">::</span><span class="fu">___</span>(<span class="at">formula =</span> ___ <span class="sc">~</span> ___, <span class="co"># av ~ uv</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> ___) <span class="co"># dataset</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>effsize<span class="sc">::</span><span class="fu">cohen.d</span>(<span class="at">formula =</span> quality <span class="sc">~</span> condition, <span class="at">data =</span> d_quality)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Cohen's d
-
-d estimate: 0.2994742 (small)
-95 percent confidence interval:
-      lower       upper 
--0.02502902  0.62397745 </code></pre>
-</div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>___<span class="sc">::</span><span class="fu">___</span>(<span class="at">formula =</span> ___ <span class="sc">~</span> ___, <span class="co"># av ~ uv</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> ___) <span class="co"># dataset</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><strong>j.</strong> Interpretation und Berichten</p>
 <p>Schreiben Sie 1-2 Sätze zu den Ergebnissen für einen wissenschaftlichen Artikel.</p>
@@ -660,121 +588,43 @@ Zusatzaufgaben
 <p><strong>Forschungsfrage</strong>: Unterscheiden sich das Persönlichkeitsmerkmal <em>Extraversion</em> signifikant zwischen Partnern?</p>
 <p><strong>Bearbeiten Sie nun Schritt für Schritt folgende Aufgaben:</strong></p>
 <p><strong>a.</strong> Muss gerichtet oder ungerichtet getestet werden? Wie lautet die <span class="math inline">\(H_0\)</span> und die <span class="math inline">\(H_1\)</span>?</p>
-<blockquote class="blockquote">
-<p>Ungerichtetes Testen: “Unterscheiden sich…”</p>
-</blockquote>
-<blockquote class="blockquote">
-<p><span class="math inline">\(H_0\)</span>: Die Mittelwerte der beiden Messungen (Partner A vs.&nbsp;Partner B) unterscheiden sich nicht bezüglich der Ausprägung von Extraversion, d.h. die Differenz ist 0. <span class="math inline">\(\mu_{A} = \mu_{B}\)</span></p>
-</blockquote>
-<blockquote class="blockquote">
-<p><span class="math inline">\(H_1\)</span>: Die Mittelwerte der beiden Messungen (Partner A vs.&nbsp;Partner B) unterscheiden sich bezüglich der Ausprägung von Extraversion, d.h. die Differenz ist ungleich 0. <span class="math inline">\(\mu_{A} \neq \mu_{B}\)</span></p>
-</blockquote>
 <p><strong>b.</strong> Welches Signifikanzniveau wurde festgelegt? Was bedeutet das?</p>
-<blockquote class="blockquote">
-<p><span class="math inline">\(\alpha=0.05\)</span>-Niveau.</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>Wird ein Signifikanzniveau von <span class="math inline">\(\alpha = 0.05\)</span> festgelegt, bedeutet dies, dass bei der Verwerfung der Nullhypothese eine 5% Wahrscheinlichkeit besteht, dass eigentlich kein Unterschied besteht und irrtümlicherweise einer angenommen wurde.</p>
-</blockquote>
-<p><strong>b.</strong> Lesen Sie den Datensatz <code>couples_extraversion.csv</code> aus dem <code>data</code> Ordner ein und speichern Sie ihn in die Variable <code>d_extraversion</code>.</p>
+<p><strong>c.</strong> Lesen Sie den Datensatz <code>couples_extraversion.csv</code> aus dem <code>data</code> Ordner ein und speichern Sie ihn in die Variable <code>d_extraversion</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>d_extraversion <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/couples_extraversion.csv"</span>)</span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(d_extraversion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>Rows: 125
-Columns: 3
-$ id     &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, …
-$ extra1 &lt;dbl&gt; 30.85, 30.82, 20.77, 26.79, 28.25, 22.65, 27.49, 36.07, 31.99, …
-$ extra2 &lt;dbl&gt; 33.97, 30.37, 22.16, 31.65, 29.34, 18.30, 26.57, 35.76, 34.05, …</code></pre>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>___ <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"___/___"</span>)</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p><strong>c.</strong> Schauen Sie sich die Variablen und die Deskriptivstatistik an.</p>
+<p><strong>d.</strong> Schauen Sie sich die Variablen und die Deskriptivstatistik an.</p>
 <ul>
-<li>In welchem Format ist der Datensatz? Inwiefern unterscheidet er sich zu Aufgabe 4.2.?</li>
-</ul>
-<blockquote class="blockquote">
-<p>Es handelt sich um einen Datensatz im <code>wide</code>-Format. Im Gegensatz zu Aufgabe 4.2.</p>
-</blockquote>
-<ul>
-<li>Wie lauten die Mittelwerte und die Standardabweichungen der Variablen? Was fällt Ihnen auf?</li>
+<li><p>In welchem Format ist der Datensatz? Inwiefern unterscheidet er sich zu Aufgabe 4.2.?</p></li>
+<li><p>Wie lauten die Mittelwerte und die Standardabweichungen der Variablen? Was fällt Ihnen auf?</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>d_extraversion_summary <span class="ot">&lt;-</span> d_extraversion <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_extra1 =</span> <span class="fu">mean</span>(extra1), </span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_extra1 =</span> <span class="fu">sd</span>(extra1),</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_extra2 =</span> <span class="fu">mean</span>(extra2), </span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_extra2 =</span> <span class="fu">sd</span>(extra2))</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>d_extraversion_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  mean_extra1 sd_extra1 mean_extra2 sd_extra2
-1    28.93912  5.073961    29.79656   5.05109</code></pre>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>d_extraversion_summary <span class="ot">&lt;-</span> ___ <span class="sc">|&gt;</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_extra1 =</span> <span class="fu">mean</span>(___), </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_extra1 =</span> <span class="fu">sd</span>(___),</span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_extra2 =</span> <span class="fu">___</span>(___), </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_extra2 =</span> <span class="fu">___</span>(___))</span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>d_extraversion_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<p><strong>d.</strong> Welchen statistischen Test führen Sie durch?</p>
-<blockquote class="blockquote">
-<p>Es muss ein t-Test für abhängige Stichproben verwendet werden, da die beiden Gruppen abhängig sind (natürlichen Paare).</p>
-</blockquote>
-<p><strong>d.</strong> Welche Voraussetzungen müssen für den Test erfüllt sein? Welche überprüfen wir?</p>
-<blockquote class="blockquote">
-<p>Die Varianzhomogenität muss nicht erfüllt sein, daher wird kein Levene-Test durchgeführt.</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>Normalverteilung setzen wir zum aktuellen Zeitpunkt voraus.</p>
-</blockquote>
-<p><strong>e.</strong> Führen Sie einen t-Test mit der Funktion <code>t.test()</code> durch. Wie lautet Ihre Testentscheidung?</p>
+<p><strong>e.</strong> Welchen statistischen Test führen Sie durch?</p>
+<p><strong>f.</strong> Welche Voraussetzungen müssen für den Test erfüllt sein? Welche überprüfen wir?</p>
+<p><strong>g.</strong> Führen Sie einen t-Test mit der Funktion <code>t.test()</code> durch. Wie lautet Ihre Testentscheidung?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test für abhängige Stichproben durchführen</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(d_extraversion<span class="sc">$</span>___, d_extraversion<span class="sc">$</span>___, <span class="co">#av1, av2</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> ___, <span class="co"># TRUE: abhängig, FALSE: unabhängig</span></span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> ___) <span class="co"># Datensatz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test für abhängige Stichproben durchführen</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(d_extraversion<span class="sc">$</span>___, d_extraversion<span class="sc">$</span>___, <span class="co">#av1, av2</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> ___, <span class="co"># TRUE: abhängig, FALSE: unabhängig</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> ___) <span class="co"># Datensatz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p><strong>h.</strong> Berechnen Sie die Effektgrösse mit der Funktion <code>cohen.d()</code> aus dem Package {effsize}. Wie gross ist der Effekt nach Cohen (1998)?</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test für abhängige Stichproben durchführen</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(d_extraversion<span class="sc">$</span>extra1, d_extraversion<span class="sc">$</span>extra2, </span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
-<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> d_extraversion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-    Paired t-test
-
-data:  d_extraversion$extra1 and d_extraversion$extra2
-t = -2.2816, df = 124, p-value = 0.02422
-alternative hypothesis: true mean difference is not equal to 0
-95 percent confidence interval:
- -1.6012755 -0.1136045
-sample estimates:
-mean difference 
-       -0.85744 </code></pre>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>___<span class="sc">::</span><span class="fu">cohen.d</span>(___<span class="sc">$</span>___, <span class="co"># av 1</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                 ___<span class="sc">$</span>___, <span class="co"># av 2</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">paired =</span> ___) <span class="co">#TRUE: abhängig, FALSE: unabhängig</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-</div>
-<blockquote class="blockquote">
-<p>Es muss ein paired t-test durchgeführt werden. Der p-Wert ist 0.024, d.h. es gibt einen signifikanten Unterschied innerhalb der Paare.</p>
-</blockquote>
-<p><strong>f.</strong> Berechnen Sie die Effektgrösse mit der Funktion <code>cohen.d()</code> aus dem Package {effsize}. Wie gross ist der Effekt nach Cohen (1998)?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>___<span class="sc">::</span><span class="fu">cohen.d</span>(___<span class="sc">$</span>___, <span class="co"># av 1</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                 ___<span class="sc">$</span>___, <span class="co"># av 2</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">paired =</span> ___) <span class="co">#TRUE: abhängig, FALSE: unabhängig</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
-<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>effsize<span class="sc">::</span><span class="fu">cohen.d</span>(d_extraversion<span class="sc">$</span>extra1, <span class="co"># av 1</span></span>
-<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                 d_extraversion<span class="sc">$</span>extra2, <span class="co"># av 2</span></span>
-<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>
-Cohen's d
-
-d estimate: -0.1693679 (negligible)
-95 percent confidence interval:
-      lower       upper 
--0.31662024 -0.02211563 </code></pre>
-</div>
-</div>
-<p><strong>j.</strong> Interpretation und Berichten</p>
+<p><strong>i.</strong> Interpretation und Berichten</p>
 <p>Schreiben Sie 1-2 Sätze zu den Ergebnissen für einen wissenschaftlichen Artikel.</p>
 <p><a href="../datenanalyse/ttest_abhaengig.html#ergebnisse-interpretieren-und-berichten-1">Hier finden Sie ein Beispiel.</a></p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Zusatzaufgaben">
@@ -794,15 +644,13 @@ Zusatzaufgaben
 <li><p>Berechnen Sie eine A-priori Poweranalyse. Hierfür darf der Datensatz nicht verwendet werden, da diese VOR der Datenerhebung durchgeführt werden muss.</p></li>
 <li><p>Erstellen Sie einen Boxplot aus den Daten und überprüfen Sie visuell, ob sich die Gruppen und die Varianzen unterscheiden. Nutzen Sie hierfür <code>esquisse::esquisser()</code> Was fällt Ihnen auf?</p></li>
 </ul>
-<blockquote class="blockquote">
-<p>Daten im <em>Wide</em>-Format eignen sich schlecht zum visualisieren. Die Werte scheinen zusammenzuhängen.</p>
-</blockquote>
 </div>
 </div>
 </div>
+<p><br></p>
 </section>
-<section id="aufgabe-4.4-zusatzaufgaben" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-4.4-zusatzaufgaben">Aufgabe 4.4: Zusatzaufgaben</h2>
+<section id="aufgabe-4.4-zusatzaufgabe" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-4.4-zusatzaufgabe">Aufgabe 4.4: Zusatzaufgabe</h2>
 <div class="callout callout-style-default callout-tip callout-titled" title="Zusatzaufgaben">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -813,25 +661,18 @@ Zusatzaufgaben
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Dies sind Zusatzaufgaben und müssen nicht gelöst werden.</strong></p>
+<p><strong>Zusatzaufgaben müssen nicht gelöst werden.</strong></p>
 </div>
 </div>
-<p><strong>a.</strong> Diskutieren Sie folgende Fragen:</p>
+<p>Diskutieren Sie folgende Fragen:</p>
 <ul>
-<li><p>Wie könnte das Design des Experiments der Aufgabe 4.3 verbessert werden?</p>
+<li><p>Wie könnte das Design des Experiments der Aufgabe 4.2 verbessert werden?</p>
 <ul>
 <li>Welche Probleme könnten bei dem bestehenden Design auftreten? (z.B. das fälschlicherweise ein Effekt angenommen wird, obwohl keiner existiert?)</li>
 <li>Welche zusätzlichen Messzeitpunkte könnten aufschlussreiche Daten liefern?</li>
 <li>Könnten die Daten dieses verbesserten Designs mit einem unabhängigen oder abhängigen <em>t</em>-Tests analysiert werden?</li>
 </ul></li>
 </ul>
-<p><strong>b.</strong> Was geschieht, wenn Sie in <em>Aufgabe 4.4</em> statt <code>paired = TRUE</code> <code>paired = FALSE</code> verwenden?</p>
-<blockquote class="blockquote">
-<p>Der Test wird nun signifikant.</p>
-</blockquote>
-<blockquote class="blockquote">
-<p>ACHTUNG noch prüfen hier, da bei FALSE der Welch-Test verwendet wird. Meiner Meinung nach nun zu komplex.</p>
-</blockquote>
 
 
 </section>

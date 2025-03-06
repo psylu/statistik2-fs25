@@ -173,7 +173,7 @@ Je grösser der empirische _t_-Wert ist, desto stärker spricht dies gegen die N
 
 Meistens werden in psychologischen Publikationen die Stichprobenmittelwerte und ihre geschätzten Populationsstandardabweichungen (Stichprobenstandardabweichungen) sowie die _t_-Statistik, ihre Freiheitsgrade und der _p_-Wert (also der Wahrscheinlichkeit dieses oder eines noch extremeren _t_-Wertes unter Annahme der Nullhypothese) berichtet. 
 
-Falls der exakte _p_-Wert sehr klein ist, beispielsweise  $p=0.00000012$ bzw. kleiner als $0.001$, wird dies folgendermassen notiert: $p < .001$.^[https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf]
+Falls der exakte _p_-Wert sehr klein ist, beispielsweise  $p=0.00000012$ bzw. kleiner als $0.001$, wird dies folgendermassen notiert: $p < .001$.^[[https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf](https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf)]
 
 > Die kognitive Leistung von Personen vor und nach dem Treatment _X_ unterscheidet sich nicht signifikant, _t_(15) = 0.75, _p_ = .470.
 
@@ -240,7 +240,7 @@ Um mit einer Teststärke von 80% einen mittelgrossen Effekt von $d=0.35$ zu find
 
 #### __3. Daten einlesen und vorverarbeiten__
 
-::: {.callout-caution appearance="default" title="Hands-on: Beispieldatensatz Social-Media-Experiment vorverarbeiten" collapse="true"}
+::: {.callout-caution appearance="default" title="Hands-on: Beispieldatensatz Social-Media-Experiment vorverarbeiten" collapse="false"}
 
 __Daten herunterladen und einlesen__
 
@@ -375,19 +375,19 @@ t.test(x = d_fear$fear_post, # av t2
 Die Mittelwerte zwischen den beiden Messzeitpunkten unterscheiden sich signifikant auf dem $5 \%$-Niveau. Die Nullhypothese, wonach sich die beiden Mittelwerte nicht unterscheiden kann verworfen werden. Das Lesen/Scrollen durch Social Media Posts beeinflusst somit die empfundene Zukunftsangst.
 
 
-#### __7. Effektstärke bestimmen__
+<!-- #### __7. Effektstärke bestimmen__ -->
 
-__Berechnung der Effektgrösse (Cohen's _d_)__
+<!-- __Berechnung der Effektgrösse (Cohen's _d_)__ -->
 
-Nun kann noch die Effektgrösse mit `cohen.d(x, y, paired = TRUE)` aus dem Package {effsize} berechnet werden. 
+<!-- Nun kann noch die Effektgrösse mit `cohen.d(x, y, paired = TRUE)` aus dem Package {effsize} berechnet werden.  -->
 
-```{r}
-# Effektgrösse berechnen
-effsize::cohen.d(d_fear$fear_post, # av t2
-                 d_fear$fear_pre, # av t1
-                 paired = TRUE)
-```
-Die Effektgrösse liegt bei $d = 0.77$. Es handelt sich nach der Taxonomie von Cohen (1988) um einen __grossen__ Effekt.
+<!-- ```{r} -->
+<!-- # Effektgrösse berechnen -->
+<!-- effsize::cohen.d(d_fear$fear_post, # av t2 -->
+<!--                  d_fear$fear_pre, # av t1 -->
+<!--                  paired = TRUE) -->
+<!-- ``` -->
+<!-- Die Effektgrösse liegt bei $d = 0.77$. Es handelt sich nach der Taxonomie von Cohen (1988) um einen __grossen__ Effekt. -->
 
 <!-- # ```{r} -->
 <!-- # effsize::cohen.d(formula = fear ~ timepoint | Subject(id),  # av ~ uv -->

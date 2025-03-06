@@ -25,7 +25,7 @@ __Beispiele__:
 
 - [Martin & Kerns (2011)](https://pmc.ncbi.nlm.nih.gov/articles/PMC3051364/)
   - Fragestellung: Welchen Einfluss hat eine positive Stimmung auf die kognitive Leistung gemessen im Stroop Task oder im Running Span Task?
-  - Typische Aussage: The results revealed that the positive mood group performed significantly worse on the running span task, $t(174) = 2.14, p < .05$, but there were no differences between the groups on the Stroop task, $t(173) = 0.54, p = .59$.
+  - Typische Aussage: The results revealed that the positive mood group performed significantly worse on the running span task, $t(174) = 2.14, p < .05$, but there were no differences between the groups on the Stroop task, $t(173) = 0.54, p = .590$.
 
 
 ## Voraussetzungen
@@ -109,7 +109,9 @@ Für den _t_-Test für unabhängige Stichproben werden die Daten hier in einem `
 
 Der _t_-Test für unabhängige Stichproben setzt Varianzhomogenität voraus. Dies kann mit dem __Levene-Test__  (in _R_ mit der Funktion `leveneTest()`) überprüft werden.  
 
-Der Levene-Test geht von der Nullhypothese aus, dass sich die beiden Varianzen nicht unterscheiden. Ein nicht signifikantes Ergebnis bedeutet daher, dass sich die Varianzen nicht unterscheiden und somit Varianzhomogenität (sogenannte Heteroskedastizität) besteht. Wenn der Test signifikant ist, wird Varianzheterogenität angenommen.
+Der Levene-Test geht von der Nullhypothese aus, dass sich die beiden Varianzen nicht unterscheiden. Ein nicht signifikantes Ergebnis bedeutet daher, dass sich die Varianzen nicht unterscheiden und somit Varianzhomogenität (sogenannte Heteroskedastizität) besteht. Wenn der Test signifikant ist, wird Varianzheterogenität angenommen. Konventionell wird hierfür ein $\alpha = 0.05$ angenommen. 
+
+<aside> Teilweise wird ein konservativerer Cut-off von $\alpha = 0.1$ verwendet. </aside>
 
 Falls die Varianzen heterogen (unterschiedlich) sind , müssen die Freiheitsgrade des _t_-Wertes entsprechend angepasst werden. In diesem Fall kann ein Welch-Test (Welch's _t_-Test) verwendet werden, der zur Berechnung der Teststatistik die beiden unterschiedlichen Populationsvarianzen anstatt die gepoolte Innerhalbvarianz nimmt. Dazu wird in _R_ die Funktion `t.test()`mit der Option `var.equal = FALSE` genutzt. 
 
@@ -128,7 +130,7 @@ Durch die Visualisierung der Rohwerte, kann die Verteilung der Messungen gut ein
 
 #### __6. Teststatistik berechnen__
 
-Um zu überprüfen, ob die beiden Mittelwerte signifikant unterschiedlich sind, muss die Teststatistik berechnet werden. Die Verteilung der Teststatistik folgt bei homogenen Varianzen einer sogenannten _t_-Verteilung (auch Student's _t_-Verteilung genannt^[https://www.scientificamerican.com/article/how-the-guinness-brewery-invented-the-most-important-statistical-method-in/]), die durch die Anzahl Freiheitsgrade (df) definiert ist.
+Um zu überprüfen, ob die beiden Mittelwerte signifikant unterschiedlich sind, muss die Teststatistik berechnet werden. Die Verteilung der Teststatistik folgt bei homogenen Varianzen einer sogenannten _t_-Verteilung (auch Student's _t_-Verteilung genannt^[[https://www.scientificamerican.com/article/how-the-guinness-brewery-invented-the-most-important-statistical-method-in/](https://www.scientificamerican.com/article/how-the-guinness-brewery-invented-the-most-important-statistical-method-in/)]), die durch die Anzahl Freiheitsgrade (df) definiert ist.
 
 Um die empirische Prüfgrösse zu berechen, wird die Mittelwertsdifferenz durch den Standardfehler der Mittelwertsdifferenz geteilt:
 
@@ -249,7 +251,7 @@ Um mit einer Teststärke von 80% einen grossen Effekt von $d=0.8$ zu finden, wir
 
 #### __3. Daten einlesen und vorverarbeiten__
 
-::: {.callout-caution appearance="default" title="Hands-on: Beispieldatensatz Stimmungsexperiment" collapse=true}
+::: {.callout-caution appearance="default" title="Hands-on: Beispieldatensatz Stimmungsexperiment" collapse="false"}
 
 
 __Daten herunterladen und einlesen__
@@ -299,7 +301,13 @@ Der _t_-Test setzt voraus, dass das Merkmal $X$ in der Population stetig und nor
 
 <aside>Die Voraussetzung der Normalverteilung wird in diesem Semester nicht überprüft. </aside>
 
-Die Varianzhomogenität (Homoskedastizität) kann mit dem Levene-Test `leveneTest(y ~ x, data = data)` überprüft werden. Ein Levene-Test mit $p < 0.05$ bedeutet, dass der Varianzunterschied  signifikant ist. Die Nullhypothese, dass die beiden Varianzen auf Populationsebene identisch sind, muss in diesem Fall verworfen werden.
+Die Varianzhomogenität (Homoskedastizität) kann mit dem Levene-Test `leveneTest(y ~ x, data = data)` überprüft werden. 
+Es wird ein konventionelles Signifikanzniveau von $\alpha = 0.05$ angenommen. 
+Ein Levene-Test mit $p < 0.05$ bedeutet, dass der Varianzunterschied  signifikant ist. 
+Die Nullhypothese, dass die beiden Varianzen auf Populationsebene identisch sind, muss in diesem Fall verworfen werden.
+
+<aside> In dieser Veranstaltung verwenden wir $\alpha = 0.05$. Teilweise wird ein konservativerer Cut-off von $\alpha = 0.1$ verwendet. Das würde im aktuellen Beispiel dazu führen, dass die Varianzen nicht als homogen angenommen werden. Im unten dargestellten Plot kann gut erkannt werden, dass die Streuung ähnlich, aber nicht exakt gleich ist. </aside>
+
 
 ```{r, message=FALSE}
 # Levene-Test mit dem package {car}
@@ -404,7 +412,6 @@ effsize::cohen.d(formula = performance ~ condition, # av ~ uv
 ```
 
 Die Effektgrösse liegt bei $d=0.45$. Es handelt sich nach der Taxonomie von Cohen (1988) um einen __kleinen__ Effekt.
-
 
 ### Schlussfolgerungen
 

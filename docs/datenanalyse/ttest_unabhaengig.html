@@ -410,7 +410,7 @@ window.Quarto = {
 <li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3051364/">Martin &amp; Kerns (2011)</a>
 <ul>
 <li>Fragestellung: Welchen Einfluss hat eine positive Stimmung auf die kognitive Leistung gemessen im Stroop Task oder im Running Span Task?</li>
-<li>Typische Aussage: The results revealed that the positive mood group performed significantly worse on the running span task, <span class="math inline">\(t(174) = 2.14, p &lt; .05\)</span>, but there were no differences between the groups on the Stroop task, <span class="math inline">\(t(173) = 0.54, p = .59\)</span>.</li>
+<li>Typische Aussage: The results revealed that the positive mood group performed significantly worse on the running span task, <span class="math inline">\(t(174) = 2.14, p &lt; .05\)</span>, but there were no differences between the groups on the Stroop task, <span class="math inline">\(t(173) = 0.54, p = .590\)</span>.</li>
 </ul></li>
 </ul>
 </section>
@@ -506,13 +506,16 @@ Ein Wert über <span class="math inline">\(0.8\)</span> gilt gemäss den Konvent
 Es ist auch möglich Daten im <em>Wide</em>-Format zu verwenden, da sich das <em>Long</em>-Format aber für die Deskriptivstatistik und Visualisierung besser eignen, wird in diesem Kapitel durchgehend mit einem <em>Long</em>-Format gearbeitet.
 </aside>
 </section>
-<section id="voraussetzungen-überprüfen" class="level4">
+<section id="voraussetzungen-überprüfen" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen"><strong>4. Voraussetzungen überprüfen</strong></h4>
 <ul>
 <li><strong>Varianzhomogenität</strong></li>
 </ul>
 <p>Der <em>t</em>-Test für unabhängige Stichproben setzt Varianzhomogenität voraus. Dies kann mit dem <strong>Levene-Test</strong> (in <em>R</em> mit der Funktion <code>leveneTest()</code>) überprüft werden.</p>
-<p>Der Levene-Test geht von der Nullhypothese aus, dass sich die beiden Varianzen nicht unterscheiden. Ein nicht signifikantes Ergebnis bedeutet daher, dass sich die Varianzen nicht unterscheiden und somit Varianzhomogenität (sogenannte Heteroskedastizität) besteht. Wenn der Test signifikant ist, wird Varianzheterogenität angenommen.</p>
+<p>Der Levene-Test geht von der Nullhypothese aus, dass sich die beiden Varianzen nicht unterscheiden. Ein nicht signifikantes Ergebnis bedeutet daher, dass sich die Varianzen nicht unterscheiden und somit Varianzhomogenität (sogenannte Heteroskedastizität) besteht. Wenn der Test signifikant ist, wird Varianzheterogenität angenommen. Konventionell wird hierfür ein <span class="math inline">\(\alpha = 0.05\)</span> angenommen.</p>
+<aside>
+Teilweise wird ein konservativerer Cut-off von <span class="math inline">\(\alpha = 0.1\)</span> verwendet.
+</aside>
 <p>Falls die Varianzen heterogen (unterschiedlich) sind , müssen die Freiheitsgrade des <em>t</em>-Wertes entsprechend angepasst werden. In diesem Fall kann ein Welch-Test (Welch’s <em>t</em>-Test) verwendet werden, der zur Berechnung der Teststatistik die beiden unterschiedlichen Populationsvarianzen anstatt die gepoolte Innerhalbvarianz nimmt. Dazu wird in <em>R</em> die Funktion <code>t.test()</code>mit der Option <code>var.equal = FALSE</code> genutzt.</p>
 </section>
 </section>
@@ -659,7 +662,7 @@ Beim ersten Verwenden muss das Package {pwr} heruntergeladen/installiert werden,
 <section id="daten-einlesen-und-vorverarbeiten" class="level4">
 <h4 class="anchored" data-anchor-id="daten-einlesen-und-vorverarbeiten"><strong>3. Daten einlesen und vorverarbeiten</strong></h4>
 <div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Beispieldatensatz Stimmungsexperiment">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -668,7 +671,7 @@ Hands-on: Beispieldatensatz Stimmungsexperiment
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
 <p><strong>Daten herunterladen und einlesen</strong></p>
 <p><a href="../data/ttests.zip">Hier</a> kann der Projektordner mit den Daten heruntergeladen werden. Vor dem ersten Verwenden muss der Ordner entzippt werden, dann kann das <em>RProject</em> namens <code>ttests.Rproj</code> geöffnet werden. Der Ordner enthält</p>
@@ -735,7 +738,10 @@ $ mood_pos &lt;int&gt; 5, 6, 9, 9, 8, 7, 15, 6, 20, 9, 10, 7, 12, 14, 15, 16, 11
 <aside>
 Die Voraussetzung der Normalverteilung wird in diesem Semester nicht überprüft.
 </aside>
-<p>Die Varianzhomogenität (Homoskedastizität) kann mit dem Levene-Test <code>leveneTest(y ~ x, data = data)</code> überprüft werden. Ein Levene-Test mit <span class="math inline">\(p &lt; 0.05\)</span> bedeutet, dass der Varianzunterschied signifikant ist. Die Nullhypothese, dass die beiden Varianzen auf Populationsebene identisch sind, muss in diesem Fall verworfen werden.</p>
+<p>Die Varianzhomogenität (Homoskedastizität) kann mit dem Levene-Test <code>leveneTest(y ~ x, data = data)</code> überprüft werden. Es wird ein konventionelles Signifikanzniveau von <span class="math inline">\(\alpha = 0.05\)</span> angenommen. Ein Levene-Test mit <span class="math inline">\(p &lt; 0.05\)</span> bedeutet, dass der Varianzunterschied signifikant ist. Die Nullhypothese, dass die beiden Varianzen auf Populationsebene identisch sind, muss in diesem Fall verworfen werden.</p>
+<aside>
+In dieser Veranstaltung verwenden wir <span class="math inline">\(\alpha = 0.05\)</span>. Teilweise wird ein konservativerer Cut-off von <span class="math inline">\(\alpha = 0.1\)</span> verwendet. Das würde im aktuellen Beispiel dazu führen, dass die Varianzen nicht als homogen angenommen werden. Im unten dargestellten Plot kann gut erkannt werden, dass die Streuung ähnlich, aber nicht exakt gleich ist.
+</aside>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Levene-Test mit dem package {car}</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">leveneTest</span>(performance <span class="sc">~</span> condition, <span class="co"># av ~ uv</span></span>
@@ -896,7 +902,7 @@ d estimate: 0.4489995 (small)
 <hr>
 <ol>
 <li id="fn1"><p>Eid, M., Gollwitzer, M., &amp; Schmitt, M. (2017). Statistik und Forschungsmethoden: Mit Online-Materialien (5., korrigierte Auflage). Beltz. S. 338<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>https://www.scientificamerican.com/article/how-the-guinness-brewery-invented-the-most-important-statistical-method-in/<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://www.scientificamerican.com/article/how-the-guinness-brewery-invented-the-most-important-statistical-method-in/">https://www.scientificamerican.com/article/how-the-guinness-brewery-invented-the-most-important-statistical-method-in/</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p><a href="https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf">https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>Eid, M., Gollwitzer, M., &amp; Schmitt, M. (2017). Statistik und Forschungsmethoden: Mit Online-Materialien (5., korrigierte Auflage). Beltz. S. 366<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
