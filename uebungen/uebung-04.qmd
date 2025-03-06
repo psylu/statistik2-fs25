@@ -1,0 +1,296 @@
+# Übung 4 {.unnumbered #sec-uebung-04}
+
+```{r}
+#| include: false
+# Set working directory of R
+knitr::opts_knit$set(root.dir = '../')
+```
+
+::: {.callout-note appearance="default" title="Lernziele dieser Übung"}
+Nach der heutigen Übung können Sie
+
+- _R_ und _RStudio_ zur Analyse von Daten verwenden
+- Daten von _wide_ zu _long_ Format transformieren
+- Durchführen von _t_-Tests für unabhängige Stichproben in _R_
+    - Überprüfen von Hypothesen zum Vergleich zweier Stichprobenmittelwerte von unabhängigen Gruppen
+    - Prüfen der Voraussetzungen
+    - Berechnen des Tests
+    - Interpretieren der Resultate
+- Durchführen von _t_-Tests für abhängige Stichproben in _R_
+    - Überprüfen von Hypothesen zum Vergleich zweier Stichprobenmittelwerte von abhängigen/verbundenen Gruppen 
+    - Prüfen der Voraussetzungen
+    - Berechnen des Tests
+    - Interpretieren der Resultate
+:::
+
+:::{.callout-note appearance="default" title="Voraussetzungen"}
+
+1. Packages {tidyverse}, {Hmisc}, {esquisse}, {pwr}, {car}, {effsize} sind installiert.
+
+2. [Hier](../data/ttests.zip) kann der Projektordner mit den Daten heruntergeladen werden. Vor dem ersten Verwenden muss der Ordner entzippt werden, dann kann das _RProject_ namens `ttests.Rproj` geöffnet werden. Der Ordner enthält:
+
+- _RProject_ namens `ttest.Rproj`
+- Datensätze für Übung 4 in `data`-Ordner des _RProjects_ `ttests`:
+    - [`couples_quality.csv`](../data/couples_quality.csv)
+    - [`couples_extraversion.csv`](../data/couples_extraversion.csv)
+- (die weiteren Dateien und _RNotebooks_ werden in der Vorlesung verwendet)
+
+:::
+
+<br>
+
+## Aufgabe 4.1: Projektumgebung
+
+_Falls obige Anforderungen noch nicht erfüllt:_ 
+
+- Laden Sie den Projektordner herunter und entzippen Sie den Ordner.
+- Öffnen Sie das _RProjekt_ `ttests`.
+- Installieren Sie die benötigten Packages (falls noch nicht geschehen:
+    - das Package {pwr} in der Konsole mit `install.packages("pwr")` oder mit `Tools` > `Install Packages...`
+    - das Package {car} in der Konsole mit `install.packages("car")` oder mit `Tools` > `Install Packages...`
+    - das Package {effsize} in der Konsole mit `install.packages("effsize")` oder mit `Tools` > `Install Packages...`
+- Erstellen ein _RNotebook_ names `uebung-04`.
+
+## Aufgabe 4.2: T-Test ausführen 
+
+__Studienbeschrieb__
+
+Sie wollen untersuchen, ob sich die Beziehungsqualität von Paaren durch ein Kommunikationstraining verbessern lässt. Sie untersuchen daher zwei Gruppen mit insgesamt 60 Paaren. Eine Gruppe (30 Paare) erhält während zwei Monaten ein Kommunikationstraining (KT). Die andere Gruppe (30 Paare) erhält in diesen zwei Monaten ein Rechtschreibetraining (RS) mit gleicher Intensität. Nach zwei Monaten werden alle Paare zu zweit zu ihrer Beziehungsqualität befragt. Diese Befragung ergibt __einen__ Wert für Beziehungsqualität pro Paar, also 30 Werte in der _KT_-Gruppe und 30 Werte in der _RS_-Gruppe. Das Signifikanzniveau wird auf $\alpha=0.05$ festgelegt.
+
+__Forschungsfrage__: Besteht nach dem Training ein Unterschied in der Einschätzung der Beziehungsqualität zwischen den beiden Gruppen?
+
+<br>
+
+__Bearbeiten Sie nun Schritt für Schritt folgende Aufgaben:__ 
+
+__a.__  Muss gerichtet oder ungerichtet getestet werden? Wie lautet die $H_0$ und die $H_1$? 
+
+
+__b.__ Welches Signifikanzniveau wurde festgelegt? Was bedeutet das?
+
+
+__c.__ Laden Sie das Package {tidyverse}. Lesen Sie den Datensatz `couples_quality.csv` aus dem Ordner `data` ein und speichern Sie ihn in die Variable `d_quality`. 
+
+```{r}
+#| eval: false
+___(tidyverse)
+
+___ <- read.csv("___/___")
+glimpse(___)
+```
+
+__d.__ Konvertieren Sie `id` zu einem Faktor, da Versuchspersonenidentifikationen ja keine numerischen Werte haben, sondern nominalskaliert sind (z.B. ist Versuchsperson 10 ja nicht doppelt so viel wie Versuchsperson 5). Der Datensatz sollte danach immer noch `d_quality` heissen.
+
+```{r}
+#| eval: false
+d_quality <- d_quality |>
+  mutate(id = ___(id))
+```
+
+::: {.callout-tip appearance="default" title="Tipp" collapse="true"}
+
+- Beginnen Sie mit `d_quality <- d_quality |>`
+- Nutzen Sie die Funktion `mutate()` und `as.factor()`.
+- Lesen Sie [hier](../datenverarbeitung/transform.qmd#variablentyp-verändern-as.factor-as.numeric) nach.
+
+:::
+
+
+__e.__ Schauen Sie sich die Variablen und die Deskriptivstatistik an. Wie lauten die Mittelwerte und die Standardabweichungen der beiden Gruppen? Was fällt Ihnen auf?
+
+_Vorgehen_: 
+
+- Gruppieren Sie den Datensatz nach Bedingungen.
+
+- Berechnen Sie den Mittelwert und die Standardabweichung
+
+- Erstellen Sie mit den obigen Schritten einen neue Variable namens `d_quality_summary`.
+
+- Schauen Sie sich die Werte in `d_quality_summary` an.
+
+
+:::{.callout-tip appearance="default" title="Tipp" collapse="true"}
+
+- Beginnen Sie mit `d_quality_summary <- ___`. Fügen Sie den Namen des Datensatzes ein.
+
+- Fahren Sie dann mit der Pipe `|>` weiter.
+
+- Verwenden Sie `group_by()` zum Gruppieren. Als Argument muss hier die Gruppierungsvariable (UV) eingegeben werden.
+
+- Berechnen Sie den Mittelwert und die Standardabweichung mit `mean()` und `sd()`.
+
+[Für eine Anleitung sehen Sie hier nach](../datenverarbeitung/transform.html#daten-gruppieren-und-zusammenfassen-group_by-und-summarise)
+
+:::
+
+```{r}
+#| eval: false
+___ <- ___ |>
+  group_by(___) |>
+  summarise(mean_quality = mean(___),
+            sd_quality = sd(___))
+d_quality_summary
+```
+
+
+__f.__  Welchen statistischen Test führen Sie durch?
+
+
+__g.__  Überprüfen Sie die Voraussetzung der Varianzhomogenität für diesen Test. Was bedeutet das Ergebnis des Levene-Tests? 
+
+Die Varianzhomogenität wird mit dem Levene-Test überprüft. Dafür kann das Package {car} verwendet werden.
+
+```{r}
+#| eval: false
+car::___(___ ~ ___, # av ~ uv
+         data = ___) # dataset
+```
+
+
+__h.__  Führen Sie einen t-Test mit der Funktion `t.test()` durch. Wie lautet Ihre Testentscheidung?
+
+```{r}
+#| eval: false
+# t-Test für unabhängige Stichproben durchführen
+t.test(formula = ___ ~ ___, # av ~ uv
+       alternative = "___", # one.sided or two.sided
+       var.equal = TRUE,
+       data = ___) # dataset
+```
+
+
+__i.__ Berechnen Sie die Effektgrösse mit der Funktion `cohen.d()` aus dem Package {effsize}. Wie gross ist der Effekt nach Cohen (1998)? 
+
+```{r}
+#| eval: false
+# Effektgrösse berechnen
+___::___(formula = ___ ~ ___, # av ~ uv
+         data = ___) # dataset
+
+```
+
+
+__j.__ Interpretation und Berichten
+
+Schreiben Sie 1-2 Sätze zu den Ergebnissen für einen wissenschaftlichen Artikel.
+
+[Hier finden Sie ein Beispiel.](../datenanalyse/ttest_unabhaengig.qmd#ergebnisse-interpretieren-und-berichten-1)
+
+
+::: {.callout-tip appearance="default" title="Zusatzaufgaben" collapse=true}
+
+Weitere Möglichkeiten, um mit diesem Datensatz zu arbeiten:
+
+- Berechnen Sie eine A-priori Poweranalyse. Hierfür darf der Datensatz nicht verwendet werden, da diese VOR der Datenerhebung durchgeführt werden muss. 
+
+- Erstellen Sie einen Boxplot aus den Daten und überprüfen Sie visuell, ob sich die Gruppen und die Varianzen unterscheiden. Was fällt Ihnen auf?
+
+:::
+
+
+## Aufgabe 4.3: T-Test ausführen
+
+__Studienbeschrieb__
+
+Sie fragen sich, ob das Sprichwort "Gegensätze ziehen sich an" bei romantischen Paaren zutrifft. Sie untersuchen daher, ob sich die Persönlichkeitsmerkmale von Partnern unterscheiden und haben dazu bei 250 Paaren das Persönlichkeitsmerkmals _Extraversion_ erhoben. Die abhängige Variable _Extraversion_ wurde jeweils bei beiden Partner mit dem gleichen Messinstrument erhoben. Das Signifikanzniveau wird auf $\alpha=0.05$ festgelegt.
+
+<aside> [Artikel zum Studienbeispiel: Claxton et al. (2012)](https://journals.sagepub.com/doi/full/10.1177/0265407511431183) </aside>
+
+__Forschungsfrage__: Unterscheiden sich das Persönlichkeitsmerkmal _Extraversion_ signifikant zwischen Partnern?
+
+__Bearbeiten Sie nun Schritt für Schritt folgende Aufgaben:__
+
+__a.__  Muss gerichtet oder ungerichtet getestet werden? Wie lautet die $H_0$ und die $H_1$? 
+
+
+__b.__ Welches Signifikanzniveau wurde festgelegt? Was bedeutet das?
+
+
+__c.__ Lesen Sie den Datensatz `couples_extraversion.csv` aus dem `data` Ordner ein und speichern Sie ihn in die Variable `d_extraversion`. 
+
+```{r}
+#| eval: false
+___ <- read.csv("___/___")
+glimpse(___)
+```
+
+__d.__ Schauen Sie sich die Variablen und die Deskriptivstatistik an. 
+
+- In welchem Format ist der Datensatz? Inwiefern unterscheidet er sich zu Aufgabe 4.2.?
+
+
+- Wie lauten die Mittelwerte und die Standardabweichungen der Variablen? Was fällt Ihnen auf?
+
+```{r}
+#| eval: false
+d_extraversion_summary <- ___ |>
+  summarise(mean_extra1 = mean(___), 
+            sd_extra1 = sd(___),
+            mean_extra2 = ___(___), 
+            sd_extra2 = ___(___))
+d_extraversion_summary
+```
+
+__e.__  Welchen statistischen Test führen Sie durch?
+
+
+__f.__  Welche Voraussetzungen müssen für den Test erfüllt sein? Welche überprüfen wir? 
+
+
+__g.__  Führen Sie einen t-Test mit der Funktion `t.test()` durch. Wie lautet Ihre Testentscheidung?
+
+
+```{r}
+#| eval: false
+# t-Test für abhängige Stichproben durchführen
+t.test(d_extraversion$___, d_extraversion$___, #av1, av2
+       alternative = "two.sided",
+       paired = ___, # TRUE: abhängig, FALSE: unabhängig
+       data = ___) # Datensatz
+```
+
+__h.__ Berechnen Sie die Effektgrösse mit der Funktion `cohen.d()` aus dem Package {effsize}. Wie gross ist der Effekt nach Cohen (1998)? 
+
+```{r}
+#| eval: false
+# Effektgrösse berechnen
+___::cohen.d(___$___, # av 1
+                 ___$___, # av 2
+                 paired = ___) #TRUE: abhängig, FALSE: unabhängig
+```
+
+__i.__ Interpretation und Berichten
+
+Schreiben Sie 1-2 Sätze zu den Ergebnissen für einen wissenschaftlichen Artikel.
+
+[Hier finden Sie ein Beispiel.](../datenanalyse/ttest_abhaengig.qmd#ergebnisse-interpretieren-und-berichten-1)
+
+
+::: {.callout-tip appearance="default" title="Zusatzaufgaben" collapse=true}
+
+Weitere Möglichkeiten, um mit diesem Datensatz zu arbeiten:
+
+- Berechnen Sie eine A-priori Poweranalyse. Hierfür darf der Datensatz nicht verwendet werden, da diese VOR der Datenerhebung durchgeführt werden muss. 
+
+- Erstellen Sie einen Boxplot aus den Daten und überprüfen Sie visuell, ob sich die Gruppen und die Varianzen unterscheiden. Nutzen Sie hierfür `esquisse::esquisser()` Was fällt Ihnen auf?
+
+:::
+
+<br>
+
+## Aufgabe 4.4: Zusatzaufgabe
+
+:::{.callout-tip appearance="default" title="Zusatzaufgaben"}
+
+__Zusatzaufgaben müssen nicht gelöst werden.__
+
+:::
+
+Diskutieren Sie folgende Fragen:
+
+- Wie könnte das Design des Experiments der Aufgabe 4.2 verbessert werden? 
+
+    - Welche Probleme könnten bei dem bestehenden Design auftreten? (z.B. das fälschlicherweise ein Effekt angenommen wird, obwohl keiner existiert?)
+    - Welche zusätzlichen Messzeitpunkte könnten aufschlussreiche Daten liefern?
+    - Könnten die Daten dieses verbesserten Designs mit einem unabhängigen oder abhängigen _t_-Tests analysiert werden?
+

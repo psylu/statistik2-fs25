@@ -28,16 +28,22 @@ book:
     - datenverarbeitung/workflow.qmd
     - datenverarbeitung/readandwrite.qmd
     - datenverarbeitung/transform.qmd
-  - part: Datenvisualisierung
-#    chapters:
+
   - part: Datenanalyse
     chapters:
     - datenanalyse/descriptive.qmd
+    - datenanalyse/ttest_unabhaengig.qmd
+    - datenanalyse/ttest_abhaengig.qmd
+    
+  - part: Datenvisualisierung
+#    chapters:
+    
   - part: Übungen
     chapters:
     - uebungen/uebungen.qmd
     - uebungen/uebung-01.qmd
     - uebungen/uebung-02.qmd
+    - uebungen/uebung-04.qmd
 
   - part: Anhang
     chapters:
@@ -54,7 +60,7 @@ format:
     page-layout: full
     code-background: true
     code-copy: true
-    code-overflow: wrap
+    #code-overflow: wrap
     link-external-newwindow: true
     css: include/webex.css
     include-after-body: include/webex.js

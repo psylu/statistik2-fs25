@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>9&nbsp; t-Test für unabhängige Stichproben – Datenanalyse mit R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../datenanalyse/ttest_abhaengig.html" rel="next">
+<link href="../datenanalyse/descriptive.html" rel="prev">
+<link href="../imgs/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../include/webex.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenanalyse/descriptive.html">Datenanalyse</a></li><li class="breadcrumb-item"><a href="../datenanalyse/ttest_unabhaengig.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><em>t</em>-Test für unabhängige Stichproben</span></a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Datenanalyse mit R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Überblick</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">R und RStudio</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/rrstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics R und RStudio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/programmieren.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Basics Programmieren</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/help.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Help center</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Datenverarbeitung</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenverarbeitung/workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenverarbeitung/readandwrite.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Datensätze einlesen und schreiben</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenverarbeitung/transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Datensätze bearbeiten</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Datenanalyse</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenanalyse/descriptive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Deskriptive Statistik</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenanalyse/ttest_unabhaengig.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><em>t</em>-Test für unabhängige Stichproben</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenanalyse/ttest_abhaengig.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><em>t</em>-Test für abhängige Stichproben</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Datenvisualisierung</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Übungen</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebungen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Informationen</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 4</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Anhang</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/faq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FAQ</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/webrconsole.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">WebR Konsole</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/thanks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Danke</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/license.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">License</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#anwendungsbereich" id="toc-anwendungsbereich" class="nav-link active" data-scroll-target="#anwendungsbereich"><span class="header-section-number">9.1</span> Anwendungsbereich</a></li>
+  <li><a href="#voraussetzungen" id="toc-voraussetzungen" class="nav-link" data-scroll-target="#voraussetzungen"><span class="header-section-number">9.2</span> Voraussetzungen</a></li>
+  <li><a href="#grundkonzepte-und-vorgehen" id="toc-grundkonzepte-und-vorgehen" class="nav-link" data-scroll-target="#grundkonzepte-und-vorgehen"><span class="header-section-number">9.3</span> Grundkonzepte und Vorgehen</a>
+  <ul class="collapse">
+  <li><a href="#planung" id="toc-planung" class="nav-link" data-scroll-target="#planung"><span class="header-section-number">9.3.1</span> Planung</a></li>
+  <li><a href="#vorverarbeitung" id="toc-vorverarbeitung" class="nav-link" data-scroll-target="#vorverarbeitung"><span class="header-section-number">9.3.2</span> Vorverarbeitung</a></li>
+  <li><a href="#analyse" id="toc-analyse" class="nav-link" data-scroll-target="#analyse"><span class="header-section-number">9.3.3</span> Analyse</a></li>
+  <li><a href="#schlussfolgerungen" id="toc-schlussfolgerungen" class="nav-link" data-scroll-target="#schlussfolgerungen"><span class="header-section-number">9.3.4</span> Schlussfolgerungen</a></li>
+  </ul></li>
+  <li><a href="#anwendungsbeispiel-in-r" id="toc-anwendungsbeispiel-in-r" class="nav-link" data-scroll-target="#anwendungsbeispiel-in-r"><span class="header-section-number">9.4</span> Anwendungsbeispiel in R</a>
+  <ul class="collapse">
+  <li><a href="#planung-1" id="toc-planung-1" class="nav-link" data-scroll-target="#planung-1"><span class="header-section-number">9.4.1</span> Planung</a></li>
+  <li><a href="#vorverarbeitung-1" id="toc-vorverarbeitung-1" class="nav-link" data-scroll-target="#vorverarbeitung-1"><span class="header-section-number">9.4.2</span> Vorverarbeitung</a></li>
+  <li><a href="#analyse-1" id="toc-analyse-1" class="nav-link" data-scroll-target="#analyse-1"><span class="header-section-number">9.4.3</span> Analyse</a></li>
+  <li><a href="#schlussfolgerungen-1" id="toc-schlussfolgerungen-1" class="nav-link" data-scroll-target="#schlussfolgerungen-1"><span class="header-section-number">9.4.4</span> Schlussfolgerungen</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenanalyse/descriptive.html">Datenanalyse</a></li><li class="breadcrumb-item"><a href="../datenanalyse/ttest_unabhaengig.html"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><em>t</em>-Test für unabhängige Stichproben</span></a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-t-test-ind" class="quarto-section-identifier"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><em>t</em>-Test für unabhängige Stichproben</span></span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="anwendungsbereich" class="level2" data-number="9.1">
+<h2 data-number="9.1" class="anchored" data-anchor-id="anwendungsbereich"><span class="header-section-number">9.1</span> Anwendungsbereich</h2>
+<p>Mit <em>t</em>-Tests für unabhängige Stichproben wird untersucht, wie sich zwei voneinander unabhängige Gruppen in einem intervallskalierten Mass unterscheiden, wenn die Populationsvarianz unbekannt ist.</p>
+<p><strong>Typische Fragestellungen</strong>:</p>
+<ul>
+<li><p><em>Wie unterscheiden sich Personen mit der Diagnose von Personen ohne Diagnose X in der Fähigkeit Y?</em></p></li>
+<li><p><em>Wie unterscheiden sich Personen mit einer hohen Ausprägung eines Persönlichkeitsmerkmals von Personen mit einer tiefen Ausprägung in Fähigkeit Y?</em></p></li>
+<li><p><em>Wie unterscheiden sich ältere Personen von jüngeren Personen in der Einschätzung von Y (z.B. Lebenszufriedenheit)?</em></p></li>
+<li><p><em>Wie unterscheiden sich Personen, die ein Treatment erhalten haben, von Personen, welche dieses Treatment nicht erhalten haben (Kontrollgruppe) in der Symptomausprägung Y?</em></p></li>
+</ul>
+<p><strong>Beispiele</strong>:</p>
+<ul>
+<li><a href="https://pmc.ncbi.nlm.nih.gov/articles/PMC3051364/">Martin &amp; Kerns (2011)</a>
+<ul>
+<li>Fragestellung: Welchen Einfluss hat eine positive Stimmung auf die kognitive Leistung gemessen im Stroop Task oder im Running Span Task?</li>
+<li>Typische Aussage: The results revealed that the positive mood group performed significantly worse on the running span task, <span class="math inline">\(t(174) = 2.14, p &lt; .05\)</span>, but there were no differences between the groups on the Stroop task, <span class="math inline">\(t(173) = 0.54, p = .590\)</span>.</li>
+</ul></li>
+</ul>
+</section>
+<section id="voraussetzungen" class="level2 page-columns page-full" data-number="9.2">
+<h2 data-number="9.2" class="anchored" data-anchor-id="voraussetzungen"><span class="header-section-number">9.2</span> Voraussetzungen</h2>
+<table class="table-hover caption-top table">
+<caption><strong>Voraussetzungen <em>t</em>-Test für unabhängige Stichproben</strong>, Überprüfung und mögliche Alternativen bei Verletzung der Annahmen</caption>
+<thead>
+<tr class="header">
+<th>Voraussetzung</th>
+<th>Beschreibung</th>
+<th>Vorgehen bei Verletzung</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Abhängige Variable</td>
+<td>Eine abhängige Variable mit metrischem Skalenniveau. Die AV muss in den beiden Teilpopulationen stetig und normalverteilt sein (bei genügend grosser Stichprobe ist der <em>t</em>-Test robust).</td>
+<td>Transformieren der Variable oder Verwenden von non-parametrischen Verfahren: Falls die AV ordinalskaliert ist, kann ein non-parametrisches (verteilungsfreies) Verfahren gewählt werden; z.B. Vergleich von zwei unabhängigen Stichproben mit dem Wilcoxon-Vorzeichen-Rangtest bzw. <em>U</em>-Test von Mann-Whitney.</td>
+</tr>
+<tr class="even">
+<td>Unabhängige Variable</td>
+<td>Eine unabhängige Variable mit zwei Stufen (dichotome Gruppenvariable).</td>
+<td>Verwenden eines anderen statistischen Verfahrens (z.B. Regression) oder Dichotomisierung der UV mittels Mediansplit (z.B. Alter von Zahl zu “jung” und “alt”).</td>
+</tr>
+<tr class="odd">
+<td>Unabhängigkeit der Messwerte</td>
+<td>Die Messwerte <em>innerhalb</em> der beiden Stichproben sind voneinander unabhängig. Es handelt sich um einfache, innerhalb der Stichprobe voneinander unabhängigen, Zufallsstichproben.</td>
+<td></td>
+</tr>
+<tr class="even">
+<td>Unabhängigkeit der Gruppen/Stichproben</td>
+<td>Die Messwerte <em>zwischen</em> den beiden Stichproben sind voneinander unabhängig (unabhängige Gruppen). Eine <em>Verletzung der Unabhängigkeitsannahme</em> liegt vor, wenn die Annahme, dass die Messwerte zwischen den beiden Stichproben unabhängig nicht zutrifft, d.h. die Messwerte in natürlichen Paaren (z.B. Geschwister, Messwiederholung) vorliegen.</td>
+<td>Für die Abhängigkeit der Gruppen kann kontrolliert werden, indem z.B. ein <em>t</em>-Test für abhängige Stichproben verwendet wird (siehe <a href="../datenanalyse/ttest_abhaengig.html">Kapitel: t-Test für abhängige Stichproben</a>)</td>
+</tr>
+<tr class="odd">
+<td>Varianzhomogenität / Homoskedastizität</td>
+<td>Die Varianzen innerhalb der beiden Teilpopulationen sind <em>homogen</em> (Homoskedastizität). Vor allem wenn die Stichproben unterschiedlich gross sind, bietet sich eine empirische Überprüfung der Varianzhomogenitätsannahme an.</td>
+<td><em>Überprüfung der Varianzhomogenitätsannahme</em>: <br> Der Vergleich von zwei Stichprobenvarianzen mittels <em>F</em>-Test oder Levene-Test (robuste Variante zum <em>F</em>-Test). <br> Bei <em>Verletzung der Varianzhomogenitätsannahme (Heteroskedastizität)</em>, kann als Alternative der Welch-Test verwendet werden, welcher nicht die gepoolten Innerhalb-Varianzen, sondern die beiden unterschiedlichen Stichprobenvarianzen <span class="math inline">\(\hat \sigma^2_1\)</span> und <span class="math inline">\(\hat \sigma^2_2\)</span> verwendet.</td>
+</tr>
+</tbody>
+</table>
+<p><br></p>
+<aside>
+Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transformationen oder non-parametrische Verfahren) wird in diesem Semester nicht eingegangen.
+</aside>
+<!-- BORTZ: Die Varianzen σ1 und σ2 der zu vergleichen- den Populationen sind gleich. Ist dies der Fall, so darf man für die Stichprobenvarianzen erwarten, dass s21 ≈ s2. Verfahren zur Überprü-
+- BORTZ: Das untersuchte Merkmal muss in beiden Po- pulationen, denen die Stichproben entnommen wurden, normalverteilt sein. Sind die Verteilungsformen der Grundgesamtheiten unbekannt, kann die Normalverteilungsannahme mit einem Verfahren überprüft werden, das in Abschnitt 9.2 besprochen wird.
+- ... -> non-parametrische Tests (Eid...)
+BORTZ: Alle drei besprochenen t-Tests lassen sich unabhängig vom Stichprobenumfang anwenden, wenn die gemachten Annahmen erfüllt sind. Mit ande- ren Worten, selbst bei kleinen Stichprobenumfängen gewährleisten die Tests, dass das festgelegte Signifikanzniveau eingehalten wird. Natürlich sind trotzdem grosse Stichprobenumfänge wünschenswert, da dadurch die Teststärke entsprechend hoch ist und es damit zunehmend wahrscheinlich wird, eine falsche Nullhypothese verwerfen zu können. -->
+<!-- BORTZ: t-Tests sollten nicht eingesetzt werden, wenn – insbesondere bei kleineren Stichprobenumfängen – die jeweiligen Voraussetzungen (normalverteilte Grundgesamtheit und ggf. Varianzhomogenität) nicht erfüllt sind. -->
+</section>
+<section id="grundkonzepte-und-vorgehen" class="level2 page-columns page-full" data-number="9.3">
+<h2 data-number="9.3" class="anchored" data-anchor-id="grundkonzepte-und-vorgehen"><span class="header-section-number">9.3</span> Grundkonzepte und Vorgehen</h2>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../imgs/flowchart_analysis.png" class="img-fluid figure-img"></p>
+<figcaption>Allgemeiner Workflow der Datenanalyse</figcaption>
+</figure>
+</div>
+<section id="planung" class="level3 page-columns page-full" data-number="9.3.1">
+<h3 data-number="9.3.1" class="anchored" data-anchor-id="planung"><span class="header-section-number">9.3.1</span> Planung</h3>
+<section id="statistische-hypothesen-und-signifikanzniveau-festlegen" class="level4">
+<h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen"><strong>1. Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
+<p><strong>Ungerichtete Hypothesen:</strong></p>
+<p><span class="math inline">\(H_0\)</span>: Die Populationsmittelwerte der Gruppe 1 und 2 unterscheiden sich nicht (d.h. haben eine Differenz gleich 0) <span class="math inline">\(\mu_1 = \mu_2\)</span></p>
+<p><span class="math inline">\(H_1\)</span>: Die Populationsmittelwerte der Gruppe 1 und 2 unterscheiden sich (d.h. haben eine Differenz ungleich 0) <span class="math inline">\(\mu_1 \neq \mu_2\)</span></p>
+<p><strong>Gerichtete Hypothesen:</strong></p>
+<p>Die Hypothesen können auch gerichtet formuliert werden (die Populationsmittelwerte sind grösser/kleiner in einer Gruppe):</p>
+<p><span class="math inline">\(H_0\)</span>: Der Mittelwert der Gruppe 1 ist kleiner oder gleich gross wie der Mittelwert der Gruppe 2 <span class="math inline">\(\quad \mu_1 \leq \mu_2\)</span></p>
+<p><span class="math inline">\(H_1\)</span>: Der Mittelwert der Gruppe 1 ist grösser als der Mittelwert der Gruppe 2 <span class="math inline">\(\quad \mu_1 &gt; \mu_2\)</span>.</p>
+<p>oder</p>
+<p><span class="math inline">\(H_0\)</span>: Der Mittelwert der Gruppe 1 ist grösser oder gleich gross wie der Mittelwert der Gruppe 2 <span class="math inline">\(\quad \mu_1 \geq \mu_2\)</span></p>
+<p><span class="math inline">\(H_1\)</span>: Der Mittelwert der Gruppe 1 ist kleiner als der Mittelwert der Gruppe 2 <span class="math inline">\(\quad \mu_1 &lt; \mu_2\)</span>.</p>
+<p><strong>Signifikanzniveau:</strong></p>
+<p>Wird ein Signifikanzniveau von <span class="math inline">\(\alpha = 0.05\)</span> festgelegt, bedeutet dies, dass bei der Verwerfung der Nullhypothese eine 5% Wahrscheinlichkeit besteht, dass eigentlich kein Unterschied besteht und irrtümlicherweise einer angenommen wurde.</p>
+</section>
+<section id="a-priori-poweranalyse-durchführen" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="a-priori-poweranalyse-durchführen"><strong>2. A-priori Poweranalyse durchführen</strong></h4>
+<p>Vor der Datenerhebung soll eine a-priori Poweranalyse durchgeführt werden. Einerseits kann damit ermittelt werden, wie viel Power (Teststärke) der Test hat, um einen Effekt von vordefinierter Grösse (z.B. einen grossen Effekt von <span class="math inline">\(d=0.8\)</span>) zu entdecken. Andererseits kann berechnet werden, wie gross die Stichprobe sein sollte, um einen Effekt bestimmter Grösse und eine festgelegte Teststärke zu erreichen.</p>
+<aside>
+Ein Wert über <span class="math inline">\(0.8\)</span> gilt gemäss den Konventionen für <span class="math inline">\(\delta\)</span> -Masse nach Cohen (1988) für den Zweistichprobentest als <em>grosser</em> Effekt.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+</aside>
+</section>
+</section>
+<section id="vorverarbeitung" class="level3 page-columns page-full" data-number="9.3.2">
+<h3 data-number="9.3.2" class="anchored" data-anchor-id="vorverarbeitung"><span class="header-section-number">9.3.2</span> Vorverarbeitung</h3>
+<section id="daten-einlesen-vorverarbeiten-und-visualisieren" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="daten-einlesen-vorverarbeiten-und-visualisieren"><strong>3. Daten einlesen, vorverarbeiten und visualisieren</strong></h4>
+<p>Zuerst müssen die Daten eingelesen und bereinigt werden. Daten können diagnostisch visualisiert werden, um z.B. fehlende Werte zu entdecken oder Verteilungen der Daten visuell beurteilen und Extremwerte zu identifizieren.</p>
+<p>Für den <em>t</em>-Test für unabhängige Stichproben werden die Daten hier in einem <code>long</code>-Format benötigt.</p>
+<aside>
+Es ist auch möglich Daten im <em>Wide</em>-Format zu verwenden, da sich das <em>Long</em>-Format aber für die Deskriptivstatistik und Visualisierung besser eignen, wird in diesem Kapitel durchgehend mit einem <em>Long</em>-Format gearbeitet.
+</aside>
+</section>
+<section id="voraussetzungen-überprüfen" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen"><strong>4. Voraussetzungen überprüfen</strong></h4>
+<ul>
+<li><strong>Varianzhomogenität</strong></li>
+</ul>
+<p>Der <em>t</em>-Test für unabhängige Stichproben setzt Varianzhomogenität voraus. Dies kann mit dem <strong>Levene-Test</strong> (in <em>R</em> mit der Funktion <code>leveneTest()</code>) überprüft werden.</p>
+<p>Der Levene-Test geht von der Nullhypothese aus, dass sich die beiden Varianzen nicht unterscheiden. Ein nicht signifikantes Ergebnis bedeutet daher, dass sich die Varianzen nicht unterscheiden und somit Varianzhomogenität (sogenannte Heteroskedastizität) besteht. Wenn der Test signifikant ist, wird Varianzheterogenität angenommen. Konventionell wird hierfür ein <span class="math inline">\(\alpha = 0.05\)</span> angenommen.</p>
+<aside>
+Teilweise wird ein konservativerer Cut-off von <span class="math inline">\(\alpha = 0.1\)</span> verwendet.
+</aside>
+<p>Falls die Varianzen heterogen (unterschiedlich) sind , müssen die Freiheitsgrade des <em>t</em>-Wertes entsprechend angepasst werden. In diesem Fall kann ein Welch-Test (Welch’s <em>t</em>-Test) verwendet werden, der zur Berechnung der Teststatistik die beiden unterschiedlichen Populationsvarianzen anstatt die gepoolte Innerhalbvarianz nimmt. Dazu wird in <em>R</em> die Funktion <code>t.test()</code>mit der Option <code>var.equal = FALSE</code> genutzt.</p>
+</section>
+</section>
+<section id="analyse" class="level3 page-columns page-full" data-number="9.3.3">
+<h3 data-number="9.3.3" class="anchored" data-anchor-id="analyse"><span class="header-section-number">9.3.3</span> Analyse</h3>
+<section id="deskriptivstatistik-und-visualisierung" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="deskriptivstatistik-und-visualisierung"><strong>5. Deskriptivstatistik und Visualisierung</strong></h4>
+<p>Bei Gruppenunterschieden wird für jede Gruppe ein Lagemass (z.B. Mittelwert oder Median) sowie ein Streumass (z.B. Standardabweichung, Standardfehler, Konfidenzintervall) berechnet. Das Lagemass stellt die durchschnittliche Merkmalsausprägung in den beiden Gruppen dar. Das Streumass zeigt den Streubereich der Daten auf.</p>
+<aside>
+Genauere Informationen zu Lage- und Streumassen sind im <a href="../datenanalyse/descriptive.html">Kapitel: Deskriptive Statistik</a> zu finden.
+</aside>
+<p>Zur Visualisierung von Gruppenunterschieden eignen sich Lagemasse mit Fehlerbalken. Boxplots eignen sich beispielsweise gut, um Grösse des Gruppenunterschiedes (Effekts) und die Kohärenz der Datenpunkte (Ähnlichkeit der Werte innerhalb einer Bedingung/Gruppe) zu beurteilen.</p>
+<p>Durch die Visualisierung der Rohwerte, kann die Verteilung der Messungen gut eingeschätzt werden und Extremwerte werden deutlich sichtbar. Bei zu vielen Datenpunkten führt das Visualisieren der Rohwerte zu unübersichtlichen Grafiken.</p>
+</section>
+<section id="teststatistik-berechnen" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="teststatistik-berechnen"><strong>6. Teststatistik berechnen</strong></h4>
+<p>Um zu überprüfen, ob die beiden Mittelwerte signifikant unterschiedlich sind, muss die Teststatistik berechnet werden. Die Verteilung der Teststatistik folgt bei homogenen Varianzen einer sogenannten <em>t</em>-Verteilung (auch Student’s <em>t</em>-Verteilung genannt<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>), die durch die Anzahl Freiheitsgrade (df) definiert ist.</p>
+<p>Um die empirische Prüfgrösse zu berechen, wird die Mittelwertsdifferenz durch den Standardfehler der Mittelwertsdifferenz geteilt:</p>
+<p><span class="math inline">\(t_{\overline{x}_1-\overline{x}_2}=\frac{\overline{x}_1-\overline{x}_2}{\hat\sigma_{\overline{x}_1-\overline{x}_2}}\)</span></p>
+<p>Der Standardfehler der Mittelwertsdifferenz wird wie folgt geschätzt:</p>
+<p><span class="math inline">\(\hat \sigma_{\overline{x}_1-\overline{x}_2}=\sqrt {\frac {\hat\sigma_{inn}^2}{n_1}+ \frac{\hat\sigma_{inn}^2}{n_2}}\)</span></p>
+<p>Die dafür nötige gepoolte (gemeinsame) Innerhalbvarianz kann folgendermassen berechnet werden:</p>
+<p><span class="math inline">\(\hat\sigma_{inn}^2=\frac{\hat\sigma^2_1 \cdot (n_1-1) +\hat\sigma^2_2 \cdot (n_2-1) }{n_1+n_2-2}\)</span></p>
+<p>Die Freiheitsgrad lassen sich für einen unabhängigen <em>t</em>-Test berechnen:</p>
+<p><span class="math inline">\(df=n_1+n_2-2\)</span></p>
+<p>Nun muss die berechnete empirische Prüfgrösse <em>t</em> auf Signifikanz überprüft werden. Dazu wird der Wert mit dem kritischen Wert der durch die Freiheitsgrade bestimmten <em>t</em>-Verteilung verglichen. Der kritische Wert kann in dieser <a href="https://www.beltz.de/fileadmin/beltz/downloads/OnlinematerialienPVU/28201_Eid/05_Verteilungstabellen/Tab.A.03.pdf">Tabelle</a> abgelesen werden.</p>
+<ul>
+<li><p>Die <span class="math inline">\(H_0\)</span> wird beibehalten, wenn die empirische Prüfgrösse <em>t</em> <strong>kleiner</strong> als der kritische Wert ist. Die Gruppen unterscheiden sich nicht signifikant bzw. es konnte kein Einfluss der Gruppenvariablen auf die AV gefunden werden.</p></li>
+<li><p>Die <span class="math inline">\(H_0\)</span> wird abgelehnt, wenn die empirische Prüfgrösse <em>t</em> <strong>grösser</strong> als der kritische Wert ist. Die Gruppen unterscheiden sich signifikant bzw. es konnte ein Einfluss der Gruppenvariablen auf die AV gefunden werden.</p></li>
+</ul>
+<aside>
+Bei gerichteten Hypothesen müssen die Aussagen entsprechend angepasst werden.
+</aside>
+</section>
+<section id="effektstärke-bestimmen" class="level4">
+<h4 class="anchored" data-anchor-id="effektstärke-bestimmen"><strong>7. Effektstärke bestimmen</strong></h4>
+<p>Die Effektgrösse beim <em>t</em>-Test für unabhängige Stichproben sagt etwas darüber aus, wie gross der Unterschied zwischen den beiden Populationsmittelwerten ist.</p>
+<p>Die standardisierte Effektgrösse kann folgendermassen berechnet werden:</p>
+<p><span class="math inline">\(d=\frac{\overline{x}_1-\overline{x}_2}{\hat\sigma_{inn}}\)</span></p>
+<p>Die Effektgrösse <span class="math inline">\(d\)</span> kann auch direkt über den <em>t</em>-Wert bestimmt werden:</p>
+<p><span class="math inline">\(d=t \cdot \sqrt {\frac{n_1 + n_2}{n_1 \cdot n_2}}\)</span></p>
+<p>Die Konventionen nach Cohen (1988) lauten hier:</p>
+<p><span class="math inline">\(|d|=\approx 0.2\)</span>: kleiner Effekt</p>
+<p><span class="math inline">\(|d|=\approx 0.5\)</span>: mittelgrosser Effekt</p>
+<p><span class="math inline">\(|d|=\approx 0.8\)</span>: grosser Effekt</p>
+</section>
+</section>
+<section id="schlussfolgerungen" class="level3" data-number="9.3.4">
+<h3 data-number="9.3.4" class="anchored" data-anchor-id="schlussfolgerungen"><span class="header-section-number">9.3.4</span> Schlussfolgerungen</h3>
+<section id="ergebnisse-interpretieren-und-berichten" class="level4">
+<h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten"><strong>8. Ergebnisse interpretieren und berichten</strong></h4>
+<p>Je grösser der empirische <em>t</em>-Wert ist, desto stärker spricht dies gegen die Nullhypothese.</p>
+<p>Meistens werden in psychologischen Publikationen die Stichprobenmittelwerte und ihre geschätzten Populationsstandardabweichungen (Stichprobenstandardabweichungen) sowie die <em>t</em>-Statistik, ihre Freiheitsgrade und der <em>p</em>-Wert (also der Wahrscheinlichkeit dieses oder eines noch extremeren <em>t</em>-Wertes unter Annahme der Nullhypothese) berichtet.</p>
+<p>Falls der exakte <em>p</em>-Wert sehr klein ist, beispielsweise <span class="math inline">\(p=0.00000012\)</span> bzw. kleiner als <span class="math inline">\(0.001\)</span>, wird dies folgendermassen notiert: <span class="math inline">\(p &lt; .001\)</span>.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
+<blockquote class="blockquote">
+<p>Personen mit dem Treatment <em>X</em> unterscheiden sich signifikant in ihrer kognitiven Leistung von Personen ohne Treatment <em>X</em>, <em>t</em>(40)=-2.63, <em>p</em> &lt; .001, <em>d</em> = 0.34.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Personen mit der Diagnose <em>X</em> unterscheiden sich nicht in ihrer Schmerzempfindlichkeit von Personen ohne Diagnose <em>X</em>, <em>t</em>(40)=-0.13,) <em>p</em> = .641).</p>
+</blockquote>
+</section>
+</section>
+</section>
+<section id="anwendungsbeispiel-in-r" class="level2 page-columns page-full" data-number="9.4">
+<h2 data-number="9.4" class="anchored" data-anchor-id="anwendungsbeispiel-in-r"><span class="header-section-number">9.4</span> Anwendungsbeispiel in R</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Beispiel: Stimmungsexperiment">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Beispiel: Stimmungsexperiment
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In einem Experiment<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a> wurden Versuchspersonen entweder in positive Stimmung (Gruppe 1) oder in negative Stimmung (Gruppe 2) versetzt und mussten danach Rechenaufgaben lösen. Gemessen wurde, wie viele Rechenaufgaben die Versuchspersonen im Anschluss korrekt lösen konnten.</p>
+<ul>
+<li>Die <em>unabhängige Variable</em> war die Stimmungsinduktion mit 2 Stufen (dichotom): positiv und negativ.</li>
+<li>Die <em>abhängige Variable</em> war die Anzahl korrekt gelöster Rechenaufgaben (metrisch). Es handelt es sich hierbei um einen Indikator für die stetige Variable kognitive Leistungsfähigkeit.</li>
+</ul>
+</div>
+</div>
+<section id="planung-1" class="level3 page-columns page-full" data-number="9.4.1">
+<h3 data-number="9.4.1" class="anchored" data-anchor-id="planung-1"><span class="header-section-number">9.4.1</span> Planung</h3>
+<section id="statistische-hypothesen-und-signifikanzniveau-festlegen-1" class="level4">
+<h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen-1"><strong>1. Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
+<p><span class="math inline">\(H_0\)</span>: Die Stimmung hat keinen Einfluss auf die Leistung: <span class="math inline">\(\mu_1=\mu_2\)</span></p>
+<p><span class="math inline">\(H_1\)</span>: Die Stimmung hat einen Einfluss auf die Leistung: <span class="math inline">\(\mu_1 \neq\mu_2\)</span></p>
+<p>Das Alphaniveau wird auf <span class="math inline">\(5 \%\)</span> festgelegt. Da es sich um eine ungerichtete Hypothese handelt, wird zweiseitig getestet.</p>
+</section>
+<section id="a-priori-poweranalyse-durchführen-1" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="a-priori-poweranalyse-durchführen-1"><strong>2. A-priori Poweranalyse durchführen</strong></h4>
+<ul>
+<li><code>n1</code>: Anzahl Messwerte Stichprobe 1</li>
+<li><code>n2</code>: Anzahl Messwerte Stichprobe 2</li>
+<li><code>d</code>: Effektgrösse</li>
+<li><code>sig.level</code>: <span class="math inline">\(\alpha\)</span> (Fehler 1. Art)</li>
+<li><code>alternative</code>: <span class="math inline">\(H_1\)</span> gerichtet (<code>greater</code>oder <code>less</code>) oder ungerichtet (<code>two-sided</code>)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Package laden</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pwr)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># A-priori Poweranalyse </span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Power berechnen</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">pwr.t2n.test</span>(<span class="at">n1 =</span> <span class="dv">40</span>, <span class="at">n2 =</span> <span class="dv">40</span>, <span class="at">d =</span> <span class="fl">0.8</span>,</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a>             <span class="at">sig.level =</span> <span class="fl">0.05</span>,</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>             <span class="at">alternative =</span> <span class="st">"two.sided"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     t test power calculation 
+
+             n1 = 40
+             n2 = 40
+              d = 0.8
+      sig.level = 0.05
+          power = 0.9421818
+    alternative = two.sided</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Stichprobengrösse berechnen</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pwr.t.test</span>(<span class="at">d =</span> <span class="fl">0.8</span>, <span class="at">power =</span> <span class="fl">0.8</span>, <span class="at">sig.level =</span> <span class="fl">0.05</span>, <span class="at">type =</span> <span class="st">"two.sample"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+     Two-sample t test power calculation 
+
+              n = 25.52458
+              d = 0.8
+      sig.level = 0.05
+          power = 0.8
+    alternative = two.sided
+
+NOTE: n is number in *each* group</code></pre>
+</div>
+</div>
+<aside>
+Beim ersten Verwenden muss das Package {pwr} heruntergeladen/installiert werden, z.B. in der Konsole mit <code>install.packages("pwr")</code>.
+</aside>
+<p>Eine Teststärke (Power) von 0.94 bedeutet, dass die Wahrscheinlichkeit 94 % beträgt, einen tatsächlich vorhandenen Effekt mit einer Effektstärke von <span class="math inline">\(d = 0.8\)</span> zu entdecken.</p>
+<p>Um mit einer Teststärke von 80% einen grossen Effekt von <span class="math inline">\(d=0.8\)</span> zu finden, wird eine Stichprobe von mindestens <span class="math inline">\(n=26\)</span> pro Gruppe benötigt.</p>
+</section>
+</section>
+<section id="vorverarbeitung-1" class="level3 page-columns page-full" data-number="9.4.2">
+<h3 data-number="9.4.2" class="anchored" data-anchor-id="vorverarbeitung-1"><span class="header-section-number">9.4.2</span> Vorverarbeitung</h3>
+<section id="daten-einlesen-und-vorverarbeiten" class="level4">
+<h4 class="anchored" data-anchor-id="daten-einlesen-und-vorverarbeiten"><strong>3. Daten einlesen und vorverarbeiten</strong></h4>
+<div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Beispieldatensatz Stimmungsexperiment">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hands-on: Beispieldatensatz Stimmungsexperiment
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><strong>Daten herunterladen und einlesen</strong></p>
+<p><a href="../data/ttests.zip">Hier</a> kann der Projektordner mit den Daten heruntergeladen werden. Vor dem ersten Verwenden muss der Ordner entzippt werden, dann kann das <em>RProject</em> namens <code>ttests.Rproj</code> geöffnet werden. Der Ordner enthält</p>
+<ul>
+<li><em>RProject</em> namens <code>ttest.Rproj</code></li>
+<li>Datensatz <code>mood.csv</code> in <code>data</code>-Ordner</li>
+<li><em>RNotebook</em> namens <code>independent_ttest.Rmd</code></li>
+<li>(die weiteren Dateien werden für den <em>t</em>-Test für abhängige Stichproben und die Übung 4 verwendet.)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Package laden</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Daten laden und anschauen</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>d_mood <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/mood.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">glimpse</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 40
+Columns: 2
+$ mood_neg &lt;int&gt; 10, 15, 12, 11, 11, 9, 15, 16, 21, 18, 17, 15, 21, 19, 15, 11…
+$ mood_pos &lt;int&gt; 5, 6, 9, 9, 8, 7, 15, 6, 20, 9, 10, 7, 12, 14, 15, 16, 11, 6,…</code></pre>
+</div>
+</div>
+<p><strong>Datensatz transformieren</strong></p>
+<p>Für den <em>t</em>-Test werden die Daten in einem <code>long</code> Format benötigt. Daher müssen die Daten vom bisherigen <code>wide</code> Format in ein <code>long</code> Format umstrukturiert werden und eine Variable <code>id</code> ergänzt werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datenformat von wide zu long transformieren</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>d_mood_long <span class="ot">&lt;-</span> d_mood  <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(mood_neg, mood_pos),</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"condition"</span>,</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"performance"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">row_number</span>()) <span class="sc">|&gt;</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(id, condition, performance)</span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="co"># id (Subjekt-ID) und condition (Gruppenvariable) als Faktor definieren</span></span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>d_mood_long <span class="ot">&lt;-</span> d_mood_long <span class="sc">|&gt;</span> </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">as.factor</span>(id)) <span class="sc">|&gt;</span> </span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">condition =</span> <span class="fu">as.factor</span>(condition))</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(d_mood_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 80 × 3
+   id    condition performance
+   &lt;fct&gt; &lt;fct&gt;           &lt;int&gt;
+ 1 1     mood_neg           10
+ 2 2     mood_pos            5
+ 3 3     mood_neg           15
+ 4 4     mood_pos            6
+ 5 5     mood_neg           12
+ 6 6     mood_pos            9
+ 7 7     mood_neg           11
+ 8 8     mood_pos            9
+ 9 9     mood_neg           11
+10 10    mood_pos            8
+# ℹ 70 more rows</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="voraussetzungen-überprüfen-1" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen-1"><strong>4. Voraussetzungen überprüfen</strong></h4>
+<p>Der <em>t</em>-Test setzt voraus, dass das Merkmal <span class="math inline">\(X\)</span> in der Population stetig und normalverteilt ist und die beiden Populationsvarianzen gleich (homogen) sind.</p>
+<aside>
+Die Voraussetzung der Normalverteilung wird in diesem Semester nicht überprüft.
+</aside>
+<p>Die Varianzhomogenität (Homoskedastizität) kann mit dem Levene-Test <code>leveneTest(y ~ x, data = data)</code> überprüft werden. Es wird ein konventionelles Signifikanzniveau von <span class="math inline">\(\alpha = 0.05\)</span> angenommen. Ein Levene-Test mit <span class="math inline">\(p &lt; 0.05\)</span> bedeutet, dass der Varianzunterschied signifikant ist. Die Nullhypothese, dass die beiden Varianzen auf Populationsebene identisch sind, muss in diesem Fall verworfen werden.</p>
+<aside>
+In dieser Veranstaltung verwenden wir <span class="math inline">\(\alpha = 0.05\)</span>. Teilweise wird ein konservativerer Cut-off von <span class="math inline">\(\alpha = 0.1\)</span> verwendet. Das würde im aktuellen Beispiel dazu führen, dass die Varianzen nicht als homogen angenommen werden. Im unten dargestellten Plot kann gut erkannt werden, dass die Streuung ähnlich, aber nicht exakt gleich ist.
+</aside>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Levene-Test mit dem package {car}</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">leveneTest</span>(performance <span class="sc">~</span> condition, <span class="co"># av ~ uv</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> d_mood_long) <span class="co"># Datensatz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Levene's Test for Homogeneity of Variance (center = median)
+      Df F value  Pr(&gt;F)  
+group  1  3.3508 0.07099 .
+      78                  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p>Der Test ist hier nicht signifikant (<span class="math inline">\(p = .071\)</span>), daher wird davon ausgegangen, dass die Varianzen in beiden Gruppen homogen sind. Somit kann ein Student’s <em>t</em>-Test verwenden werden.</p>
+</section>
+</section>
+<section id="analyse-1" class="level3" data-number="9.4.3">
+<h3 data-number="9.4.3" class="anchored" data-anchor-id="analyse-1"><span class="header-section-number">9.4.3</span> Analyse</h3>
+<section id="deskriptivstatistik-und-visualisierungn" class="level4">
+<h4 class="anchored" data-anchor-id="deskriptivstatistik-und-visualisierungn"><strong>5. Deskriptivstatistik und Visualisierungn</strong></h4>
+<p>Für die deskriptive Statistik können die Daten nach Bedingung gruppiert und dann die Kennwerte berechnet werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nach condition gruppieren und performance zusammenfassen</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>d_summary <span class="ot">&lt;-</span> d_mood_long <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(condition) <span class="sc">|&gt;</span> <span class="co"># Gruppieren</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_performance =</span> <span class="fu">mean</span>(performance), <span class="co"># Mittelwert</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_performance =</span> <span class="fu">sd</span>(performance)) <span class="co"># Standardabweichung</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>d_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  condition mean_performance sd_performance
+  &lt;fct&gt;                &lt;dbl&gt;          &lt;dbl&gt;
+1 mood_neg              12.4           5.61
+2 mood_pos              10.2           4.32</code></pre>
+</div>
+</div>
+<p>Mit einem Boxplot kann die Verteilung der Werte noch genauer angeschaut und die beiden Gruppen visuell miteinander verglichen werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>p_boxplot <span class="ot">&lt;-</span> d_mood_long <span class="sc">|&gt;</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> condition, <span class="at">y =</span> performance)) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">colour =</span> condition), <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span> <span class="co"># Datenpunkte</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="dv">0</span>, <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span> <span class="co"># Boxplot</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"mood_neg"</span> <span class="ot">=</span> <span class="st">"red4"</span>, <span class="co"># Farben</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"mood_pos"</span> <span class="ot">=</span> <span class="st">"blue4"</span>)) <span class="sc">+</span></span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Effect of Mood on Performance"</span>, <span class="co"># Beschriftungen</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>      <span class="at">subtitle =</span> <span class="st">"Independent t-Test"</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Mood Condition"</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Performance Score"</span>) <span class="sc">+</span></span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span> <span class="co"># Theme</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>) </span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a>p_boxplot <span class="co"># Plot anzeigen</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ttest_unabhaengig_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+</section>
+<section id="teststatistik-berechnen-1" class="level4">
+<h4 class="anchored" data-anchor-id="teststatistik-berechnen-1"><strong>6. Teststatistik berechnen</strong></h4>
+<p><strong>a. Berechnung Teststatistik von Hand</strong></p>
+<p>Im Folgenden wird ein <em>t</em>-Test für unabhängige Stichproben unter der Annahme von homogenen Varianzen “von Hand” berechnet.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>n1 <span class="ot">&lt;-</span> <span class="dv">40</span> <span class="co"># Stichprobengrösse: negative Stimmung</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>n2 <span class="ot">&lt;-</span> <span class="dv">40</span> <span class="co"># Stichprobengrösse: positive Stimmung</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> <span class="fl">12.40</span> <span class="co"># Mittelwert: negative Stimmung</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>sd1 <span class="ot">&lt;-</span> <span class="fl">5.61</span> <span class="co"># Standardabweichung: negative Stimmung</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fl">10.15</span> <span class="co"># Mittelwert: positive Stimmung</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>sd2 <span class="ot">&lt;-</span> <span class="fl">4.32</span> <span class="co"># Standardabweichung: positive Stimmung</span></span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Berechnung der empirischen Prüfgrösse</span></span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>var_inn <span class="ot">&lt;-</span> (sd1<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>(n1 <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">+</span> sd2<span class="sc">^</span><span class="dv">2</span><span class="sc">*</span>(n2 <span class="sc">-</span> <span class="dv">1</span>))<span class="sc">/</span>((n1 <span class="sc">-</span> <span class="dv">1</span>) <span class="sc">+</span> (n2 <span class="sc">-</span> <span class="dv">1</span>))</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a>sd_meandiff <span class="ot">&lt;-</span> <span class="fu">sqrt</span>(var_inn<span class="sc">/</span>n1 <span class="sc">+</span> var_inn<span class="sc">/</span>n2)</span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>(x1 <span class="sc">-</span> x2)<span class="sc">/</span>sd_meandiff <span class="co"># empirischer t-Wert</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 2.00976</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Ausgabe der kritischen Werte</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.025</span>, <span class="dv">78</span>) <span class="co"># kritischer t-Wert unterhalb</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] -1.990847</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">qt</span>(<span class="fl">0.975</span>, <span class="dv">78</span>) <span class="co"># kritischer t-Wert oberhalb</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1.990847</code></pre>
+</div>
+</div>
+<p>Nach dieser Berechnung liegt der empirische <em>t</em>-Wert bei <span class="math inline">\(2.01\)</span> leicht über dem kritischen Wert von <span class="math inline">\(1.99\)</span>. Die Mittelwerte unterscheiden sich daher signifikant auf dem <span class="math inline">\(5 \%\)</span>-Niveau.</p>
+<p><strong>b. Berechnung Teststatistik in R mit der Funktion <code>t.test</code></strong></p>
+<p>Viel einfacher kann den <em>t</em>-Test für unabhängige Stichproben mit <code>t.test(formula = y ~ x, alternative, var.equal, data)</code> berechnet werden.</p>
+<ul>
+<li><code>y</code>: Abhängige Variable (metrisch)</li>
+<li><code>x</code>: Unabhängige Variable (Bedingung oder Gruppenvariable)</li>
+<li><code>alternative</code>: festlegen, ob die <span class="math inline">\(H_1\)</span> gerichtet (<code>greater</code>oder <code>less</code>) oder ungerichtet (<code>two-sided</code>) ist</li>
+<li><code>var.equal</code>: festlegen, ob die Annahme homogener Varianzen zutrifft (<code>TRUE</code>) oder nicht (<code>FALSE</code>)</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test für unabhängige Stichproben durchführen</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">formula =</span> performance <span class="sc">~</span> condition, <span class="co"># av ~ uv</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> d_mood_long)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  performance by condition
+t = 2.008, df = 78, p-value = 0.04811
+alternative hypothesis: true difference in means between group mood_neg and group mood_pos is not equal to 0
+95 percent confidence interval:
+ 0.01920551 4.48079449
+sample estimates:
+mean in group mood_neg mean in group mood_pos 
+                 12.40                  10.15 </code></pre>
+</div>
+</div>
+<p>Die Mittelwerte der beiden Gruppen unterscheiden sich signifikant auf dem <span class="math inline">\(5 \%\)</span>-Niveau. Die Nullhypothese, wonach sich die beiden Mittelwerte nicht unterscheiden kann verworfen werden. Die Stimmung beeinflusst somit die kognitive Leistung.</p>
+</section>
+<section id="effektstärke-bestimmen-1" class="level4">
+<h4 class="anchored" data-anchor-id="effektstärke-bestimmen-1"><strong>7. Effektstärke bestimmen</strong></h4>
+<p><strong>Berechnung der Effektgrösse (Cohen’s <em>d</em>)</strong></p>
+<p>Nun kann noch die Effektgrösse mit <code>cohen.d(formula = y ~ x, data)</code> aus dem Package {effsize} berechnet werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>effsize<span class="sc">::</span><span class="fu">cohen.d</span>(<span class="at">formula =</span> performance <span class="sc">~</span> condition, <span class="co"># av ~ uv</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> d_mood_long) <span class="co"># Datensatz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Cohen's d
+
+d estimate: 0.4489995 (small)
+95 percent confidence interval:
+       lower        upper 
+-0.001741657  0.899740658 </code></pre>
+</div>
+</div>
+<p>Die Effektgrösse liegt bei <span class="math inline">\(d=0.45\)</span>. Es handelt sich nach der Taxonomie von Cohen (1988) um einen <strong>kleinen</strong> Effekt.</p>
+</section>
+</section>
+<section id="schlussfolgerungen-1" class="level3" data-number="9.4.4">
+<h3 data-number="9.4.4" class="anchored" data-anchor-id="schlussfolgerungen-1"><span class="header-section-number">9.4.4</span> Schlussfolgerungen</h3>
+<section id="ergebnisse-interpretieren-und-berichten-1" class="level4">
+<h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten-1"><strong>8. Ergebnisse interpretieren und berichten</strong></h4>
+<p>Das Ergebnis ist auf dem <span class="math inline">\(5 \%\)</span>-Niveau signifikant und die Nullhypothese kann somit verworfen werden: Die Stimmung beeinflusst die kognitive Leistungsfähigkeit. Es handelt sich nach der Taxonomie von Cohen (1988) um einen kleinen Effekt (<span class="math inline">\(d=0.45\)</span>).</p>
+<blockquote class="blockquote">
+<p>“We examined whether the mood condition had an effect on cognitive performance. There was a significant difference between the positive and negative mood condition, <em>t</em>(78) = 2.01, <em>p</em> = .024, <em>d</em> = 0.45). Participants in the negative mood condition (<em>M</em> = 12.40, <em>SD</em> = 5.61) performed significantly better on the task than those in the positive mood condition (<em>M</em> = 10.15, <em>SD</em> = 4.32). This indicates a small effect of mood on cognitive performance according to Cohen’s convention (1988).”</p>
+</blockquote>
+
+
+</section>
+</section>
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Eid, M., Gollwitzer, M., &amp; Schmitt, M. (2017). Statistik und Forschungsmethoden: Mit Online-Materialien (5., korrigierte Auflage). Beltz. S. 338<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p><a href="https://www.scientificamerican.com/article/how-the-guinness-brewery-invented-the-most-important-statistical-method-in/">https://www.scientificamerican.com/article/how-the-guinness-brewery-invented-the-most-important-statistical-method-in/</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf">https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Eid, M., Gollwitzer, M., &amp; Schmitt, M. (2017). Statistik und Forschungsmethoden: Mit Online-Materialien (5., korrigierte Auflage). Beltz. S. 366<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script>
+
+/* update total correct if #webex-total_correct exists */
+update_total_correct = function() {
+  console.log("webex: update total_correct");
+
+  var t = document.getElementsByClassName("webex-total_correct");
+  for (var i = 0; i < t.length; i++) {
+    p = t[i].parentElement;
+    var correct = p.getElementsByClassName("webex-correct").length;
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+    var selects = p.getElementsByClassName("webex-select").length;
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+  }
+}
+
+/* webex-solution button toggling function */
+b_func = function() {
+  console.log("webex: toggle hide");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('open')) {
+    cl.remove("open");
+  } else {
+    cl.add("open");
+  }
+}
+
+/* check answers */
+check_func = function() {
+  console.log("webex: check answers");
+
+  var cl = this.parentElement.classList;
+  if (cl.contains('unchecked')) {
+    cl.remove("unchecked");
+    this.innerHTML = "Hide Answers";
+  } else {
+    cl.add("unchecked");
+    this.innerHTML = "Show Answers";
+  }
+}
+
+/* function for checking solveme answers */
+solveme_func = function(e) {
+  console.log("webex: check solveme");
+
+  var real_answers = JSON.parse(this.dataset.answer);
+  var my_answer = this.value;
+  var cl = this.classList;
+  if (cl.contains("ignorecase")) {
+    my_answer = my_answer.toLowerCase();
+  }
+  if (cl.contains("nospaces")) {
+    my_answer = my_answer.replace(/ /g, "")
+  }
+
+  if (my_answer == "") {
+    cl.remove("webex-correct");
+    cl.remove("webex-incorrect");
+  } else if (real_answers.includes(my_answer)) {
+    cl.add("webex-correct");
+    cl.remove("webex-incorrect");
+  } else {
+    cl.add("webex-incorrect");
+    cl.remove("webex-correct");
+  }
+
+  // match numeric answers within a specified tolerance
+  if(this.dataset.tol > 0){
+    var tol = JSON.parse(this.dataset.tol);
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+      cl.add("webex-correct");
+    } else {
+      cl.remove("webex-correct");
+    }
+  }
+
+  // added regex bit
+  if (cl.contains("regex")){
+    answer_regex = RegExp(real_answers.join("|"))
+    if (answer_regex.test(my_answer)) {
+      cl.add("webex-correct");
+    }
+  }
+
+  update_total_correct();
+}
+
+/* function for checking select answers */
+select_func = function(e) {
+  console.log("webex: check select");
+
+  var cl = this.classList
+
+  /* add style */
+  cl.remove("webex-incorrect");
+  cl.remove("webex-correct");
+  if (this.value == "answer") {
+    cl.add("webex-correct");
+  } else if (this.value != "blank") {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+/* function for checking radiogroups answers */
+radiogroups_func = function(e) {
+  console.log("webex: check radiogroups");
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+  var cl = checked_button.parentElement.classList;
+  var labels = checked_button.parentElement.parentElement.children;
+
+  /* get rid of styles */
+  for (i = 0; i < labels.length; i++) {
+    labels[i].classList.remove("webex-incorrect");
+    labels[i].classList.remove("webex-correct");
+  }
+
+  /* add style */
+  if (checked_button.value == "answer") {
+    cl.add("webex-correct");
+  } else {
+    cl.add("webex-incorrect");
+  }
+
+  update_total_correct();
+}
+
+window.onload = function() {
+  console.log("webex onload");
+  /* set up solution buttons */
+  var buttons = document.getElementsByTagName("button");
+
+  for (var i = 0; i < buttons.length; i++) {
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+      buttons[i].onclick = b_func;
+    }
+  }
+
+  var check_sections = document.getElementsByClassName("webex-check");
+  console.log("check:", check_sections.length);
+  for (var i = 0; i < check_sections.length; i++) {
+    check_sections[i].classList.add("unchecked");
+
+    let btn = document.createElement("button");
+    btn.innerHTML = "Show Answers";
+    btn.classList.add("webex-check-button");
+    btn.onclick = check_func;
+    check_sections[i].appendChild(btn);
+
+    let spn = document.createElement("span");
+    spn.classList.add("webex-total_correct");
+    check_sections[i].appendChild(spn);
+  }
+
+  /* set up webex-solveme inputs */
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+  for (var i = 0; i < solveme.length; i++) {
+    /* make sure input boxes don't auto-anything */
+    solveme[i].setAttribute("autocomplete","off");
+    solveme[i].setAttribute("autocorrect", "off");
+    solveme[i].setAttribute("autocapitalize", "off");
+    solveme[i].setAttribute("spellcheck", "false");
+    solveme[i].value = "";
+
+    /* adjust answer for ignorecase or nospaces */
+    var cl = solveme[i].classList;
+    var real_answer = solveme[i].dataset.answer;
+    if (cl.contains("ignorecase")) {
+      real_answer = real_answer.toLowerCase();
+    }
+    if (cl.contains("nospaces")) {
+      real_answer = real_answer.replace(/ /g, "");
+    }
+    solveme[i].dataset.answer = real_answer;
+
+    /* attach checking function */
+    solveme[i].onkeyup = solveme_func;
+    solveme[i].onchange = solveme_func;
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  /* set up radiogroups */
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+  for (var i = 0; i < radiogroups.length; i++) {
+    radiogroups[i].onchange = radiogroups_func;
+  }
+
+  /* set up selects */
+  var selects = document.getElementsByClassName("webex-select");
+  for (var i = 0; i < selects.length; i++) {
+    selects[i].onchange = select_func;
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+  }
+
+  update_total_correct();
+}
+
+</script>
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/psylu\.github\.io\/statistik2-fs25");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../datenanalyse/descriptive.html" class="pagination-link" aria-label="Deskriptive Statistik">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Deskriptive Statistik</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../datenanalyse/ttest_abhaengig.html" class="pagination-link" aria-label="*t*-Test für abhängige Stichproben">
+        <span class="nav-page-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><em>t</em>-Test für abhängige Stichproben</span></span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2025, Gerda Wyssen &amp; Mirjam Senn</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

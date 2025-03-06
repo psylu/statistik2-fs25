@@ -1,0 +1,406 @@
+# *t*-Test für abhängige Stichproben {#sec-t-test-dep}
+
+```{r}
+#| include: false
+# Set working directory of R
+knitr::opts_knit$set(root.dir = '../')
+```
+
+## Anwendungsbereich
+
+Mit *t*-Tests für abhängige Stichproben wird untersucht, wie sich zwei verbundene Gruppen in einem intervallskalierten Mass unterscheiden. 
+
+Abhängige/verbundene Stichproben bedeutet hierbei, dass die Daten einer Person zu zwei Messzeitpunkten (in zwei Bedingungen) erhoben werden. Verbunden kann ebenfalls bedeuten, dass die Daten zweier Personen erhoben werden, die nicht unabhängig voneinander sind (z.B. Paare, Geschwister, Kontrollpersonen etc.).
+
+Abhängigkeit/Verbundenheit kann entstehen durch:
+
+- Messwiederholung
+- Natürliche Paare
+- Parallelisierung der Stichproben
+
+
+__Typische Fragestellungen__:
+
+- _Wie unterscheidet sich Symptomausprägung Y einer Person vor und nach einem Treatment X?_
+
+- _Wie unterscheidet sich Partner:in A von Partner:in B in der Fähigkeit Y?_
+
+- _Wie unterscheidet sich das Verhalten einer Person in Situation A von dem in Situation B?_
+
+
+<!-- __Beispiele__: -->
+
+<!-- > ADD -->
+
+
+## Voraussetzungen
+
+| Voraussetzung | Beschreibung | Vorgehen bei Verletzung |
+|---|---|---|
+| Abhängige Variable | Eine abhängige Variable mit metrischem Skalenniveau. Die Differenzvariable (gemessener Unterschied zwischen jedem Paar) muss in der Population normalverteilt sein (bei genügend grosser Stichprobe ist der _t_-Test robust). | Transformieren der Variable oder Verwenden von non-parametrischen Verfahren: Der Wilcoxon-Vorzeichen-Rangtest kann verwendet werden, wenn der Mittelwert nicht zur Bestimmung der zentralen Tendenz verwendet werden kann. Man greift auf dieses Verfahren u.a. auch dann zurück, wenn die Stichprobe zu klein ist, um von der Robustheit des _t_-Tests ausgehen zu können.|
+| Unabhängige Variable | Eine unabhängige Variable mit zwei Stufen (dichotome Gruppenvariable). | Verwenden eines anderen statistischen Verfahrens (z.B. Regression) |
+| Unabhängigkeit der Messwerte | Die Messwerte _innerhalb_ der beiden Stichproben sind voneinander unabhängig. Es handelt sich um einfache, innerhalb der Stichprobe voneinander unabhängigen, Zufallsstichproben. |  |
+| Abhängigkeit der Gruppen/Stichproben | Die Messwerte _zwischen_ den beiden Stichproben sind verbunden (abhängige Gruppen). | Bei unabhängigen Gruppen kann ein _t_-Test für unabhängige Stichproben verwendet werden (siehe [Kapitel: t-Test für unabhängige Stichproben](ttest_unabhaengig.qmd)) |
+
+: __Voraussetzungen _t_-Test für abhängige Stichproben__, Überprüfung und mögliche Alternativen bei Verletzung der Annahmen {.hover}
+
+
+<br>
+
+<aside> Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transformationen oder non-parametrische Verfahren) wird in diesem Semester nicht eingegangen. </aside>
+
+
+## Grundkonzepte und Vorgehen
+
+![Allgemeiner Workflow der Datenanalyse](../imgs/flowchart_analysis.png)
+
+### Planung
+
+#### __1. Statistische Hypothesen und Signifikanzniveau festlegen__
+
+__Ungerichtete Hypothesen:__
+
+$H_0$: Die Populationsmittelwerte unterscheiden sich nicht (d.h. haben eine Differenz gleich 0) $\mu_1 = \mu_2$ oder $\mu_D = 0$
+
+$H_1$: Die Populationsmittelwerte unterscheiden sich (d.h. haben eine Differenz ungleich 0) $\mu_1 \neq \mu_2$ oder $\mu_D \neq 0$
+
+__Gerichtete Hypothesen:__
+
+Hypothesen können auch gerichtet formuliert werden (die Populationsmittelwerte sind grösser/kleiner in einer Gruppe):
+
+$H_0$: Der Mittelwert der Gruppe 1 ist kleiner oder gleich gross wie der Mittelwert der Gruppe 2 $\quad \mu_1 \leq \mu_2$ 
+
+$H_1$: Der Mittelwert der Gruppe 1 ist grösser als der Mittelwert der Gruppe 2 $\quad \mu_1 > \mu_2$.
+
+oder
+
+$H_0$: Der Mittelwert der Gruppe 1 ist grösser oder gleich gross wie der Mittelwert der Gruppe 2 $\quad \mu_1 \geq \mu_2$ 
+
+$H_1$: Der Mittelwert der Gruppe 1 ist kleiner als der Mittelwert der Gruppe 2 $\quad \mu_1 < \mu_2$.
+
+__Signifikanzniveau:__
+
+Wird ein Signifikanzniveau von $\alpha = 0.05$ festgelegt, bedeutet dies, dass bei der Verwerfung der Nullhypothese eine 5% Wahrscheinlichkeit besteht, dass eigentlich kein Unterschied besteht und irrtümlicherweise einer angenommen wurde.
+
+#### __2. A-priori Poweranalyse durchführen__
+
+Vor der Datenerhebung soll eine a-priori Poweranalyse durchgeführt werden. Einerseits kann damit  ermittelt werden, wie viel Power (Teststärke) der Test hat, um einen Effekt von vordefinierter Grösse (z.B. einen grossen Effekt von $d=0.6$) zu entdecken. Andererseits kann berechnet werden, wie gross die Stichprobe sein sollte, um einen Effekt bestimmter Grösse und eine festgelegte Teststärke zu erreichen. 
+
+<aside> Ein Wert über $0.57$ gilt gemäss den Konventionen für $\delta$ -Masse nach Cohen (1988) als _grosser_ Effekt.^[Eid, M., Gollwitzer, M., & Schmitt, M. (2017). Statistik und Forschungsmethoden: Mit Online-Materialien (5., korrigierte Auflage). Beltz. S. 374] </aside>
+
+
+### Vorverarbeitung
+
+#### __3. Daten einlesen, vorverarbeiten und visualisieren__
+
+Zuerst müssen die Daten eingelesen und bereinigt werden. 
+Daten können diagnostisch visualisiert werden, um z.B. fehlende Werte zu entdecken oder Verteilungen der Daten visuell beurteilen und Extremwerte zu identifizieren.
+
+Für den _t_-Test für abhängige Stichproben werden die Daten hier in einem `wide`-Format benötigt. Für die Visualisierung wird eine Datensatz im `long`-Format benötigt.
+
+#### __4. Voraussetzungen überprüfen__
+
+- __Normalverteilung der Differenzen__
+
+Ob die Differenzen der Messwerte approximativ normalverteilt sind, kann z.B. visuell mit einem Plot oder dem Shapiro-Wilk-Test überprüft werden.
+
+
+### Analyse
+
+#### __5. Deskriptivstatistik und Visualisierung__
+
+Bei Gruppenunterschieden wird für jede Gruppe ein Lagemass (z.B. Mittelwert oder Median) sowie ein Streumass (z.B. Standardabweichung, Standardfehler, Konfidenzintervall) berechnet. Das Lagemass stellt die durchschnittliche Merkmalsausprägung in den beiden Gruppen dar. Das Streumass zeigt den Streubereich der Daten auf.
+
+<aside> Genauere Informationen zu Lage- und Streumassen sind im [Kapitel: Deskriptive Statistik](descriptive.qmd) zu finden. </aside>
+
+Zur Visualisierung von Gruppenunterschieden eignen sich Lagemasse mit Fehlerbalken. Boxplots eignen sich beispielsweise gut, um Grösse des Gruppenunterschiedes (Effekts) und die Kohärenz der Datenpunkte (Ähnlichkeit der Werte innerhalb einer Bedingung/Gruppe) zu beurteilen.
+
+Durch die Visualisierung der Rohwerte, kann die Verteilung der Messungen gut eingeschätzt werden und Extremwerte werden deutlich sichtbar. Bei zu vielen Datenpunkten führt das Visualisieren der Rohwerte zu unübersichtlichen Grafiken.
+
+
+#### __6. Teststatistik berechnen__
+
+Um zu überprüfen, ob die beiden Mittelwerte signifikant unterschiedlich sind, muss die Teststatistik berechnet werden. Die Verteilung der Teststatistik folgt einer sogenannten _t_-Verteilung, die durch die Anzahl Freiheitsgrade (df) definiert ist.
+
+Der _t_-Test für abhängige Stichproben wird über die Differenz der Messwertpaare (intraindividuelle Differenzwerte) ermittelt. 
+
+Dazu werden zuerst die Differenzen aller Mittelwertspaare gebildet: $d_m=x_{m_1}-x_{m_2}$
+
+Daraus wird der Mittelwert und die Standardabweichung der Differenz berechnet, wobei $n$ der Anzahl der Messwertpaare entspricht:
+
+- Mittelwert: $\overline{x}_D=\frac{\sum^n_{m=1} d_m}{n}$
+
+- Standardabweichung: $\hat{\sigma}_D=\sqrt{\frac{\sum^n_{m=1} (d_m-\overline{x}_D)^2}{n-1}}$
+
+Die empirische Prüfgrösse wird mit Hilfe des geschätzten Standardfehlers berechnet:
+
+- Geschätzter Standardfehler: $\hat{\sigma}_{x_D}=\frac{\hat{\sigma}_D}{\sqrt n}$
+
+- Empirische Prüfgrösse: $t_{x_D}=\frac{\overline{x}_D}{\hat{\sigma}_{x_D}}$
+
+- Die Freiheitsgrad lassen sich für einen abhängigen _t_-Test berechnen durch: $df=n-1$
+
+Nun muss die berechnete empirische Prüfgrösse _t_ auf Signifikanz überprüft werden. Dazu wird der Wert mit dem kritischen Wert der durch die Freiheitsgrade bestimmten _t_-Verteilung verglichen. Der kritische Wert kann in einer [Tabelle](https://www.beltz.de/fileadmin/beltz/downloads/OnlinematerialienPVU/28201_Eid/05_Verteilungstabellen/Tab.A.03.pdf) abgelesen werden. 
+
+- Die $H_0$ wird beibehalten, wenn die empirische Prüfgrösse __kleiner__ als der kritische Wert ist. Die Gruppen unterscheiden sich nicht signifikant bzw. die Gruppenvariable hat keinen Einfluss auf die AV. 
+
+- Die $H_0$ wird abgelehnt, wenn die empirische Prüfgrösse __grösser__ als der kritische Wert ist. Die Gruppen unterscheiden sich  signifikant bzw. die Gruppenvariable hat einen Einfluss auf die AV. 
+
+<aside> Bei gerichteten Hypothesen müssen die Aussagen entsprechend angepasst werden.</aside>
+
+#### __7. Effektstärke__
+
+Die Effektgrösse beim _t_-Test für abhängige Stichproben sagt etwas darüber aus, wie gross der Unterschied zwischen den beiden Populationsmittelwerten ist. 
+
+Die standardisierte Effektgrösse kann folgendermassen berechnet werden: 
+
+$d=\frac{\overline{x}_D}{\hat\sigma_{D}}$
+
+Die Konventionen nach Cohen (1988) lauten hier:
+
+$|d|=\approx 0.14$: kleiner Effekt
+
+$|d|=\approx 0.35$: mittelgrosser Effekt
+
+$|d|=\approx 0.57$: grosser Effekt
+
+
+### Schlussfolgerungen
+
+#### __8. Ergebnisse interpretieren und berichten__
+
+Je grösser der empirische _t_-Wert ist, desto stärker spricht dies gegen die Nullhypothese. 
+
+Meistens werden in psychologischen Publikationen die Stichprobenmittelwerte und ihre geschätzten Populationsstandardabweichungen (Stichprobenstandardabweichungen) sowie die _t_-Statistik, ihre Freiheitsgrade und der _p_-Wert (also der Wahrscheinlichkeit dieses oder eines noch extremeren _t_-Wertes unter Annahme der Nullhypothese) berichtet. 
+
+Falls der exakte _p_-Wert sehr klein ist, beispielsweise  $p=0.00000012$ bzw. kleiner als $0.001$, wird dies folgendermassen notiert: $p < .001$.^[[https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf](https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf)]
+
+> Die kognitive Leistung von Personen vor und nach dem Treatment _X_ unterscheidet sich nicht signifikant, _t_(15) = 0.75, _p_ = .470.
+
+
+
+
+## Anwendungsbeispiel in R
+
+::: {.callout-note appearance="default" title="Beispiel: Social Media Experiment" icon=false}
+In einem Experiment wurden 50 Versuchspersonen vor und nach dem Scrollen und Lesen von Nachrichten auf einer Social Media Plattform befragt, wie stark sie Zukunftsängste empfinden. Die Zukunftsangst wurde zu Messzeitpunkt 1 (kurz __vor__ dem Lesen/Scrollen) und zu Messzeitpunkt 2 (kurz __nach__ dem Lesen/Scrollen) gemessen. Hierfür gaben die Versuchspersonen mit einem digitalen Schieber auf einer durchgehenden Skala von 0 bis 10 an, wie stark ihnen die Zukunft Angst macht.
+
+- Die _unabhängige Variable_ war der Messzeitpunkt (dichotom): vorher (pre) und nachher (post).
+- Die _abhängige Variable_ war das Rating der Zukunftsangst.
+
+:::
+
+### Planung
+
+#### __1. Statistische Hypothesen und Signifikanzniveau festlegen__
+
+$H_0$: Das Lesen/Scrollen auf Social Media hat keinen Einfluss auf die Zukunftsangst: $\mu_1=\mu_2$ 
+
+$H_1$: Die Lesen/Scrollen auf Social Media  hat einen Einfluss auf die Zukunftsangst: $\mu_1 \neq\mu_2$ 
+
+Das Alphaniveau wird auf $5 \%$ festgelegt. Da es sich um eine ungerichtete Hypothese handelt, wird zweiseitig getestet. 
+
+#### __2. A-priori Poweranalyse durchführen__
+
+- `n`: Anzahl Paare
+- `d`: Effektgrösse
+- `sig.level`: $\alpha$ (Fehler 1. Art)
+- `alternative`: $H_1$ gerichtet (`greater`oder `less`) oder ungerichtet (`two-sided`)
+
+```{r}
+# Package laden
+library(pwr)
+
+# A-priori Poweranalyse
+# Power berechnen
+power.t.test(n = 50, # Anzahl Versuchspersonen/Paare
+             delta = 0.57, # Mittelwertsunterschied
+             sd = 1, # Standardabweichung
+             sig.level = 0.05, # Signifikanzlevel
+             type = "paired", # abhängig: "paired"
+             strict = TRUE,
+             alternative = "two.sided")
+
+# Stichprobengrösse berechnen
+pwr.t.test(d = 0.35, 
+           power = 0.8, 
+           sig.level = 0.05, 
+           type = "paired",
+           alternative = "two.sided")
+
+```
+
+<aside> Beim ersten Verwenden muss das Package {pwr} heruntergeladen/installiert werden, z.B. in der Konsole mit `install.packages("pwr")`. </aside>
+
+Eine Teststärke (Power) von 0.98 bedeutet, dass die Wahrscheinlichkeit 98% beträgt, einen tatsächlich vorhandenen Effekt mit einer Effektstärke von 0.57 zu finden.
+
+Um mit einer Teststärke von 80% einen mittelgrossen Effekt von $d=0.35$ zu finden, wird eine Stichprobe von mindestens $n=67$ Personen benötigt.
+
+### Vorverarbeitung
+
+#### __3. Daten einlesen und vorverarbeiten__
+
+::: {.callout-caution appearance="default" title="Hands-on: Beispieldatensatz Social-Media-Experiment vorverarbeiten" collapse="false"}
+
+__Daten herunterladen und einlesen__
+
+[Hier](../data/ttests.zip) kann der Projektordner mit den Daten heruntergeladen werden. Vor dem ersten Verwenden muss der Ordner entzippt werden, dann kann das _RProject_ namens `ttests.Rproj` geöffnet werden. Der Ordner enthält
+
+- _RProject_ namens `ttest.Rproj`
+- Datensatz `fear.csv` in `data`-Ordner
+- _RNotebook_ namens `dependent_ttest.Rmd`
+- (die weiteren Dateien werden für den _t_-Test für unabhängige Stichproben und die Übung 4 verwendet.)
+
+```{r, message=FALSE}
+# Package laden
+library(tidyverse)
+
+# Daten laden und anschauen
+d_fear <- read.csv("data/fear.csv") |>
+    glimpse() 
+
+```
+
+__Datensatz transformieren__
+
+Für den _t_-Test für abhängige Stichproben werden die Daten in einem `wide` Format benötigt. Die Variable `id` wird mit `as.factor()` in einen Faktor konvertiert.
+
+Für das Visualisieren jedoch werden Daten im `long`-Format verwendet. Dafür müssen die Daten vom bisherigen `wide` Format in ein `long` Format umstrukturiert werden. Die Variable `id` wird mit `as.factor()` in einen Faktor konvertiert.
+
+```{r}
+# id (Subjekt-ID) als Faktor definieren
+d_fear <- d_fear |>
+  mutate(id = as.factor(id))
+
+# Datenformat für Deskriptivstatistik und Visualisierung
+# von wide zu long transformieren
+d_fear_long <- d_fear |>
+  pivot_longer(cols = c(fear_pre, fear_post),
+               names_to = "timepoint",
+               names_prefix = "fear_", 
+               values_to = "fear") |>
+   select(id, timepoint, fear)
+
+# id (Subjekt-ID) und t (Gruppenvariable) als Faktor definieren
+d_fear_long <- d_fear_long |> 
+  mutate(id = as.factor(id)) |> 
+  mutate(timepoint = factor(timepoint, levels = c("pre", "post")))
+
+# Datensatz anzeigen
+d_fear_long
+```
+
+<aside> Hier konvertieren wir die Variable `timepoint` zu einem Faktor mit der Funktion `factor()`, so können wir im Argument `levels = ...` eingeben, dass die Stufe `pre` vor der Stufe `post` kommen soll (entgegen der automatisch alphabetischen Reihenfolge). Dies macht den Plot logischer, da dann `pre` links und `post` rechts dargestellt wird. </aside>
+:::
+
+#### __4. Voraussetzungen überprüfen__
+
+Der _t_-Test setzt voraus, dass die Differenzen der Messungen in beiden Gruppen normalverteilt sind.
+
+<aside> Die Voraussetzung der Normalverteilung wird in diesem Semester nicht überprüft. Zur Überprüfung der Normalverteilung können Plots dienen oder der Shapiro-Wilk-Test (`shapiro.test(data$variable)`.</aside>
+
+### Analyse
+
+#### __5. Deskriptivstatisik und Visualisierung__
+
+Für die deskriptive Statistik können die Daten nach Bedingung gruppiert und dann die Kennwerte berechnet werden.
+
+Das kann mit dem _Wide_ Datensatz gemacht werden:
+
+```{r}
+# Nach condition gruppieren und performance zusammenfassen
+d_summary <- d_fear |>
+  summarise(mean_fear_pre = mean(fear_pre),
+            sd_fear_pre = sd(fear_pre),
+            mean_fear_post = mean(fear_post),
+            sd_fear_post = sd(fear_post))
+d_summary
+```
+
+
+Oder mit dem _Long_ Datensatz:
+
+```{r}
+# Nach condition gruppieren und performance zusammenfassen
+d_summary <- d_fear_long |>
+  group_by(timepoint) |>
+  summarise(mean_fear = mean(fear),
+            sd_fear = sd(fear))
+d_summary
+```
+
+Mit einem Boxplot kann die Verteilung der Werte angeschaut und die beiden Gruppen visuell miteinander verglichen werden.   
+
+```{r}
+# Boxplot
+p_boxplot <- d_fear_long |> 
+  ggplot(aes(x = timepoint, y = fear)) +
+  geom_jitter(aes(colour = timepoint), alpha = 0.3, height = 0, width = 0.01) +
+  geom_line(aes(x = timepoint, y = fear, group = id), alpha = 0.15) +
+  geom_boxplot(alpha = 0, width = 0.2, color = "black") +
+  scale_colour_manual(values = c("pre" = "red4",
+                               "post" = "blue4")) +
+  labs(title = "Effect of Social Media on Fear ",
+       subtitle = "Paired t-Test",
+       x = "Timepoint",
+       y = "Fear") +
+  theme_minimal(base_size = 12) +
+  theme(legend.position = "none")
+
+p_boxplot
+```
+
+
+#### __6. Teststatistik berechnen__
+
+__Berechnung Teststatistik in R mit der Funktion `t.test`__
+
+Der _t_-Test für abhängige Stichproben kann mit der Funktion `t.test()` durchgeführt werden. Hierbei wird ein Datensatz im __wide__-Format benötigt.
+
+- `y`: Abhängige Variable Gruppe A
+- `x`: Abhängige Variable Gruppe B
+- `alternative`: festlegen, ob die $H_1$ gerichtet (`greater`oder `less`) oder ungerichtet (`two-sided`) ist
+- `var.equal`: festlegen, ob die Annahme homogener Varianzen zutrifft (`TRUE`) oder nicht (`FALSE`)
+
+
+
+```{r}
+# t-Test für unabhängige Stichproben durchführen
+t.test(x = d_fear$fear_post, # av t2
+       y = d_fear$fear_pre, # av t1
+       alternative = "two.sided",
+       paired = TRUE)
+```
+
+Die Mittelwerte zwischen den beiden Messzeitpunkten unterscheiden sich signifikant auf dem $5 \%$-Niveau. Die Nullhypothese, wonach sich die beiden Mittelwerte nicht unterscheiden kann verworfen werden. Das Lesen/Scrollen durch Social Media Posts beeinflusst somit die empfundene Zukunftsangst.
+
+
+<!-- #### __7. Effektstärke bestimmen__ -->
+
+<!-- __Berechnung der Effektgrösse (Cohen's _d_)__ -->
+
+<!-- Nun kann noch die Effektgrösse mit `cohen.d(x, y, paired = TRUE)` aus dem Package {effsize} berechnet werden.  -->
+
+<!-- ```{r} -->
+<!-- # Effektgrösse berechnen -->
+<!-- effsize::cohen.d(d_fear$fear_post, # av t2 -->
+<!--                  d_fear$fear_pre, # av t1 -->
+<!--                  paired = TRUE) -->
+<!-- ``` -->
+<!-- Die Effektgrösse liegt bei $d = 0.77$. Es handelt sich nach der Taxonomie von Cohen (1988) um einen __grossen__ Effekt. -->
+
+<!-- # ```{r} -->
+<!-- # effsize::cohen.d(formula = fear ~ timepoint | Subject(id),  # av ~ uv -->
+<!-- #                  data = d_fear_long, -->
+<!-- #                  paired = TRUE) -->
+<!-- # ``` -->
+
+### Schlussfolgerungen
+
+#### __8. Ergebnisse interpretieren und berichten__
+
+Das Ergebnis ist auf dem $5 \%$-Niveau signifikant und die Nullhypothese kann somit verworfen werden: Die Stimmung beeinflusst die kognitive Leistungsfähigkeit. Es handelt sich nach der Taxonomie von Cohen (1988) um einen grossen Effekt ($d = 0.77$). 
+
+>"We examined whether doom-scrolling on social media has an effect on the immediate experience of fear of the future. There was a significant difference between pre and post measurement, _t_(49) = 3.98, _p_ < .001, _d_ = 0.77). Participants reported significantly higher fear of the future after reading/scrolling through social media posts (_M_ = 6.38, _SD_ = 2.72) compared to before (_M_ = 4.32, _SD_ = 2.62). This indicates a large effect of social media on experiences of fear of the future according to Cohen’s convention (1988)."
+	
+

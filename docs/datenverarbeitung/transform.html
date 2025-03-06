@@ -213,25 +213,37 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Datenvisualisierung</span></span>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
  <span class="menu-text">Datenanalyse</span></a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
-      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../datenanalyse/descriptive.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Deskriptive Statistik</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenanalyse/ttest_unabhaengig.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><em>t</em>-Test für unabhängige Stichproben</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenanalyse/ttest_abhaengig.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><em>t</em>-Test für abhängige Stichproben</span></span></a>
+  </div>
+</li>
       </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Datenvisualisierung</span></span>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
@@ -258,6 +270,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="sidebar-item-container"> 
   <a href="../uebungen/uebung-02.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Übung 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 4</span></a>
   </div>
 </li>
       </ul>
@@ -323,7 +341,12 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <li><a href="#neue-variablen-generieren-und-verändern-mutate-und-case_when" id="toc-neue-variablen-generieren-und-verändern-mutate-und-case_when" class="nav-link" data-scroll-target="#neue-variablen-generieren-und-verändern-mutate-und-case_when"><span class="header-section-number">7.7</span> Neue Variablen generieren und verändern: <code>mutate()</code> und <code>case_when()</code></a></li>
   <li><a href="#variablentyp-verändern-as.factor-as.numeric" id="toc-variablentyp-verändern-as.factor-as.numeric" class="nav-link" data-scroll-target="#variablentyp-verändern-as.factor-as.numeric"><span class="header-section-number">7.8</span> Variablentyp verändern: <code>as.factor()</code>, <code>as.numeric()</code>, …</a></li>
   <li><a href="#daten-gruppieren-und-zusammenfassen-group_by-und-summarise" id="toc-daten-gruppieren-und-zusammenfassen-group_by-und-summarise" class="nav-link" data-scroll-target="#daten-gruppieren-und-zusammenfassen-group_by-und-summarise"><span class="header-section-number">7.9</span> Daten gruppieren und zusammenfassen: <code>group_by()</code> und <code>summarise()</code></a></li>
-  <li><a href="#datensätze-speichern-write.csv" id="toc-datensätze-speichern-write.csv" class="nav-link" data-scroll-target="#datensätze-speichern-write.csv"><span class="header-section-number">7.10</span> Datensätze speichern: <code>write.csv()</code></a></li>
+  <li><a href="#datensatzformate-transformieren-pivot_wider-und-pivot_longer" id="toc-datensatzformate-transformieren-pivot_wider-und-pivot_longer" class="nav-link" data-scroll-target="#datensatzformate-transformieren-pivot_wider-und-pivot_longer"><span class="header-section-number">7.10</span> Datensatzformate transformieren: <code>pivot_wider()</code> und <code>pivot_longer()</code></a>
+  <ul class="collapse">
+  <li><a href="#wide-zu-long-transformieren" id="toc-wide-zu-long-transformieren" class="nav-link" data-scroll-target="#wide-zu-long-transformieren"><span class="header-section-number">7.10.1</span> <em>Wide</em> zu <em>Long</em> transformieren</a></li>
+  <li><a href="#long-zu-wide-transformieren" id="toc-long-zu-wide-transformieren" class="nav-link" data-scroll-target="#long-zu-wide-transformieren"><span class="header-section-number">7.10.2</span> <em>Long</em> zu <em>Wide</em> transformieren</a></li>
+  </ul></li>
+  <li><a href="#datensätze-speichern-write.csv" id="toc-datensätze-speichern-write.csv" class="nav-link" data-scroll-target="#datensätze-speichern-write.csv"><span class="header-section-number">7.11</span> Datensätze speichern: <code>write.csv()</code></a></li>
   </ul>
 </nav>
     </div>
@@ -986,8 +1009,77 @@ Lösung: Datensätze gruppieren und zusammenfassen
 </div>
 </div>
 </section>
-<section id="datensätze-speichern-write.csv" class="level2" data-number="7.10">
-<h2 data-number="7.10" class="anchored" data-anchor-id="datensätze-speichern-write.csv"><span class="header-section-number">7.10</span> Datensätze speichern: <code>write.csv()</code></h2>
+<section id="datensatzformate-transformieren-pivot_wider-und-pivot_longer" class="level2" data-number="7.10">
+<h2 data-number="7.10" class="anchored" data-anchor-id="datensatzformate-transformieren-pivot_wider-und-pivot_longer"><span class="header-section-number">7.10</span> Datensatzformate transformieren: <code>pivot_wider()</code> und <code>pivot_longer()</code></h2>
+<section id="wide-zu-long-transformieren" class="level3" data-number="7.10.1">
+<h3 data-number="7.10.1" class="anchored" data-anchor-id="wide-zu-long-transformieren"><span class="header-section-number">7.10.1</span> <em>Wide</em> zu <em>Long</em> transformieren</h3>
+<p>Ein Datensatz im <em>Wide</em>-Format kann mit <code>pivot_longer()</code> zu einem Datensatz im <em>Long</em>-Format verändert werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wide Datensatz erstellen</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>d_wide <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">c</span>(<span class="st">"sub-01"</span>, <span class="st">"sub-02"</span>),</span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">conditionA =</span> <span class="fu">c</span>(<span class="fl">1.85</span>, <span class="fl">2.13</span>),</span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">conditionB =</span> <span class="fu">c</span>(<span class="fl">2.65</span>, <span class="fl">2.11</span>),</span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="at">conditionC =</span> <span class="fu">c</span>(<span class="fl">1.64</span>, <span class="fl">1.78</span>)</span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Zu Long transformieren</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>d_long <span class="ot">&lt;-</span> d_wide <span class="sc">|&gt;</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(conditionA<span class="sc">:</span>conditionC, <span class="co"># Variablen zum zusammenfassen</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"condition"</span>, <span class="co"># Neuer Variablenname Kategorien</span></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">"condition"</span>, <span class="co"># Entfernen aus Bezeichnung (optional)</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"error"</span>) <span class="co"># Neuer Variablenname Werte</span></span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>d_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 3
+  id     condition error
+  &lt;chr&gt;  &lt;chr&gt;     &lt;dbl&gt;
+1 sub-01 A          1.85
+2 sub-01 B          2.65
+3 sub-01 C          1.64
+4 sub-02 A          2.13
+5 sub-02 B          2.11
+6 sub-02 C          1.78</code></pre>
+</div>
+</div>
+</section>
+<section id="long-zu-wide-transformieren" class="level3" data-number="7.10.2">
+<h3 data-number="7.10.2" class="anchored" data-anchor-id="long-zu-wide-transformieren"><span class="header-section-number">7.10.2</span> <em>Long</em> zu <em>Wide</em> transformieren</h3>
+<p>Ein Datensatz im <em>Long</em>-Format kann mit <code>pivot_wider()</code> zu einem Datensatz im <em>Wide</em>-Format verändert werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Wide Datensatz erstellen</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>d_long <span class="ot">&lt;-</span> <span class="fu">tibble</span>(</span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">id =</span> <span class="fu">c</span>(<span class="st">"sub-01"</span>, <span class="st">"sub-01"</span>, <span class="st">"sub-01"</span>, <span class="st">"sub-02"</span>, <span class="st">"sub-02"</span>, <span class="st">"sub-02"</span>),</span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="at">condition =</span> <span class="fu">c</span>(<span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>, <span class="st">"A"</span>, <span class="st">"B"</span>, <span class="st">"C"</span>),</span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="at">error =</span> <span class="fu">c</span>(<span class="fl">1.85</span>, <span class="fl">2.65</span>, <span class="fl">1.64</span>, <span class="fl">2.13</span>, <span class="fl">2.11</span>, <span class="fl">1.78</span>)</span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>)</span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Zu Wide transformieren</span></span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>d_wide <span class="ot">&lt;-</span> d_long <span class="sc">|&gt;</span></span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">id_cols =</span> id, <span class="co"># ID Variable</span></span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">names_from =</span> condition, <span class="co"># Variable mit Kategorien</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>              <span class="at">names_prefix =</span> <span class="st">"condition"</span>, <span class="co"># Namenszusatz (optional)</span></span>
+<span id="cb35-13"><a href="#cb35-13" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> error <span class="co"># Variable mit Werten</span></span>
+<span id="cb35-14"><a href="#cb35-14" aria-hidden="true" tabindex="-1"></a>              )</span>
+<span id="cb35-15"><a href="#cb35-15" aria-hidden="true" tabindex="-1"></a>d_wide</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 4
+  id     conditionA conditionB conditionC
+  &lt;chr&gt;       &lt;dbl&gt;      &lt;dbl&gt;      &lt;dbl&gt;
+1 sub-01       1.85       2.65       1.64
+2 sub-02       2.13       2.11       1.78</code></pre>
+</div>
+</div>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../imgs/longwide.jpg" class="img-fluid figure-img"></p>
+<figcaption>Transformation von <em>Wide</em> zu <em>Long</em> und von <em>Long</em> zu <em>Wide</em> mit der <code>pivot</code>-Funktion</figcaption>
+</figure>
+</div>
+</section>
+</section>
+<section id="datensätze-speichern-write.csv" class="level2" data-number="7.11">
+<h2 data-number="7.11" class="anchored" data-anchor-id="datensätze-speichern-write.csv"><span class="header-section-number">7.11</span> Datensätze speichern: <code>write.csv()</code></h2>
 <div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Neuer Datensatz abspeichern">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -1000,7 +1092,7 @@ Hands-on: Neuer Datensatz abspeichern
 <div class="callout-body-container callout-body">
 <p>Speichern Sie den bearbeiteten Datensatz als Datei ab</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(d, <span class="st">"data/readingskills_clean.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">write.csv</span>(d, <span class="st">"data/readingskills_clean.csv"</span>, <span class="at">row.names =</span> <span class="cn">FALSE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>

@@ -22,12 +22,12 @@ knitr::opts_knit$set(root.dir = '../')
 
 - Packages {tidyverse}, {Hmisc} und {esquisse} sind installiert.
 - _RProject_ namens `introduction_to_r` mit Datenordner `data` aus [Kapitel: Basics R und RStudio](https://psylu.github.io/statistik2-fs25/r/rrstudio.html).
-- Neues _RNotebook_ namens `uebung-02` im _RProject_-Ordner
 - Die folgenden Datensätze sind im `data`-Ordner des _RProjects_ `introduction_to_r` gespeichert:
     - [`readingskills_clean.csv`](../data/readingskills_clean.csv)
     - [`experiment1.csv`](../data/experiment1.csv)
     - [`experiment2.csv`](../data/experiment2.csv)
     - [`milgram.csv`](../data/milgram.csv)
+- Neues _RNotebook_ namens `uebung-02` im _RProject_-Ordner
 :::
 
 <br>

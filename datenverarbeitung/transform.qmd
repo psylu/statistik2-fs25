@@ -429,6 +429,54 @@ d_summary
 
 :::
 
+## Datensatzformate transformieren: `pivot_wider()` und `pivot_longer()`
+
+### _Wide_ zu _Long_ transformieren
+
+Ein Datensatz im _Wide_-Format kann mit `pivot_longer()` zu einem Datensatz im _Long_-Format verändert werden.
+
+```{r}
+# Wide Datensatz erstellen
+d_wide <- tibble(
+  id = c("sub-01", "sub-02"),
+  conditionA = c(1.85, 2.13),
+  conditionB = c(2.65, 2.11),
+  conditionC = c(1.64, 1.78)
+)
+
+# Zu Long transformieren
+d_long <- d_wide |>
+  pivot_longer(conditionA:conditionC, # Variablen zum zusammenfassen
+               names_to = "condition", # Neuer Variablenname Kategorien
+               names_prefix = "condition", # Entfernen aus Bezeichnung (optional)
+               values_to = "error") # Neuer Variablenname Werte
+d_long
+```
+
+### _Long_ zu _Wide_ transformieren
+
+Ein Datensatz im _Long_-Format kann mit `pivot_wider()` zu einem Datensatz im _Wide_-Format verändert werden.
+
+```{r}
+# Wide Datensatz erstellen
+d_long <- tibble(
+  id = c("sub-01", "sub-01", "sub-01", "sub-02", "sub-02", "sub-02"),
+  condition = c("A", "B", "C", "A", "B", "C"),
+  error = c(1.85, 2.65, 1.64, 2.13, 2.11, 1.78)
+)
+
+# Zu Wide transformieren
+d_wide <- d_long |>
+  pivot_wider(id_cols = id, # ID Variable
+              names_from = condition, # Variable mit Kategorien
+              names_prefix = "condition", # Namenszusatz (optional)
+              values_from = error # Variable mit Werten
+              )
+d_wide
+```
+
+![Transformation von _Wide_ zu _Long_ und von _Long_ zu _Wide_ mit der `pivot`-Funktion](../imgs/longwide.jpg)
+
 ## Datensätze speichern: `write.csv()`
 
 :::{.callout-caution appearance="default" title="Hands-on: Neuer Datensatz abspeichern"}
