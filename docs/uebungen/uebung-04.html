@@ -357,7 +357,7 @@ window.Quarto = {
   <li><a href="#aufgabe-4.1-projektumgebung-erstellen" id="toc-aufgabe-4.1-projektumgebung-erstellen" class="nav-link active" data-scroll-target="#aufgabe-4.1-projektumgebung-erstellen">Aufgabe 4.1: Projektumgebung erstellen</a></li>
   <li><a href="#aufgabe-4.2-t-test-ausführen" id="toc-aufgabe-4.2-t-test-ausführen" class="nav-link" data-scroll-target="#aufgabe-4.2-t-test-ausführen">Aufgabe 4.2: T-Test ausführen</a></li>
   <li><a href="#aufgabe-4.3-t-test-ausführen" id="toc-aufgabe-4.3-t-test-ausführen" class="nav-link" data-scroll-target="#aufgabe-4.3-t-test-ausführen">Aufgabe 4.3: T-Test ausführen</a></li>
-  <li><a href="#aufgabe-4.4-zusatzaufgabe" id="toc-aufgabe-4.4-zusatzaufgabe" class="nav-link" data-scroll-target="#aufgabe-4.4-zusatzaufgabe">Aufgabe 4.4: Zusatzaufgabe</a></li>
+  <li><a href="#aufgabe-4.4-zusatzaufgaben" id="toc-aufgabe-4.4-zusatzaufgaben" class="nav-link" data-scroll-target="#aufgabe-4.4-zusatzaufgaben">Aufgabe 4.4: Zusatzaufgaben</a></li>
   </ul>
 </nav>
     </div>
@@ -445,26 +445,32 @@ Voraussetzungen
 <p><em>Falls obige Anforderungen noch nicht erfüllt:</em></p>
 <ul>
 <li>Laden Sie den Projektordner herunter und entzippen Sie den Ordner.</li>
-<li>Installieren Sie die benötigten Packages (falls noch nicht geschehen: das Package {pwr} in der Konsole mit <code>install.packages("pwr")</code> oder mit <code>Tools</code> &gt; <code>Install Packages...</code> das Package {car} in der Konsole mit <code>install.packages("car")</code> oder mit <code>Tools</code> &gt; <code>Install Packages...</code> das Package {effsize} in der Konsole mit <code>install.packages("effsize")</code> oder mit <code>Tools</code> &gt; <code>Install Packages...</code></li>
+<li>Installieren Sie die benötigten Packages (falls noch nicht geschehen:
+<ul>
+<li>das Package {pwr} in der Konsole mit <code>install.packages("pwr")</code> oder mit <code>Tools</code> &gt; <code>Install Packages...</code></li>
+<li>das Package {car} in der Konsole mit <code>install.packages("car")</code> oder mit <code>Tools</code> &gt; <code>Install Packages...</code></li>
+<li>das Package {effsize} in der Konsole mit <code>install.packages("effsize")</code> oder mit <code>Tools</code> &gt; <code>Install Packages...</code></li>
+</ul></li>
 </ul>
 <p><strong>a.</strong> Öffnen Sie das <em>RProjekt</em> <code>ttests</code>.</p>
-<p><strong>b.</strong> Erstellen ein <em>RNotebook</em> names <em>uebung-04</em>.</p>
+<p><strong>b.</strong> Erstellen ein <em>RNotebook</em> names <code>uebung-04</code>.</p>
 </section>
 <section id="aufgabe-4.2-t-test-ausführen" class="level2">
 <h2 class="anchored" data-anchor-id="aufgabe-4.2-t-test-ausführen">Aufgabe 4.2: T-Test ausführen</h2>
-<p><strong>Beschreibung der Studie</strong> Sie wollen untersuchen, ob sich die Beziehungsqualität von Paaren durch ein Kommunikationstraining verbessern lässt. Sie untersuchen daher zwei Gruppen mit insgesamt 60 Paaren. Eine Gruppe (30 Paare) erhält während zwei Monaten ein Kommunikationstraining (KT). Die andere Gruppe (30 Paare) erhält in diesen zwei Monaten ein Rechtschreibetraining (RS) mit gleicher Intensität. Nach zwei Monaten werden alle Paare zu zweit zu ihrer Beziehungsqualität befragt. Diese Befragung ergibt <strong>einen</strong> Wert für Beziehungsqualität pro Paar, also 30 Werte in der <em>KT</em>-Gruppe und 30 Werte in der <em>RS</em>-Gruppe. Das Signifikanzniveau wird auf <span class="math inline">\(\alpha=0.05\)</span> festgelegt.</p>
-<p><strong>Forschungsfrage</strong>: Besteht ein Unterschied in der Einschätzung der Beziehungsqualität zwischen den beiden Gruppen?</p>
+<p><strong>Studienbeschrieb</strong></p>
+<p>Sie wollen untersuchen, ob sich die Beziehungsqualität von Paaren durch ein Kommunikationstraining verbessern lässt. Sie untersuchen daher zwei Gruppen mit insgesamt 60 Paaren. Eine Gruppe (30 Paare) erhält während zwei Monaten ein Kommunikationstraining (KT). Die andere Gruppe (30 Paare) erhält in diesen zwei Monaten ein Rechtschreibetraining (RS) mit gleicher Intensität. Nach zwei Monaten werden alle Paare zu zweit zu ihrer Beziehungsqualität befragt. Diese Befragung ergibt <strong>einen</strong> Wert für Beziehungsqualität pro Paar, also 30 Werte in der <em>KT</em>-Gruppe und 30 Werte in der <em>RS</em>-Gruppe. Das Signifikanzniveau wird auf <span class="math inline">\(\alpha=0.05\)</span> festgelegt.</p>
+<p><strong>Forschungsfrage</strong>: Besteht nach dem Training ein Unterschied in der Einschätzung der Beziehungsqualität zwischen den beiden Gruppen?</p>
 <p><br></p>
 <p><strong>Bearbeiten Sie nun Schritt für Schritt folgende Aufgaben:</strong></p>
-<p><strong>a.</strong> Wurde gerichtet getestet? Wie lautet die <span class="math inline">\(H_0\)</span> und die <span class="math inline">\(H_1\)</span>?</p>
+<p><strong>a.</strong> Muss gerichtet oder ungerichtet getestet werden? Wie lautet die <span class="math inline">\(H_0\)</span> und die <span class="math inline">\(H_1\)</span>?</p>
 <blockquote class="blockquote">
 <p>Ungerichtetes Testen: “Besteht ein Unterschied…”</p>
 </blockquote>
 <blockquote class="blockquote">
-<p><span class="math inline">\(H_0\)</span>: Die Mittelwerte der beiden Gruppen (Kommunikationstraining vs.&nbsp;Rechtsschreibetraining) unterscheiden sich nicht bezüglich der Beziehungsqualität, d.h. die Differenz ist 0. <span class="math inline">\(\mu_{KT} = \mu_{RT}\)</span></p>
+<p><span class="math inline">\(H_0\)</span>: Die Mittelwerte der beiden Gruppen (Kommunikationstraining vs.&nbsp;Rechtsschreibetraining) unterscheiden sich nicht bezüglich der Beziehungsqualität, d.h. die Differenz ist 0. <span class="math inline">\(\mu_{KT} = \mu_{RS}\)</span></p>
 </blockquote>
 <blockquote class="blockquote">
-<p><span class="math inline">\(H_1\)</span>: Die Mittelwerte der beiden Gruppen (Kommunikationstraining vs.&nbsp;Rechtsschreibetraining) unterscheiden sich bezüglich der Beziehungsqualität, d.h. die Differenz ist ungleich 0. <span class="math inline">\(\mu_{KT} \neq \mu_{RT}\)</span></p>
+<p><span class="math inline">\(H_1\)</span>: Die Mittelwerte der beiden Gruppen (Kommunikationstraining vs.&nbsp;Rechtsschreibetraining) unterscheiden sich bezüglich der Beziehungsqualität, d.h. die Differenz ist ungleich 0. <span class="math inline">\(\mu_{KT} \neq \mu_{RS}\)</span></p>
 </blockquote>
 <p><strong>b.</strong> Welches Signifikanzniveau wurde festgelegt? Was bedeutet das?</p>
 <blockquote class="blockquote">
@@ -504,7 +510,7 @@ Tipp
 <ul>
 <li><p>Gruppieren Sie den Datensatz nach Bedingungen.</p></li>
 <li><p>Berechnen Sie den Mittelwert und die Standardabweichung</p></li>
-<li><p>Erstellen mit den obigen Schritten einen neue Variable namens <code>d_quality_summary</code>.</p></li>
+<li><p>Erstellen Sie mit den obigen Schritten einen neue Variable namens <code>d_quality_summary</code>.</p></li>
 <li><p>Schauen Sie sich die Werte in <code>d_quality_summary</code> an.</p></li>
 </ul>
 <div class="callout callout-style-default callout-tip callout-titled" title="Tipp">
@@ -520,7 +526,8 @@ Tipp
 <div id="callout-4" class="callout-4-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <ul>
-<li><p>Beginnen Sie mit <code>d_quality_summary &lt;-</code> Datensatz und dann der Pipe <code>|&gt;</code></p></li>
+<li><p>Beginnen Sie mit <code>d_quality_summary &lt;- ___</code>. Fügen Sie den Namen des Datensatzes ein.</p></li>
+<li><p>Fahren Sie dann mit der Pipe <code>|&gt;</code> weiter.</p></li>
 <li><p>Verwenden Sie <code>group_by()</code> zum Gruppieren. Als Argument muss hier die Gruppierungsvariable (UV) eingegeben werden.</p></li>
 <li><p>Berechnen Sie den Mittelwert und die Standardabweichung mit <code>mean()</code> und <code>sd()</code>.</p></li>
 </ul>
@@ -619,8 +626,9 @@ d estimate: 0.2994742 (small)
 -0.02502902  0.62397745 </code></pre>
 </div>
 </div>
-<p><strong>i.</strong> Interpretation und Berichten</p>
-<p>Schreiben Sie 1-2 Sätze zu den Ergebnissen für einen wissenschaftlichen Artikel (<a href="../datenanalyse/ttest_unabhaengig.html#Schlussfolgerungen">siehe hier für ein Beispiel</a>)</p>
+<p><strong>j.</strong> Interpretation und Berichten</p>
+<p>Schreiben Sie 1-2 Sätze zu den Ergebnissen für einen wissenschaftlichen Artikel.</p>
+<p><a href="../datenanalyse/ttest_unabhaengig.html#ergebnisse-interpretieren-und-berichten-1">Hier finden Sie ein Beispiel.</a></p>
 <div class="callout callout-style-default callout-tip callout-titled" title="Zusatzaufgaben">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -644,23 +652,31 @@ Zusatzaufgaben
 </section>
 <section id="aufgabe-4.3-t-test-ausführen" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="aufgabe-4.3-t-test-ausführen">Aufgabe 4.3: T-Test ausführen</h2>
-<p>Sei fragen sich, ob das Sprichwort “Gegensätze ziehen sich an” bei romantischen Paaren zutrifft. Sie untersuchen daher, ob sich die Persönlichkeitsmerkmale von Partnern unterscheiden und haben dazu bei 250 Paaren das Persönlichkeitsmerkmals <em>Extraversion</em> erhoben. Die abhängige Variable <em>Extraversion</em> wurde jeweils bei beiden Partner mit dem gleichen Messinstrument erhoben.</p>
+<p><strong>Studienbeschrieb</strong></p>
+<p>Sie fragen sich, ob das Sprichwort “Gegensätze ziehen sich an” bei romantischen Paaren zutrifft. Sie untersuchen daher, ob sich die Persönlichkeitsmerkmale von Partnern unterscheiden und haben dazu bei 250 Paaren das Persönlichkeitsmerkmals <em>Extraversion</em> erhoben. Die abhängige Variable <em>Extraversion</em> wurde jeweils bei beiden Partner mit dem gleichen Messinstrument erhoben. Das Signifikanzniveau wird auf <span class="math inline">\(\alpha=0.05\)</span> festgelegt.</p>
 <aside>
-<a href="https://journals.sagepub.com/doi/full/10.1177/0265407511431183">Publikation</a>
+<a href="https://journals.sagepub.com/doi/full/10.1177/0265407511431183">Artikel zum Studienbeispiel: Claxton et al.&nbsp;(2012)</a>
 </aside>
-<p>Das Signifikanzniveau wird auf <span class="math inline">\(\alpha=0.05\)</span> festgelegt.</p>
-<p>Bearbeiten Sie nun Schritt für Schritt folgende Aufgaben:</p>
-<p><strong>a.</strong> Wie lautet die <span class="math inline">\(H_0\)</span> und wie die <span class="math inline">\(H_1\)</span>? Welches Signifikanzniveau wurde festgelegt?</p>
+<p><strong>Forschungsfrage</strong>: Unterscheiden sich das Persönlichkeitsmerkmal <em>Extraversion</em> signifikant zwischen Partnern?</p>
+<p><strong>Bearbeiten Sie nun Schritt für Schritt folgende Aufgaben:</strong></p>
+<p><strong>a.</strong> Muss gerichtet oder ungerichtet getestet werden? Wie lautet die <span class="math inline">\(H_0\)</span> und die <span class="math inline">\(H_1\)</span>?</p>
 <blockquote class="blockquote">
-<p><span class="math inline">\(H_0\)</span>: tba</p>
+<p>Ungerichtetes Testen: “Unterscheiden sich…”</p>
 </blockquote>
 <blockquote class="blockquote">
-<p><span class="math inline">\(H_1\)</span>: tba</p>
+<p><span class="math inline">\(H_0\)</span>: Die Mittelwerte der beiden Messungen (Partner A vs.&nbsp;Partner B) unterscheiden sich nicht bezüglich der Ausprägung von Extraversion, d.h. die Differenz ist 0. <span class="math inline">\(\mu_{A} = \mu_{B}\)</span></p>
 </blockquote>
 <blockquote class="blockquote">
-<p>Ungerichtete Hypothese auf dem <span class="math inline">\(\alpha=0.05\)</span>-Niveau.</p>
+<p><span class="math inline">\(H_1\)</span>: Die Mittelwerte der beiden Messungen (Partner A vs.&nbsp;Partner B) unterscheiden sich bezüglich der Ausprägung von Extraversion, d.h. die Differenz ist ungleich 0. <span class="math inline">\(\mu_{A} \neq \mu_{B}\)</span></p>
 </blockquote>
-<p><strong>b.</strong> Lesen Sie den Datensatz <code>couples_extraversion.csv</code> ein und speichern Sie ihn in die Variable <code>d_extraversion</code>.</p>
+<p><strong>b.</strong> Welches Signifikanzniveau wurde festgelegt? Was bedeutet das?</p>
+<blockquote class="blockquote">
+<p><span class="math inline">\(\alpha=0.05\)</span>-Niveau.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Wird ein Signifikanzniveau von <span class="math inline">\(\alpha = 0.05\)</span> festgelegt, bedeutet dies, dass bei der Verwerfung der Nullhypothese eine 5% Wahrscheinlichkeit besteht, dass eigentlich kein Unterschied besteht und irrtümlicherweise einer angenommen wurde.</p>
+</blockquote>
+<p><strong>b.</strong> Lesen Sie den Datensatz <code>couples_extraversion.csv</code> aus dem <code>data</code> Ordner ein und speichern Sie ihn in die Variable <code>d_extraversion</code>.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>d_extraversion <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/couples_extraversion.csv"</span>)</span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(d_extraversion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -674,25 +690,29 @@ $ extra2 &lt;dbl&gt; 33.97, 30.37, 22.16, 31.65, 29.34, 18.30, 26.57, 35.76, 34.
 </div>
 <p><strong>c.</strong> Schauen Sie sich die Variablen und die Deskriptivstatistik an.</p>
 <ul>
-<li><p>In welchem Format ist der Datensatz? Inwiefer unterscheidet er sich zu Aufgabe 4.2.?</p></li>
-<li><p>Wie lauten die Mittelwerte und die Standardabweichungen der beiden Variablen? Was fällt Ihnen auf?</p></li>
+<li>In welchem Format ist der Datensatz? Inwiefern unterscheidet er sich zu Aufgabe 4.2.?</li>
 </ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>d_extraversion_summary <span class="ot">&lt;-</span> d_extraversion <span class="sc">|&gt;</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="fu">mean</span>(extra1), <span class="fu">sd</span>(extra1),</span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>            <span class="fu">mean</span>(extra2), <span class="fu">sd</span>(extra2))</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>d_extraversion_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>  mean(extra1) sd(extra1) mean(extra2) sd(extra2)
-1     28.93912   5.073961     29.79656    5.05109</code></pre>
-</div>
-</div>
 <blockquote class="blockquote">
 <p>Es handelt sich um einen Datensatz im <code>wide</code>-Format. Im Gegensatz zu Aufgabe 4.2.</p>
 </blockquote>
+<ul>
+<li>Wie lauten die Mittelwerte und die Standardabweichungen der Variablen? Was fällt Ihnen auf?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>d_extraversion_summary <span class="ot">&lt;-</span> d_extraversion <span class="sc">|&gt;</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_extra1 =</span> <span class="fu">mean</span>(extra1), </span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_extra1 =</span> <span class="fu">sd</span>(extra1),</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_extra2 =</span> <span class="fu">mean</span>(extra2), </span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_extra2 =</span> <span class="fu">sd</span>(extra2))</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>d_extraversion_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mean_extra1 sd_extra1 mean_extra2 sd_extra2
+1    28.93912  5.073961    29.79656   5.05109</code></pre>
+</div>
+</div>
 <p><strong>d.</strong> Welchen statistischen Test führen Sie durch?</p>
 <blockquote class="blockquote">
-<p>Es muss ein t-Test für abhängige Stichproben verwendet werden, da die beiden Gruppen abhängig sind (natürlichen Paare). Dies führt dazu, dass ich die Partner:innen ähnlicher sind und daher nicht “zufällig” geordnet sind.</p>
+<p>Es muss ein t-Test für abhängige Stichproben verwendet werden, da die beiden Gruppen abhängig sind (natürlichen Paare).</p>
 </blockquote>
 <p><strong>d.</strong> Welche Voraussetzungen müssen für den Test erfüllt sein? Welche überprüfen wir?</p>
 <blockquote class="blockquote">
@@ -701,16 +721,20 @@ $ extra2 &lt;dbl&gt; 33.97, 30.37, 22.16, 31.65, 29.34, 18.30, 26.57, 35.76, 34.
 <blockquote class="blockquote">
 <p>Normalverteilung setzen wir zum aktuellen Zeitpunkt voraus.</p>
 </blockquote>
-<blockquote class="blockquote">
-<p>Weitere ev. ergänzen</p>
-</blockquote>
-<p><strong>e.</strong> Wie lautet Ihre Testenscheidung? Was geschieht, wenn Sie statt <code>paired = TRUE``paired = FALSE</code> verwenden?</p>
+<p><strong>e.</strong> Führen Sie einen t-Test mit der Funktion <code>t.test()</code> durch. Wie lautet Ihre Testentscheidung?</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test für abhängige Stichproben durchführen</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(d_extraversion<span class="sc">$</span>extra1, d_extraversion<span class="sc">$</span>extra2, </span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(d_extraversion<span class="sc">$</span>___, d_extraversion<span class="sc">$</span>___, <span class="co">#av1, av2</span></span>
 <span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
-<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> d_extraversion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> ___, <span class="co"># TRUE: abhängig, FALSE: unabhängig</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> ___) <span class="co"># Datensatz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test für abhängige Stichproben durchführen</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(d_extraversion<span class="sc">$</span>extra1, d_extraversion<span class="sc">$</span>extra2, </span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> d_extraversion)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Paired t-test
@@ -726,14 +750,59 @@ mean difference
 </div>
 </div>
 <blockquote class="blockquote">
-<p>Der Test wird nun signifikant.</p>
+<p>Es muss ein paired t-test durchgeführt werden. Der p-Wert ist 0.024, d.h. es gibt einen signifikanten Unterschied innerhalb der Paare.</p>
 </blockquote>
+<p><strong>f.</strong> Berechnen Sie die Effektgrösse mit der Funktion <code>cohen.d()</code> aus dem Package {effsize}. Wie gross ist der Effekt nach Cohen (1998)?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
+<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>___<span class="sc">::</span><span class="fu">cohen.d</span>(___<span class="sc">$</span>___, <span class="co"># av 1</span></span>
+<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>                 ___<span class="sc">$</span>___, <span class="co"># av 2</span></span>
+<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">paired =</span> ___) <span class="co">#TRUE: abhängig, FALSE: unabhängig</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>effsize<span class="sc">::</span><span class="fu">cohen.d</span>(d_extraversion<span class="sc">$</span>extra1, <span class="co"># av 1</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                 d_extraversion<span class="sc">$</span>extra2, <span class="co"># av 2</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Cohen's d
+
+d estimate: -0.1693679 (negligible)
+95 percent confidence interval:
+      lower       upper 
+-0.31662024 -0.02211563 </code></pre>
+</div>
+</div>
+<p><strong>j.</strong> Interpretation und Berichten</p>
+<p>Schreiben Sie 1-2 Sätze zu den Ergebnissen für einen wissenschaftlichen Artikel.</p>
+<p><a href="../datenanalyse/ttest_abhaengig.html#ergebnisse-interpretieren-und-berichten-1">Hier finden Sie ein Beispiel.</a></p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Zusatzaufgaben">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Zusatzaufgaben
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-6" class="callout-6-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Weitere Möglichkeiten, um mit diesem Datensatz zu arbeiten:</p>
+<ul>
+<li><p>Berechnen Sie eine A-priori Poweranalyse. Hierfür darf der Datensatz nicht verwendet werden, da diese VOR der Datenerhebung durchgeführt werden muss.</p></li>
+<li><p>Erstellen Sie einen Boxplot aus den Daten und überprüfen Sie visuell, ob sich die Gruppen und die Varianzen unterscheiden. Nutzen Sie hierfür <code>esquisse::esquisser()</code> Was fällt Ihnen auf?</p></li>
+</ul>
 <blockquote class="blockquote">
-<p>ACHTUNG noch prüfen hier, da bei FALSE der Welch-Test verwendet wird. Meiner Meinung nach nun zu komplex.</p>
+<p>Daten im <em>Wide</em>-Format eignen sich schlecht zum visualisieren. Die Werte scheinen zusammenzuhängen.</p>
 </blockquote>
+</div>
+</div>
+</div>
 </section>
-<section id="aufgabe-4.4-zusatzaufgabe" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-4.4-zusatzaufgabe">Aufgabe 4.4: Zusatzaufgabe</h2>
+<section id="aufgabe-4.4-zusatzaufgaben" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-4.4-zusatzaufgaben">Aufgabe 4.4: Zusatzaufgaben</h2>
 <div class="callout callout-style-default callout-tip callout-titled" title="Zusatzaufgaben">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -744,10 +813,10 @@ Zusatzaufgaben
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Dies ist eine Zusatzaufgabe und muss nicht gelöst werden.</strong></p>
+<p><strong>Dies sind Zusatzaufgaben und müssen nicht gelöst werden.</strong></p>
 </div>
 </div>
-<p>Diskutieren Sie folgende Fragen:</p>
+<p><strong>a.</strong> Diskutieren Sie folgende Fragen:</p>
 <ul>
 <li><p>Wie könnte das Design des Experiments der Aufgabe 4.3 verbessert werden?</p>
 <ul>
@@ -756,6 +825,13 @@ Zusatzaufgaben
 <li>Könnten die Daten dieses verbesserten Designs mit einem unabhängigen oder abhängigen <em>t</em>-Tests analysiert werden?</li>
 </ul></li>
 </ul>
+<p><strong>b.</strong> Was geschieht, wenn Sie in <em>Aufgabe 4.4</em> statt <code>paired = TRUE</code> <code>paired = FALSE</code> verwenden?</p>
+<blockquote class="blockquote">
+<p>Der Test wird nun signifikant.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>ACHTUNG noch prüfen hier, da bei FALSE der Welch-Test verwendet wird. Meiner Meinung nach nun zu komplex.</p>
+</blockquote>
 
 
 </section>

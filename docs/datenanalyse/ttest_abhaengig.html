@@ -399,7 +399,12 @@ window.Quarto = {
 <h2 data-number="10.1" class="anchored" data-anchor-id="anwendungsbereich"><span class="header-section-number">10.1</span> Anwendungsbereich</h2>
 <p>Mit <em>t</em>-Tests für abhängige Stichproben wird untersucht, wie sich zwei verbundene Gruppen in einem intervallskalierten Mass unterscheiden.</p>
 <p>Abhängige/verbundene Stichproben bedeutet hierbei, dass die Daten einer Person zu zwei Messzeitpunkten (in zwei Bedingungen) erhoben werden. Verbunden kann ebenfalls bedeuten, dass die Daten zweier Personen erhoben werden, die nicht unabhängig voneinander sind (z.B. Paare, Geschwister, Kontrollpersonen etc.).</p>
-<p>Abhängigkeit/Verbundenheit kann entstehen durch: - Messwiederholung - Natürliche Paare - Parallelisierung der Stichproben</p>
+<p>Abhängigkeit/Verbundenheit kann entstehen durch:</p>
+<ul>
+<li>Messwiederholung</li>
+<li>Natürliche Paare</li>
+<li>Parallelisierung der Stichproben</li>
+</ul>
 <p><strong>Typische Fragestellungen</strong>:</p>
 <ul>
 <li><p><em>Wie unterscheidet sich Symptomausprägung Y einer Person vor und nach einem Treatment X?</em></p></li>
@@ -429,7 +434,7 @@ window.Quarto = {
 <tr class="even">
 <td>Unabhängige Variable</td>
 <td>Eine unabhängige Variable mit zwei Stufen (dichotome Gruppenvariable).</td>
-<td>Verwenden eines anderen statistischen Verfahrens (z.B. Regression) oder Dichotomisierung der UV mittels Mediansplit (z.B. Alter von Zahl zu “jung” und “alt”).</td>
+<td>Verwenden eines anderen statistischen Verfahrens (z.B. Regression)</td>
 </tr>
 <tr class="odd">
 <td>Unabhängigkeit der Messwerte</td>
@@ -439,7 +444,7 @@ window.Quarto = {
 <tr class="even">
 <td>Abhängigkeit der Gruppen/Stichproben</td>
 <td>Die Messwerte <em>zwischen</em> den beiden Stichproben sind verbunden (abhängige Gruppen).</td>
-<td>Bei unabhängigen Gruppen kann ein <em>t</em>-Test für unabhängige Stichproben verwendet werden (siehe <a href="../datenanalyse/ttest_unabhaengig.html">Kapitel: t-Test für abhängige Stichproben</a>)</td>
+<td>Bei unabhängigen Gruppen kann ein <em>t</em>-Test für unabhängige Stichproben verwendet werden (siehe <a href="../datenanalyse/ttest_unabhaengig.html">Kapitel: t-Test für unabhängige Stichproben</a>)</td>
 </tr>
 </tbody>
 </table>
@@ -475,7 +480,7 @@ Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transfo
 </section>
 <section id="a-priori-poweranalyse-durchführen" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="a-priori-poweranalyse-durchführen"><strong>2. A-priori Poweranalyse durchführen</strong></h4>
-<p>Vor der Datenerhebung soll eine a-priori Poweranalyse durchgeführt werden. Einerseits kann damit ermittelt werden, wie viel Power (Teststärke) der Test hat, um einen Effekt von vordefinierter Grösse (z.B. einen grossen Effekt von <span class="math inline">\(d=0.8\)</span>) zu entdecken. Andererseits kann berechnet werden, wie gross die Stichprobe sein sollte, um einen Effekt bestimmter Grösse und eine festgelegte Teststärke zu erreichen.</p>
+<p>Vor der Datenerhebung soll eine a-priori Poweranalyse durchgeführt werden. Einerseits kann damit ermittelt werden, wie viel Power (Teststärke) der Test hat, um einen Effekt von vordefinierter Grösse (z.B. einen grossen Effekt von <span class="math inline">\(d=0.6\)</span>) zu entdecken. Andererseits kann berechnet werden, wie gross die Stichprobe sein sollte, um einen Effekt bestimmter Grösse und eine festgelegte Teststärke zu erreichen.</p>
 <aside>
 Ein Wert über <span class="math inline">\(0.57\)</span> gilt gemäss den Konventionen für <span class="math inline">\(\delta\)</span> -Masse nach Cohen (1988) als <em>grosser</em> Effekt.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
 </aside>
@@ -486,7 +491,7 @@ Ein Wert über <span class="math inline">\(0.57\)</span> gilt gemäss den Konven
 <section id="daten-einlesen-vorverarbeiten-und-visualisieren" class="level4">
 <h4 class="anchored" data-anchor-id="daten-einlesen-vorverarbeiten-und-visualisieren"><strong>3. Daten einlesen, vorverarbeiten und visualisieren</strong></h4>
 <p>Zuerst müssen die Daten eingelesen und bereinigt werden. Daten können diagnostisch visualisiert werden, um z.B. fehlende Werte zu entdecken oder Verteilungen der Daten visuell beurteilen und Extremwerte zu identifizieren.</p>
-<p>Für den <em>t</em>-Test werden die Daten hier in einem <code>wide</code>-Format benötigt. Für die Visualisierung wird eine Datensatz im <code>long</code>-Format benötigt.</p>
+<p>Für den <em>t</em>-Test für abhängige Stichproben werden die Daten hier in einem <code>wide</code>-Format benötigt. Für die Visualisierung wird eine Datensatz im <code>long</code>-Format benötigt.</p>
 </section>
 <section id="voraussetzungen-überprüfen" class="level4">
 <h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen"><strong>4. Voraussetzungen überprüfen</strong></h4>
@@ -551,7 +556,7 @@ Bei gerichteten Hypothesen müssen die Aussagen entsprechend angepasst werden.
 <p>Meistens werden in psychologischen Publikationen die Stichprobenmittelwerte und ihre geschätzten Populationsstandardabweichungen (Stichprobenstandardabweichungen) sowie die <em>t</em>-Statistik, ihre Freiheitsgrade und der <em>p</em>-Wert (also der Wahrscheinlichkeit dieses oder eines noch extremeren <em>t</em>-Wertes unter Annahme der Nullhypothese) berichtet.</p>
 <p>Falls der exakte <em>p</em>-Wert sehr klein ist, beispielsweise <span class="math inline">\(p=0.00000012\)</span> bzw. kleiner als <span class="math inline">\(0.001\)</span>, wird dies folgendermassen notiert: <span class="math inline">\(p &lt; .001\)</span>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
 <blockquote class="blockquote">
-<p>Die kognitive Leistung von Personen vor und nach dem Treatment <em>X</em> unterscheidet sich nicht signifikant, <em>t</em>(15) = 0.75, <em>p</em> = .47.</p>
+<p>Die kognitive Leistung von Personen vor und nach dem Treatment <em>X</em> unterscheidet sich nicht signifikant, <em>t</em>(15) = 0.75, <em>p</em> = .470.</p>
 </blockquote>
 </section>
 </section>
@@ -579,8 +584,8 @@ Beispiel: Social Media Experiment
 <h3 data-number="10.4.1" class="anchored" data-anchor-id="planung-1"><span class="header-section-number">10.4.1</span> Planung</h3>
 <section id="statistische-hypothesen-und-signifikanzniveau-festlegen-1" class="level4">
 <h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen-1"><strong>1. Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
-<p><span class="math inline">\(H_0\)</span>: Die Stimmung hat keinen Einfluss auf die Leistung: <span class="math inline">\(\mu_1=\mu_2\)</span></p>
-<p><span class="math inline">\(H_1\)</span>: Die Stimmung hat einen Einfluss auf die Leistung: <span class="math inline">\(\mu_1 \neq\mu_2\)</span></p>
+<p><span class="math inline">\(H_0\)</span>: Das Lesen/Scrollen auf Social Media hat keinen Einfluss auf die Zukunftsangst: <span class="math inline">\(\mu_1=\mu_2\)</span></p>
+<p><span class="math inline">\(H_1\)</span>: Die Lesen/Scrollen auf Social Media hat einen Einfluss auf die Zukunftsangst: <span class="math inline">\(\mu_1 \neq\mu_2\)</span></p>
 <p>Das Alphaniveau wird auf <span class="math inline">\(5 \%\)</span> festgelegt. Da es sich um eine ungerichtete Hypothese handelt, wird zweiseitig getestet.</p>
 </section>
 <section id="a-priori-poweranalyse-durchführen-1" class="level4 page-columns page-full">
@@ -647,13 +652,13 @@ Beim ersten Verwenden muss das Package {pwr} heruntergeladen/installiert werden,
 <h3 data-number="10.4.2" class="anchored" data-anchor-id="vorverarbeitung-1"><span class="header-section-number">10.4.2</span> Vorverarbeitung</h3>
 <section id="daten-einlesen-und-vorverarbeiten" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="daten-einlesen-und-vorverarbeiten"><strong>3. Daten einlesen und vorverarbeiten</strong></h4>
-<div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Beispieldatensatz Stimmungsexperiment vorverarbeiten">
+<div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Beispieldatensatz Social-Media-Experiment vorverarbeiten">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Hands-on: Beispieldatensatz Stimmungsexperiment vorverarbeiten
+Hands-on: Beispieldatensatz Social-Media-Experiment vorverarbeiten
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
@@ -683,24 +688,29 @@ $ fear_post &lt;dbl&gt; 10.0, 7.1, 9.3, 8.9, 7.0, 9.1, 9.2, 8.7, 4.1, 4.5, 9.2, 
 </div>
 </div>
 <p><strong>Datensatz transformieren</strong></p>
-<p>Für den <em>t</em>-Test werden die Daten in einem <code>long</code> Format benötigt. Daher müssen die Daten vom bisherigen <code>wide</code> Format in ein <code>long</code> Format umstrukturiert werden, Die Variable <code>id</code> wird mit <code>as.factor()</code> in einen Faktor konvertiert.</p>
+<p>Für den <em>t</em>-Test für abhängige Stichproben werden die Daten in einem <code>wide</code> Format benötigt. Die Variable <code>id</code> wird mit <code>as.factor()</code> in einen Faktor konvertiert.</p>
+<p>Für das Visualisieren jedoch werden Daten im <code>long</code>-Format verwendet. Dafür müssen die Daten vom bisherigen <code>wide</code> Format in ein <code>long</code> Format umstrukturiert werden. Die Variable <code>id</code> wird mit <code>as.factor()</code> in einen Faktor konvertiert.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datenformat für Deskriptivstatistik und Visualisierung</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="co"># von wide zu long transformieren</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>d_fear_long <span class="ot">&lt;-</span> d_fear <span class="sc">|&gt;</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(fear_pre, fear_post),</span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"timepoint"</span>,</span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">"fear_"</span>, </span>
-<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"fear"</span>) <span class="sc">|&gt;</span></span>
-<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>   <span class="fu">select</span>(id, timepoint, fear)</span>
-<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a><span class="co"># id (Subjekt-ID) und t (Gruppenvariable) als Faktor definieren</span></span>
-<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>d_fear_long <span class="ot">&lt;-</span> d_fear_long <span class="sc">|&gt;</span> </span>
-<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">as.factor</span>(id)) <span class="sc">|&gt;</span> </span>
-<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">timepoint =</span> <span class="fu">factor</span>(timepoint, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"pre"</span>, <span class="st">"post"</span>)))</span>
-<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz anzeigen</span></span>
-<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>d_fear_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># id (Subjekt-ID) als Faktor definieren</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>d_fear <span class="ot">&lt;-</span> d_fear <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">as.factor</span>(id))</span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Datenformat für Deskriptivstatistik und Visualisierung</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="co"># von wide zu long transformieren</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>d_fear_long <span class="ot">&lt;-</span> d_fear <span class="sc">|&gt;</span></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">c</span>(fear_pre, fear_post),</span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"timepoint"</span>,</span>
+<span id="cb7-10"><a href="#cb7-10" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_prefix =</span> <span class="st">"fear_"</span>, </span>
+<span id="cb7-11"><a href="#cb7-11" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to =</span> <span class="st">"fear"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-12"><a href="#cb7-12" aria-hidden="true" tabindex="-1"></a>   <span class="fu">select</span>(id, timepoint, fear)</span>
+<span id="cb7-13"><a href="#cb7-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-14"><a href="#cb7-14" aria-hidden="true" tabindex="-1"></a><span class="co"># id (Subjekt-ID) und t (Gruppenvariable) als Faktor definieren</span></span>
+<span id="cb7-15"><a href="#cb7-15" aria-hidden="true" tabindex="-1"></a>d_fear_long <span class="ot">&lt;-</span> d_fear_long <span class="sc">|&gt;</span> </span>
+<span id="cb7-16"><a href="#cb7-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">as.factor</span>(id)) <span class="sc">|&gt;</span> </span>
+<span id="cb7-17"><a href="#cb7-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">timepoint =</span> <span class="fu">factor</span>(timepoint, <span class="at">levels =</span> <span class="fu">c</span>(<span class="st">"pre"</span>, <span class="st">"post"</span>)))</span>
+<span id="cb7-18"><a href="#cb7-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-19"><a href="#cb7-19" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz anzeigen</span></span>
+<span id="cb7-20"><a href="#cb7-20" aria-hidden="true" tabindex="-1"></a>d_fear_long</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 100 × 3
    id    timepoint  fear
@@ -738,13 +748,28 @@ Die Voraussetzung der Normalverteilung wird in diesem Semester nicht überprüft
 <section id="deskriptivstatisik-und-visualisierung" class="level4">
 <h4 class="anchored" data-anchor-id="deskriptivstatisik-und-visualisierung"><strong>5. Deskriptivstatisik und Visualisierung</strong></h4>
 <p>Für die deskriptive Statistik können die Daten nach Bedingung gruppiert und dann die Kennwerte berechnet werden.</p>
+<p>Das kann mit dem <em>Wide</em> Datensatz gemacht werden:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nach condition gruppieren und performance zusammenfassen</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>d_summary <span class="ot">&lt;-</span> d_fear_long <span class="sc">|&gt;</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(timepoint) <span class="sc">|&gt;</span></span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_fear =</span> <span class="fu">mean</span>(fear),</span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_fear =</span> <span class="fu">sd</span>(fear))</span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>d_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>d_summary <span class="ot">&lt;-</span> d_fear <span class="sc">|&gt;</span></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_fear_pre =</span> <span class="fu">mean</span>(fear_pre),</span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_fear_pre =</span> <span class="fu">sd</span>(fear_pre),</span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_fear_post =</span> <span class="fu">mean</span>(fear_post),</span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_fear_post =</span> <span class="fu">sd</span>(fear_post))</span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a>d_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  mean_fear_pre sd_fear_pre mean_fear_post sd_fear_post
+1         4.318     2.62155          6.376     2.722886</code></pre>
+</div>
+</div>
+<p>Oder mit dem <em>Long</em> Datensatz:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nach condition gruppieren und performance zusammenfassen</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>d_summary <span class="ot">&lt;-</span> d_fear_long <span class="sc">|&gt;</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(timepoint) <span class="sc">|&gt;</span></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_fear =</span> <span class="fu">mean</span>(fear),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_fear =</span> <span class="fu">sd</span>(fear))</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>d_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 2 × 3
   timepoint mean_fear sd_fear
@@ -755,26 +780,26 @@ Die Voraussetzung der Normalverteilung wird in diesem Semester nicht überprüft
 </div>
 <p>Mit einem Boxplot kann die Verteilung der Werte angeschaut und die beiden Gruppen visuell miteinander verglichen werden.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>p_boxplot <span class="ot">&lt;-</span> d_fear_long <span class="sc">|&gt;</span> </span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> timepoint, <span class="at">y =</span> fear)) <span class="sc">+</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">colour =</span> timepoint), <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">height =</span> <span class="dv">0</span>, <span class="at">width =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> timepoint, <span class="at">y =</span> fear, <span class="at">group =</span> id), <span class="at">alpha =</span> <span class="fl">0.15</span>) <span class="sc">+</span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="dv">0</span>, <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"pre"</span> <span class="ot">=</span> <span class="st">"red4"</span>,</span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"post"</span> <span class="ot">=</span> <span class="st">"blue4"</span>)) <span class="sc">+</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Effect of Social Media on Fear from the Future"</span>,</span>
-<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Paired t-Test"</span>,</span>
-<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Timepoint"</span>,</span>
-<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Future Fear Score"</span>) <span class="sc">+</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>p_boxplot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Boxplot</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>p_boxplot <span class="ot">&lt;-</span> d_fear_long <span class="sc">|&gt;</span> </span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> timepoint, <span class="at">y =</span> fear)) <span class="sc">+</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="fu">aes</span>(<span class="at">colour =</span> timepoint), <span class="at">alpha =</span> <span class="fl">0.3</span>, <span class="at">height =</span> <span class="dv">0</span>, <span class="at">width =</span> <span class="fl">0.01</span>) <span class="sc">+</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">x =</span> timepoint, <span class="at">y =</span> fear, <span class="at">group =</span> id), <span class="at">alpha =</span> <span class="fl">0.15</span>) <span class="sc">+</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>(<span class="at">alpha =</span> <span class="dv">0</span>, <span class="at">width =</span> <span class="fl">0.2</span>, <span class="at">color =</span> <span class="st">"black"</span>) <span class="sc">+</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_colour_manual</span>(<span class="at">values =</span> <span class="fu">c</span>(<span class="st">"pre"</span> <span class="ot">=</span> <span class="st">"red4"</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                               <span class="st">"post"</span> <span class="ot">=</span> <span class="st">"blue4"</span>)) <span class="sc">+</span></span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Effect of Social Media on Fear "</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>       <span class="at">subtitle =</span> <span class="st">"Paired t-Test"</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"Timepoint"</span>,</span>
+<span id="cb13-12"><a href="#cb13-12" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"Fear"</span>) <span class="sc">+</span></span>
+<span id="cb13-13"><a href="#cb13-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>(<span class="at">base_size =</span> <span class="dv">12</span>) <span class="sc">+</span></span>
+<span id="cb13-14"><a href="#cb13-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(<span class="at">legend.position =</span> <span class="st">"none"</span>)</span>
+<span id="cb13-15"><a href="#cb13-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb13-16"><a href="#cb13-16" aria-hidden="true" tabindex="-1"></a>p_boxplot</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="ttest_abhaengig_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="ttest_abhaengig_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -785,17 +810,17 @@ Die Voraussetzung der Normalverteilung wird in diesem Semester nicht überprüft
 <p><strong>Berechnung Teststatistik in R mit der Funktion <code>t.test</code></strong></p>
 <p>Der <em>t</em>-Test für abhängige Stichproben kann mit der Funktion <code>t.test()</code> durchgeführt werden. Hierbei wird ein Datensatz im <strong>wide</strong>-Format benötigt.</p>
 <ul>
-<li><code>y</code>: Abhängige Variable (metrisch)</li>
-<li><code>x</code>: Unabhängige Variable (Bedingung oder Gruppenvariable)</li>
+<li><code>y</code>: Abhängige Variable Gruppe A</li>
+<li><code>x</code>: Abhängige Variable Gruppe B</li>
 <li><code>alternative</code>: festlegen, ob die <span class="math inline">\(H_1\)</span> gerichtet (<code>greater</code>oder <code>less</code>) oder ungerichtet (<code>two-sided</code>) ist</li>
 <li><code>var.equal</code>: festlegen, ob die Annahme homogener Varianzen zutrifft (<code>TRUE</code>) oder nicht (<code>FALSE</code>)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test für unabhängige Stichproben durchführen</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> d_fear<span class="sc">$</span>fear_post, <span class="co"># av t2</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> d_fear<span class="sc">$</span>fear_pre, <span class="co"># av t1</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test für unabhängige Stichproben durchführen</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> d_fear<span class="sc">$</span>fear_post, <span class="co"># av t2</span></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> d_fear<span class="sc">$</span>fear_pre, <span class="co"># av t1</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
     Paired t-test
@@ -815,12 +840,12 @@ mean difference
 <section id="effektstärke-bestimmen" class="level4">
 <h4 class="anchored" data-anchor-id="effektstärke-bestimmen"><strong>7. Effektstärke bestimmen</strong></h4>
 <p><strong>Berechnung der Effektgrösse (Cohen’s <em>d</em>)</strong></p>
-<p>Nun kann noch die Effektgrösse mit <code>cohen.d(formula = y ~ x, data)</code> aus dem Package {effsize} berechnet werden.</p>
+<p>Nun kann noch die Effektgrösse mit <code>cohen.d(x, y, paired = TRUE)</code> aus dem Package {effsize} berechnet werden.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>effsize<span class="sc">::</span><span class="fu">cohen.d</span>(d_fear<span class="sc">$</span>fear_post, <span class="co"># av t2</span></span>
-<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>                 d_fear<span class="sc">$</span>fear_pre, <span class="co"># av t1</span></span>
-<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>effsize<span class="sc">::</span><span class="fu">cohen.d</span>(d_fear<span class="sc">$</span>fear_post, <span class="co"># av t2</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                 d_fear<span class="sc">$</span>fear_pre, <span class="co"># av t1</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>
 Cohen's d

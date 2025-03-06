@@ -99,13 +99,15 @@ Vor der Datenerhebung soll eine a-priori Poweranalyse durchgeführt werden. Eine
 Zuerst müssen die Daten eingelesen und bereinigt werden. 
 Daten können diagnostisch visualisiert werden, um z.B. fehlende Werte zu entdecken oder Verteilungen der Daten visuell beurteilen und Extremwerte zu identifizieren.
 
-Für den _t_-Test werden die Daten hier in einem `long`-Format benötigt. 
+Für den _t_-Test für unabhängige Stichproben werden die Daten hier in einem `long`-Format benötigt. 
+
+<aside> Es ist auch möglich Daten im _Wide_-Format zu verwenden, da sich das _Long_-Format aber für die Deskriptivstatistik und Visualisierung besser eignen, wird in diesem Kapitel durchgehend mit einem _Long_-Format gearbeitet. </aside>
 
 #### __4. Voraussetzungen überprüfen__
 
 - __Varianzhomogenität__
 
-Der _t_-Test für unabhängige Stichproben setzt Varianzhomogenität voraus. Dies kann in _R_ mit dem __Levene-Test__ überprüft werden.  
+Der _t_-Test für unabhängige Stichproben setzt Varianzhomogenität voraus. Dies kann mit dem __Levene-Test__  (in _R_ mit der Funktion `leveneTest()`) überprüft werden.  
 
 Der Levene-Test geht von der Nullhypothese aus, dass sich die beiden Varianzen nicht unterscheiden. Ein nicht signifikantes Ergebnis bedeutet daher, dass sich die Varianzen nicht unterscheiden und somit Varianzhomogenität (sogenannte Heteroskedastizität) besteht. Wenn der Test signifikant ist, wird Varianzheterogenität angenommen.
 
@@ -187,7 +189,7 @@ Falls der exakte _p_-Wert sehr klein ist, beispielsweise  $p=0.00000012$ bzw. kl
 
 > Personen mit dem Treatment _X_ unterscheiden sich signifikant in ihrer kognitiven Leistung von Personen ohne Treatment _X_, _t_(40)=-2.63, _p_ < .001, _d_ = 0.34.
 
-> Personen mit der Diagnose _X_ unterscheiden sich nicht in ihrer Schmerzempfindlichkeit von Personen ohne Diagnose _X_, _t_(40)=-0.13,) _p_ = .64).
+> Personen mit der Diagnose _X_ unterscheiden sich nicht in ihrer Schmerzempfindlichkeit von Personen ohne Diagnose _X_, _t_(40)=-0.13,) _p_ = .641).
 
 
 
@@ -239,7 +241,7 @@ pwr.t.test(d = 0.8, power = 0.8, sig.level = 0.05, type = "two.sample")
 
 <aside> Beim ersten Verwenden muss das Package {pwr} heruntergeladen/installiert werden, z.B. in der Konsole mit `install.packages("pwr")`. </aside>
 
-Eine Teststärke (Power) von 0.94 bedeutet, dass die Wahrscheinlichkeit 94 % beträgt, einen tatsächlich vorhandenen Effekt mit einer Effektstärke von 0.8 zu entdecken.
+Eine Teststärke (Power) von 0.94 bedeutet, dass die Wahrscheinlichkeit 94 % beträgt, einen tatsächlich vorhandenen Effekt mit einer Effektstärke von $d = 0.8$ zu entdecken.
 
 Um mit einer Teststärke von 80% einen grossen Effekt von $d=0.8$ zu finden, wird eine Stichprobe von mindestens $n=26$ pro Gruppe benötigt.
 

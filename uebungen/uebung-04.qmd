@@ -45,32 +45,33 @@ _Falls obige Anforderungen noch nicht erfüllt:_
 
 - Laden Sie den Projektordner herunter und entzippen Sie den Ordner.
 - Installieren Sie die benötigten Packages (falls noch nicht geschehen:
-   das Package {pwr} in der Konsole mit `install.packages("pwr")` oder mit `Tools` > `Install Packages...`
-   das Package {car} in der Konsole mit `install.packages("car")` oder mit `Tools` > `Install Packages...`
-   das Package {effsize} in der Konsole mit `install.packages("effsize")` oder mit `Tools` > `Install Packages...`
+    - das Package {pwr} in der Konsole mit `install.packages("pwr")` oder mit `Tools` > `Install Packages...`
+    - das Package {car} in der Konsole mit `install.packages("car")` oder mit `Tools` > `Install Packages...`
+    - das Package {effsize} in der Konsole mit `install.packages("effsize")` oder mit `Tools` > `Install Packages...`
   
 __a.__ Öffnen Sie das _RProjekt_ `ttests`.
   
-__b.__ Erstellen ein _RNotebook_ names _uebung-04_.
+__b.__ Erstellen ein _RNotebook_ names `uebung-04`.
 
 ## Aufgabe 4.2: T-Test ausführen 
 
-__Beschreibung der Studie__
+__Studienbeschrieb__
+
 Sie wollen untersuchen, ob sich die Beziehungsqualität von Paaren durch ein Kommunikationstraining verbessern lässt. Sie untersuchen daher zwei Gruppen mit insgesamt 60 Paaren. Eine Gruppe (30 Paare) erhält während zwei Monaten ein Kommunikationstraining (KT). Die andere Gruppe (30 Paare) erhält in diesen zwei Monaten ein Rechtschreibetraining (RS) mit gleicher Intensität. Nach zwei Monaten werden alle Paare zu zweit zu ihrer Beziehungsqualität befragt. Diese Befragung ergibt __einen__ Wert für Beziehungsqualität pro Paar, also 30 Werte in der _KT_-Gruppe und 30 Werte in der _RS_-Gruppe. Das Signifikanzniveau wird auf $\alpha=0.05$ festgelegt.
 
-__Forschungsfrage__: Besteht ein Unterschied in der Einschätzung der Beziehungsqualität zwischen den beiden Gruppen?
+__Forschungsfrage__: Besteht nach dem Training ein Unterschied in der Einschätzung der Beziehungsqualität zwischen den beiden Gruppen?
 
 <br>
 
 __Bearbeiten Sie nun Schritt für Schritt folgende Aufgaben:__ 
 
-__a.__  Wurde gerichtet getestet? Wie lautet die $H_0$ und die $H_1$? 
+__a.__  Muss gerichtet oder ungerichtet getestet werden? Wie lautet die $H_0$ und die $H_1$? 
 
 > Ungerichtetes Testen: "Besteht ein Unterschied..."
 
-> $H_0$: Die Mittelwerte der beiden Gruppen (Kommunikationstraining vs. Rechtsschreibetraining) unterscheiden sich nicht bezüglich der Beziehungsqualität, d.h. die Differenz ist 0. $\mu_{KT} = \mu_{RT}$
+> $H_0$: Die Mittelwerte der beiden Gruppen (Kommunikationstraining vs. Rechtsschreibetraining) unterscheiden sich nicht bezüglich der Beziehungsqualität, d.h. die Differenz ist 0. $\mu_{KT} = \mu_{RS}$
 
-> $H_1$: Die Mittelwerte der beiden Gruppen (Kommunikationstraining vs. Rechtsschreibetraining) unterscheiden sich bezüglich der Beziehungsqualität, d.h. die Differenz ist ungleich 0. $\mu_{KT} \neq \mu_{RT}$
+> $H_1$: Die Mittelwerte der beiden Gruppen (Kommunikationstraining vs. Rechtsschreibetraining) unterscheiden sich bezüglich der Beziehungsqualität, d.h. die Differenz ist ungleich 0. $\mu_{KT} \neq \mu_{RS}$
 
 __b.__ Welches Signifikanzniveau wurde festgelegt? Was bedeutet das?
 
@@ -79,6 +80,7 @@ __b.__ Welches Signifikanzniveau wurde festgelegt? Was bedeutet das?
 > Wird ein Signifikanzniveau von $\alpha = 0.05$ festgelegt, bedeutet dies, dass bei der Verwerfung der Nullhypothese eine 5% Wahrscheinlichkeit besteht, dass eigentlich kein Unterschied besteht und irrtümlicherweise einer angenommen wurde.
 
 __c.__ Lesen Sie den Datensatz `couples_quality.csv` aus dem Ordner `data` ein und speichern Sie ihn in die Variable `d_quality`. 
+
 ```{r}
 #| include: false
 library(tidyverse)
@@ -111,13 +113,15 @@ _Vorgehen_:
 
 - Berechnen Sie den Mittelwert und die Standardabweichung
 
-- Erstellen mit den obigen Schritten einen neue Variable namens `d_quality_summary`.
+- Erstellen Sie mit den obigen Schritten einen neue Variable namens `d_quality_summary`.
 
 - Schauen Sie sich die Werte in `d_quality_summary` an.
 
 :::{.callout-tip appearance="default" title="Tipp" collapse="true"}
 
-- Beginnen Sie mit `d_quality_summary <- ` Datensatz und dann der Pipe `|>`
+- Beginnen Sie mit `d_quality_summary <- ___`. Fügen Sie den Namen des Datensatzes ein.
+
+- Fahren Sie dann mit der Pipe `|>` weiter.
 
 - Verwenden Sie `group_by()` zum Gruppieren. Als Argument muss hier die Gruppierungsvariable (UV) eingegeben werden.
 
@@ -197,9 +201,11 @@ ___::___(formula = ___ ~ ___, # av ~ uv
 effsize::cohen.d(formula = quality ~ condition, data = d_quality)
 ```
 
-__i.__ Interpretation und Berichten
+__j.__ Interpretation und Berichten
 
-Schreiben Sie 1-2 Sätze zu den Ergebnissen für einen wissenschaftlichen Artikel ([siehe hier für ein Beispiel](../datenanalyse/ttest_unabhaengig.qmd#Schlussfolgerungen))
+Schreiben Sie 1-2 Sätze zu den Ergebnissen für einen wissenschaftlichen Artikel.
+
+[Hier finden Sie ein Beispiel.](../datenanalyse/ttest_unabhaengig.qmd#ergebnisse-interpretieren-und-berichten-1)
 
 
 ::: {.callout-tip appearance="default" title="Zusatzaufgaben" collapse=true}
@@ -215,25 +221,31 @@ Weitere Möglichkeiten, um mit diesem Datensatz zu arbeiten:
 
 ## Aufgabe 4.3: T-Test ausführen
 
-Sei fragen sich, ob das Sprichwort "Gegensätze ziehen sich an" bei romantischen Paaren zutrifft. Sie untersuchen daher, ob sich die Persönlichkeitsmerkmale von Partnern unterscheiden und haben dazu bei 250 Paaren das Persönlichkeitsmerkmals _Extraversion_ erhoben. Die abhängige Variable _Extraversion_ wurde jeweils bei beiden Partner mit dem gleichen Messinstrument erhoben. 
+__Studienbeschrieb__
 
-<aside> [Publikation](https://journals.sagepub.com/doi/full/10.1177/0265407511431183) </aside>
+Sie fragen sich, ob das Sprichwort "Gegensätze ziehen sich an" bei romantischen Paaren zutrifft. Sie untersuchen daher, ob sich die Persönlichkeitsmerkmale von Partnern unterscheiden und haben dazu bei 250 Paaren das Persönlichkeitsmerkmals _Extraversion_ erhoben. Die abhängige Variable _Extraversion_ wurde jeweils bei beiden Partner mit dem gleichen Messinstrument erhoben. Das Signifikanzniveau wird auf $\alpha=0.05$ festgelegt.
 
-Das Signifikanzniveau wird auf $\alpha=0.05$ festgelegt.
+<aside> [Artikel zum Studienbeispiel: Claxton et al. (2012)](https://journals.sagepub.com/doi/full/10.1177/0265407511431183) </aside>
 
+__Forschungsfrage__: Unterscheiden sich das Persönlichkeitsmerkmal _Extraversion_ signifikant zwischen Partnern?
 
-Bearbeiten Sie nun Schritt für Schritt folgende Aufgaben: 
+__Bearbeiten Sie nun Schritt für Schritt folgende Aufgaben:__
 
-__a.__  Wie lautet die $H_0$ und wie die $H_1$? Welches Signifikanzniveau wurde festgelegt?
+__a.__  Muss gerichtet oder ungerichtet getestet werden? Wie lautet die $H_0$ und die $H_1$? 
 
-> $H_0$: tba  
+> Ungerichtetes Testen: "Unterscheiden sich..."
 
-> $H_1$: tba
+> $H_0$: Die Mittelwerte der beiden Messungen (Partner A vs. Partner B) unterscheiden sich nicht bezüglich der Ausprägung von Extraversion, d.h. die Differenz ist 0. $\mu_{A} = \mu_{B}$
 
-> Ungerichtete Hypothese auf dem $\alpha=0.05$-Niveau.
+> $H_1$: Die Mittelwerte der beiden Messungen (Partner A vs. Partner B) unterscheiden sich bezüglich der Ausprägung von Extraversion, d.h. die Differenz ist ungleich 0. $\mu_{A} \neq \mu_{B}$
 
+__b.__ Welches Signifikanzniveau wurde festgelegt? Was bedeutet das?
 
-__b.__ Lesen Sie den Datensatz `couples_extraversion.csv` ein und speichern Sie ihn in die Variable `d_extraversion`. 
+> $\alpha=0.05$-Niveau.
+
+> Wird ein Signifikanzniveau von $\alpha = 0.05$ festgelegt, bedeutet dies, dass bei der Verwerfung der Nullhypothese eine 5% Wahrscheinlichkeit besteht, dass eigentlich kein Unterschied besteht und irrtümlicherweise einer angenommen wurde.
+
+__b.__ Lesen Sie den Datensatz `couples_extraversion.csv` aus dem `data` Ordner ein und speichern Sie ihn in die Variable `d_extraversion`. 
 
 ```{r}
 d_extraversion <- read.csv("data/couples_extraversion.csv")
@@ -242,24 +254,26 @@ glimpse(d_extraversion)
 
 __c.__ Schauen Sie sich die Variablen und die Deskriptivstatistik an. 
 
-- In welchem Format ist der Datensatz? Inwiefer unterscheidet er sich zu Aufgabe 4.2.?
-
-- Wie lauten die Mittelwerte und die Standardabweichungen der beiden Variablen? Was fällt Ihnen auf?
-
-```{r}
-d_extraversion_summary <- d_extraversion |>
-  summarise(mean(extra1), sd(extra1),
-            mean(extra2), sd(extra2))
-d_extraversion_summary
-```
+- In welchem Format ist der Datensatz? Inwiefern unterscheidet er sich zu Aufgabe 4.2.?
 
 
 > Es handelt sich um einen Datensatz im `wide`-Format. Im Gegensatz zu Aufgabe 4.2.
 
 
+- Wie lauten die Mittelwerte und die Standardabweichungen der Variablen? Was fällt Ihnen auf?
+
+```{r}
+d_extraversion_summary <- d_extraversion |>
+  summarise(mean_extra1 = mean(extra1), 
+            sd_extra1 = sd(extra1),
+            mean_extra2 = mean(extra2), 
+            sd_extra2 = sd(extra2))
+d_extraversion_summary
+```
+
 __d.__  Welchen statistischen Test führen Sie durch?
 
-> Es muss ein t-Test für abhängige Stichproben verwendet werden, da die beiden Gruppen abhängig sind (natürlichen Paare). Dies führt dazu, dass ich die Partner:innen ähnlicher sind und daher nicht "zufällig" geordnet sind. 
+> Es muss ein t-Test für abhängige Stichproben verwendet werden, da die beiden Gruppen abhängig sind (natürlichen Paare). 
 
 
 __d.__  Welche Voraussetzungen müssen für den Test erfüllt sein? Welche überprüfen wir? 
@@ -268,10 +282,17 @@ __d.__  Welche Voraussetzungen müssen für den Test erfüllt sein? Welche über
 
 > Normalverteilung setzen wir zum aktuellen Zeitpunkt voraus. 
 
-> Weitere ev. ergänzen
 
+__e.__  Führen Sie einen t-Test mit der Funktion `t.test()` durch. Wie lautet Ihre Testentscheidung?
 
-__e.__  Wie lautet Ihre Testenscheidung? Was geschieht, wenn Sie statt `paired = TRUE``paired = FALSE` verwenden?
+```{r}
+#| eval: false
+# t-Test für abhängige Stichproben durchführen
+t.test(d_extraversion$___, d_extraversion$___, #av1, av2
+       alternative = "two.sided",
+       paired = ___, # TRUE: abhängig, FALSE: unabhängig
+       data = ___) # Datensatz
+```
 
 ```{r}
 # t-Test für abhängige Stichproben durchführen
@@ -279,29 +300,71 @@ t.test(d_extraversion$extra1, d_extraversion$extra2,
        alternative = "two.sided",
        paired = TRUE,
        data = d_extraversion)
-
 ```
-> Der Test wird nun signifikant. 
 
-> ACHTUNG noch prüfen hier, da bei FALSE der Welch-Test verwendet wird. Meiner Meinung nach nun zu komplex. 
+> Es muss ein paired t-test durchgeführt werden. Der p-Wert ist 0.024, d.h. es gibt einen signifikanten Unterschied innerhalb der Paare.
+
+__f.__ Berechnen Sie die Effektgrösse mit der Funktion `cohen.d()` aus dem Package {effsize}. Wie gross ist der Effekt nach Cohen (1998)? 
+
+```{r}
+#| eval: false
+# Effektgrösse berechnen
+___::cohen.d(___$___, # av 1
+                 ___$___, # av 2
+                 paired = ___) #TRUE: abhängig, FALSE: unabhängig
+```
+
+```{r}
+# Effektgrösse berechnen
+effsize::cohen.d(d_extraversion$extra1, # av 1
+                 d_extraversion$extra2, # av 2
+                 paired = TRUE)
+```
+
+__j.__ Interpretation und Berichten
+
+Schreiben Sie 1-2 Sätze zu den Ergebnissen für einen wissenschaftlichen Artikel.
+
+[Hier finden Sie ein Beispiel.](../datenanalyse/ttest_abhaengig.qmd#ergebnisse-interpretieren-und-berichten-1)
 
 
-## Aufgabe 4.4: Zusatzaufgabe
+::: {.callout-tip appearance="default" title="Zusatzaufgaben" collapse=true}
 
+Weitere Möglichkeiten, um mit diesem Datensatz zu arbeiten:
 
-:::{.callout-tip appearance="default" title="Zusatzaufgaben"}
+- Berechnen Sie eine A-priori Poweranalyse. Hierfür darf der Datensatz nicht verwendet werden, da diese VOR der Datenerhebung durchgeführt werden muss. 
 
-__Dies ist eine Zusatzaufgabe und muss nicht gelöst werden.__
+- Erstellen Sie einen Boxplot aus den Daten und überprüfen Sie visuell, ob sich die Gruppen und die Varianzen unterscheiden. Nutzen Sie hierfür `esquisse::esquisser()` Was fällt Ihnen auf?
+
+> Daten im _Wide_-Format eignen sich schlecht zum visualisieren. Die Werte scheinen zusammenzuhängen.
 
 :::
 
-Diskutieren Sie folgende Fragen:
+
+
+
+
+## Aufgabe 4.4: Zusatzaufgaben
+
+:::{.callout-tip appearance="default" title="Zusatzaufgaben"}
+
+__Dies sind Zusatzaufgaben und müssen nicht gelöst werden.__
+
+:::
+
+__a.__ Diskutieren Sie folgende Fragen:
 
 - Wie könnte das Design des Experiments der Aufgabe 4.3 verbessert werden? 
 
     - Welche Probleme könnten bei dem bestehenden Design auftreten? (z.B. das fälschlicherweise ein Effekt angenommen wird, obwohl keiner existiert?)
     - Welche zusätzlichen Messzeitpunkte könnten aufschlussreiche Daten liefern?
     - Könnten die Daten dieses verbesserten Designs mit einem unabhängigen oder abhängigen _t_-Tests analysiert werden?
+
+__b.__ Was geschieht, wenn Sie in _Aufgabe 4.4_ statt `paired = TRUE` `paired = FALSE` verwenden?
+
+> Der Test wird nun signifikant. 
+
+> ACHTUNG noch prüfen hier, da bei FALSE der Welch-Test verwendet wird. Meiner Meinung nach nun zu komplex. 
 
 
 

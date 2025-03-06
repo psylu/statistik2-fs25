@@ -496,19 +496,22 @@ Ein Wert über <span class="math inline">\(0.8\)</span> gilt gemäss den Konvent
 </aside>
 </section>
 </section>
-<section id="vorverarbeitung" class="level3" data-number="9.3.2">
+<section id="vorverarbeitung" class="level3 page-columns page-full" data-number="9.3.2">
 <h3 data-number="9.3.2" class="anchored" data-anchor-id="vorverarbeitung"><span class="header-section-number">9.3.2</span> Vorverarbeitung</h3>
-<section id="daten-einlesen-vorverarbeiten-und-visualisieren" class="level4">
+<section id="daten-einlesen-vorverarbeiten-und-visualisieren" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="daten-einlesen-vorverarbeiten-und-visualisieren"><strong>3. Daten einlesen, vorverarbeiten und visualisieren</strong></h4>
 <p>Zuerst müssen die Daten eingelesen und bereinigt werden. Daten können diagnostisch visualisiert werden, um z.B. fehlende Werte zu entdecken oder Verteilungen der Daten visuell beurteilen und Extremwerte zu identifizieren.</p>
-<p>Für den <em>t</em>-Test werden die Daten hier in einem <code>long</code>-Format benötigt.</p>
+<p>Für den <em>t</em>-Test für unabhängige Stichproben werden die Daten hier in einem <code>long</code>-Format benötigt.</p>
+<aside>
+Es ist auch möglich Daten im <em>Wide</em>-Format zu verwenden, da sich das <em>Long</em>-Format aber für die Deskriptivstatistik und Visualisierung besser eignen, wird in diesem Kapitel durchgehend mit einem <em>Long</em>-Format gearbeitet.
+</aside>
 </section>
 <section id="voraussetzungen-überprüfen" class="level4">
 <h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen"><strong>4. Voraussetzungen überprüfen</strong></h4>
 <ul>
 <li><strong>Varianzhomogenität</strong></li>
 </ul>
-<p>Der <em>t</em>-Test für unabhängige Stichproben setzt Varianzhomogenität voraus. Dies kann in <em>R</em> mit dem <strong>Levene-Test</strong> überprüft werden.</p>
+<p>Der <em>t</em>-Test für unabhängige Stichproben setzt Varianzhomogenität voraus. Dies kann mit dem <strong>Levene-Test</strong> (in <em>R</em> mit der Funktion <code>leveneTest()</code>) überprüft werden.</p>
 <p>Der Levene-Test geht von der Nullhypothese aus, dass sich die beiden Varianzen nicht unterscheiden. Ein nicht signifikantes Ergebnis bedeutet daher, dass sich die Varianzen nicht unterscheiden und somit Varianzhomogenität (sogenannte Heteroskedastizität) besteht. Wenn der Test signifikant ist, wird Varianzheterogenität angenommen.</p>
 <p>Falls die Varianzen heterogen (unterschiedlich) sind , müssen die Freiheitsgrade des <em>t</em>-Wertes entsprechend angepasst werden. In diesem Fall kann ein Welch-Test (Welch’s <em>t</em>-Test) verwendet werden, der zur Berechnung der Teststatistik die beiden unterschiedlichen Populationsvarianzen anstatt die gepoolte Innerhalbvarianz nimmt. Dazu wird in <em>R</em> die Funktion <code>t.test()</code>mit der Option <code>var.equal = FALSE</code> genutzt.</p>
 </section>
@@ -568,7 +571,7 @@ Bei gerichteten Hypothesen müssen die Aussagen entsprechend angepasst werden.
 <p>Personen mit dem Treatment <em>X</em> unterscheiden sich signifikant in ihrer kognitiven Leistung von Personen ohne Treatment <em>X</em>, <em>t</em>(40)=-2.63, <em>p</em> &lt; .001, <em>d</em> = 0.34.</p>
 </blockquote>
 <blockquote class="blockquote">
-<p>Personen mit der Diagnose <em>X</em> unterscheiden sich nicht in ihrer Schmerzempfindlichkeit von Personen ohne Diagnose <em>X</em>, <em>t</em>(40)=-0.13,) <em>p</em> = .64).</p>
+<p>Personen mit der Diagnose <em>X</em> unterscheiden sich nicht in ihrer Schmerzempfindlichkeit von Personen ohne Diagnose <em>X</em>, <em>t</em>(40)=-0.13,) <em>p</em> = .641).</p>
 </blockquote>
 </section>
 </section>
@@ -647,7 +650,7 @@ NOTE: n is number in *each* group</code></pre>
 <aside>
 Beim ersten Verwenden muss das Package {pwr} heruntergeladen/installiert werden, z.B. in der Konsole mit <code>install.packages("pwr")</code>.
 </aside>
-<p>Eine Teststärke (Power) von 0.94 bedeutet, dass die Wahrscheinlichkeit 94 % beträgt, einen tatsächlich vorhandenen Effekt mit einer Effektstärke von 0.8 zu entdecken.</p>
+<p>Eine Teststärke (Power) von 0.94 bedeutet, dass die Wahrscheinlichkeit 94 % beträgt, einen tatsächlich vorhandenen Effekt mit einer Effektstärke von <span class="math inline">\(d = 0.8\)</span> zu entdecken.</p>
 <p>Um mit einer Teststärke von 80% einen grossen Effekt von <span class="math inline">\(d=0.8\)</span> zu finden, wird eine Stichprobe von mindestens <span class="math inline">\(n=26\)</span> pro Gruppe benötigt.</p>
 </section>
 </section>
