@@ -49,6 +49,8 @@ _Falls obige Anforderungen noch nicht erfüllt:_
     - das Package {pwr} in der Konsole mit `install.packages("pwr")` oder mit `Tools` > `Install Packages...`
     - das Package {car} in der Konsole mit `install.packages("car")` oder mit `Tools` > `Install Packages...`
     - das Package {effsize} in der Konsole mit `install.packages("effsize")` oder mit `Tools` > `Install Packages...`
+    
+    
 - Erstellen ein _RNotebook_ names `uebung-04`.
 
 ## Aufgabe 4.2: T-Test ausführen 
@@ -88,7 +90,6 @@ glimpse(___)
 ```
 
 ```{r}
-#| eval: false
 library(tidyverse)
 
 d_quality <- read.csv("data/couples_quality.csv")
@@ -248,7 +249,7 @@ Sie fragen sich, ob das Sprichwort "Gegensätze ziehen sich an" bei romantischen
 
 <aside> [Artikel zum Studienbeispiel: Claxton et al. (2012)](https://journals.sagepub.com/doi/full/10.1177/0265407511431183) </aside>
 
-__Forschungsfrage__: Unterscheiden sich das Persönlichkeitsmerkmal _Extraversion_ signifikant zwischen Partnern?
+__Forschungsfrage__: Unterscheidet sich das Persönlichkeitsmerkmal _Extraversion_ signifikant zwischen Partnern?
 
 __Bearbeiten Sie nun Schritt für Schritt folgende Aufgaben:__
 

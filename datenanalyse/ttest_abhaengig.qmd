@@ -375,19 +375,19 @@ t.test(x = d_fear$fear_post, # av t2
 Die Mittelwerte zwischen den beiden Messzeitpunkten unterscheiden sich signifikant auf dem $5 \%$-Niveau. Die Nullhypothese, wonach sich die beiden Mittelwerte nicht unterscheiden kann verworfen werden. Das Lesen/Scrollen durch Social Media Posts beeinflusst somit die empfundene Zukunftsangst.
 
 
-<!-- #### __7. Effektstärke bestimmen__ -->
+#### __7. Effektstärke bestimmen__
 
-<!-- __Berechnung der Effektgrösse (Cohen's _d_)__ -->
+__Berechnung der Effektgrösse (Cohen's _d_)__
 
-<!-- Nun kann noch die Effektgrösse mit `cohen.d(x, y, paired = TRUE)` aus dem Package {effsize} berechnet werden.  -->
+Nun kann noch die Effektgrösse mit `cohen.d(x, y, paired = TRUE)` aus dem Package {effsize} berechnet werden.
 
-<!-- ```{r} -->
-<!-- # Effektgrösse berechnen -->
-<!-- effsize::cohen.d(d_fear$fear_post, # av t2 -->
-<!--                  d_fear$fear_pre, # av t1 -->
-<!--                  paired = TRUE) -->
-<!-- ``` -->
-<!-- Die Effektgrösse liegt bei $d = 0.77$. Es handelt sich nach der Taxonomie von Cohen (1988) um einen __grossen__ Effekt. -->
+```{r}
+# Effektgrösse berechnen
+effsize::cohen.d(d_fear$fear_post, # av t2
+                 d_fear$fear_pre, # av t1
+                 paired = TRUE)
+```
+Die Effektgrösse liegt bei $d = 0.77$. Es handelt sich nach der Taxonomie von Cohen (1988) um einen __grossen__ Effekt.
 
 <!-- # ```{r} -->
 <!-- # effsize::cohen.d(formula = fear ~ timepoint | Subject(id),  # av ~ uv -->

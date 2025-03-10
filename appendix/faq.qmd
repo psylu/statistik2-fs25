@@ -60,6 +60,3 @@ __Der Datensatz wird nicht heruntergeladen, sondern im Browserfenster oder im Pr
 
 - Machen Sie einen Rechtsklick auf den Download-Link und wählen Sie `save as...`.
 - Verwenden Sie einen anderen Browser als Safari.
-
-
-
