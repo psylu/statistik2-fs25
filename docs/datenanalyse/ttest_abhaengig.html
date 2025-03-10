@@ -836,16 +836,27 @@ mean difference
 </div>
 </div>
 <p>Die Mittelwerte zwischen den beiden Messzeitpunkten unterscheiden sich signifikant auf dem <span class="math inline">\(5 \%\)</span>-Niveau. Die Nullhypothese, wonach sich die beiden Mittelwerte nicht unterscheiden kann verworfen werden. Das Lesen/Scrollen durch Social Media Posts beeinflusst somit die empfundene Zukunftsangst.</p>
-<!-- #### __7. Effektstärke bestimmen__ -->
-<!-- __Berechnung der Effektgrösse (Cohen's _d_)__ -->
-<!-- Nun kann noch die Effektgrösse mit `cohen.d(x, y, paired = TRUE)` aus dem Package {effsize} berechnet werden.  -->
-<!-- ```{r} -->
-<!-- # Effektgrösse berechnen -->
-<!-- effsize::cohen.d(d_fear$fear_post, # av t2 -->
-<!--                  d_fear$fear_pre, # av t1 -->
-<!--                  paired = TRUE) -->
-<!-- ``` -->
-<!-- Die Effektgrösse liegt bei $d = 0.77$. Es handelt sich nach der Taxonomie von Cohen (1988) um einen __grossen__ Effekt. -->
+</section>
+<section id="effektstärke-bestimmen" class="level4">
+<h4 class="anchored" data-anchor-id="effektstärke-bestimmen"><strong>7. Effektstärke bestimmen</strong></h4>
+<p><strong>Berechnung der Effektgrösse (Cohen’s <em>d</em>)</strong></p>
+<p>Nun kann noch die Effektgrösse mit <code>cohen.d(x, y, paired = TRUE)</code> aus dem Package {effsize} berechnet werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>effsize<span class="sc">::</span><span class="fu">cohen.d</span>(d_fear<span class="sc">$</span>fear_post, <span class="co"># av t2</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>                 d_fear<span class="sc">$</span>fear_pre, <span class="co"># av t1</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">paired =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Cohen's d
+
+d estimate: 0.7699901 (medium)
+95 percent confidence interval:
+   lower    upper 
+0.332312 1.207668 </code></pre>
+</div>
+</div>
+<p>Die Effektgrösse liegt bei <span class="math inline">\(d = 0.77\)</span>. Es handelt sich nach der Taxonomie von Cohen (1988) um einen <strong>grossen</strong> Effekt.</p>
 <!-- # ```{r} -->
 <!-- # effsize::cohen.d(formula = fear ~ timepoint | Subject(id),  # av ~ uv -->
 <!-- #                  data = d_fear_long, -->

@@ -60,7 +60,7 @@ Weitere Einstellungen:
 | `.csv`          | From text                    | `read.csv()`                     | file, (header), (sep), ... | `read.csv(file = "data/datafile.csv")`  |
 | `.xlsx`  | From Excel                   | `readxl::read_xlsx()` | path, (sheet), (col_names), ...     | `readxl::read_xlsx(path = "data/datafile.xlsx")`|
 | `.sav`   | From SPSS                    | `haven::read_sav()`    | file, ...                  | `haven::read_sav(file = "data/datafile.sav")`  |
-| `.txt`          | From text                    | `read.delim()`                   | file, (delim), (col_names) | `read_delim(file = "data/datafile.txt")`|
+| `.txt`          | From text                    | `read.delim()`                   | file, (delim), (col_names) | `read.delim(file = "data/datafile.txt")`|
 | `.sas7bdat`     | From SAS                     | ...                              |                            |                                              |
 | `.dta`          | From Stata                   | ...                              |                            |                                              |
 
