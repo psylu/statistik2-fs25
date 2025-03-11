@@ -419,5 +419,5 @@ Die Effektgrösse liegt bei $d=0.45$. Es handelt sich nach der Taxonomie von Coh
 
 Das Ergebnis ist auf dem $5 \%$-Niveau signifikant und die Nullhypothese kann somit verworfen werden: Die Stimmung beeinflusst die kognitive Leistungsfähigkeit. Es handelt sich nach der Taxonomie von Cohen (1988) um einen kleinen Effekt ($d=0.45$). 
 
->"We examined whether the mood condition had an effect on cognitive performance. There was a significant difference between the positive and negative mood condition, _t_(78) = 2.01, _p_ = .024, _d_ = 0.45). Participants in the negative mood condition (_M_ = 12.40, _SD_ = 5.61) performed significantly better on the task than those in the positive mood condition (_M_ = 10.15, _SD_ = 4.32). This indicates a small effect of mood on cognitive performance according to Cohen’s convention (1988)."
+>"We examined whether the mood condition had an effect on cognitive performance. There was a significant difference between the positive and negative mood condition, _t_(78) = 2.01, _p_ = .048, _d_ = 0.45). Participants in the negative mood condition (_M_ = 12.40, _SD_ = 5.61) performed significantly better on the task than those in the positive mood condition (_M_ = 10.15, _SD_ = 4.32). This indicates a small effect of mood on cognitive performance according to Cohen’s convention (1988)."
 
