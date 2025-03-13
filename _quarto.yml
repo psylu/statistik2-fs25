@@ -34,6 +34,7 @@ book:
     - datenanalyse/descriptive.qmd
     - datenanalyse/ttest_unabhaengig.qmd
     - datenanalyse/ttest_abhaengig.qmd
+    #- datenanalyse/anova1.qmd
     
   - part: Datenvisualisierung
 #    chapters:
@@ -44,6 +45,7 @@ book:
     - uebungen/uebung-01.qmd
     - uebungen/uebung-02.qmd
     - uebungen/uebung-04.qmd
+    - uebungen/uebung-05.qmd
 
   - part: Anhang
     chapters:

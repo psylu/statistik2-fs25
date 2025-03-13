@@ -1,0 +1,18 @@
+---
+title: "Einfaktorielle Varianzanalyse"
+author: "na"
+date: "2025-03-17"
+output: html_document
+---
+
+Hier können Sie Text ergänzen, z.B. Notizen 
+
+```{r}
+# Hier können Sie Code ergänzen
+library(tidyverse)
+```
+
+Ein neuer Code-Chunk kann unter `Code` > `Insert Code` eingefügt werden.
+Code kann z.B. ausgeführt werden indem auf den grünen Pfeil beim Code-Chunk geklickt wird.
+
+Mit `Knit` kann das Dokument zu einem `html`-File gerendert werden.

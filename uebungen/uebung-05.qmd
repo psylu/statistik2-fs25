@@ -1,0 +1,222 @@
+# Übung 5 {.unnumbered #sec-uebung-05}
+
+```{r}
+#| include: false
+# Set working directory of R
+knitr::opts_knit$set(root.dir = '../')
+```
+
+::: {.callout-note appearance="default" title="Lernziele dieser Übung"}
+Nach der heutigen Übung können Sie:
+
+- _R_ und _RStudio_ zur Analyse von Daten verwenden
+
+- einfaktorielle Varianzanalysen ohne Messwiederholung in _R_ durchführen
+    - Hypothesen zum Vergleich von mehr als zwei Stichprobenmittelwerten von unabhängigen Gruppen durchführen
+    - Voraussetzungen überprüfen
+    - Test berechnen 
+    - Resultate interpretieren
+
+:::
+
+:::{.callout-note appearance="default" title="Voraussetzungen"}
+
+1. Packages {tidyverse}, {afex}, {emmeans}, {beeswarm}, {effectsize} sind installiert.
+
+2. [Hier](../data/anova.zip) kann der Projektordner mit den Daten heruntergeladen werden. Vor dem ersten Verwenden muss der Ordner __entzippt__ werden, dann kann das _RProject_ namens `anova.Rproj` geöffnet werden. Der Ordner enthält:
+
+- _RProject_ namens `anova.Rproj`
+- Datensätze für die Vorlesung und die Übung 5 im `data`-Ordner des _RProjects_ `anova`:
+    - [`anova_music.csv`](../data/anova_music.csv)
+- (die weiteren Dateien und _RNotebooks_ werden in der Vorlesung verwendet)
+
+:::
+
+<br>
+
+## Aufgabe 5.0: Projektumgebung erstellen 
+
+_Falls obige Anforderungen noch nicht erfüllt:_ 
+
+- Laden Sie den Projektordner herunter und __entzippen__ Sie den Ordner.^[Für das Entzippen mit _Windows_ machen Sie einen Rechtsklick auf den Ordner mit dem Reissverschluss und wählen Sie `Entpacken nach` und geben Sie den Ordner an, in dem Sie alle Ihre _RProject-Ordner_ speichern. Für das Entzippen mit _Mac_ speichern Sie den heruntergeladenen Ordner in den Ordner, in dem Sie alle Ihre _RProject-Ordner_ speichern und Doppelklicken Sie danach auf den Ordner. Nur entzippte Ordner können einwandfrei verwendet werden.] </aside>
+
+- Installieren Sie die benötigten Packages (falls noch nicht geschehen) unter `Tools` > `Install Packages...` oder in der Konsole mit
+
+   `install.packages("afex")`
+   
+   `install.packages("emmeans")`
+   
+   `install.packages("beeswarm")`
+   
+   `install.packages("effectsize")`
+    
+__a.__ Öffnen Sie das _RProjekt_ `anova`.
+  
+__b.__ Erstellen Sie ein _RNotebook_ namens `uebung-05`.
+
+<br>
+
+## Aufgabe 5.1: Einstieg
+
+- Welche $H_0$ wird mit einer einfaktoriellen Varianzanalyse mit __vier__ Bedingungen überprüft? Wie lautet die entsprechende $H_1$ dazu?
+
+- Formulieren Sie zwei Forschungsfragen, die mit einer einfaktoriellen Varianzanalyse ohne Messwiederholung untersucht werden können. 
+
+
+## Aufgabe 5.2: Einfaktorielle Varianzanalyse ohne Messwiederholung
+
+__Beschreibung der Studie__
+
+In diesem Musik-Experiment^[Eid, M., Gollwitzer, M., & Schmitt, M. (2017). Statistik und Forschungsmethoden: Mit Online-Materialien (5., korrigierte Auflage). Beltz. S. 459] wurde die Hypothese untersucht, dass die Konzentrationsleistung von Personen unter dem Einfluss klassischer Instrumentalmusik (Bedingung 1) höher ist als unter dem Einfluss von Rockmusik (Bedingung 2), von Opernmusik (Bedingung 3) oder von Schlagermusik (Bedingung 4). Die Versuchspersonen wurden randomisiert einer der vier experimentellen Bedingungen zugeteilt und sollten sich entsprechende Musikstücke für ca. 15 Minuten anhören. Gleichzeitig sollten sie einen Konzentrationstest bearbeiten. Das Alphaniveau wurde auf $5 \%$ festgelegt. 
+
+__Forschungsfrage__: Besteht ein Unterschied in der Konzentrationsleistung zwischen mindestens zwei Gruppen?
+
+__Unabhängige Variable__: Art der Musik in vier Bedingungen (`condition`: Instrumental, Rock, Oper, Schlager) 
+
+__Abhängige Variable__: Erreichte Punktzahl in einem Konzentrationstest (`testscore`) als Indikator für Konzentrationsleistung auf einer Skala von 0 - 35 möglichen Punkten. 
+
+<br>
+
+__Bearbeiten Sie nun Schritt für Schritt folgenden Aufgaben:__ 
+
+__a.__  Wird eine gerichtete oder eine ungerichtete Hypothese überprüft? Wie lautet die $H_0$ und die $H_1$? 
+
+
+__b.__ Welches Signifikanzniveau wurde festgelegt? Was bedeutet das?
+
+
+__c.__ Laden Sie das {tidyverse}. Lesen Sie den Datensatz `anova_music.csv` aus dem Ordner `data` ein und speichern Sie ihn in die Variable `d_music`. Konvertieren Sie die Variablen `id` und `condition` zu einem Faktor. 
+
+```{r}
+#| eval: false
+# tidyverse laden
+___(tidyverse)
+
+# Datensatz einlesen
+___ <- ___("___/___.csv")
+
+# Faktoren konvertieren
+d_music <- ___ |>
+  ___(id = ___(id)) |>
+  ___(condition = ___(condition))
+```
+
+__d.__ Schauen Sie sich den Datensatz genauer an, z.B. mit `glimpse()` und `Hmisc::describe()`.
+
+```{r}
+#| eval: false
+# Daten anschauen mit glimpse()
+___(___)
+
+# Daten anschauen mit describe() aus Hmisc
+___::___(___)
+```
+
+- Wie heissen die vier Bedingungen im Datensatz?
+
+
+- Wie viele Personen sind in welcher Bedingung?
+
+
+- Gibt es fehlende Werte (missings)?
+
+
+- Wie lauten die Mittelwerte und Standardabweichungen der Testscores in den vier Bedingungen? Fassen Sie hierzu die Daten mit `group_by()` und `summarise()` zusammen (eine Anleitung dazu finden Sie [hier](../datenverarbeitung/transform.qmd#daten-gruppieren-und-zusammenfassen-group_by-und-summarise)). 
+
+```{r}
+#| eval: false
+# Gruppieren und zusammenfassen
+d_summary <- ___ |>
+  ___(___) |>
+  ___(mean_testscore = ___(___),
+      sd_testscore = ___(___))
+d_summary
+```
+
+- Was wissen Sie nun bereits über die Daten?
+
+
+__e.__  Welchen statistischen Test führen Sie durch und weshalb?
+
+
+__f.__  Überprüfen Sie, ob die Voraussetzungen für die Anwendung eines _F_-Tests erfüllt sind.
+
+Die Varianzhomogenität wird mit dem Levene-Test überprüft. Dafür kann die Funktion `leveneTest()` aus dem Package {car} verwendet werden. Wir wählen das Signifikanzniveau von 5%. Wie fällt das Ergebnis des Levene-Tests aus? 
+
+```{r}
+#| eval: false
+# Levene Test
+___::___(___ ~ ___, # av ~ uv
+         data = ___)
+```
+
+__g.__  Führen Sie nun eine einfaktorielle Varianzanalyse mit der Funktion `aov_4()` durch. Sie benötigen dazu das Package {afex}. 
+
+- Berechnen Sie eine einfaktorielle Varianzanalyse und speichern Sie das Modell als Objekt namens `m_anova1`.
+
+- Lassen Sie sich eine `summary()` und eine vollständige Anova-Tabelle mit `___$Anova` ausgeben.
+
+- Welche Werte in der Tabelle sind relevant? Suchen Sie die wichtigen Kennwerte heraus.
+
+- Wie lautet Ihre Testentscheidung?
+
+
+```{r, warning=FALSE}
+#| eval: false
+# afex laden
+library(afex)
+
+# Einfaktorielle Anova 
+m_anova1 <- aov_4(___ ~ ___ + (1 | ___), # av ~ uv + (1 | Identifikationsvariable)
+                data = ___) # dataset
+
+# Resultate ausgeben
+summary(m_anova1) 
+m_anova1$Anova
+```
+
+
+__h.__ Visualisierung
+
+Verwendet Sie den folgenden Code, um die Mittelwerte und Standardfehler zu plotten. Stellen Sie Vermutungen an, welche Gruppen sich signifikant unterscheiden und welche nicht. 
+
+```{r}
+#| eval: false
+# Plot
+plot_anova <- afex_plot(object = ___, # Objekt mit Anovamodell
+          x = "___",  # uv (Faktor)
+          error_ci = FALSE) + # Anzeigen von Standardfehler der Mittelwerte
+    theme_minimal()
+plot_anova
+```
+
+
+__i.__ Effektstärke berechnen
+
+Die Effektgrösse $\eta^2$ lässt sich anhand des Quotienten aus der Zwischen-Quadratsumme und der Gesamtquadratsumme berechnen. In R kann dieses Mass direkt mit der Funktion `eta_squared()` aus dem Package {effectsize} ausgegeben werden. Als Argument für die Funktion muss das Anova-Modell (Objekt), also hier `m_anova1`, eingegeben werden.
+
+```{r}
+#| eval: false
+# Effektgrösse berechnen
+___::___(___)
+```
+
+## Aufgabe 5.3: Zusatzaufgabe
+
+:::{.callout-tip appearance="default" title="Zusatzaufgaben"}
+
+__Zusatzaufgaben müssen nicht gelöst werden.__
+
+:::
+
+- Berechnen Sie den _F_-Wert und den $\eta^2$-Wert mithilfe der Quadratsummen aus dem Output selbst.
+
+- Erstellen Sie mit `esquisse::esquisser()` eine andere Grafik (z.B. Boxplot), welche die Testscores der vier Bedingungen in einer Grafik abbildet.
+
+
+
+
+
+
+
+

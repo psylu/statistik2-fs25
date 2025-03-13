@@ -22,9 +22,11 @@ Beim Abspeichern mit Excel verändern sich die _Separators_ (z.B. von `,` zu `;`
 __Welche Werte enthält eine Variable / ein Datensatz?__
 
 - Um die Werte einer Variable oder eines Datensatzes zu sehen, schauen Sie in unter `Environment`(rechter oberer Quadrant in _RStudio) nach.
-Dort können Sie auf den blauen Pfeil klicken und die Infos "ausklappen".
+Dort können Sie auf den blauen Pfeil klicken und die Infos "ausklappen" oder Doppelklicken für eine Tabellenansicht.
 
 - Geben Sie den Namen der Variable/des Datensatzes in der `Console` ein und drücken Sie {{< kbd Enter >}}. 
+
+- Laden Sie das {tidyverse} mit `library(tidyverse)` und nutzen Sie die Funktion `glimpse()` (in der Klammer muss der Datensatzname stehen).
 
 __Welche Argumente braucht eine Funktion?__
 

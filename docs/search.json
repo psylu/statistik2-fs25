@@ -1021,6 +1021,72 @@
     ]
   },
   {
+    "objectID": "uebungen/uebung-05.html",
+    "href": "uebungen/uebung-05.html",
+    "title": "Übung 5",
+    "section": "",
+    "text": "Aufgabe 5.0: Projektumgebung erstellen\nFalls obige Anforderungen noch nicht erfüllt:\na. Öffnen Sie das RProjekt anova.\nb. Erstellen Sie ein RNotebook namens uebung-05.",
+    "crumbs": [
+      "Übungen",
+      "Übung 5"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-05.html#aufgabe-5.0-projektumgebung-erstellen",
+    "href": "uebungen/uebung-05.html#aufgabe-5.0-projektumgebung-erstellen",
+    "title": "Übung 5",
+    "section": "",
+    "text": "Laden Sie den Projektordner herunter und entzippen Sie den Ordner.1\n\nInstallieren Sie die benötigten Packages (falls noch nicht geschehen) unter Tools &gt; Install Packages... oder in der Konsole mit\ninstall.packages(\"afex\")\ninstall.packages(\"emmeans\")\ninstall.packages(\"beeswarm\")\ninstall.packages(\"effectsize\")",
+    "crumbs": [
+      "Übungen",
+      "Übung 5"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-05.html#aufgabe-5.1-einstieg",
+    "href": "uebungen/uebung-05.html#aufgabe-5.1-einstieg",
+    "title": "Übung 5",
+    "section": "Aufgabe 5.1: Einstieg",
+    "text": "Aufgabe 5.1: Einstieg\n\nWelche \\(H_0\\) wird mit einer einfaktoriellen Varianzanalyse mit vier Bedingungen überprüft? Wie lautet die entsprechende \\(H_1\\) dazu?\nFormulieren Sie zwei Forschungsfragen, die mit einer einfaktoriellen Varianzanalyse ohne Messwiederholung untersucht werden können.",
+    "crumbs": [
+      "Übungen",
+      "Übung 5"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-05.html#aufgabe-5.2-einfaktorielle-varianzanalyse-ohne-messwiederholung",
+    "href": "uebungen/uebung-05.html#aufgabe-5.2-einfaktorielle-varianzanalyse-ohne-messwiederholung",
+    "title": "Übung 5",
+    "section": "Aufgabe 5.2: Einfaktorielle Varianzanalyse ohne Messwiederholung",
+    "text": "Aufgabe 5.2: Einfaktorielle Varianzanalyse ohne Messwiederholung\nBeschreibung der Studie\nIn diesem Musik-Experiment2 wurde die Hypothese untersucht, dass die Konzentrationsleistung von Personen unter dem Einfluss klassischer Instrumentalmusik (Bedingung 1) höher ist als unter dem Einfluss von Rockmusik (Bedingung 2), von Opernmusik (Bedingung 3) oder von Schlagermusik (Bedingung 4). Die Versuchspersonen wurden randomisiert einer der vier experimentellen Bedingungen zugeteilt und sollten sich entsprechende Musikstücke für ca. 15 Minuten anhören. Gleichzeitig sollten sie einen Konzentrationstest bearbeiten. Das Alphaniveau wurde auf \\(5 \\%\\) festgelegt.\nForschungsfrage: Besteht ein Unterschied in der Konzentrationsleistung zwischen mindestens zwei Gruppen?\nUnabhängige Variable: Art der Musik in vier Bedingungen (condition: Instrumental, Rock, Oper, Schlager)\nAbhängige Variable: Erreichte Punktzahl in einem Konzentrationstest (testscore) als Indikator für Konzentrationsleistung auf einer Skala von 0 - 35 möglichen Punkten.\n\nBearbeiten Sie nun Schritt für Schritt folgenden Aufgaben:\na. Wird eine gerichtete oder eine ungerichtete Hypothese überprüft? Wie lautet die \\(H_0\\) und die \\(H_1\\)?\nb. Welches Signifikanzniveau wurde festgelegt? Was bedeutet das?\nc. Laden Sie das {tidyverse}. Lesen Sie den Datensatz anova_music.csv aus dem Ordner data ein und speichern Sie ihn in die Variable d_music. Konvertieren Sie die Variablen id und condition zu einem Faktor.\n\n# tidyverse laden\n___(tidyverse)\n\n# Datensatz einlesen\n___ &lt;- ___(\"___/___.csv\")\n\n# Faktoren konvertieren\nd_music &lt;- ___ |&gt;\n  ___(id = ___(id)) |&gt;\n  ___(condition = ___(condition))\n\nd. Schauen Sie sich den Datensatz genauer an, z.B. mit glimpse() und Hmisc::describe().\n\n# Daten anschauen mit glimpse()\n___(___)\n\n# Daten anschauen mit describe() aus Hmisc\n___::___(___)\n\n\nWie heissen die vier Bedingungen im Datensatz?\nWie viele Personen sind in welcher Bedingung?\nGibt es fehlende Werte (missings)?\nWie lauten die Mittelwerte und Standardabweichungen der Testscores in den vier Bedingungen? Fassen Sie hierzu die Daten mit group_by() und summarise() zusammen (eine Anleitung dazu finden Sie hier).\n\n\n# Gruppieren und zusammenfassen\nd_summary &lt;- ___ |&gt;\n  ___(___) |&gt;\n  ___(mean_testscore = ___(___),\n      sd_testscore = ___(___))\nd_summary\n\n\nWas wissen Sie nun bereits über die Daten?\n\ne. Welchen statistischen Test führen Sie durch und weshalb?\nf. Überprüfen Sie, ob die Voraussetzungen für die Anwendung eines F-Tests erfüllt sind.\nDie Varianzhomogenität wird mit dem Levene-Test überprüft. Dafür kann die Funktion leveneTest() aus dem Package {car} verwendet werden. Wir wählen das Signifikanzniveau von 5%. Wie fällt das Ergebnis des Levene-Tests aus?\n\n# Levene Test\n___::___(___ ~ ___, # av ~ uv\n         data = ___)\n\ng. Führen Sie nun eine einfaktorielle Varianzanalyse mit der Funktion aov_4() durch. Sie benötigen dazu das Package {afex}.\n\nBerechnen Sie eine einfaktorielle Varianzanalyse und speichern Sie das Modell als Objekt namens m_anova1.\nLassen Sie sich eine summary() und eine vollständige Anova-Tabelle mit ___$Anova ausgeben.\nWelche Werte in der Tabelle sind relevant? Suchen Sie die wichtigen Kennwerte heraus.\nWie lautet Ihre Testentscheidung?\n\n\n# afex laden\nlibrary(afex)\n\n# Einfaktorielle Anova \nm_anova1 &lt;- aov_4(___ ~ ___ + (1 | ___), # av ~ uv + (1 | Identifikationsvariable)\n                data = ___) # dataset\n\n# Resultate ausgeben\nsummary(m_anova1) \nm_anova1$Anova\n\nh. Visualisierung\nVerwendet Sie den folgenden Code, um die Mittelwerte und Standardfehler zu plotten. Stellen Sie Vermutungen an, welche Gruppen sich signifikant unterscheiden und welche nicht.\n\n# Plot\nplot_anova &lt;- afex_plot(object = ___, # Objekt mit Anovamodell\n          x = \"___\",  # uv (Faktor)\n          error_ci = FALSE) + # Anzeigen von Standardfehler der Mittelwerte\n    theme_minimal()\nplot_anova\n\ni. Effektstärke berechnen\nDie Effektgrösse \\(\\eta^2\\) lässt sich anhand des Quotienten aus der Zwischen-Quadratsumme und der Gesamtquadratsumme berechnen. In R kann dieses Mass direkt mit der Funktion eta_squared() aus dem Package {effectsize} ausgegeben werden. Als Argument für die Funktion muss das Anova-Modell (Objekt), also hier m_anova1, eingegeben werden.\n\n# Effektgrösse berechnen\n___::___(___)",
+    "crumbs": [
+      "Übungen",
+      "Übung 5"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-05.html#aufgabe-5.3-zusatzaufgabe",
+    "href": "uebungen/uebung-05.html#aufgabe-5.3-zusatzaufgabe",
+    "title": "Übung 5",
+    "section": "Aufgabe 5.3: Zusatzaufgabe",
+    "text": "Aufgabe 5.3: Zusatzaufgabe\n\n\n\n\n\n\nZusatzaufgaben\n\n\n\nZusatzaufgaben müssen nicht gelöst werden.\n\n\n\nBerechnen Sie den F-Wert und den \\(\\eta^2\\)-Wert mithilfe der Quadratsummen aus dem Output selbst.\nErstellen Sie mit esquisse::esquisser() eine andere Grafik (z.B. Boxplot), welche die Testscores der vier Bedingungen in einer Grafik abbildet.",
+    "crumbs": [
+      "Übungen",
+      "Übung 5"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-05.html#footnotes",
+    "href": "uebungen/uebung-05.html#footnotes",
+    "title": "Übung 5",
+    "section": "",
+    "text": "Für das Entzippen mit Windows machen Sie einen Rechtsklick auf den Ordner mit dem Reissverschluss und wählen Sie Entpacken nach und geben Sie den Ordner an, in dem Sie alle Ihre RProject-Ordner speichern. Für das Entzippen mit Mac speichern Sie den heruntergeladenen Ordner in den Ordner, in dem Sie alle Ihre RProject-Ordner speichern und Doppelklicken Sie danach auf den Ordner. Nur entzippte Ordner können einwandfrei verwendet werden.↩︎\nEid, M., Gollwitzer, M., & Schmitt, M. (2017). Statistik und Forschungsmethoden: Mit Online-Materialien (5., korrigierte Auflage). Beltz. S. 459↩︎",
+    "crumbs": [
+      "Übungen",
+      "Übung 5"
+    ]
+  },
+  {
     "objectID": "appendix/faq.html",
     "href": "appendix/faq.html",
     "title": "FAQ",
@@ -1047,7 +1113,7 @@
     "href": "appendix/faq.html#variablen-und-funktionen",
     "title": "FAQ",
     "section": "Variablen und Funktionen",
-    "text": "Variablen und Funktionen\nWelche Werte enthält eine Variable / ein Datensatz?\n\nUm die Werte einer Variable oder eines Datensatzes zu sehen, schauen Sie in unter Environment(rechter oberer Quadrant in _RStudio) nach. Dort können Sie auf den blauen Pfeil klicken und die Infos “ausklappen”.\nGeben Sie den Namen der Variable/des Datensatzes in der Console ein und drücken Sie EnterEnter.\n\nWelche Argumente braucht eine Funktion?\n\nGeben Sie den Funktionsnamen ein und klicken Sie in die folgenden Klammern. Drücken Sie TabTab um Vorschläge zu sehen.\nGeben Sie ?FUNKTIONSNAMEein.\nSuchen Sie im rechten unteren Quadranten von RStudio unter Help nach dem Funktionsnamen.\nGeben Sie in einer Suchmaschine den Funktionsnamen und Stichworte zu Ihrem Ziel ein.",
+    "text": "Variablen und Funktionen\nWelche Werte enthält eine Variable / ein Datensatz?\n\nUm die Werte einer Variable oder eines Datensatzes zu sehen, schauen Sie in unter Environment(rechter oberer Quadrant in _RStudio) nach. Dort können Sie auf den blauen Pfeil klicken und die Infos “ausklappen” oder Doppelklicken für eine Tabellenansicht.\nGeben Sie den Namen der Variable/des Datensatzes in der Console ein und drücken Sie EnterEnter.\nLaden Sie das {tidyverse} mit library(tidyverse) und nutzen Sie die Funktion glimpse() (in der Klammer muss der Datensatzname stehen).\n\nWelche Argumente braucht eine Funktion?\n\nGeben Sie den Funktionsnamen ein und klicken Sie in die folgenden Klammern. Drücken Sie TabTab um Vorschläge zu sehen.\nGeben Sie ?FUNKTIONSNAMEein.\nSuchen Sie im rechten unteren Quadranten von RStudio unter Help nach dem Funktionsnamen.\nGeben Sie in einer Suchmaschine den Funktionsnamen und Stichworte zu Ihrem Ziel ein.",
     "crumbs": [
       "Anhang",
       "FAQ"
