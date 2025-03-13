@@ -109,15 +109,15 @@ __c.__ Laden Sie das {tidyverse}. Lesen Sie den Datensatz `anova_music.csv` aus 
 ```{r}
 #| eval: false
 # tidyverse laden
-___(tidyverse)
+___(___)
 
 # Datensatz einlesen
 ___ <- ___("___/___.csv")
 
 # Faktoren konvertieren
 d_music <- ___ |>
-  ___(id = ___(id)) |>
-  ___(condition = ___(condition))
+  ___(id = ___(___)) |>
+  ___(condition = ___(___))
 ```
 
 ```{r, message=FALSE}
@@ -233,8 +233,8 @@ m_anova1 <- aov_4(___ ~ ___ + (1 | ___), # av ~ uv + (1 | Identifikationsvariabl
                 data = ___) # dataset
 
 # Resultate ausgeben
-summary(m_anova1) 
-m_anova1$Anova
+summary(___) 
+___$Anova
 ```
 
 ```{r, message=FALSE}

@@ -34,7 +34,7 @@ book:
     - datenanalyse/descriptive.qmd
     - datenanalyse/ttest_unabhaengig.qmd
     - datenanalyse/ttest_abhaengig.qmd
-    #- datenanalyse/anova1.qmd
+    - datenanalyse/anova1.qmd
     
   - part: Datenvisualisierung
 #    chapters:
