@@ -302,6 +302,8 @@ effectsize::eta_squared(m_anova1)
 ```
 > Eta2 = 0.59 (grosser Effekt)
 
+<br>
+
 ## Aufgabe 5.3: Zusatzaufgabe
 
 :::{.callout-tip appearance="default" title="Zusatzaufgaben"}

@@ -201,6 +201,8 @@ Die Effektgrösse $\eta^2$ lässt sich anhand des Quotienten aus der Zwischen-Qu
 ___::___(___)
 ```
 
+<br>
+
 ## Aufgabe 5.3: Zusatzaufgabe
 
 :::{.callout-tip appearance="default" title="Zusatzaufgaben"}
