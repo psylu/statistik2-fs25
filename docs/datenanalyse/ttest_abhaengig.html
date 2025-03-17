@@ -476,7 +476,7 @@ Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transfo
 <section id="planung" class="level3 page-columns page-full" data-number="10.3.1">
 <h3 data-number="10.3.1" class="anchored" data-anchor-id="planung"><span class="header-section-number">10.3.1</span> Planung</h3>
 <section id="statistische-hypothesen-und-signifikanzniveau-festlegen" class="level4">
-<h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen"><strong>1. Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
+<h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen"><strong>Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
 <p><strong>Ungerichtete Hypothesen:</strong></p>
 <p><span class="math inline">\(H_0\)</span>: Die Populationsmittelwerte unterscheiden sich nicht (d.h. haben eine Differenz gleich 0) <span class="math inline">\(\mu_1 = \mu_2\)</span> oder <span class="math inline">\(\mu_D = 0\)</span></p>
 <p><span class="math inline">\(H_1\)</span>: Die Populationsmittelwerte unterscheiden sich (d.h. haben eine Differenz ungleich 0) <span class="math inline">\(\mu_1 \neq \mu_2\)</span> oder <span class="math inline">\(\mu_D \neq 0\)</span></p>
@@ -491,7 +491,7 @@ Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transfo
 <p>Wird ein Signifikanzniveau von <span class="math inline">\(\alpha = 0.05\)</span> festgelegt, bedeutet dies, dass bei der Verwerfung der Nullhypothese eine 5% Wahrscheinlichkeit besteht, dass eigentlich kein Unterschied besteht und irrtümlicherweise einer angenommen wurde.</p>
 </section>
 <section id="a-priori-poweranalyse-durchführen" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="a-priori-poweranalyse-durchführen"><strong>2. A-priori Poweranalyse durchführen</strong></h4>
+<h4 class="anchored" data-anchor-id="a-priori-poweranalyse-durchführen"><strong>A-priori Poweranalyse durchführen</strong></h4>
 <p>Vor der Datenerhebung soll eine a-priori Poweranalyse durchgeführt werden. Einerseits kann damit ermittelt werden, wie viel Power (Teststärke) der Test hat, um einen Effekt von vordefinierter Grösse (z.B. einen grossen Effekt von <span class="math inline">\(d=0.6\)</span>) zu entdecken. Andererseits kann berechnet werden, wie gross die Stichprobe sein sollte, um einen Effekt bestimmter Grösse und eine festgelegte Teststärke zu erreichen.</p>
 <aside>
 Ein Wert über <span class="math inline">\(0.57\)</span> gilt gemäss den Konventionen für <span class="math inline">\(\delta\)</span> -Masse nach Cohen (1988) als <em>grosser</em> Effekt.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
@@ -501,12 +501,12 @@ Ein Wert über <span class="math inline">\(0.57\)</span> gilt gemäss den Konven
 <section id="vorverarbeitung" class="level3" data-number="10.3.2">
 <h3 data-number="10.3.2" class="anchored" data-anchor-id="vorverarbeitung"><span class="header-section-number">10.3.2</span> Vorverarbeitung</h3>
 <section id="daten-einlesen-vorverarbeiten-und-visualisieren" class="level4">
-<h4 class="anchored" data-anchor-id="daten-einlesen-vorverarbeiten-und-visualisieren"><strong>3. Daten einlesen, vorverarbeiten und visualisieren</strong></h4>
+<h4 class="anchored" data-anchor-id="daten-einlesen-vorverarbeiten-und-visualisieren"><strong>Daten einlesen, vorverarbeiten und visualisieren</strong></h4>
 <p>Zuerst müssen die Daten eingelesen und bereinigt werden. Daten können diagnostisch visualisiert werden, um z.B. fehlende Werte zu entdecken oder Verteilungen der Daten visuell beurteilen und Extremwerte zu identifizieren.</p>
 <p>Für den <em>t</em>-Test für abhängige Stichproben werden die Daten hier in einem <code>wide</code>-Format benötigt. Für die Visualisierung wird eine Datensatz im <code>long</code>-Format benötigt.</p>
 </section>
 <section id="voraussetzungen-überprüfen" class="level4">
-<h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen"><strong>4. Voraussetzungen überprüfen</strong></h4>
+<h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen"><strong>Voraussetzungen überprüfen</strong></h4>
 <ul>
 <li><strong>Normalverteilung der Differenzen</strong></li>
 </ul>
@@ -516,7 +516,7 @@ Ein Wert über <span class="math inline">\(0.57\)</span> gilt gemäss den Konven
 <section id="analyse" class="level3 page-columns page-full" data-number="10.3.3">
 <h3 data-number="10.3.3" class="anchored" data-anchor-id="analyse"><span class="header-section-number">10.3.3</span> Analyse</h3>
 <section id="deskriptivstatistik-und-visualisierung" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="deskriptivstatistik-und-visualisierung"><strong>5. Deskriptivstatistik und Visualisierung</strong></h4>
+<h4 class="anchored" data-anchor-id="deskriptivstatistik-und-visualisierung"><strong>Deskriptivstatistik und Visualisierung</strong></h4>
 <p>Bei Gruppenunterschieden wird für jede Gruppe ein Lagemass (z.B. Mittelwert oder Median) sowie ein Streumass (z.B. Standardabweichung, Standardfehler, Konfidenzintervall) berechnet. Das Lagemass stellt die durchschnittliche Merkmalsausprägung in den beiden Gruppen dar. Das Streumass zeigt den Streubereich der Daten auf.</p>
 <aside>
 Genauere Informationen zu Lage- und Streumassen sind im <a href="../datenanalyse/descriptive.html">Kapitel: Deskriptive Statistik</a> zu finden.
@@ -525,7 +525,7 @@ Genauere Informationen zu Lage- und Streumassen sind im <a href="../datenanalyse
 <p>Durch die Visualisierung der Rohwerte, kann die Verteilung der Messungen gut eingeschätzt werden und Extremwerte werden deutlich sichtbar. Bei zu vielen Datenpunkten führt das Visualisieren der Rohwerte zu unübersichtlichen Grafiken.</p>
 </section>
 <section id="teststatistik-berechnen" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="teststatistik-berechnen"><strong>6. Teststatistik berechnen</strong></h4>
+<h4 class="anchored" data-anchor-id="teststatistik-berechnen"><strong>Teststatistik berechnen</strong></h4>
 <p>Um zu überprüfen, ob die beiden Mittelwerte signifikant unterschiedlich sind, muss die Teststatistik berechnet werden. Die Verteilung der Teststatistik folgt einer sogenannten <em>t</em>-Verteilung, die durch die Anzahl Freiheitsgrade (df) definiert ist.</p>
 <p>Der <em>t</em>-Test für abhängige Stichproben wird über die Differenz der Messwertpaare (intraindividuelle Differenzwerte) ermittelt.</p>
 <p>Dazu werden zuerst die Differenzen aller Mittelwertspaare gebildet: <span class="math inline">\(d_m=x_{m_1}-x_{m_2}\)</span></p>
@@ -550,7 +550,7 @@ Bei gerichteten Hypothesen müssen die Aussagen entsprechend angepasst werden.
 </aside>
 </section>
 <section id="effektstärke" class="level4">
-<h4 class="anchored" data-anchor-id="effektstärke"><strong>7. Effektstärke</strong></h4>
+<h4 class="anchored" data-anchor-id="effektstärke"><strong>Effektstärke</strong></h4>
 <p>Die Effektgrösse beim <em>t</em>-Test für abhängige Stichproben sagt etwas darüber aus, wie gross der Unterschied zwischen den beiden Populationsmittelwerten ist.</p>
 <p>Die standardisierte Effektgrösse kann folgendermassen berechnet werden:</p>
 <p><span class="math inline">\(d=\frac{\overline{x}_D}{\hat\sigma_{D}}\)</span></p>
@@ -563,7 +563,7 @@ Bei gerichteten Hypothesen müssen die Aussagen entsprechend angepasst werden.
 <section id="schlussfolgerungen" class="level3" data-number="10.3.4">
 <h3 data-number="10.3.4" class="anchored" data-anchor-id="schlussfolgerungen"><span class="header-section-number">10.3.4</span> Schlussfolgerungen</h3>
 <section id="ergebnisse-interpretieren-und-berichten" class="level4">
-<h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten"><strong>8. Ergebnisse interpretieren und berichten</strong></h4>
+<h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten"><strong>Ergebnisse interpretieren und berichten</strong></h4>
 <p>Je grösser der empirische <em>t</em>-Wert ist, desto stärker spricht dies gegen die Nullhypothese.</p>
 <p>Meistens werden in psychologischen Publikationen die Stichprobenmittelwerte und ihre geschätzten Populationsstandardabweichungen (Stichprobenstandardabweichungen) sowie die <em>t</em>-Statistik, ihre Freiheitsgrade und der <em>p</em>-Wert (also der Wahrscheinlichkeit dieses oder eines noch extremeren <em>t</em>-Wertes unter Annahme der Nullhypothese) berichtet.</p>
 <p>Falls der exakte <em>p</em>-Wert sehr klein ist, beispielsweise <span class="math inline">\(p=0.00000012\)</span> bzw. kleiner als <span class="math inline">\(0.001\)</span>, wird dies folgendermassen notiert: <span class="math inline">\(p &lt; .001\)</span>.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></p>
@@ -595,13 +595,13 @@ Beispiel: Social Media Experiment
 <section id="planung-1" class="level3 page-columns page-full" data-number="10.4.1">
 <h3 data-number="10.4.1" class="anchored" data-anchor-id="planung-1"><span class="header-section-number">10.4.1</span> Planung</h3>
 <section id="statistische-hypothesen-und-signifikanzniveau-festlegen-1" class="level4">
-<h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen-1"><strong>1. Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
+<h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen-1"><strong>Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
 <p><span class="math inline">\(H_0\)</span>: Das Lesen/Scrollen auf Social Media hat keinen Einfluss auf die Zukunftsangst: <span class="math inline">\(\mu_1=\mu_2\)</span></p>
 <p><span class="math inline">\(H_1\)</span>: Die Lesen/Scrollen auf Social Media hat einen Einfluss auf die Zukunftsangst: <span class="math inline">\(\mu_1 \neq\mu_2\)</span></p>
 <p>Das Alphaniveau wird auf <span class="math inline">\(5 \%\)</span> festgelegt. Da es sich um eine ungerichtete Hypothese handelt, wird zweiseitig getestet.</p>
 </section>
 <section id="a-priori-poweranalyse-durchführen-1" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="a-priori-poweranalyse-durchführen-1"><strong>2. A-priori Poweranalyse durchführen</strong></h4>
+<h4 class="anchored" data-anchor-id="a-priori-poweranalyse-durchführen-1"><strong>A-priori Poweranalyse durchführen</strong></h4>
 <ul>
 <li><code>n</code>: Anzahl Paare</li>
 <li><code>d</code>: Effektgrösse</li>
@@ -663,7 +663,7 @@ Beim ersten Verwenden muss das Package {pwr} heruntergeladen/installiert werden,
 <section id="vorverarbeitung-1" class="level3 page-columns page-full" data-number="10.4.2">
 <h3 data-number="10.4.2" class="anchored" data-anchor-id="vorverarbeitung-1"><span class="header-section-number">10.4.2</span> Vorverarbeitung</h3>
 <section id="daten-einlesen-und-vorverarbeiten" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="daten-einlesen-und-vorverarbeiten"><strong>3. Daten einlesen und vorverarbeiten</strong></h4>
+<h4 class="anchored" data-anchor-id="daten-einlesen-und-vorverarbeiten"><strong>Daten einlesen und vorverarbeiten</strong></h4>
 <div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Beispieldatensatz Social-Media-Experiment vorverarbeiten">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -748,7 +748,7 @@ Hier konvertieren wir die Variable <code>timepoint</code> zu einem Faktor mit de
 </aside>
 </section>
 <section id="voraussetzungen-überprüfen-1" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen-1"><strong>4. Voraussetzungen überprüfen</strong></h4>
+<h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen-1"><strong>Voraussetzungen überprüfen</strong></h4>
 <p>Der <em>t</em>-Test setzt voraus, dass die Differenzen der Messungen in beiden Gruppen normalverteilt sind.</p>
 <aside>
 Die Voraussetzung der Normalverteilung wird in diesem Semester nicht überprüft. Zur Überprüfung der Normalverteilung können Plots dienen oder der Shapiro-Wilk-Test (<code>shapiro.test(data$variable)</code>.
@@ -758,7 +758,7 @@ Die Voraussetzung der Normalverteilung wird in diesem Semester nicht überprüft
 <section id="analyse-1" class="level3" data-number="10.4.3">
 <h3 data-number="10.4.3" class="anchored" data-anchor-id="analyse-1"><span class="header-section-number">10.4.3</span> Analyse</h3>
 <section id="deskriptivstatisik-und-visualisierung" class="level4">
-<h4 class="anchored" data-anchor-id="deskriptivstatisik-und-visualisierung"><strong>5. Deskriptivstatisik und Visualisierung</strong></h4>
+<h4 class="anchored" data-anchor-id="deskriptivstatisik-und-visualisierung"><strong>Deskriptivstatisik und Visualisierung</strong></h4>
 <p>Für die deskriptive Statistik können die Daten nach Bedingung gruppiert und dann die Kennwerte berechnet werden.</p>
 <p>Das kann mit dem <em>Wide</em> Datensatz gemacht werden:</p>
 <div class="cell">
@@ -818,7 +818,7 @@ Die Voraussetzung der Normalverteilung wird in diesem Semester nicht überprüft
 </div>
 </section>
 <section id="teststatistik-berechnen-1" class="level4">
-<h4 class="anchored" data-anchor-id="teststatistik-berechnen-1"><strong>6. Teststatistik berechnen</strong></h4>
+<h4 class="anchored" data-anchor-id="teststatistik-berechnen-1"><strong>Teststatistik berechnen</strong></h4>
 <p><strong>Berechnung Teststatistik in R mit der Funktion <code>t.test</code></strong></p>
 <p>Der <em>t</em>-Test für abhängige Stichproben kann mit der Funktion <code>t.test()</code> durchgeführt werden. Hierbei wird ein Datensatz im <strong>wide</strong>-Format benötigt.</p>
 <ul>
@@ -850,7 +850,7 @@ mean difference
 <p>Die Mittelwerte zwischen den beiden Messzeitpunkten unterscheiden sich signifikant auf dem <span class="math inline">\(5 \%\)</span>-Niveau. Die Nullhypothese, wonach sich die beiden Mittelwerte nicht unterscheiden kann verworfen werden. Das Lesen/Scrollen durch Social Media Posts beeinflusst somit die empfundene Zukunftsangst.</p>
 </section>
 <section id="effektstärke-bestimmen" class="level4">
-<h4 class="anchored" data-anchor-id="effektstärke-bestimmen"><strong>7. Effektstärke bestimmen</strong></h4>
+<h4 class="anchored" data-anchor-id="effektstärke-bestimmen"><strong>Effektstärke bestimmen</strong></h4>
 <p><strong>Berechnung der Effektgrösse (Cohen’s <em>d</em>)</strong></p>
 <p>Nun kann noch die Effektgrösse mit <code>cohen.d(x, y, paired = TRUE)</code> aus dem Package {effsize} berechnet werden.</p>
 <div class="cell">
@@ -879,7 +879,7 @@ d estimate: 0.7699901 (medium)
 <section id="schlussfolgerungen-1" class="level3" data-number="10.4.4">
 <h3 data-number="10.4.4" class="anchored" data-anchor-id="schlussfolgerungen-1"><span class="header-section-number">10.4.4</span> Schlussfolgerungen</h3>
 <section id="ergebnisse-interpretieren-und-berichten-1" class="level4">
-<h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten-1"><strong>8. Ergebnisse interpretieren und berichten</strong></h4>
+<h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten-1"><strong>Ergebnisse interpretieren und berichten</strong></h4>
 <p>Das Ergebnis ist auf dem <span class="math inline">\(5 \%\)</span>-Niveau signifikant und die Nullhypothese kann somit verworfen werden: Die Stimmung beeinflusst die kognitive Leistungsfähigkeit. Es handelt sich nach der Taxonomie von Cohen (1988) um einen grossen Effekt (<span class="math inline">\(d = 0.77\)</span>).</p>
 <blockquote class="blockquote">
 <p>“We examined whether doom-scrolling on social media has an effect on the immediate experience of fear of the future. There was a significant difference between pre and post measurement, <em>t</em>(49) = 3.98, <em>p</em> &lt; .001, <em>d</em> = 0.77). Participants reported significantly higher fear of the future after reading/scrolling through social media posts (<em>M</em> = 6.38, <em>SD</em> = 2.72) compared to before (<em>M</em> = 4.32, <em>SD</em> = 2.62). This indicates a large effect of social media on experiences of fear of the future according to Cohen’s convention (1988).”</p>

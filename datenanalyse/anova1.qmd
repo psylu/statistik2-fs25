@@ -8,7 +8,7 @@ knitr::opts_knit$set(root.dir = '../')
 
 ## Anwendungsbereich
 
-Mit der einfaktoriellen Varianzanalyse (ohne Messwiederholung) wird untersucht, ob sich die Mittelwerte mehrerer unabhängiger Gruppen unterscheiden bzw. ob die Gruppenvariable (UV) einen "Einfluss" oder "Effekt" auf die abhängige metrische Variable (AV) hat.  Dabei ist wichtig, dass mit "Effekt" kein kausaler Zusammenhang gemeint ist. Eine Varianzanalyse, die den Einfluss _einer_ unabhängigen Variable (ein Faktor) untersucht, wird als _einfaktorielle_ Varianzanalyse bezeichnet. 
+Mit der einfaktoriellen Varianzanalyse (ohne Messwiederholung) wird untersucht, ob sich die Mittelwerte mehrerer unabhängiger Gruppen unterscheiden bzw. ob die Gruppenvariable (UV) einen "Einfluss" oder "Effekt" auf die abhängige metrische Variable (AV) hat.  Dabei ist wichtig, dass mit "Effekt" nicht zwingend ein kausaler Zusammenhang gemeint ist. Eine Varianzanalyse, die den Einfluss _einer_ unabhängigen Variable (ein Faktor) untersucht, wird als _einfaktorielle_ Varianzanalyse bezeichnet. 
 
 Dies bedeutet, dass die _abhängige Variable_ (AV) als Merkmal mit der Varianzanalyse untersucht wird. Die _unabhängige Variable_ (UV) ist die erklärende Variable - auch _Faktor_ genannt. Ein Faktor kann zwei oder mehr Stufen haben. Dabei muss die unabhängige Variable metrisch und der Faktor kategorial sein. Die einfaktorielle Varianzanalyse ohne Messwiederholung stellt eine Erweiterung des _t_-Tests für unabhängige Stichproben bei mehr als zwei Stichproben dar.  
 
@@ -52,7 +52,7 @@ __Typische Fragestellungen__:
 
 ### Planung
 
-#### __1. Statistische Hypothesen und Signifikanzniveau festlegen__
+#### __Statistische Hypothesen und Signifikanzniveau festlegen__
 
 __Notation__
 
@@ -106,7 +106,7 @@ __Signifikanzniveau:__
 
 Wird ein Signifikanzniveau von $\alpha = 0.05$ festgelegt, bedeutet dies, dass bei der Verwerfung der Nullhypothese eine 5% Wahrscheinlichkeit besteht, dass eigentlich kein Unterschied besteht und irrtümlicherweise einer angenommen wurde.
 
-#### __2. A-priori Poweranalyse durchführen__
+#### __A-priori Poweranalyse durchführen__
 
 Mit einer a-priori Poweranalyse kann im Vornherein die Planung des optimalen Stichprobenumfangs vorgenommen werden. Dies wird hier im Rahmen dieser Veranstaltung nicht weiter vertieft.
 
@@ -114,14 +114,14 @@ Für experimentellen Studien ist es jedoch sinnvoll gleich grosse Bedingungsstic
 
 ### Vorverarbeitung
 
-#### __3. Daten einlesen, vorverarbeiten und visualisieren__
+#### __Daten einlesen, vorverarbeiten und visualisieren__
 
 Zuerst müssen die Daten eingelesen und bereinigt werden. 
 Daten können diagnostisch visualisiert werden, um z.B. fehlende Werte zu entdecken oder Verteilungen der Daten visuell beurteilen und Extremwerte zu identifizieren.
 
 Für die einfaktorielle Varianzanalyse bzw. den _F_-Test mit dem Package {afex} werden die Daten in einem `long`-Format benötigt. 
 
-#### __4. Voraussetzungen überprüfen__
+#### __Voraussetzungen überprüfen__
 
 __Varianzhomogenität__
 
@@ -134,7 +134,7 @@ Falls die Varianzen heterogen (unterschiedlich) sind , müssen die Freiheitsgrad
 
 ### Analyse
 
-#### __5. Deskriptivstatistik und Visualisierung__
+#### __Deskriptivstatistik und Visualisierung__
 
 Bei Gruppenunterschieden wird für jede Gruppe ein Lagemass (z.B. Mittelwert oder Median) sowie ein Streumass (z.B. Standardabweichung, Standardfehler, Konfidenzintervall) berechnet. Das Lagemass stellt die durchschnittliche Merkmalsausprägung pro Bedingung dar. Das Streumass zeigt den Streubereich der Daten pro Bedingung auf.
 
@@ -144,7 +144,7 @@ Zur Visualisierung von Unterschieden eignen sich Lagemasse mit Fehlerbalken. Box
 
 Durch die Visualisierung der Rohwerte, kann die Verteilung der Messungen gut eingeschätzt werden und Extremwerte werden deutlich sichtbar. Bei zu vielen Datenpunkten führt das Visualisieren der Rohwerte zu unübersichtlichen Grafiken.
 
-#### __6. Teststatistik berechnen__
+#### __Teststatistik berechnen__
 
 Um zu überprüfen, ob mindestens zwei Mittelwerte signifikant unterschiedlich sind, muss die Teststatistik berechnet werden.
 
@@ -167,7 +167,7 @@ Bei der einfaktoriellen Varianzanalyse ohne Messwiederholung wird die Variation 
 
 __Additivität der Quadratsummen__: Die totale Quadratsumme wird zerlegt in eine Quadratsumme, die die Variation zwischen den Bedingungen ausdrückt, und eine Quadratsumme, die die Variation zwischen den Messwerten innerhalb der Bedingungen ausdrückt :
 
-$QS_{tot}=QS_{zw}+QS_{inn}$ mit
+$QS_{tot}=QS_{zw}+QS_{inn}$
 
 - Totale Quadratsumme (Prädiktionsfehler __ohne__ Berücksichtigung der UV): $QS_{tot}=\sum^J_{j=1} \sum^{n_j}_{m=1} (x_{mj}- \overline{x})^2$
 
@@ -192,7 +192,7 @@ $MQS_{inn}=\frac{QS_{inn}}{n-J}$
 Die Ergebnisse einer Varianzanalyse werden häufig in einer Tabelle dargestellt.  
 -->
 
-#### __7. Effektstärke bestimmen__
+#### __Effektstärke bestimmen__
 
 Die Effektgrösse beim _F_-Test sagt etwas darüber aus, wie gross der Unterschied zwischen den Populationsmittelwerten ist.
 
@@ -212,7 +212,7 @@ Die Konventionen für $\eta^2$ lauten in Anlehnung an Cohen (1988):
 
 ### Schlussfolgerungen
 
-#### __8. Ergebnisse interpretieren und berichten__
+#### __Ergebnisse interpretieren und berichten__
 
 Die Ergebnisse der Varianzanalyse werden in der Regel mit dem empirischen _F_-Wert, den Freiheitsgraden, dem entsprechenden _p_-Wert und/oder Konfidenzintervall und einer Effektgrösse berichtet. 
 
@@ -235,7 +235,7 @@ In einem fiktiven Experiment wurden drei verschiedene Therapiemethoden vergliche
 
 ### Planung
 
-#### __1. Statistische Hypothesen und Signifikanzniveau festlegen__
+#### __Statistische Hypothesen und Signifikanzniveau festlegen__
 
 $H_0$: Die Therapiemethode hat keinen Einfluss auf die Angstsymptome: $\mu_1=\mu_2=\mu_3$ 
 
@@ -243,13 +243,13 @@ $H_1$: Die Therapiemethode hat einen Einfluss auf die Angstsymptome: $\mu_i \neq
 
 Das Alphaniveau wird auf $5 \%$ festgelegt. Es handelt sich um eine ungerichtete Hypothese, die Testung erfolgt mit dem _F_-Test jedoch immer einseitig.
 
-#### __2. A-priori Poweranalyse durchführen__
+#### __A-priori Poweranalyse durchführen__
 
 <aside>Die a-priori Poweranalyse bei einer Varianzanalyse wird in diesem Semester nicht behandelt. </aside>
 
 ### Vorverarbeitung
 
-#### __3. Daten einlesen und vorverarbeiten__
+#### __Daten einlesen und vorverarbeiten__
 
 ::: {.callout-caution appearance="default" title="Hands-on: Beispieldatensatz Therapiemethode"}
 
@@ -292,7 +292,7 @@ d_therapy3 <- d_therapy3 |>
 
 :::
 
-#### __4. Voraussetzungen überprüfen__
+#### __Voraussetzungen überprüfen__
 
 Der _F_-Test für eine einfaktorielle Varianzanalyse setzt voraus, dass die AV in der Population stetig und normalverteilt ist und die Populationsvarianzen homogen sind.
 
@@ -313,7 +313,7 @@ Der Test ist hier nicht signifikant ($p = .779$), daher wird davon ausgegangen, 
 
 ### Analyse
 
-#### __5. Deskriptivstatistik und Visualisierungn__
+#### __Deskriptivstatistik und Visualisierungn__
 
 Für die deskriptive Statistik können die Daten nach Bedingung gruppiert und dann die Kennwerte berechnet werden. 
 
@@ -327,20 +327,19 @@ d_summary
 ```
 
 
-<!-- ```{r} -->
-<!-- #| echo: false -->
-<!-- # Plot  -->
-<!-- ggplot(d_therapy3, aes(x = condition, y = symptoms, colour = condition)) + -->
-<!--   geom_jitter(size = 2, width = 0.15, height = 0) +   -->
-<!--   scale_y_continuous(limits = c(0, 10), breaks = seq(0, 10, by = 2)) +   -->
-<!--   labs(title = "symptoms per condition", y = "symptoms", x = "condition") + -->
-<!--   scale_color_brewer(palette = "Set1") + -->
-<!--   theme_minimal() -->
+```{r}
+#| echo: false
+# Plot
+ggplot(d_therapy3, aes(x = condition, y = symptoms, colour = condition)) +
+  geom_jitter(size = 2, width = 0.15, height = 0) +
+  scale_y_continuous(limits = c(0, 10), breaks = seq(0, 10, by = 2)) +
+  labs(title = "symptoms per condition", y = "symptoms", x = "condition") +
+  scale_color_brewer(palette = "Set1") +
+  theme_minimal()
+```
 
-<!-- ``` -->
 
-
-#### __6. Teststatistik berechnen__
+#### __Teststatistik berechnen__
 
 Falls der empirische _F_-Wert grösser als der kritische _F_-Wert ist, wird von einem signifikanten Unterschied zwischen den Gruppen ausgegangen.
 
@@ -387,7 +386,7 @@ __d. Kontrastanalyse__
 (folgt)
 -->
 
-#### __7. Effektstärke bestimmen__
+#### __Effektstärke bestimmen__
 
 __Berechnung der Effektgrösse $\eta^2$__
 
@@ -405,7 +404,7 @@ Die Effektgrösse liegt bei $\eta^2=0.62$. Es handelt sich nach der Taxonomie vo
 
 ### Schlussfolgerungen
 
-#### __8. Ergebnisse interpretieren und berichten__
+#### __Ergebnisse interpretieren und berichten__
 
 __Ergebnisse der einfaktoriellen Varianzanalyse ohne Messwiederholung__
 

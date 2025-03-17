@@ -409,7 +409,7 @@ window.Quarto = {
 
 <section id="anwendungsbereich" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="anwendungsbereich"><span class="header-section-number">11.1</span> Anwendungsbereich</h2>
-<p>Mit der einfaktoriellen Varianzanalyse (ohne Messwiederholung) wird untersucht, ob sich die Mittelwerte mehrerer unabhängiger Gruppen unterscheiden bzw. ob die Gruppenvariable (UV) einen “Einfluss” oder “Effekt” auf die abhängige metrische Variable (AV) hat. Dabei ist wichtig, dass mit “Effekt” kein kausaler Zusammenhang gemeint ist. Eine Varianzanalyse, die den Einfluss <em>einer</em> unabhängigen Variable (ein Faktor) untersucht, wird als <em>einfaktorielle</em> Varianzanalyse bezeichnet.</p>
+<p>Mit der einfaktoriellen Varianzanalyse (ohne Messwiederholung) wird untersucht, ob sich die Mittelwerte mehrerer unabhängiger Gruppen unterscheiden bzw. ob die Gruppenvariable (UV) einen “Einfluss” oder “Effekt” auf die abhängige metrische Variable (AV) hat. Dabei ist wichtig, dass mit “Effekt” nicht zwingend ein kausaler Zusammenhang gemeint ist. Eine Varianzanalyse, die den Einfluss <em>einer</em> unabhängigen Variable (ein Faktor) untersucht, wird als <em>einfaktorielle</em> Varianzanalyse bezeichnet.</p>
 <p>Dies bedeutet, dass die <em>abhängige Variable</em> (AV) als Merkmal mit der Varianzanalyse untersucht wird. Die <em>unabhängige Variable</em> (UV) ist die erklärende Variable - auch <em>Faktor</em> genannt. Ein Faktor kann zwei oder mehr Stufen haben. Dabei muss die unabhängige Variable metrisch und der Faktor kategorial sein. Die einfaktorielle Varianzanalyse ohne Messwiederholung stellt eine Erweiterung des <em>t</em>-Tests für unabhängige Stichproben bei mehr als zwei Stichproben dar.</p>
 <p>Sind in jeder Gruppe gleich viele Personen bzw. Datenpunkte, spricht man von einem <em>balancierten Design</em>. Bei ungleichgrossen Gruppen handelt es sich um ein <em>unbalanciertes Design</em>.</p>
 <p>Die Varianzanalyse wird häufig auch ANOVA genannt (engl. ANalysis Of VAriance, kurz ANOVA).</p>
@@ -481,7 +481,7 @@ Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transfo
 <section id="planung" class="level3" data-number="11.3.1">
 <h3 data-number="11.3.1" class="anchored" data-anchor-id="planung"><span class="header-section-number">11.3.1</span> Planung</h3>
 <section id="statistische-hypothesen-und-signifikanzniveau-festlegen" class="level4">
-<h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen"><strong>1. Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
+<h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen"><strong>Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
 <p><strong>Notation</strong></p>
 <p><span class="math inline">\(n\)</span>: Stichprobengrösse insgesamt</p>
 <p><span class="math inline">\(m\)</span>: Beobachtungseinheit (Person)</p>
@@ -520,7 +520,7 @@ __Gerichtete Hypothesen:__
 <p>Wird ein Signifikanzniveau von <span class="math inline">\(\alpha = 0.05\)</span> festgelegt, bedeutet dies, dass bei der Verwerfung der Nullhypothese eine 5% Wahrscheinlichkeit besteht, dass eigentlich kein Unterschied besteht und irrtümlicherweise einer angenommen wurde.</p>
 </section>
 <section id="a-priori-poweranalyse-durchführen" class="level4">
-<h4 class="anchored" data-anchor-id="a-priori-poweranalyse-durchführen"><strong>2. A-priori Poweranalyse durchführen</strong></h4>
+<h4 class="anchored" data-anchor-id="a-priori-poweranalyse-durchführen"><strong>A-priori Poweranalyse durchführen</strong></h4>
 <p>Mit einer a-priori Poweranalyse kann im Vornherein die Planung des optimalen Stichprobenumfangs vorgenommen werden. Dies wird hier im Rahmen dieser Veranstaltung nicht weiter vertieft.</p>
 <p>Für experimentellen Studien ist es jedoch sinnvoll gleich grosse Bedingungsstichproben zu wählen, da die Varianzanalyse unter dieser Bedingung robuster gegen Verletzungen ihrer Annahmen ist.</p>
 </section>
@@ -528,12 +528,12 @@ __Gerichtete Hypothesen:__
 <section id="vorverarbeitung" class="level3" data-number="11.3.2">
 <h3 data-number="11.3.2" class="anchored" data-anchor-id="vorverarbeitung"><span class="header-section-number">11.3.2</span> Vorverarbeitung</h3>
 <section id="daten-einlesen-vorverarbeiten-und-visualisieren" class="level4">
-<h4 class="anchored" data-anchor-id="daten-einlesen-vorverarbeiten-und-visualisieren"><strong>3. Daten einlesen, vorverarbeiten und visualisieren</strong></h4>
+<h4 class="anchored" data-anchor-id="daten-einlesen-vorverarbeiten-und-visualisieren"><strong>Daten einlesen, vorverarbeiten und visualisieren</strong></h4>
 <p>Zuerst müssen die Daten eingelesen und bereinigt werden. Daten können diagnostisch visualisiert werden, um z.B. fehlende Werte zu entdecken oder Verteilungen der Daten visuell beurteilen und Extremwerte zu identifizieren.</p>
 <p>Für die einfaktorielle Varianzanalyse bzw. den <em>F</em>-Test mit dem Package {afex} werden die Daten in einem <code>long</code>-Format benötigt.</p>
 </section>
 <section id="voraussetzungen-überprüfen" class="level4">
-<h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen"><strong>4. Voraussetzungen überprüfen</strong></h4>
+<h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen"><strong>Voraussetzungen überprüfen</strong></h4>
 <p><strong>Varianzhomogenität</strong></p>
 <p>Der <em>F</em>-Test für unabhängige Stichproben setzt Varianzhomogenität voraus. Dies kann in <em>R</em> mit dem Levene-Test <code>car::leveneTest</code> überprüft werden.</p>
 <p>Der Levene-Test geht von der Nullhypothese aus, dass sich die beiden Varianzen nicht unterscheiden. Ein nicht signifikantes Ergebnis bedeutet daher, dass sich die Varianzen nicht unterscheiden und somit Varianzhomogenität (sogenannte Heteroskedastizität) besteht. Wenn der Test signifikant ist, wird Varianzheterogenität angenommen.</p>
@@ -543,7 +543,7 @@ __Gerichtete Hypothesen:__
 <section id="analyse" class="level3 page-columns page-full" data-number="11.3.3">
 <h3 data-number="11.3.3" class="anchored" data-anchor-id="analyse"><span class="header-section-number">11.3.3</span> Analyse</h3>
 <section id="deskriptivstatistik-und-visualisierung" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="deskriptivstatistik-und-visualisierung"><strong>5. Deskriptivstatistik und Visualisierung</strong></h4>
+<h4 class="anchored" data-anchor-id="deskriptivstatistik-und-visualisierung"><strong>Deskriptivstatistik und Visualisierung</strong></h4>
 <p>Bei Gruppenunterschieden wird für jede Gruppe ein Lagemass (z.B. Mittelwert oder Median) sowie ein Streumass (z.B. Standardabweichung, Standardfehler, Konfidenzintervall) berechnet. Das Lagemass stellt die durchschnittliche Merkmalsausprägung pro Bedingung dar. Das Streumass zeigt den Streubereich der Daten pro Bedingung auf.</p>
 <aside>
 Genauere Informationen zu Lage- und Streumassen sind im <a href="../datenanalyse/descriptive.html">Kapitel: Deskriptive Statistik</a> zu finden.
@@ -552,7 +552,7 @@ Genauere Informationen zu Lage- und Streumassen sind im <a href="../datenanalyse
 <p>Durch die Visualisierung der Rohwerte, kann die Verteilung der Messungen gut eingeschätzt werden und Extremwerte werden deutlich sichtbar. Bei zu vielen Datenpunkten führt das Visualisieren der Rohwerte zu unübersichtlichen Grafiken.</p>
 </section>
 <section id="teststatistik-berechnen" class="level4">
-<h4 class="anchored" data-anchor-id="teststatistik-berechnen"><strong>6. Teststatistik berechnen</strong></h4>
+<h4 class="anchored" data-anchor-id="teststatistik-berechnen"><strong>Teststatistik berechnen</strong></h4>
 <p>Um zu überprüfen, ob mindestens zwei Mittelwerte signifikant unterschiedlich sind, muss die Teststatistik berechnet werden.</p>
 <p><strong>Überprüfung der Nullhypothese mit dem <em>F</em>-Test</strong></p>
 <p>Um die Nullhypothese zu prüfen, verwenden wir den <em>F</em>-Test als Prüfgrösse. Lehnt man die Nullhypothese einer Varianzanalyse mit <span class="math inline">\(J&gt;2\)</span> Bedinungen ab, weiss man zwar, dass es Unterschiede gibt, man weiss jedoch noch nicht, welcher Stichprobenmittelwert von welchem anderen bedeutsam abweicht.</p>
@@ -565,7 +565,7 @@ Genauere Informationen zu Lage- und Streumassen sind im <a href="../datenanalyse
 <p><strong>Quadratsummenzerlegung</strong></p>
 <p>Bei der einfaktoriellen Varianzanalyse ohne Messwiederholung wird die Variation der Messwerte in zwei Quellen zerlegt: Unterschiede zwischen den Gruppen und Unterschiede innerhalb der Gruppen.</p>
 <p><strong>Additivität der Quadratsummen</strong>: Die totale Quadratsumme wird zerlegt in eine Quadratsumme, die die Variation zwischen den Bedingungen ausdrückt, und eine Quadratsumme, die die Variation zwischen den Messwerten innerhalb der Bedingungen ausdrückt :</p>
-<p><span class="math inline">\(QS_{tot}=QS_{zw}+QS_{inn}\)</span> mit</p>
+<p><span class="math inline">\(QS_{tot}=QS_{zw}+QS_{inn}\)</span></p>
 <ul>
 <li><p>Totale Quadratsumme (Prädiktionsfehler <strong>ohne</strong> Berücksichtigung der UV): <span class="math inline">\(QS_{tot}=\sum^J_{j=1} \sum^{n_j}_{m=1} (x_{mj}- \overline{x})^2\)</span></p></li>
 <li><p>Innerhalb-Quadratsumme (Prädiktionsfehler <strong>mit</strong> Berücksichtigung der UV): <span class="math inline">\(QS_{inn}=\sum^J_{j=1} \sum^{n_j}_{m=1} (x_{mj}- \overline{x}_j)^2\)</span></p></li>
@@ -582,7 +582,7 @@ Die Ergebnisse einer Varianzanalyse werden häufig in einer Tabelle dargestellt.
 -->
 </section>
 <section id="effektstärke-bestimmen" class="level4">
-<h4 class="anchored" data-anchor-id="effektstärke-bestimmen"><strong>7. Effektstärke bestimmen</strong></h4>
+<h4 class="anchored" data-anchor-id="effektstärke-bestimmen"><strong>Effektstärke bestimmen</strong></h4>
 <p>Die Effektgrösse beim <em>F</em>-Test sagt etwas darüber aus, wie gross der Unterschied zwischen den Populationsmittelwerten ist.</p>
 <p>Häufig wird dazu <span class="math inline">\(\eta^2\)</span> verwendet. Die standardisierte Effektgrösse <span class="math inline">\(\eta^2\)</span> für eine einfaktorielle Varianzanalyse ohne Messwiederholung lässt sich anhand des Quotienten aus der Zwischen-Quadratsumme und der Gesamtquadratsumme berechnen:</p>
 <p><span class="math inline">\(\hat \eta^2=\frac{QS_{tot}-QS_{inn}}{QS_{tot}}=\frac{QS_{zw}}{QS_{tot}}=\frac{F \cdot {df}_{zw}}{F \cdot df_{zw} + df_{inn}}\)</span></p>
@@ -597,7 +597,7 @@ Die Ergebnisse einer Varianzanalyse werden häufig in einer Tabelle dargestellt.
 <section id="schlussfolgerungen" class="level3" data-number="11.3.4">
 <h3 data-number="11.3.4" class="anchored" data-anchor-id="schlussfolgerungen"><span class="header-section-number">11.3.4</span> Schlussfolgerungen</h3>
 <section id="ergebnisse-interpretieren-und-berichten" class="level4">
-<h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten"><strong>8. Ergebnisse interpretieren und berichten</strong></h4>
+<h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten"><strong>Ergebnisse interpretieren und berichten</strong></h4>
 <p>Die Ergebnisse der Varianzanalyse werden in der Regel mit dem empirischen <em>F</em>-Wert, den Freiheitsgraden, dem entsprechenden <em>p</em>-Wert und/oder Konfidenzintervall und einer Effektgrösse berichtet.</p>
 <p>Inferenzstatistische Kennwerte (z.B. <em>t</em> und <em>F</em>) werden mit zwei Dezimalen berichtet.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> In den Klammern werden bei einer Varianzanalyse die Freiheitsgrade des Zählers (<span class="math inline">\(df_{zw}\)</span>) und des Nenners (<span class="math inline">\(df_{inn}\)</span>) angegeben. Als Effektgrössenschätzer wird häufig <span class="math inline">\(\eta^2\)</span> angegeben.</p>
 <blockquote class="blockquote">
@@ -631,13 +631,13 @@ Beispiel: Therapiemethoden bei Angstsymptomatik
 <section id="planung-1" class="level3 page-columns page-full" data-number="11.4.1">
 <h3 data-number="11.4.1" class="anchored" data-anchor-id="planung-1"><span class="header-section-number">11.4.1</span> Planung</h3>
 <section id="statistische-hypothesen-und-signifikanzniveau-festlegen-1" class="level4">
-<h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen-1"><strong>1. Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
+<h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen-1"><strong>Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
 <p><span class="math inline">\(H_0\)</span>: Die Therapiemethode hat keinen Einfluss auf die Angstsymptome: <span class="math inline">\(\mu_1=\mu_2=\mu_3\)</span></p>
 <p><span class="math inline">\(H_1\)</span>: Die Therapiemethode hat einen Einfluss auf die Angstsymptome: <span class="math inline">\(\mu_i \neq\mu_j\)</span> für mindestens ein Paar (<span class="math inline">\(i\)</span>,<span class="math inline">\(j\)</span>), <span class="math inline">\(i \neq j\)</span></p>
 <p>Das Alphaniveau wird auf <span class="math inline">\(5 \%\)</span> festgelegt. Es handelt sich um eine ungerichtete Hypothese, die Testung erfolgt mit dem <em>F</em>-Test jedoch immer einseitig.</p>
 </section>
 <section id="a-priori-poweranalyse-durchführen-1" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="a-priori-poweranalyse-durchführen-1"><strong>2. A-priori Poweranalyse durchführen</strong></h4>
+<h4 class="anchored" data-anchor-id="a-priori-poweranalyse-durchführen-1"><strong>A-priori Poweranalyse durchführen</strong></h4>
 <aside>
 Die a-priori Poweranalyse bei einer Varianzanalyse wird in diesem Semester nicht behandelt.
 </aside>
@@ -646,7 +646,7 @@ Die a-priori Poweranalyse bei einer Varianzanalyse wird in diesem Semester nicht
 <section id="vorverarbeitung-1" class="level3 page-columns page-full" data-number="11.4.2">
 <h3 data-number="11.4.2" class="anchored" data-anchor-id="vorverarbeitung-1"><span class="header-section-number">11.4.2</span> Vorverarbeitung</h3>
 <section id="daten-einlesen-und-vorverarbeiten" class="level4">
-<h4 class="anchored" data-anchor-id="daten-einlesen-und-vorverarbeiten"><strong>3. Daten einlesen und vorverarbeiten</strong></h4>
+<h4 class="anchored" data-anchor-id="daten-einlesen-und-vorverarbeiten"><strong>Daten einlesen und vorverarbeiten</strong></h4>
 <div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Beispieldatensatz Therapiemethode">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -701,7 +701,7 @@ $ symptoms  &lt;int&gt; 6, 9, 7, 3, 5, 9, 7, 8, 4, 7, 1, 3, 4, 1, 1</code></pre>
 </div>
 </section>
 <section id="voraussetzungen-überprüfen-1" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen-1"><strong>4. Voraussetzungen überprüfen</strong></h4>
+<h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen-1"><strong>Voraussetzungen überprüfen</strong></h4>
 <p>Der <em>F</em>-Test für eine einfaktorielle Varianzanalyse setzt voraus, dass die AV in der Population stetig und normalverteilt ist und die Populationsvarianzen homogen sind.</p>
 <aside>
 Die Voraussetzung der Normalverteilung wird in diesem Semester nicht überprüft.
@@ -727,7 +727,7 @@ group  2  0.2545 0.7794
 <section id="analyse-1" class="level3 page-columns page-full" data-number="11.4.3">
 <h3 data-number="11.4.3" class="anchored" data-anchor-id="analyse-1"><span class="header-section-number">11.4.3</span> Analyse</h3>
 <section id="deskriptivstatistik-und-visualisierungn" class="level4">
-<h4 class="anchored" data-anchor-id="deskriptivstatistik-und-visualisierungn"><strong>5. Deskriptivstatistik und Visualisierungn</strong></h4>
+<h4 class="anchored" data-anchor-id="deskriptivstatistik-und-visualisierungn"><strong>Deskriptivstatistik und Visualisierungn</strong></h4>
 <p>Für die deskriptive Statistik können die Daten nach Bedingung gruppiert und dann die Kennwerte berechnet werden.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nach condition gruppieren und symptoms zusammenfassen</span></span>
@@ -745,19 +745,18 @@ group  2  0.2545 0.7794
 3 restructuring             2        1.41</code></pre>
 </div>
 </div>
-<!-- ```{r} -->
-<!-- #| echo: false -->
-<!-- # Plot  -->
-<!-- ggplot(d_therapy3, aes(x = condition, y = symptoms, colour = condition)) + -->
-<!--   geom_jitter(size = 2, width = 0.15, height = 0) +   -->
-<!--   scale_y_continuous(limits = c(0, 10), breaks = seq(0, 10, by = 2)) +   -->
-<!--   labs(title = "symptoms per condition", y = "symptoms", x = "condition") + -->
-<!--   scale_color_brewer(palette = "Set1") + -->
-<!--   theme_minimal() -->
-<!-- ``` -->
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="anova1_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 </section>
 <section id="teststatistik-berechnen-1" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="teststatistik-berechnen-1"><strong>6. Teststatistik berechnen</strong></h4>
+<h4 class="anchored" data-anchor-id="teststatistik-berechnen-1"><strong>Teststatistik berechnen</strong></h4>
 <p>Falls der empirische <em>F</em>-Wert grösser als der kritische <em>F</em>-Wert ist, wird von einem signifikanten Unterschied zwischen den Gruppen ausgegangen.</p>
 <p><strong>Berechnung Teststatistik in R mit der Funktion <code>aov_4()</code></strong></p>
 <p>Eine einfaktorielle Varianzanalyse kann mit der Funktion <code>aov_4(av ~ uv, + (1 | id), data)</code> aus dem Package {afex} berechnet werden.</p>
@@ -811,7 +810,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="anova1_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="anova1_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -826,7 +825,7 @@ __d. Kontrastanalyse__
 -->
 </section>
 <section id="effektstärke-bestimmen-1" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="effektstärke-bestimmen-1"><strong>7. Effektstärke bestimmen</strong></h4>
+<h4 class="anchored" data-anchor-id="effektstärke-bestimmen-1"><strong>Effektstärke bestimmen</strong></h4>
 <p><strong>Berechnung der Effektgrösse <span class="math inline">\(\eta^2\)</span></strong></p>
 <p>Die Effektgrösse <span class="math inline">\(\eta^2\)</span> lässt sich anhand des Quotienten aus der Zwischen-Quadratsumme und der Gesamtquadratsumme berechnen. In <em>R</em> kann dieses Mass direkt mit der Funktion <code>eta_squared()</code> aus dem Package {effectsize} berechnet werden. Als Argument für die Funktion muss das Anova-Modell (Objekt), also hier <code>m_anova1</code>, eingegeben werden.</p>
 <aside>
@@ -851,7 +850,7 @@ condition | 0.62 | [0.25, 1.00]
 <section id="schlussfolgerungen-1" class="level3" data-number="11.4.4">
 <h3 data-number="11.4.4" class="anchored" data-anchor-id="schlussfolgerungen-1"><span class="header-section-number">11.4.4</span> Schlussfolgerungen</h3>
 <section id="ergebnisse-interpretieren-und-berichten-1" class="level4">
-<h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten-1"><strong>8. Ergebnisse interpretieren und berichten</strong></h4>
+<h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten-1"><strong>Ergebnisse interpretieren und berichten</strong></h4>
 <p><strong>Ergebnisse der einfaktoriellen Varianzanalyse ohne Messwiederholung</strong></p>
 <p>Das Ergebnis ist auf dem <span class="math inline">\(5 \%\)</span>-Niveau signifikant und die Nullhypothese kann somit verworfen werden: Die Therapiemethode beeinflusst die Höhe der Angstsymptomatik. Es handelt sich nach der Taxonomie von Cohen (1988) um einen grossen Effekt (<span class="math inline">\(\eta^2=0.62\)</span>).</p>
 <blockquote class="blockquote">
