@@ -409,21 +409,20 @@ window.Quarto = {
 
 <section id="anwendungsbereich" class="level2" data-number="11.1">
 <h2 data-number="11.1" class="anchored" data-anchor-id="anwendungsbereich"><span class="header-section-number">11.1</span> Anwendungsbereich</h2>
-<p>Mit der einfaktoriellen Varianzanalyse (ohne Messwiederholung) wird untersucht, ob sich mehrere unabhängige Gruppen unterscheiden bzw. ob die Gruppenvariable (UV) einen “Einfluss” oder “Effekt” auf die abhänigige metrische Variable (AV) hat. Dabei ist wichtig, dass mit “Effekt” kein kausaler Zusammenhang gemeint ist. Die einfaktorielle Varianzanalyse ohne Messwiederholung stellt eine Erweiterung des <em>t</em>-Tests für unabhängige Stichproben bei mehr als zwei Stichproben dar.</p>
-<p>Dies bedeutet, dass die <em>abhängige Variable</em> (AV) als Merkmal mit der Varianzanalyse untersucht wird. Die <em>unabhängige Variable</em> (UV) ist die erklärende Variable - auch <em>Faktor</em> genannt. Eine Varianzanalyse, die den Einfluss <em>einer</em> unabhängigen Variable (ein Faktor) untersucht, wird als <em>einfaktorielle</em> Varianzanalyse bezeichnet. Ein Faktor kann zwei oder mehr Stufen haben. Dabei muss die unabhängige Variable metrisch und der Faktor kategorial sein.</p>
-<p>Sind in jeder Gruppe gleich viele Personen bzw. Datenpunkte, spricht man von einem <em>balancierten Design</em>. Bei ungleichgrossen Gruppen handelt es sich um ein <em>unablanciertes Design</em>.</p>
-<p>Die Varianzanalyse wird häufig auch ANOVA gennannt (engl. ANalysis Of VAriance, kurz ANOVA).</p>
+<p>Mit der einfaktoriellen Varianzanalyse (ohne Messwiederholung) wird untersucht, ob sich die Mittelwerte mehrerer unabhängiger Gruppen unterscheiden bzw. ob die Gruppenvariable (UV) einen “Einfluss” oder “Effekt” auf die abhängige metrische Variable (AV) hat. Dabei ist wichtig, dass mit “Effekt” kein kausaler Zusammenhang gemeint ist. Eine Varianzanalyse, die den Einfluss <em>einer</em> unabhängigen Variable (ein Faktor) untersucht, wird als <em>einfaktorielle</em> Varianzanalyse bezeichnet.</p>
+<p>Dies bedeutet, dass die <em>abhängige Variable</em> (AV) als Merkmal mit der Varianzanalyse untersucht wird. Die <em>unabhängige Variable</em> (UV) ist die erklärende Variable - auch <em>Faktor</em> genannt. Ein Faktor kann zwei oder mehr Stufen haben. Dabei muss die unabhängige Variable metrisch und der Faktor kategorial sein. Die einfaktorielle Varianzanalyse ohne Messwiederholung stellt eine Erweiterung des <em>t</em>-Tests für unabhängige Stichproben bei mehr als zwei Stichproben dar.</p>
+<p>Sind in jeder Gruppe gleich viele Personen bzw. Datenpunkte, spricht man von einem <em>balancierten Design</em>. Bei ungleichgrossen Gruppen handelt es sich um ein <em>unbalanciertes Design</em>.</p>
+<p>Die Varianzanalyse wird häufig auch ANOVA genannt (engl. ANalysis Of VAriance, kurz ANOVA).</p>
 <p><strong>Die einfaktorielle Varianzanalyse überprüft somit die Auswirkung einer gestuften, unabhängigen Variable (= Faktor) auf eine abhängige Variable.</strong></p>
 <p><strong>Typische Fragestellungen</strong>:</p>
 <ul>
 <li><p><em>Unterscheiden sich die Symptome auf einer Angstskala von Patient:innen in verschiedenen Therapierichtung (Kognitive Verhaltenstherapie, Psychoanalyse, Systemische Therapie?</em></p></li>
 <li><p><em>Unterscheiden sich Studierende in ihrer Konzentrationsfähigkeit Y, wenn sie 4, 6, 8 oder 10 Stunden geschlafen haben?</em></p></li>
-<li><p><em>Hat die verwendetet Lerntechnik (keine Technik, Wiederholen, Mnemotechnik) einen Einfluss auf die Anzahl richtig gelöster Prüfungsaufgaben?</em></p></li>
+<li><p><em>Hat die verwendete Lerntechnik (keine Technik, Wiederholen, Mnemotechnik) einen Einfluss auf die Anzahl richtig gelöster Prüfungsaufgaben?</em></p></li>
 </ul>
 </section>
 <section id="voraussetzungen" class="level2 page-columns page-full" data-number="11.2">
 <h2 data-number="11.2" class="anchored" data-anchor-id="voraussetzungen"><span class="header-section-number">11.2</span> Voraussetzungen</h2>
-<p>TODO/Check Eid</p>
 <table class="table-hover caption-top table">
 <caption><strong>Voraussetzungen einfaktorielle Varianzanalyse ohne Messwiederholung</strong>, Überprüfung und mögliche Alternativen bei Verletzung der Annahmen</caption>
 <colgroup>
@@ -457,19 +456,15 @@ window.Quarto = {
 <tr class="even">
 <td>Unabhängigkeit der Gruppen/Stichproben</td>
 <td>Die Messwerte <em>zwischen</em> den Stichproben sind voneinander unabhängig (unabhängige Gruppen). Eine <em>Verletzung der Unabhängigkeitsannahme</em> liegt vor, wenn die Annahme, dass die Messwerte zwischen den Stichproben unabhängig sind, nicht zutrifft, d.h. die Messwerte mit Messwiederholung vorliegen.</td>
-<td>Für die Abhängigkeit der Gruppen kann kontrolliert werden, indem z.B. ein Varianzanalyse für abhängige Stichproben verwendet wird</td>
+<td>Für die Abhängigkeit der Gruppen kann kontrolliert werden, indem z.B. ein Varianzanalyse mit Messwiederholung verwendet wird</td>
 </tr>
 <tr class="odd">
 <td>Varianzhomogenität / Homoskedastizität</td>
-<td>Die Varianzen innerhalb??? der Teilpopulationen sind <em>homogen</em> (Homoskedastizität). Vor allem wenn die Stichproben unterschiedlich gross sind, bietet sich eine empirische Überprüfung der Varianzhomogenitätsannahme an.</td>
-<td><em>Überprüfung der Varianzhomogenitätsannahme</em>: <br> Der Vergleich Stichprobenvarianzen mittels <em>F</em>-Test oder Levene-Test (robuste Variante zum <em>F</em>-Test). <br> Bei <em>Verletzung der Varianzhomogenitätsannahme (Heteroskedastizität)</em>, kann als Alternative auf robuste Verfahren zurückgegriffen werden oder der Welch-Test/Brown-Forsythe-Test verwendet werden, welcher nicht die gepoolten Innerhalb-Varianzen, sondern die jeweiligen Stichprobenvarianzen <span class="math inline">\(\hat \sigma^2_1\)</span> und <span class="math inline">\(\hat \sigma^2_2\)</span> verwendet. Bei Aussreissern robuste Verfahren</td>
+<td>Die Varianzen zwischen den Teilpopulationen sind <em>homogen</em> (Homoskedastizität). Vor allem wenn die Stichproben unterschiedlich gross sind, bietet sich eine empirische Überprüfung der Varianzhomogenitätsannahme an.</td>
+<td><em>Überprüfung der Varianzhomogenitätsannahme</em>: <br> Der Vergleich Stichprobenvarianzen mittels <em>F</em>-Test oder Levene-Test (robuste Variante zum <em>F</em>-Test). <br> Bei <em>Verletzung der Varianzhomogenitätsannahme (Heteroskedastizität)</em>, kann als Alternative auf robuste Verfahren zurückgegriffen werden oder der Welch-Test/Brown-Forsythe-Test verwendet werden, welche nicht die gepoolten Innerhalb-Varianzen, sondern die jeweiligen Schätzungen der Stichprobenvarianzen verwendet.</td>
 </tr>
 </tbody>
 </table>
-<p>Unabhängigkeit der Residuen, Homoskedastizität und Normalverteilung.</p>
-<ul>
-<li>Die Unabhängigkeit der Residuen bedeutet, dass die Residualwerte innerhalb einer Bedingung voneinander unabhängig sind, aber auch die Residualwerte zwischen den Bedingungen.</li>
-</ul>
 <p><br></p>
 <aside>
 Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transformationen oder non-parametrische Verfahren) wird in diesem Semester nicht eingegangen.
@@ -487,20 +482,27 @@ Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transfo
 <h3 data-number="11.3.1" class="anchored" data-anchor-id="planung"><span class="header-section-number">11.3.1</span> Planung</h3>
 <section id="statistische-hypothesen-und-signifikanzniveau-festlegen" class="level4">
 <h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen"><strong>1. Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
+<p><strong>Notation</strong></p>
+<p><span class="math inline">\(n\)</span>: Stichprobengrösse insgesamt</p>
+<p><span class="math inline">\(m\)</span>: Beobachtungseinheit (Person)</p>
+<p><span class="math inline">\(j\)</span>: Bedingung (Faktorstufe, Merkmalsausprägung der nominalskalierten unabhängigen Variable)</p>
+<p><span class="math inline">\(x_{mj}\)</span>: <em>m</em>-te Person (oder Messung) in der <em>j</em>-ten Faktorstufe</p>
+<p><span class="math inline">\(J\)</span>: Anzahl Faktorstufen</p>
 <p><strong>Ungerichtete Hypothesen:</strong></p>
 <p>Mit der einfaktoriellen Varianzanalyse wird die Nullhypothese, dass die Mittelwerte in der Population für jede Gruppen gleich sind, überprüft.</p>
-<p><span class="math inline">\(H_0\)</span>: Die Populationsmittelwerte der Gruppen 1, 2 und 3 unterscheiden sich nicht (d.h. haben eine Differenz gleich 0): <span class="math inline">\(\mu_1= \mu_2= \mu_3\)</span> bzw. <span class="math inline">\(\mu_i= \mu_j\)</span> für alle Paare (<span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span>), <span class="math inline">\(i \neq j\)</span></p>
-<p><span class="math inline">\(H_1\)</span>: Mindestens zwei Populationsmittelwerte der Gruppen 1, 2 und 3 unterscheiden sich (d.h. haben eine Differenz ungleich 0): <span class="math inline">\(\mu_i \neq\mu_j\)</span> für mindestens ein Paar (<span class="math inline">\(i\)</span>,<span class="math inline">\(j\)</span>), <span class="math inline">\(i \neq j\)</span></p>
-<p><strong>HIER ALLE MÖGLICHKEITEN AUSFORMULIEREN?</strong></p>
-<p>also beispielsweise:</p>
 <ul>
-<li><span class="math inline">\(\mu_1 \neq \mu_2 = \mu_3\)</span></li>
-<li><span class="math inline">\(\mu_1 = \mu_2 \neq \mu_3\)</span></li>
-<li><span class="math inline">\(\mu_1 \neq \mu_2 \neq \mu_3\)</span></li>
+<li><p><span class="math inline">\(H_0\)</span>: Die Populationsmittelwerte der Gruppen unterscheiden sich nicht (d.h. haben eine Differenz gleich 0): <span class="math inline">\(\mu_1= \mu_2= \mu_3\)</span> bzw. <span class="math inline">\(\mu_i= \mu_j\)</span> für alle Paare (<span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span>), <span class="math inline">\(i \neq j\)</span></p></li>
+<li><p><span class="math inline">\(H_1\)</span>: Mindestens zwei Populationsmittelwerte der Gruppen unterscheiden sich (d.h. haben eine Differenz ungleich 0): <span class="math inline">\(\mu_i \neq\mu_j\)</span> für mindestens ein Paar (<span class="math inline">\(i\)</span>,<span class="math inline">\(j\)</span>), <span class="math inline">\(i \neq j\)</span></p></li>
 </ul>
-<p><strong>EVTL TTEST HINZUFUEGEN?</strong></p>
-<p>Bei <span class="math inline">\(J = 2\)</span> Faktorstufen ist der <em>F</em>-Test äquivalent zu einem <em>t</em>-Test für unabhängige Stichproben.</p>
-<p>Bei <span class="math inline">\(J&gt;2\)</span> Faktorstufen ist der <em>F</em>-Test ein Omnibus-Test, mit dem lediglich ermittelt werden kann, ob die Unterschiede zwischen den Bedingungsmittelwerten signifikant von 0 abweichen, daher werden auch die Hypothesen entsprechend formuliert. Häufig ist man jedoch daran interessiert, ob sich bestimmte Mittelwertspaare signifikant unterscheiden. Eine Möglichkeit dazu bieten Paarvergleiche, sogenannte Post-hoc-Tests. Bei drei Bedingungen gibt es drei (nicht-redundante) Paarvergleiche: <span class="math inline">\(\mu_1-\mu_2\)</span>, <span class="math inline">\(\mu_1-\mu_3\)</span> und <span class="math inline">\(\mu_2-\mu_3\)</span>.</p>
+<!-- also beispielsweise:
+
+- $\mu_1 \neq \mu_2 = \mu_3$
+- $\mu_1 = \mu_2 \neq \mu_3$
+- $\mu_1 \neq \mu_2 \neq \mu_3$
+-->
+<p>Bei <span class="math inline">\(J=2\)</span> Faktorstufen ist der <em>F</em>-Test äquivalent zu einem <em>t</em>-Test für unabhängige Stichproben. Es gilt <span class="math inline">\(t^2=F\)</span>.</p>
+<p>Bei <span class="math inline">\(J&gt;2\)</span> Faktorstufen ist der <em>F</em>-Test ein Globaltest (Omnibus-Test), mit dem lediglich ermittelt werden kann, ob die Unterschiede zwischen den Bedingungsmittelwerten signifikant von 0 abweichen, daher werden auch die Hypothesen entsprechend formuliert. Häufig ist man jedoch daran interessiert, ob sich bestimmte Mittelwertspaare signifikant unterscheiden. Eine Möglichkeit dazu bieten Paarvergleiche, sogenannte Post-hoc-Tests. Bei drei Bedingungen gibt es drei (nicht-redundante) Paarvergleiche: <span class="math inline">\(\mu_1-\mu_2\)</span>, <span class="math inline">\(\mu_1-\mu_3\)</span> und <span class="math inline">\(\mu_2-\mu_3\)</span>.</p>
+<p>Da der <em>F</em>-Wert über die Quadratsummen berechnet wird, können <em>F</em>-Werte nur zwischen 0 und <span class="math inline">\(+ \infty\)</span> liegen. Das bedeutet, dass nur die rechte Seite der Verteilung zur Bestimmung der kritischen Werte verwendet wird. Die Alternativhypothese ist immer ungerichtet und wird einseitig getestet.</p>
 <!-- ### Post-hoc Tests (ANOVA) 
 
 Auf welche Strategie sollte man zurückgreifen?
@@ -532,9 +534,7 @@ __Gerichtete Hypothesen:__
 </section>
 <section id="voraussetzungen-überprüfen" class="level4">
 <h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen"><strong>4. Voraussetzungen überprüfen</strong></h4>
-<ul>
-<li><strong>Varianzhomogenität</strong></li>
-</ul>
+<p><strong>Varianzhomogenität</strong></p>
 <p>Der <em>F</em>-Test für unabhängige Stichproben setzt Varianzhomogenität voraus. Dies kann in <em>R</em> mit dem Levene-Test <code>car::leveneTest</code> überprüft werden.</p>
 <p>Der Levene-Test geht von der Nullhypothese aus, dass sich die beiden Varianzen nicht unterscheiden. Ein nicht signifikantes Ergebnis bedeutet daher, dass sich die Varianzen nicht unterscheiden und somit Varianzhomogenität (sogenannte Heteroskedastizität) besteht. Wenn der Test signifikant ist, wird Varianzheterogenität angenommen.</p>
 <p>Falls die Varianzen heterogen (unterschiedlich) sind , müssen die Freiheitsgrade des <em>F</em>-Wertes entsprechend angepasst werden. In diesem Fall kann ein Welch-Test/Brown-Forsythe-Test verwendet werden, der zur Berechnung der Teststatistik die beiden unterschiedlichen Populationsvarianzen anstatt die gepoolte Innerhalbvarianz nimmt.</p>
@@ -554,35 +554,37 @@ Genauere Informationen zu Lage- und Streumassen sind im <a href="../datenanalyse
 <section id="teststatistik-berechnen" class="level4">
 <h4 class="anchored" data-anchor-id="teststatistik-berechnen"><strong>6. Teststatistik berechnen</strong></h4>
 <p>Um zu überprüfen, ob mindestens zwei Mittelwerte signifikant unterschiedlich sind, muss die Teststatistik berechnet werden.</p>
-<p><strong>Notation</strong></p>
-<p><span class="math inline">\(n\)</span>: Stichprobengrösse insgesamt</p>
-<p><span class="math inline">\(J\)</span>: Anzahl Faktorstufen (Gruppen oder Bedingungen)</p>
-<p>__ <span class="math inline">\(m\)</span> müsste hier auch erklärt werden__</p>
-<p><strong>Quadratsummenzerlegung</strong></p>
-<p><span class="math inline">\(QS_{tot}=QS_{zw}+QS_{inn}\)</span> mit</p>
-<ul>
-<li><p>Totale Quadratsumme (Prädiktionsfehler <strong>ohne</strong> Berücksichtigung der UV): <span class="math inline">\(QS_{tot}=\sum^J_{j=1} \sum^{n_j}_{m=1} (x_{mj}- \overline{x})^2\)</span></p></li>
-<li><p>Fehlerquadratsumme (Prädiktionsfehler <strong>mit</strong> Berücksichtigung der UV): <span class="math inline">\(QS_{inn}=\sum^J_{j=1} \sum^{n_j}_{m=1} (x_{mj}- \overline{x}_j)^2\)</span></p></li>
-<li><p>Treatmentquadratsumme (Reduktion des Prädiktionsfehlers <strong>durch</strong> die Berücksichtigung der UV: <span class="math inline">\(QS_{zw}=\sum^J_{j=1} \sum^{n_j}_{m=1} (\overline{x}_j- \overline{x})^2=\sum^J_{j=1} n_j\cdot (\overline{x}_j- \overline{x})^2\)</span></p></li>
-</ul>
-<p><strong>Mittlere Quadratesummen und ihre Freiheitsgrade</strong></p>
-<p><span class="math inline">\(MQS_{tot}=\frac{QS_{tot}}{n-1}\)</span></p>
-<p><span class="math inline">\(MQS_{zw}=\frac{QS_{zw}}{J-1}\)</span></p>
-<p><span class="math inline">\(MQS_{inn}=\frac{QS_{inn}}{n-J}\)</span></p>
-<p><strong><em>F</em>_-Test</strong></p>
-<p>Um die Nullhypothese zu prüfen, verwenden wir den <em>F</em>-Test als Prüfgrösse. Der <em>F</em>-Wert ist immer <span class="math inline">\(&gt; 0\)</span>, da die quadrierten Abweichungen in die Berechnung einfliessen. Die ungerichtete <span class="math inline">\(H_1\)</span> wird somit einseitig getestet.</p>
+<p><strong>Überprüfung der Nullhypothese mit dem <em>F</em>-Test</strong></p>
+<p>Um die Nullhypothese zu prüfen, verwenden wir den <em>F</em>-Test als Prüfgrösse. Lehnt man die Nullhypothese einer Varianzanalyse mit <span class="math inline">\(J&gt;2\)</span> Bedinungen ab, weiss man zwar, dass es Unterschiede gibt, man weiss jedoch noch nicht, welcher Stichprobenmittelwert von welchem anderen bedeutsam abweicht.</p>
+<p>Die Prüfgrösse berechnet sich als Verhältnis der zwei mittleren Quadratsummen:</p>
 <p><span class="math inline">\(F=\frac{MQS_{zw}}{MQS_{inn}}\)</span></p>
 <ul>
 <li><p>Die <span class="math inline">\(H_0\)</span> wird beibehalten, wenn die empirische Prüfgrösse <em>F</em> <strong>kleiner</strong> als der kritische Wert ist. Die Gruppen unterscheiden sich nicht signifikant bzw. es konnte kein Einfluss der Gruppenvariablen auf die AV gefunden werden.</p></li>
 <li><p>Die <span class="math inline">\(H_0\)</span> wird abgelehnt, wenn die empirische Prüfgrösse <em>F</em> <strong>grösser</strong> als der kritische Wert ist. Die Gruppen unterscheiden sich signifikant bzw. es konnte ein Einfluss der Gruppenvariablen auf die AV gefunden werden.</p></li>
 </ul>
-<p>Ein <em>F</em>-Test mit zwei Stufen und ein zweiseitiger <em>t</em>-Test sind äquivalent. Es gilt <span class="math inline">\(t^2=F\)</span>.</p>
+<p><strong>Quadratsummenzerlegung</strong></p>
+<p>Bei der einfaktoriellen Varianzanalyse ohne Messwiederholung wird die Variation der Messwerte in zwei Quellen zerlegt: Unterschiede zwischen den Gruppen und Unterschiede innerhalb der Gruppen.</p>
+<p><strong>Additivität der Quadratsummen</strong>: Die totale Quadratsumme wird zerlegt in eine Quadratsumme, die die Variation zwischen den Bedingungen ausdrückt, und eine Quadratsumme, die die Variation zwischen den Messwerten innerhalb der Bedingungen ausdrückt :</p>
+<p><span class="math inline">\(QS_{tot}=QS_{zw}+QS_{inn}\)</span> mit</p>
+<ul>
+<li><p>Totale Quadratsumme (Prädiktionsfehler <strong>ohne</strong> Berücksichtigung der UV): <span class="math inline">\(QS_{tot}=\sum^J_{j=1} \sum^{n_j}_{m=1} (x_{mj}- \overline{x})^2\)</span></p></li>
+<li><p>Innerhalb-Quadratsumme (Prädiktionsfehler <strong>mit</strong> Berücksichtigung der UV): <span class="math inline">\(QS_{inn}=\sum^J_{j=1} \sum^{n_j}_{m=1} (x_{mj}- \overline{x}_j)^2\)</span></p></li>
+<li><p>Zwischen-Quadratsumme (Reduktion des Prädiktionsfehlers <strong>durch</strong> die Berücksichtigung der UV): <span class="math inline">\(QS_{zw}=\sum^J_{j=1} \sum^{n_j}_{m=1} (\overline{x}_j- \overline{x})^2=\sum^J_{j=1} n_j\cdot (\overline{x}_j- \overline{x})^2\)</span></p></li>
+</ul>
+<p><strong>Mittlere Quadratesummen und ihre Freiheitsgrade</strong></p>
+<p>Für die Berechnung der mittleren Quadratsummen werden die jeweiligen Quadratsummen durch ihre Freiheitsgrade dividiert.</p>
+<p><span class="math inline">\(MQS_{tot}=\frac{QS_{tot}}{n-1}\)</span></p>
+<p><span class="math inline">\(MQS_{zw}=\frac{QS_{zw}}{J-1}\)</span></p>
+<p><span class="math inline">\(MQS_{inn}=\frac{QS_{inn}}{n-J}\)</span></p>
+<!--__Ergebnisdarstellung__
+
+Die Ergebnisse einer Varianzanalyse werden häufig in einer Tabelle dargestellt.  
+-->
 </section>
 <section id="effektstärke-bestimmen" class="level4">
 <h4 class="anchored" data-anchor-id="effektstärke-bestimmen"><strong>7. Effektstärke bestimmen</strong></h4>
-<p>Die Effektgrösse beim <em>F</em>-Test sagt etwas darüber aus, wie gross der Unterschied zwischen den beiden Populationsmittelwerten ist.</p>
-<p>ADD: Es gibt verschiedene Masse!</p>
-<p>Die standardisierte Effektgrösse für eine einfaktorielle Varianzanalyse ohne Messwiederholung <span class="math inline">\(\eta^2\)</span> lässt sich anhand des Quotienten aus der Zwischen-Quadratsumme und der Gesamtquadratsumme berechnen:</p>
+<p>Die Effektgrösse beim <em>F</em>-Test sagt etwas darüber aus, wie gross der Unterschied zwischen den Populationsmittelwerten ist.</p>
+<p>Häufig wird dazu <span class="math inline">\(\eta^2\)</span> verwendet. Die standardisierte Effektgrösse <span class="math inline">\(\eta^2\)</span> für eine einfaktorielle Varianzanalyse ohne Messwiederholung lässt sich anhand des Quotienten aus der Zwischen-Quadratsumme und der Gesamtquadratsumme berechnen:</p>
 <p><span class="math inline">\(\hat \eta^2=\frac{QS_{tot}-QS_{inn}}{QS_{tot}}=\frac{QS_{zw}}{QS_{tot}}=\frac{F \cdot {df}_{zw}}{F \cdot df_{zw} + df_{inn}}\)</span></p>
 <p>Die Konventionen für <span class="math inline">\(\eta^2\)</span> lauten in Anlehnung an Cohen (1988):</p>
 <ul>
@@ -590,21 +592,19 @@ Genauere Informationen zu Lage- und Streumassen sind im <a href="../datenanalyse
 <li><p><span class="math inline">\(\eta^2=\approx 0.06\)</span>: mittlerer Effekt</p></li>
 <li><p><span class="math inline">\(\eta^2=\approx 0.14\)</span>: grosser Effekt</p></li>
 </ul>
-<p>In R kann hierfür die Funktion <code>eta_squared</code> aus dem Package {effectsize} verwendet werden.</p>
-<p>Die Effektgrösse <span class="math inline">\(\eta^2\)</span> lässt sich anhand des Quotienten aus der Zwischen-Quadratsumme und der Gesamtquadratsumme berechnen. In R kann dieses Mass mit der Funktion <code>eta_squared</code> aus dem Package {effectsize} berechnet werden.</p>
 </section>
 </section>
 <section id="schlussfolgerungen" class="level3" data-number="11.3.4">
 <h3 data-number="11.3.4" class="anchored" data-anchor-id="schlussfolgerungen"><span class="header-section-number">11.3.4</span> Schlussfolgerungen</h3>
 <section id="ergebnisse-interpretieren-und-berichten" class="level4">
 <h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten"><strong>8. Ergebnisse interpretieren und berichten</strong></h4>
-<p>Die Ergebnisse der Varianzanalyse werden in der Regel mit dem empirischen <strong>FEHLT ETWAS?</strong></p>
-<p>Inferenzstatistische Kennwerte (z.B. <em>t</em> und <em>F</em>) werden mit zwei Dezimalen berichtet.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> In den Klammern werden die Freiheitsgrade des Zählers und des Nenners angegeben. Als Effektgrössenschätzer wird meistens <span class="math inline">\(\eta^2\)</span> angegeben.</p>
+<p>Die Ergebnisse der Varianzanalyse werden in der Regel mit dem empirischen <em>F</em>-Wert, den Freiheitsgraden, dem entsprechenden <em>p</em>-Wert und/oder Konfidenzintervall und einer Effektgrösse berichtet.</p>
+<p>Inferenzstatistische Kennwerte (z.B. <em>t</em> und <em>F</em>) werden mit zwei Dezimalen berichtet.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> In den Klammern werden bei einer Varianzanalyse die Freiheitsgrade des Zählers (<span class="math inline">\(df_{zw}\)</span>) und des Nenners (<span class="math inline">\(df_{inn}\)</span>) angegeben. Als Effektgrössenschätzer wird häufig <span class="math inline">\(\eta^2\)</span> angegeben.</p>
 <blockquote class="blockquote">
 <p>Die einfaktorielle Varianzanalyse ergab, dass sich die Gruppen signifikant in ihrer kognitiven Leistung unterscheiden, <em>F</em>(2, 12) = 10.87, <em>p</em> = .002, <span class="math inline">\(\eta^2\)</span> = 0.64.</p>
 </blockquote>
 <blockquote class="blockquote">
-<p>One-way ANOVA revealed a significant effect of condition on performance, <em>F</em>(2, 12) = 10.87, <em>p</em> = .002, <span class="math inline">\(\eta^2\)</span> = 0.64.</p>
+<p>The one-way ANOVA revealed a significant effect of condition on performance, <em>F</em>(2, 12) = 10.87, <em>p</em> = .002, <span class="math inline">\(\eta^2\)</span> = 0.64.</p>
 </blockquote>
 </section>
 </section>
@@ -621,23 +621,26 @@ Beispiel: Therapiemethoden bei Angstsymptomatik
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>In einem fiktiven Experiment wurden drei verschiedene Therapiemethoden verglichen und untersucht, welchen Effekt die Therapiemethode auf die Angstsymptomatik hat. Die 15 Personen wurden zufällig den drei Bedingungen zugewiesen.</p>
+<p>In einem fiktiven Experiment wurden drei verschiedene Therapiemethoden verglichen und untersucht, welchen Effekt die Therapiemethode auf die Angstsymptomatik hat. Dazu wurden 15 Personen zufällig auf die drei Bedingungen aufgeteilt.</p>
 <ul>
-<li>Die <em>unabhängige Variable</em> sind die Therapiemethoden mit 3 Stufen (Mindfulness, Entspannung, Kognitive Umstrukturierung)</li>
-<li>Die <em>abhängige Variable</em> sind die Höhe der Angstsymptomatik nach dem Treatment (metrisch).</li>
+<li>Die <em>unabhängige Variable</em> sind die Therapiemethoden mit 3 Faktorstufen (Mindfulness, Entspannung, Kognitive Umstrukturierung)</li>
+<li>Die <em>abhängige Variable</em> entspricht der Höhe der Angstsymptomatik nach dem Treatment (metrisch).</li>
 </ul>
 </div>
 </div>
-<section id="planung-1" class="level3" data-number="11.4.1">
+<section id="planung-1" class="level3 page-columns page-full" data-number="11.4.1">
 <h3 data-number="11.4.1" class="anchored" data-anchor-id="planung-1"><span class="header-section-number">11.4.1</span> Planung</h3>
 <section id="statistische-hypothesen-und-signifikanzniveau-festlegen-1" class="level4">
 <h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen-1"><strong>1. Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
-<p><span class="math inline">\(H_0\)</span>: Die Therapiemethode hat keinen Einfluss auf die Symptome: <span class="math inline">\(\mu_1=\mu_2=\mu_3\)</span></p>
-<p><span class="math inline">\(H_1\)</span>: Die Therapiemethode hat einen Einfluss auf die Symptome: <span class="math inline">\(\mu_i \neq\mu_j\)</span> für mindestens ein Paar (<span class="math inline">\(i\)</span>,<span class="math inline">\(j\)</span>), <span class="math inline">\(i \neq j\)</span></p>
-<p>Das Alphaniveau wird auf <span class="math inline">\(5 \%\)</span> festgelegt. Es handelt sich um eine ungerichtete Hypothese, die Testung erfolgt mit dem <em>F</em>-test jedoch einseitig.</p>
+<p><span class="math inline">\(H_0\)</span>: Die Therapiemethode hat keinen Einfluss auf die Angstsymptome: <span class="math inline">\(\mu_1=\mu_2=\mu_3\)</span></p>
+<p><span class="math inline">\(H_1\)</span>: Die Therapiemethode hat einen Einfluss auf die Angstsymptome: <span class="math inline">\(\mu_i \neq\mu_j\)</span> für mindestens ein Paar (<span class="math inline">\(i\)</span>,<span class="math inline">\(j\)</span>), <span class="math inline">\(i \neq j\)</span></p>
+<p>Das Alphaniveau wird auf <span class="math inline">\(5 \%\)</span> festgelegt. Es handelt sich um eine ungerichtete Hypothese, die Testung erfolgt mit dem <em>F</em>-Test jedoch immer einseitig.</p>
 </section>
-<section id="a-priori-poweranalyse-durchführen-1" class="level4">
+<section id="a-priori-poweranalyse-durchführen-1" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="a-priori-poweranalyse-durchführen-1"><strong>2. A-priori Poweranalyse durchführen</strong></h4>
+<aside>
+Die a-priori Poweranalyse bei einer Varianzanalyse wird in diesem Semester nicht behandelt.
+</aside>
 </section>
 </section>
 <section id="vorverarbeitung-1" class="level3 page-columns page-full" data-number="11.4.2">
@@ -645,25 +648,23 @@ Beispiel: Therapiemethoden bei Angstsymptomatik
 <section id="daten-einlesen-und-vorverarbeiten" class="level4">
 <h4 class="anchored" data-anchor-id="daten-einlesen-und-vorverarbeiten"><strong>3. Daten einlesen und vorverarbeiten</strong></h4>
 <div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Beispieldatensatz Therapiemethode">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
 Hands-on: Beispieldatensatz Therapiemethode
 </div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>Daten herunterladen und einlesen</strong></p>
-<p><a href="../data/anova.zip">Hier</a> kann der Projektordner mit den Daten heruntergeladen werden. Vor dem ersten Verwenden muss der Ordner entzippt werden, dann kann das <em>RProject</em> namens <code>anova.Rproj</code> geöffnet werden. Der Ordner enthält</p>
+<p><a href="../data/anova.zip">Hier</a> kann der Projektordner mit den Daten heruntergeladen werden. Vor dem ersten Verwenden muss der Ordner entzippt werden, dann kann das <em>RProject</em> namens <code>anova.Rproj</code> geöffnet werden. Der Ordner enthält:</p>
 <ul>
 <li><p><em>RProject</em> namens <code>anova.Rproj</code></p></li>
 <li><p>Datensatz <code>anova_therapy.csv</code> und <code>anova_music.csv</code> in <code>data</code>-Ordner</p></li>
 <li><p><em>RNotebook</em> namens <code>einfaktorielleanova.Rmd</code></p></li>
-<li><p>Es werden folgende Packages verwendet: {tidyverse}, {afex}, {emmeans}, {beeswarm??}, {effectsize??}</p></li>
-<li><p>Datensatz einlesen:</p></li>
+<li><p>Es werden folgende Packages verwendet: {tidyverse}, {afex}, {emmeans}, {beeswarm}, {effectsize}</p></li>
+<li><p>Datensatz <code>anova_therapy.csv</code> einlesen:</p></li>
 </ul>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Package laden</span></span>
@@ -681,7 +682,7 @@ $ symptoms  &lt;int&gt; 6, 9, 7, 3, 5, 9, 7, 8, 4, 7, 1, 3, 4, 1, 1</code></pre>
 </div>
 </div>
 <p><strong>Datensatz transformieren</strong></p>
-<p>Die Daten sind bereits im <code>long</code> Format. Die Variablen <code>id</code> und <code>condition</code> müssen zu einem Faktor konvertiert werden.</p>
+<p>Die Daten liegen bereits im <code>long</code> Format vor. Die Variablen <code>id</code> und <code>condition</code> müssen jedoch noch zu einem Faktor konvertiert werden.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Faktoren definieren </span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>d_therapy3 <span class="ot">&lt;-</span> d_therapy3 <span class="sc">|&gt;</span></span>
@@ -698,7 +699,6 @@ $ symptoms  &lt;int&gt; 6, 9, 7, 3, 5, 9, 7, 8, 4, 7, 1, 3, 4, 1, 1</code></pre>
 </div>
 </div>
 </div>
-</div>
 </section>
 <section id="voraussetzungen-überprüfen-1" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen-1"><strong>4. Voraussetzungen überprüfen</strong></h4>
@@ -706,7 +706,10 @@ $ symptoms  &lt;int&gt; 6, 9, 7, 3, 5, 9, 7, 8, 4, 7, 1, 3, 4, 1, 1</code></pre>
 <aside>
 Die Voraussetzung der Normalverteilung wird in diesem Semester nicht überprüft.
 </aside>
-<p>Die Varianzhomogenität (Homoskedastizität) kann mit dem Levene-Test <code>leveneTest(y ~ x, data = dataset)</code> überprüft werden. Ein Levene-Test mit <span class="math inline">\(p &lt; 0.05\)</span> bedeutet, dass der Varianzunterschied signifikant ist. Die Nullhypothese, dass die beiden Varianzen auf Populationsebene identisch sind, muss in diesem Fall verworfen werden.</p>
+<p>Die Varianzhomogenität (Homoskedastizität) kann mit dem Levene-Test <code>leveneTest(y ~ x, data = dataset)</code> überprüft werden. Die Funktion <code>leveneTest()</code> stammt aus dem Package {car}. Ein Levene-Test mit <span class="math inline">\(p &lt; 0.05\)</span> bedeutet, dass der Varianzunterschied signifikant ist. Die Nullhypothese, dass die beiden Varianzen auf Populationsebene identisch sind, muss in diesem Fall verworfen werden.</p>
+<aside>
+Vor dem ersten Verwenden der Funktion <code>leveneTest()</code> muss das Package {car} heruntergeladen/installiert werden, z.B. in der Konsole mit <code>install.packages("car")</code>.
+</aside>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Levene-Test mit dem package {car}</span></span>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">leveneTest</span>(symptoms <span class="sc">~</span> condition, <span class="co"># av ~ uv</span></span>
@@ -742,46 +745,38 @@ group  2  0.2545 0.7794
 3 restructuring             2        1.41</code></pre>
 </div>
 </div>
-<div class="cell">
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="anova1_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- # Plot  -->
+<!-- ggplot(d_therapy3, aes(x = condition, y = symptoms, colour = condition)) + -->
+<!--   geom_jitter(size = 2, width = 0.15, height = 0) +   -->
+<!--   scale_y_continuous(limits = c(0, 10), breaks = seq(0, 10, by = 2)) +   -->
+<!--   labs(title = "symptoms per condition", y = "symptoms", x = "condition") + -->
+<!--   scale_color_brewer(palette = "Set1") + -->
+<!--   theme_minimal() -->
+<!-- ``` -->
 </section>
 <section id="teststatistik-berechnen-1" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="teststatistik-berechnen-1"><strong>6. Teststatistik berechnen</strong></h4>
-<p><strong>a. Berechnung Teststatistik von Hand</strong></p>
-<p>Im Folgenden wird ein <em>F</em>-Test unter der Annahme von homogenen Varianzen “von Hand” berechnet.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co">#qf(0.95, 2, 12)</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co">#oder auch nicht... :)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 <p>Falls der empirische <em>F</em>-Wert grösser als der kritische <em>F</em>-Wert ist, wird von einem signifikanten Unterschied zwischen den Gruppen ausgegangen.</p>
-<p><strong>b. Berechnung Teststatistik in R mit der Funktion <code>aov_4()</code></strong></p>
+<p><strong>Berechnung Teststatistik in R mit der Funktion <code>aov_4()</code></strong></p>
 <p>Eine einfaktorielle Varianzanalyse kann mit der Funktion <code>aov_4(av ~ uv, + (1 | id), data)</code> aus dem Package {afex} berechnet werden.</p>
-<aside>
-Beim ersten Verwenden muss das Package {afex} heruntergeladen/installiert werden, z.B. in der Konsole mit <code>install.packages("afex")</code>.
-</aside>
 <ul>
 <li><code>av</code>: Abhängige Variable (metrisch)</li>
 <li><code>uv</code>: Unabhängige Variable (Bedingung oder Gruppenvariable)</li>
-<li><code>(1 | id)</code>: Die Funktion benötigt eine Identifikationsvariable, d.h. eine Variable in der jede Person einen einzigartige Wert hat. Da wir hier keine Messwiederholung haben, wird hier <code>1</code> verwendet. Bei Messwiederholung wird hier spezifiziert, welche Variable sich innerhalb von <code>id</code> wiederholt.</li>
+<li><code>(1 | id)</code>: Die Funktion benötigt eine Identifikationsvariable (hier <code>id</code>), d.h. eine Variable, in der jede Person einen einzigartigen Wert hat. Da wir keine Messwiederholung haben, wird eine <code>1</code> vor dem <code>|</code> verwendet. Bei Messwiederholung wird hier spezifiziert, welche Variable sich innerhalb von <code>id</code> wiederholt.</li>
 </ul>
+<aside>
+Vor dem ersten Verwenden muss das Package {afex} heruntergeladen/installiert werden, z.B. in der Konsole mit <code>install.packages("afex")</code>.
+</aside>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(afex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stderr">
-<pre><code>Warning: package 'afex' was built under R version 4.4.3</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfaktorielle Anova ohne Messwiederholung berechnen</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>m_anova1 <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(symptoms <span class="sc">~</span> condition <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id), <span class="co"># av ~ uv + (1 | Identifikationsvariable)</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> d_therapy3) <span class="co"># dataset</span></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_anova1) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(afex)</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfaktorielle Anova ohne Messwiederholung berechnen</span></span>
+<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>m_anova1 <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(symptoms <span class="sc">~</span> condition <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id), <span class="co"># av ~ uv + (1 | Identifikationsvariable)</span></span>
+<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> d_therapy3) <span class="co"># dataset</span></span>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_anova1) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Anova Table (Type 3 tests)
 
@@ -791,7 +786,7 @@ condition      2     12 3.5 10 0.625 0.002781 **
 ---
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>m_anova1<span class="sc">$</span>Anova</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>m_anova1<span class="sc">$</span>Anova</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Anova Table (Type III tests)
 
@@ -804,34 +799,42 @@ Residuals       42 12
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>Die Mittelwerte der Bedingungen unterscheiden sich signifikant auf dem <span class="math inline">\(5 \%\)</span>-Niveau. Die Nullhypothese, wonach sich die Mittelwerte nicht unterscheiden, kann verworfen werden. Die Therapiemethode hat somit einen Einfluss auf die Angstsymptomatik. Aufgrund dieser Analyse ist hingegen (noch) nicht klar, welche Bedingungen sich unterscheiden. Dies wird in einem weiteren Schritt mit sogenannten Post-hoc-Vergleichen überprüft.</p>
+<p>Die Mittelwerte der Bedingungen unterscheiden sich signifikant auf dem <span class="math inline">\(5 \%\)</span>-Niveau. Die Nullhypothese, wonach sich die Mittelwerte nicht unterscheiden, kann verworfen werden. Die Therapiemethode hat somit einen Einfluss auf die Angstsymptomatik. Aufgrund dieser Analyse ist hingegen (noch) nicht klar, welche Bedingungen sich unterscheiden. Dies wird in einem späteren Schritt mit sogenannten Post-hoc-Vergleichen überprüft.</p>
+<p>Zur Visualisierung der Ergebnisse eignet sich ein Plot, der die Mittelwerte und Standardfehler abbildet. Dazu kann die Funktion <code>afex_plot</code> aus dem Package {afex} verwendet werden. Um die Standardfehler, anstelle der Konfidenzintervall, anzuzeigen, kann <code>error_ci = FALSE</code> verwendet werden.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>plot_anova <span class="ot">&lt;-</span> <span class="fu">afex_plot</span>(<span class="at">object =</span> m_anova1, <span class="co"># Objekt mit Anovamodell</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"condition"</span>,  <span class="co"># uv (Faktor)</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">error_ci =</span> <span class="cn">FALSE</span>) <span class="co"># Anzeigen von Standardfehler der Mittelwerte</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>plot_anova</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>plot_anova <span class="ot">&lt;-</span> <span class="fu">afex_plot</span>(<span class="at">object =</span> m_anova1, <span class="co"># Objekt mit Anovamodell</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"condition"</span>,  <span class="co"># uv (Faktor)</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">error_ci =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="co"># Anzeigen von Standardfehler der Mittelwerte</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>          <span class="fu">theme_minimal</span>()</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>plot_anova</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="anova1_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="anova1_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
-<p><strong>c.&nbsp;Post-hoc-Vergleiche</strong></p>
-<p>(folgt)</p>
-<p><strong>d.&nbsp;Kontrastanalyse</strong></p>
-<p>(folgt)</p>
+<!--__c. Post-hoc-Vergleiche__
+
+(folgt)
+
+__d. Kontrastanalyse__
+
+(folgt)
+-->
 </section>
-<section id="effektstärke-bestimmen-1" class="level4">
+<section id="effektstärke-bestimmen-1" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="effektstärke-bestimmen-1"><strong>7. Effektstärke bestimmen</strong></h4>
 <p><strong>Berechnung der Effektgrösse <span class="math inline">\(\eta^2\)</span></strong></p>
-<p>Die Effektgrösse <span class="math inline">\(\eta^2\)</span> lässt sich anhand des Quotienten aus der Zwischen-Quadratsumme und der Gesamtquadratsumme berechnen. In R kann dieses Mass direkt mit der Funktion <code>eta_squared</code> aus dem Package {effectsize} berechnet werden.</p>
+<p>Die Effektgrösse <span class="math inline">\(\eta^2\)</span> lässt sich anhand des Quotienten aus der Zwischen-Quadratsumme und der Gesamtquadratsumme berechnen. In <em>R</em> kann dieses Mass direkt mit der Funktion <code>eta_squared()</code> aus dem Package {effectsize} berechnet werden. Als Argument für die Funktion muss das Anova-Modell (Objekt), also hier <code>m_anova1</code>, eingegeben werden.</p>
+<aside>
+Vor dem ersten Verwenden muss das Package {effectsize} heruntergeladen/installiert werden, z.B. in der Konsole mit <code>install.packages("effectsize")</code>.
+</aside>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
-<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>effectsize<span class="sc">::</span><span class="fu">eta_squared</span>(m_anova1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>effectsize<span class="sc">::</span><span class="fu">eta_squared</span>(m_anova1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Effect Size for ANOVA (Type III)
 
@@ -849,12 +852,14 @@ condition | 0.62 | [0.25, 1.00]
 <h3 data-number="11.4.4" class="anchored" data-anchor-id="schlussfolgerungen-1"><span class="header-section-number">11.4.4</span> Schlussfolgerungen</h3>
 <section id="ergebnisse-interpretieren-und-berichten-1" class="level4">
 <h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten-1"><strong>8. Ergebnisse interpretieren und berichten</strong></h4>
-<p><strong>a. Ergebnisse der einfaktoriellen Varianzanalyse ohne Messwiederholung</strong></p>
-<p>Das Ergebnis ist auf dem <span class="math inline">\(5 \%\)</span>-Niveau signifikant und die Nullhypothese kann somit verworfen werden: Die Therapiemethode beeinflusst die Höhe der Angstsymptomatik. Es handelt sich nach der Taxonomie von Cohen (1988) um einen grossen (oder auch sehr grossen) Effekt (<span class="math inline">\(\eta^2=0.62\)</span>).</p>
+<p><strong>Ergebnisse der einfaktoriellen Varianzanalyse ohne Messwiederholung</strong></p>
+<p>Das Ergebnis ist auf dem <span class="math inline">\(5 \%\)</span>-Niveau signifikant und die Nullhypothese kann somit verworfen werden: Die Therapiemethode beeinflusst die Höhe der Angstsymptomatik. Es handelt sich nach der Taxonomie von Cohen (1988) um einen grossen Effekt (<span class="math inline">\(\eta^2=0.62\)</span>).</p>
 <blockquote class="blockquote">
-<p>“We examined whether the three therapy methods had an <strong>different???</strong> effect on anxiety symptoms. The one-way ANOVA revealed a significant effect of the therapy condition on anxiety symtoms, <em>F</em>(2, 12) = 10.00, <em>p</em> = .003, <span class="math inline">\(\eta^2\)</span> = 0.62). This indicates a large effect of the therapy condition on anxiety symptoms according to Cohen’s convention (1988).”</p>
+<p>“We examined whether the therapy methods had an effect on anxiety symptoms. The one-way ANOVA revealed a significant effect of the therapy condition on anxiety symtoms, <em>F</em>(2, 12) = 10.00, <em>p</em> = .003, <span class="math inline">\(\eta^2\)</span> = 0.62). This indicates a large effect of the therapy condition on anxiety symptoms according to Cohen’s convention (1988).”</p>
 </blockquote>
-<p><strong>b. Ergebnisse der Post-hoc und Kontrastanalyse</strong></p>
+<!--__b. Ergebnisse der Post-hoc und Kontrastanalyse__
+
+(folgt) -->
 
 
 </section>

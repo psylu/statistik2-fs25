@@ -241,7 +241,7 @@ pwr.t.test(d = 0.8, power = 0.8, sig.level = 0.05, type = "two.sample")
 
 ```
 
-<aside> Beim ersten Verwenden muss das Package {pwr} heruntergeladen/installiert werden, z.B. in der Konsole mit `install.packages("pwr")`. </aside>
+<aside> Vor dem ersten Verwenden muss das Package {pwr} heruntergeladen/installiert werden, z.B. in der Konsole mit `install.packages("pwr")`. </aside>
 
 Eine Teststärke (Power) von 0.94 bedeutet, dass die Wahrscheinlichkeit 94 % beträgt, einen tatsächlich vorhandenen Effekt mit einer Effektstärke von $d = 0.8$ zu entdecken.
 

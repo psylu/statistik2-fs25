@@ -8,15 +8,13 @@ knitr::opts_knit$set(root.dir = '../')
 
 ## Anwendungsbereich
 
-Mit der einfaktoriellen Varianzanalyse (ohne Messwiederholung) wird untersucht, ob sich mehrere unabhängige Gruppen unterscheiden bzw. ob die Gruppenvariable (UV) einen "Einfluss" oder "Effekt" auf die abhänigige metrische Variable (AV) hat. 
-Dabei ist wichtig, dass mit "Effekt" kein kausaler Zusammenhang gemeint ist. 
-Die einfaktorielle Varianzanalyse ohne Messwiederholung stellt eine Erweiterung des _t_-Tests für unabhängige Stichproben bei mehr als zwei Stichproben dar. 
+Mit der einfaktoriellen Varianzanalyse (ohne Messwiederholung) wird untersucht, ob sich die Mittelwerte mehrerer unabhängiger Gruppen unterscheiden bzw. ob die Gruppenvariable (UV) einen "Einfluss" oder "Effekt" auf die abhängige metrische Variable (AV) hat.  Dabei ist wichtig, dass mit "Effekt" kein kausaler Zusammenhang gemeint ist. Eine Varianzanalyse, die den Einfluss _einer_ unabhängigen Variable (ein Faktor) untersucht, wird als _einfaktorielle_ Varianzanalyse bezeichnet. 
 
-Dies bedeutet, dass die _abhängige Variable_ (AV) als Merkmal mit der Varianzanalyse untersucht wird. Die _unabhängige Variable_ (UV) ist die erklärende Variable - auch _Faktor_ genannt. Eine Varianzanalyse, die den Einfluss _einer_ unabhängigen Variable (ein Faktor) untersucht, wird als _einfaktorielle_ Varianzanalyse bezeichnet. Ein Faktor kann zwei oder mehr Stufen haben. Dabei muss die unabhängige Variable metrisch und der Faktor kategorial sein. 
+Dies bedeutet, dass die _abhängige Variable_ (AV) als Merkmal mit der Varianzanalyse untersucht wird. Die _unabhängige Variable_ (UV) ist die erklärende Variable - auch _Faktor_ genannt. Ein Faktor kann zwei oder mehr Stufen haben. Dabei muss die unabhängige Variable metrisch und der Faktor kategorial sein. Die einfaktorielle Varianzanalyse ohne Messwiederholung stellt eine Erweiterung des _t_-Tests für unabhängige Stichproben bei mehr als zwei Stichproben dar.  
 
-Sind in jeder Gruppe gleich viele Personen bzw. Datenpunkte, spricht man von einem _balancierten Design_. Bei ungleichgrossen Gruppen handelt es sich um ein _unablanciertes Design_.
+Sind in jeder Gruppe gleich viele Personen bzw. Datenpunkte, spricht man von einem _balancierten Design_. Bei ungleichgrossen Gruppen handelt es sich um ein _unbalanciertes Design_.
 
-Die Varianzanalyse wird häufig auch ANOVA gennannt (engl. ANalysis Of VAriance, kurz ANOVA).
+Die Varianzanalyse wird häufig auch ANOVA genannt (engl. ANalysis Of VAriance, kurz ANOVA).
 
 
 __Die einfaktorielle Varianzanalyse überprüft somit die Auswirkung einer gestuften, unabhängigen Variable (= Faktor) auf eine abhängige Variable.__
@@ -28,27 +26,20 @@ __Typische Fragestellungen__:
 
 - *Unterscheiden sich Studierende in ihrer Konzentrationsfähigkeit Y, wenn sie 4, 6, 8 oder 10 Stunden geschlafen haben?*
 
-- *Hat die verwendetet Lerntechnik (keine Technik, Wiederholen, Mnemotechnik) einen Einfluss auf die Anzahl richtig gelöster Prüfungsaufgaben?*
+- *Hat die verwendete Lerntechnik (keine Technik, Wiederholen, Mnemotechnik) einen Einfluss auf die Anzahl richtig gelöster Prüfungsaufgaben?*
 
 
 ## Voraussetzungen
-
-TODO/Check Eid
 
 | Voraussetzung | Beschreibung | Vorgehen bei Verletzung |
 |---|---|---|
 | Abhängige Variable | Eine abhängige Variable mit metrischem Skalenniveau. Die AV muss in den den Teilpopulationen stetig und normalverteilt sein (bei genügend grosser Stichprobe ist der _F_-Test robust). | Transformieren der Variable oder Verwenden von non-parametrischen Verfahren: Falls die AV ordinalskaliert ist, kann ein non-parametrisches (verteilungsfreies) Verfahren gewählt werden; z.B. Kruskal-Wallis-Test. |
 | Unabhängige Variable | Eine unabhängige Variable mit zwei oder mehr Stufen (kategoriale Gruppenvariable). | Verwenden eines anderen statistischen Verfahrens (z.B. Regression) oder Kategorisierung der UV. |
 | Unabhängigkeit der Messwerte | Die Messwerte _innerhalb_ der beiden Stichproben sind voneinander unabhängig. Es handelt sich um einfache, innerhalb der Stichprobe voneinander unabhängigen, Zufallsstichproben. |  |
-| Unabhängigkeit der Gruppen/Stichproben | Die Messwerte _zwischen_ den Stichproben sind voneinander unabhängig (unabhängige Gruppen). Eine _Verletzung der Unabhängigkeitsannahme_ liegt vor, wenn die Annahme, dass die Messwerte zwischen den Stichproben unabhängig sind, nicht zutrifft, d.h. die Messwerte mit Messwiederholung vorliegen. | Für die Abhängigkeit der Gruppen kann kontrolliert werden, indem z.B. ein Varianzanalyse für abhängige Stichproben verwendet wird |
-| Varianzhomogenität / Homoskedastizität | Die Varianzen innerhalb??? der Teilpopulationen sind _homogen_ (Homoskedastizität). Vor allem wenn die Stichproben unterschiedlich gross sind, bietet sich eine empirische Überprüfung der Varianzhomogenitätsannahme an.  | _Überprüfung der Varianzhomogenitätsannahme_: <br> Der Vergleich  Stichprobenvarianzen mittels _F_-Test oder Levene-Test (robuste Variante zum _F_-Test). <br> Bei _Verletzung der Varianzhomogenitätsannahme (Heteroskedastizität)_, kann als Alternative auf robuste Verfahren zurückgegriffen werden oder der Welch-Test/Brown-Forsythe-Test verwendet werden, welcher nicht die gepoolten Innerhalb-Varianzen, sondern die jeweiligen Stichprobenvarianzen $\hat \sigma^2_1$ und $\hat \sigma^2_2$ verwendet. Bei Aussreissern robuste Verfahren|
+| Unabhängigkeit der Gruppen/Stichproben | Die Messwerte _zwischen_ den Stichproben sind voneinander unabhängig (unabhängige Gruppen). Eine _Verletzung der Unabhängigkeitsannahme_ liegt vor, wenn die Annahme, dass die Messwerte zwischen den Stichproben unabhängig sind, nicht zutrifft, d.h. die Messwerte mit Messwiederholung vorliegen. | Für die Abhängigkeit der Gruppen kann kontrolliert werden, indem z.B. ein Varianzanalyse mit Messwiederholung verwendet wird |
+| Varianzhomogenität / Homoskedastizität | Die Varianzen zwischen den Teilpopulationen sind _homogen_ (Homoskedastizität). Vor allem wenn die Stichproben unterschiedlich gross sind, bietet sich eine empirische Überprüfung der Varianzhomogenitätsannahme an.  | _Überprüfung der Varianzhomogenitätsannahme_: <br> Der Vergleich  Stichprobenvarianzen mittels _F_-Test oder Levene-Test (robuste Variante zum _F_-Test). <br> Bei _Verletzung der Varianzhomogenitätsannahme (Heteroskedastizität)_, kann als Alternative auf robuste Verfahren zurückgegriffen werden oder der Welch-Test/Brown-Forsythe-Test verwendet werden, welche nicht die gepoolten Innerhalb-Varianzen, sondern die jeweiligen Schätzungen der Stichprobenvarianzen verwendet. |
 
 : __Voraussetzungen einfaktorielle Varianzanalyse ohne Messwiederholung__, Überprüfung und mögliche Alternativen bei Verletzung der Annahmen {.hover}
-
-
-Unabhängigkeit der Residuen, Homoskedastizität und Normalverteilung.
-
-- Die Unabhängigkeit der Residuen bedeutet, dass die Residualwerte innerhalb einer Bedingung voneinander unabhängig sind, aber auch die Residualwerte zwischen den Bedingungen. 
 
 <br>
 
@@ -63,29 +54,39 @@ Unabhängigkeit der Residuen, Homoskedastizität und Normalverteilung.
 
 #### __1. Statistische Hypothesen und Signifikanzniveau festlegen__
 
+__Notation__
+
+$n$: Stichprobengrösse insgesamt
+
+$m$: Beobachtungseinheit (Person)
+
+$j$: Bedingung (Faktorstufe, Merkmalsausprägung der nominalskalierten unabhängigen Variable)
+
+$x_{mj}$: _m_-te Person (oder Messung) in der _j_-ten Faktorstufe
+
+$J$: Anzahl Faktorstufen
+
 __Ungerichtete Hypothesen:__
 
 Mit der einfaktoriellen Varianzanalyse wird die Nullhypothese, dass die Mittelwerte in der Population für jede Gruppen gleich sind, überprüft. 
 
-$H_0$: Die Populationsmittelwerte der Gruppen 1, 2 und 3 unterscheiden sich nicht (d.h. haben eine Differenz gleich 0): $\mu_1= \mu_2= \mu_3$ bzw. $\mu_i= \mu_j$ für alle Paare ($i$, $j$), $i \neq j$
+- $H_0$: Die Populationsmittelwerte der Gruppen unterscheiden sich nicht (d.h. haben eine Differenz gleich 0): $\mu_1= \mu_2= \mu_3$ bzw. $\mu_i= \mu_j$ für alle Paare ($i$, $j$), $i \neq j$
 
-$H_1$: Mindestens zwei Populationsmittelwerte der Gruppen 1, 2 und 3 unterscheiden sich (d.h. haben eine Differenz ungleich 0): $\mu_i \neq\mu_j$ für mindestens ein Paar ($i$,$j$), $i \neq j$ 
+- $H_1$: Mindestens zwei Populationsmittelwerte der Gruppen unterscheiden sich (d.h. haben eine Differenz ungleich 0): $\mu_i \neq\mu_j$ für mindestens ein Paar ($i$,$j$), $i \neq j$ 
 
-__HIER ALLE MÖGLICHKEITEN AUSFORMULIEREN?__
-
-also beispielsweise:
+<!-- also beispielsweise:
 
 - $\mu_1 \neq \mu_2 = \mu_3$
 - $\mu_1 = \mu_2 \neq \mu_3$
 - $\mu_1 \neq \mu_2 \neq \mu_3$
+-->
 
-
-__EVTL TTEST HINZUFUEGEN?__
-
-Bei $J = 2$ Faktorstufen ist der _F_-Test äquivalent zu einem _t_-Test für unabhängige Stichproben.
+Bei $J=2$ Faktorstufen ist der _F_-Test äquivalent zu einem _t_-Test für unabhängige Stichproben. Es gilt $t^2=F$.
   
-Bei $J>2$ Faktorstufen ist der _F_-Test ein Omnibus-Test, mit dem lediglich ermittelt werden kann, ob die Unterschiede zwischen den Bedingungsmittelwerten signifikant von 0 abweichen, daher werden auch die Hypothesen entsprechend formuliert. 
+Bei $J>2$ Faktorstufen ist der _F_-Test ein Globaltest (Omnibus-Test), mit dem lediglich ermittelt werden kann, ob die Unterschiede zwischen den Bedingungsmittelwerten signifikant von 0 abweichen, daher werden auch die Hypothesen entsprechend formuliert. 
 Häufig ist man jedoch daran interessiert, ob sich bestimmte Mittelwertspaare signifikant unterscheiden. Eine Möglichkeit dazu bieten Paarvergleiche, sogenannte Post-hoc-Tests. Bei drei Bedingungen gibt es drei (nicht-redundante) Paarvergleiche: $\mu_1-\mu_2$, $\mu_1-\mu_3$ und $\mu_2-\mu_3$.
+
+Da der _F_-Wert über die Quadratsummen berechnet wird, können _F_-Werte nur zwischen 0 und $+ \infty$ liegen. Das bedeutet, dass nur die rechte Seite der Verteilung zur Bestimmung der kritischen Werte verwendet wird. Die Alternativhypothese ist immer ungerichtet und wird einseitig getestet. 
 
 <!-- ### Post-hoc Tests (ANOVA) 
 
@@ -118,11 +119,11 @@ Für experimentellen Studien ist es jedoch sinnvoll gleich grosse Bedingungsstic
 Zuerst müssen die Daten eingelesen und bereinigt werden. 
 Daten können diagnostisch visualisiert werden, um z.B. fehlende Werte zu entdecken oder Verteilungen der Daten visuell beurteilen und Extremwerte zu identifizieren.
 
-Für die einfaktorielle Varianzanalyse bzw. den _F_-Test mit dem Package {afex} werden die Daten  in einem `long`-Format benötigt. 
+Für die einfaktorielle Varianzanalyse bzw. den _F_-Test mit dem Package {afex} werden die Daten in einem `long`-Format benötigt. 
 
 #### __4. Voraussetzungen überprüfen__
 
-- __Varianzhomogenität__
+__Varianzhomogenität__
 
 Der _F_-Test für unabhängige Stichproben setzt Varianzhomogenität voraus. Dies kann in _R_ mit dem Levene-Test `car::leveneTest` überprüft werden.  
 
@@ -145,28 +146,39 @@ Durch die Visualisierung der Rohwerte, kann die Verteilung der Messungen gut ein
 
 #### __6. Teststatistik berechnen__
 
-Um zu überprüfen, ob mindestens zwei Mittelwerte signifikant unterschiedlich sind, muss die Teststatistik berechnet werden. 
+Um zu überprüfen, ob mindestens zwei Mittelwerte signifikant unterschiedlich sind, muss die Teststatistik berechnet werden.
 
-__Notation__
+__Überprüfung der Nullhypothese mit dem *F*-Test__
 
-$n$: Stichprobengrösse insgesamt
+Um die Nullhypothese zu prüfen, verwenden wir den _F_-Test als Prüfgrösse. Lehnt man die Nullhypothese einer Varianzanalyse mit $J>2$ Bedinungen ab, weiss man zwar, dass es Unterschiede gibt, man weiss jedoch noch nicht, welcher Stichprobenmittelwert von welchem anderen bedeutsam abweicht. 
 
-$J$: Anzahl Faktorstufen (Gruppen oder Bedingungen)
+Die Prüfgrösse berechnet sich als Verhältnis der zwei mittleren Quadratsummen: 
 
-__ $m$ müsste hier auch erklärt werden__
+$F=\frac{MQS_{zw}}{MQS_{inn}}$
+
+- Die $H_0$ wird beibehalten, wenn die empirische Prüfgrösse _F_ __kleiner__ als der kritische Wert ist. Die Gruppen unterscheiden sich nicht signifikant bzw. es konnte kein Einfluss der Gruppenvariablen auf die AV gefunden werden. 
+
+- Die $H_0$ wird abgelehnt, wenn die empirische Prüfgrösse _F_ __grösser__ als der kritische Wert ist. Die Gruppen unterscheiden sich signifikant bzw. es konnte ein Einfluss der Gruppenvariablen auf die AV gefunden werden. 
+
 
 __Quadratsummenzerlegung__ 
+
+Bei der einfaktoriellen Varianzanalyse ohne Messwiederholung wird die Variation der Messwerte in zwei Quellen zerlegt: Unterschiede zwischen den Gruppen und Unterschiede innerhalb der Gruppen. 
+
+__Additivität der Quadratsummen__: Die totale Quadratsumme wird zerlegt in eine Quadratsumme, die die Variation zwischen den Bedingungen ausdrückt, und eine Quadratsumme, die die Variation zwischen den Messwerten innerhalb der Bedingungen ausdrückt :
 
 $QS_{tot}=QS_{zw}+QS_{inn}$ mit
 
 - Totale Quadratsumme (Prädiktionsfehler __ohne__ Berücksichtigung der UV): $QS_{tot}=\sum^J_{j=1} \sum^{n_j}_{m=1} (x_{mj}- \overline{x})^2$
 
-- Fehlerquadratsumme (Prädiktionsfehler __mit__ Berücksichtigung der UV): $QS_{inn}=\sum^J_{j=1} \sum^{n_j}_{m=1} (x_{mj}- \overline{x}_j)^2$
+- Innerhalb-Quadratsumme (Prädiktionsfehler __mit__ Berücksichtigung der UV): $QS_{inn}=\sum^J_{j=1} \sum^{n_j}_{m=1} (x_{mj}- \overline{x}_j)^2$
       
-- Treatmentquadratsumme (Reduktion des Prädiktionsfehlers __durch__ die Berücksichtigung der UV: $QS_{zw}=\sum^J_{j=1} \sum^{n_j}_{m=1} (\overline{x}_j- \overline{x})^2=\sum^J_{j=1} n_j\cdot (\overline{x}_j- \overline{x})^2$
+- Zwischen-Quadratsumme (Reduktion des Prädiktionsfehlers __durch__ die Berücksichtigung der UV): $QS_{zw}=\sum^J_{j=1} \sum^{n_j}_{m=1} (\overline{x}_j- \overline{x})^2=\sum^J_{j=1} n_j\cdot (\overline{x}_j- \overline{x})^2$
 
 
 __Mittlere Quadratesummen und ihre Freiheitsgrade__ 
+
+Für die Berechnung der mittleren Quadratsummen werden die jeweiligen Quadratsummen durch ihre Freiheitsgrade dividiert.
 
 $MQS_{tot}=\frac{QS_{tot}}{n-1}$
 
@@ -175,26 +187,17 @@ $MQS_{zw}=\frac{QS_{zw}}{J-1}$
 $MQS_{inn}=\frac{QS_{inn}}{n-J}$
 
 
-__*F*_-Test__
+<!--__Ergebnisdarstellung__
 
-Um die Nullhypothese zu prüfen, verwenden wir den _F_-Test als Prüfgrösse. Der _F_-Wert ist immer $> 0$, da die quadrierten Abweichungen in die Berechnung einfliessen. Die ungerichtete $H_1$ wird somit einseitig getestet.
-
-$F=\frac{MQS_{zw}}{MQS_{inn}}$
-
-- Die $H_0$ wird beibehalten, wenn die empirische Prüfgrösse _F_ __kleiner__ als der kritische Wert ist. Die Gruppen unterscheiden sich nicht signifikant bzw. es konnte kein Einfluss der Gruppenvariablen auf die AV gefunden werden. 
-
-- Die $H_0$ wird abgelehnt, wenn die empirische Prüfgrösse _F_ __grösser__ als der kritische Wert ist. Die Gruppen unterscheiden sich signifikant bzw. es konnte ein Einfluss der Gruppenvariablen auf die AV gefunden werden. 
-
-Ein _F_-Test mit zwei Stufen und ein zweiseitiger _t_-Test sind äquivalent. Es gilt $t^2=F$.
-
+Die Ergebnisse einer Varianzanalyse werden häufig in einer Tabelle dargestellt.  
+-->
 
 #### __7. Effektstärke bestimmen__
 
-Die Effektgrösse beim _F_-Test sagt etwas darüber aus, wie gross der Unterschied zwischen den beiden Populationsmittelwerten ist.
+Die Effektgrösse beim _F_-Test sagt etwas darüber aus, wie gross der Unterschied zwischen den Populationsmittelwerten ist.
 
-ADD: Es gibt verschiedene Masse!
-
-Die standardisierte Effektgrösse für eine einfaktorielle Varianzanalyse ohne Messwiederholung $\eta^2$ lässt sich anhand des Quotienten aus der Zwischen-Quadratsumme und der Gesamtquadratsumme berechnen:
+Häufig wird dazu $\eta^2$ verwendet. 
+Die standardisierte Effektgrösse $\eta^2$ für eine einfaktorielle Varianzanalyse ohne Messwiederholung lässt sich anhand des Quotienten aus der Zwischen-Quadratsumme und der Gesamtquadratsumme berechnen:
 
 $\hat \eta^2=\frac{QS_{tot}-QS_{inn}}{QS_{tot}}=\frac{QS_{zw}}{QS_{tot}}=\frac{F \cdot {df}_{zw}}{F \cdot df_{zw} + df_{inn}}$
 
@@ -206,29 +209,26 @@ Die Konventionen für $\eta^2$ lauten in Anlehnung an Cohen (1988):
 
 - $\eta^2=\approx 0.14$: grosser Effekt
 
-In R kann hierfür die Funktion `eta_squared` aus dem Package {effectsize} verwendet werden. 
-
-Die Effektgrösse $\eta^2$ lässt sich anhand des Quotienten aus der Zwischen-Quadratsumme und der Gesamtquadratsumme berechnen. In R kann dieses Mass mit der Funktion `eta_squared` aus dem Package {effectsize} berechnet werden. 
 
 ### Schlussfolgerungen
 
 #### __8. Ergebnisse interpretieren und berichten__
 
-Die Ergebnisse der Varianzanalyse werden in der Regel mit dem empirischen __FEHLT ETWAS?__
+Die Ergebnisse der Varianzanalyse werden in der Regel mit dem empirischen _F_-Wert, den Freiheitsgraden, dem entsprechenden _p_-Wert und/oder Konfidenzintervall und einer Effektgrösse berichtet. 
 
-Inferenzstatistische Kennwerte (z.B. _t_ und _F_) werden mit zwei Dezimalen berichtet.^[[https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf](https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf)] In den Klammern werden die Freiheitsgrade des Zählers und des Nenners angegeben. Als Effektgrössenschätzer wird meistens $\eta^2$ angegeben. 
+Inferenzstatistische Kennwerte (z.B. _t_ und _F_) werden mit zwei Dezimalen berichtet.^[[https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf](https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf)] In den Klammern werden bei einer Varianzanalyse die Freiheitsgrade des Zählers ($df_{zw}$) und des Nenners ($df_{inn}$) angegeben. Als Effektgrössenschätzer wird häufig $\eta^2$ angegeben. 
 
-> Die einfaktorielle Varianzanalyse ergab, dass sich die Gruppen  signifikant in ihrer kognitiven Leistung unterscheiden, _F_(2, 12) = 10.87, _p_ = .002, $\eta^2$ = 0.64.
+> Die einfaktorielle Varianzanalyse ergab, dass sich die Gruppen signifikant in ihrer kognitiven Leistung unterscheiden, _F_(2, 12) = 10.87, _p_ = .002, $\eta^2$ = 0.64.
 
-> One-way ANOVA revealed a significant effect of condition on performance, _F_(2, 12) = 10.87, _p_ = .002, $\eta^2$ = 0.64.
+> The one-way ANOVA revealed a significant effect of condition on performance, _F_(2, 12) = 10.87, _p_ = .002, $\eta^2$ = 0.64.
 
 ## Anwendungsbeispiel in R
 
 ::: {.callout-note appearance="default" title="Beispiel: Therapiemethoden bei Angstsymptomatik" icon=false}
-In einem fiktiven Experiment wurden drei verschiedene Therapiemethoden verglichen und untersucht, welchen Effekt die Therapiemethode auf die Angstsymptomatik hat. Die 15 Personen wurden zufällig den drei Bedingungen zugewiesen.
+In einem fiktiven Experiment wurden drei verschiedene Therapiemethoden verglichen und untersucht, welchen Effekt die Therapiemethode auf die Angstsymptomatik hat. Dazu wurden 15 Personen zufällig auf die drei Bedingungen aufgeteilt.
 
-- Die _unabhängige Variable_ sind die Therapiemethoden mit 3 Stufen (Mindfulness, Entspannung, Kognitive Umstrukturierung)
-- Die _abhängige Variable_ sind die Höhe der Angstsymptomatik nach dem Treatment (metrisch). 
+- Die _unabhängige Variable_ sind die Therapiemethoden mit 3 Faktorstufen (Mindfulness, Entspannung, Kognitive Umstrukturierung)
+- Die _abhängige Variable_ entspricht der Höhe der Angstsymptomatik nach dem Treatment (metrisch). 
 
 :::
 
@@ -237,24 +237,25 @@ In einem fiktiven Experiment wurden drei verschiedene Therapiemethoden vergliche
 
 #### __1. Statistische Hypothesen und Signifikanzniveau festlegen__
 
-$H_0$: Die Therapiemethode hat keinen Einfluss auf die Symptome: $\mu_1=\mu_2=\mu_3$ 
+$H_0$: Die Therapiemethode hat keinen Einfluss auf die Angstsymptome: $\mu_1=\mu_2=\mu_3$ 
 
-$H_1$: Die Therapiemethode hat einen Einfluss auf die Symptome: $\mu_i \neq\mu_j$ für mindestens ein Paar ($i$,$j$), $i \neq j$ 
+$H_1$: Die Therapiemethode hat einen Einfluss auf die Angstsymptome: $\mu_i \neq\mu_j$ für mindestens ein Paar ($i$,$j$), $i \neq j$ 
 
-Das Alphaniveau wird auf $5 \%$ festgelegt. Es handelt sich um eine ungerichtete Hypothese, die Testung erfolgt mit dem _F_-test jedoch einseitig.
+Das Alphaniveau wird auf $5 \%$ festgelegt. Es handelt sich um eine ungerichtete Hypothese, die Testung erfolgt mit dem _F_-Test jedoch immer einseitig.
 
 #### __2. A-priori Poweranalyse durchführen__
 
+<aside>Die a-priori Poweranalyse bei einer Varianzanalyse wird in diesem Semester nicht behandelt. </aside>
 
 ### Vorverarbeitung
 
 #### __3. Daten einlesen und vorverarbeiten__
 
-::: {.callout-caution appearance="default" title="Hands-on: Beispieldatensatz Therapiemethode" collapse=true}
+::: {.callout-caution appearance="default" title="Hands-on: Beispieldatensatz Therapiemethode"}
 
 __Daten herunterladen und einlesen__
 
-[Hier](../data/anova.zip) kann der Projektordner mit den Daten heruntergeladen werden. Vor dem ersten Verwenden muss der Ordner entzippt werden, dann kann das _RProject_ namens `anova.Rproj` geöffnet werden. Der Ordner enthält
+[Hier](../data/anova.zip) kann der Projektordner mit den Daten heruntergeladen werden. Vor dem ersten Verwenden muss der Ordner entzippt werden, dann kann das _RProject_ namens `anova.Rproj` geöffnet werden. Der Ordner enthält:
 
 - _RProject_ namens `anova.Rproj`
 
@@ -262,9 +263,9 @@ __Daten herunterladen und einlesen__
 
 - _RNotebook_ namens `einfaktorielleanova.Rmd`
 
-- Es werden folgende Packages verwendet:  {tidyverse}, {afex}, {emmeans}, {beeswarm??}, {effectsize??}
+- Es werden folgende Packages verwendet:  {tidyverse}, {afex}, {emmeans}, {beeswarm}, {effectsize}
 
-- Datensatz einlesen: 
+- Datensatz `anova_therapy.csv` einlesen: 
 
 ```{r, message=FALSE}
 # Package laden
@@ -278,7 +279,7 @@ d_therapy3 <- read.csv("data/anova_therapy.csv") |>
 
 __Datensatz transformieren__
 
-Die Daten sind bereits im `long` Format. Die Variablen `id` und `condition` müssen zu einem Faktor konvertiert werden.
+Die Daten liegen bereits im `long` Format vor. Die Variablen `id` und `condition` müssen jedoch noch zu einem Faktor konvertiert werden.
 
 ```{r}
 # Faktoren definieren 
@@ -297,7 +298,9 @@ Der _F_-Test für eine einfaktorielle Varianzanalyse setzt voraus, dass die AV i
 
 <aside>Die Voraussetzung der Normalverteilung wird in diesem Semester nicht überprüft. </aside>
 
-Die Varianzhomogenität (Homoskedastizität) kann mit dem Levene-Test `leveneTest(y ~ x, data = dataset)` überprüft werden. Ein Levene-Test mit $p < 0.05$ bedeutet, dass der Varianzunterschied  signifikant ist. Die Nullhypothese, dass die beiden Varianzen auf Populationsebene identisch sind, muss in diesem Fall verworfen werden.
+Die Varianzhomogenität (Homoskedastizität) kann mit dem Levene-Test `leveneTest(y ~ x, data = dataset)` überprüft werden. Die Funktion `leveneTest()` stammt aus dem Package {car}. Ein Levene-Test mit $p < 0.05$ bedeutet, dass der Varianzunterschied  signifikant ist. Die Nullhypothese, dass die beiden Varianzen auf Populationsebene identisch sind, muss in diesem Fall verworfen werden.
+
+<aside> Vor dem ersten Verwenden der Funktion `leveneTest()` muss das Package {car} heruntergeladen/installiert werden, z.B. in der Konsole mit `install.packages("car")`. </aside> 
 
 ```{r, message=FALSE}
 # Levene-Test mit dem package {car}
@@ -324,46 +327,32 @@ d_summary
 ```
 
 
-```{r}
-#| echo: false
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- # Plot  -->
+<!-- ggplot(d_therapy3, aes(x = condition, y = symptoms, colour = condition)) + -->
+<!--   geom_jitter(size = 2, width = 0.15, height = 0) +   -->
+<!--   scale_y_continuous(limits = c(0, 10), breaks = seq(0, 10, by = 2)) +   -->
+<!--   labs(title = "symptoms per condition", y = "symptoms", x = "condition") + -->
+<!--   scale_color_brewer(palette = "Set1") + -->
+<!--   theme_minimal() -->
 
-# Plot 
-ggplot(d_therapy3, aes(x = condition, y = symptoms, colour = condition)) +
-  geom_jitter(size = 2, width = 0, height = 0.2) +  
-  scale_y_continuous(limits = c(0, 10), breaks = seq(0, 10, by = 2)) +  
-  labs(title = "symptomes per condition", y = "symptoms", x = "condition") +
-  scale_color_brewer(palette = "Set1") +
-  theme_minimal()
-
-```
+<!-- ``` -->
 
 
 #### __6. Teststatistik berechnen__
 
-__a. Berechnung Teststatistik von Hand__ 
-
-Im Folgenden wird ein _F_-Test unter der Annahme von homogenen Varianzen "von Hand" berechnet. 
-
-```{r}
-
-#qf(0.95, 2, 12)
-
-#oder auch nicht... :)
-
-```
-
 Falls der empirische _F_-Wert grösser als der kritische _F_-Wert ist, wird von einem signifikanten Unterschied zwischen den Gruppen ausgegangen.
 
-
-__b. Berechnung Teststatistik in R mit der Funktion `aov_4()`__
+__Berechnung Teststatistik in R mit der Funktion `aov_4()`__
 
 Eine einfaktorielle Varianzanalyse kann mit der Funktion `aov_4(av ~ uv, + (1 | id), data)` aus dem Package {afex} berechnet werden.
 
-<aside> Beim ersten Verwenden muss das Package {afex} heruntergeladen/installiert werden, z.B. in der Konsole mit `install.packages("afex")`. </aside>
-
 - `av`: Abhängige Variable (metrisch)
 - `uv`: Unabhängige Variable (Bedingung oder Gruppenvariable)
-- `(1 | id)`: Die Funktion benötigt eine Identifikationsvariable, d.h. eine Variable in der jede Person einen einzigartige Wert hat. Da wir hier keine Messwiederholung haben, wird hier `1` verwendet. Bei Messwiederholung wird hier spezifiziert, welche Variable sich innerhalb von `id` wiederholt. 
+- `(1 | id)`: Die Funktion benötigt eine Identifikationsvariable (hier `id`), d.h. eine Variable, in der jede Person einen einzigartigen Wert hat. Da wir keine Messwiederholung haben, wird eine `1` vor dem `|` verwendet. Bei Messwiederholung wird hier spezifiziert, welche Variable sich innerhalb von `id` wiederholt. 
+
+<aside> Vor dem ersten Verwenden muss das Package {afex} heruntergeladen/installiert werden, z.B. in der Konsole mit `install.packages("afex")`. </aside>
 
 ```{r, message=FALSE, warning=FALSE}
 library(afex)
@@ -376,8 +365,9 @@ summary(m_anova1)
 m_anova1$Anova
 ```
 
-Die Mittelwerte der Bedingungen unterscheiden sich signifikant auf dem $5 \%$-Niveau. Die Nullhypothese, wonach sich die Mittelwerte nicht unterscheiden, kann verworfen werden. Die Therapiemethode hat somit einen Einfluss auf die Angstsymptomatik. Aufgrund dieser Analyse ist hingegen (noch) nicht klar, welche Bedingungen sich unterscheiden. Dies wird in einem weiteren Schritt mit sogenannten Post-hoc-Vergleichen überprüft. 
+Die Mittelwerte der Bedingungen unterscheiden sich signifikant auf dem $5 \%$-Niveau. Die Nullhypothese, wonach sich die Mittelwerte nicht unterscheiden, kann verworfen werden. Die Therapiemethode hat somit einen Einfluss auf die Angstsymptomatik. Aufgrund dieser Analyse ist hingegen (noch) nicht klar, welche Bedingungen sich unterscheiden. Dies wird in einem späteren Schritt mit sogenannten Post-hoc-Vergleichen überprüft. 
 
+Zur Visualisierung der Ergebnisse eignet sich ein Plot, der die Mittelwerte und Standardfehler abbildet. Dazu kann die Funktion `afex_plot` aus dem Package {afex} verwendet werden. Um die Standardfehler, anstelle der Konfidenzintervall, anzuzeigen, kann `error_ci = FALSE` verwendet werden. 
 
 ```{r}
 # Plot
@@ -388,19 +378,22 @@ plot_anova <- afex_plot(object = m_anova1, # Objekt mit Anovamodell
 plot_anova
 ```
 
-__c. Post-hoc-Vergleiche__
+<!--__c. Post-hoc-Vergleiche__
 
 (folgt)
 
 __d. Kontrastanalyse__
 
 (folgt)
+-->
 
 #### __7. Effektstärke bestimmen__
 
 __Berechnung der Effektgrösse $\eta^2$__
 
-Die Effektgrösse $\eta^2$ lässt sich anhand des Quotienten aus der Zwischen-Quadratsumme und der Gesamtquadratsumme berechnen. In R kann dieses Mass direkt mit der Funktion `eta_squared` aus dem Package {effectsize} berechnet werden. 
+Die Effektgrösse $\eta^2$ lässt sich anhand des Quotienten aus der Zwischen-Quadratsumme und der Gesamtquadratsumme berechnen. In _R_ kann dieses Mass direkt mit der Funktion `eta_squared()` aus dem Package {effectsize} berechnet werden. Als Argument für die Funktion muss das Anova-Modell (Objekt), also hier `m_anova1`, eingegeben werden.
+
+<aside> Vor dem ersten Verwenden muss das Package {effectsize} heruntergeladen/installiert werden, z.B. in der Konsole mit `install.packages("effectsize")`. </aside>
 
 ```{r}
 # Effektgrösse berechnen
@@ -414,11 +407,12 @@ Die Effektgrösse liegt bei $\eta^2=0.62$. Es handelt sich nach der Taxonomie vo
 
 #### __8. Ergebnisse interpretieren und berichten__
 
-__a. Ergebnisse der einfaktoriellen Varianzanalyse ohne Messwiederholung__
+__Ergebnisse der einfaktoriellen Varianzanalyse ohne Messwiederholung__
 
-Das Ergebnis ist auf dem $5 \%$-Niveau signifikant und die Nullhypothese kann somit verworfen werden: Die Therapiemethode beeinflusst die Höhe der Angstsymptomatik. Es handelt sich nach der Taxonomie von Cohen (1988) um einen grossen (oder auch sehr grossen) Effekt ($\eta^2=0.62$). 
+Das Ergebnis ist auf dem $5 \%$-Niveau signifikant und die Nullhypothese kann somit verworfen werden: Die Therapiemethode beeinflusst die Höhe der Angstsymptomatik. Es handelt sich nach der Taxonomie von Cohen (1988) um einen grossen Effekt ($\eta^2=0.62$). 
 
->"We examined whether the three therapy methods had an __different???__ effect on anxiety symptoms. The one-way ANOVA revealed a significant effect of the therapy condition on anxiety symtoms, _F_(2, 12) = 10.00, _p_ = .003, $\eta^2$ = 0.62). This indicates a large effect of the therapy condition on anxiety symptoms according to Cohen’s convention (1988)."
+>"We examined whether the therapy methods had an effect on anxiety symptoms. The one-way ANOVA revealed a significant effect of the therapy condition on anxiety symtoms, _F_(2, 12) = 10.00, _p_ = .003, $\eta^2$ = 0.62). This indicates a large effect of the therapy condition on anxiety symptoms according to Cohen’s convention (1988)."
 
-__b. Ergebnisse der Post-hoc und Kontrastanalyse__
+<!--__b. Ergebnisse der Post-hoc und Kontrastanalyse__
 
+(folgt) -->
