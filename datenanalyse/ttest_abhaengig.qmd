@@ -56,7 +56,7 @@ __Typische Fragestellungen__:
 
 ### Planung
 
-#### __1. Statistische Hypothesen und Signifikanzniveau festlegen__
+#### __Statistische Hypothesen und Signifikanzniveau festlegen__
 
 __Ungerichtete Hypothesen:__
 
@@ -82,7 +82,7 @@ __Signifikanzniveau:__
 
 Wird ein Signifikanzniveau von $\alpha = 0.05$ festgelegt, bedeutet dies, dass bei der Verwerfung der Nullhypothese eine 5% Wahrscheinlichkeit besteht, dass eigentlich kein Unterschied besteht und irrtümlicherweise einer angenommen wurde.
 
-#### __2. A-priori Poweranalyse durchführen__
+#### __A-priori Poweranalyse durchführen__
 
 Vor der Datenerhebung soll eine a-priori Poweranalyse durchgeführt werden. Einerseits kann damit  ermittelt werden, wie viel Power (Teststärke) der Test hat, um einen Effekt von vordefinierter Grösse (z.B. einen grossen Effekt von $d=0.6$) zu entdecken. Andererseits kann berechnet werden, wie gross die Stichprobe sein sollte, um einen Effekt bestimmter Grösse und eine festgelegte Teststärke zu erreichen. 
 
@@ -91,14 +91,14 @@ Vor der Datenerhebung soll eine a-priori Poweranalyse durchgeführt werden. Eine
 
 ### Vorverarbeitung
 
-#### __3. Daten einlesen, vorverarbeiten und visualisieren__
+#### __Daten einlesen, vorverarbeiten und visualisieren__
 
 Zuerst müssen die Daten eingelesen und bereinigt werden. 
 Daten können diagnostisch visualisiert werden, um z.B. fehlende Werte zu entdecken oder Verteilungen der Daten visuell beurteilen und Extremwerte zu identifizieren.
 
 Für den _t_-Test für abhängige Stichproben werden die Daten hier in einem `wide`-Format benötigt. Für die Visualisierung wird eine Datensatz im `long`-Format benötigt.
 
-#### __4. Voraussetzungen überprüfen__
+#### __Voraussetzungen überprüfen__
 
 - __Normalverteilung der Differenzen__
 
@@ -107,7 +107,7 @@ Ob die Differenzen der Messwerte approximativ normalverteilt sind, kann z.B. vis
 
 ### Analyse
 
-#### __5. Deskriptivstatistik und Visualisierung__
+#### __Deskriptivstatistik und Visualisierung__
 
 Bei Gruppenunterschieden wird für jede Gruppe ein Lagemass (z.B. Mittelwert oder Median) sowie ein Streumass (z.B. Standardabweichung, Standardfehler, Konfidenzintervall) berechnet. Das Lagemass stellt die durchschnittliche Merkmalsausprägung in den beiden Gruppen dar. Das Streumass zeigt den Streubereich der Daten auf.
 
@@ -118,7 +118,7 @@ Zur Visualisierung von Gruppenunterschieden eignen sich Lagemasse mit Fehlerbalk
 Durch die Visualisierung der Rohwerte, kann die Verteilung der Messungen gut eingeschätzt werden und Extremwerte werden deutlich sichtbar. Bei zu vielen Datenpunkten führt das Visualisieren der Rohwerte zu unübersichtlichen Grafiken.
 
 
-#### __6. Teststatistik berechnen__
+#### __Teststatistik berechnen__
 
 Um zu überprüfen, ob die beiden Mittelwerte signifikant unterschiedlich sind, muss die Teststatistik berechnet werden. Die Verteilung der Teststatistik folgt einer sogenannten _t_-Verteilung, die durch die Anzahl Freiheitsgrade (df) definiert ist.
 
@@ -148,7 +148,7 @@ Nun muss die berechnete empirische Prüfgrösse _t_ auf Signifikanz überprüft 
 
 <aside> Bei gerichteten Hypothesen müssen die Aussagen entsprechend angepasst werden.</aside>
 
-#### __7. Effektstärke__
+#### __Effektstärke__
 
 Die Effektgrösse beim _t_-Test für abhängige Stichproben sagt etwas darüber aus, wie gross der Unterschied zwischen den beiden Populationsmittelwerten ist. 
 
@@ -167,7 +167,7 @@ $|d|=\approx 0.57$: grosser Effekt
 
 ### Schlussfolgerungen
 
-#### __8. Ergebnisse interpretieren und berichten__
+#### __Ergebnisse interpretieren und berichten__
 
 Je grösser der empirische _t_-Wert ist, desto stärker spricht dies gegen die Nullhypothese. 
 
@@ -192,7 +192,7 @@ In einem Experiment wurden 50 Versuchspersonen vor und nach dem Scrollen und Les
 
 ### Planung
 
-#### __1. Statistische Hypothesen und Signifikanzniveau festlegen__
+#### __Statistische Hypothesen und Signifikanzniveau festlegen__
 
 $H_0$: Das Lesen/Scrollen auf Social Media hat keinen Einfluss auf die Zukunftsangst: $\mu_1=\mu_2$ 
 
@@ -200,7 +200,7 @@ $H_1$: Die Lesen/Scrollen auf Social Media  hat einen Einfluss auf die Zukunftsa
 
 Das Alphaniveau wird auf $5 \%$ festgelegt. Da es sich um eine ungerichtete Hypothese handelt, wird zweiseitig getestet. 
 
-#### __2. A-priori Poweranalyse durchführen__
+#### __A-priori Poweranalyse durchführen__
 
 - `n`: Anzahl Paare
 - `d`: Effektgrösse
@@ -238,7 +238,7 @@ Um mit einer Teststärke von 80% einen mittelgrossen Effekt von $d=0.35$ zu find
 
 ### Vorverarbeitung
 
-#### __3. Daten einlesen und vorverarbeiten__
+#### __Daten einlesen und vorverarbeiten__
 
 ::: {.callout-caution appearance="default" title="Hands-on: Beispieldatensatz Social-Media-Experiment vorverarbeiten" collapse="false"}
 
@@ -293,7 +293,7 @@ d_fear_long
 <aside> Hier konvertieren wir die Variable `timepoint` zu einem Faktor mit der Funktion `factor()`, so können wir im Argument `levels = ...` eingeben, dass die Stufe `pre` vor der Stufe `post` kommen soll (entgegen der automatisch alphabetischen Reihenfolge). Dies macht den Plot logischer, da dann `pre` links und `post` rechts dargestellt wird. </aside>
 :::
 
-#### __4. Voraussetzungen überprüfen__
+#### __Voraussetzungen überprüfen__
 
 Der _t_-Test setzt voraus, dass die Differenzen der Messungen in beiden Gruppen normalverteilt sind.
 
@@ -301,7 +301,7 @@ Der _t_-Test setzt voraus, dass die Differenzen der Messungen in beiden Gruppen 
 
 ### Analyse
 
-#### __5. Deskriptivstatisik und Visualisierung__
+#### __Deskriptivstatisik und Visualisierung__
 
 Für die deskriptive Statistik können die Daten nach Bedingung gruppiert und dann die Kennwerte berechnet werden.
 
@@ -351,7 +351,7 @@ p_boxplot
 ```
 
 
-#### __6. Teststatistik berechnen__
+#### __Teststatistik berechnen__
 
 __Berechnung Teststatistik in R mit der Funktion `t.test`__
 
@@ -375,7 +375,7 @@ t.test(x = d_fear$fear_post, # av t2
 Die Mittelwerte zwischen den beiden Messzeitpunkten unterscheiden sich signifikant auf dem $5 \%$-Niveau. Die Nullhypothese, wonach sich die beiden Mittelwerte nicht unterscheiden kann verworfen werden. Das Lesen/Scrollen durch Social Media Posts beeinflusst somit die empfundene Zukunftsangst.
 
 
-#### __7. Effektstärke bestimmen__
+#### __Effektstärke bestimmen__
 
 __Berechnung der Effektgrösse (Cohen's _d_)__
 
@@ -397,7 +397,7 @@ Die Effektgrösse liegt bei $d = 0.77$. Es handelt sich nach der Taxonomie von C
 
 ### Schlussfolgerungen
 
-#### __8. Ergebnisse interpretieren und berichten__
+#### __Ergebnisse interpretieren und berichten__
 
 Das Ergebnis ist auf dem $5 \%$-Niveau signifikant und die Nullhypothese kann somit verworfen werden: Die Stimmung beeinflusst die kognitive Leistungsfähigkeit. Es handelt sich nach der Taxonomie von Cohen (1988) um einen grossen Effekt ($d = 0.77$). 
 

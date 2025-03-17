@@ -60,7 +60,7 @@ BORTZ: Alle drei besprochenen t-Tests lassen sich unabhängig vom Stichprobenumf
 
 ### Planung
 
-#### __1. Statistische Hypothesen und Signifikanzniveau festlegen__
+#### __Statistische Hypothesen und Signifikanzniveau festlegen__
 
 __Ungerichtete Hypothesen:__
 
@@ -86,7 +86,7 @@ __Signifikanzniveau:__
 
 Wird ein Signifikanzniveau von $\alpha = 0.05$ festgelegt, bedeutet dies, dass bei der Verwerfung der Nullhypothese eine 5% Wahrscheinlichkeit besteht, dass eigentlich kein Unterschied besteht und irrtümlicherweise einer angenommen wurde.
 
-#### __2. A-priori Poweranalyse durchführen__
+#### __A-priori Poweranalyse durchführen__
 
 Vor der Datenerhebung soll eine a-priori Poweranalyse durchgeführt werden. Einerseits kann damit  ermittelt werden, wie viel Power (Teststärke) der Test hat, um einen Effekt von vordefinierter Grösse (z.B. einen grossen Effekt von $d=0.8$) zu entdecken. Andererseits kann berechnet werden, wie gross die Stichprobe sein sollte, um einen Effekt bestimmter Grösse und eine festgelegte Teststärke zu erreichen. 
 
@@ -94,7 +94,7 @@ Vor der Datenerhebung soll eine a-priori Poweranalyse durchgeführt werden. Eine
 
 ### Vorverarbeitung
 
-#### __3. Daten einlesen, vorverarbeiten und visualisieren__
+#### __Daten einlesen, vorverarbeiten und visualisieren__
 
 Zuerst müssen die Daten eingelesen und bereinigt werden. 
 Daten können diagnostisch visualisiert werden, um z.B. fehlende Werte zu entdecken oder Verteilungen der Daten visuell beurteilen und Extremwerte zu identifizieren.
@@ -103,7 +103,7 @@ Für den _t_-Test für unabhängige Stichproben werden die Daten hier in einem `
 
 <aside> Es ist auch möglich Daten im _Wide_-Format zu verwenden, da sich das _Long_-Format aber für die Deskriptivstatistik und Visualisierung besser eignen, wird in diesem Kapitel durchgehend mit einem _Long_-Format gearbeitet. </aside>
 
-#### __4. Voraussetzungen überprüfen__
+#### __Voraussetzungen überprüfen__
 
 - __Varianzhomogenität__
 
@@ -118,7 +118,7 @@ Falls die Varianzen heterogen (unterschiedlich) sind , müssen die Freiheitsgrad
 
 ### Analyse
 
-#### __5. Deskriptivstatistik und Visualisierung__
+#### __Deskriptivstatistik und Visualisierung__
 
 Bei Gruppenunterschieden wird für jede Gruppe ein Lagemass (z.B. Mittelwert oder Median) sowie ein Streumass (z.B. Standardabweichung, Standardfehler, Konfidenzintervall) berechnet. Das Lagemass stellt die durchschnittliche Merkmalsausprägung in den beiden Gruppen dar. Das Streumass zeigt den Streubereich der Daten auf.
 
@@ -128,7 +128,7 @@ Zur Visualisierung von Gruppenunterschieden eignen sich Lagemasse mit Fehlerbalk
 
 Durch die Visualisierung der Rohwerte, kann die Verteilung der Messungen gut eingeschätzt werden und Extremwerte werden deutlich sichtbar. Bei zu vielen Datenpunkten führt das Visualisieren der Rohwerte zu unübersichtlichen Grafiken.
 
-#### __6. Teststatistik berechnen__
+#### __Teststatistik berechnen__
 
 Um zu überprüfen, ob die beiden Mittelwerte signifikant unterschiedlich sind, muss die Teststatistik berechnet werden. Die Verteilung der Teststatistik folgt bei homogenen Varianzen einer sogenannten _t_-Verteilung (auch Student's _t_-Verteilung genannt^[[https://www.scientificamerican.com/article/how-the-guinness-brewery-invented-the-most-important-statistical-method-in/](https://www.scientificamerican.com/article/how-the-guinness-brewery-invented-the-most-important-statistical-method-in/)]), die durch die Anzahl Freiheitsgrade (df) definiert ist.
 
@@ -158,7 +158,7 @@ Nun muss die berechnete empirische Prüfgrösse _t_ auf Signifikanz überprüft 
 <aside> Bei gerichteten Hypothesen müssen die Aussagen entsprechend angepasst werden.</aside>
 
 
-#### __7. Effektstärke bestimmen__
+#### __Effektstärke bestimmen__
 
 Die Effektgrösse beim _t_-Test für unabhängige Stichproben sagt etwas darüber aus, wie gross der Unterschied zwischen den beiden Populationsmittelwerten ist. 
 
@@ -181,7 +181,7 @@ $|d|=\approx 0.8$: grosser Effekt
 
 ### Schlussfolgerungen
 
-#### __8. Ergebnisse interpretieren und berichten__
+#### __Ergebnisse interpretieren und berichten__
 
 Je grösser der empirische _t_-Wert ist, desto stärker spricht dies gegen die Nullhypothese. 
 
@@ -209,7 +209,7 @@ Gemessen wurde, wie viele Rechenaufgaben die Versuchspersonen im Anschluss korre
 
 ### Planung
 
-#### __1. Statistische Hypothesen und Signifikanzniveau festlegen__
+#### __Statistische Hypothesen und Signifikanzniveau festlegen__
 
 $H_0$: Die Stimmung hat keinen Einfluss auf die Leistung: $\mu_1=\mu_2$ 
 
@@ -217,7 +217,7 @@ $H_1$: Die Stimmung hat einen Einfluss auf die Leistung: $\mu_1 \neq\mu_2$
 
 Das Alphaniveau wird auf $5 \%$ festgelegt. Da es sich um eine ungerichtete Hypothese handelt, wird zweiseitig getestet. 
 
-#### __2. A-priori Poweranalyse durchführen__
+#### __A-priori Poweranalyse durchführen__
 
 - `n1`: Anzahl Messwerte Stichprobe 1
 - `n2`: Anzahl Messwerte Stichprobe 2
@@ -241,7 +241,7 @@ pwr.t.test(d = 0.8, power = 0.8, sig.level = 0.05, type = "two.sample")
 
 ```
 
-<aside> Beim ersten Verwenden muss das Package {pwr} heruntergeladen/installiert werden, z.B. in der Konsole mit `install.packages("pwr")`. </aside>
+<aside> Vor dem ersten Verwenden muss das Package {pwr} heruntergeladen/installiert werden, z.B. in der Konsole mit `install.packages("pwr")`. </aside>
 
 Eine Teststärke (Power) von 0.94 bedeutet, dass die Wahrscheinlichkeit 94 % beträgt, einen tatsächlich vorhandenen Effekt mit einer Effektstärke von $d = 0.8$ zu entdecken.
 
@@ -249,7 +249,7 @@ Um mit einer Teststärke von 80% einen grossen Effekt von $d=0.8$ zu finden, wir
 
 ### Vorverarbeitung
 
-#### __3. Daten einlesen und vorverarbeiten__
+#### __Daten einlesen und vorverarbeiten__
 
 ::: {.callout-caution appearance="default" title="Hands-on: Beispieldatensatz Stimmungsexperiment" collapse="false"}
 
@@ -295,7 +295,7 @@ print(d_mood_long)
 
 :::
 
-#### __4. Voraussetzungen überprüfen__
+#### __Voraussetzungen überprüfen__
 
 Der _t_-Test setzt voraus, dass das Merkmal $X$ in der Population stetig und normalverteilt ist und die beiden Populationsvarianzen gleich (homogen) sind.
 
@@ -319,7 +319,7 @@ Der Test ist hier nicht signifikant ($p = .071$), daher wird davon ausgegangen, 
 
 ### Analyse
 
-#### __5. Deskriptivstatistik und Visualisierungn__
+#### __Deskriptivstatistik und Visualisierungn__
 
 Für die deskriptive Statistik können die Daten nach Bedingung gruppiert und dann die Kennwerte berechnet werden. 
 
@@ -353,7 +353,7 @@ p_boxplot # Plot anzeigen
 ```
 
 
-#### __6. Teststatistik berechnen__
+#### __Teststatistik berechnen__
 
 __a. Berechnung Teststatistik von Hand__ 
 
@@ -399,7 +399,7 @@ t.test(formula = performance ~ condition, # av ~ uv
 Die Mittelwerte der beiden Gruppen unterscheiden sich signifikant auf dem $5 \%$-Niveau. Die Nullhypothese, wonach sich die beiden Mittelwerte nicht unterscheiden kann verworfen werden. Die Stimmung beeinflusst somit die kognitive Leistung.
 
 
-#### __7. Effektstärke bestimmen__
+#### __Effektstärke bestimmen__
 
 __Berechnung der Effektgrösse (Cohen's _d_)__
 
@@ -415,7 +415,7 @@ Die Effektgrösse liegt bei $d=0.45$. Es handelt sich nach der Taxonomie von Coh
 
 ### Schlussfolgerungen
 
-#### __8. Ergebnisse interpretieren und berichten__
+#### __Ergebnisse interpretieren und berichten__
 
 Das Ergebnis ist auf dem $5 \%$-Niveau signifikant und die Nullhypothese kann somit verworfen werden: Die Stimmung beeinflusst die kognitive Leistungsfähigkeit. Es handelt sich nach der Taxonomie von Cohen (1988) um einen kleinen Effekt ($d=0.45$). 
 

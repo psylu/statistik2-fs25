@@ -268,6 +268,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><em>t</em>-Test für abhängige Stichproben</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenanalyse/anova1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Einfaktorielle Varianzanalyse ohne Messwiederholung</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -480,7 +486,7 @@ BORTZ: Alle drei besprochenen t-Tests lassen sich unabhängig vom Stichprobenumf
 <section id="planung" class="level3 page-columns page-full" data-number="9.3.1">
 <h3 data-number="9.3.1" class="anchored" data-anchor-id="planung"><span class="header-section-number">9.3.1</span> Planung</h3>
 <section id="statistische-hypothesen-und-signifikanzniveau-festlegen" class="level4">
-<h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen"><strong>1. Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
+<h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen"><strong>Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
 <p><strong>Ungerichtete Hypothesen:</strong></p>
 <p><span class="math inline">\(H_0\)</span>: Die Populationsmittelwerte der Gruppe 1 und 2 unterscheiden sich nicht (d.h. haben eine Differenz gleich 0) <span class="math inline">\(\mu_1 = \mu_2\)</span></p>
 <p><span class="math inline">\(H_1\)</span>: Die Populationsmittelwerte der Gruppe 1 und 2 unterscheiden sich (d.h. haben eine Differenz ungleich 0) <span class="math inline">\(\mu_1 \neq \mu_2\)</span></p>
@@ -495,7 +501,7 @@ BORTZ: Alle drei besprochenen t-Tests lassen sich unabhängig vom Stichprobenumf
 <p>Wird ein Signifikanzniveau von <span class="math inline">\(\alpha = 0.05\)</span> festgelegt, bedeutet dies, dass bei der Verwerfung der Nullhypothese eine 5% Wahrscheinlichkeit besteht, dass eigentlich kein Unterschied besteht und irrtümlicherweise einer angenommen wurde.</p>
 </section>
 <section id="a-priori-poweranalyse-durchführen" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="a-priori-poweranalyse-durchführen"><strong>2. A-priori Poweranalyse durchführen</strong></h4>
+<h4 class="anchored" data-anchor-id="a-priori-poweranalyse-durchführen"><strong>A-priori Poweranalyse durchführen</strong></h4>
 <p>Vor der Datenerhebung soll eine a-priori Poweranalyse durchgeführt werden. Einerseits kann damit ermittelt werden, wie viel Power (Teststärke) der Test hat, um einen Effekt von vordefinierter Grösse (z.B. einen grossen Effekt von <span class="math inline">\(d=0.8\)</span>) zu entdecken. Andererseits kann berechnet werden, wie gross die Stichprobe sein sollte, um einen Effekt bestimmter Grösse und eine festgelegte Teststärke zu erreichen.</p>
 <aside>
 Ein Wert über <span class="math inline">\(0.8\)</span> gilt gemäss den Konventionen für <span class="math inline">\(\delta\)</span> -Masse nach Cohen (1988) für den Zweistichprobentest als <em>grosser</em> Effekt.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
@@ -505,7 +511,7 @@ Ein Wert über <span class="math inline">\(0.8\)</span> gilt gemäss den Konvent
 <section id="vorverarbeitung" class="level3 page-columns page-full" data-number="9.3.2">
 <h3 data-number="9.3.2" class="anchored" data-anchor-id="vorverarbeitung"><span class="header-section-number">9.3.2</span> Vorverarbeitung</h3>
 <section id="daten-einlesen-vorverarbeiten-und-visualisieren" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="daten-einlesen-vorverarbeiten-und-visualisieren"><strong>3. Daten einlesen, vorverarbeiten und visualisieren</strong></h4>
+<h4 class="anchored" data-anchor-id="daten-einlesen-vorverarbeiten-und-visualisieren"><strong>Daten einlesen, vorverarbeiten und visualisieren</strong></h4>
 <p>Zuerst müssen die Daten eingelesen und bereinigt werden. Daten können diagnostisch visualisiert werden, um z.B. fehlende Werte zu entdecken oder Verteilungen der Daten visuell beurteilen und Extremwerte zu identifizieren.</p>
 <p>Für den <em>t</em>-Test für unabhängige Stichproben werden die Daten hier in einem <code>long</code>-Format benötigt.</p>
 <aside>
@@ -513,7 +519,7 @@ Es ist auch möglich Daten im <em>Wide</em>-Format zu verwenden, da sich das <em
 </aside>
 </section>
 <section id="voraussetzungen-überprüfen" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen"><strong>4. Voraussetzungen überprüfen</strong></h4>
+<h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen"><strong>Voraussetzungen überprüfen</strong></h4>
 <ul>
 <li><strong>Varianzhomogenität</strong></li>
 </ul>
@@ -528,7 +534,7 @@ Teilweise wird ein konservativerer Cut-off von <span class="math inline">\(\alph
 <section id="analyse" class="level3 page-columns page-full" data-number="9.3.3">
 <h3 data-number="9.3.3" class="anchored" data-anchor-id="analyse"><span class="header-section-number">9.3.3</span> Analyse</h3>
 <section id="deskriptivstatistik-und-visualisierung" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="deskriptivstatistik-und-visualisierung"><strong>5. Deskriptivstatistik und Visualisierung</strong></h4>
+<h4 class="anchored" data-anchor-id="deskriptivstatistik-und-visualisierung"><strong>Deskriptivstatistik und Visualisierung</strong></h4>
 <p>Bei Gruppenunterschieden wird für jede Gruppe ein Lagemass (z.B. Mittelwert oder Median) sowie ein Streumass (z.B. Standardabweichung, Standardfehler, Konfidenzintervall) berechnet. Das Lagemass stellt die durchschnittliche Merkmalsausprägung in den beiden Gruppen dar. Das Streumass zeigt den Streubereich der Daten auf.</p>
 <aside>
 Genauere Informationen zu Lage- und Streumassen sind im <a href="../datenanalyse/descriptive.html">Kapitel: Deskriptive Statistik</a> zu finden.
@@ -537,7 +543,7 @@ Genauere Informationen zu Lage- und Streumassen sind im <a href="../datenanalyse
 <p>Durch die Visualisierung der Rohwerte, kann die Verteilung der Messungen gut eingeschätzt werden und Extremwerte werden deutlich sichtbar. Bei zu vielen Datenpunkten führt das Visualisieren der Rohwerte zu unübersichtlichen Grafiken.</p>
 </section>
 <section id="teststatistik-berechnen" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="teststatistik-berechnen"><strong>6. Teststatistik berechnen</strong></h4>
+<h4 class="anchored" data-anchor-id="teststatistik-berechnen"><strong>Teststatistik berechnen</strong></h4>
 <p>Um zu überprüfen, ob die beiden Mittelwerte signifikant unterschiedlich sind, muss die Teststatistik berechnet werden. Die Verteilung der Teststatistik folgt bei homogenen Varianzen einer sogenannten <em>t</em>-Verteilung (auch Student’s <em>t</em>-Verteilung genannt<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>), die durch die Anzahl Freiheitsgrade (df) definiert ist.</p>
 <p>Um die empirische Prüfgrösse zu berechen, wird die Mittelwertsdifferenz durch den Standardfehler der Mittelwertsdifferenz geteilt:</p>
 <p><span class="math inline">\(t_{\overline{x}_1-\overline{x}_2}=\frac{\overline{x}_1-\overline{x}_2}{\hat\sigma_{\overline{x}_1-\overline{x}_2}}\)</span></p>
@@ -557,7 +563,7 @@ Bei gerichteten Hypothesen müssen die Aussagen entsprechend angepasst werden.
 </aside>
 </section>
 <section id="effektstärke-bestimmen" class="level4">
-<h4 class="anchored" data-anchor-id="effektstärke-bestimmen"><strong>7. Effektstärke bestimmen</strong></h4>
+<h4 class="anchored" data-anchor-id="effektstärke-bestimmen"><strong>Effektstärke bestimmen</strong></h4>
 <p>Die Effektgrösse beim <em>t</em>-Test für unabhängige Stichproben sagt etwas darüber aus, wie gross der Unterschied zwischen den beiden Populationsmittelwerten ist.</p>
 <p>Die standardisierte Effektgrösse kann folgendermassen berechnet werden:</p>
 <p><span class="math inline">\(d=\frac{\overline{x}_1-\overline{x}_2}{\hat\sigma_{inn}}\)</span></p>
@@ -572,7 +578,7 @@ Bei gerichteten Hypothesen müssen die Aussagen entsprechend angepasst werden.
 <section id="schlussfolgerungen" class="level3" data-number="9.3.4">
 <h3 data-number="9.3.4" class="anchored" data-anchor-id="schlussfolgerungen"><span class="header-section-number">9.3.4</span> Schlussfolgerungen</h3>
 <section id="ergebnisse-interpretieren-und-berichten" class="level4">
-<h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten"><strong>8. Ergebnisse interpretieren und berichten</strong></h4>
+<h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten"><strong>Ergebnisse interpretieren und berichten</strong></h4>
 <p>Je grösser der empirische <em>t</em>-Wert ist, desto stärker spricht dies gegen die Nullhypothese.</p>
 <p>Meistens werden in psychologischen Publikationen die Stichprobenmittelwerte und ihre geschätzten Populationsstandardabweichungen (Stichprobenstandardabweichungen) sowie die <em>t</em>-Statistik, ihre Freiheitsgrade und der <em>p</em>-Wert (also der Wahrscheinlichkeit dieses oder eines noch extremeren <em>t</em>-Wertes unter Annahme der Nullhypothese) berichtet.</p>
 <p>Falls der exakte <em>p</em>-Wert sehr klein ist, beispielsweise <span class="math inline">\(p=0.00000012\)</span> bzw. kleiner als <span class="math inline">\(0.001\)</span>, wird dies folgendermassen notiert: <span class="math inline">\(p &lt; .001\)</span>.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a></p>
@@ -607,13 +613,13 @@ Beispiel: Stimmungsexperiment
 <section id="planung-1" class="level3 page-columns page-full" data-number="9.4.1">
 <h3 data-number="9.4.1" class="anchored" data-anchor-id="planung-1"><span class="header-section-number">9.4.1</span> Planung</h3>
 <section id="statistische-hypothesen-und-signifikanzniveau-festlegen-1" class="level4">
-<h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen-1"><strong>1. Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
+<h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen-1"><strong>Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
 <p><span class="math inline">\(H_0\)</span>: Die Stimmung hat keinen Einfluss auf die Leistung: <span class="math inline">\(\mu_1=\mu_2\)</span></p>
 <p><span class="math inline">\(H_1\)</span>: Die Stimmung hat einen Einfluss auf die Leistung: <span class="math inline">\(\mu_1 \neq\mu_2\)</span></p>
 <p>Das Alphaniveau wird auf <span class="math inline">\(5 \%\)</span> festgelegt. Da es sich um eine ungerichtete Hypothese handelt, wird zweiseitig getestet.</p>
 </section>
 <section id="a-priori-poweranalyse-durchführen-1" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="a-priori-poweranalyse-durchführen-1"><strong>2. A-priori Poweranalyse durchführen</strong></h4>
+<h4 class="anchored" data-anchor-id="a-priori-poweranalyse-durchführen-1"><strong>A-priori Poweranalyse durchführen</strong></h4>
 <ul>
 <li><code>n1</code>: Anzahl Messwerte Stichprobe 1</li>
 <li><code>n2</code>: Anzahl Messwerte Stichprobe 2</li>
@@ -657,7 +663,7 @@ NOTE: n is number in *each* group</code></pre>
 </div>
 </div>
 <aside>
-Beim ersten Verwenden muss das Package {pwr} heruntergeladen/installiert werden, z.B. in der Konsole mit <code>install.packages("pwr")</code>.
+Vor dem ersten Verwenden muss das Package {pwr} heruntergeladen/installiert werden, z.B. in der Konsole mit <code>install.packages("pwr")</code>.
 </aside>
 <p>Eine Teststärke (Power) von 0.94 bedeutet, dass die Wahrscheinlichkeit 94 % beträgt, einen tatsächlich vorhandenen Effekt mit einer Effektstärke von <span class="math inline">\(d = 0.8\)</span> zu entdecken.</p>
 <p>Um mit einer Teststärke von 80% einen grossen Effekt von <span class="math inline">\(d=0.8\)</span> zu finden, wird eine Stichprobe von mindestens <span class="math inline">\(n=26\)</span> pro Gruppe benötigt.</p>
@@ -666,7 +672,7 @@ Beim ersten Verwenden muss das Package {pwr} heruntergeladen/installiert werden,
 <section id="vorverarbeitung-1" class="level3 page-columns page-full" data-number="9.4.2">
 <h3 data-number="9.4.2" class="anchored" data-anchor-id="vorverarbeitung-1"><span class="header-section-number">9.4.2</span> Vorverarbeitung</h3>
 <section id="daten-einlesen-und-vorverarbeiten" class="level4">
-<h4 class="anchored" data-anchor-id="daten-einlesen-und-vorverarbeiten"><strong>3. Daten einlesen und vorverarbeiten</strong></h4>
+<h4 class="anchored" data-anchor-id="daten-einlesen-und-vorverarbeiten"><strong>Daten einlesen und vorverarbeiten</strong></h4>
 <div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Beispieldatensatz Stimmungsexperiment">
 <div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
@@ -739,7 +745,7 @@ $ mood_pos &lt;int&gt; 5, 6, 9, 9, 8, 7, 15, 6, 20, 9, 10, 7, 12, 14, 15, 16, 11
 </div>
 </section>
 <section id="voraussetzungen-überprüfen-1" class="level4 page-columns page-full">
-<h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen-1"><strong>4. Voraussetzungen überprüfen</strong></h4>
+<h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen-1"><strong>Voraussetzungen überprüfen</strong></h4>
 <p>Der <em>t</em>-Test setzt voraus, dass das Merkmal <span class="math inline">\(X\)</span> in der Population stetig und normalverteilt ist und die beiden Populationsvarianzen gleich (homogen) sind.</p>
 <aside>
 Die Voraussetzung der Normalverteilung wird in diesem Semester nicht überprüft.
@@ -767,7 +773,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 <section id="analyse-1" class="level3" data-number="9.4.3">
 <h3 data-number="9.4.3" class="anchored" data-anchor-id="analyse-1"><span class="header-section-number">9.4.3</span> Analyse</h3>
 <section id="deskriptivstatistik-und-visualisierungn" class="level4">
-<h4 class="anchored" data-anchor-id="deskriptivstatistik-und-visualisierungn"><strong>5. Deskriptivstatistik und Visualisierungn</strong></h4>
+<h4 class="anchored" data-anchor-id="deskriptivstatistik-und-visualisierungn"><strong>Deskriptivstatistik und Visualisierungn</strong></h4>
 <p>Für die deskriptive Statistik können die Daten nach Bedingung gruppiert und dann die Kennwerte berechnet werden.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nach condition gruppieren und performance zusammenfassen</span></span>
@@ -811,7 +817,7 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </section>
 <section id="teststatistik-berechnen-1" class="level4">
-<h4 class="anchored" data-anchor-id="teststatistik-berechnen-1"><strong>6. Teststatistik berechnen</strong></h4>
+<h4 class="anchored" data-anchor-id="teststatistik-berechnen-1"><strong>Teststatistik berechnen</strong></h4>
 <p><strong>a. Berechnung Teststatistik von Hand</strong></p>
 <p>Im Folgenden wird ein <em>t</em>-Test für unabhängige Stichproben unter der Annahme von homogenen Varianzen “von Hand” berechnet.</p>
 <div class="cell">
@@ -871,7 +877,7 @@ mean in group mood_neg mean in group mood_pos
 <p>Die Mittelwerte der beiden Gruppen unterscheiden sich signifikant auf dem <span class="math inline">\(5 \%\)</span>-Niveau. Die Nullhypothese, wonach sich die beiden Mittelwerte nicht unterscheiden kann verworfen werden. Die Stimmung beeinflusst somit die kognitive Leistung.</p>
 </section>
 <section id="effektstärke-bestimmen-1" class="level4">
-<h4 class="anchored" data-anchor-id="effektstärke-bestimmen-1"><strong>7. Effektstärke bestimmen</strong></h4>
+<h4 class="anchored" data-anchor-id="effektstärke-bestimmen-1"><strong>Effektstärke bestimmen</strong></h4>
 <p><strong>Berechnung der Effektgrösse (Cohen’s <em>d</em>)</strong></p>
 <p>Nun kann noch die Effektgrösse mit <code>cohen.d(formula = y ~ x, data)</code> aus dem Package {effsize} berechnet werden.</p>
 <div class="cell">
@@ -894,7 +900,7 @@ d estimate: 0.4489995 (small)
 <section id="schlussfolgerungen-1" class="level3" data-number="9.4.4">
 <h3 data-number="9.4.4" class="anchored" data-anchor-id="schlussfolgerungen-1"><span class="header-section-number">9.4.4</span> Schlussfolgerungen</h3>
 <section id="ergebnisse-interpretieren-und-berichten-1" class="level4">
-<h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten-1"><strong>8. Ergebnisse interpretieren und berichten</strong></h4>
+<h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten-1"><strong>Ergebnisse interpretieren und berichten</strong></h4>
 <p>Das Ergebnis ist auf dem <span class="math inline">\(5 \%\)</span>-Niveau signifikant und die Nullhypothese kann somit verworfen werden: Die Stimmung beeinflusst die kognitive Leistungsfähigkeit. Es handelt sich nach der Taxonomie von Cohen (1988) um einen kleinen Effekt (<span class="math inline">\(d=0.45\)</span>).</p>
 <blockquote class="blockquote">
 <p>“We examined whether the mood condition had an effect on cognitive performance. There was a significant difference between the positive and negative mood condition, <em>t</em>(78) = 2.01, <em>p</em> = .048, <em>d</em> = 0.45). Participants in the negative mood condition (<em>M</em> = 12.40, <em>SD</em> = 5.61) performed significantly better on the task than those in the positive mood condition (<em>M</em> = 10.15, <em>SD</em> = 4.32). This indicates a small effect of mood on cognitive performance according to Cohen’s convention (1988).”</p>
