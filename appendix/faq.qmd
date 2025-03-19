@@ -45,6 +45,14 @@ __Welche Argumente braucht eine Funktion?__
 
 ## Packages
 
+__Beim Installieren eines Packages gibt es eine Fehlermeldung.__
+
+- Versuchen Sie alle 3 Arten, ein Package zu installieren.
+  - Über die Konsole mit `install.packages("PACKAGENAME")
+  - Über den Reiter `Tools` > `Install Packages...` oben in _RStudio_. 
+  - Über das Panel `Packages` im rechten unteren Quadranten in _RStudio_. ![](../imgs/install_packages.png)
+  
+
 __Beim Laden von `{tidyverse}` gibt es eine Fehlermeldung.__
 
 - Sehr wahrscheinlich ist dies einfach eine Warnung (`Warning`) und keine Fehlermeldung (`Error`). Es gibt andere Packages, die dieselben Funktionsnamen verwenden, das kann zu Konflikten führen. Laden Sie trotzdem das `{tidyverse}`.

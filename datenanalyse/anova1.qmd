@@ -10,7 +10,9 @@ knitr::opts_knit$set(root.dir = '../')
 
 Mit der einfaktoriellen Varianzanalyse (ohne Messwiederholung) wird untersucht, ob sich die Mittelwerte mehrerer unabhängiger Gruppen unterscheiden bzw. ob die Gruppenvariable (UV) einen "Einfluss" oder "Effekt" auf die abhängige metrische Variable (AV) hat.  Dabei ist wichtig, dass mit "Effekt" nicht zwingend ein kausaler Zusammenhang gemeint ist. Eine Varianzanalyse, die den Einfluss _einer_ unabhängigen Variable (ein Faktor) untersucht, wird als _einfaktorielle_ Varianzanalyse bezeichnet. 
 
-Dies bedeutet, dass die _abhängige Variable_ (AV) als Merkmal mit der Varianzanalyse untersucht wird. Die _unabhängige Variable_ (UV) ist die erklärende Variable - auch _Faktor_ genannt. Ein Faktor kann zwei oder mehr Stufen haben. Dabei muss die unabhängige Variable metrisch und der Faktor kategorial sein. Die einfaktorielle Varianzanalyse ohne Messwiederholung stellt eine Erweiterung des _t_-Tests für unabhängige Stichproben bei mehr als zwei Stichproben dar.  
+Dies bedeutet, dass die _abhängige Variable_ (AV) als Merkmal mit der Varianzanalyse untersucht wird. Die _unabhängige Variable_ (UV) ist die erklärende Variable - auch _Faktor_ genannt. Ein Faktor kann zwei oder mehr Stufen haben. Die abhängige Variable muss metrisch und der Faktor kategorial sein. Die einfaktorielle Varianzanalyse ohne Messwiederholung stellt eine Erweiterung des _t_-Tests für unabhängige Stichproben bei mehr als zwei Stichproben dar. 
+
+<aside>Eine einfaktorielle Varianzanalyse kann mit einem Faktor von zwei Stufen berechnet werden. In diesem Fall entspricht der quadrierte _t_-Wert dem _F_-Wert ($t^2 = F$). </aside>
 
 Sind in jeder Gruppe gleich viele Personen bzw. Datenpunkte, spricht man von einem _balancierten Design_. Bei ungleichgrossen Gruppen handelt es sich um ein _unbalanciertes Design_.
 
