@@ -67,11 +67,11 @@ __b.__ Erstellen Sie ein _RNotebook_ namens `uebung-05`.
 
 __Beschreibung der Studie__
 
-In diesem Musik-Experiment^[Eid, M., Gollwitzer, M., & Schmitt, M. (2017). Statistik und Forschungsmethoden: Mit Online-Materialien (5., korrigierte Auflage). Beltz. S. 459] wurde die Hypothese untersucht, dass die Konzentrationsleistung von Personen unter dem Einfluss klassischer Instrumentalmusik (Bedingung 1) höher ist als unter dem Einfluss von Opernmusik (Bedingung 2), Einfluss von Rockmusik (Bedingung 3) oder von Schlagermusik (Bedingung 4). Die Versuchspersonen wurden randomisiert einer der vier experimentellen Bedingungen zugeteilt und sollten sich entsprechende Musikstücke für ca. 15 Minuten anhören. Gleichzeitig sollten sie einen Konzentrationstest bearbeiten. Das Alphaniveau wurde auf $5 \%$ festgelegt. 
+In diesem Musik-Experiment^[Eid, M., Gollwitzer, M., & Schmitt, M. (2017). Statistik und Forschungsmethoden: Mit Online-Materialien (5., korrigierte Auflage). Beltz. S. 459] wurde die Hypothese untersucht, dass die Konzentrationsleistung von Personen unter dem Einfluss klassischer Instrumentalmusik (Bedingung 1) höher ist als unter dem Einfluss von Rockmusik (Bedingung 2), von Opernmusik (Bedingung 3) oder von Schlagermusik (Bedingung 4). Die Versuchspersonen wurden randomisiert einer der vier experimentellen Bedingungen zugeteilt und sollten sich entsprechende Musikstücke für ca. 15 Minuten anhören. Gleichzeitig sollten sie einen Konzentrationstest bearbeiten. Das Alphaniveau wurde auf $5 \%$ festgelegt. 
 
 __Forschungsfrage__: Besteht ein Unterschied in der Konzentrationsleistung zwischen mindestens zwei Gruppen?
 
-__Unabhängige Variable__: Art der Musik in vier Bedingungen (`condition`: Instrumental, Oper, Rock, Schlager) 
+__Unabhängige Variable__: Art der Musik in vier Bedingungen (`condition`: Instrumental, Rock, Oper, Schlager) 
 
 __Abhängige Variable__: Erreichte Punktzahl in einem Konzentrationstest (`testscore`) als Indikator für Konzentrationsleistung auf einer Skala von 0 - 35 möglichen Punkten. 
 
