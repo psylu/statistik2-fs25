@@ -301,7 +301,7 @@ Inferenzstatistische Kennwerte (z.B. _t_ und _F_) werden mit zwei Dezimalen beri
 
 > Die einfaktorielle Varianzanalyse ergab, dass sich die Gruppen signifikant in ihrer kognitiven Leistung unterscheiden, _F_(2, 12) = 10.87, _p_ = .002, $\eta^2$ = 0.64. Post-hoc-Tests mit Bonferroni-Holm-Korrektur zeigten, dass die Gruppe "kognitive Umstrukturierung" (_M_ = 2, _SD_ = 1.41) signifikant niedrigere Werte aufwies als die Gruppe "Mindfulness" (_M_ = 6, _SD_ = 2.34), _F_(12) = 11,43, _p_ = .011, und die Gruppe "Entspannung" (_M_ = 7, _SD_ = 1.87), _F_(12) = 17.86, _p_ = .004. Die Ergebnisse deuten darauf hin, dass kognitive Umstrukturierung im Vergleich zu Mindfulness und Entspannung einen positiven Effekt auf die Verringerung von Angstsymptomen hat.
 
-> The one-way ANOVA revealed a significant effect of condition on performance, _F_(2, 12) = 10.87, _p_ = .002, $\eta^2$ = 0.64. Post hoc comparisons using Bonferroni-Holm-Test indicated that group restructuring (_M_ = 2, _SD_ = 1.41) had significantly lower scores than group mindfulness (_M_ = 6, _SD_ = 2.34), _F_(12) = 11.43, _p_ = .011, and group relaxation (_M_ = 7, _SD_ = 1.87), _F_(12) = 17.86, _p_ = .004. The results suggest that restructuring had a positive effect on reducting anxiety symtoms compared to mindfulness and relaxation.  
+> The one-way ANOVA revealed a significant effect of condition on anxiety symptoms, _F_(2, 12) = 10.87, _p_ = .002, $\eta^2$ = 0.64. Post hoc comparisons using Bonferroni-Holm-Test indicated that group restructuring (_M_ = 2, _SD_ = 1.41) had significantly lower scores than group mindfulness (_M_ = 6, _SD_ = 2.34), _F_(12) = 11.43, _p_ = .011, and group relaxation (_M_ = 7, _SD_ = 1.87), _F_(12) = 17.86, _p_ = .004. The results suggest that restructuring had a positive effect on reducing anxiety symptoms compared to mindfulness and relaxation.  
 
 
 ## Anwendungsbeispiel in R
@@ -578,6 +578,6 @@ Das Ergebnis ist auf dem $5 \%$-Niveau signifikant und die Nullhypothese kann so
 
 __b.__ Ergebnisse von Post-hoc-Tests und Kontrastanalysen
 
-> Post hoc comparisons using Tukey's Test indicated that group relaxation (_M_ = 6, _SD_ = 2.34) had significantly higher anxiety symptoms than group restructuring (_M_ = 2, _SD_ = 1.41), _F_(12) = 17.86, _p_ = .003. Additionally, group mindfulness (_M_ = 7, _SD_ = 1.87) scored also significantly higher than group restructuring, _F_(12) = 11.43, _p_ = .014. However, group mindfulness and relaxation did not differ significantly, _F_(12) = 0.71, _p_ = .683. The results suggest that restructuring had a positive effect on reducting anxiety symtoms compared to mindfulness and relaxation.
+> Post hoc comparisons using Tukey's Test indicated that group relaxation (_M_ = 6, _SD_ = 2.34) had significantly higher anxiety symptoms than group restructuring (_M_ = 2, _SD_ = 1.41), _F_(12) = 17.86, _p_ = .003. Additionally, group mindfulness (_M_ = 7, _SD_ = 1.87) scored also significantly higher than group restructuring, _F_(12) = 11.43, _p_ = .014. However, group mindfulness and relaxation did not differ significantly, _F_(12) = 0.71, _p_ = .683. The results suggest that restructuring had a positive effect on reducing anxiety symptoms compared to mindfulness and relaxation.
 
 
