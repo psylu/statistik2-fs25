@@ -30,6 +30,9 @@ __Typische Fragestellungen__:
 
 - *Hat die verwendete Lerntechnik (keine Technik, Wiederholen, Mnemotechnik) einen Einfluss auf die Anzahl richtig gelöster Prüfungsaufgaben?*
 
+__Beispiel einer mehrfaktorielle ANOVA__: 
+
+- [Gonsalvez, C. J., Riebel, T., Nolan, L. J., Pohlman, S., & Bartik, W. (2023). Supervisor versus self-assessment of trainee competence: Differences across developmental stages and competency domains. Journal of Clinical Psychology, 79, 2959–2973. https://doi.org/10.1002/jclp.23590](https://onlinelibrary.wiley.com/doi/epdf/10.1002/jclp.23590)
 
 ## Voraussetzungen
 
@@ -39,7 +42,7 @@ __Typische Fragestellungen__:
 | Unabhängige Variable | Eine unabhängige Variable mit zwei oder mehr Stufen (kategoriale Gruppenvariable). | Verwenden eines anderen statistischen Verfahrens (z.B. Regression) oder Kategorisierung der UV. |
 | Unabhängigkeit der Messwerte | Die Messwerte _innerhalb_ der beiden Stichproben sind voneinander unabhängig. Es handelt sich um einfache, innerhalb der Stichprobe voneinander unabhängigen, Zufallsstichproben. |  |
 | Unabhängigkeit der Gruppen/Stichproben | Die Messwerte _zwischen_ den Stichproben sind voneinander unabhängig (unabhängige Gruppen). Eine _Verletzung der Unabhängigkeitsannahme_ liegt vor, wenn die Annahme, dass die Messwerte zwischen den Stichproben unabhängig sind, nicht zutrifft, d.h. die Messwerte mit Messwiederholung vorliegen. | Für die Abhängigkeit der Gruppen kann kontrolliert werden, indem z.B. ein Varianzanalyse mit Messwiederholung verwendet wird |
-| Varianzhomogenität / Homoskedastizität | Die Varianzen zwischen den Teilpopulationen sind _homogen_ (Homoskedastizität). Vor allem wenn die Stichproben unterschiedlich gross sind, bietet sich eine empirische Überprüfung der Varianzhomogenitätsannahme an.  | _Überprüfung der Varianzhomogenitätsannahme_: <br> Der Vergleich  Stichprobenvarianzen mittels _F_-Test oder Levene-Test (robuste Variante zum _F_-Test). <br> Bei _Verletzung der Varianzhomogenitätsannahme (Heteroskedastizität)_, kann als Alternative auf robuste Verfahren zurückgegriffen werden oder der Welch-Test/Brown-Forsythe-Test verwendet werden, welche nicht die gepoolten Innerhalb-Varianzen, sondern die jeweiligen Schätzungen der Stichprobenvarianzen verwendet. |
+| Varianzhomogenität / Homoskedastizität | Die Varianzen zwischen den Teilpopulationen sind _homogen_ (Homoskedastizität). Vor allem wenn die Stichproben unterschiedlich gross sind, bietet sich eine empirische Überprüfung der Varianzhomogenitätsannahme an.  | _Überprüfung der Varianzhomogenitätsannahme_: <br> Der Vergleich  Stichprobenvarianzen mittels _F_-Test oder Levene-Test (robuste Variante zum _F_-Test). <br> Bei _Verletzung der Varianzhomogenitätsannahme (Heteroskedastizität)_, kann als Alternative auf robuste Verfahren oder den Welch-Test bzw. Brown-Forsythe-Test zurückgegriffen werden, die zur Berechnung der Teststatistik die unterschiedlichen Populationsvarianzen einbeziehen. |
 
 : __Voraussetzungen einfaktorielle Varianzanalyse ohne Messwiederholung__, Überprüfung und mögliche Alternativen bei Verletzung der Annahmen {.hover}
 
@@ -60,13 +63,13 @@ __Notation__
 
 $n$: Stichprobengrösse insgesamt
 
+$J$: Anzahl Faktorstufen
+
 $m$: Beobachtungseinheit (Person)
 
 $j$: Bedingung (Faktorstufe, Merkmalsausprägung der nominalskalierten unabhängigen Variable)
 
-$x_{mj}$: _m_-te Person (oder Messung) in der _j_-ten Faktorstufe
-
-$J$: Anzahl Faktorstufen
+$x_{mj}$: $m$-te Person (oder Messung) in der $j$-ten Faktorstufe
 
 __Ungerichtete Hypothesen:__
 
@@ -76,37 +79,18 @@ Mit der einfaktoriellen Varianzanalyse wird die Nullhypothese, dass die Mittelwe
 
 - $H_1$: Mindestens zwei Populationsmittelwerte der Gruppen unterscheiden sich (d.h. haben eine Differenz ungleich 0): $\mu_i \neq\mu_j$ für mindestens ein Paar ($i$,$j$), $i \neq j$ 
 
-<!-- also beispielsweise:
-
-- $\mu_1 \neq \mu_2 = \mu_3$
-- $\mu_1 = \mu_2 \neq \mu_3$
-- $\mu_1 \neq \mu_2 \neq \mu_3$
--->
-
 Bei $J=2$ Faktorstufen ist der _F_-Test äquivalent zu einem _t_-Test für unabhängige Stichproben. Es gilt $t^2=F$.
   
 Bei $J>2$ Faktorstufen ist der _F_-Test ein Globaltest (Omnibus-Test), mit dem lediglich ermittelt werden kann, ob die Unterschiede zwischen den Bedingungsmittelwerten signifikant von 0 abweichen, daher werden auch die Hypothesen entsprechend formuliert. 
-Häufig ist man jedoch daran interessiert, ob sich bestimmte Mittelwertspaare signifikant unterscheiden. Eine Möglichkeit dazu bieten Paarvergleiche, sogenannte Post-hoc-Tests. Bei drei Bedingungen gibt es drei (nicht-redundante) Paarvergleiche: $\mu_1-\mu_2$, $\mu_1-\mu_3$ und $\mu_2-\mu_3$.
+Häufig ist man jedoch daran interessiert, ob sich bestimmte Mittelwertspaare signifikant unterscheiden. Eine Möglichkeit dazu bieten Post-hoc-Tests oder Kontrastanalysen. Bei $J$ Bedingungen gibt es $s = J \cdot (J-1)/2$ (nicht-redundante) Paarvergleiche.
 
 Da der _F_-Wert über die Quadratsummen berechnet wird, können _F_-Werte nur zwischen 0 und $+ \infty$ liegen. Das bedeutet, dass nur die rechte Seite der Verteilung zur Bestimmung der kritischen Werte verwendet wird. Die Alternativhypothese ist immer ungerichtet und wird einseitig getestet. 
 
-<!-- ### Post-hoc Tests (ANOVA) 
-
-Auf welche Strategie sollte man zurückgreifen?
-
-Der Einsatz des Tukey- und des Dunnett-Tests ist klar, da vorher festliegt, dass man entweder alle möglichen Mittel- wertspaare vergleichen will (Tukey-Test) oder gezielt J – 1 Paarvergleiche (Dunnett-Test) vornehmen will.
-
-Hat man a priori keine gezielten Hypothesen, sollte man die Mittelwertsvergleiche aufgrund der höheren Power anhand des Tukey-Tests vornehmen.
-
-Kontrastanalyse und Paarvergleiche
-
-__Gerichtete Hypothesen:__
-
--->
+Mit sogenannten Post-hoc Paarvergleichen können jedoch auch gerichtete Hypothesen getestet werden, da diese mit einer _t_-Verteilung geprüft werden.  
 
 __Signifikanzniveau:__
 
-Wird ein Signifikanzniveau von $\alpha = 0.05$ festgelegt, bedeutet dies, dass bei der Verwerfung der Nullhypothese eine 5% Wahrscheinlichkeit besteht, dass eigentlich kein Unterschied besteht und irrtümlicherweise einer angenommen wurde.
+Wird ein Signifikanzniveau von $\alpha = 0.05$ festgelegt, bedeutet dies, dass bei der Verwerfung der Nullhypothese eine 5% Wahrscheinlichkeit besteht, dass eigentlich kein Unterschied zwischen den Mittelwerten besteht und irrtümlicherweise mindestens einer angenommen wurde.
 
 #### __A-priori Poweranalyse durchführen__
 
@@ -129,9 +113,9 @@ __Varianzhomogenität__
 
 Der _F_-Test für unabhängige Stichproben setzt Varianzhomogenität voraus. Dies kann in _R_ mit dem Levene-Test `car::leveneTest` überprüft werden.  
 
-Der Levene-Test geht von der Nullhypothese aus, dass sich die beiden Varianzen nicht unterscheiden. Ein nicht signifikantes Ergebnis bedeutet daher, dass sich die Varianzen nicht unterscheiden und somit Varianzhomogenität (sogenannte Heteroskedastizität) besteht. Wenn der Test signifikant ist, wird Varianzheterogenität angenommen.
+Der Levene-Test geht von der Nullhypothese aus, dass sich die Varianzen zwischen den Bedingungen nicht unterscheiden. Ein nicht signifikantes Ergebnis bedeutet daher, dass sich die Varianzen nicht unterscheiden und somit Varianzhomogenität (sogenannte Homoskedastizität) besteht. Wenn der Test signifikant ist, wird Varianzheterogenität angenommen.
 
-Falls die Varianzen heterogen (unterschiedlich) sind , müssen die Freiheitsgrade des _F_-Wertes entsprechend angepasst werden. In diesem Fall kann ein Welch-Test/Brown-Forsythe-Test verwendet werden, der zur Berechnung der Teststatistik die beiden unterschiedlichen Populationsvarianzen anstatt die gepoolte Innerhalbvarianz nimmt.  
+Falls die Varianzen heterogen (unterschiedlich) sind , müssen die Freiheitsgrade des _F_-Wertes entsprechend angepasst werden. Vor allem wenn ungleichen Stichprobengrössen vorliegen, sollte auf den Welch-Test oder Brown-Forsythe-Test zurückgegriffen werden, die zur Berechnung der Teststatistik die unterschiedlichen Populationsvarianzen einbeziehen.  
 
 
 ### Analyse
@@ -148,7 +132,7 @@ Durch die Visualisierung der Rohwerte, kann die Verteilung der Messungen gut ein
 
 #### __Teststatistik berechnen__
 
-Um zu überprüfen, ob mindestens zwei Mittelwerte signifikant unterschiedlich sind, muss die Teststatistik berechnet werden.
+Um zu überprüfen, ob mindestens eine Mittelwertsdifferenz signifikant unterschiedlich von 0 ist, muss die Teststatistik berechnet werden.
 
 __Überprüfung der Nullhypothese mit dem *F*-Test__
 
@@ -158,16 +142,18 @@ Die Prüfgrösse berechnet sich als Verhältnis der zwei mittleren Quadratsummen
 
 $F=\frac{MQS_{zw}}{MQS_{inn}}$
 
-- Die $H_0$ wird beibehalten, wenn die empirische Prüfgrösse _F_ __kleiner__ als der kritische Wert ist. Die Gruppen unterscheiden sich nicht signifikant bzw. es konnte kein Einfluss der Gruppenvariablen auf die AV gefunden werden. 
+- Die $H_0$ wird beibehalten, wenn die empirische Prüfgrösse _F_ __kleiner__ als der kritische Wert ist. Die Gruppen unterscheiden sich nicht signifikant bzw. es konnte kein Einfluss der Gruppenvariable auf die AV gefunden werden. 
 
-- Die $H_0$ wird abgelehnt, wenn die empirische Prüfgrösse _F_ __grösser__ als der kritische Wert ist. Die Gruppen unterscheiden sich signifikant bzw. es konnte ein Einfluss der Gruppenvariablen auf die AV gefunden werden. 
+- Die $H_0$ wird abgelehnt, wenn die empirische Prüfgrösse _F_ __grösser__ als der kritische Wert ist. Die Gruppen unterscheiden sich signifikant bzw. es konnte ein Einfluss der Gruppenvariable auf die AV gefunden werden. 
 
 
 __Quadratsummenzerlegung__ 
 
-Bei der einfaktoriellen Varianzanalyse ohne Messwiederholung wird die Variation der Messwerte in zwei Quellen zerlegt: Unterschiede zwischen den Gruppen und Unterschiede innerhalb der Gruppen. 
+Bei der einfaktoriellen Varianzanalyse ohne Messwiederholung wird die Variation der Messwerte in zwei Quellen zerlegt: Unterschiede zwischen den Gruppen $QS_{zw}$ und Unterschiede innerhalb der Gruppen $QS_{inn}$. 
 
-__Additivität der Quadratsummen__: Die totale Quadratsumme wird zerlegt in eine Quadratsumme, die die Variation zwischen den Bedingungen ausdrückt, und eine Quadratsumme, die die Variation zwischen den Messwerten innerhalb der Bedingungen ausdrückt :
+__Additivität der Quadratsummen__
+
+Die totale Quadratsumme wird zerlegt in eine Quadratsumme, die die Variation zwischen den Bedingungen ausdrückt, und eine Quadratsumme, die die Variation zwischen den Messwerten innerhalb der Bedingungen ausdrückt :
 
 $QS_{tot}=QS_{zw}+QS_{inn}$
 
@@ -176,7 +162,6 @@ $QS_{tot}=QS_{zw}+QS_{inn}$
 - Innerhalb-Quadratsumme (Prädiktionsfehler __mit__ Berücksichtigung der UV): $QS_{inn}=\sum^J_{j=1} \sum^{n_j}_{m=1} (x_{mj}- \overline{x}_j)^2$
       
 - Zwischen-Quadratsumme (Reduktion des Prädiktionsfehlers __durch__ die Berücksichtigung der UV): $QS_{zw}=\sum^J_{j=1} \sum^{n_j}_{m=1} (\overline{x}_j- \overline{x})^2=\sum^J_{j=1} n_j\cdot (\overline{x}_j- \overline{x})^2$
-
 
 __Mittlere Quadratesummen und ihre Freiheitsgrade__ 
 
@@ -188,11 +173,6 @@ $MQS_{zw}=\frac{QS_{zw}}{J-1}$
 
 $MQS_{inn}=\frac{QS_{inn}}{n-J}$
 
-
-<!--__Ergebnisdarstellung__
-
-Die Ergebnisse einer Varianzanalyse werden häufig in einer Tabelle dargestellt.  
--->
 
 #### __Effektstärke bestimmen__
 
@@ -212,6 +192,105 @@ Die Konventionen für $\eta^2$ lauten in Anlehnung an Cohen (1988):
 - $\eta^2=\approx 0.14$: grosser Effekt
 
 
+### Paarvergleiche und Post-hoc-Test
+
+__Paarvergleiche__
+
+Bei drei Gruppen/Bedingungen sind $s = J \cdot (J-1)/2=3$ Paarvergleiche möglich.
+
+- $\mu_1 = \mu_2$
+- $\mu_1 = \mu_3$
+- $\mu_2 = \mu_3$
+
+Der _t_-Wert für Post-hoc Paarvergleich wird folgendermassen berechnet (analog zum _t_-Wert bei unabhängigen Stichproben, aber mit Ergänzung der geschätzten Fehlervarianz über alle Bedingungen, $MQS_{inn}$):
+
+$t = \frac{\overline{x}_j - \overline{x}_{j'}}{\sqrt {(\frac{1}{n_j}+\frac{1}{n_{j'}}) \cdot MQS_{inn}}}$
+
+Unter Gültigkeit der Nullhypothese folgt die Prüfgrösse einer _t_-Verteilung mit $df=n–J$ Freiheitsgraden.
+
+__Multiples Testen__
+
+Bei einer Verwerfung der Nullhypothese der Varianzanalyse mit $\alpha = 0.05$ beträgt die Wahrscheinlichkeit einer irrtümlichen Entscheidung (also dem Fehler 1. Art) $5 \%$.
+
+Bei mehreren Paarvergleichen kumuliert sich hingegen dieser $\alpha$-Fehler. Die Wahrscheinlichkeit bei mindestens einem der $s$ Tests die Nullhypothese fälschlicherweise zu verwerfen, wird wie folgt berechnet:
+
+$\alpha_{fam}=1-(1- \alpha_r)^s$
+
+Bei $s=3$ und einem $\alpha = 0.05$ würde der $\alpha$-Fehler bei $0.1425$ (statt $0.005$) liegen, weil $\alpha_{fam}=1-0.95^3=0.1425$.
+
+__Adjustierung der spezifischen Irrtumswahrscheinlichkeit__
+
+Es ist daher sinnvoll, im vornherein ein strengeres Signifikanzniveau für jeden einzelnen der $s$ Paarvergleiche anzusetzt. Aus der vorherigen Formel leitet sich ab, dass zur Verwerfung einer Globalhypothese mit $s$ Vergleichen auf einem vorher festgelegten $\alpha_{fam}$-Niveau mindestens ein Einzeltest die folgende Irrtumswahrscheinlichkeit $\alpha_r$ erreichen oder unterschreiten muss. Dies kann somit (nach Šidák) zur Adjustierung der Irrtumswahrscheinlichkeit genutzt werden.
+
+$\alpha_r=1-\sqrt[s]{1-\alpha_{fam}}=1-\sqrt[3]{1-0.05}=0.01695$
+
+__Bonferroni__: Eine ähnliche, aber einfachere Korrektur, ist die Bonferroni-Adjustierung. Hier wird das $\alpha_{fam}$-Niveau durch die Anzahl Paarvergleiche $s$ geteilt und so adjustiert. Je mehr Mittelwertsvergleiche vorgenommen werden, umso stärker geht diese Strategie der Bonferroni-Korrektur mit einem Verlust an Power einher.
+
+$\alpha_r=\frac{\alpha_{fam}}{s}=\frac{0.05}{3}=0.01667$
+
+__Bonferroni-Holm__: Eine etwas weniger strenge Adjustierung ist die "Bonferroni-Holm-Adjustierung", die vier Schritte umfasst:
+
+(1) Festlegung von $\alpha_{fam}$
+
+(2) Durchführung der $s$ Paarvergleiche und Ermittlung der jeweiligen $p_r$-Werte. Ein $p_r$-Wert ist der $p$-Wert des $r$-ten Paarvergleichs.  
+
+(3) Sortieren der Paarvergleiche nach den $p_r$-Werten in aufsteigender Reihenfolge (vom »signifikantesten« zum am wenigsten signifikanten Effekt). Hier können auch die $t$-Werte genutzt werden.
+
+(4) Bestimmung des adjustierten spezifischen Signifikanzniveaus auf der Basis der Gleichung: $\alpha_r = \frac {\alpha_{fam}} {s-(r-1)}$
+
+Die $s$ Paarvergleiche werden also auf __unterschiedlich__ adjustierten spezifischen Signifikanzniveaus durchgeführt. Der Mittelwertsunterschied mit dem »signifikantesten« Effekt wird auf dem strengsten Niveau $\alpha_1 = \frac{\alpha_{fam}}{s}$ durchgeführt, der nächste mit $\alpha_2 = \frac{\alpha_{fam}}{s-1}$ usw. 
+
+Der letzte Paarvergleich wird dann auf dem unadjustierten Signifikanzniveau $\alpha_s=\alpha_{fam}$ getestet. Wenn bei einem Paarvergleich $p_r$>$\alpha_r$, dann werden alle __weiteren__ Paarvergleichs-Nullhypothesen __nicht__ mehr abgelehnt. Die Bonferroni-Holm-Methode hat dadurch eine grössere Power als die Bonferroni-Adjustierung. 
+
+__Prüfen einer gerichteten Hypothese__: Die Hypothese einer Varianzanalyse entspricht einem zweiseitigen _t_-Test und einer ungerichteten Hypothese. Wenn man hingegen eine gerichtete Hypothese testen will, was im Vornherein festgelegt werden muss, müssen die $p$-Werte halbiert werden. 
+
+__Adjustierung der kritischen Werte__
+
+Anstatt der Irrtumswahrscheinlichkeit, können auch die kritischen Werte mit der Tukey-Adjustierung korrigiert werden. 
+
+Der Tukey-Test setzt voraus, dass für alle _J_ Bedingungen gleiche Stichprobengrössen vorliegen. Bei unbalancierten Stichproben wird der Tukey-Kramer-Test oder der Scheffé-Test verwendet. Nur die Tukey-Adjustierung ist eigentlich für einen vollständigen Paarvergleich aller Bedingungen wie hier geeignet, da sie mehr Power hat als Tests auf Basis der Bonferroni-Korrektur. 
+
+Die anderen Adjustierungsmethoden sollten vorzugsweise für ein Subset von Bedingungsvergleichen benutzt werden. Diese müssten dann zuerst als ein Set von Kontrasten definiert werden. Wenn wir also alle Mittelwerte vergleichen wollen, wählen wir den Tukey-Test. Der Tukey-Test wird zweiseitig durchgeführt.
+
+__Wahl der Adjustierung__
+
+Auf welche Strategie sollte man zurückgreifen? Hier gibt es lediglich gewisse Empfehlungen:
+
+- Wenn ein vollständiger Vergleich aller Mittelwertsunterschiede getestet werden soll bzw. wenn a priori keine gezielten Hypothesen vorliegen: Tukey-Test.
+
+- Wenn gezielte Mittelwertsunterschiede (bzw. Kontraste) getestet werden sollen: Bonferroni-Holm-Adjustierung. Diese ist der Bonferroni-Adjustierung vorzuziehen.
+
+- Bei einem unbalancierten Design, d.h. wenn nicht gleich grosse Gruppen vorliegen, sollte alternativ der Tueky-Kramer-Test oder der Scheffé-Test verwendet werden.
+
+Dies ist jedoch keine abschliessende Liste, da es weitere Adjustierungsmöglichkeiten gibt, die je nach Datenstruktur, Design oder weitere Kriterien sinnvoll sind. Ausserdem ist eine Adjustierung weder immer nötig noch sinnvoll, da durch die Korrektur der Fehler 2. Art erhöht wird, was mit einer geringerer Power einher geht (Tabachnick & Fidell, 2007).
+
+### Kontrastanalysen
+
+Die Kontrastanalyse kann als eine spezielle Form der Varianzanalyse verstanden werden. Mittels Kontrastanalyse können Kombinationen von Mittelwerten aber auch ein Einzelvergleich zweier Mittelwerte geprüft werden. Hat man eine spezifische Hypothese über die Struktur der Mittelwertsunterschiede, so können Hypothesen mithilfe spezifischer Werte für die Kontrastkoeffizienten, also die »Gewichte« der Mittelwerte, ausgedrückt werden. 
+
+Das Ergebnis einer Kontrastanalyse ist von der Metrik der Kontrastkoeffizienten unabhängig.
+Die Summe der Kontrastkoeffizienten ergibt 0: $\sum^J_{j=1} K_j=0$
+
+Kontraste werden wie der Omnibustest der Varianzanalyse in der Regel mit einem _F_-Test geprüft. Daher wird eine ungerichtete Hypothese getestet. Um eine gerichtete Hypothese zu überprüfen, muss der $p$-Wert halbiert werden.
+
+Eine Kontrastanalyse kann jedoch auch direkt  anhand der Prüfgrösse _t_ getestet werden. Dies hat den Vorteil, dass der _t_-Test eine direkte Testung einer gerichteten Hypothese erlaubt. In _R_ wird der _t_-Wert und der $p$-Wert für die ungerichtete Hypothese ausgegeben. Um eine gerichtete Hypothese zu überprüfen, muss der $p$-Wert halbiert werden.
+
+
+|  Alternativhypothese | K1  | K2  | K3  | K4  | $\sum$ |
+|---|---|---|---|---|---|
+| $\mu_1 < \mu_2$  |  -1 |  1 |  0 |  0 |  __0__ |
+| $\mu_1 < \mu_3$  |  -1 |  0 |  1 |  0 |  __0__ |
+| $\mu_1 < \mu_4$  |  -1 |  0 |  0 |  1 |  __0__ |
+: __Einfacher Kontrast: Test auf Abweichung zweier Gruppen__ {.hover}
+
+
+|  Alternativhypothese | K1  | K2  | K3  | K4  | $\sum$ |
+|---|---|---|---|---|---|
+|  $\mu_1<\frac{\mu_2 + \mu_3 + \mu_4}{3}$ |  -3 |  1 |  1 | 1  |  __0__ |
+|  $\mu_2<\frac{\mu_1 + \mu_3 + \mu_4}{3}$ |  1 |  -3 |  1 |  1 |  __0__ |
+: __Abweichungskontrast: Test auf Abweichung einer Gruppe vom Mittel aller anderen Gruppen__ {.hover}
+
+
 ### Schlussfolgerungen
 
 #### __Ergebnisse interpretieren und berichten__
@@ -220,9 +299,10 @@ Die Ergebnisse der Varianzanalyse werden in der Regel mit dem empirischen _F_-We
 
 Inferenzstatistische Kennwerte (z.B. _t_ und _F_) werden mit zwei Dezimalen berichtet.^[[https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf](https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf)] In den Klammern werden bei einer Varianzanalyse die Freiheitsgrade des Zählers ($df_{zw}$) und des Nenners ($df_{inn}$) angegeben. Als Effektgrössenschätzer wird häufig $\eta^2$ angegeben. 
 
-> Die einfaktorielle Varianzanalyse ergab, dass sich die Gruppen signifikant in ihrer kognitiven Leistung unterscheiden, _F_(2, 12) = 10.87, _p_ = .002, $\eta^2$ = 0.64.
+> Die einfaktorielle Varianzanalyse ergab, dass sich die Gruppen signifikant in ihrer kognitiven Leistung unterscheiden, _F_(2, 12) = 10.87, _p_ = .002, $\eta^2$ = 0.64. Post-hoc-Tests mit Bonferroni-Holm-Korrektur zeigten, dass die Gruppe "kognitive Umstrukturierung" (_M_ = 2, _SD_ = 1.41) signifikant niedrigere Werte aufwies als die Gruppe "Mindfulness" (_M_ = 6, _SD_ = 2.34), _F_(12) = 11,43, _p_ = .011, und die Gruppe "Entspannung" (_M_ = 7, _SD_ = 1.87), _F_(12) = 17.86, _p_ = .004. Die Ergebnisse deuten darauf hin, dass kognitive Umstrukturierung im Vergleich zu Mindfulness und Entspannung einen positiven Effekt auf die Verringerung von Angstsymptomen hat.
 
-> The one-way ANOVA revealed a significant effect of condition on performance, _F_(2, 12) = 10.87, _p_ = .002, $\eta^2$ = 0.64.
+> The one-way ANOVA revealed a significant effect of condition on performance, _F_(2, 12) = 10.87, _p_ = .002, $\eta^2$ = 0.64. Post hoc comparisons using Bonferroni-Holm-Test indicated that group restructuring (_M_ = 2, _SD_ = 1.41) had significantly lower scores than group mindfulness (_M_ = 6, _SD_ = 2.34), _F_(12) = 11.43, _p_ = .011, and group relaxation (_M_ = 7, _SD_ = 1.87), _F_(12) = 17.86, _p_ = .004. The results suggest that restructuring had a positive effect on reducting anxiety symtoms compared to mindfulness and relaxation.  
+
 
 ## Anwendungsbeispiel in R
 
@@ -343,7 +423,7 @@ ggplot(d_therapy3, aes(x = condition, y = symptoms, colour = condition)) +
 
 #### __Teststatistik berechnen__
 
-Falls der empirische _F_-Wert grösser als der kritische _F_-Wert ist, wird von einem signifikanten Unterschied zwischen den Gruppen ausgegangen.
+Falls der empirische _F_-Wert grösser als der kritische _F_-Wert ist, wird von einem signifikanten Unterschied zwischen mindestens zwei Mittelwerten ausgegangen.
 
 __Berechnung Teststatistik in R mit der Funktion `aov_4()`__
 
@@ -361,12 +441,11 @@ library(afex)
 # Einfaktorielle Anova ohne Messwiederholung berechnen
 m_anova1 <- aov_4(symptoms ~ condition + (1 | id), # av ~ uv + (1 | Identifikationsvariable)
                 data = d_therapy3) # dataset
-
 summary(m_anova1) 
 m_anova1$Anova
 ```
 
-Die Mittelwerte der Bedingungen unterscheiden sich signifikant auf dem $5 \%$-Niveau. Die Nullhypothese, wonach sich die Mittelwerte nicht unterscheiden, kann verworfen werden. Die Therapiemethode hat somit einen Einfluss auf die Angstsymptomatik. Aufgrund dieser Analyse ist hingegen (noch) nicht klar, welche Bedingungen sich unterscheiden. Dies wird in einem späteren Schritt mit sogenannten Post-hoc-Vergleichen überprüft. 
+Die Mittelwerte der Bedingungen unterscheiden sich signifikant auf dem $5 \%$-Niveau. Die Nullhypothese, wonach sich die Mittelwerte nicht unterscheiden, kann verworfen werden. Die Therapiemethode hat somit einen Einfluss auf die Angstsymptomatik. Aufgrund dieser Analyse ist hingegen (noch) nicht klar, welche Bedingungen sich unterscheiden. Dies wird in einem nächsten Schritt mit sogenannten Post-hoc-Vergleichen überprüft. 
 
 Zur Visualisierung der Ergebnisse eignet sich ein Plot, der die Mittelwerte und Standardfehler abbildet. Dazu kann die Funktion `afex_plot` aus dem Package {afex} verwendet werden. Um die Standardfehler, anstelle der Konfidenzintervall, anzuzeigen, kann `error_ci = FALSE` verwendet werden. 
 
@@ -379,14 +458,97 @@ plot_anova <- afex_plot(object = m_anova1, # Objekt mit Anovamodell
 plot_anova
 ```
 
-<!--__c. Post-hoc-Vergleiche__
+__Post-hoc-Vergleiche__
 
-(folgt)
+Zuerst muss dazu mit der Funktion `emmeans()` aus dem Package {emmeans} ein Objekt, z.B. `m_anova1_results`, erstellt werden. Darin werden die "Estimated Marginal Means" gespeichert.
 
-__d. Kontrastanalyse__
+<aside> Vor dem ersten Verwenden muss das Package {emmeans} heruntergeladen/installiert werden, z.B. in der Konsole mit `install.packages("emmeans")`. </aside>
 
-(folgt)
--->
+```{r, message = FALSE}
+# Package emmeans laden
+library(emmeans)
+
+# Resultate (estimated marginal means) speichern
+m_anova1_result <- emmeans(object = m_anova1, specs = ~ condition) # object = anova modell, ~ uv
+m_anova1_result
+```
+Aus dem Beispiel ergeben sich folgende Mittelwertsunterschiede:
+
+  - Mindfulness vs. Relaxation: $\overline{x}_1-\overline{x}_2=6-7=-1$
+
+  - Mindfulness vs. Restructuring: $\overline{x}_1-\overline{x}_3=6-2=4$
+
+  - Relaxation vs. Restructuring: $\overline{x}_2-\overline{x}_3=7-2=5$
+
+
+Paarvergleiche können mit der Funktion `pairs(x = model, adjust = "none")` ausgegeben werden. Unter `adjust = "___"` wird definiert, welche Adjustierung vorgenommen wird.
+
+```{r}
+# Post-hoc-Paarvergleich ohne Adjustierung
+pairs(x = m_anova1_result, adjust = "none") 
+```
+
+Die wichtigsten Adjustierungen sind:
+
+  - Bonferroni: `"bonferroni"` 
+  - Bonferroni-Holm: `"holm"` 
+  - Tukey: `"tukey"` 
+  - Scheffé: `"scheffe"`  
+    
+__Paarvergleiche mit dem Tukey-Test__
+
+Der Tukey-Test wird verwendet, wenn sämtliche Mittelwertspaare verglichen werden sollen.
+
+```{r}
+# Post-hoc-Paarvergleich mit Tukey-Test
+pairs(x = m_anova1_result, adjust = "tukey") 
+```
+    
+__Paarvergleiche mit der Bonferroni-Holm-Adjusierung__
+
+Mit der Bonferroni-Holm-Korrektur können wir einzelne, vorher definierte, Paarvergleiche überprüfen, beispielsweise ob Kognitive Umstrukturierung weniger Angstsymptome "bewirkt", als Mindfulness oder Entspannung. 
+
+```{r}
+# Post-hoc-Paarvergleich mit Bonferroni-Holm-Adjustierung
+pairs(x = m_anova1_result, adjust = "holm") 
+```
+
+__Kontrastanalyse__
+
+Mit der Funktion `levels()` kann im Datensatz überprüft werden, in welcher Reihenfolge die Stufen des Faktors `condition` geordnet sind. Dies ist wichtig, um nun die Kontrasthypothesen richtig zu spezifizieren.
+
+```{r}
+levels(d_therapy3$condition)
+```
+
+Kontrastanalysen erfordern das Definieren von Kontrasten. Ein Kontrast in diesem Beispiel besteht aus drei Werten. In der Summe ergeben die Werte eines Kontrastes 0.
+
+Ungerichtete Hypothese: 
+
+> Der Mittelwert der Angstsymptome in der Bedingung "Kognitive Umstrukturierung" unterscheidet sich vom Durchschnitt der Mittelwerte in den anderen beiden Bedingungen.
+
+Kontraste müssen in R zuerst als Listenobjekt mit `list` definiert werden. Anschliessend wird das Listenobjekt als method-Argument in der Funktion `contrast()` verwendet:
+
+```{r}
+# Kontrastanalyse
+## H: Kognitive Umstukturierung unterscheidet sich von anderen Bedingungen
+m_anova1_contrast1 <- list("restructuring vs. rest" = c(-0.5, -0.5, 1)) # Kontrast definieren (Summe 0!)
+contrast(object = m_anova1_result, method = m_anova1_contrast1) 
+```
+
+> Der Mittelwert der Angstsymptome in der Bedingung "Mindfulness" unterscheidet sich vom Mittelwert der Bedingung "Entspannung".
+
+```{r}
+# Kontrastanalyse
+## H: Mindfulness unterscheidet sich von Entspannung
+m_anova1_contrast2 <- list("mindfulness vs. relaxation" = c(1, -1, 0)) # Kontrast definieren (Summe 0!)
+contrast(object = m_anova1_result, method = m_anova1_contrast2)
+```
+
+Bei einer a priori gerichtet formulierten Hypothese, müsste der $p$-Wert hier noch halbiert werden.
+
+Je mehr Kontraste überprüft werden, umso stärker steigt der $\alpha_{fam}$-Fehler für eine Familie von Kontrasten an. Es ist daher wichtig, dass die Kontraste vorher definiert werden und die entsprechende Korrektur vorgenommen wird. 
+
 
 #### __Effektstärke bestimmen__
 
@@ -408,12 +570,14 @@ Die Effektgrösse liegt bei $\eta^2=0.62$. Es handelt sich nach der Taxonomie vo
 
 #### __Ergebnisse interpretieren und berichten__
 
-__Ergebnisse der einfaktoriellen Varianzanalyse ohne Messwiederholung__
+__a.__ Ergebnisse der einfaktoriellen Varianzanalyse ohne Messwiederholung__
 
 Das Ergebnis ist auf dem $5 \%$-Niveau signifikant und die Nullhypothese kann somit verworfen werden: Die Therapiemethode beeinflusst die Höhe der Angstsymptomatik. Es handelt sich nach der Taxonomie von Cohen (1988) um einen grossen Effekt ($\eta^2=0.62$). 
 
->"We examined whether the therapy methods had an effect on anxiety symptoms. The one-way ANOVA revealed a significant effect of the therapy condition on anxiety symtoms, _F_(2, 12) = 10.00, _p_ = .003, $\eta^2$ = 0.62). This indicates a large effect of the therapy condition on anxiety symptoms according to Cohen’s convention (1988)."
+>We examined whether the therapy methods had an effect on anxiety symptoms. The one-way ANOVA revealed a significant effect of the therapy condition on anxiety symtoms, _F_(2, 12) = 10.00, _p_ = .003, $\eta^2$ = 0.62). This indicates a large effect of the therapy condition on anxiety symptoms according to Cohen’s convention (1988).
 
-<!--__b. Ergebnisse der Post-hoc und Kontrastanalyse__
+__b.__ Ergebnisse von Post-hoc-Tests und Kontrastanalysen
 
-(folgt) -->
+> Post hoc comparisons using Tukey's Test indicated that group relaxation (_M_ = 6, _SD_ = 2.34) had significantly higher anxiety symptoms than group restructuring (_M_ = 2, _SD_ = 1.41), _F_(12) = 17.86, _p_ = .003. Additionally, group mindfulness (_M_ = 7, _SD_ = 1.87) scored also significantly higher than group restructuring, _F_(12) = 11.43, _p_ = .014. However, group mindfulness and relaxation did not differ significantly, _F_(12) = 0.71, _p_ = .683. The results suggest that restructuring had a positive effect on reducting anxiety symtoms compared to mindfulness and relaxation.
+
+

@@ -1,0 +1,358 @@
+# Übung 6 {.unnumbered #sec-uebung-06}
+
+```{r}
+#| include: false
+# Set working directory of R
+knitr::opts_knit$set(root.dir = '../')
+```
+
+::: {.callout-note appearance="default" title="Lernziele dieser Übung"}
+Nach der heutigen Übung können Sie:
+
+- _R_ und _RStudio_ zur Analyse von Daten verwenden
+
+- einfaktorielle Varianzanalysen ohne Messwiederholung in _R_ durchführen
+    - Hypothesen zum Vergleich von mehr als zwei Stichprobenmittelwerten von unabhängigen Gruppen durchführen
+    - Voraussetzungen überprüfen
+    - Test berechnen 
+    - Resultate interpretieren
+    - Post-hoc Paarvergleiche und Kontrastanalysen berechnen
+
+Diese Übung ist eine Weiterführung von [Übung 5](uebung-5.qmd). Absolvieren Sie zuerst Übung 5, bevor Sie hier weiterarbeiten. 
+
+:::
+
+
+:::{.callout-note appearance="default" title="Voraussetzungen"}
+
+1. Packages {tidyverse}, {afex}, {emmeans}, {beeswarm}, {effectsize} sind installiert.
+
+2. Projekt und Datensatz aus Übung 5 wurden heruntergeladen.
+
+3. Übung 5 wurde gelöst.
+
+:::
+
+<br>
+
+## Aufgabe 6.0: Projektumgebung erstellen 
+
+_Falls obige Anforderungen noch nicht erfüllt:_ 
+
+- Laden Sie den Projektordner herunter und __entzippen__ Sie den Ordner.^[Für das Entzippen mit _Windows_ machen Sie einen Rechtsklick auf den Ordner mit dem Reissverschluss und wählen Sie `Entpacken nach` und geben Sie den Ordner an, in dem Sie alle Ihre _RProject-Ordner_ speichern. Für das Entzippen mit _Mac_ speichern Sie den heruntergeladenen Ordner in den Ordner, in dem Sie alle Ihre _RProject-Ordner_ speichern und Doppelklicken Sie danach auf den Ordner. Nur entzippte Ordner können einwandfrei verwendet werden.] </aside>
+
+- Installieren Sie die benötigten Packages (falls noch nicht geschehen) unter `Tools` > `Install Packages...` oder in der Konsole mit
+
+   `install.packages("afex")`
+   
+   `install.packages("emmeans")`
+   
+   `install.packages("beeswarm")`
+   
+   `install.packages("effectsize")`
+    
+__a.__ Öffnen Sie das _RProjekt_ `anova`.
+  
+__b.__ Erstellen Sie ein _RNotebook_ namens `uebung-06` oder arbeiten Sie bei `uebung-05` weiter.
+
+<br>
+
+## Aufgabe 6.1: Einstieg
+
+__a.__ Welche Vermutungen haben Sie bei Aufgabe [__5.2.h__](uebung-5.qmd)? Welche Mittelwerte unterscheiden sich Ihrer Einschätzung nach bedeutsam?
+
+> z.B. Instrumental > Rock/Oper > Schlager
+
+__b.__ Wie viele paarweise Mittelwertsvergleiche durch _t_-Tests sind im Musikexperiment grundsätzlich möglich?
+
+> 3*2=6 Vergleiche, weil $J \cdot (J-1) / 2$
+
+> $\mu_1 = \mu_2$, $\mu_1 = \mu_3$, $\mu_1 = \mu_4$, $\mu_2 = \mu_3$, $\mu_2 = \mu_4$, $\mu_3 = \mu_4$
+
+> Mit Kontrasten sind aber auch Hypothesen zu Kombinationen davon möglich.
+
+__c.__ Worin besteht das Problem des multiplen Testens?
+
+:::{.callout-tip appearance="default" title="Tipp" collapse="true"}
+
+Bei einem Faktor mit vier Faktorstufen und einer Irrtumswahrscheinlichkeit von $\alpha=0.05$ pro Test ergibt sich folgende Berechnung für den $\alpha$-Fehler aller $s$ Paarvergleiche: 
+
+$\alpha_{fam} = 1 - (1 - \alpha_r)^6 = 1 - 0.95^6 = 1 - 0.735 = 0.265$
+::: 
+
+> Bei multiplen Mittelwertvergleichen kumuliert sich der $\alpha$-Fehler. Man spricht deshalb auch von einer Inflation des Fehlers 1. Art. Wenn die Nullhypothese gilt, wird jeder Test mit einer Wahrscheinlichkeit $\alpha$ signifikant, somit steigt mit jedem zusätzlichen Test die Wahrscheinlichkeit, dass der Test rein zufällig signifikant wird, weil $\alpha$ kumuliert wird. z.B. bei 6 Einzelvergleichen mit der gleichen Stichprobe, würde die Nullhypothese ohne Korrektur bereits bei 0.265 verworfen und nicht bei 0.05. 
+
+
+
+## Aufgabe 6.2: Post-hoc Vergleiche
+
+<!-- hier ev. den Code bis und mit Anova drin lassen, damits schneller geht -->
+
+__a.__ Anova-Modell berechnen
+
+- Lesen Sie den Datensatz `anova_music.csv` ein und konvertieren Sie die Variable `id` und `condition` zu einem Faktor (siehe [Übung 5](uebung-05.qmd)). Schauen Sie sich den Datensatz kurz mit `glimpse()` an.
+
+```{r, message=FALSE}
+# tidyverse laden
+library(tidyverse)
+
+# Datensatz einlesen
+d_music <- read.csv("data/anova_music.csv")
+
+# Faktoren konvertieren
+d_music <- d_music |>
+  mutate(id = as.factor(id)) |>
+  mutate(condition = as.factor(condition))
+
+# Datensatz anschauen
+glimpse(d_music)
+```
+
+- Berechnen Sie das Anova-Modell `m_anova1` (siehe [Übung 5](uebung-05.qmd)). 
+
+```{r, message=FALSE}
+# afex laden
+library(afex)
+
+# Einfaktorielle Anova 
+m_anova1 <- aov_4(testscore ~ condition + (1 | id), 
+                data = d_music) 
+
+# Resultate ausgeben
+summary(m_anova1) 
+m_anova1$Anova
+```
+
+
+- Erstellen Sie mit der Funktion `emmeans()` aus dem Package {emmeans} ein Objekt, z.B. `m_anova1_results`. Darin werden die "Estimated Marginal Means" gespeichert. 
+
+```{r}
+#| eval: false
+
+# Package emmeans laden
+library(emmeans)
+
+# Resultate (estimated marginal means) speichern
+m_anova1_result <- emmeans(object = ____, specs = ~ ____) # object = anova modell, ~ uv
+m_anova1_result
+```
+
+```{r, message=FALSE}
+# Package emmeans laden
+library(emmeans)
+
+# Resultate (estimated marginal means) speichern
+m_anova1_result <- emmeans(object = m_anova1, specs = ~ condition) # object = anova modell, ~ uv
+m_anova1_result
+```
+> Hier können Mittelwerte abgelesen werden.
+
+- Lassen Sie sich mit der Funktion `pairs(x = model, adjust = "none")` zuerst alle Paarvergleiche ausgeben, ohne dass eine Korrektur vorgenommen wird. Zu Übungszwecken können Sie so die korrigierten Resultate mit den unkorrigierten vergleichen.  
+
+```{r}
+# Post-hoc-Test ohne Adjustierung
+pairs(x = m_anova1_result, adjust = "none") 
+```
+> Ohne Adjustierung sind alle ausser "oper-rock" signifikant unterschiedlich. So aber nicht zulässig (Multiples Testen). 
+
+
+__b.__ Überprüfen Sie mit dem Tukey-Test einen vollständigen Paarvergleich aller Bedingungen.
+
+- Welche Voraussetzungen erfordert der Tukey-Test?
+
+> Der Tukey-Test setzt voraus, dass für alle _J_ Bedingungen gleiche Stichprobengrössen vorliegen. Bei unbalancierten Stichproben wird der Tukey-Kramer-Test oder der Scheffé-Test verwendet. Nur die Tukey-Adjustierung ist eigentlich für einen vollständigen Paarvergleich aller Bedingungen wie hier geeignet, da sie mehr Power hat als Test auf Basis der Bonferroni-Korrektur. Die anderen Adjustierungsmethoden sollten vorzugsweise für ein Subset von Bedingungsvergleichen benutzt werden. Diese müssten dann zuerst als ein Set von Kontrasten definiert werden.
+
+- Welchen Vorteil hat der Tukey-Test gegenüber der Bonferroni-Korrektur?
+
+> Bei Gültigkeit der statistischen Voraussetzungen hat der Tukey-Test eine grössere Power als Tests auf der Basis der Bonferroni-Korrektur, wenn alle Mittelwerte miteinander verglichen werden (Maxwell & Delaney, 2004). Wenn wir also alle Mittelwerte vergleichen wollen, wählen wir den Tukey-Test.
+
+> Problem von wenig Power: Fehler 2. Art -> ein Effekt wird nicht erkannt, obwohl es einen gibt / Alternativhypothese wird mit dieser Wahrscheinlichkeit abgelehnt, obwohl sie gilt z.B. 20% (= Power 80%) --> wir wollen aber Effekt finden, wenn es einen gibt!
+
+- Welche Prüfgrösse gibt der Tukey-Test in R aus?
+
+> Der Tukey Test wird aufgrund einer adjustierten t-Verteilung (q Verteilung) getestet. R gibt uns jedoch eine "t.ratio" aus. Wir interpretieren das als t-Wert.   
+
+> t.ratio: Der _t_-Wert für Post-hoc Paarvergleich wird folgendermassen berechnet (analog zum _t_-Wert bei unabhängigen Stichproben, aber mit Ergänzung der geschätzten Fehlervarianz über alle Bedingungen):
+
+> $t = \frac{\overline{x}_j - \overline{x}_{j'}}{\sqrt {(\frac{1}{n_j}+\frac{1}{n_{j'}}) \cdot MQS_{inn}}}$
+
+> Der Tukey-Test wird zweiseitig durchgeführt.
+
+- Führen Sie den Post-hoc-Vergleich für alle möglichen Mittelwertspaare mit `adjust = "tukey"` durch. Wie lautet Ihre Testentscheidung? 
+
+```{r}
+# Post-hoc-Test mit dem Tukey-Test
+pairs(x = m_anova1_result, adjust = "tukey") 
+```
+
+> Der Tukey-Test wird verwendet, wenn alle möglichen Mittelwertspaare verglichen werden sollen.
+
+> Interpretation: Die paarweisen Mittelwertsdifferenzen unterscheiden sich signifikant von 0, ausser die Differenz Rock - Oper.
+
+> Im Vergleich zu den p-Werten ohne Korrektur: Die p-Werte sind ohne Korrektur kleiner, d.h. deuten eher darauf hin, dass die Nullhypothese abgelehnt wird, da unter der Nullhypothese kleine p-Werte (grosse t-Werte) unwahrscheinlich sind. 
+
+__c.__ Als eine weitere Möglichkeit wollen Sie a-priori (also vorher) festgelegte Hypothesen prüfen. Prüfen Sie mit der Bonferroni-Holm-Methode, welche Bedingungsmittelwerte sich signifikant unterscheiden. 
+
+- Wie funktioniert die Bonferroni-Holm-Methode?
+
+> Aufsteigende Sortierung der p-Werte (bzw. auch an t-Werte möglich).
+> Jeder p-Wert wird dann mit spezifisch adjustiertem p-Wert verglichen (schrittweise).
+> Dies wird solange fortgesetzt, bis der erste p-Wert nicht mehr signifikant ist. 
+> Ab dann alle weiteren $H_0$ nicht mehr ablehnen.  
+
+- Welchen Vorteil hat sie gegenüber der Bonferroni-Methode?
+
+> Mehr Power, da schrittweises Testen. 
+
+- Führen Sie den Post-hoc-Vergleich mit `adjust = "holm"` durch. Wie lautet Ihre Testentscheidung? Vergleichen Sie die $p$-Werte mit den unkorrigierten Werten.
+
+```{r}
+# Post-hoc-Vergleiche mit der Bonferroni-Holm-Methode
+pairs(x = m_anova1_result, adjust = "holm")
+
+```
+
+> Die BHM passt das Signifikanzniveau schrittweise an. Daher kontrolliert die Methode den Fehler 1. Art (family-wise error rate), hat aber gleichzeitig mehr Power als die klassische Bonferroni-Methode.
+
+> Hier wird der Vergleich mit dem kleinsten t-Wert zum Schluss auf dem 0.05-Alphaniveau getestet, die vorherigen Vergleiche werden auf einem korrigierten Alphaniveau getestet. Dies ist hier nicht wirklich ersichtlich, da der zweitletze Vergleich (oper- schlager) auf dem 0.025 Niveau getestet wird und daher auch signifikant wird. Man sieht jedoch, dass der zweitgrösste $p$-Wert mit $\cdot 2$ adjustiert wurde ($0.0005 \cdot 2 = 0.0011$). 
+
+
+- Falls ein unbalanciertes Design vorliegt, kann die Bonferroni-Holm-Methode nicht verwendet werden. Überprüfen Sie die Paarvergleiche daher zu Übungszwecken auch mit dem Scheffé-Test mit `adjust = "scheffe"`. Was fällt Ihnen auf? 
+
+```{r}
+# Post-hoc-Vergleiche mit dem Scheffé-Test z.B. bei unbalancierten Daten
+pairs(x = m_anova1_result, adjust = "scheffe")
+```
+
+> Scheffé-Test bei unbalancierten Designs sinnvoll, da recht streng/konversativ, lehnt Nullhypothese nicht schnell ab.
+
+> Mit diesem Test wird der gesamte, mit allen möglichen Einzelvergleichen verbundene Hypothesenkomplex der Varianzanalyse auf dem festgelegten Niveau eines Fehlers 1. Art abgesichert.
+
+> p-Werte sind höher, d.h. die Wahrscheinlichkeit, dass die Nullhypothese abgelehnt wird, ist kleiner. Der Scheffé-Test ist tendenziell eher konservativ (d. h. entscheidet zugunsten der H0).
+
+
+> Weitere Varianten, die wir aber in der Übung nicht spezifisch anschauen:
+
+```{r}
+# Post-hoc-Vergleiche mit Sidak-Adjustierung
+pairs(x = m_anova1_result, adjust = "sidak")
+
+# Post-hoc-Vergleiche mit Bonferroni
+pairs(x = m_anova1_result, adjust = "bonferroni")
+```
+
+
+
+## Aufgabe 6.3: Kontrastanalysen
+
+Schauen Sie mit der Funktion `levels()` im Datensatz nach, in welcher Reihenfolge die Stufen des Faktors `condition` geordnet sind:
+
+```{r}
+levels(d_music$condition)
+```
+Dies ist wichtig, um nun die Kontrasthypothesen richtig zu spezifizieren. 
+
+__a.__ Kontrastanalysen erfordern das a priori Definieren von Kontrasten. Definieren Sie die Kontraste für folgende Alternativhypothesen und benennen Sie den Kontrast. Wichtig: Ein Kontrast in dieser Aufgabe besteht aus 4 Werten. In der Summe ergeben die Werte eines Kontrastes 0. 
+
+- "Die kognitive Leistung unter Opernmusik ist höher als die durchschnittliche kognitive Leistung in den drei anderen Bedingungen."
+
+> Kontrast "oper vs rest" : -1 3 -1 -1
+
+- "Die kognitive Leistung unter Schlagermusik ist besser als unter Rockmusik."
+
+> Kontrast "schlager vs.rock" : 0 0 -1 1
+
+- "Die kognitive Leistung unter Schlagermusik ist schlechter als unter Rockmusik."
+
+> Kontrast "instrumental vs. rest" : 1 1 -3 1
+
+> Das Ergebnis einer Kontrastanalyse ist von der Metrik der Kontrastkoeffizienten unabhängig., d.h. auch -1/3, 1, -1/3, -1/3 oder -10, 30, -10, -10 wäre möglich. 
+
+> Comment: Wir formulieren hier gerichtete Hypothesen, damit wir die Richtung der Kontraste auch festlegen können (also wo + und wo -). Die Teststatistik (F-Test) ist nachher aber __ungerichtet__. Wenn wir eine gerichtete Hypothese haben und diese testen wollen, müssen wir den p-Wert noch halbieren. Falls wir eine ungerichtete Hypothese haben, spielt es eigentlich keine Rolle, welcher Kontrastwert + oder - ist. 
+
+__b.__ Sie wollen nun die Hypothese überprüfen, dass die Konzentrationsleistung von Personen unter dem Einfluss klassischer Instrumentalmusik (Bedingung 1) __höher__ ist als unter dem Einfluss von Opernmusik (Bedingung 2), von Rockmusik (Bedingung 3) oder von Schlagermusik (Bedingung 4).
+
+Überprüfen Sie mit Hilfe eines Kontrasts zuerst die (ungerichtete) Hypothese, dass sich die kognitive Leistung in der Instrumentalbedingung vom Durchschnitt der kognitiven Leistung in den drei anderen Musikbedingungen unterscheidet. Da wir jedoch die gerichtete Hypothese testen wollen, müssen wir im Anschluss noch den $p$-Wert halbieren. 
+
+```{r}
+#| eval: false
+
+# Kontrastanalyse
+## H: Instrumental unterscheidet sich von anderen Bedingungen
+m_anova1_contrast1 <- list("____ vs. ____" = c(__, __, __, __)) # Kontrast definieren (Summe 0!)
+contrast(object = _____, method = m_anova1_contrast1) # Anovamodell (emmeans)
+```
+
+
+```{r}
+# Kontrastanalyse
+## H: Instrumental unterscheidet sich von anderen Bedingungen
+m_anova1_contrast1 <- list("instrumental vs. rest" = c(3, -1, -1, -1)) # Kontrast definieren
+contrast(object = m_anova1_result, method = m_anova1_contrast1)
+```
+
+> Test auf Abweichung einer Bedingung vom Durchschnitt der anderen Bedingungen.
+
+> 3, -1, -1, -1 (oder mathematisch äquivalente Lösungen, aber sinnvoll ist, dass die interessierende Bedingung gemäss Hypothese positiven Wert hat, d.h. 3) 
+
+> gerichtete Hypothese: der $p$-Wert muss dadurch halbiert werden (einseitig testen) --> $p < .001$ (macht hier keinen Unterschied zu ungerichtet, da hoch signifikant)
+
+__c.__ Überprüfen Sie nun eine weitere Hypothese, die besagt, dass sich moderne Pop- und Rocksongs von anderen Musikarten wie Instrumentalmusik und Oper in ihrem Effekt auf die kognitive Leistung unterscheiden (d.h. Instrumental & Oper versus Schlager & Rock). 
+
+```{r}
+# Kontrastanalyse
+## H: Instrumental/Oper unterscheidet sich von Rock/Schlager
+m_anova1_contrast2 <- list("instrumental/oper vs. rock/schlager" = c(1, -1, 1, -1)) # Kontrast definieren
+contrast(object = m_anova1_result, method = m_anova1_contrast2)
+```
+
+> Ebenfalls signifikanter Effekt. 
+> Es können zu Übungszwecken(!) auch weitere Kontraste ausprobiert werden. 
+
+__d.__ Was passiert, wenn man mehrere Kontraste mit den gleichen Daten berechnet? 
+
+> Je mehr Kontraste überprüft werden, umso stärker steigt der $\alpha_{fam}$-Fehler für eine Familie von Kontrasten an. Es ist daher wichtig, dass die Kontraste vorher definiert werden und die entsprechende Korrektur vorgenommen wird. 
+
+
+:::{.callout-tip appearance="default" title="Zusatz" collapse="true"}
+
+Folgendermassen können die sechs Paarvergleiche auch als einzelne Kontraste definiert und getestet werden. 
+
+```{r}
+# Kontraste definieren
+contrast_list <- list("instrumental vs. oper" = c(1, -1, 0, 0),
+                           "instrumental vs. rock" = c(1, 0, -1, 0),
+                           "instrumental vs. schlager" = c(1, 0, 0, -1),
+                           "oper vs. rock" = c(0, 1, -1, 0),
+                           "oper vs. schlager" = c(0, 1, 0, -1),
+                           "rock vs. schlager" = c(0, 0, 1, -1)) 
+
+# Emmeans-Objekt mit definierten Kontrasten
+m_anova1_contrastlist <- emmeans(m_anova1, ~ condition, contr = contrast_list)
+
+# Ergebnisse mit Korrekturmethoden ausgeben
+summary(m_anova1_contrastlist$contrasts, adjust = "holm")        
+```
+
+::: 
+
+
+## Zusatzaufgabe
+
+:::{.callout-tip appearance="default" title="Zusatzaufgaben"}
+
+__Zusatzaufgaben müssen nicht gelöst werden.__
+
+:::
+
+__a.__ Verfassen Sie für einen wissenschaftlichen Artikel einen Text zu den Resultaten der Aufgabe 6.3.b.
+
+__b.__ Erstellen Sie eine Grafik des Datensatzes `d_music`, der die durchschnittliche Leistung in allen vier Bedingungen miteinander vergleicht, mit `condition` und `testscore` auf den beiden Achsen. Hierfür eignet sich beispielsweise ein Boxplot oder ein Violinplot.
+
+
+
+
+
+
+
+

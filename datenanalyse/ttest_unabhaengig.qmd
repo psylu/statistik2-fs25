@@ -109,7 +109,7 @@ Für den _t_-Test für unabhängige Stichproben werden die Daten hier in einem `
 
 Der _t_-Test für unabhängige Stichproben setzt Varianzhomogenität voraus. Dies kann mit dem __Levene-Test__  (in _R_ mit der Funktion `leveneTest()`) überprüft werden.  
 
-Der Levene-Test geht von der Nullhypothese aus, dass sich die beiden Varianzen nicht unterscheiden. Ein nicht signifikantes Ergebnis bedeutet daher, dass sich die Varianzen nicht unterscheiden und somit Varianzhomogenität (sogenannte Heteroskedastizität) besteht. Wenn der Test signifikant ist, wird Varianzheterogenität angenommen. Konventionell wird hierfür ein $\alpha = 0.05$ angenommen. 
+Der Levene-Test geht von der Nullhypothese aus, dass sich die beiden Varianzen nicht unterscheiden. Ein nicht signifikantes Ergebnis bedeutet daher, dass sich die Varianzen nicht unterscheiden und somit Varianzhomogenität (sogenannte Homoskedastizität) besteht. Wenn der Test signifikant ist, wird Varianzheterogenität angenommen. Konventionell wird hierfür ein $\alpha = 0.05$ angenommen. 
 
 <aside> Teilweise wird ein konservativerer Cut-off von $\alpha = 0.1$ verwendet. </aside>
 

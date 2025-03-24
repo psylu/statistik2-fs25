@@ -46,6 +46,7 @@ book:
     - uebungen/uebung-02.qmd
     - uebungen/uebung-04.qmd
     - uebungen/uebung-05.qmd
+    - uebungen/uebung-06.qmd
 
   - part: Anhang
     chapters:

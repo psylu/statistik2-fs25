@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>2&nbsp; Basics R und RStudio – Datenanalyse mit R</title>
+<title>Übung 6 – Datenanalyse mit R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../r/programmieren.html" rel="next">
-<link href="../r/installation.html" rel="prev">
+<link href="../appendix/faq.html" rel="next">
+<link href="../uebungen/uebung-05.html" rel="prev">
 <link href="../imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -76,8 +76,6 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script src="../site_libs/quarto-contrib/kbd/kbd.js"></script>
-<link href="../site_libs/quarto-contrib/kbd/kbd.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -106,6 +104,35 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../include/webex.css">
 </head>
@@ -119,7 +146,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../r/installation.html">R und RStudio</a></li><li class="breadcrumb-item"><a href="../r/rrstudio.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics R und RStudio</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-06.html">Übung 6</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -167,7 +194,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../r/rrstudio.html" class="sidebar-item-text sidebar-link active">
+  <a href="../r/rrstudio.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics R und RStudio</span></span></a>
   </div>
 </li>
@@ -294,7 +321,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../uebungen/uebung-06.html" class="sidebar-item-text sidebar-link">
+  <a href="../uebungen/uebung-06.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Übung 6</span></a>
   </div>
 </li>
@@ -345,30 +372,20 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#r-rstudio-und-webr" id="toc-r-rstudio-und-webr" class="nav-link active" data-scroll-target="#r-rstudio-und-webr"><span class="header-section-number">2.1</span> <em>R</em>, <em>RStudio</em> und <em>WebR</em></a></li>
-  <li><a href="#programmierumgebung-rstudio" id="toc-programmierumgebung-rstudio" class="nav-link" data-scroll-target="#programmierumgebung-rstudio"><span class="header-section-number">2.2</span> Programmierumgebung <em>RStudio</em></a></li>
-  <li><a href="#sec-rprojects" id="toc-sec-rprojects" class="nav-link" data-scroll-target="#sec-rprojects"><span class="header-section-number">2.3</span> <em>RProjekte</em></a>
-  <ul class="collapse">
-  <li><a href="#rprojekt-erstellen" id="toc-rprojekt-erstellen" class="nav-link" data-scroll-target="#rprojekt-erstellen"><span class="header-section-number">2.3.1</span> <em>RProjekt</em> erstellen</a></li>
-  </ul></li>
-  <li><a href="#code-schreiben-ausführen-und-speichern" id="toc-code-schreiben-ausführen-und-speichern" class="nav-link" data-scroll-target="#code-schreiben-ausführen-und-speichern"><span class="header-section-number">2.4</span> Code schreiben, ausführen und speichern</a></li>
-  <li><a href="#rnotebooks" id="toc-rnotebooks" class="nav-link" data-scroll-target="#rnotebooks"><span class="header-section-number">2.5</span> <em>RNotebooks</em></a>
-  <ul class="collapse">
-  <li><a href="#erstellen-eines-neuen-rnotebooks" id="toc-erstellen-eines-neuen-rnotebooks" class="nav-link" data-scroll-target="#erstellen-eines-neuen-rnotebooks"><span class="header-section-number">2.5.1</span> Erstellen eines neuen <em>RNotebooks</em></a></li>
-  <li><a href="#header" id="toc-header" class="nav-link" data-scroll-target="#header"><span class="header-section-number">2.5.2</span> Header</a></li>
-  <li><a href="#codechunks" id="toc-codechunks" class="nav-link" data-scroll-target="#codechunks"><span class="header-section-number">2.5.3</span> Codechunks</a></li>
-  <li><a href="#textfeld" id="toc-textfeld" class="nav-link" data-scroll-target="#textfeld"><span class="header-section-number">2.5.4</span> Textfeld</a></li>
-  </ul></li>
-  <li><a href="#übersicht-dateiformate" id="toc-übersicht-dateiformate" class="nav-link" data-scroll-target="#übersicht-dateiformate"><span class="header-section-number">2.6</span> Übersicht Dateiformate</a></li>
+  <li><a href="#aufgabe-6.0-projektumgebung-erstellen" id="toc-aufgabe-6.0-projektumgebung-erstellen" class="nav-link active" data-scroll-target="#aufgabe-6.0-projektumgebung-erstellen">Aufgabe 6.0: Projektumgebung erstellen</a></li>
+  <li><a href="#aufgabe-6.1-einstieg" id="toc-aufgabe-6.1-einstieg" class="nav-link" data-scroll-target="#aufgabe-6.1-einstieg">Aufgabe 6.1: Einstieg</a></li>
+  <li><a href="#aufgabe-6.2-post-hoc-vergleiche" id="toc-aufgabe-6.2-post-hoc-vergleiche" class="nav-link" data-scroll-target="#aufgabe-6.2-post-hoc-vergleiche">Aufgabe 6.2: Post-hoc Vergleiche</a></li>
+  <li><a href="#aufgabe-6.3-kontrastanalysen" id="toc-aufgabe-6.3-kontrastanalysen" class="nav-link" data-scroll-target="#aufgabe-6.3-kontrastanalysen">Aufgabe 6.3: Kontrastanalysen</a></li>
+  <li><a href="#zusatzaufgabe" id="toc-zusatzaufgabe" class="nav-link" data-scroll-target="#zusatzaufgabe">Zusatzaufgabe</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content page-columns page-full column-body" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../r/installation.html">R und RStudio</a></li><li class="breadcrumb-item"><a href="../r/rrstudio.html"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics R und RStudio</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-06.html">Übung 6</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-r" class="quarto-section-identifier"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics R und RStudio</span></span></h1>
+<h1 class="title"><span id="sec-uebung-06" class="quarto-section-identifier">Übung 6</span></h1>
 </div>
 
 
@@ -385,245 +402,252 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled" title="Inhalt">
+<div class="callout callout-style-default callout-note callout-titled" title="Lernziele dieser Übung">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Inhalt
+Lernziele dieser Übung
 </div>
 </div>
 <div class="callout-body-container callout-body">
+<p>Nach der heutigen Übung können Sie:</p>
 <ul>
-<li>Überblick über das Arbeiten mit <em>R</em> in <em>RStudio</em></li>
-<li>Erstellen und Nutzen von <em>RProjects</em></li>
-<li>Erstellen und Nutzen von Skripts und <em>Notebooks</em></li>
+<li><p><em>R</em> und <em>RStudio</em> zur Analyse von Daten verwenden</p></li>
+<li><p>einfaktorielle Varianzanalysen ohne Messwiederholung in <em>R</em> durchführen</p>
+<ul>
+<li>Hypothesen zum Vergleich von mehr als zwei Stichprobenmittelwerten von unabhängigen Gruppen durchführen</li>
+<li>Voraussetzungen überprüfen</li>
+<li>Test berechnen</li>
+<li>Resultate interpretieren</li>
+<li>Post-hoc Paarvergleiche und Kontrastanalysen berechnen</li>
+</ul></li>
 </ul>
+<p>Diese Übung ist eine Weiterführung von <a href="../uebungen/uebung-05.html">Übung 5</a>. Absolvieren Sie zuerst Übung 5, bevor Sie hier weiterarbeiten.</p>
 </div>
 </div>
-<section id="r-rstudio-und-webr" class="level2 page-columns page-full" data-number="2.1">
-<h2 data-number="2.1" class="anchored" data-anchor-id="r-rstudio-und-webr"><span class="header-section-number">2.1</span> <em>R</em>, <em>RStudio</em> und <em>WebR</em></h2>
-<p><a href="https://www.r-project.org/about.html"><strong>R</strong></a> ist eine leistungsstarke Programmiersprache und eine Open-Source-Softwareumgebung. Sie wird in der Forschung für die Datenverarbeitung, statistische Datenanalyse und Datenvisualisierung eingesetzt. <em>R</em> wird von Forschenden und Data Scientists weltweit verwendet, da eine breite Sammlung an Erweiterungen (Packages) zugänglich ist. Dadurch, dass diese Packages kontinuierlich weiterentwickelt und neue Packages erstellt werden, bietet R umfangreiche “state of the art” Funktionen. <em>R</em> kann für einfache Datenanalysen, wie auch für komplexe statistische Modelle und machine learning genutzt werden.</p>
-<aside>
-Genauere Informationen zu R in <a href="https://de.wikipedia.org/wiki/R_(Programmiersprache)">deutsch</a> und <a href="https://en.wikipedia.org/wiki/R_(programming_language)">englisch</a>.
-</aside>
-<p><a href="https://posit.co/download/rstudio-desktop/"><strong>RStudio</strong></a> ist eine integrierte Entwicklungsumgebung (IDE) für die Programmiersprache <em>R</em>, die den Umgang mit <em>R</em> vereinfacht und benutzerfreundlicher gestaltet. In <em>RStudio</em> kann Code geschrieben, ausgeführt und gespeichert werden. RStudio integriert Funktionen wie eine Konsole, ein Skriptfenster, eine Umgebung zur Verwaltung von Variablen und eine Historie der ausgeführten Befehle.</p>
-<p><a href="../appendix/webrconsole.html"><strong>WebR</strong></a> ermöglicht das Verwenden von <em>R</em> mit einem Browser, z.B. auf der Kurswebsite.</p>
-<p>Arbeiten in <em>R</em> und <em>RStudio</em> eignet sich ideal für Datenverarbeitung, -analyse und -visualisierung aufgrund folgender Vorteile:</p>
-<ul>
-<li><p><strong>leistungsstarke Funktionen</strong> wie {tidyverse} und {ggplot2} für das Einlesen, Bearbeiten, Zusammenfassen und Visualisieren von Datensätzen</p></li>
-<li><p><strong>Reproduzierbarkeit des Codes und wiederverwendbare sowie nachvollziehbare Analysen</strong> ermöglicht durch abspeicherbare und gut kommentierbare Skripte</p></li>
-<li><p><strong>Flexibilität</strong> durch eine grosse Auswahl von <em>R</em>-Packages auf CRAN und die Möglichkeit, eigene Funktionen zu erstellen</p></li>
-<li><p><strong>Aktualität</strong> durch ständige Updates von <em>R</em> und <em>R</em>-Packages mit modernen Analysefunktionen</p></li>
-<li><p><strong>Zugänglichkeit</strong>: kostenlos und Open-Source</p></li>
-<li><p><strong>Support</strong> durch aktive Community mit schneller Hilfe</p></li>
-</ul>
-</section>
-<section id="programmierumgebung-rstudio" class="level2 page-columns page-full" data-number="2.2">
-<h2 data-number="2.2" class="anchored" data-anchor-id="programmierumgebung-rstudio"><span class="header-section-number">2.2</span> Programmierumgebung <em>RStudio</em></h2>
-<p>Wenn Sie <em>RStudio</em> öffnen, sehen Sie die Standardansicht. Links finden Sie die Konsole. Sobald Sie ein Code-File öffnen, erscheint dieses links oben.</p>
-<ul>
-<li><p><strong>Skript</strong>: In einem Skript können Sie Code schreiben und ausführen. Es können verschiedene Code-Files geöffnet werden, z.B. <em>RSkript</em> und <em>RNotebooks</em>. Wenn Sie einen Datensatz anschauen, erscheint dieser auch in diesem Quadrant.</p></li>
-<li><p><strong>Konsole</strong>: Hier können Sie direkt Code eingeben und ausführen.</p></li>
-<li><p><strong>Umgebung</strong>: Hier finden Sie gespeicherte Objekte (z.B. Variablen).</p></li>
-<li><p><strong>Arbeitsverzeichnis</strong>, <strong>Plots</strong>, <strong>Packages</strong>, <strong>Help</strong>, …: Hier finden Sie diverse hilfreiche Informationen wie z.B. die Ordnerstruktur mit der Sie aktuell arbeiten (<em>working directory</em>), die Anzeige von Plots, welche <em>Packages</em> installiert und geladen sind, Hilfe zu den einzelnen Funktionen, u.v.m.</p></li>
-</ul>
-<img src="../imgs/rstudio_overview.png" id="fig-rstudioenvironmen" class="img-fluid quarto-figure quarto-figure-left anchored" style="width:100.0%" alt="Startscreen beim Öffnen von RStudio.">
-<aside>
-Bitte verändern Sie zu Beginn diese Ansicht nicht, denn wir werden der Einfachheit halber jeweils auf Quadranten hinweisen (z.B. Sie finden etwas im “linken oberen Quadranten”). Wenn Sie die Fenster umstellen, wird diese Angabe nicht mehr zu Ihrer Konfiguration passen. Sobald Sie sich sicher fühlen, können Sie <em>RStudio</em> Ihre Bedürfnissen anpassen.
-</aside>
-</section>
-<section id="sec-rprojects" class="level2 page-columns page-full" data-number="2.3">
-<h2 data-number="2.3" class="anchored" data-anchor-id="sec-rprojects"><span class="header-section-number">2.3</span> <em>RProjekte</em></h2>
-<p>In <em>RStudio</em> gibt es die Möglichkeit mit <em>RProjekten</em> zu arbeiten. Dies gibt Ihnen die Möglichkeit Ihren Code in Projekte zu strukturieren. Ein Projekt ist eine Einheit, in der Sie Daten und Analysecode bündeln möchten.</p>
-<aside>
-Wir werden in den Übungen jeweils mit Projekten arbeiten.
-</aside>
-<p><em>RProjekte</em> haben zwei grosse Vorteile, die uns das Arbeiten in <em>RStudio</em> vereinfachen:</p>
-<p><strong>1. <em>RProjekte</em> sammeln zusammengehörige Daten und Code in einem Ordner.</strong> So behalten Sie den Überblick, wo der Code für dieses Projekt zu finden ist. Sobald Sie an etwas Neuem arbeiten, erstellen Sie einfach ein neues Projekt.</p>
-<p><strong>2. <em>RProjekte</em> ermöglichen ein stabiles <code>working directory</code>.</strong></p>
-<p>Dort wo das <em>RProjekt</em> abgelegt ist, beginnt <em>R</em> zu suchen, wenn Sie einen Pfad eingeben. Das hat zur Folge, dass innerhalb eines <em>RProjekt</em>-Ordners die Pfade immer gleich bleiben, auch wenn Sie den Ordner an einen anderen Ort oder sogar auch einen anderen Computer verschieben. Ausserdem sind die Pfade oft viel kürzer.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einlesen Daten ausserhalb eines Projekts</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>d_ohne_projekt <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"C://User/nameName/Ordner/Unterordner/Unterunterordner/data/daten.csv"</span>)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Einlesen Daten aus dem Ordner data innerhalb eines Projekts</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>d_mit_projekt <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/daten.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Projekt-Ordner">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout callout-style-default callout-note callout-titled" title="Voraussetzungen">
+<div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Projekt-Ordner
+Voraussetzungen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Packages {tidyverse}, {afex}, {emmeans}, {beeswarm}, {effectsize} sind installiert.</p></li>
+<li><p>Projekt und Datensatz aus Übung 5 wurden heruntergeladen.</p></li>
+<li><p>Übung 5 wurde gelöst.</p></li>
+</ol>
+</div>
+</div>
+<p><br></p>
+<section id="aufgabe-6.0-projektumgebung-erstellen" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-6.0-projektumgebung-erstellen">Aufgabe 6.0: Projektumgebung erstellen</h2>
+<p><em>Falls obige Anforderungen noch nicht erfüllt:</em></p>
+<ul>
+<li><p>Laden Sie den Projektordner herunter und <strong>entzippen</strong> Sie den Ordner.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
+</li>
+<li><p>Installieren Sie die benötigten Packages (falls noch nicht geschehen) unter <code>Tools</code> &gt; <code>Install Packages...</code> oder in der Konsole mit</p>
+<p><code>install.packages("afex")</code></p>
+<p><code>install.packages("emmeans")</code></p>
+<p><code>install.packages("beeswarm")</code></p>
+<p><code>install.packages("effectsize")</code></p></li>
+</ul>
+<p><strong>a.</strong> Öffnen Sie das <em>RProjekt</em> <code>anova</code>.</p>
+<p><strong>b.</strong> Erstellen Sie ein <em>RNotebook</em> namens <code>uebung-06</code> oder arbeiten Sie bei <code>uebung-05</code> weiter.</p>
+<p><br></p>
+</section>
+<section id="aufgabe-6.1-einstieg" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-6.1-einstieg">Aufgabe 6.1: Einstieg</h2>
+<p><strong>a.</strong> Welche Vermutungen haben Sie bei Aufgabe <a href="../uebungen/uebung-05.html#aufgabe-5.2-einfaktorielle-varianzanalyse-ohne-messwiederholung"><strong>5.2.h</strong></a>? Welche Mittelwerte unterscheiden sich Ihrer Einschätzung nach bedeutsam?</p>
+<p><strong>b.</strong> Wie viele paarweise Mittelwertsvergleiche durch <em>t</em>-Tests sind im Musikexperiment grundsätzlich möglich?</p>
+<p><strong>c.</strong> Worin besteht das Problem des multiplen Testens?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Tipp">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tipp
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
-<p>Überlegen Sie zu Beginn gut, wo Sie Ihre Projekte abspeichern möchten.</p>
-<p>Erstellen Sie dort einen <code>RProjects</code>-Ordner.</p>
-<p>Speichern Sie alle <em>RProjekte</em> immer in diesem Ordner ab. So behalten Sie den Überblick.</p>
+<p>Bei einem Faktor mit vier Faktorstufen und einer Irrtumswahrscheinlichkeit von <span class="math inline">\(\alpha=0.05\)</span> pro Test ergibt sich folgende Berechnung für den <span class="math inline">\(\alpha\)</span>-Fehler aller <span class="math inline">\(s\)</span> Paarvergleiche:</p>
+<p><span class="math inline">\(\alpha_{fam} = 1 - (1 - \alpha_r)^6 = 1 - 0.95^6 = 1 - 0.735 = 0.265\)</span></p>
 </div>
 </div>
 </div>
-<section id="rprojekt-erstellen" class="level3" data-number="2.3.1">
-<h3 data-number="2.3.1" class="anchored" data-anchor-id="rprojekt-erstellen"><span class="header-section-number">2.3.1</span> <em>RProjekt</em> erstellen</h3>
-<p>Unter <code>File</code> &gt; <code>New Project</code> kann ein neues <em>RProjekt</em> erstellt werden.</p>
-<p><img src="../imgs/rproject_create.png" class="img-fluid quarto-figure quarto-figure-center" style="width:120.0%" alt="Screenshot der Fenster für das Erstellen von RProjekten."> Es empfiehlt sich bei <em>RProjekten</em> eine Einstellungsänderung (<code>Tools</code>&gt; <code>Project Options...</code>) vorzunehmen, so dass die aktuell gespeicherten Variablen bei jedem Schliessen vom Projekt gelöscht werden. Dies verhindert, dass der aktuelle Code nur aufgrund früherer Speicherung läuft oder das falsche Variablen verwendet werden.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure class="figure">
-<p><img src="../imgs/rprojects_dontsaveworkspace.png" class="img-fluid figure-img" style="width:100.0%" alt="Screenshot Dont save workspace."></p>
-<figcaption>Einstellungen anpassen für <em>RProject</em></figcaption>
-</figure>
-</div>
-<div class="callout callout-style-default callout-caution callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Hands-on: Erstellen eines RProjekts
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Erstellen Sie ein neues <em>RProjekt</em> auf Ihrem Computer mit folgenden Schritten:</p>
-<ol type="1">
-<li><p>Öffnen Sie <em>RStudio</em>.</p></li>
-<li><p>Erstellen Sie ein neues <em>RProjekt</em>.</p>
+</section>
+<section id="aufgabe-6.2-post-hoc-vergleiche" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-6.2-post-hoc-vergleiche">Aufgabe 6.2: Post-hoc Vergleiche</h2>
+<p><strong>a.</strong> Anova-Modell berechnen</p>
 <ul>
-<li><p>Klicken Sie dafür auf <code>File</code> &gt; <code>New Project</code> &gt; <code>New Directory</code> &gt; <code>New Project</code></p></li>
-<li><p>Benennen Sie das Project <code>introduction_to_r</code> und speichern Sie es an einem sinnvollen Ort auf Ihrem Computer.</p></li>
-<li><p>Klicken Sie auf <code>Create Project</code>.</p></li>
-</ul></li>
-<li><p>Passen Sie die Einstellungen unter <code>Tools</code> &gt; <code>Project Options</code> an.</p></li>
-<li><p>Schauen Sie sich im rechten unteren Quadranten unter <code>Files</code> das aktuelle <code>working directory</code> an. Was passiert, wenn Sie nun auf Ihrem Computer im Ordnern des <em>RProjekts</em> einen neuen Ordner namens <code>data</code> erstellen?</p></li>
-<li><p>Wo im Fenster von <em>RStudio</em> finden Sie die Information, ob Sie gerade in einem Projekt arbeiten (und in welchem) oder nicht?</p></li>
-</ol>
-</div>
-</div>
-<div class="callout callout-style-default callout-tip callout-titled">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tipp: Namensgebung für Files und Variablen
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<p>Wenn Sie Filenamen auswählen, achten Sie darauf dass diese <a href="https://opendatahandbook.org/glossary/en/terms/machine-readable"><em>machine-readable</em></a> sind:</p>
-<ul>
-<li><p>keine Lücken (verwenden Sie stattdessen den <code>camelCase</code>, den <code>snake_case</code> oder <code>-</code>)</p></li>
-<li><p>keine <code>ä</code>, <code>ö</code>, <code>ü</code> oder andere Sonderzeichen verwenden</p></li>
+<li><p>Lesen Sie den Datensatz <code>anova_music.csv</code> ein und konvertieren Sie die Variable <code>id</code> und <code>condition</code> zu einem Faktor (siehe <a href="../uebungen/uebung-05.html#aufgabe-5.2-einfaktorielle-varianzanalyse-ohne-messwiederholung">Übung 5</a>). Schauen Sie sich den Datensatz kurz mit <code>glimpse()</code> an.</p></li>
+<li><p>Berechnen Sie das Anova-Modell <code>m_anova1</code> (siehe <a href="../uebungen/uebung-05.html#aufgabe-5.2-einfaktorielle-varianzanalyse-ohne-messwiederholung">Übung 5</a>).</p></li>
 </ul>
-</div>
-</div>
-</section>
-</section>
-<section id="code-schreiben-ausführen-und-speichern" class="level2" data-number="2.4">
-<h2 data-number="2.4" class="anchored" data-anchor-id="code-schreiben-ausführen-und-speichern"><span class="header-section-number">2.4</span> Code schreiben, ausführen und speichern</h2>
-<p>In <em>RStudio</em> können Sie Code auf verschiedene Arten schreiben, ausführen und speichern.</p>
-<p><strong>1. Code in der Konsole</strong></p>
-<p>Dies ist die einfachste Art Code zu schreiben und auszuführen. Sie können die Konsole (linker unterer Quadrant) direkt nutzen. Schreiben Sie in die Konsole Code und drücken Sie <kbd aria-hidden="true">Enter</kbd><span class="visually-hidden">Enter</span>, um diesen auszuführen. Code in der Konsole kann nicht gespeichert werden, er geht z.B. beim Schliessen von <em>RStudio</em> verloren. Deshalb eignet sich die Konsole vor allem für schnelles und einmaliges Schreiben von Code. Beispiele dafür sind das Herunterladen von <em>Packages</em>, Ausprobieren von Code und kurzen Berechnungen, welche nicht gespeichert werden müssen.</p>
-<p><strong>2. Code in RSkripts</strong></p>
-<p>Wenn ein <em>RProjekt</em> ein Ordner wäre, wären <em>RSkripts</em> die Blätter. Ein neues <em>RSkript</em> kann unter <code>File</code> &gt; <code>New File</code> &gt; <code>R Script</code> erstellt werden. <em>RSkripts</em> sind simpel: Alles was geschrieben wird, kann als Code ausgeführt werden. Mit einer Ausnahmen: Wenn ein <code>#</code> am Anfang der Zeile steht, gilt die Zeile als auskommentiert und wird nicht ausgeführt.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Das hier ist auskommentierter Text. Er kann nicht als Code ausgeführt werden.</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="dv">1</span><span class="sc">+</span><span class="dv">1</span> <span class="co"># vor dem Hash steht Code, Text hinter dem Hash wird nicht ausgeführt.</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># afex laden</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(afex)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'afex' was built under R version 4.4.3</code></pre>
 </div>
-<p>Um den Code auszuführen, gibt es zwei Möglichkeiten:</p>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfaktorielle Anova </span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>m_anova1 <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(testscore <span class="sc">~</span> condition <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id), </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> d_music) </span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultate ausgeben</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_anova1) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Anova Table (Type 3 tests)
+
+Response: testscore
+          num Df den Df    MSE      F     ges    Pr(&gt;F)    
+condition      3     76 18.343 36.406 0.58967 1.083e-14 ***
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>m_anova1<span class="sc">$</span>Anova</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Anova Table (Type III tests)
+
+Response: dv
+             Sum Sq Df  F value    Pr(&gt;F)    
+(Intercept) 19406.5  1 1057.951 &lt; 2.2e-16 ***
+condition    2003.4  3   36.406 1.083e-14 ***
+Residuals    1394.1 76                       
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
 <ul>
-<li>Code anwählen und <kbd aria-hidden="true">Ctrl</kbd><span class="visually-hidden">Ctrl</span> + <kbd aria-hidden="true">Enter</kbd><span class="visually-hidden">Enter</span> eingeben</li>
-<li>Code anwählen und oben das Symbol <code>Run</code> drücken</li>
+<li>Erstellen Sie mit der Funktion <code>emmeans()</code> aus dem Package {emmeans} ein Objekt, z.B. <code>m_anova1_results</code>. Darin werden die “Estimated Marginal Means” gespeichert.</li>
 </ul>
-<p><strong>3. Code in RNotebooks</strong>:</p>
-<p>Ein <em>RNotebooks</em>, <em>RMarkdown-</em> oder <em>Quarto-Files</em> ist praktisch, wenn man Text und Code kombinieren möchte, aber man Text ohne das Auskommentieren (mit dem <code>#</code>) schreiben möchte. Dies ist beispielsweise der Fall, wenn man Details zu einer Analyse zu den Berechnungen hinzu schreiben möchte. Ein <em>RNotebook</em> kann zudem “gerendert” werden, dass heisst, es kann damit ein <code>.html</code>- oder ein <code>.pdf</code>-File erstellt werden. Das ist besonders praktisch, wenn man seine Analyse mit jemanden teilen möchte, der/die kein <em>R</em> benutzt (z.B. bei einer Publikation kann so der Code mit dem Artikel eingereicht werden).</p>
-<p>In einem <em>RNotebook</em> ist Text grundsätzlich normaler Text. Nur Text in einem Code-Feld (Chunk) wird als Code erkannt. Um den Code auszuführen, gibt es drei Möglichkeiten:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Package emmeans laden</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultate (estimated marginal means) speichern</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>m_anova1_result <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(<span class="at">object =</span> ____, <span class="at">specs =</span> <span class="sc">~</span> ____) <span class="co"># object = anova modell, ~ uv</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>m_anova1_result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
 <ul>
-<li>Code anwählen und <kbd aria-hidden="true">Ctrl</kbd><span class="visually-hidden">Ctrl</span> + <kbd aria-hidden="true">Enter</kbd><span class="visually-hidden">Enter</span> eingeben</li>
-<li>oben rechts beim Codechunk <code>Run</code> drücken</li>
-<li>oben rechts beim <em>RNotebook</em> <code>Run</code> drücken</li>
+<li>Lassen Sie sich mit der Funktion <code>pairs(x = model, adjust = "none")</code> zuerst alle Paarvergleiche ausgeben, ohne dass eine Korrektur vorgenommen wird. Zu Übungszwecken können Sie so die korrigierten Resultate mit den unkorrigierten vergleichen.</li>
 </ul>
-</section>
-<section id="rnotebooks" class="level2 page-columns page-full" data-number="2.5">
-<h2 data-number="2.5" class="anchored" data-anchor-id="rnotebooks"><span class="header-section-number">2.5</span> <em>RNotebooks</em></h2>
-<section id="erstellen-eines-neuen-rnotebooks" class="level3" data-number="2.5.1">
-<h3 data-number="2.5.1" class="anchored" data-anchor-id="erstellen-eines-neuen-rnotebooks"><span class="header-section-number">2.5.1</span> Erstellen eines neuen <em>RNotebooks</em></h3>
-<p>Unter <code>File</code> &gt; <code>New File</code> &gt; <code>R Notebook</code> kann ein neues <em>RNotebook</em> erstellt werden.</p>
-<p><img src="../imgs/rnotebook_1.png" class="img-fluid"></p>
-<p><img src="../imgs/rnotebook_2.png" class="img-fluid"></p>
-</section>
-<section id="header" class="level3" data-number="2.5.2">
-<h3 data-number="2.5.2" class="anchored" data-anchor-id="header"><span class="header-section-number">2.5.2</span> Header</h3>
-<p>Der Header beschreibt den Teil zwischen den <code>---</code> ganz oben im <em>RNotebook</em>. Dort kann der Titel des <em>RNotebooks</em> geändert werden. Zudem wird dort definiert, zu was das <em>RNotebook</em> gerendert wird (z.B. PDF, html, etc.)</p>
-</section>
-<section id="codechunks" class="level3" data-number="2.5.3">
-<h3 data-number="2.5.3" class="anchored" data-anchor-id="codechunks"><span class="header-section-number">2.5.3</span> Codechunks</h3>
-<p>Code wird in den Code-Chunks eingegeben und ausgeführt. Ein neuer Code-Chunk wird eingefügt mit der Tastenkombination <kbd aria-hidden="true">Ctrl</kbd><span class="visually-hidden">Ctrl</span> + <kbd aria-hidden="true">Alt</kbd><span class="visually-hidden">Alt</span> +<kbd aria-hidden="true">I</kbd><span class="visually-hidden">I</span> / <kbd aria-hidden="true">Option</kbd><span class="visually-hidden">Option</span> +<kbd aria-hidden="true">Command</kbd><span class="visually-hidden">Command</span> + <kbd aria-hidden="true">I</kbd><span class="visually-hidden">I</span> oder unter <code>Code</code> &gt; <code>Insert Chunk</code>.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-<p>Um den Code auszuführen, gibt es drei Möglichkeiten:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Post-hoc-Test ohne Adjustierung</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="at">x =</span> m_anova1_result, <span class="at">adjust =</span> <span class="st">"none"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>b.</strong> Überprüfen Sie mit dem Tukey-Test einen vollständigen Paarvergleich aller Bedingungen.</p>
 <ul>
-<li>Code anwählen und <kbd aria-hidden="true">Ctrl</kbd><span class="visually-hidden">Ctrl</span> + <kbd aria-hidden="true">Enter</kbd><span class="visually-hidden">Enter</span> eingeben</li>
-<li>oben rechts beim Codechunk <code>Run</code> drücken</li>
-<li>oben rechts beim <em>RNotebook</em> <code>Run</code> drücken</li>
+<li><p>Welche Voraussetzungen erfordert der Tukey-Test?</p></li>
+<li><p>Welchen Vorteil hat der Tukey-Test gegenüber der Bonferroni-Korrektur?</p></li>
+<li><p>Welche Prüfgrösse gibt der Tukey-Test in <em>R</em> aus?</p></li>
+<li><p>Führen Sie den Post-hoc-Vergleich für alle möglichen Mittelwertspaare mit <code>adjust = "tukey"</code> durch. Wie lautet Ihre Testentscheidung?</p></li>
 </ul>
-<p>Code kann auch auskommentiert werden mit <code>#</code></p>
+<p><strong>c.</strong> Als eine weitere Möglichkeit wollen Sie a-priori (also vorher) festgelegte Hypothesen prüfen. Prüfen Sie mit der Bonferroni-Holm-Methode, welche Bedingungsmittelwerte sich signifikant unterscheiden.</p>
+<ul>
+<li><p>Wie funktioniert die Bonferroni-Holm-Methode?</p></li>
+<li><p>Welchen Vorteil hat sie gegenüber der Bonferroni-Methode?</p></li>
+<li><p>Führen Sie den Post-hoc-Vergleich mit <code>adjust = "holm"</code> durch. Wie lautet Ihre Testentscheidung? Vergleichen Sie die <span class="math inline">\(p\)</span>-Werte mit den unkorrigierten Werten.</p></li>
+<li><p>Falls ein unbalanciertes Design vorliegt, kann die Bonferroni-Holm-Methode nicht verwendet werden. Überprüfen Sie die Paarvergleiche daher zu Übungszwecken auch mit dem Scheffé-Test mit <code>adjust = "scheffe"</code>. Was fällt Ihnen auf?</p></li>
+</ul>
 </section>
-<section id="textfeld" class="level3 page-columns page-full" data-number="2.5.4">
-<h3 data-number="2.5.4" class="anchored" data-anchor-id="textfeld"><span class="header-section-number">2.5.4</span> Textfeld</h3>
-<p>Alles was nicht im Header oder in einem Codechunk steht, wird als Text erkannt und nicht als Code ausgeführt. Text kann in R Markdown Files nicht nur geschrieben, sondern auch relativ simpel formatiert werden mit Kapiteln, <strong>fett</strong>/<em>kursiv</em> Schrift, etc. strukturiert werden.</p>
-<aside>
-Cheatsheet für RMarkdown zum <a href="https://raw.githubusercontent.com/rstudio/cheatsheets/main/rmarkdown-2.0.pdf">herunterladen</a>
-</aside>
-<p>Weiter können Links, Bilder, Dataoutputs, etc. eingefügt werden. Dies macht dieses Format sehr praktisch für das Erstellen von reproduzierbaren Datenanalysen-Reports.</p>
-<aside>
-Für Interessierte: diese ganze Website ist mit Quarto-Files erstellt, die nach demselben Prinzip wie <em>RNotebooks</em> funktionieren. Quarto-Files können ebenfalls in <em>RStudio</em> erstellt und bearbeitet werden.
-</aside>
-<div class="callout callout-style-default callout-caution callout-titled" title="Erstellen eines RNotebooks">
+<section id="aufgabe-6.3-kontrastanalysen" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-6.3-kontrastanalysen">Aufgabe 6.3: Kontrastanalysen</h2>
+<p>Schauen Sie mit der Funktion <code>levels()</code> im Datensatz nach, in welcher Reihenfolge die Stufen des Faktors <code>condition</code> geordnet sind:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(d_music<span class="sc">$</span>condition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Dies ist wichtig, um nun die Kontrasthypothesen richtig zu spezifizieren.</p>
+<p><strong>a.</strong> Für Kontrastanalysen muss zuerst spezifiziert werden, welcher Kontrast/welche Kontraste von Interesse sind. Definieren Sie die Kontraste für folgende Alternativhypothesen und benennen Sie den Kontrast. Wichtig: Ein Kontrast in dieser Aufgabe besteht aus einer Reihe von 4 Werten, die in der Summe 0 ergeben. Beachten Sie die obige Reihenfolge der Faktorstufen.</p>
+<ul>
+<li><p>“Die kognitive Leistung unter Opernmusik ist höher als die durchschnittliche kognitive Leistung in den drei anderen Bedingungen.”</p></li>
+<li><p>“Die kognitive Leistung unter Schlagermusik ist besser als unter Rockmusik.”</p></li>
+<li><p>“Die kognitive Leistung unter Schlagermusik ist schlechter als unter Rockmusik.”</p></li>
+</ul>
+<p><strong>b.</strong> Sie wollen nun die Hypothese überprüfen, dass die Konzentrationsleistung von Personen unter dem Einfluss klassischer Instrumentalmusik (Bedingung 1) <strong>höher</strong> ist als unter dem Einfluss von Opernmusik (Bedingung 2), von Rockmusik (Bedingung 3) oder von Schlagermusik (Bedingung 4).</p>
+<p>Überprüfen Sie mit Hilfe eines Kontrasts zuerst die (ungerichtete) Hypothese, dass sich die kognitive Leistung in der Instrumentalbedingung vom Durchschnitt der kognitiven Leistung in den drei anderen Musikbedingungen unterscheidet. Da wir jedoch die gerichtete Hypothese testen wollen, müssen wir im Anschluss noch den <span class="math inline">\(p\)</span>-Wert halbieren.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kontrastanalyse</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="do">## H: Instrumental unterscheidet sich von anderen Bedingungen</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>m_anova1_contrast1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"____ vs. ____"</span> <span class="ot">=</span> <span class="fu">c</span>(__, __, __, __)) <span class="co"># Kontrast definieren (Summe 0!)</span></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="fu">contrast</span>(<span class="at">object =</span> _____, <span class="at">method =</span> m_anova1_contrast1) <span class="co"># Anovamodell (emmeans)</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>c.</strong> Überprüfen Sie nun eine weitere Hypothese, die besagt, dass sich moderne Pop- und Rocksongs von anderen Musikarten wie Instrumentalmusik und Oper in ihrem Effekt auf die kognitive Leistung unterscheiden (d.h. Instrumental &amp; Oper versus Schlager &amp; Rock).</p>
+<p><strong>d.</strong> Was passiert, wenn man mehrere Kontraste mit den gleichen Daten berechnet?</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Zusatz">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Zusatz
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Folgendermassen können die sechs Paarvergleiche auch als einzelne Kontraste definiert und getestet werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kontraste definieren</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>contrast_list <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"instrumental vs. oper"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>),</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"instrumental vs. rock"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"instrumental vs. schlager"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>),</span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"oper vs. rock"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>),</span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"oper vs. schlager"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">1</span>, <span class="dv">0</span>, <span class="sc">-</span><span class="dv">1</span>),</span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a>                           <span class="st">"rock vs. schlager"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>)) </span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Emmeans-Objekt mit definierten Kontrasten</span></span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>m_anova1_contrastlist <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(m_anova1, <span class="sc">~</span> condition, <span class="at">contr =</span> contrast_list)</span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Ergebnisse mit Korrekturmethoden ausgeben</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_anova1_contrastlist<span class="sc">$</span>contrasts, <span class="at">adjust =</span> <span class="st">"holm"</span>)        </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> contrast                  estimate   SE df t.ratio p.value
+ instrumental vs. oper         9.05 1.35 76   6.682  &lt;.0001
+ instrumental vs. rock         7.70 1.35 76   5.685  &lt;.0001
+ instrumental vs. schlager    13.95 1.35 76  10.300  &lt;.0001
+ oper vs. rock                -1.35 1.35 76  -0.997  0.3220
+ oper vs. schlager             4.90 1.35 76   3.618  0.0011
+ rock vs. schlager             6.25 1.35 76   4.615  &lt;.0001
+
+P value adjustment: holm method for 6 tests </code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="zusatzaufgabe" class="level2">
+<h2 class="anchored" data-anchor-id="zusatzaufgabe">Zusatzaufgabe</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Zusatzaufgaben">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Erstellen eines RNotebooks
+Zusatzaufgaben
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Erstellen Sie ein neues <em>RNotebook</em> mit folgenden Schritten:</p>
-<ol type="1">
-<li><p>Öffnen Sie Ihr <em>RProjekt</em> in <em>RStudio</em> (falls nicht noch offen).</p></li>
-<li><p>Erstellen Sie ein neues <em>RNotebook</em>.</p>
-<ul>
-<li><p>Klicken Sie dafür auf <code>File</code> &gt; <code>New File</code> &gt; <code>R Notebook</code>.</p></li>
-<li><p>Benennen Sie das <em>RNotebook</em> <code>intro_datawrangling</code> und speichern Sie es im <em>RProjekt</em>-Ordner ab.</p></li>
-</ul></li>
-<li><p>Passen Sie den Titel an.</p></li>
-<li><p>Schreiben Sie Text in das Textfeld.</p></li>
-<li><p>Schreiben Sie eine Zeile Code in den Code-Chunk.</p></li>
-<li><p>Drücken Sie <strong>Knit</strong>, um das Dokument zu rendern.</p></li>
-</ol>
+<p><strong>Zusatzaufgaben müssen nicht gelöst werden.</strong></p>
 </div>
 </div>
-</section>
-</section>
-<section id="übersicht-dateiformate" class="level2" data-number="2.6">
-<h2 data-number="2.6" class="anchored" data-anchor-id="übersicht-dateiformate"><span class="header-section-number">2.6</span> Übersicht Dateiformate</h2>
-<p>In einem <em>RProjekt</em>-Ordner finden sich nach der Arbeit damit viele Dateien. Die wichtigsten sind:</p>
-<ul>
-<li><em>RProjects</em>: <code>.Rproj</code></li>
-<li><em>RSkripts</em>: <code>.R</code></li>
-<li><em>RNotebooks</em>: <code>.Rmd</code></li>
-<li>gerenderte <em>RNotebooks</em>: <code>.html</code>, <code>.pdf</code>, etc.</li>
-</ul>
+<p><strong>a.</strong> Verfassen Sie für einen wissenschaftlichen Artikel einen Text zu den Resultaten der Aufgabe 6.3.b.</p>
+<p><strong>b.</strong> Erstellen Sie eine Grafik des Datensatzes <code>d_music</code>, der die durchschnittliche Leistung in allen vier Bedingungen miteinander vergleicht, mit <code>condition</code> und <code>testscore</code> auf den beiden Achsen. Hierfür eignet sich beispielsweise ein Boxplot oder ein Violinplot.</p>
 
 
 </section>
 <section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
 <hr>
 <ol>
-<li id="fn1"><p>Der Code-Chunk kann auch selber erstellt werden, indem die Backticks etc. eingegeben werden, aber das ist eher aufwändig.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn1"><p>Für das Entzippen mit <em>Windows</em> machen Sie einen Rechtsklick auf den Ordner mit dem Reissverschluss und wählen Sie <code>Entpacken nach</code> und geben Sie den Ordner an, in dem Sie alle Ihre <em>RProject-Ordner</em> speichern. Für das Entzippen mit <em>Mac</em> speichern Sie den heruntergeladenen Ordner in den Ordner, in dem Sie alle Ihre <em>RProject-Ordner</em> speichern und Doppelklicken Sie danach auf den Ordner. Nur entzippte Ordner können einwandfrei verwendet werden.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 
@@ -1467,13 +1491,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../r/installation.html" class="pagination-link" aria-label="Installation">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation</span></span>
+      <a href="../uebungen/uebung-05.html" class="pagination-link" aria-label="Übung 5">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Übung 5</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../r/programmieren.html" class="pagination-link" aria-label="Basics Programmieren">
-        <span class="nav-page-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Basics Programmieren</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../appendix/faq.html" class="pagination-link" aria-label="FAQ">
+        <span class="nav-page-text">FAQ</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

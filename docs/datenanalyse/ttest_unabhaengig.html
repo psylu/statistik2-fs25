@@ -319,6 +319,12 @@ window.Quarto = {
  <span class="menu-text">Übung 5</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 6</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -524,7 +530,7 @@ Es ist auch möglich Daten im <em>Wide</em>-Format zu verwenden, da sich das <em
 <li><strong>Varianzhomogenität</strong></li>
 </ul>
 <p>Der <em>t</em>-Test für unabhängige Stichproben setzt Varianzhomogenität voraus. Dies kann mit dem <strong>Levene-Test</strong> (in <em>R</em> mit der Funktion <code>leveneTest()</code>) überprüft werden.</p>
-<p>Der Levene-Test geht von der Nullhypothese aus, dass sich die beiden Varianzen nicht unterscheiden. Ein nicht signifikantes Ergebnis bedeutet daher, dass sich die Varianzen nicht unterscheiden und somit Varianzhomogenität (sogenannte Heteroskedastizität) besteht. Wenn der Test signifikant ist, wird Varianzheterogenität angenommen. Konventionell wird hierfür ein <span class="math inline">\(\alpha = 0.05\)</span> angenommen.</p>
+<p>Der Levene-Test geht von der Nullhypothese aus, dass sich die beiden Varianzen nicht unterscheiden. Ein nicht signifikantes Ergebnis bedeutet daher, dass sich die Varianzen nicht unterscheiden und somit Varianzhomogenität (sogenannte Homoskedastizität) besteht. Wenn der Test signifikant ist, wird Varianzheterogenität angenommen. Konventionell wird hierfür ein <span class="math inline">\(\alpha = 0.05\)</span> angenommen.</p>
 <aside>
 Teilweise wird ein konservativerer Cut-off von <span class="math inline">\(\alpha = 0.1\)</span> verwendet.
 </aside>

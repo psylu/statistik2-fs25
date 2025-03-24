@@ -319,6 +319,12 @@ window.Quarto = {
  <span class="menu-text">Übung 5</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 6</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -373,7 +379,9 @@ window.Quarto = {
   <li><a href="#planung" id="toc-planung" class="nav-link" data-scroll-target="#planung"><span class="header-section-number">11.3.1</span> Planung</a></li>
   <li><a href="#vorverarbeitung" id="toc-vorverarbeitung" class="nav-link" data-scroll-target="#vorverarbeitung"><span class="header-section-number">11.3.2</span> Vorverarbeitung</a></li>
   <li><a href="#analyse" id="toc-analyse" class="nav-link" data-scroll-target="#analyse"><span class="header-section-number">11.3.3</span> Analyse</a></li>
-  <li><a href="#schlussfolgerungen" id="toc-schlussfolgerungen" class="nav-link" data-scroll-target="#schlussfolgerungen"><span class="header-section-number">11.3.4</span> Schlussfolgerungen</a></li>
+  <li><a href="#paarvergleiche-und-post-hoc-test" id="toc-paarvergleiche-und-post-hoc-test" class="nav-link" data-scroll-target="#paarvergleiche-und-post-hoc-test"><span class="header-section-number">11.3.4</span> Paarvergleiche und Post-hoc-Test</a></li>
+  <li><a href="#kontrastanalysen" id="toc-kontrastanalysen" class="nav-link" data-scroll-target="#kontrastanalysen"><span class="header-section-number">11.3.5</span> Kontrastanalysen</a></li>
+  <li><a href="#schlussfolgerungen" id="toc-schlussfolgerungen" class="nav-link" data-scroll-target="#schlussfolgerungen"><span class="header-section-number">11.3.6</span> Schlussfolgerungen</a></li>
   </ul></li>
   <li><a href="#anwendungsbeispiel-in-r" id="toc-anwendungsbeispiel-in-r" class="nav-link" data-scroll-target="#anwendungsbeispiel-in-r"><span class="header-section-number">11.4</span> Anwendungsbeispiel in R</a>
   <ul class="collapse">
@@ -423,6 +431,10 @@ Eine einfaktorielle Varianzanalyse kann mit einem Faktor von zwei Stufen berechn
 <li><p><em>Unterscheiden sich Studierende in ihrer Konzentrationsfähigkeit Y, wenn sie 4, 6, 8 oder 10 Stunden geschlafen haben?</em></p></li>
 <li><p><em>Hat die verwendete Lerntechnik (keine Technik, Wiederholen, Mnemotechnik) einen Einfluss auf die Anzahl richtig gelöster Prüfungsaufgaben?</em></p></li>
 </ul>
+<p><strong>Beispiel einer mehrfaktorielle ANOVA</strong>:</p>
+<ul>
+<li><a href="https://onlinelibrary.wiley.com/doi/epdf/10.1002/jclp.23590">Gonsalvez, C. J., Riebel, T., Nolan, L. J., Pohlman, S., &amp; Bartik, W. (2023). Supervisor versus self-assessment of trainee competence: Differences across developmental stages and competency domains. Journal of Clinical Psychology, 79, 2959–2973. https://doi.org/10.1002/jclp.23590</a></li>
+</ul>
 </section>
 <section id="voraussetzungen" class="level2 page-columns page-full" data-number="11.2">
 <h2 data-number="11.2" class="anchored" data-anchor-id="voraussetzungen"><span class="header-section-number">11.2</span> Voraussetzungen</h2>
@@ -464,7 +476,7 @@ Eine einfaktorielle Varianzanalyse kann mit einem Faktor von zwei Stufen berechn
 <tr class="odd">
 <td>Varianzhomogenität / Homoskedastizität</td>
 <td>Die Varianzen zwischen den Teilpopulationen sind <em>homogen</em> (Homoskedastizität). Vor allem wenn die Stichproben unterschiedlich gross sind, bietet sich eine empirische Überprüfung der Varianzhomogenitätsannahme an.</td>
-<td><em>Überprüfung der Varianzhomogenitätsannahme</em>: <br> Der Vergleich Stichprobenvarianzen mittels <em>F</em>-Test oder Levene-Test (robuste Variante zum <em>F</em>-Test). <br> Bei <em>Verletzung der Varianzhomogenitätsannahme (Heteroskedastizität)</em>, kann als Alternative auf robuste Verfahren zurückgegriffen werden oder der Welch-Test/Brown-Forsythe-Test verwendet werden, welche nicht die gepoolten Innerhalb-Varianzen, sondern die jeweiligen Schätzungen der Stichprobenvarianzen verwendet.</td>
+<td><em>Überprüfung der Varianzhomogenitätsannahme</em>: <br> Der Vergleich Stichprobenvarianzen mittels <em>F</em>-Test oder Levene-Test (robuste Variante zum <em>F</em>-Test). <br> Bei <em>Verletzung der Varianzhomogenitätsannahme (Heteroskedastizität)</em>, kann als Alternative auf robuste Verfahren oder den Welch-Test bzw. Brown-Forsythe-Test zurückgegriffen werden, die zur Berechnung der Teststatistik die unterschiedlichen Populationsvarianzen einbeziehen.</td>
 </tr>
 </tbody>
 </table>
@@ -487,40 +499,22 @@ Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transfo
 <h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen"><strong>Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
 <p><strong>Notation</strong></p>
 <p><span class="math inline">\(n\)</span>: Stichprobengrösse insgesamt</p>
+<p><span class="math inline">\(J\)</span>: Anzahl Faktorstufen</p>
 <p><span class="math inline">\(m\)</span>: Beobachtungseinheit (Person)</p>
 <p><span class="math inline">\(j\)</span>: Bedingung (Faktorstufe, Merkmalsausprägung der nominalskalierten unabhängigen Variable)</p>
-<p><span class="math inline">\(x_{mj}\)</span>: <em>m</em>-te Person (oder Messung) in der <em>j</em>-ten Faktorstufe</p>
-<p><span class="math inline">\(J\)</span>: Anzahl Faktorstufen</p>
+<p><span class="math inline">\(x_{mj}\)</span>: <span class="math inline">\(m\)</span>-te Person (oder Messung) in der <span class="math inline">\(j\)</span>-ten Faktorstufe</p>
 <p><strong>Ungerichtete Hypothesen:</strong></p>
 <p>Mit der einfaktoriellen Varianzanalyse wird die Nullhypothese, dass die Mittelwerte in der Population für jede Gruppen gleich sind, überprüft.</p>
 <ul>
 <li><p><span class="math inline">\(H_0\)</span>: Die Populationsmittelwerte der Gruppen unterscheiden sich nicht (d.h. haben eine Differenz gleich 0): <span class="math inline">\(\mu_1= \mu_2= \mu_3\)</span> bzw. <span class="math inline">\(\mu_i= \mu_j\)</span> für alle Paare (<span class="math inline">\(i\)</span>, <span class="math inline">\(j\)</span>), <span class="math inline">\(i \neq j\)</span></p></li>
 <li><p><span class="math inline">\(H_1\)</span>: Mindestens zwei Populationsmittelwerte der Gruppen unterscheiden sich (d.h. haben eine Differenz ungleich 0): <span class="math inline">\(\mu_i \neq\mu_j\)</span> für mindestens ein Paar (<span class="math inline">\(i\)</span>,<span class="math inline">\(j\)</span>), <span class="math inline">\(i \neq j\)</span></p></li>
 </ul>
-<!-- also beispielsweise:
-
-- $\mu_1 \neq \mu_2 = \mu_3$
-- $\mu_1 = \mu_2 \neq \mu_3$
-- $\mu_1 \neq \mu_2 \neq \mu_3$
--->
 <p>Bei <span class="math inline">\(J=2\)</span> Faktorstufen ist der <em>F</em>-Test äquivalent zu einem <em>t</em>-Test für unabhängige Stichproben. Es gilt <span class="math inline">\(t^2=F\)</span>.</p>
-<p>Bei <span class="math inline">\(J&gt;2\)</span> Faktorstufen ist der <em>F</em>-Test ein Globaltest (Omnibus-Test), mit dem lediglich ermittelt werden kann, ob die Unterschiede zwischen den Bedingungsmittelwerten signifikant von 0 abweichen, daher werden auch die Hypothesen entsprechend formuliert. Häufig ist man jedoch daran interessiert, ob sich bestimmte Mittelwertspaare signifikant unterscheiden. Eine Möglichkeit dazu bieten Paarvergleiche, sogenannte Post-hoc-Tests. Bei drei Bedingungen gibt es drei (nicht-redundante) Paarvergleiche: <span class="math inline">\(\mu_1-\mu_2\)</span>, <span class="math inline">\(\mu_1-\mu_3\)</span> und <span class="math inline">\(\mu_2-\mu_3\)</span>.</p>
+<p>Bei <span class="math inline">\(J&gt;2\)</span> Faktorstufen ist der <em>F</em>-Test ein Globaltest (Omnibus-Test), mit dem lediglich ermittelt werden kann, ob die Unterschiede zwischen den Bedingungsmittelwerten signifikant von 0 abweichen, daher werden auch die Hypothesen entsprechend formuliert. Häufig ist man jedoch daran interessiert, ob sich bestimmte Mittelwertspaare signifikant unterscheiden. Eine Möglichkeit dazu bieten Post-hoc-Tests oder Kontrastanalysen. Bei <span class="math inline">\(J\)</span> Bedingungen gibt es <span class="math inline">\(s = J \cdot (J-1)/2\)</span> (nicht-redundante) Paarvergleiche.</p>
 <p>Da der <em>F</em>-Wert über die Quadratsummen berechnet wird, können <em>F</em>-Werte nur zwischen 0 und <span class="math inline">\(+ \infty\)</span> liegen. Das bedeutet, dass nur die rechte Seite der Verteilung zur Bestimmung der kritischen Werte verwendet wird. Die Alternativhypothese ist immer ungerichtet und wird einseitig getestet.</p>
-<!-- ### Post-hoc Tests (ANOVA) 
-
-Auf welche Strategie sollte man zurückgreifen?
-
-Der Einsatz des Tukey- und des Dunnett-Tests ist klar, da vorher festliegt, dass man entweder alle möglichen Mittel- wertspaare vergleichen will (Tukey-Test) oder gezielt J – 1 Paarvergleiche (Dunnett-Test) vornehmen will.
-
-Hat man a priori keine gezielten Hypothesen, sollte man die Mittelwertsvergleiche aufgrund der höheren Power anhand des Tukey-Tests vornehmen.
-
-Kontrastanalyse und Paarvergleiche
-
-__Gerichtete Hypothesen:__
-
--->
+<p>Mit sogenannten Post-hoc Paarvergleichen können jedoch auch gerichtete Hypothesen getestet werden, da diese mit einer <em>t</em>-Verteilung geprüft werden.</p>
 <p><strong>Signifikanzniveau:</strong></p>
-<p>Wird ein Signifikanzniveau von <span class="math inline">\(\alpha = 0.05\)</span> festgelegt, bedeutet dies, dass bei der Verwerfung der Nullhypothese eine 5% Wahrscheinlichkeit besteht, dass eigentlich kein Unterschied besteht und irrtümlicherweise einer angenommen wurde.</p>
+<p>Wird ein Signifikanzniveau von <span class="math inline">\(\alpha = 0.05\)</span> festgelegt, bedeutet dies, dass bei der Verwerfung der Nullhypothese eine 5% Wahrscheinlichkeit besteht, dass eigentlich kein Unterschied zwischen den Mittelwerten besteht und irrtümlicherweise mindestens einer angenommen wurde.</p>
 </section>
 <section id="a-priori-poweranalyse-durchführen" class="level4">
 <h4 class="anchored" data-anchor-id="a-priori-poweranalyse-durchführen"><strong>A-priori Poweranalyse durchführen</strong></h4>
@@ -539,8 +533,8 @@ __Gerichtete Hypothesen:__
 <h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen"><strong>Voraussetzungen überprüfen</strong></h4>
 <p><strong>Varianzhomogenität</strong></p>
 <p>Der <em>F</em>-Test für unabhängige Stichproben setzt Varianzhomogenität voraus. Dies kann in <em>R</em> mit dem Levene-Test <code>car::leveneTest</code> überprüft werden.</p>
-<p>Der Levene-Test geht von der Nullhypothese aus, dass sich die beiden Varianzen nicht unterscheiden. Ein nicht signifikantes Ergebnis bedeutet daher, dass sich die Varianzen nicht unterscheiden und somit Varianzhomogenität (sogenannte Heteroskedastizität) besteht. Wenn der Test signifikant ist, wird Varianzheterogenität angenommen.</p>
-<p>Falls die Varianzen heterogen (unterschiedlich) sind , müssen die Freiheitsgrade des <em>F</em>-Wertes entsprechend angepasst werden. In diesem Fall kann ein Welch-Test/Brown-Forsythe-Test verwendet werden, der zur Berechnung der Teststatistik die beiden unterschiedlichen Populationsvarianzen anstatt die gepoolte Innerhalbvarianz nimmt.</p>
+<p>Der Levene-Test geht von der Nullhypothese aus, dass sich die Varianzen zwischen den Bedingungen nicht unterscheiden. Ein nicht signifikantes Ergebnis bedeutet daher, dass sich die Varianzen nicht unterscheiden und somit Varianzhomogenität (sogenannte Homoskedastizität) besteht. Wenn der Test signifikant ist, wird Varianzheterogenität angenommen.</p>
+<p>Falls die Varianzen heterogen (unterschiedlich) sind , müssen die Freiheitsgrade des <em>F</em>-Wertes entsprechend angepasst werden. Vor allem wenn ungleichen Stichprobengrössen vorliegen, sollte auf den Welch-Test oder Brown-Forsythe-Test zurückgegriffen werden, die zur Berechnung der Teststatistik die unterschiedlichen Populationsvarianzen einbeziehen.</p>
 </section>
 </section>
 <section id="analyse" class="level3 page-columns page-full" data-number="11.3.3">
@@ -556,18 +550,19 @@ Genauere Informationen zu Lage- und Streumassen sind im <a href="../datenanalyse
 </section>
 <section id="teststatistik-berechnen" class="level4">
 <h4 class="anchored" data-anchor-id="teststatistik-berechnen"><strong>Teststatistik berechnen</strong></h4>
-<p>Um zu überprüfen, ob mindestens zwei Mittelwerte signifikant unterschiedlich sind, muss die Teststatistik berechnet werden.</p>
+<p>Um zu überprüfen, ob mindestens eine Mittelwertsdifferenz signifikant unterschiedlich von 0 ist, muss die Teststatistik berechnet werden.</p>
 <p><strong>Überprüfung der Nullhypothese mit dem <em>F</em>-Test</strong></p>
 <p>Um die Nullhypothese zu prüfen, verwenden wir den <em>F</em>-Test als Prüfgrösse. Lehnt man die Nullhypothese einer Varianzanalyse mit <span class="math inline">\(J&gt;2\)</span> Bedinungen ab, weiss man zwar, dass es Unterschiede gibt, man weiss jedoch noch nicht, welcher Stichprobenmittelwert von welchem anderen bedeutsam abweicht.</p>
 <p>Die Prüfgrösse berechnet sich als Verhältnis der zwei mittleren Quadratsummen:</p>
 <p><span class="math inline">\(F=\frac{MQS_{zw}}{MQS_{inn}}\)</span></p>
 <ul>
-<li><p>Die <span class="math inline">\(H_0\)</span> wird beibehalten, wenn die empirische Prüfgrösse <em>F</em> <strong>kleiner</strong> als der kritische Wert ist. Die Gruppen unterscheiden sich nicht signifikant bzw. es konnte kein Einfluss der Gruppenvariablen auf die AV gefunden werden.</p></li>
-<li><p>Die <span class="math inline">\(H_0\)</span> wird abgelehnt, wenn die empirische Prüfgrösse <em>F</em> <strong>grösser</strong> als der kritische Wert ist. Die Gruppen unterscheiden sich signifikant bzw. es konnte ein Einfluss der Gruppenvariablen auf die AV gefunden werden.</p></li>
+<li><p>Die <span class="math inline">\(H_0\)</span> wird beibehalten, wenn die empirische Prüfgrösse <em>F</em> <strong>kleiner</strong> als der kritische Wert ist. Die Gruppen unterscheiden sich nicht signifikant bzw. es konnte kein Einfluss der Gruppenvariable auf die AV gefunden werden.</p></li>
+<li><p>Die <span class="math inline">\(H_0\)</span> wird abgelehnt, wenn die empirische Prüfgrösse <em>F</em> <strong>grösser</strong> als der kritische Wert ist. Die Gruppen unterscheiden sich signifikant bzw. es konnte ein Einfluss der Gruppenvariable auf die AV gefunden werden.</p></li>
 </ul>
 <p><strong>Quadratsummenzerlegung</strong></p>
-<p>Bei der einfaktoriellen Varianzanalyse ohne Messwiederholung wird die Variation der Messwerte in zwei Quellen zerlegt: Unterschiede zwischen den Gruppen und Unterschiede innerhalb der Gruppen.</p>
-<p><strong>Additivität der Quadratsummen</strong>: Die totale Quadratsumme wird zerlegt in eine Quadratsumme, die die Variation zwischen den Bedingungen ausdrückt, und eine Quadratsumme, die die Variation zwischen den Messwerten innerhalb der Bedingungen ausdrückt :</p>
+<p>Bei der einfaktoriellen Varianzanalyse ohne Messwiederholung wird die Variation der Messwerte in zwei Quellen zerlegt: Unterschiede zwischen den Gruppen <span class="math inline">\(QS_{zw}\)</span> und Unterschiede innerhalb der Gruppen <span class="math inline">\(QS_{inn}\)</span>.</p>
+<p><strong>Additivität der Quadratsummen</strong></p>
+<p>Die totale Quadratsumme wird zerlegt in eine Quadratsumme, die die Variation zwischen den Bedingungen ausdrückt, und eine Quadratsumme, die die Variation zwischen den Messwerten innerhalb der Bedingungen ausdrückt :</p>
 <p><span class="math inline">\(QS_{tot}=QS_{zw}+QS_{inn}\)</span></p>
 <ul>
 <li><p>Totale Quadratsumme (Prädiktionsfehler <strong>ohne</strong> Berücksichtigung der UV): <span class="math inline">\(QS_{tot}=\sum^J_{j=1} \sum^{n_j}_{m=1} (x_{mj}- \overline{x})^2\)</span></p></li>
@@ -579,10 +574,6 @@ Genauere Informationen zu Lage- und Streumassen sind im <a href="../datenanalyse
 <p><span class="math inline">\(MQS_{tot}=\frac{QS_{tot}}{n-1}\)</span></p>
 <p><span class="math inline">\(MQS_{zw}=\frac{QS_{zw}}{J-1}\)</span></p>
 <p><span class="math inline">\(MQS_{inn}=\frac{QS_{inn}}{n-J}\)</span></p>
-<!--__Ergebnisdarstellung__
-
-Die Ergebnisse einer Varianzanalyse werden häufig in einer Tabelle dargestellt.  
--->
 </section>
 <section id="effektstärke-bestimmen" class="level4">
 <h4 class="anchored" data-anchor-id="effektstärke-bestimmen"><strong>Effektstärke bestimmen</strong></h4>
@@ -597,17 +588,147 @@ Die Ergebnisse einer Varianzanalyse werden häufig in einer Tabelle dargestellt.
 </ul>
 </section>
 </section>
-<section id="schlussfolgerungen" class="level3" data-number="11.3.4">
-<h3 data-number="11.3.4" class="anchored" data-anchor-id="schlussfolgerungen"><span class="header-section-number">11.3.4</span> Schlussfolgerungen</h3>
+<section id="paarvergleiche-und-post-hoc-test" class="level3" data-number="11.3.4">
+<h3 data-number="11.3.4" class="anchored" data-anchor-id="paarvergleiche-und-post-hoc-test"><span class="header-section-number">11.3.4</span> Paarvergleiche und Post-hoc-Test</h3>
+<p><strong>Paarvergleiche</strong></p>
+<p>Bei drei Gruppen/Bedingungen sind <span class="math inline">\(s = J \cdot (J-1)/2=3\)</span> Paarvergleiche möglich.</p>
+<ul>
+<li><span class="math inline">\(\mu_1 = \mu_2\)</span></li>
+<li><span class="math inline">\(\mu_1 = \mu_3\)</span></li>
+<li><span class="math inline">\(\mu_2 = \mu_3\)</span></li>
+</ul>
+<p>Der <em>t</em>-Wert für Post-hoc Paarvergleich wird folgendermassen berechnet (analog zum <em>t</em>-Wert bei unabhängigen Stichproben, aber mit Ergänzung der geschätzten Fehlervarianz über alle Bedingungen, <span class="math inline">\(MQS_{inn}\)</span>):</p>
+<p><span class="math inline">\(t = \frac{\overline{x}_j - \overline{x}_{j'}}{\sqrt {(\frac{1}{n_j}+\frac{1}{n_{j'}}) \cdot MQS_{inn}}}\)</span></p>
+<p>Unter Gültigkeit der Nullhypothese folgt die Prüfgrösse einer <em>t</em>-Verteilung mit <span class="math inline">\(df=n–J\)</span> Freiheitsgraden.</p>
+<p><strong>Multiples Testen</strong></p>
+<p>Bei einer Verwerfung der Nullhypothese der Varianzanalyse mit <span class="math inline">\(\alpha = 0.05\)</span> beträgt die Wahrscheinlichkeit einer irrtümlichen Entscheidung (also dem Fehler 1. Art) <span class="math inline">\(5 \%\)</span>.</p>
+<p>Bei mehreren Paarvergleichen kumuliert sich hingegen dieser <span class="math inline">\(\alpha\)</span>-Fehler. Die Wahrscheinlichkeit bei mindestens einem der <span class="math inline">\(s\)</span> Tests die Nullhypothese fälschlicherweise zu verwerfen, wird wie folgt berechnet:</p>
+<p><span class="math inline">\(\alpha_{fam}=1-(1- \alpha_r)^s\)</span></p>
+<p>Bei <span class="math inline">\(s=3\)</span> und einem <span class="math inline">\(\alpha = 0.05\)</span> würde der <span class="math inline">\(\alpha\)</span>-Fehler bei <span class="math inline">\(0.1425\)</span> (statt <span class="math inline">\(0.005\)</span>) liegen, weil <span class="math inline">\(\alpha_{fam}=1-0.95^3=0.1425\)</span>.</p>
+<p><strong>Adjustierung der spezifischen Irrtumswahrscheinlichkeit</strong></p>
+<p>Es ist daher sinnvoll, im vornherein ein strengeres Signifikanzniveau für jeden einzelnen der <span class="math inline">\(s\)</span> Paarvergleiche anzusetzt. Aus der vorherigen Formel leitet sich ab, dass zur Verwerfung einer Globalhypothese mit <span class="math inline">\(s\)</span> Vergleichen auf einem vorher festgelegten <span class="math inline">\(\alpha_{fam}\)</span>-Niveau mindestens ein Einzeltest die folgende Irrtumswahrscheinlichkeit <span class="math inline">\(\alpha_r\)</span> erreichen oder unterschreiten muss. Dies kann somit (nach Šidák) zur Adjustierung der Irrtumswahrscheinlichkeit genutzt werden.</p>
+<p><span class="math inline">\(\alpha_r=1-\sqrt[s]{1-\alpha_{fam}}=1-\sqrt[3]{1-0.05}=0.01695\)</span></p>
+<p><strong>Bonferroni</strong>: Eine ähnliche, aber einfachere Korrektur, ist die Bonferroni-Adjustierung. Hier wird das <span class="math inline">\(\alpha_{fam}\)</span>-Niveau durch die Anzahl Paarvergleiche <span class="math inline">\(s\)</span> geteilt und so adjustiert. Je mehr Mittelwertsvergleiche vorgenommen werden, umso stärker geht diese Strategie der Bonferroni-Korrektur mit einem Verlust an Power einher.</p>
+<p><span class="math inline">\(\alpha_r=\frac{\alpha_{fam}}{s}=\frac{0.05}{3}=0.01667\)</span></p>
+<p><strong>Bonferroni-Holm</strong>: Eine etwas weniger strenge Adjustierung ist die “Bonferroni-Holm-Adjustierung”, die vier Schritte umfasst:</p>
+<ol type="1">
+<li><p>Festlegung von <span class="math inline">\(\alpha_{fam}\)</span></p></li>
+<li><p>Durchführung der <span class="math inline">\(s\)</span> Paarvergleiche und Ermittlung der jeweiligen <span class="math inline">\(p_r\)</span>-Werte. Ein <span class="math inline">\(p_r\)</span>-Wert ist der <span class="math inline">\(p\)</span>-Wert des <span class="math inline">\(r\)</span>-ten Paarvergleichs.</p></li>
+<li><p>Sortieren der Paarvergleiche nach den <span class="math inline">\(p_r\)</span>-Werten in aufsteigender Reihenfolge (vom »signifikantesten« zum am wenigsten signifikanten Effekt). Hier können auch die <span class="math inline">\(t\)</span>-Werte genutzt werden.</p></li>
+<li><p>Bestimmung des adjustierten spezifischen Signifikanzniveaus auf der Basis der Gleichung: <span class="math inline">\(\alpha_r = \frac {\alpha_{fam}} {s-(r-1)}\)</span></p></li>
+</ol>
+<p>Die <span class="math inline">\(s\)</span> Paarvergleiche werden also auf <strong>unterschiedlich</strong> adjustierten spezifischen Signifikanzniveaus durchgeführt. Der Mittelwertsunterschied mit dem »signifikantesten« Effekt wird auf dem strengsten Niveau <span class="math inline">\(\alpha_1 = \frac{\alpha_{fam}}{s}\)</span> durchgeführt, der nächste mit <span class="math inline">\(\alpha_2 = \frac{\alpha_{fam}}{s-1}\)</span> usw.</p>
+<p>Der letzte Paarvergleich wird dann auf dem unadjustierten Signifikanzniveau <span class="math inline">\(\alpha_s=\alpha_{fam}\)</span> getestet. Wenn bei einem Paarvergleich <span class="math inline">\(p_r\)</span>&gt;<span class="math inline">\(\alpha_r\)</span>, dann werden alle <strong>weiteren</strong> Paarvergleichs-Nullhypothesen <strong>nicht</strong> mehr abgelehnt. Die Bonferroni-Holm-Methode hat dadurch eine grössere Power als die Bonferroni-Adjustierung.</p>
+<p><strong>Prüfen einer gerichteten Hypothese</strong>: Die Hypothese einer Varianzanalyse entspricht einem zweiseitigen <em>t</em>-Test und einer ungerichteten Hypothese. Wenn man hingegen eine gerichtete Hypothese testen will, was im Vornherein festgelegt werden muss, müssen die <span class="math inline">\(p\)</span>-Werte halbiert werden.</p>
+<p><strong>Adjustierung der kritischen Werte</strong></p>
+<p>Anstatt der Irrtumswahrscheinlichkeit, können auch die kritischen Werte mit der Tukey-Adjustierung korrigiert werden.</p>
+<p>Der Tukey-Test setzt voraus, dass für alle <em>J</em> Bedingungen gleiche Stichprobengrössen vorliegen. Bei unbalancierten Stichproben wird der Tukey-Kramer-Test oder der Scheffé-Test verwendet. Nur die Tukey-Adjustierung ist eigentlich für einen vollständigen Paarvergleich aller Bedingungen wie hier geeignet, da sie mehr Power hat als Tests auf Basis der Bonferroni-Korrektur.</p>
+<p>Die anderen Adjustierungsmethoden sollten vorzugsweise für ein Subset von Bedingungsvergleichen benutzt werden. Diese müssten dann zuerst als ein Set von Kontrasten definiert werden. Wenn wir also alle Mittelwerte vergleichen wollen, wählen wir den Tukey-Test. Der Tukey-Test wird zweiseitig durchgeführt.</p>
+<p><strong>Wahl der Adjustierung</strong></p>
+<p>Auf welche Strategie sollte man zurückgreifen? Hier gibt es lediglich gewisse Empfehlungen:</p>
+<ul>
+<li><p>Wenn ein vollständiger Vergleich aller Mittelwertsunterschiede getestet werden soll bzw. wenn a priori keine gezielten Hypothesen vorliegen: Tukey-Test.</p></li>
+<li><p>Wenn gezielte Mittelwertsunterschiede (bzw. Kontraste) getestet werden sollen: Bonferroni-Holm-Adjustierung. Diese ist der Bonferroni-Adjustierung vorzuziehen.</p></li>
+<li><p>Bei einem unbalancierten Design, d.h. wenn nicht gleich grosse Gruppen vorliegen, sollte alternativ der Tueky-Kramer-Test oder der Scheffé-Test verwendet werden.</p></li>
+</ul>
+<p>Dies ist jedoch keine abschliessende Liste, da es weitere Adjustierungsmöglichkeiten gibt, die je nach Datenstruktur, Design oder weitere Kriterien sinnvoll sind. Ausserdem ist eine Adjustierung weder immer nötig noch sinnvoll, da durch die Korrektur der Fehler 2. Art erhöht wird, was mit einer geringerer Power einher geht (Tabachnick &amp; Fidell, 2007).</p>
+</section>
+<section id="kontrastanalysen" class="level3" data-number="11.3.5">
+<h3 data-number="11.3.5" class="anchored" data-anchor-id="kontrastanalysen"><span class="header-section-number">11.3.5</span> Kontrastanalysen</h3>
+<p>Die Kontrastanalyse kann als eine spezielle Form der Varianzanalyse verstanden werden. Mittels Kontrastanalyse können Kombinationen von Mittelwerten aber auch ein Einzelvergleich zweier Mittelwerte geprüft werden. Hat man eine spezifische Hypothese über die Struktur der Mittelwertsunterschiede, so können Hypothesen mithilfe spezifischer Werte für die Kontrastkoeffizienten, also die »Gewichte« der Mittelwerte, ausgedrückt werden.</p>
+<p>Das Ergebnis einer Kontrastanalyse ist von der Metrik der Kontrastkoeffizienten unabhängig. Die Summe der Kontrastkoeffizienten ergibt 0: <span class="math inline">\(\sum^J_{j=1} K_j=0\)</span></p>
+<p>Kontraste werden wie der Omnibustest der Varianzanalyse in der Regel mit einem <em>F</em>-Test geprüft. Daher wird eine ungerichtete Hypothese getestet. Um eine gerichtete Hypothese zu überprüfen, muss der <span class="math inline">\(p\)</span>-Wert halbiert werden.</p>
+<p>Eine Kontrastanalyse kann jedoch auch direkt anhand der Prüfgrösse <em>t</em> getestet werden. Dies hat den Vorteil, dass der <em>t</em>-Test eine direkte Testung einer gerichteten Hypothese erlaubt. In <em>R</em> wird der <em>t</em>-Wert und der <span class="math inline">\(p\)</span>-Wert für die ungerichtete Hypothese ausgegeben. Um eine gerichtete Hypothese zu überprüfen, muss der <span class="math inline">\(p\)</span>-Wert halbiert werden.</p>
+<table class="table-hover caption-top table">
+<caption><strong>Einfacher Kontrast: Test auf Abweichung zweier Gruppen</strong></caption>
+<thead>
+<tr class="header">
+<th>Alternativhypothese</th>
+<th>K1</th>
+<th>K2</th>
+<th>K3</th>
+<th>K4</th>
+<th><span class="math inline">\(\sum\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\mu_1 &lt; \mu_2\)</span></td>
+<td>-1</td>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+<td><strong>0</strong></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mu_1 &lt; \mu_3\)</span></td>
+<td>-1</td>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+<td><strong>0</strong></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(\mu_1 &lt; \mu_4\)</span></td>
+<td>-1</td>
+<td>0</td>
+<td>0</td>
+<td>1</td>
+<td><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+<table class="table-hover caption-top table">
+<caption><strong>Abweichungskontrast: Test auf Abweichung einer Gruppe vom Mittel aller anderen Gruppen</strong></caption>
+<colgroup>
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+<col style="width: 16%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Alternativhypothese</th>
+<th>K1</th>
+<th>K2</th>
+<th>K3</th>
+<th>K4</th>
+<th><span class="math inline">\(\sum\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(\mu_1&lt;\frac{\mu_2 + \mu_3 + \mu_4}{3}\)</span></td>
+<td>-3</td>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+<td><strong>0</strong></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(\mu_2&lt;\frac{\mu_1 + \mu_3 + \mu_4}{3}\)</span></td>
+<td>1</td>
+<td>-3</td>
+<td>1</td>
+<td>1</td>
+<td><strong>0</strong></td>
+</tr>
+</tbody>
+</table>
+</section>
+<section id="schlussfolgerungen" class="level3" data-number="11.3.6">
+<h3 data-number="11.3.6" class="anchored" data-anchor-id="schlussfolgerungen"><span class="header-section-number">11.3.6</span> Schlussfolgerungen</h3>
 <section id="ergebnisse-interpretieren-und-berichten" class="level4">
 <h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten"><strong>Ergebnisse interpretieren und berichten</strong></h4>
 <p>Die Ergebnisse der Varianzanalyse werden in der Regel mit dem empirischen <em>F</em>-Wert, den Freiheitsgraden, dem entsprechenden <em>p</em>-Wert und/oder Konfidenzintervall und einer Effektgrösse berichtet.</p>
 <p>Inferenzstatistische Kennwerte (z.B. <em>t</em> und <em>F</em>) werden mit zwei Dezimalen berichtet.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> In den Klammern werden bei einer Varianzanalyse die Freiheitsgrade des Zählers (<span class="math inline">\(df_{zw}\)</span>) und des Nenners (<span class="math inline">\(df_{inn}\)</span>) angegeben. Als Effektgrössenschätzer wird häufig <span class="math inline">\(\eta^2\)</span> angegeben.</p>
 <blockquote class="blockquote">
-<p>Die einfaktorielle Varianzanalyse ergab, dass sich die Gruppen signifikant in ihrer kognitiven Leistung unterscheiden, <em>F</em>(2, 12) = 10.87, <em>p</em> = .002, <span class="math inline">\(\eta^2\)</span> = 0.64.</p>
+<p>Die einfaktorielle Varianzanalyse ergab, dass sich die Gruppen signifikant in ihrer kognitiven Leistung unterscheiden, <em>F</em>(2, 12) = 10.87, <em>p</em> = .002, <span class="math inline">\(\eta^2\)</span> = 0.64. Post-hoc-Tests mit Bonferroni-Holm-Korrektur zeigten, dass die Gruppe “kognitive Umstrukturierung” (<em>M</em> = 2, <em>SD</em> = 1.41) signifikant niedrigere Werte aufwies als die Gruppe “Mindfulness” (<em>M</em> = 6, <em>SD</em> = 2.34), <em>F</em>(12) = 11,43, <em>p</em> = .011, und die Gruppe “Entspannung” (<em>M</em> = 7, <em>SD</em> = 1.87), <em>F</em>(12) = 17.86, <em>p</em> = .004. Die Ergebnisse deuten darauf hin, dass kognitive Umstrukturierung im Vergleich zu Mindfulness und Entspannung einen positiven Effekt auf die Verringerung von Angstsymptomen hat.</p>
 </blockquote>
 <blockquote class="blockquote">
-<p>The one-way ANOVA revealed a significant effect of condition on performance, <em>F</em>(2, 12) = 10.87, <em>p</em> = .002, <span class="math inline">\(\eta^2\)</span> = 0.64.</p>
+<p>The one-way ANOVA revealed a significant effect of condition on performance, <em>F</em>(2, 12) = 10.87, <em>p</em> = .002, <span class="math inline">\(\eta^2\)</span> = 0.64. Post hoc comparisons using Bonferroni-Holm-Test indicated that group restructuring (<em>M</em> = 2, <em>SD</em> = 1.41) had significantly lower scores than group mindfulness (<em>M</em> = 6, <em>SD</em> = 2.34), <em>F</em>(12) = 11.43, <em>p</em> = .011, and group relaxation (<em>M</em> = 7, <em>SD</em> = 1.87), <em>F</em>(12) = 17.86, <em>p</em> = .004. The results suggest that restructuring had a positive effect on reducting anxiety symtoms compared to mindfulness and relaxation.</p>
 </blockquote>
 </section>
 </section>
@@ -760,7 +881,7 @@ group  2  0.2545 0.7794
 </section>
 <section id="teststatistik-berechnen-1" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="teststatistik-berechnen-1"><strong>Teststatistik berechnen</strong></h4>
-<p>Falls der empirische <em>F</em>-Wert grösser als der kritische <em>F</em>-Wert ist, wird von einem signifikanten Unterschied zwischen den Gruppen ausgegangen.</p>
+<p>Falls der empirische <em>F</em>-Wert grösser als der kritische <em>F</em>-Wert ist, wird von einem signifikanten Unterschied zwischen mindestens zwei Mittelwerten ausgegangen.</p>
 <p><strong>Berechnung Teststatistik in R mit der Funktion <code>aov_4()</code></strong></p>
 <p>Eine einfaktorielle Varianzanalyse kann mit der Funktion <code>aov_4(av ~ uv, + (1 | id), data)</code> aus dem Package {afex} berechnet werden.</p>
 <ul>
@@ -777,8 +898,7 @@ Vor dem ersten Verwenden muss das Package {afex} heruntergeladen/installiert wer
 <span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfaktorielle Anova ohne Messwiederholung berechnen</span></span>
 <span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>m_anova1 <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(symptoms <span class="sc">~</span> condition <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id), <span class="co"># av ~ uv + (1 | Identifikationsvariable)</span></span>
 <span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> d_therapy3) <span class="co"># dataset</span></span>
-<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb9-7"><a href="#cb9-7" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_anova1) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb9-6"><a href="#cb9-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_anova1) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>Anova Table (Type 3 tests)
 
@@ -801,7 +921,7 @@ Residuals       42 12
 Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
-<p>Die Mittelwerte der Bedingungen unterscheiden sich signifikant auf dem <span class="math inline">\(5 \%\)</span>-Niveau. Die Nullhypothese, wonach sich die Mittelwerte nicht unterscheiden, kann verworfen werden. Die Therapiemethode hat somit einen Einfluss auf die Angstsymptomatik. Aufgrund dieser Analyse ist hingegen (noch) nicht klar, welche Bedingungen sich unterscheiden. Dies wird in einem späteren Schritt mit sogenannten Post-hoc-Vergleichen überprüft.</p>
+<p>Die Mittelwerte der Bedingungen unterscheiden sich signifikant auf dem <span class="math inline">\(5 \%\)</span>-Niveau. Die Nullhypothese, wonach sich die Mittelwerte nicht unterscheiden, kann verworfen werden. Die Therapiemethode hat somit einen Einfluss auf die Angstsymptomatik. Aufgrund dieser Analyse ist hingegen (noch) nicht klar, welche Bedingungen sich unterscheiden. Dies wird in einem nächsten Schritt mit sogenannten Post-hoc-Vergleichen überprüft.</p>
 <p>Zur Visualisierung der Ergebnisse eignet sich ein Plot, der die Mittelwerte und Standardfehler abbildet. Dazu kann die Funktion <code>afex_plot</code> aus dem Package {afex} verwendet werden. Um die Standardfehler, anstelle der Konfidenzintervall, anzuzeigen, kann <code>error_ci = FALSE</code> verwendet werden.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
@@ -818,14 +938,120 @@ Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
 </div>
 </div>
 </div>
-<!--__c. Post-hoc-Vergleiche__
+<p><strong>Post-hoc-Vergleiche</strong></p>
+<p>Zuerst muss dazu mit der Funktion <code>emmeans()</code> aus dem Package {emmeans} ein Objekt, z.B. <code>m_anova1_results</code>, erstellt werden. Darin werden die “Estimated Marginal Means” gespeichert.</p>
+<aside>
+Vor dem ersten Verwenden muss das Package {emmeans} heruntergeladen/installiert werden, z.B. in der Konsole mit <code>install.packages("emmeans")</code>.
+</aside>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Package emmeans laden</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'emmeans' was built under R version 4.4.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultate (estimated marginal means) speichern</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>m_anova1_result <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(<span class="at">object =</span> m_anova1, <span class="at">specs =</span> <span class="sc">~</span> condition) <span class="co"># object = anova modell, ~ uv</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>m_anova1_result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> condition     emmean    SE df lower.CL upper.CL
+ mindfulness        6 0.837 12    4.177     7.82
+ relaxation         7 0.837 12    5.177     8.82
+ restructuring      2 0.837 12    0.177     3.82
 
-(folgt)
+Confidence level used: 0.95 </code></pre>
+</div>
+</div>
+<p>Aus dem Beispiel ergeben sich folgende Mittelwertsunterschiede:</p>
+<ul>
+<li><p>Mindfulness vs.&nbsp;Relaxation: <span class="math inline">\(\overline{x}_1-\overline{x}_2=6-7=-1\)</span></p></li>
+<li><p>Mindfulness vs.&nbsp;Restructuring: <span class="math inline">\(\overline{x}_1-\overline{x}_3=6-2=4\)</span></p></li>
+<li><p>Relaxation vs.&nbsp;Restructuring: <span class="math inline">\(\overline{x}_2-\overline{x}_3=7-2=5\)</span></p></li>
+</ul>
+<p>Paarvergleiche können mit der Funktion <code>pairs(x = model, adjust = "none")</code> ausgegeben werden. Unter <code>adjust = "___"</code> wird definiert, welche Adjustierung vorgenommen wird.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Post-hoc-Paarvergleich ohne Adjustierung</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="at">x =</span> m_anova1_result, <span class="at">adjust =</span> <span class="st">"none"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> contrast                    estimate   SE df t.ratio p.value
+ mindfulness - relaxation          -1 1.18 12  -0.845  0.4146
+ mindfulness - restructuring        4 1.18 12   3.381  0.0055
+ relaxation - restructuring         5 1.18 12   4.226  0.0012</code></pre>
+</div>
+</div>
+<p>Die wichtigsten Adjustierungen sind:</p>
+<ul>
+<li>Bonferroni: <code>"bonferroni"</code></li>
+<li>Bonferroni-Holm: <code>"holm"</code></li>
+<li>Tukey: <code>"tukey"</code></li>
+<li>Scheffé: <code>"scheffe"</code></li>
+</ul>
+<p><strong>Paarvergleiche mit dem Tukey-Test</strong></p>
+<p>Der Tukey-Test wird verwendet, wenn sämtliche Mittelwertspaare verglichen werden sollen.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Post-hoc-Paarvergleich mit Tukey-Test</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="at">x =</span> m_anova1_result, <span class="at">adjust =</span> <span class="st">"tukey"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> contrast                    estimate   SE df t.ratio p.value
+ mindfulness - relaxation          -1 1.18 12  -0.845  0.6833
+ mindfulness - restructuring        4 1.18 12   3.381  0.0140
+ relaxation - restructuring         5 1.18 12   4.226  0.0031
 
-__d. Kontrastanalyse__
+P value adjustment: tukey method for comparing a family of 3 estimates </code></pre>
+</div>
+</div>
+<p><strong>Paarvergleiche mit der Bonferroni-Holm-Adjusierung</strong></p>
+<p>Mit der Bonferroni-Holm-Korrektur können wir einzelne, vorher definierte, Paarvergleiche überprüfen, beispielsweise ob Kognitive Umstrukturierung weniger Angstsymptome “bewirkt”, als Mindfulness oder Entspannung.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Post-hoc-Paarvergleich mit Bonferroni-Holm-Adjustierung</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="at">x =</span> m_anova1_result, <span class="at">adjust =</span> <span class="st">"holm"</span>) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> contrast                    estimate   SE df t.ratio p.value
+ mindfulness - relaxation          -1 1.18 12  -0.845  0.4146
+ mindfulness - restructuring        4 1.18 12   3.381  0.0109
+ relaxation - restructuring         5 1.18 12   4.226  0.0035
 
-(folgt)
--->
+P value adjustment: holm method for 3 tests </code></pre>
+</div>
+</div>
+<p><strong>Kontrastanalyse</strong></p>
+<p>Mit der Funktion <code>levels()</code> kann im Datensatz überprüft werden, in welcher Reihenfolge die Stufen des Faktors <code>condition</code> geordnet sind. Dies ist wichtig, um nun die Kontrasthypothesen richtig zu spezifizieren.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(d_therapy3<span class="sc">$</span>condition)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "mindfulness"   "relaxation"    "restructuring"</code></pre>
+</div>
+</div>
+<p>Kontrastanalysen erfordern das Definieren von Kontrasten. Ein Kontrast in diesem Beispiel besteht aus drei Werten. In der Summe ergeben die Werte eines Kontrastes 0.</p>
+<p>Ungerichtete Hypothese:</p>
+<blockquote class="blockquote">
+<p>Der Mittelwert der Angstsymptome in der Bedingung “Kognitive Umstrukturierung” unterscheidet sich vom Durchschnitt der Mittelwerte in den anderen beiden Bedingungen.</p>
+</blockquote>
+<p>Kontraste müssen in R zuerst als Listenobjekt mit <code>list</code> definiert werden. Anschliessend wird das Listenobjekt als method-Argument in der Funktion <code>contrast()</code> verwendet:</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kontrastanalyse</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="do">## H: Kognitive Umstukturierung unterscheidet sich von anderen Bedingungen</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>m_anova1_contrast1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"restructuring vs. rest"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="sc">-</span><span class="fl">0.5</span>, <span class="sc">-</span><span class="fl">0.5</span>, <span class="dv">1</span>)) <span class="co"># Kontrast definieren (Summe 0!)</span></span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a><span class="fu">contrast</span>(<span class="at">object =</span> m_anova1_result, <span class="at">method =</span> m_anova1_contrast1) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> contrast               estimate   SE df t.ratio p.value
+ restructuring vs. rest     -4.5 1.02 12  -4.392  0.0009</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Der Mittelwert der Angstsymptome in der Bedingung “Mindfulness” unterscheidet sich vom Mittelwert der Bedingung “Entspannung”.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kontrastanalyse</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a><span class="do">## H: Mindfulness unterscheidet sich von Entspannung</span></span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>m_anova1_contrast2 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"mindfulness vs. relaxation"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>)) <span class="co"># Kontrast definieren (Summe 0!)</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a><span class="fu">contrast</span>(<span class="at">object =</span> m_anova1_result, <span class="at">method =</span> m_anova1_contrast2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> contrast                   estimate   SE df t.ratio p.value
+ mindfulness vs. relaxation       -1 1.18 12  -0.845  0.4146</code></pre>
+</div>
+</div>
+<p>Bei einer a priori gerichtet formulierten Hypothese, müsste der <span class="math inline">\(p\)</span>-Wert hier noch halbiert werden.</p>
+<p>Je mehr Kontraste überprüft werden, umso stärker steigt der <span class="math inline">\(\alpha_{fam}\)</span>-Fehler für eine Familie von Kontrasten an. Es ist daher wichtig, dass die Kontraste vorher definiert werden und die entsprechende Korrektur vorgenommen wird.</p>
 </section>
 <section id="effektstärke-bestimmen-1" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="effektstärke-bestimmen-1"><strong>Effektstärke bestimmen</strong></h4>
@@ -835,8 +1061,8 @@ __d. Kontrastanalyse__
 Vor dem ersten Verwenden muss das Package {effectsize} heruntergeladen/installiert werden, z.B. in der Konsole mit <code>install.packages("effectsize")</code>.
 </aside>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
-<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>effectsize<span class="sc">::</span><span class="fu">eta_squared</span>(m_anova1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>effectsize<span class="sc">::</span><span class="fu">eta_squared</span>(m_anova1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># Effect Size for ANOVA (Type III)
 
@@ -854,14 +1080,15 @@ condition | 0.62 | [0.25, 1.00]
 <h3 data-number="11.4.4" class="anchored" data-anchor-id="schlussfolgerungen-1"><span class="header-section-number">11.4.4</span> Schlussfolgerungen</h3>
 <section id="ergebnisse-interpretieren-und-berichten-1" class="level4">
 <h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten-1"><strong>Ergebnisse interpretieren und berichten</strong></h4>
-<p><strong>Ergebnisse der einfaktoriellen Varianzanalyse ohne Messwiederholung</strong></p>
+<p><strong>a.</strong> Ergebnisse der einfaktoriellen Varianzanalyse ohne Messwiederholung__</p>
 <p>Das Ergebnis ist auf dem <span class="math inline">\(5 \%\)</span>-Niveau signifikant und die Nullhypothese kann somit verworfen werden: Die Therapiemethode beeinflusst die Höhe der Angstsymptomatik. Es handelt sich nach der Taxonomie von Cohen (1988) um einen grossen Effekt (<span class="math inline">\(\eta^2=0.62\)</span>).</p>
 <blockquote class="blockquote">
-<p>“We examined whether the therapy methods had an effect on anxiety symptoms. The one-way ANOVA revealed a significant effect of the therapy condition on anxiety symtoms, <em>F</em>(2, 12) = 10.00, <em>p</em> = .003, <span class="math inline">\(\eta^2\)</span> = 0.62). This indicates a large effect of the therapy condition on anxiety symptoms according to Cohen’s convention (1988).”</p>
+<p>We examined whether the therapy methods had an effect on anxiety symptoms. The one-way ANOVA revealed a significant effect of the therapy condition on anxiety symtoms, <em>F</em>(2, 12) = 10.00, <em>p</em> = .003, <span class="math inline">\(\eta^2\)</span> = 0.62). This indicates a large effect of the therapy condition on anxiety symptoms according to Cohen’s convention (1988).</p>
 </blockquote>
-<!--__b. Ergebnisse der Post-hoc und Kontrastanalyse__
-
-(folgt) -->
+<p><strong>b.</strong> Ergebnisse von Post-hoc-Tests und Kontrastanalysen</p>
+<blockquote class="blockquote">
+<p>Post hoc comparisons using Tukey’s Test indicated that group relaxation (<em>M</em> = 6, <em>SD</em> = 2.34) had significantly higher anxiety symptoms than group restructuring (<em>M</em> = 2, <em>SD</em> = 1.41), <em>F</em>(12) = 17.86, <em>p</em> = .003. Additionally, group mindfulness (<em>M</em> = 7, <em>SD</em> = 1.87) scored also significantly higher than group restructuring, <em>F</em>(12) = 11.43, <em>p</em> = .014. However, group mindfulness and relaxation did not differ significantly, <em>F</em>(12) = 0.71, <em>p</em> = .683. The results suggest that restructuring had a positive effect on reducting anxiety symtoms compared to mindfulness and relaxation.</p>
+</blockquote>
 
 
 </section>
