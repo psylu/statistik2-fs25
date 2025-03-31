@@ -1,0 +1,218 @@
+# Übung 7 {.unnumbered #sec-uebung-07}
+
+```{r}
+#| include: false
+# Set working directory of R
+knitr::opts_knit$set(root.dir = '../')
+```
+
+::: {.callout-note appearance="default" title="Lernziele dieser Übung"}
+Nach der heutigen Übung können Sie:
+
+- _R_ und _RStudio_ zur Analyse von Daten verwenden
+- zweifaktorielle Varianzanalysen ohne Messwiederholung in _R_ durchführen
+  - Hypothesen zum Vergleich von mehreren Stichprobenmittelwerten mit zwei unabhängigen Variablen und unabhängigen Gruppen durchführen
+  - Voraussetzungen überprüfen
+  - _F_-Tests für Haupteffekte, Interaktionseffekte und bedingte Haupteffekte berechnen 
+  - Resultate interpretieren
+
+:::
+
+
+:::{.callout-note appearance="default" title="Voraussetzungen"}
+
+1. Packages {tidyverse}, {afex}, {emmeans} und {effectsize} sind installiert.
+
+2. Der Datensatz [`anova_confidence.csv`](../data/anova_confidence.csv) für Übung 7 wurde heruntergeladen und im Ordner `data` des Projekts `anova` abgespeichert.
+
+:::
+
+<br>
+
+## Aufgabe 7.0: Projektumgebung erstellen 
+
+_Falls obige Anforderungen noch nicht erfüllt:_ 
+
+- Laden Sie den Datensatz [`anova_confidence.csv`](../data/anova_confidence.csv) herunter und speichern Sie ihn im _RProjekt_ `anova` im Ordner `data` ab.
+
+- Installieren Sie die benötigten Packages (falls noch nicht geschehen) unter `Tools` > `Install Packages...` oder in der Konsole mit
+
+   `install.packages("afex")`
+   
+   `install.packages("emmeans")`
+   
+   `install.packages("effectsize")`
+    
+__a.__ Öffnen Sie das _RProjekt_ `anova`.
+  
+__b.__ Erstellen Sie ein _RNotebook_ namens `uebung-07`.
+
+<br>
+
+## Aufgabe 7.1: Einstieg
+
+__a.__ Wie unterscheidet sich eine einfaktorielle von einer zweifaktoriellen Varianzanalyse ohne Messwiederholung?
+
+__b.__ In welche vier Komponenten lässt sich ein Zellmittelwert $\overline{x}_{jk}$ bei einer zweifaktoriellen Varianzanalyse zerlegen?
+
+__c.__ Welche unterschiedlichen Kombinationen aus Haupt- und Interaktionseffekten gibt es in einem einfachen 2×2-Design?
+
+<br>
+
+## Aufgabe 7.2: Zweifaktorielle Varianzanalyse
+
+:::{.callout-note appearance="default" title="Datensatz `anova_confidence.csv`" collapse="false"}
+
+__Beschreibung der Studie__
+
+In der (fiktiven) Studie wurde der Einfluss eines evidenzbasierten Trainings (treatment) und der Belohnung des Verhaltens (reward) auf das Selbstvertrauen (confidence) untersucht. Die Personen wurden ins Verhaltenslabor eingeladen, erhielten entweder das Training oder "warteten". Zusätzlich wurden die Hälfte der Personen bei gewissem Verhalten (z.B. Blickkontakt) belohnt mit einem mündlichen Lob und die andere Hälfte nicht. 
+
+Die Personen wurden den Bedingungskombinationen zufällig (randomisiert) zugewiesen, um systematische Störeinflüsse zu minimieren.
+
+__Unabhängige Variable A__: Art des Trainings (`treatment`): evidenzbasiertes Training (`training`) oder Wartekontrollgruppe (`control`)
+
+__Unabhängige Variable B__: Art der Belohnung (`reward`): Belohnung (`yes`) oder keine Belohnung (`no`)
+
+__Abhängige Variable__: Höhe des Selbstvertrauens (`confidence`) auf einer Skala von 0 - 100 möglichen Punkten (Fragebogen)
+
+__Forschungsfragen__: 
+
+  - Hängt das Selbstvertrauen davon ab, ob die Versuchspersonen das Training absolviert haben?
+
+  - Hängt das Selbstvertrauen davon ab, ob während des Laboraufenthalts (z.B. Blickkontakt) belohnt wurde oder nicht? 
+
+  - Ist der Unterschied zwischen Training oder Kontrollbedingung im Selbstvertrauen grösser, je nach dem ob das Verhalten belohnt wurde oder nicht?
+
+Die Effekte sollen auf einem Signifikanzniveau von $\alpha = 0.05$ geprüft werden.
+
+:::
+
+<br>
+
+__a.__ Lesen Sie den Datensatz `anova_confidence.csv` aus dem `data`-Ordner ein und konvertieren Sie die Variablen `id`, `treatment` und `reward` zu Faktoren. Schauen Sie sich den Datensatz mit `glimpse()` an.
+
+```{r}
+#| eval: false
+# tidyverse laden
+
+# Datensatz einlesen
+
+# Faktoren konvertieren
+
+# Datensatz anschauen
+
+```
+
+__b.__ Schauen Sie sich den Datensatz genauer an. 
+
+- Wie viele Stufen hat Faktor A (`treatment`)? Wie viele Stufen hat Faktor B (`reward`)?
+
+- Wie viele Personen wurden pro Gruppe untersucht?
+
+- Wie lauten die Mittelwerte und Standardabweichungen der abhängigen Variable `confidence` in den Gruppen? Tipp: Verwenden Sie die Funktionen `group_by()` und `summarise()`. Bei `group_by()` müssen beide Faktoren angegeben werden.
+
+```{r}
+#| eval: false
+# Mittelwerte und Standardabweichungen berechnen
+
+
+```
+
+__c.__ Laden die das Package {afex} und berechnen Sie das Anova-Modell `m_anova2` mit zwei Faktoren.
+
+- Gibt es einen signifikanten Haupteffekt A für `treatment` und was bedeutet das?
+
+- Gibt es einen signifikanten Haupteffekt B für `reward` und was bedeutet das?
+
+- Gibt es einen signifikanten Interaktionseffekt AxB für `treatment * reward` und was bedeutet das?
+
+
+```{r}
+#| eval: false
+# afex laden
+
+# Zweifaktorielle Anova ohne Messwiederholung
+m_anova2 <- aov_4(___ ~ ___ * ___ + (1 | id), # av ~ uv1 * uv2 + (1 | id)
+                  data = ___) # Datensatz
+
+# Resultate ausgeben
+___
+___
+
+```
+
+__d.__ Berechnen Sie den Gesamteffekt mit der Funktion `summary(lm(av ~ uv1 * uv2, data = my_data))`. 
+
+- Ist der Gesamteffekt signifikant? Was bedeutet das?
+
+```{r}
+#| eval: false
+# Gesamteffekt
+summary(lm(___ ~ ___ * ___, # av ~ uv1 * uv2
+           data = ___)) # Datensatz
+```
+
+__e.__ Laden Sie das Package {emmeans}. Berechnen Sie die bedingten Haupteffekte für Faktor B (`reward`) für die beiden Faktorstufen des Faktors A (`treatment`) mit der Funktion `joint_tests()` aus dem Package {emmeans}. Wie können diese interpretiert werden? 
+
+```{r}
+#| eval: false
+# emmeans laden
+___
+
+# Bedingte Haupteffekte Faktor B
+___(___, # Funktion, Modell
+            by = "___") # für Faktorstufen a1/a2
+```
+
+__f.__ Laden Sie das Package {effectsize}. Berechnen Sie die Effektstärken $\eta^2_p$ für alle Effekte.   
+
+```{r}
+#| eval: false
+# effectsize laden
+___
+
+# Effektstärke partielles Etaquadrat berechnen
+___(___, # Funktion, Modell
+    partial = TRUE)
+
+```
+
+<br>
+
+## Aufgabe 7.3: Interaktionen
+
+__a.__ Zeichnen Sie den Interaktionseffekt mit den Mittelwerten der vier Bedingungen aus Aufgabe 7.2 von Hand auf. 
+
+- Wie sieht die Interaktion aus und um welche Form könnte es sich handeln? 
+
+
+__b.__ Stellen Sie die Ergebnisse auch in _R_ mit Hilfe von `afex_plot()` dar.
+
+- Wie interpretieren Sie die Kombination des Haupteffekts und des Interaktionseffekts?
+
+```{r}
+#| eval: false
+
+afex_plot(object = m_anova2,
+          x = "___", # uv1
+          trace = "___", # uv2
+          mapping = c("color", "shape"),
+          error_ci = FALSE,
+          legend_title = "___") + # Legende für uv2 
+  theme_minimal()
+```
+
+<br>
+
+## Zusatzaufgabe
+
+:::{.callout-tip appearance="default" title="Zusatzaufgaben"}
+
+__Zusatzaufgaben müssen nicht gelöst werden.__
+
+:::
+
+__a.__ Verfassen Sie für einen wissenschaftlichen Artikel einen Text zu den Ergebnissen der Aufgabe 7.2.
+
+__b.__ Welche Forschungsfrage würden Sie gerne mit einer zweifaktoriellen Varianzanalyse beantworten? Diskutieren Sie anhand dieser Frage: Was sind Vor- und Nachteile dieser Analysemethode? 
+

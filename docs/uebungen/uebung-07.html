@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>FAQ – Datenanalyse mit R</title>
+<title>Übung 7 – Datenanalyse mit R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../appendix/webrconsole.html" rel="next">
-<link href="../uebungen/uebung-07.html" rel="prev">
+<link href="../appendix/faq.html" rel="next">
+<link href="../uebungen/uebung-06.html" rel="prev">
 <link href="../imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -42,8 +76,6 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
 <link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
-<script src="../site_libs/quarto-contrib/kbd/kbd.js"></script>
-<link href="../site_libs/quarto-contrib/kbd/kbd.css" rel="stylesheet">
 <script id="quarto-search-options" type="application/json">{
   "location": "sidebar",
   "copy-button": false,
@@ -72,6 +104,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../include/webex.css">
 </head>
@@ -85,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/faq.html">Anhang</a></li><li class="breadcrumb-item"><a href="../appendix/faq.html">FAQ</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-07.html">Übung 7</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -266,7 +327,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../uebungen/uebung-07.html" class="sidebar-item-text sidebar-link">
+  <a href="../uebungen/uebung-07.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Übung 7</span></a>
   </div>
 </li>
@@ -283,7 +344,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendix/faq.html" class="sidebar-item-text sidebar-link active">
+  <a href="../appendix/faq.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">FAQ</span></a>
   </div>
 </li>
@@ -317,20 +378,20 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#datensätze-einlesen" id="toc-datensätze-einlesen" class="nav-link active" data-scroll-target="#datensätze-einlesen">Datensätze einlesen</a></li>
-  <li><a href="#variablen-und-funktionen" id="toc-variablen-und-funktionen" class="nav-link" data-scroll-target="#variablen-und-funktionen">Variablen und Funktionen</a></li>
-  <li><a href="#die-funktion-summarise-ergibt-eine-fehlermeldung" id="toc-die-funktion-summarise-ergibt-eine-fehlermeldung" class="nav-link" data-scroll-target="#die-funktion-summarise-ergibt-eine-fehlermeldung">Die Funktion <code>summarise()</code> ergibt eine Fehlermeldung</a></li>
-  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
-  <li><a href="#website" id="toc-website" class="nav-link" data-scroll-target="#website">Website</a></li>
+  <li><a href="#aufgabe-7.0-projektumgebung-erstellen" id="toc-aufgabe-7.0-projektumgebung-erstellen" class="nav-link active" data-scroll-target="#aufgabe-7.0-projektumgebung-erstellen">Aufgabe 7.0: Projektumgebung erstellen</a></li>
+  <li><a href="#aufgabe-7.1-einstieg" id="toc-aufgabe-7.1-einstieg" class="nav-link" data-scroll-target="#aufgabe-7.1-einstieg">Aufgabe 7.1: Einstieg</a></li>
+  <li><a href="#aufgabe-7.2-zweifaktorielle-varianzanalyse" id="toc-aufgabe-7.2-zweifaktorielle-varianzanalyse" class="nav-link" data-scroll-target="#aufgabe-7.2-zweifaktorielle-varianzanalyse">Aufgabe 7.2: Zweifaktorielle Varianzanalyse</a></li>
+  <li><a href="#aufgabe-7.3-interaktionen" id="toc-aufgabe-7.3-interaktionen" class="nav-link" data-scroll-target="#aufgabe-7.3-interaktionen">Aufgabe 7.3: Interaktionen</a></li>
+  <li><a href="#zusatzaufgabe" id="toc-zusatzaufgabe" class="nav-link" data-scroll-target="#zusatzaufgabe">Zusatzaufgabe</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/faq.html">Anhang</a></li><li class="breadcrumb-item"><a href="../appendix/faq.html">FAQ</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-07.html">Übung 7</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-thanks" class="quarto-section-identifier">FAQ</span></h1>
+<h1 class="title"><span id="sec-uebung-07" class="quarto-section-identifier">Übung 7</span></h1>
 </div>
 
 
@@ -347,75 +408,201 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<section id="datensätze-einlesen" class="level2">
-<h2 class="anchored" data-anchor-id="datensätze-einlesen">Datensätze einlesen</h2>
-<p><strong>Der Datensatz kann nicht geöffnet werden mit dem vorgegebenen Code?</strong></p>
-<p>Die zwei häufigsten Gründe sind</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Lernziele dieser Übung">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Lernziele dieser Übung
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Nach der heutigen Übung können Sie:</p>
 <ul>
-<li><em>Speicherort</em>: Das File ist nicht in dem Ordner gespeichert in dem <em>R</em> sucht.
+<li><em>R</em> und <em>RStudio</em> zur Analyse von Daten verwenden</li>
+<li>zweifaktorielle Varianzanalysen ohne Messwiederholung in <em>R</em> durchführen
 <ul>
-<li>Überprüfen Sie im <code>Files</code>-Bereich (rechter unterer Quadrant), ob das File am richtigen Ort gespeichert wurde.</li>
-<li>Überprüfen Sie, ob der Pfad in der Einlesefunktion stimmt.</li>
-</ul></li>
-<li><em>Separators/Delimiters</em>: Jedes File hat ein Kennzeichen für die nächste Spalte, z.B. Kommas, Semikolons, Tabs, etc. Das Problem beim Einlesen geschieht oft, wenn nach dem Herunterladen der <code>.csv</code>- Datensatz z.B. in Excel geöffnet wird. Beim Abspeichern mit Excel verändern sich die <em>Separators</em> (z.B. von <code>,</code> zu <code>;</code>) und der vorgegebene Code kann nicht ausgeführt werden.
-<ul>
-<li>Verwenden von <code>Import Dataset</code>, um sich den Code ausgeben zu lassen.</li>
-<li>Datensatz nochmals herunterladen und abspeichern ohne ihn in Excel (o.a. Programm) zu öffnen.</li>
-<li>Verändern des Argumentes, welches Separator/Delimiters spezifiziert (<code>sep = ...</code>, <code>delim = ...</code>).</li>
-</ul></li>
-</ul>
-</section>
-<section id="variablen-und-funktionen" class="level2">
-<h2 class="anchored" data-anchor-id="variablen-und-funktionen">Variablen und Funktionen</h2>
-<p><strong>Welche Werte enthält eine Variable / ein Datensatz?</strong></p>
-<ul>
-<li><p>Um die Werte einer Variable oder eines Datensatzes zu sehen, schauen Sie in unter <code>Environment</code>(rechter oberer Quadrant in _RStudio) nach. Dort können Sie auf den blauen Pfeil klicken und die Infos “ausklappen” oder Doppelklicken für eine Tabellenansicht.</p></li>
-<li><p>Geben Sie den Namen der Variable/des Datensatzes in der <code>Console</code> ein und drücken Sie <kbd aria-hidden="true">Enter</kbd><span class="visually-hidden">Enter</span>.</p></li>
-<li><p>Laden Sie das {tidyverse} mit <code>library(tidyverse)</code> und nutzen Sie die Funktion <code>glimpse()</code> (in der Klammer muss der Datensatzname stehen).</p></li>
-</ul>
-<p><strong>Welche Argumente braucht eine Funktion?</strong></p>
-<ul>
-<li><p>Geben Sie den Funktionsnamen ein und klicken Sie in die folgenden Klammern. Drücken Sie <kbd aria-hidden="true">Tab</kbd><span class="visually-hidden">Tab</span> um Vorschläge zu sehen.</p></li>
-<li><p>Geben Sie <code>?FUNKTIONSNAME</code>ein.</p></li>
-<li><p>Suchen Sie im rechten unteren Quadranten von <em>RStudio</em> unter <code>Help</code> nach dem Funktionsnamen.</p></li>
-<li><p>Geben Sie in einer Suchmaschine den Funktionsnamen und Stichworte zu Ihrem Ziel ein.</p></li>
-</ul>
-</section>
-<section id="die-funktion-summarise-ergibt-eine-fehlermeldung" class="level2">
-<h2 class="anchored" data-anchor-id="die-funktion-summarise-ergibt-eine-fehlermeldung">Die Funktion <code>summarise()</code> ergibt eine Fehlermeldung</h2>
-<ul>
-<li>Laden Sie das {tidyverse} Package mit <code>library(tidyverse)</code></li>
-<li>Gehen Sie sicher, dass Sie <code>summarise()</code> und nicht <code>summarize()</code> verwenden.</li>
-</ul>
-</section>
-<section id="packages" class="level2">
-<h2 class="anchored" data-anchor-id="packages">Packages</h2>
-<p><strong>Beim Installieren eines Packages gibt es eine Fehlermeldung.</strong></p>
-<ul>
-<li>Versuchen Sie alle 3 Arten, ein Package zu installieren.
-<ul>
-<li>Über die Konsole mit `install.packages(“PACKAGENAME”)</li>
-<li>Über den Reiter <code>Tools</code> &gt; <code>Install Packages...</code> oben in <em>RStudio</em>.</li>
-<li>Über das Panel <code>Packages</code> im rechten unteren Quadranten in <em>RStudio</em>. <img src="../imgs/install_packages.png" class="img-fluid" style="width:50.0%"></li>
+<li>Hypothesen zum Vergleich von mehreren Stichprobenmittelwerten mit zwei unabhängigen Variablen und unabhängigen Gruppen durchführen</li>
+<li>Voraussetzungen überprüfen</li>
+<li><em>F</em>-Tests für Haupteffekte, Interaktionseffekte und bedingte Haupteffekte berechnen</li>
+<li>Resultate interpretieren</li>
 </ul></li>
 </ul>
-<p><strong>Beim Laden von <code>{tidyverse}</code> gibt es eine Fehlermeldung.</strong></p>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Voraussetzungen">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Voraussetzungen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Packages {tidyverse}, {afex}, {emmeans} und {effectsize} sind installiert.</p></li>
+<li><p>Der Datensatz <a href="../data/anova_confidence.csv"><code>anova_confidence.csv</code></a> für Übung 7 wurde heruntergeladen und im Ordner <code>data</code> des Projekts <code>anova</code> abgespeichert.</p></li>
+</ol>
+</div>
+</div>
+<p><br></p>
+<section id="aufgabe-7.0-projektumgebung-erstellen" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-7.0-projektumgebung-erstellen">Aufgabe 7.0: Projektumgebung erstellen</h2>
+<p><em>Falls obige Anforderungen noch nicht erfüllt:</em></p>
 <ul>
-<li>Sehr wahrscheinlich ist dies einfach eine Warnung (<code>Warning</code>) und keine Fehlermeldung (<code>Error</code>). Es gibt andere Packages, die dieselben Funktionsnamen verwenden, das kann zu Konflikten führen. Laden Sie trotzdem das <code>{tidyverse}</code>.</li>
+<li><p>Laden Sie den Datensatz <a href="../data/anova_confidence.csv"><code>anova_confidence.csv</code></a> herunter und speichern Sie ihn im <em>RProjekt</em> <code>anova</code> im Ordner <code>data</code> ab.</p></li>
+<li><p>Installieren Sie die benötigten Packages (falls noch nicht geschehen) unter <code>Tools</code> &gt; <code>Install Packages...</code> oder in der Konsole mit</p>
+<p><code>install.packages("afex")</code></p>
+<p><code>install.packages("emmeans")</code></p>
+<p><code>install.packages("effectsize")</code></p></li>
 </ul>
-<!-- https://statsandr.com/blog/top-10-errors-in-r/ -->
+<p><strong>a.</strong> Öffnen Sie das <em>RProjekt</em> <code>anova</code>.</p>
+<p><strong>b.</strong> Erstellen Sie ein <em>RNotebook</em> namens <code>uebung-07</code>.</p>
+<p><br></p>
 </section>
-<section id="website" class="level2">
-<h2 class="anchored" data-anchor-id="website">Website</h2>
-<p><strong>Die Website lädt nicht.</strong></p>
+<section id="aufgabe-7.1-einstieg" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-7.1-einstieg">Aufgabe 7.1: Einstieg</h2>
+<p><strong>a.</strong> Wie unterscheidet sich eine einfaktorielle von einer zweifaktoriellen Varianzanalyse ohne Messwiederholung?</p>
+<p><strong>b.</strong> In welche vier Komponenten lässt sich ein Zellmittelwert <span class="math inline">\(\overline{x}_{jk}\)</span> bei einer zweifaktoriellen Varianzanalyse zerlegen?</p>
+<p><strong>c.</strong> Welche unterschiedlichen Kombinationen aus Haupt- und Interaktionseffekten gibt es in einem einfachen 2×2-Design?</p>
+<p><br></p>
+</section>
+<section id="aufgabe-7.2-zweifaktorielle-varianzanalyse" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-7.2-zweifaktorielle-varianzanalyse">Aufgabe 7.2: Zweifaktorielle Varianzanalyse</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Datensatz `anova_confidence.csv`">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Datensatz <code>anova_confidence.csv</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><strong>Beschreibung der Studie</strong></p>
+<p>In der (fiktiven) Studie wurde der Einfluss eines evidenzbasierten Trainings (treatment) und der Belohnung des Verhaltens (reward) auf das Selbstvertrauen (confidence) untersucht. Die Personen wurden ins Verhaltenslabor eingeladen, erhielten entweder das Training oder “warteten”. Zusätzlich wurden die Hälfte der Personen bei gewissem Verhalten (z.B. Blickkontakt) belohnt mit einem mündlichen Lob und die andere Hälfte nicht.</p>
+<p>Die Personen wurden den Bedingungskombinationen zufällig (randomisiert) zugewiesen, um systematische Störeinflüsse zu minimieren.</p>
+<p><strong>Unabhängige Variable A</strong>: Art des Trainings (<code>treatment</code>): evidenzbasiertes Training (<code>training</code>) oder Wartekontrollgruppe (<code>control</code>)</p>
+<p><strong>Unabhängige Variable B</strong>: Art der Belohnung (<code>reward</code>): Belohnung (<code>yes</code>) oder keine Belohnung (<code>no</code>)</p>
+<p><strong>Abhängige Variable</strong>: Höhe des Selbstvertrauens (<code>confidence</code>) auf einer Skala von 0 - 100 möglichen Punkten (Fragebogen)</p>
+<p><strong>Forschungsfragen</strong>:</p>
 <ul>
-<li>Wahrscheinlich verwenden Sie einen relativ alten Browser. Versuchen Sie einen anderen Browser aus. Melden Sie sich sonst mit der Version Ihres Webbrowsers bei uns.</li>
+<li><p>Hängt das Selbstvertrauen davon ab, ob die Versuchspersonen das Training absolviert haben?</p></li>
+<li><p>Hängt das Selbstvertrauen davon ab, ob während des Laboraufenthalts (z.B. Blickkontakt) belohnt wurde oder nicht?</p></li>
+<li><p>Ist der Unterschied zwischen Training oder Kontrollbedingung im Selbstvertrauen grösser, je nach dem ob das Verhalten belohnt wurde oder nicht?</p></li>
 </ul>
-<p><strong>Der Datensatz wird nicht heruntergeladen, sondern im Browserfenster oder im Programm <em>numbers</em> (Mac) geöffnet.</strong></p>
+<p>Die Effekte sollen auf einem Signifikanzniveau von <span class="math inline">\(\alpha = 0.05\)</span> geprüft werden.</p>
+</div>
+</div>
+</div>
+<p><br></p>
+<p><strong>a.</strong> Lesen Sie den Datensatz <code>anova_confidence.csv</code> aus dem <code>data</code>-Ordner ein und konvertieren Sie die Variablen <code>id</code>, <code>treatment</code> und <code>reward</code> zu Faktoren. Schauen Sie sich den Datensatz mit <code>glimpse()</code> an.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tidyverse laden</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz einlesen</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Faktoren konvertieren</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz anschauen</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>b.</strong> Schauen Sie sich den Datensatz genauer an.</p>
 <ul>
-<li>Machen Sie einen Rechtsklick auf den Download-Link und wählen Sie <code>save as...</code>.</li>
-<li>Verwenden Sie einen anderen Browser als Safari.</li>
+<li><p>Wie viele Stufen hat Faktor A (<code>treatment</code>)? Wie viele Stufen hat Faktor B (<code>reward</code>)?</p></li>
+<li><p>Wie viele Personen wurden pro Gruppe untersucht?</p></li>
+<li><p>Wie lauten die Mittelwerte und Standardabweichungen der abhängigen Variable <code>confidence</code> in den Gruppen? Tipp: Verwenden Sie die Funktionen <code>group_by()</code> und <code>summarise()</code>. Bei <code>group_by()</code> müssen beide Faktoren angegeben werden.</p></li>
 </ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mittelwerte und Standardabweichungen berechnen</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>c.</strong> Laden die das Package {afex} und berechnen Sie das Anova-Modell <code>m_anova2</code> mit zwei Faktoren.</p>
+<ul>
+<li><p>Gibt es einen signifikanten Haupteffekt A für <code>treatment</code> und was bedeutet das?</p></li>
+<li><p>Gibt es einen signifikanten Haupteffekt B für <code>reward</code> und was bedeutet das?</p></li>
+<li><p>Gibt es einen signifikanten Interaktionseffekt AxB für <code>treatment * reward</code> und was bedeutet das?</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># afex laden</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Zweifaktorielle Anova ohne Messwiederholung</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>m_anova2 <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(___ <span class="sc">~</span> ___ <span class="sc">*</span> ___ <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id), <span class="co"># av ~ uv1 * uv2 + (1 | id)</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> ___) <span class="co"># Datensatz</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultate ausgeben</span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>___</span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>d.</strong> Berechnen Sie den Gesamteffekt mit der Funktion <code>summary(lm(av ~ uv1 * uv2, data = my_data))</code>.</p>
+<ul>
+<li>Ist der Gesamteffekt signifikant? Was bedeutet das?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gesamteffekt</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(___ <span class="sc">~</span> ___ <span class="sc">*</span> ___, <span class="co"># av ~ uv1 * uv2</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> ___)) <span class="co"># Datensatz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>e.</strong> Laden Sie das Package {emmeans}. Berechnen Sie die bedingten Haupteffekte für Faktor B (<code>reward</code>) für die beiden Faktorstufen des Faktors A (<code>treatment</code>) mit der Funktion <code>joint_tests()</code> aus dem Package {emmeans}. Wie können diese interpretiert werden?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># emmeans laden</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>___</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Bedingte Haupteffekte Faktor B</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a><span class="fu">___</span>(___, <span class="co"># Funktion, Modell</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="st">"___"</span>) <span class="co"># für Faktorstufen a1/a2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>f.</strong> Laden Sie das Package {effectsize}. Berechnen Sie die Effektstärken <span class="math inline">\(\eta^2_p\)</span> für alle Effekte.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># effectsize laden</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>___</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektstärke partielles Etaquadrat berechnen</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a><span class="fu">___</span>(___, <span class="co"># Funktion, Modell</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>    <span class="at">partial =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+</section>
+<section id="aufgabe-7.3-interaktionen" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-7.3-interaktionen">Aufgabe 7.3: Interaktionen</h2>
+<p><strong>a.</strong> Zeichnen Sie den Interaktionseffekt mit den Mittelwerten der vier Bedingungen aus Aufgabe 7.2 von Hand auf.</p>
+<ul>
+<li>Wie sieht die Interaktion aus und um welche Form könnte es sich handeln?</li>
+</ul>
+<p><strong>b.</strong> Stellen Sie die Ergebnisse auch in <em>R</em> mit Hilfe von <code>afex_plot()</code> dar.</p>
+<ul>
+<li>Wie interpretieren Sie die Kombination des Haupteffekts und des Interaktionseffekts?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">afex_plot</span>(<span class="at">object =</span> m_anova2,</span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"___"</span>, <span class="co"># uv1</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">trace =</span> <span class="st">"___"</span>, <span class="co"># uv2</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">mapping =</span> <span class="fu">c</span>(<span class="st">"color"</span>, <span class="st">"shape"</span>),</span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">error_ci =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend_title =</span> <span class="st">"___"</span>) <span class="sc">+</span> <span class="co"># Legende für uv2 </span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+</section>
+<section id="zusatzaufgabe" class="level2">
+<h2 class="anchored" data-anchor-id="zusatzaufgabe">Zusatzaufgabe</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Zusatzaufgaben">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Zusatzaufgaben
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Zusatzaufgaben müssen nicht gelöst werden.</strong></p>
+</div>
+</div>
+<p><strong>a.</strong> Verfassen Sie für einen wissenschaftlichen Artikel einen Text zu den Ergebnissen der Aufgabe 7.2.</p>
+<p><strong>b.</strong> Welche Forschungsfrage würden Sie gerne mit einer zweifaktoriellen Varianzanalyse beantworten? Diskutieren Sie anhand dieser Frage: Was sind Vor- und Nachteile dieser Analysemethode?</p>
 
 
 </section>
@@ -1260,13 +1447,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../uebungen/uebung-07.html" class="pagination-link" aria-label="Übung 7">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Übung 7</span>
+      <a href="../uebungen/uebung-06.html" class="pagination-link" aria-label="Übung 6">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Übung 6</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../appendix/webrconsole.html" class="pagination-link" aria-label="WebR Konsole">
-        <span class="nav-page-text">WebR Konsole</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../appendix/faq.html" class="pagination-link" aria-label="FAQ">
+        <span class="nav-page-text">FAQ</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

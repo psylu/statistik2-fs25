@@ -1,0 +1,367 @@
+# Übung 7 {.unnumbered #sec-uebung-07}
+
+```{r}
+#| include: false
+# Set working directory of R
+knitr::opts_knit$set(root.dir = '../')
+```
+
+::: {.callout-note appearance="default" title="Lernziele dieser Übung"}
+Nach der heutigen Übung können Sie:
+
+- _R_ und _RStudio_ zur Analyse von Daten verwenden
+- zweifaktorielle Varianzanalysen ohne Messwiederholung in _R_ durchführen
+  - Hypothesen zum Vergleich von mehreren Stichprobenmittelwerten mit zwei unabhängigen Variablen und unabhängigen Gruppen durchführen
+  - Voraussetzungen überprüfen
+  - _F_-Tests für Haupteffekte, Interaktionseffekte und bedingte Haupteffekte berechnen 
+  - Resultate interpretieren
+
+:::
+
+
+:::{.callout-note appearance="default" title="Voraussetzungen"}
+
+1. Packages {tidyverse}, {afex}, {emmeans} und {effectsize} sind installiert.
+
+2. Der Datensatz [`anova_confidence.csv`](../data/anova_confidence.csv) für Übung 7 wurde heruntergeladen und im Ordner `data` des Projekts `anova` abgespeichert.
+
+:::
+
+<br>
+
+## Aufgabe 7.0: Projektumgebung erstellen 
+
+_Falls obige Anforderungen noch nicht erfüllt:_ 
+
+- Laden Sie den Datensatz [`anova_confidence.csv`](../data/anova_confidence.csv) herunter und speichern Sie ihn im _RProjekt_ `anova` im Ordner `data` ab.
+
+- Installieren Sie die benötigten Packages (falls noch nicht geschehen) unter `Tools` > `Install Packages...` oder in der Konsole mit
+
+   `install.packages("afex")`
+   
+   `install.packages("emmeans")`
+   
+   `install.packages("effectsize")`
+    
+__a.__ Öffnen Sie das _RProjekt_ `anova`.
+  
+__b.__ Erstellen Sie ein _RNotebook_ namens `uebung-07`.
+
+<br>
+
+## Aufgabe 7.1: Einstieg
+
+__a.__ Wie unterscheidet sich eine einfaktorielle von einer zweifaktoriellen Varianzanalyse ohne Messwiederholung?
+
+> zwei Faktoren (unabhängig!) und je mind. zwei unabhängige Bedingungen
+> Voraussetzungen sind die selben wie bei der einfaktoriellen Anova
+
+__b.__ In welche vier Komponenten lässt sich ein Zellmittelwert $\overline{x}_{jk}$ bei einer zweifaktoriellen Varianzanalyse zerlegen?
+
+> Gesamtmittelwert: Der Gesamtmittelwert $\overline{x}$ ist der Mittelwert aller individuellen Messwerte $x_{mjk}$.
+
+> Haupteffekt des Faktors A: Der Haupteffekt der Faktorstufe $a_j$ ist die Abweichung des Mittelwerts $x_{j \bullet}$ vom Gesamtmittelwert $\overline{x}$.
+
+> Haupteffekt des Faktors B: Der Haupteffekt der Faktorstufe $b_k$ ist die Abweichung des Mittelwerts $x_{\bullet k}$ vom Gesamtmittelwert $\overline{x}$.
+
+> Der Interaktionseffekt AxB: Eine Wechselwirkung liegt dann vor, wenn sich die Abweichung $x_{jk} − \overline{x}$ nicht vollständig auf die Haupteffekte zurückführen lässt.
+
+
+__c.__ Welche unterschiedlichen Kombinationen aus Haupt- und Interaktionseffekten gibt es in einem einfachen 2×2-Design?
+
+> Fall 0: Keine Haupteffekte, keine Interaktionseffekte
+
+> Fall 1: Nur Haupteffekte des Faktors A
+
+> Fall 2: Nur Haupteffekte des Faktors B
+
+> Fall 3: Haupteffekte der beiden Faktoren A und B
+
+> Fall 4: Haupteffekte der beiden Faktoren A und B und Interaktionseffekte
+
+> Fall 5a/b: Nur Haupteffekte des Faktors A und Interaktionseffekte ODER nur Haupteffekte des Faktors B und Interaktionseffekte
+
+> Fall 6: Keine Haupteffekte, nur Interaktionseffekte
+
+> Hinweis: Bei komplexeren Designs deutlich mehr "Kombinationen" möglich. 
+
+
+## Aufgabe 7.2: Zweifaktorielle Varianzanalyse
+
+:::{.callout-note appearance="default" title="Datensatz `anova_confidence.csv`" collapse="false"}
+
+__Beschreibung der Studie__
+
+In der (fiktiven) Studie wurde der Einfluss eines evidenzbasierten Trainings (treatment) und der Belohnung des Verhaltens (reward) auf das Selbstvertrauen (confidence) untersucht. Die Personen wurden ins Verhaltenslabor eingeladen, erhielten entweder das Training oder "warteten". Zusätzlich wurden die Hälfte der Personen bei gewissem Verhalten (z.B. Blickkontakt) belohnt mit einem mündlichen Lob und die andere Hälfte nicht. 
+
+Die Personen wurden den Bedingungskombinationen zufällig (randomisiert) zugewiesen, um systematische Störeinflüsse zu minimieren.
+
+__Unabhängige Variable A__: Art des Trainings (`treatment`): evidenzbasiertes Training (`training`) oder Wartekontrollgruppe (`control`)
+
+__Unabhängige Variable B__: Art der Belohnung (`reward`): Belohnung (`yes`) oder keine Belohnung (`no`)
+
+__Abhängige Variable__: Höhe des Selbstvertrauens (`confidence`) auf einer Skala von 0 - 100 möglichen Punkten (Fragebogen)
+
+__Forschungsfragen__: 
+
+  - Hängt das Selbstvertrauen davon ab, ob die Versuchspersonen das Training absolviert haben?
+
+  - Hängt das Selbstvertrauen davon ab, ob während des Laboraufenthalts (z.B. Blickkontakt) belohnt wurde oder nicht? 
+
+  - Ist der Unterschied zwischen Training oder Kontrollbedingung im Selbstvertrauen grösser, je nach dem ob das Verhalten belohnt wurde oder nicht?
+
+Die Effekte sollen auf einem Signifikanzniveau von $\alpha = 0.05$ geprüft werden.
+
+:::
+
+<br>
+
+__a.__ Lesen Sie den Datensatz `anova_confidence.csv` aus dem `data`-Ordner ein und konvertieren Sie die Variablen `id`, `treatment` und `reward` zu Faktoren. Schauen Sie sich den Datensatz mit `glimpse()` an.
+
+```{r}
+#| eval: false
+# tidyverse laden
+
+# Datensatz einlesen
+
+# Faktoren konvertieren
+
+# Datensatz anschauen
+
+```
+
+```{r, message=FALSE}
+# tidyverse laden
+library(tidyverse)
+
+# Datensatz einlesen
+d_anova2 <- read.csv("data/anova_confidence.csv")
+
+# Faktoren konvertieren
+d_anova2 <- d_anova2 |>
+  mutate(id = as.factor(id)) |>
+  mutate(treatment = as.factor(treatment)) |>
+  mutate(reward = as.factor(reward)) 
+
+# Datensatz anschauen
+glimpse(d_anova2)
+```
+
+__b.__ Schauen Sie sich den Datensatz genauer an. 
+
+- Wie viele Stufen hat Faktor A (`treatment`)? Wie viele Stufen hat Faktor B (`reward`)?
+
+> Faktor A: $J = 2$ Stufen
+
+> Faktor B: $K = 2$ Stufen --> 2x2-Design
+
+- Wie viele Personen wurden pro Gruppe untersucht?
+
+> n = 20, d.h. 5 pro Gruppe
+
+- Wie lauten die Mittelwerte und Standardabweichungen der abhängigen Variable `confidence` in den Gruppen? Tipp: Verwenden Sie die Funktionen `group_by()` und `summarise()`. Bei `group_by()` müssen beide Faktoren angegeben werden.
+
+```{r}
+#| eval: false
+# Mittelwerte und Standardabweichungen berechnen
+
+
+```
+
+```{r}
+# Mittelwerte und Standardabweichungen berechnen
+d_summary <- d_anova2 |>
+  group_by(treatment, reward) |> # Gruppierung mit beiden Faktoren
+  summarise(mean_conf = mean(confidence), # Mittelwert
+            sd_conf = sd(confidence)) # Standardabweichung
+d_summary
+```
+
+
+__c.__ Laden die das Package {afex} und berechnen Sie das Anova-Modell `m_anova2` mit zwei Faktoren.
+
+- Gibt es einen signifikanten Haupteffekt A für `treatment` und was bedeutet das?
+
+- Gibt es einen signifikanten Haupteffekt B für `reward` und was bedeutet das?
+
+- Gibt es einen signifikanten Interaktionseffekt AxB für `treatment * reward` und was bedeutet das?
+
+
+```{r}
+#| eval: false
+# afex laden
+
+# Zweifaktorielle Anova ohne Messwiederholung
+m_anova2 <- aov_4(___ ~ ___ * ___ + (1 | id), # av ~ uv1 * uv2 + (1 | id)
+                  data = ___) # Datensatz
+
+# Resultate ausgeben
+___
+___
+
+```
+
+```{r, message=FALSE}
+# afex laden
+library(afex)
+
+# Zweifaktorielle Anova ohne Messwiederholung
+m_anova2 <- aov_4(confidence ~ treatment * reward + (1 | id),
+                  data = d_anova2)
+
+# Resultate ausgeben
+summary(m_anova2) 
+m_anova2$Anova
+```
+> Wir finden einen signifikanten Haupteffekt A von Treatment und einen Interaktionseffekt AxB. Das bedeutet: Mindestens ein Haupteffekt des Faktors A (Treatment) und mindestens ein Interaktionseffekt (Treatment und Belohnung) sind signifikant von 0 verschieden. Da beide Faktoren nur zwei Stufen aufweisen und sich die Effekte zu 0 aufaddieren, bedeutet dies, dass alle Haupteffekte des Faktors A und alle Interaktionseffekte von 0 verschieden sind. 
+> Vorsicht ist bei der Interpretation der Haupteffekts A geboten, da dieser sehr wahrscheinlich durch den Effekt des bedingten Haupteffekts zustande kommt --> Das schauen wir nun genauer an. 
+
+> Der Haupteffekt B (Belohnung) ist NICHT signifikant (siehe Signifikanzniveau) von 0 verschieden. [Das Signifikanzniveau ist als strikter Cut-off zu verstehen. Wir sprechen nicht! von "marginal signifikant", auch wenn teilweise in Publikationen so vorkommt und hier in R mit einem Punkt angedeutet ist]
+
+
+__d.__ Berechnen Sie den Gesamteffekt mit der Funktion `summary(lm(av ~ uv1 * uv2, data = my_data))`. 
+
+- Ist der Gesamteffekt signifikant? Was bedeutet das?
+
+```{r}
+#| eval: false
+# Gesamteffekt
+summary(lm(___ ~ ___ * ___, # av ~ uv1 * uv2
+           data = ___)) # Datensatz
+```
+
+```{r}
+summary(lm(confidence ~ treatment * reward, # av ~ uv1 * uv2
+           data = d_anova2)) # Datensatz
+```
+
+> Der Gesamteffekt ist mit $p = .015$ signifikant. Das bedeutet, dass wir die signifikanten Haupt- und Interaktionseffekte grundsätzlich auch interpretieren dürfen. Trotzdem bleibt "Problem", dass Haupteffekt durch Interaktion zustande kommt. 
+
+> Dies wird vor allem im Ergebnisbericht (Text) in einem Artikel benötigt. Falls das Gesamtmodell nicht signifikant ist, sollten die Effekte nicht interpretiert werden - auch wenn einzelne signifikant.
+
+> Im Output ist nur letzte Zeile relevant.
+
+
+__e.__ Laden Sie das Package {emmeans}. Berechnen Sie die bedingten Haupteffekte für Faktor B (`reward`) für die beiden Faktorstufen des Faktors A (`treatment`) mit der Funktion `joint_tests()` aus dem Package {emmeans}. Wie können diese interpretiert werden? 
+
+```{r}
+#| eval: false
+# emmeans laden
+___
+
+# Bedingte Haupteffekte Faktor B
+___(___, # Funktion, Modell
+            by = "___") # für Faktorstufen a1/a2
+```
+
+```{r}
+library(emmeans)
+
+# Bedingte Haupteffekte Faktor B
+joint_tests(m_anova2, # Modell
+            by = "treatment") # für Faktorstufen a1/a2
+```
+
+> Nicht signifikanter bedingter Haupteffekt des Faktors B (`reward`) (yes vs. no), wenn Personen in der Kontrollbedingung sind ($p = .8910$).
+
+> Signifikanter bedingter Haupteffekt des Faktors B (`reward`) (yes vs. no), wenn Personen in der Trainingsbedingung sind ($p = .0099$). 
+
+> Was heisst das? Der Effekt des Trainings kommt also dadurch zustande, dass sich die Gruppe mit Belohnung deutlich  unterscheidet.  
+
+> Für die bedingten Haupteffekte werden oft nur die $p$-Werte angegeben (keine _F_-Werte), damit man als Leser:in nicht verwirrt wird (diese Analysen sind „post-hoc“, gehören also nicht zum eigentlichen ANOVA-Modell).
+
+__f.__ Laden Sie das Package {effectsize}. Berechnen Sie die Effektstärken $\eta^2_p$ für alle Effekte.   
+
+```{r}
+#| eval: false
+# effectsize laden
+___
+
+# Effektstärke partielles Etaquadrat berechnen
+___(___, # Funktion, Modell
+    partial = TRUE)
+
+```
+
+```{r}
+library(effectsize)
+
+# Effektstärke partielles Etaquadrat berechnen
+eta_squared(m_anova2, # Funktion, Modell
+            partial = TRUE)
+```
+
+> Nach Konventionen nach Cohen (siehe Kap 11 https://psylu.github.io/statistik2-fs25/datenanalyse/anova1.html#effektstärke-bestimmen) sind es grosse Effekte. 
+
+> Berichtet wird in Artikeln das partielle Etaquadrat, daher geben wir dieses aus. 
+
+<br>
+
+## Aufgabe 7.3: Interaktionen
+
+__a.__ Zeichnen Sie den Interaktionseffekt mit den Mittelwerten der vier Bedingungen aus Aufgabe 7.2 von Hand auf. 
+
+- Wie sieht die Interaktion aus und um welche Form könnte es sich handeln? 
+
+> Es gibt ordinale, disordinale und semidisordinale Interaktionen.
+
+> Es handelt sich um eine ... Interaktion. -> Kann nicht eindeutig zugeordnet werden.
+
+
+__b.__ Stellen Sie die Ergebnisse auch in _R_ mit Hilfe von `afex_plot()` dar.
+
+- Wie interpretieren Sie die Kombination des Haupteffekts und des Interaktionseffekts?
+
+```{r}
+#| eval: false
+
+afex_plot(object = m_anova2,
+          x = "___", # uv1
+          trace = "___", # uv2
+          mapping = c("color", "shape"),
+          error_ci = FALSE,
+          legend_title = "___") + # Legende für uv2 
+  theme_minimal()
+```
+
+```{r}
+# Grafische Darstellung der zweifaktoriellen Varianzanalyse (Variante 1)
+afex_plot(object = m_anova2,
+          x = "treatment",
+          trace = "reward",
+          mapping = c("color", "shape"),
+          error_ci = FALSE,
+          legend_title = "reward") +
+  theme_minimal()
+
+# Grafische Darstellung der zweifaktoriellen Varianzanalyse (Variante 2)
+afex_plot(object = m_anova2,
+          x = "reward",
+          trace = "treatment",
+          mapping = c("color", "shape"),
+          error_ci = FALSE,
+          legend_title = "treatment") +
+  theme_minimal()
+```
+
+
+> Kombinationen aus Haupt- und Interaktionseffekten: siehe Eid et al., 2017, S.446 
+
+> Haupteffekt zwar signifikant, aber kommt zustande, weil bei Training & Belohnung der Zellmittelwert deutlich höher liegt. Der Zellmittelwert Training & KEINE Belohnung ist jedoch recht tief. -> Also Vorsicht bei der Interpretation von Haupteffekten, wenn Interaktionseffekte vorliegen, da grosser Haupteffekt auch auf einen grossen bedingten Haupteffekt zurückführbar sein könnte. 
+
+> Hier kann auch "verraten" werden, dass die Zahlen aus dem Buch stammen und Interpretation dort auch nochmals nachgelesen/nachvollzogen werden kann. 
+
+<br>
+
+## Zusatzaufgabe
+
+:::{.callout-tip appearance="default" title="Zusatzaufgaben"}
+
+__Zusatzaufgaben müssen nicht gelöst werden.__
+
+:::
+
+__a.__ Verfassen Sie für einen wissenschaftlichen Artikel einen Text zu den Ergebnissen der Aufgabe 7.2.
+
+__b.__ Welche Forschungsfrage würden Sie gerne mit einer zweifaktoriellen Varianzanalyse beantworten? Diskutieren Sie anhand dieser Frage: Was sind Vor- und Nachteile dieser Analysemethode? 
+
