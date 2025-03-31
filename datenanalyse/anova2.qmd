@@ -12,11 +12,11 @@ knitr::opts_knit$set(root.dir = '../')
 ::: {.callout-note appearance="default" title="Beispiel: Therapiemethoden bei Angstsymptomen für Erwachsene und Jugendliche" icon=false}
 In einem fiktiven Experiment wurden zwei verschiedene Therapiemethoden verglichen und untersucht, welchen Effekt die zwei Therapiemethoden bei Jugendlichen und Erwachsenen auf ihre Angstsymptomatik haben. Dazu wurden je 12 erwachsene und 12 jugendliche Personen zufällig auf die zwei Bedingungen aufgeteilt.
 
-- Die _unabhängige Variable A_ sind die Altersgruppen mit 2 Faktorstufen (Jugendliche, Erwachsene)
+- Die _unabhängige Variable A_ sind die Altersgruppen mit 2 Faktorstufen (Jugendliche, Erwachsene).
 
-- Die _unabhängige Variable B_ sind die Therapiemethoden mit 2 Faktorstufen (Mindfulness, Kognitive Umstrukturierung)
+- Die _unabhängige Variable B_ sind die Therapiemethoden mit 2 Faktorstufen (Mindfulness, Kognitive Umstrukturierung).
 
-- Die _abhängige Variable_ entspricht der Höhe der Angstsymptome nach der Therapie (metrisch) 
+- Die _abhängige Variable_ entspricht der Höhe der Angstsymptome nach der Therapie (metrisch).
 
 :::
 
@@ -31,7 +31,7 @@ $H_0$ für Haupteffekt B: Die Angstsymptome unterscheiden sich nicht zwischen de
 
 $H_0$ für den Interaktionseffekt A x B: Die Angstsymptome unterscheiden sich nicht zwischen den Therapiemethoden in Abhängigkeit der Altersgruppen: $\mu_{jk} - (\mu_{j \bullet} - \mu) - (\mu_{ \bullet k} - \mu) + \mu = 0$ für alle $jk$
 
-$H_1$ für den Haupteffekt A (B, A x B analog): Die Altersgruppen unterscheiden sich bezüglich  den Angstsymptomen: $\mu_{j \bullet} - \mu \neq 0$ für mindestens ein $j$ 
+$H_1$ für den Haupteffekt A (B, A x B analog): Die Altersgruppen unterscheiden sich bezüglich den Angstsymptomen: $\mu_{j \bullet} - \mu \neq 0$ für mindestens ein $j$ 
 
 Das Alphaniveau wird auf $5 \%$ festgelegt. Es handelt sich um eine ungerichtete Hypothese, die Testung erfolgt mit dem _F_-Test dabei einseitig.
 
@@ -80,7 +80,7 @@ glimpse(d_therapy_age)
 
 Der _F_-Test für eine zweifaktorielle Varianzanalyse setzt voraus, dass die AV in der Population stetig und normalverteilt ist und die Populationsvarianzen homogen sind.
 
-Die Varianzhomogenität (Homoskedastizität) kann mit dem Levene-Test `leveneTest(y ~ x, data = dataset)` überprüft werden. Die Funktion `leveneTest()` stammt aus dem Package {car}. Ein Levene-Test mit $p < 0.05$ bedeutet, dass der Varianzunterschied signifikant ist. Die Nullhypothese, dass die Varianzen auf Populationsebene identisch sind, muss in diesem Fall verworfen werden.
+Die Varianzhomogenität (Homoskedastizität) kann mit dem Levene-Test `leveneTest(y ~ x, data = dataset)` überprüft werden. Die Funktion `leveneTest()` stammt aus dem Package {car}. Ein Levene-Test mit $p < 0.05$ bedeutet, dass der Varianzunterschied signifikant ist. Die Nullhypothese, dass die Varianzen auf Populationsebene identisch sind, müsste in diesem Fall verworfen werden.
 
 <aside> Vor dem ersten Verwenden der Funktion `leveneTest()` muss das Package {car} heruntergeladen/installiert werden, z.B. in der Konsole mit `install.packages("car")`. </aside> 
 
@@ -159,7 +159,7 @@ afex_plot(object = m_anova2x2,
   theme_minimal()
 ```
 
-  - Hier ist ersichtlich, dass sich die Zellmittelwerte "nur" in der Altersgruppe "Erwachsene" zwischen den beiden Methoden unterscheidet. Dies deutet darauf hin, dass der Haupteffekt der Therapiemethode lediglich durch die grosse Mittelwertsdifferenz zwischen den beiden Methoden bei Erwachsenen zustande kommt und dass es (trotz signifikantem Haupteffekt) keinen allgemeinen Effekt der Therapiemethode gibt.
+Hier ist ersichtlich, dass sich die Zellmittelwerte "nur" in der Altersgruppe "Erwachsene" zwischen den beiden Methoden unterscheidet. Dies deutet darauf hin, dass der Haupteffekt der Therapiemethode lediglich durch die grosse Mittelwertsdifferenz zwischen den beiden Methoden bei Erwachsenen zustande kommt und dass es (trotz signifikantem Haupteffekt) keinen allgemeinen Effekt der Therapiemethode gibt.
 
 > Es gilt also Vorsicht bei der Interpretation von Haupteffekten, wenn Interaktionseffekte vorliegen, da grosse Haupteffekte auch durch grosse bedingte Haupteffekt zustande kommen können. 
   
@@ -191,6 +191,7 @@ library(emmeans)
 joint_tests(m_anova2x2, # Modell
             by = "agegroup") # in Faktorstufen a1/a2
 ```
+
 Der __bedingte__ Haupteffekt des Faktors B (`method`) (mindfulness vs. restructuring), wenn Personen in der Altersgruppe "Jugendliche" ($a_2$) sind, ist nicht signifikant ($p = .884$).
 
 Hingegen ist der __bedingte__ Haupteffekt des Faktors B (`method`) (mindfulness vs. restructuring) signifikant, wenn Personen in der Altersgruppe "Erwachsene" ($a_1$) sind ($p = .002$).
@@ -202,6 +203,7 @@ library(emmeans)
 joint_tests(m_anova2x2, # Modell
             by = "method") # in Faktorstufen b1/b2
 ```
+
 Die __bedingten__ Haupteffekte des Faktors A (`agegroup`) (adolescent vs. adult) für beide Therapiemethoden ($b_1$ und $b_2$) sind nicht signifikant.
 
 __Gesamteffekt__
@@ -213,7 +215,8 @@ Um den Gesamteffekt zu berechnen, kann die Funktion `lm()` verwendet werden. In 
 summary(lm(symptoms ~ agegroup * method, # av ~ uv1 * uv2
            data = d_therapy_age)) # Datensatz
 ```
-  - Der Gesamteffekt ist mit $p = .019$ signifikant von 0 verschieden, wodurch die signifikanten Haupt- und Interaktionseffekte grundsätzlich interpretriert werden können. 
+
+Der Gesamteffekt ist mit $p = .019$ signifikant von 0 verschieden, wodurch die signifikanten Haupt- und Interaktionseffekte grundsätzlich interpretiert werden können. 
   
 
 #### __Effektstärke bestimmen__
@@ -222,9 +225,11 @@ __Berechnung der Effektgrösse $\eta^2$ und $\eta^2_p$__
 
 Für jede Effektgruppe lässt sich mit dem nicht-partiellen $\eta^2$ angeben, wie gross der Anteil der durch sie aufgeklärten Varianz an der Gesamtvarianz ist. Der Nachteil des nicht-partiellen Effektstärkenmasses besteht darin, dass die Grösse eines bestimmten Effekts abhängig davon ist, aus welchen anderen Faktoren das jeweilige varianzanalytische Design besteht. Daher ist es nicht über Studien hinweg vergleichbar.
 
-Zur besseren Vergleichbarkeit kann das partielle $\eta^2_p$ berechnet werden. Der Nachteil des partiellen Effektstärkemasse ist, dass sie sich innerhalb einer Studie nicht mehr zu einem Gesamteffekt, d. h. dem Anteil der insgesamt aufgeklärten Varianz an der Gesamtvarianz, aufaddieren. Will man also die Grösse unterschiedlicher Effekte innerhalb der gleichen Studie in Relation zueinander setzen, bietet es sich an, das nicht-partielle Effektstärkemass zu verwenden. 
+Zur besseren Vergleichbarkeit kann das partielle $\eta^2_p$ berechnet werden. Der Nachteil des partiellen Effektstärkemasse ist, dass sie sich innerhalb einer Studie nicht mehr zu einem Gesamteffekt, d. h. dem Anteil der insgesamt aufgeklärten Varianz an der Gesamtvarianz, aufaddieren. 
 
-Um die Effektgrössen zu berechnen, kann in _R_ die Funktion `eta_squared()` aus dem Package {effectsize} verwendet werden. Als Argument für die Funktion muss das Anova-Modell (Objekt), also hier `m_anova2x2`, verwendet werden. Durch `partial = TRUE` berechnet _R_ hier das partielle Etaquadrat, welches über Studien hinweg verglichen werden kann.
+Will man also die Grösse unterschiedlicher Effekte innerhalb der gleichen Studie in Relation zueinander setzen, bietet es sich an, das nicht-partielle Effektstärkemass zu verwenden. Für Vergleiche von Effektgrössen zwischen Studien ist das partielle Effektstärkemass geeignet.
+
+Um die Effektgrössen zu berechnen, kann in _R_ die Funktion `eta_squared()` aus dem Package {effectsize} verwendet werden. Als Argument für die Funktion muss das Anova-Modell (Objekt), also hier `m_anova2x2`, verwendet werden. Wird das Argument `partial` auf `TRUE` gesetzt (`partial = TRUE`) berechnet _R_ das partielle Etaquadrat, welches über Studien hinweg verglichen werden kann.
 
 <aside> Vor dem ersten Verwenden muss das Package {effectsize} heruntergeladen/installiert werden, z.B. in der Konsole mit `install.packages("effectsize")`. </aside>
 
@@ -252,13 +257,12 @@ __Ergebnisse der zweifaktoriellen Varianzanalyse ohne Messwiederholung__
 > A two-way analysis of variance (ANOVA) was conducted to examine the effects of Factor A (e.g., age group: adult vs. adolescent) and Factor B (therapy method: mindfulness vs. restructuring) on anxiety symptoms. 
 
 > The main effect of age group was not significant, _F_(1, 20) = 0.01, _p_ = .918, suggesting that there was no overall difference in anxiety symptoms between adolescents and adults.
-The analysis revealed a significant main effect of therapy method, _F_(1, 20) = 6.78, _p_ = .017, $\eta^2_p$ = .25, indicating that the mean anxiety symptoms significantly differed between mindfulness and restructuring method.
+The analysis revealed a significant main effect of therapy method, _F_(1, 20) = 6.78, _p_ = .017, $\eta^2_p$ = .25, indicating that the mean anxiety symptoms significantly differed between the mindfulness and restructuring method.
 
 > However, the interaction between age group and therapy method was significant, _F_(1, 20) = 5.74, _p_ = .027, $\eta^2_p$ = .22, indicating that the effect of therapy method depended on age group. A simple effects analysis for therapy method revealed a significant effect for adults (_p_ = .002), but not for adolescents (_p_ = .884). This indicates a differential effect of therapy method regarding age groups. Figure 12.1 illustrates the interaction effect.
 
 ```{r}
 #| echo: false
-  
 afex_plot(object = m_anova2x2,
           x = "agegroup",
           trace = "method",
@@ -268,6 +272,6 @@ afex_plot(object = m_anova2x2,
   theme_minimal()
 ```
 
-Figure 12.1 (hier noch anschreiben)
+Figure 12.1: Main and interaction effects of therapy methods mindfulness and restructuring on anxiety symptoms in adults and adolescents.
 
 

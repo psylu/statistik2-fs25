@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Übung 4 – Datenanalyse mit R</title>
+<title>12&nbsp; Zweifaktorielle Varianzanalyse ohne Messwiederholung – Datenanalyse mit R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../uebungen/uebung-05.html" rel="next">
-<link href="../uebungen/uebung-02.html" rel="prev">
+<link href="../uebungen/uebungen.html" rel="next">
+<link href="../datenanalyse/anova1.html" rel="prev">
 <link href="../imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -146,7 +146,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-04.html">Übung 4</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenanalyse/descriptive.html">Datenanalyse</a></li><li class="breadcrumb-item"><a href="../datenanalyse/anova2.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Zweifaktorielle Varianzanalyse ohne Messwiederholung</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -276,7 +276,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../datenanalyse/anova2.html" class="sidebar-item-text sidebar-link">
+  <a href="../datenanalyse/anova2.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Zweifaktorielle Varianzanalyse ohne Messwiederholung</span></span></a>
   </div>
 </li>
@@ -315,7 +315,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../uebungen/uebung-04.html" class="sidebar-item-text sidebar-link active">
+  <a href="../uebungen/uebung-04.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Übung 4</span></a>
   </div>
 </li>
@@ -384,19 +384,22 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#aufgabe-4.1-projektumgebung" id="toc-aufgabe-4.1-projektumgebung" class="nav-link active" data-scroll-target="#aufgabe-4.1-projektumgebung">Aufgabe 4.1: Projektumgebung</a></li>
-  <li><a href="#aufgabe-4.2-t-test-ausführen" id="toc-aufgabe-4.2-t-test-ausführen" class="nav-link" data-scroll-target="#aufgabe-4.2-t-test-ausführen">Aufgabe 4.2: T-Test ausführen</a></li>
-  <li><a href="#aufgabe-4.3-t-test-ausführen" id="toc-aufgabe-4.3-t-test-ausführen" class="nav-link" data-scroll-target="#aufgabe-4.3-t-test-ausführen">Aufgabe 4.3: T-Test ausführen</a></li>
-  <li><a href="#aufgabe-4.4-zusatzaufgabe" id="toc-aufgabe-4.4-zusatzaufgabe" class="nav-link" data-scroll-target="#aufgabe-4.4-zusatzaufgabe">Aufgabe 4.4: Zusatzaufgabe</a></li>
+  <li><a href="#anwendungsbeispiel-in-r" id="toc-anwendungsbeispiel-in-r" class="nav-link active" data-scroll-target="#anwendungsbeispiel-in-r"><span class="header-section-number">12.1</span> Anwendungsbeispiel in R</a>
+  <ul class="collapse">
+  <li><a href="#planung" id="toc-planung" class="nav-link" data-scroll-target="#planung"><span class="header-section-number">12.1.1</span> Planung</a></li>
+  <li><a href="#vorverarbeitung" id="toc-vorverarbeitung" class="nav-link" data-scroll-target="#vorverarbeitung"><span class="header-section-number">12.1.2</span> Vorverarbeitung</a></li>
+  <li><a href="#analyse" id="toc-analyse" class="nav-link" data-scroll-target="#analyse"><span class="header-section-number">12.1.3</span> Analyse</a></li>
+  <li><a href="#schlussfolgerungen" id="toc-schlussfolgerungen" class="nav-link" data-scroll-target="#schlussfolgerungen"><span class="header-section-number">12.1.4</span> Schlussfolgerungen</a></li>
+  </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content page-columns page-full column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-04.html">Übung 4</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenanalyse/descriptive.html">Datenanalyse</a></li><li class="breadcrumb-item"><a href="../datenanalyse/anova2.html"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Zweifaktorielle Varianzanalyse ohne Messwiederholung</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-uebung-04" class="quarto-section-identifier">Übung 4</span></h1>
+<h1 class="title"><span id="sec-anova2-ind" class="quarto-section-identifier"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Zweifaktorielle Varianzanalyse ohne Messwiederholung</span></span></h1>
 </div>
 
 
@@ -413,298 +416,396 @@ window.Quarto = {
 </header>
 
 
-<div class="callout callout-style-default callout-note callout-titled" title="Lernziele dieser Übung">
+<section id="anwendungsbeispiel-in-r" class="level2 page-columns page-full" data-number="12.1">
+<h2 data-number="12.1" class="anchored" data-anchor-id="anwendungsbeispiel-in-r"><span class="header-section-number">12.1</span> Anwendungsbeispiel in R</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Beispiel: Therapiemethoden bei Angstsymptomen für Erwachsene und Jugendliche">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Beispiel: Therapiemethoden bei Angstsymptomen für Erwachsene und Jugendliche
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In einem fiktiven Experiment wurden zwei verschiedene Therapiemethoden verglichen und untersucht, welchen Effekt die zwei Therapiemethoden bei Jugendlichen und Erwachsenen auf ihre Angstsymptomatik haben. Dazu wurden je 12 erwachsene und 12 jugendliche Personen zufällig auf die zwei Bedingungen aufgeteilt.</p>
+<ul>
+<li><p>Die <em>unabhängige Variable A</em> sind die Altersgruppen mit 2 Faktorstufen (Jugendliche, Erwachsene).</p></li>
+<li><p>Die <em>unabhängige Variable B</em> sind die Therapiemethoden mit 2 Faktorstufen (Mindfulness, Kognitive Umstrukturierung).</p></li>
+<li><p>Die <em>abhängige Variable</em> entspricht der Höhe der Angstsymptome nach der Therapie (metrisch).</p></li>
+</ul>
+</div>
+</div>
+<section id="planung" class="level3" data-number="12.1.1">
+<h3 data-number="12.1.1" class="anchored" data-anchor-id="planung"><span class="header-section-number">12.1.1</span> Planung</h3>
+<section id="statistische-hypothesen-und-signifikanzniveau-festlegen" class="level4">
+<h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen"><strong>Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
+<p><span class="math inline">\(H_0\)</span> für Haupteffekt A: Die Angstsymptome unterscheiden sich nicht zwischen den Altersgruppen: <span class="math inline">\(\mu_{j \bullet} - \mu = 0\)</span> für alle <span class="math inline">\(j\)</span></p>
+<p><span class="math inline">\(H_0\)</span> für Haupteffekt B: Die Angstsymptome unterscheiden sich nicht zwischen den Therapiemethoden: <span class="math inline">\(\mu_{ \bullet k} - \mu = 0\)</span> für alle <span class="math inline">\(k\)</span></p>
+<p><span class="math inline">\(H_0\)</span> für den Interaktionseffekt A x B: Die Angstsymptome unterscheiden sich nicht zwischen den Therapiemethoden in Abhängigkeit der Altersgruppen: <span class="math inline">\(\mu_{jk} - (\mu_{j \bullet} - \mu) - (\mu_{ \bullet k} - \mu) + \mu = 0\)</span> für alle <span class="math inline">\(jk\)</span></p>
+<p><span class="math inline">\(H_1\)</span> für den Haupteffekt A (B, A x B analog): Die Altersgruppen unterscheiden sich bezüglich den Angstsymptomen: <span class="math inline">\(\mu_{j \bullet} - \mu \neq 0\)</span> für mindestens ein <span class="math inline">\(j\)</span></p>
+<p>Das Alphaniveau wird auf <span class="math inline">\(5 \%\)</span> festgelegt. Es handelt sich um eine ungerichtete Hypothese, die Testung erfolgt mit dem <em>F</em>-Test dabei einseitig.</p>
+</section>
+</section>
+<section id="vorverarbeitung" class="level3 page-columns page-full" data-number="12.1.2">
+<h3 data-number="12.1.2" class="anchored" data-anchor-id="vorverarbeitung"><span class="header-section-number">12.1.2</span> Vorverarbeitung</h3>
+<section id="daten-einlesen-und-vorverarbeiten" class="level4">
+<h4 class="anchored" data-anchor-id="daten-einlesen-und-vorverarbeiten"><strong>Daten einlesen und vorverarbeiten</strong></h4>
+<div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Beispieldatensatz Therapiemethode und Altersgruppen">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Lernziele dieser Übung
+Hands-on: Beispieldatensatz Therapiemethode und Altersgruppen
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Nach der heutigen Übung können Sie</p>
+<p><strong>Daten herunterladen und einlesen</strong></p>
+<p>Der Datensatz <a href="../data/anova_therapy_age.csv"><code>anova_therapy_age.csv</code></a> kann hier heruntergeladen werden. Der Datensatz muss im <code>data</code>-Ordner des <em>RProject</em> namens <code>anova.Rproj</code> abgespeichert werden.</p>
 <ul>
-<li><em>R</em> und <em>RStudio</em> zur Analyse von Daten verwenden</li>
-<li>Daten von <em>wide</em> zu <em>long</em> Format transformieren</li>
-<li>Durchführen von <em>t</em>-Tests für unabhängige Stichproben in <em>R</em>
-<ul>
-<li>Überprüfen von Hypothesen zum Vergleich zweier Stichprobenmittelwerte von unabhängigen Gruppen</li>
-<li>Prüfen der Voraussetzungen</li>
-<li>Berechnen des Tests</li>
-<li>Interpretieren der Resultate</li>
-</ul></li>
-<li>Durchführen von <em>t</em>-Tests für abhängige Stichproben in <em>R</em>
-<ul>
-<li>Überprüfen von Hypothesen zum Vergleich zweier Stichprobenmittelwerte von abhängigen/verbundenen Gruppen</li>
-<li>Prüfen der Voraussetzungen</li>
-<li>Berechnen des Tests</li>
-<li>Interpretieren der Resultate</li>
-</ul></li>
+<li><p>Es werden folgende Packages verwendet: {tidyverse}, {afex}, {emmeans}, {effectsize}</p></li>
+<li><p>Datensatz <code>anova_therapy_age.csv</code> einlesen:</p></li>
 </ul>
-</div>
-</div>
-<div class="callout callout-style-default callout-note callout-titled" title="Voraussetzungen">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Voraussetzungen
-</div>
-</div>
-<div class="callout-body-container callout-body">
-<ol type="1">
-<li><p>Packages {tidyverse}, {Hmisc}, {esquisse}, {pwr}, {car}, {effsize} sind installiert.</p></li>
-<li><p><a href="../data/ttests.zip">Hier</a> kann der Projektordner mit den Daten heruntergeladen werden. Vor dem ersten Verwenden muss der Ordner entzippt werden, dann kann das <em>RProject</em> namens <code>ttests.Rproj</code> geöffnet werden. Der Ordner enthält:</p></li>
-</ol>
-<ul>
-<li><em>RProject</em> namens <code>ttest.Rproj</code></li>
-<li>Datensätze für Übung 4 in <code>data</code>-Ordner des <em>RProjects</em> <code>ttests</code>:
-<ul>
-<li><a href="../data/couples_quality.csv"><code>couples_quality.csv</code></a></li>
-<li><a href="../data/couples_extraversion.csv"><code>couples_extraversion.csv</code></a></li>
-</ul></li>
-<li>(die weiteren Dateien und <em>RNotebooks</em> werden in der Vorlesung verwendet)</li>
-</ul>
-</div>
-</div>
-<p><br></p>
-<section id="aufgabe-4.1-projektumgebung" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-4.1-projektumgebung">Aufgabe 4.1: Projektumgebung</h2>
-<p><em>Falls obige Anforderungen noch nicht erfüllt:</em></p>
-<ul>
-<li>Laden Sie den Projektordner herunter und entzippen Sie den Ordner.</li>
-<li>Öffnen Sie das <em>RProjekt</em> <code>ttests</code>.</li>
-<li>Installieren Sie die benötigten Packages (falls noch nicht geschehen:
-<ul>
-<li>das Package {pwr} in der Konsole mit <code>install.packages("pwr")</code> oder mit <code>Tools</code> &gt; <code>Install Packages...</code></li>
-<li>das Package {car} in der Konsole mit <code>install.packages("car")</code> oder mit <code>Tools</code> &gt; <code>Install Packages...</code></li>
-<li>das Package {effsize} in der Konsole mit <code>install.packages("effsize")</code> oder mit <code>Tools</code> &gt; <code>Install Packages...</code></li>
-</ul></li>
-<li>Erstellen ein <em>RNotebook</em> names <code>uebung-04</code>.</li>
-</ul>
-</section>
-<section id="aufgabe-4.2-t-test-ausführen" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-4.2-t-test-ausführen">Aufgabe 4.2: T-Test ausführen</h2>
-<p><strong>Studienbeschrieb</strong></p>
-<p>Sie wollen untersuchen, ob sich die Beziehungsqualität von Paaren durch ein Kommunikationstraining beeinflussen lässt. Sie untersuchen daher zwei Gruppen mit insgesamt 60 Paaren. Eine Gruppe (30 Paare) erhält während zwei Monaten ein Kommunikationstraining (KT). Die andere Gruppe (30 Paare) erhält in diesen zwei Monaten ein Rechtschreibetraining (RS) mit gleicher Intensität. Nach zwei Monaten werden alle Paare zu zweit zu ihrer Beziehungsqualität befragt. Diese Befragung ergibt <strong>einen</strong> Wert für Beziehungsqualität pro Paar, also 30 Werte in der <em>KT</em>-Gruppe und 30 Werte in der <em>RS</em>-Gruppe. Das Signifikanzniveau wird auf <span class="math inline">\(\alpha=0.05\)</span> festgelegt.</p>
-<p><strong>Forschungsfrage</strong>: Besteht nach dem Training ein Unterschied in der Einschätzung der Beziehungsqualität zwischen den beiden Gruppen?</p>
-<p><br></p>
-<p><strong>Bearbeiten Sie nun Schritt für Schritt folgende Aufgaben:</strong></p>
-<p><strong>a.</strong> Muss gerichtet oder ungerichtet getestet werden? Wie lautet die <span class="math inline">\(H_0\)</span> und die <span class="math inline">\(H_1\)</span>?</p>
-<p><strong>b.</strong> Welches Signifikanzniveau wurde festgelegt? Was bedeutet das?</p>
-<p><strong>c.</strong> Laden Sie das Package {tidyverse}. Lesen Sie den Datensatz <code>couples_quality.csv</code> aus dem Ordner <code>data</code> ein und speichern Sie ihn in die Variable <code>d_quality</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">___</span>(tidyverse)</span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>___ <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"___/___"</span>)</span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Package laden</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Daten laden und anschauen</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>d_therapy_age <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/anova_therapy_age.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">glimpse</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 24
+Columns: 4
+$ agegroup &lt;chr&gt; "adult", "adult", "adult", "adult", "adult", "adult", "adult"…
+$ method   &lt;chr&gt; "mindfulness", "mindfulness", "mindfulness", "mindfulness", "…
+$ symptoms &lt;int&gt; 9, 7, 8, 4, 7, 1, 1, 3, 4, 1, 1, 2, 5, 2, 3, 4, 5, 6, 3, 3, 4…
+$ id       &lt;int&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18…</code></pre>
 </div>
-<p><strong>d.</strong> Konvertieren Sie <code>id</code> zu einem Faktor, da Versuchspersonenidentifikationen ja keine numerischen Werte haben, sondern nominalskaliert sind (z.B. ist Versuchsperson 10 ja nicht doppelt so viel wie Versuchsperson 5). Der Datensatz sollte danach immer noch <code>d_quality</code> heissen.</p>
+</div>
+<p><strong>Datensatz transformieren</strong></p>
+<p>Die Daten liegen bereits im <code>long</code> Format vor. Die Variablen <code>id</code>, <code>agegroup</code> und <code>method</code> müssen jedoch noch zu Faktoren konvertiert werden.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>d_quality <span class="ot">&lt;-</span> d_quality <span class="sc">|&gt;</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">___</span>(id))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Faktoren konvertieren</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>d_therapy_age <span class="ot">&lt;-</span> d_therapy_age <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">as.factor</span>(id)) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">agegroup =</span> <span class="fu">as.factor</span>(agegroup)) <span class="sc">|&gt;</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">method =</span> <span class="fu">as.factor</span>(method)) <span class="sc">|&gt;</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span> (id, agegroup, method, symptoms)</span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz anschauen</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(d_therapy_age)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 24
+Columns: 4
+$ id       &lt;fct&gt; 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18…
+$ agegroup &lt;fct&gt; adult, adult, adult, adult, adult, adult, adult, adult, adult…
+$ method   &lt;fct&gt; mindfulness, mindfulness, mindfulness, mindfulness, mindfulne…
+$ symptoms &lt;int&gt; 9, 7, 8, 4, 7, 1, 1, 3, 4, 1, 1, 2, 5, 2, 3, 4, 5, 6, 3, 3, 4…</code></pre>
 </div>
-<div class="callout callout-style-default callout-tip callout-titled" title="Tipp">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tipp
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-3" class="callout-3-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<ul>
-<li>Beginnen Sie mit <code>d_quality &lt;- d_quality |&gt;</code></li>
-<li>Nutzen Sie die Funktion <code>mutate()</code> und <code>as.factor()</code>.</li>
-<li>Lesen Sie <a href="../datenverarbeitung/transform.html#variablentyp-verändern-as.factor-as.numeric">hier</a> nach.</li>
-</ul>
-</div>
-</div>
-</div>
-<p><strong>e.</strong> Schauen Sie sich die Variablen und die Deskriptivstatistik an. Wie lauten die Mittelwerte und die Standardabweichungen der beiden Gruppen? Was fällt Ihnen auf?</p>
-<p><em>Vorgehen</em>:</p>
-<ul>
-<li><p>Gruppieren Sie den Datensatz nach Bedingungen.</p></li>
-<li><p>Berechnen Sie den Mittelwert und die Standardabweichung</p></li>
-<li><p>Erstellen Sie mit den obigen Schritten einen neue Variable namens <code>d_quality_summary</code>.</p></li>
-<li><p>Schauen Sie sich die Werte in <code>d_quality_summary</code> an.</p></li>
-</ul>
-<div class="callout callout-style-default callout-tip callout-titled" title="Tipp">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Tipp
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<ul>
-<li><p>Beginnen Sie mit <code>d_quality_summary &lt;- ___</code>. Fügen Sie den Namen des Datensatzes ein.</p></li>
-<li><p>Fahren Sie dann mit der Pipe <code>|&gt;</code> weiter.</p></li>
-<li><p>Verwenden Sie <code>group_by()</code> zum Gruppieren. Als Argument muss hier die Gruppierungsvariable (UV) eingegeben werden.</p></li>
-<li><p>Berechnen Sie den Mittelwert und die Standardabweichung mit <code>mean()</code> und <code>sd()</code>.</p></li>
-</ul>
-<p><a href="../datenverarbeitung/transform.html#daten-gruppieren-und-zusammenfassen-group_by-und-summarise">Für eine Anleitung sehen Sie hier nach</a></p>
-</div>
-</div>
-</div>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>___ <span class="ot">&lt;-</span> ___ <span class="sc">|&gt;</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(___) <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_quality =</span> <span class="fu">mean</span>(___),</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_quality =</span> <span class="fu">sd</span>(___))</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>d_quality_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>f.</strong> Welchen statistischen Test führen Sie durch?</p>
-<p><strong>g.</strong> Überprüfen Sie die Voraussetzung der Varianzhomogenität für diesen Test. Was bedeutet das Ergebnis des Levene-Tests?</p>
-<p>Die Varianzhomogenität wird mit dem Levene-Test überprüft. Dafür kann das Package {car} verwendet werden.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">___</span>(___ <span class="sc">~</span> ___, <span class="co"># av ~ uv</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> ___) <span class="co"># dataset</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>h.</strong> Führen Sie einen t-Test mit der Funktion <code>t.test()</code> durch. Wie lautet Ihre Testentscheidung?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test für unabhängige Stichproben durchführen</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">formula =</span> ___ <span class="sc">~</span> ___, <span class="co"># av ~ uv</span></span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"___"</span>, <span class="co"># one.sided or two.sided</span></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> ___) <span class="co"># dataset</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>i.</strong> Berechnen Sie die Effektgrösse mit der Funktion <code>cohen.d()</code> aus dem Package {effsize}. Wie gross ist der Effekt nach Cohen (1998)?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>___<span class="sc">::</span><span class="fu">___</span>(<span class="at">formula =</span> ___ <span class="sc">~</span> ___, <span class="co"># av ~ uv</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> ___) <span class="co"># dataset</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>j.</strong> Interpretation und Berichten</p>
-<p>Schreiben Sie 1-2 Sätze zu den Ergebnissen für einen wissenschaftlichen Artikel.</p>
-<p><a href="../datenanalyse/ttest_unabhaengig.html#ergebnisse-interpretieren-und-berichten-1">Hier finden Sie ein Beispiel.</a></p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Zusatzaufgaben">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-5-contents" aria-controls="callout-5" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Zusatzaufgaben
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-5" class="callout-5-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Weitere Möglichkeiten, um mit diesem Datensatz zu arbeiten:</p>
-<ul>
-<li><p>Berechnen Sie eine A-priori Poweranalyse. Hierfür darf der Datensatz nicht verwendet werden, da diese VOR der Datenerhebung durchgeführt werden muss.</p></li>
-<li><p>Erstellen Sie einen Boxplot aus den Daten und überprüfen Sie visuell, ob sich die Gruppen und die Varianzen unterscheiden. Was fällt Ihnen auf?</p></li>
-</ul>
 </div>
 </div>
 </div>
 </section>
-<section id="aufgabe-4.3-t-test-ausführen" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="aufgabe-4.3-t-test-ausführen">Aufgabe 4.3: T-Test ausführen</h2>
-<p><strong>Studienbeschrieb</strong></p>
-<p>Sie fragen sich, ob das Sprichwort “Gegensätze ziehen sich an” bei romantischen Paaren zutrifft. Sie untersuchen daher, ob sich die Persönlichkeitsmerkmale von Partnern unterscheiden und haben dazu bei 250 Paaren das Persönlichkeitsmerkmals <em>Extraversion</em> erhoben. Die abhängige Variable <em>Extraversion</em> wurde jeweils bei beiden Partner mit dem gleichen Messinstrument erhoben. Das Signifikanzniveau wird auf <span class="math inline">\(\alpha=0.05\)</span> festgelegt.</p>
+<section id="voraussetzungen-überprüfen" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen"><strong>Voraussetzungen überprüfen</strong></h4>
+<p>Der <em>F</em>-Test für eine zweifaktorielle Varianzanalyse setzt voraus, dass die AV in der Population stetig und normalverteilt ist und die Populationsvarianzen homogen sind.</p>
+<p>Die Varianzhomogenität (Homoskedastizität) kann mit dem Levene-Test <code>leveneTest(y ~ x, data = dataset)</code> überprüft werden. Die Funktion <code>leveneTest()</code> stammt aus dem Package {car}. Ein Levene-Test mit <span class="math inline">\(p &lt; 0.05\)</span> bedeutet, dass der Varianzunterschied signifikant ist. Die Nullhypothese, dass die Varianzen auf Populationsebene identisch sind, müsste in diesem Fall verworfen werden.</p>
 <aside>
-<a href="https://journals.sagepub.com/doi/full/10.1177/0265407511431183">Artikel zum Studienbeispiel: Claxton et al.&nbsp;(2012)</a>
+Vor dem ersten Verwenden der Funktion <code>leveneTest()</code> muss das Package {car} heruntergeladen/installiert werden, z.B. in der Konsole mit <code>install.packages("car")</code>.
 </aside>
-<p><strong>Forschungsfrage</strong>: Unterscheiden sich das Persönlichkeitsmerkmal <em>Extraversion</em> signifikant zwischen Partnern?</p>
-<p><strong>Bearbeiten Sie nun Schritt für Schritt folgende Aufgaben:</strong></p>
-<p><strong>a.</strong> Muss gerichtet oder ungerichtet getestet werden? Wie lautet die <span class="math inline">\(H_0\)</span> und die <span class="math inline">\(H_1\)</span>?</p>
-<p><strong>b.</strong> Welches Signifikanzniveau wurde festgelegt? Was bedeutet das?</p>
-<p><strong>c.</strong> Lesen Sie den Datensatz <code>couples_extraversion.csv</code> aus dem <code>data</code> Ordner ein und speichern Sie ihn in die Variable <code>d_extraversion</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>___ <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"___/___"</span>)</span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>d.</strong> Schauen Sie sich die Variablen und die Deskriptivstatistik an.</p>
-<ul>
-<li><p>In welchem Format ist der Datensatz? Inwiefern unterscheidet er sich zu Aufgabe 4.2.?</p></li>
-<li><p>Wie lauten die Mittelwerte und die Standardabweichungen der Variablen? Was fällt Ihnen auf?</p></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>d_extraversion_summary <span class="ot">&lt;-</span> ___ <span class="sc">|&gt;</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_extra1 =</span> <span class="fu">mean</span>(___), </span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_extra1 =</span> <span class="fu">sd</span>(___),</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_extra2 =</span> <span class="fu">___</span>(___), </span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_extra2 =</span> <span class="fu">___</span>(___))</span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>d_extraversion_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>e.</strong> Welchen statistischen Test führen Sie durch?</p>
-<p><strong>f.</strong> Welche Voraussetzungen müssen für den Test erfüllt sein? Welche überprüfen wir?</p>
-<p><strong>g.</strong> Führen Sie einen t-Test mit der Funktion <code>t.test()</code> durch. Wie lautet Ihre Testentscheidung?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test für abhängige Stichproben durchführen</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(d_extraversion<span class="sc">$</span>___, d_extraversion<span class="sc">$</span>___, <span class="co">#av1, av2</span></span>
-<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
-<span id="cb9-4"><a href="#cb9-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">paired =</span> ___, <span class="co"># TRUE: abhängig, FALSE: unabhängig</span></span>
-<span id="cb9-5"><a href="#cb9-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> ___) <span class="co"># Datensatz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>h.</strong> Berechnen Sie die Effektgrösse mit der Funktion <code>cohen.d()</code> aus dem Package {effsize}. Wie gross ist der Effekt nach Cohen (1998)?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>___<span class="sc">::</span><span class="fu">cohen.d</span>(___<span class="sc">$</span>___, <span class="co"># av 1</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                 ___<span class="sc">$</span>___, <span class="co"># av 2</span></span>
-<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                 <span class="at">paired =</span> ___) <span class="co">#TRUE: abhängig, FALSE: unabhängig</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>i.</strong> Interpretation und Berichten</p>
-<p>Schreiben Sie 1-2 Sätze zu den Ergebnissen für einen wissenschaftlichen Artikel.</p>
-<p><a href="../datenanalyse/ttest_abhaengig.html#ergebnisse-interpretieren-und-berichten-1">Hier finden Sie ein Beispiel.</a></p>
-<div class="callout callout-style-default callout-tip callout-titled" title="Zusatzaufgaben">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-6-contents" aria-controls="callout-6" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-title-container flex-fill">
-Zusatzaufgaben
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-6" class="callout-6-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
-<p>Weitere Möglichkeiten, um mit diesem Datensatz zu arbeiten:</p>
-<ul>
-<li><p>Berechnen Sie eine A-priori Poweranalyse. Hierfür darf der Datensatz nicht verwendet werden, da diese VOR der Datenerhebung durchgeführt werden muss.</p></li>
-<li><p>Erstellen Sie einen Boxplot aus den Daten und überprüfen Sie visuell, ob sich die Gruppen und die Varianzen unterscheiden. Nutzen Sie hierfür <code>esquisse::esquisser()</code> Was fällt Ihnen auf?</p></li>
-</ul>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Levene-Test mit dem package {car}</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">leveneTest</span>(symptoms <span class="sc">~</span> agegroup <span class="sc">*</span> method, <span class="co"># av ~ uv1 * uv2</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> d_therapy_age) <span class="co"># Datensatz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Levene's Test for Homogeneity of Variance (center = median)
+      Df F value Pr(&gt;F)
+group  3  0.6121  0.615
+      20               </code></pre>
 </div>
 </div>
-</div>
-<p><br></p>
+<p>Der Test ist hier nicht signifikant (<span class="math inline">\(p = .615\)</span>), daher wird davon ausgegangen, dass die Varianzen in den Gruppen homogen sind und die Voraussetzung der Varianzhomogenität erfüllt ist.</p>
 </section>
-<section id="aufgabe-4.4-zusatzaufgabe" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-4.4-zusatzaufgabe">Aufgabe 4.4: Zusatzaufgabe</h2>
-<div class="callout callout-style-default callout-tip callout-titled" title="Zusatzaufgaben">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
+</section>
+<section id="analyse" class="level3 page-columns page-full" data-number="12.1.3">
+<h3 data-number="12.1.3" class="anchored" data-anchor-id="analyse"><span class="header-section-number">12.1.3</span> Analyse</h3>
+<section id="deskriptivstatistik-und-visualisierungen" class="level4">
+<h4 class="anchored" data-anchor-id="deskriptivstatistik-und-visualisierungen"><strong>Deskriptivstatistik und Visualisierungen</strong></h4>
+<p>Für die deskriptive Statistik können die Daten nach Bedingung gruppiert und dann die Kennwerte berechnet werden. Hier werden die Funktionen <code>group_by()</code> und <code>summarise()</code> genutzt. Bei <code>group_by()</code> müssen beide Faktoren angegeben werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mittelwerte und Standardabweichungen berechnen</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>d_summary <span class="ot">&lt;-</span> d_therapy_age <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(agegroup, method) <span class="sc">|&gt;</span> <span class="co"># Gruppierung mit beiden Faktoren</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_symptoms =</span> <span class="fu">mean</span>(symptoms), <span class="co"># Mittelwert</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_symptoms =</span> <span class="fu">sd</span>(symptoms)) <span class="co"># Standardabweichung</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'agegroup'. You can override using the
+`.groups` argument.</code></pre>
 </div>
-<div class="callout-title-container flex-fill">
-Zusatzaufgaben
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>d_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 4
+# Groups:   agegroup [2]
+  agegroup   method        mean_symptoms sd_symptoms
+  &lt;fct&gt;      &lt;fct&gt;                 &lt;dbl&gt;       &lt;dbl&gt;
+1 adolescent mindfulness            4.17        1.47
+2 adolescent restructuring          4           1.67
+3 adult      mindfulness            6           2.97
+4 adult      restructuring          2           1.26</code></pre>
 </div>
 </div>
-<div class="callout-body-container callout-body">
-<p><strong>Zusatzaufgaben müssen nicht gelöst werden.</strong></p>
-</div>
-</div>
-<p>Diskutieren Sie folgende Fragen:</p>
+</section>
+<section id="teststatistik-berechnen" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="teststatistik-berechnen"><strong>Teststatistik berechnen</strong></h4>
+<p>Falls der empirische <em>F</em>-Wert grösser als der kritische <em>F</em>-Wert ist, wird von einem signifikanten Unterschied zwischen mindestens zwei Zellmittelwerten ausgegangen.</p>
+<p><strong>Berechnung Teststatistik in R mit der Funktion <code>aov_4()</code></strong></p>
+<p>Eine zweifaktorielle Varianzanalyse kann mit der Funktion <code>aov_4(av ~ uv1 * uv2, + (1 | id), data)</code> aus dem Package {afex} berechnet werden.</p>
 <ul>
-<li><p>Wie könnte das Design des Experiments der Aufgabe 4.2 verbessert werden?</p>
-<ul>
-<li>Welche Probleme könnten bei dem bestehenden Design auftreten? (z.B. das fälschlicherweise ein Effekt angenommen wird, obwohl keiner existiert?)</li>
-<li>Welche zusätzlichen Messzeitpunkte könnten aufschlussreiche Daten liefern?</li>
-<li>Könnten die Daten dieses verbesserten Designs mit einem unabhängigen oder abhängigen <em>t</em>-Tests analysiert werden?</li>
-</ul></li>
+<li><code>av</code>: Abhängige Variable (metrisch)</li>
+<li><code>uv1</code>: Unabhängige Variable A (Bedingung oder Gruppenvariable)</li>
+<li><code>uv2</code>: Unabhängige Variable B (Bedingung oder Gruppenvariable)</li>
+<li><code>(1 | id)</code>: Die Funktion benötigt eine Identifikationsvariable (hier <code>id</code>), d.h. eine Variable, in der jede Person einen einzigartigen Wert hat. Da wir keine Messwiederholung haben, wird eine <code>1</code> vor dem <code>|</code> verwendet. Bei Messwiederholung wird hier spezifiziert, welche Variable sich innerhalb von <code>id</code> wiederholt.</li>
 </ul>
+<aside>
+Vor dem ersten Verwenden muss das Package {afex} heruntergeladen/installiert werden, z.B. in der Konsole mit <code>install.packages("afex")</code>.
+</aside>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># afex laden</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(afex)</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Zweifaktorielle Anova ohne Messwiederholung</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>m_anova2x2 <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(symptoms <span class="sc">~</span> agegroup <span class="sc">*</span> method <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id), <span class="co"># av ~ uv1 * uv2 + (1 | Versuchspersonenidentifikation)</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">data =</span> d_therapy_age) <span class="co"># Datensatz</span></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultate ausgeben</span></span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_anova2x2) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Anova Table (Type 3 tests)
+
+Response: symptoms
+                num Df den Df    MSE      F      ges  Pr(&gt;F)  
+agegroup             1     20 3.8417 0.0108 0.000542 0.91809  
+method               1     20 3.8417 6.7787 0.253139 0.01699 *
+agegroup:method      1     20 3.8417 5.7375 0.222925 0.02651 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>m_anova2x2<span class="sc">$</span>Anova</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Anova Table (Type III tests)
+
+Response: dv
+                Sum Sq Df  F value    Pr(&gt;F)    
+(Intercept)     392.04  1 102.0499 2.667e-09 ***
+agegroup          0.04  1   0.0108   0.91809    
+method           26.04  1   6.7787   0.01699 *  
+agegroup:method  22.04  1   5.7375   0.02651 *  
+Residuals        76.83 20                       
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<ul>
+<li><p>Es gibt einen signifikanten Haupteffekt B der Therapiemethode (<code>method</code>). Das bedeutet, dass mindestens ein Haupteffekt des Faktors B signifikant von 0 verschieden ist (<span class="math inline">\(p = .017\)</span>).</p></li>
+<li><p>Es gibt ausserdem mindestens einen Interaktionseffekt AxB (<code>agegroup * method</code>), der signifikant von 0 verschieden ist (<span class="math inline">\(p = .027\)</span>).</p></li>
+<li><p>Es gibt jedoch keinen Haupteffekt A der Altersgruppen (<code>agegroup</code>), da dieser Effekt nicht signifikant von 0 verschieden ist (<span class="math inline">\(p = .918\)</span>).</p></li>
+</ul>
+<p>Da bei einer zweifaktoriellen Varianzanalyse mit einem 2x2-Design beide Faktoren nur zwei Stufen aufweisen und sich die Effekte zu 0 aufaddieren, bedeutet dies, dass alle Haupteffekte des Faktors B und alle Interaktionseffekte von 0 verschieden sind.</p>
+<p>Die Mittelwerte der Bedingungen unterscheiden sich signifikant auf dem <span class="math inline">\(5 \%\)</span>-Niveau. Die Nullhypothese, wonach sich die Mittelwerte nicht unterscheiden, kann verworfen werden. Die Therapiemethode hat somit einen Einfluss auf die Angstsymptomatik. Bei mehr als zwei Faktorstufen wäre aufgrund der Analyse hingegen (noch) nicht klar, welche Bedingungen sich unterscheiden.</p>
+<p>Zur Visualisierung der Ergebnisse eignet sich ein Plot, der die Mittelwerte und Standardfehler abbildet. Dazu kann die Funktion <code>afex_plot</code> aus dem Package {afex} verwendet werden. Um die Standardfehler, anstelle der Konfidenzintervall, anzuzeigen, kann <code>error_ci = FALSE</code> verwendet werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grafische Darstellung der zweifaktoriellen Varianzanalyse (Variante 1)</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">afex_plot</span>(<span class="at">object =</span> m_anova2x2,</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"agegroup"</span>,</span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">trace =</span> <span class="st">"method"</span>,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">mapping =</span> <span class="fu">c</span>(<span class="st">"color"</span>, <span class="st">"shape"</span>),</span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">error_ci =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend_title =</span> <span class="st">"method"</span>) <span class="sc">+</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="anova2_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Hier ist ersichtlich, dass sich die Zellmittelwerte “nur” in der Altersgruppe “Erwachsene” zwischen den beiden Methoden unterscheidet. Dies deutet darauf hin, dass der Haupteffekt der Therapiemethode lediglich durch die grosse Mittelwertsdifferenz zwischen den beiden Methoden bei Erwachsenen zustande kommt und dass es (trotz signifikantem Haupteffekt) keinen allgemeinen Effekt der Therapiemethode gibt.</p>
+<blockquote class="blockquote">
+<p>Es gilt also Vorsicht bei der Interpretation von Haupteffekten, wenn Interaktionseffekte vorliegen, da grosse Haupteffekte auch durch grosse bedingte Haupteffekt zustande kommen können.</p>
+</blockquote>
+<p>Der Plot kann auch mit Faktor B auf der x-Achse ausgegeben werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Grafische Darstellung der zweifaktoriellen Varianzanalyse (Variante 2)</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="fu">afex_plot</span>(<span class="at">object =</span> m_anova2x2,</span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"method"</span>,</span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">trace =</span> <span class="st">"agegroup"</span>,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>          <span class="at">mapping =</span> <span class="fu">c</span>(<span class="st">"color"</span>, <span class="st">"shape"</span>),</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">error_ci =</span> <span class="cn">FALSE</span>,</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>          <span class="at">legend_title =</span> <span class="st">"agegroup"</span>) <span class="sc">+</span></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="anova2_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Hier handelt es sich um die genau gleichen Daten, die aber anders dargestellt werden. Wir sehen aber auch, dass sich Adoleszente (rot) nicht zwischen den Therapiemethoden unterscheiden, bei den Erwachsenen (blau) aber ein Unterschied besteht. Dies kann in einem nächsten Schritt mit weiteren Analysen bestätigt werden, indem die bedingten Haupteffekte berechnet werden.</p>
+<p><strong>Bedingte Haupteffekte</strong></p>
+<p>Mit der Funktion <code>joint_tests()</code> aus dem Package {emmeans} können die bedingten Haupteffekte berechnet werden. Dies ist sowohl für Faktor A, aber auch für Faktor B möglich und hängt von der Fragestellung ab.</p>
+<aside>
+Vor dem ersten Verwenden muss das Package {emmeans} heruntergeladen/installiert werden, z.B. in der Konsole mit <code>install.packages("emmeans")</code>.
+</aside>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'emmeans' was built under R version 4.4.3</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Welcome to emmeans.
+Caution: You lose important information if you filter this package's results.
+See '? untidy'</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Bedingte Haupteffekte Faktor B</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a><span class="fu">joint_tests</span>(m_anova2x2, <span class="co"># Modell</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="st">"agegroup"</span>) <span class="co"># in Faktorstufen a1/a2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>agegroup = adolescent:
+ model term df1 df2 F.ratio p.value
+ method       1  20   0.022  0.8844
+
+agegroup = adult:
+ model term df1 df2 F.ratio p.value
+ method       1  20  12.495  0.0021</code></pre>
+</div>
+</div>
+<p>Der <strong>bedingte</strong> Haupteffekt des Faktors B (<code>method</code>) (mindfulness vs.&nbsp;restructuring), wenn Personen in der Altersgruppe “Jugendliche” (<span class="math inline">\(a_2\)</span>) sind, ist nicht signifikant (<span class="math inline">\(p = .884\)</span>).</p>
+<p>Hingegen ist der <strong>bedingte</strong> Haupteffekt des Faktors B (<code>method</code>) (mindfulness vs.&nbsp;restructuring) signifikant, wenn Personen in der Altersgruppe “Erwachsene” (<span class="math inline">\(a_1\)</span>) sind (<span class="math inline">\(p = .002\)</span>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Bedingte Haupteffekte Faktor A</span></span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a><span class="fu">joint_tests</span>(m_anova2x2, <span class="co"># Modell</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">by =</span> <span class="st">"method"</span>) <span class="co"># in Faktorstufen b1/b2</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>method = mindfulness:
+ model term df1 df2 F.ratio p.value
+ agegroup     1  20   2.625  0.1209
+
+method = restructuring:
+ model term df1 df2 F.ratio p.value
+ agegroup     1  20   3.124  0.0924</code></pre>
+</div>
+</div>
+<p>Die <strong>bedingten</strong> Haupteffekte des Faktors A (<code>agegroup</code>) (adolescent vs.&nbsp;adult) für beide Therapiemethoden (<span class="math inline">\(b_1\)</span> und <span class="math inline">\(b_2\)</span>) sind nicht signifikant.</p>
+<p><strong>Gesamteffekt</strong></p>
+<p>Um den Gesamteffekt zu berechnen, kann die Funktion <code>lm()</code> verwendet werden. In der letzten Zeile wird der <span class="math inline">\(p\)</span>-Wert des Gesamteffekts ausgegeben. Dies ist relevant, da bei nicht signifikantem Gesamteffekt die Interpretation der signifikanten Haupt- oder Interaktionseffekte problematisch ist.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Berechnung des Gesamteffekts</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(<span class="fu">lm</span>(symptoms <span class="sc">~</span> agegroup <span class="sc">*</span> method, <span class="co"># av ~ uv1 * uv2</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>           <span class="at">data =</span> d_therapy_age)) <span class="co"># Datensatz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = symptoms ~ agegroup * method, data = d_therapy_age)
+
+Residuals:
+   Min     1Q Median     3Q    Max 
+-5.000 -1.000  0.000  1.208  3.000 
+
+Coefficients:
+                                  Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)                         4.1667     0.8002   5.207 4.28e-05 ***
+agegroupadult                       1.8333     1.1316   1.620   0.1209    
+methodrestructuring                -0.1667     1.1316  -0.147   0.8844    
+agegroupadult:methodrestructuring  -3.8333     1.6003  -2.395   0.0265 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 1.96 on 20 degrees of freedom
+Multiple R-squared:  0.3851,    Adjusted R-squared:  0.2929 
+F-statistic: 4.176 on 3 and 20 DF,  p-value: 0.01895</code></pre>
+</div>
+</div>
+<p>Der Gesamteffekt ist mit <span class="math inline">\(p = .019\)</span> signifikant von 0 verschieden, wodurch die signifikanten Haupt- und Interaktionseffekte grundsätzlich interpretiert werden können.</p>
+</section>
+<section id="effektstärke-bestimmen" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="effektstärke-bestimmen"><strong>Effektstärke bestimmen</strong></h4>
+<p><strong>Berechnung der Effektgrösse <span class="math inline">\(\eta^2\)</span> und <span class="math inline">\(\eta^2_p\)</span></strong></p>
+<p>Für jede Effektgruppe lässt sich mit dem nicht-partiellen <span class="math inline">\(\eta^2\)</span> angeben, wie gross der Anteil der durch sie aufgeklärten Varianz an der Gesamtvarianz ist. Der Nachteil des nicht-partiellen Effektstärkenmasses besteht darin, dass die Grösse eines bestimmten Effekts abhängig davon ist, aus welchen anderen Faktoren das jeweilige varianzanalytische Design besteht. Daher ist es nicht über Studien hinweg vergleichbar.</p>
+<p>Zur besseren Vergleichbarkeit kann das partielle <span class="math inline">\(\eta^2_p\)</span> berechnet werden. Der Nachteil des partiellen Effektstärkemasse ist, dass sie sich innerhalb einer Studie nicht mehr zu einem Gesamteffekt, d.&nbsp;h. dem Anteil der insgesamt aufgeklärten Varianz an der Gesamtvarianz, aufaddieren.</p>
+<p>Will man also die Grösse unterschiedlicher Effekte innerhalb der gleichen Studie in Relation zueinander setzen, bietet es sich an, das nicht-partielle Effektstärkemass zu verwenden. Für Vergleiche von Effektgrössen zwischen Studien ist das partielle Effektstärkemass geeignet.</p>
+<p>Um die Effektgrössen zu berechnen, kann in <em>R</em> die Funktion <code>eta_squared()</code> aus dem Package {effectsize} verwendet werden. Als Argument für die Funktion muss das Anova-Modell (Objekt), also hier <code>m_anova2x2</code>, verwendet werden. Wird das Argument <code>partial</code> auf <code>TRUE</code> gesetzt (<code>partial = TRUE</code>) berechnet <em>R</em> das partielle Etaquadrat, welches über Studien hinweg verglichen werden kann.</p>
+<aside>
+Vor dem ersten Verwenden muss das Package {effectsize} heruntergeladen/installiert werden, z.B. in der Konsole mit <code>install.packages("effectsize")</code>.
+</aside>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(effectsize)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'effectsize' was built under R version 4.4.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eta_squared</span>(m_anova2x2, <span class="co"># Funktion, Modell</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">partial =</span> <span class="cn">FALSE</span>) <span class="co"># nicht-partielles Eta</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Effect Size for ANOVA (Type III)
+
+Parameter       |     Eta2 |       95% CI
+-----------------------------------------
+agegroup        | 3.33e-04 | [0.00, 1.00]
+method          |     0.21 | [0.01, 1.00]
+agegroup:method |     0.18 | [0.00, 1.00]
+
+- One-sided CIs: upper bound fixed at [1.00].</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb30"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb30-1"><a href="#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">eta_squared</span>(m_anova2x2, <span class="co"># Funktion, Modell</span></span>
+<span id="cb30-2"><a href="#cb30-2" aria-hidden="true" tabindex="-1"></a>            <span class="at">partial =</span> <span class="cn">TRUE</span>) <span class="co"># partielles Eta</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Effect Size for ANOVA (Type III)
+
+Parameter       | Eta2 (partial) |       95% CI
+-----------------------------------------------
+agegroup        |       5.42e-04 | [0.00, 1.00]
+method          |           0.25 | [0.03, 1.00]
+agegroup:method |           0.22 | [0.02, 1.00]
+
+- One-sided CIs: upper bound fixed at [1.00].</code></pre>
+</div>
+</div>
+<p>Die Effektgrösse liegt für den Faktor A (<code>agegroup</code>) bei <span class="math inline">\(\eta^2_p&lt;.001\)</span>, für den Faktor B (<code>method</code>) bei <span class="math inline">\(\eta^2_p = .25\)</span> und für die Interaktion AxB (<code>agegroup:method</code>) bei <span class="math inline">\(\eta^2_p=.22\)</span>.</p>
+<p>Es handelt sich nach der Taxonomie von Cohen (1988) für Therapiemethode und Interaktion um <strong>grosse</strong> Effekte.</p>
+</section>
+</section>
+<section id="schlussfolgerungen" class="level3" data-number="12.1.4">
+<h3 data-number="12.1.4" class="anchored" data-anchor-id="schlussfolgerungen"><span class="header-section-number">12.1.4</span> Schlussfolgerungen</h3>
+<section id="ergebnisse-interpretieren-und-berichten" class="level4">
+<h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten"><strong>Ergebnisse interpretieren und berichten</strong></h4>
+<p><strong>Ergebnisse der zweifaktoriellen Varianzanalyse ohne Messwiederholung</strong></p>
+<blockquote class="blockquote">
+<p>A two-way analysis of variance (ANOVA) was conducted to examine the effects of Factor A (e.g., age group: adult vs.&nbsp;adolescent) and Factor B (therapy method: mindfulness vs.&nbsp;restructuring) on anxiety symptoms.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>The main effect of age group was not significant, <em>F</em>(1, 20) = 0.01, <em>p</em> = .918, suggesting that there was no overall difference in anxiety symptoms between adolescents and adults. The analysis revealed a significant main effect of therapy method, <em>F</em>(1, 20) = 6.78, <em>p</em> = .017, <span class="math inline">\(\eta^2_p\)</span> = .25, indicating that the mean anxiety symptoms significantly differed between the mindfulness and restructuring method.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>However, the interaction between age group and therapy method was significant, <em>F</em>(1, 20) = 5.74, <em>p</em> = .027, <span class="math inline">\(\eta^2_p\)</span> = .22, indicating that the effect of therapy method depended on age group. A simple effects analysis for therapy method revealed a significant effect for adults (<em>p</em> = .002), but not for adolescents (<em>p</em> = .884). This indicates a differential effect of therapy method regarding age groups. Figure 12.1 illustrates the interaction effect.</p>
+</blockquote>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="anova2_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Figure 12.1: Main and interaction effects of therapy methods mindfulness and restructuring on anxiety symptoms in adults and adolescents.</p>
 
 
+</section>
+</section>
 </section>
 
 </main> <!-- /main -->
@@ -1547,13 +1648,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../uebungen/uebung-02.html" class="pagination-link" aria-label="Übung 2">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Übung 2</span>
+      <a href="../datenanalyse/anova1.html" class="pagination-link" aria-label="Einfaktorielle Varianzanalyse ohne Messwiederholung">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Einfaktorielle Varianzanalyse ohne Messwiederholung</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../uebungen/uebung-05.html" class="pagination-link" aria-label="Übung 5">
-        <span class="nav-page-text">Übung 5</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../uebungen/uebungen.html" class="pagination-link" aria-label="Informationen">
+        <span class="nav-page-text">Informationen</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
