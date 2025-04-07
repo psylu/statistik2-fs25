@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>License – Datenanalyse mit R</title>
+<title>Übung 8 – Datenanalyse mit R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../appendix/thanks.html" rel="prev">
+<link href="../appendix/faq.html" rel="next">
+<link href="../uebungen/uebung-07.html" rel="prev">
 <link href="../imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -69,6 +104,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../include/webex.css">
 </head>
@@ -82,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/faq.html">Anhang</a></li><li class="breadcrumb-item"><a href="../appendix/license.html">License</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-08.html">Übung 8</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -281,7 +345,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../uebungen/uebung-08.html" class="sidebar-item-text sidebar-link">
+  <a href="../uebungen/uebung-08.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Übung 8</span></a>
   </div>
 </li>
@@ -316,7 +380,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendix/license.html" class="sidebar-item-text sidebar-link active">
+  <a href="../appendix/license.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">License</span></a>
   </div>
 </li>
@@ -327,20 +391,30 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#aufgabe-8.0-projektumgebung-erstellen" id="toc-aufgabe-8.0-projektumgebung-erstellen" class="nav-link active" data-scroll-target="#aufgabe-8.0-projektumgebung-erstellen">Aufgabe 8.0: Projektumgebung erstellen</a></li>
+  <li><a href="#aufgabe-8.1-einstieg" id="toc-aufgabe-8.1-einstieg" class="nav-link" data-scroll-target="#aufgabe-8.1-einstieg">Aufgabe 8.1: Einstieg</a></li>
+  <li><a href="#aufgabe-8.2-einfaktorielle-varianzanalyse-mit-messwiederholung" id="toc-aufgabe-8.2-einfaktorielle-varianzanalyse-mit-messwiederholung" class="nav-link" data-scroll-target="#aufgabe-8.2-einfaktorielle-varianzanalyse-mit-messwiederholung">Aufgabe 8.2: Einfaktorielle Varianzanalyse mit Messwiederholung</a></li>
+  <li><a href="#aufgabe-8.3-ergebnisse-darstellen" id="toc-aufgabe-8.3-ergebnisse-darstellen" class="nav-link" data-scroll-target="#aufgabe-8.3-ergebnisse-darstellen">Aufgabe 8.3: Ergebnisse darstellen</a></li>
+  <li><a href="#zusatzaufgabe" id="toc-zusatzaufgabe" class="nav-link" data-scroll-target="#zusatzaufgabe">Zusatzaufgabe</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/faq.html">Anhang</a></li><li class="breadcrumb-item"><a href="../appendix/license.html">License</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-08.html">Übung 8</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">License</h1>
+<h1 class="title"><span id="sec-uebung-08" class="quarto-section-identifier">Übung 8</span></h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -352,10 +426,286 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="callout callout-style-default callout-note callout-titled" title="Lernziele dieser Übung">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Lernziele dieser Übung
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Nach der heutigen Übung können Sie:</p>
+<ul>
+<li><em>R</em> und <em>RStudio</em> zur Analyse von Daten verwenden</li>
+<li>einfaktorielle Varianzanalysen mit Messwiederholung in <em>R</em> durchführen
+<ul>
+<li>Hypothesen zum Vergleich von mehreren Stichprobenmittelwerten mit einer unabhängigen Variablen und Messwiederholung durchführen</li>
+<li>Voraussetzungen (Sphärizität) überprüfen</li>
+<li><em>F</em>-Test berechnen</li>
+<li>Resultate interpretieren</li>
+</ul></li>
+</ul>
+</div>
+</div>
+<div class="callout callout-style-default callout-note callout-titled" title="Voraussetzungen">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Voraussetzungen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<ol type="1">
+<li><p>Packages {tidyverse}, {afex}, {emmeans} und {effectsize} sind installiert.</p></li>
+<li><p>Der Datensatz <a href="../data/anova_confidence2.csv"><code>anova_confidence2.csv</code></a> für Übung 8 wurde heruntergeladen und im Ordner <code>data</code> des Projekts <code>anova</code> abgespeichert.</p></li>
+</ol>
+</div>
+</div>
 <p><br></p>
-<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a><br>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+<section id="aufgabe-8.0-projektumgebung-erstellen" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-8.0-projektumgebung-erstellen">Aufgabe 8.0: Projektumgebung erstellen</h2>
+<p><em>Falls obige Anforderungen noch nicht erfüllt:</em></p>
+<ul>
+<li><p>Laden Sie den Datensatz <a href="../data/anova_confidence2.csv"><code>anova_confidence2.csv</code></a> herunter und speichern Sie ihn im <em>RProjekt</em> <code>anova</code> im Ordner <code>data</code> ab.</p></li>
+<li><p>Installieren Sie die benötigten Packages (falls noch nicht geschehen) unter <code>Tools</code> &gt; <code>Install Packages...</code> oder in der Konsole mit</p>
+<p><code>install.packages("afex")</code></p>
+<p><code>install.packages("emmeans")</code></p>
+<p><code>install.packages("effectsize")</code></p></li>
+</ul>
+<p><strong>a.</strong> Öffnen Sie das <em>RProjekt</em> <code>anova</code>.</p>
+<p><strong>b.</strong> Erstellen Sie ein <em>RNotebook</em> namens <code>uebung-08</code>.</p>
+<p><br></p>
+</section>
+<section id="aufgabe-8.1-einstieg" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-8.1-einstieg">Aufgabe 8.1: Einstieg</h2>
+<p><strong>a.</strong> Wie unterscheidet sich eine einfaktorielle Varianzanalyse mit und ohne Messwiederholung bezüglich der Quadratsummenzerlegung?</p>
+<p><strong>b.</strong> Formulieren Sie die Null- und Alternativhypothese einer einfaktoriellen Varianzanalyse bei <span class="math inline">\(J = 3\)</span> Faktorstufen mit Messwiederholung.</p>
+<p><strong>c.</strong> Was besagt die Sphärizitätsannahme?</p>
+<p><strong>d.</strong> Was versteht man unter der Intraklassen-Korrelation bei der einfaktoriellen Varianzanalyse mit Messwiederholung? In welchem Bereich können die Werte liegen?</p>
+<p><br></p>
+</section>
+<section id="aufgabe-8.2-einfaktorielle-varianzanalyse-mit-messwiederholung" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-8.2-einfaktorielle-varianzanalyse-mit-messwiederholung">Aufgabe 8.2: Einfaktorielle Varianzanalyse mit Messwiederholung</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Datensatz `anova_confidence2.csv`">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Datensatz <code>anova_confidence2.csv</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><strong>Beschreibung der Studie</strong></p>
+<p>In der (fiktiven) Studie wurde der Einfluss von Feedback während eines evidenzbasierten Trainings auf das Selbstvertrauen (<code>confidence</code>) bei Jugendlichen untersucht. Die Versuchspersonen absolvierten dabei drei verschiedene Durchgänge (<code>condition</code>). Sie erhielten zuerst ein positives Feedback, dann ein negatives Feedback und beim dritten Durchgang ein neutrales Feedback. Es wurden fünf Jugendliche untersucht. Nach jedem Durchgang wurde die Höhe des Selbstvertrauens mit einem Fragebogen gemessen.</p>
+<p><strong>Unabhängige Variable</strong>: Aufeinanderfolgende Bedingungen mit unterschiedlichem Feedback (<code>condition</code>: <code>positive</code>, <code>negative</code>, <code>neutral</code>)</p>
+<p><strong>Abhängige Variable</strong>: Höhe des Selbstvertrauens (<code>confidence</code>) auf einer Skala von 0 - 100 möglichen Punkten (Fragebogen)</p>
+<p><strong>Forschungsfrage</strong>: Beeinflusst die Art des Feedbacks während des Trainings das Selbstvertrauen?</p>
+<p>Die Hypothese soll auf einem Signifikanzniveau von <span class="math inline">\(\alpha = 0.05\)</span> geprüft werden.</p>
+</div>
+</div>
+</div>
+<p><br></p>
+<p><strong>a.</strong> Lesen Sie den Datensatz <code>anova_confidence2.csv</code> aus dem <code>data</code>-Ordner ein und konvertieren Sie die Variablen <code>id</code>und <code>condition</code> zu Faktoren. Schauen Sie sich den Datensatz mit <code>glimpse()</code> an.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tidyverse laden</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz einlesen</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>d_anova1rm <span class="ot">&lt;-</span> ___</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Faktoren konvertieren</span></span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz anschauen</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>b.</strong> Schauen Sie sich den Datensatz zum Beispiel mit <code>print()</code> genauer an.</p>
+<ul>
+<li><p>Wie viele Stufen hat der Faktor (<code>condition</code>) und wie heissen die Faktorstufen?</p></li>
+<li><p>Wie viele Messwerte gibt es insgesamt?</p></li>
+<li><p>Wie lauten die Mittelwerte und Standardabweichungen der abhängigen Variable <code>confidence</code> in den einzelnen Bedingungen?</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mittelwerte und Standardabweichungen berechnen</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>c.</strong> Laden die das Package {afex} und berechnen Sie das Anova-Modell <code>m_anova1rm</code> mit Messwiederholung auf dem Faktor <code>condition</code>.</p>
+<ul>
+<li><p>Prüfen Sie die Voraussetzung der Sphärizität. Welche Nullhypothese wird mit dem Mauchly-Test geprüft? Muss die Nullhypothese abgelehnt werden?</p></li>
+<li><p>Muss eine Korrektur vorgenommen werden oder nicht? Welche?</p></li>
+<li><p>Interpretieren Sie das entsprechende Anova-Modell. Gibt es einen Effekt für <code>condition</code> und was bedeutet das?</p></li>
+</ul>
+<div class="callout callout-style-default callout-tip callout-titled" title="Tipp $\varepsilon_{GG}$">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tipp <span class="math inline">\(\varepsilon_{GG}\)</span>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Beachten Sie, dass das <span class="math inline">\(\varepsilon_{GG}\)</span> ein Mass dafür ist, inwiefern die Sphärizität verletzt ist. Ein Wert von 1 bedeutet keine Abweichung von der Sphärizität (alle Varianzen der Bedingungsunterschiede sind gleich). Ein Verstoss gegen die Sphärizität führt zu einem <span class="math inline">\(\varepsilon_{GG}\)</span> unter 1. Je weiter Epsilon von 1 entfernt ist, desto schlimmer ist der Verstoss.</p>
+<p>Der Mauchly-Test sollte nicht signifikant sein, wenn wir annehmen, dass die Annahme der Sphärizität erfüllt ist.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># afex laden</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>___</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Zweifaktorielle Anova ohne Messwiederholung</span></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>m_anova1rm <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(___ <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> (___ <span class="sc">|</span> id), <span class="co"># av ~ 1 + (uv | id)</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> ___) <span class="co"># Datensatz</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultate ausgeben</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>d.</strong> Bei nur 5 Versuchspersonen hat der Mauchly-Test mit einem Signifikanzniveau von <span class="math inline">\(\alpha=0.05\)</span> eine sehr geringe Power und ist daher zu streng. Das bedeutet, dass die Wahrscheinlichkeit die Nullhypothese selbst bei grossen Abweichungen von der sphärischen Matrix abzulehnen, sehr gering ist. Wenn wir ein weniger strenges <span class="math inline">\(\alpha\)</span>-Niveau festlegen, ist die Teststärke grösser. Überprüfen Sie daher die Sphärizität für dieses Beispiel auf dem weniger strengen <span class="math inline">\(\alpha=0.1\)</span>-Niveau.</p>
+<ul>
+<li><p>Muss eine Korrektur vorgenommen werden oder nicht? Welche?</p></li>
+<li><p>Interpretieren Sie das entsprechende Anova-Modell. Gibt es einen Effekt für <code>condition</code> und was bedeutet das?</p></li>
+</ul>
+<p><strong>e.</strong> Berechnen Sie einen vollständigen Paarvergleich mit dem entsprechenden Post-hoc Test.</p>
+<ul>
+<li><p>Welchen Test (bzw. welche Korrektur) wählen Sie und warum?</p></li>
+<li><p>Welche Mittelwertsvergleiche sind auf dem (adjustierten) <span class="math inline">\(\alpha=0.05\)</span>-Niveau signifikant?</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Emmeans laden</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(___)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultate in Objekt speichern</span></span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>result_anova1_rm <span class="ot">&lt;-</span> ___</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>result_anova1_rm</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Post-hoc Test</span></span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="at">x =</span> ___, <span class="at">adjust =</span> <span class="st">"___"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+</section>
+<section id="aufgabe-8.3-ergebnisse-darstellen" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-8.3-ergebnisse-darstellen">Aufgabe 8.3: Ergebnisse darstellen</h2>
+<p><strong>a.</strong> Nutzen Sie den untenstehenden Code, um die Ergebnisse in <em>R</em> mit Hilfe von <code>afex_plot()</code> grafisch darzustellen. Ersetzen Sie dazu die vier Platzhalter <code>___</code>.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot mit afex_plot</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>plot_anova <span class="ot">&lt;-</span> <span class="fu">afex_plot</span>(<span class="at">object =</span> ___, <span class="co"># Anova-Modell</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>                        <span class="at">x =</span> <span class="st">"___"</span>, <span class="at">error =</span> <span class="st">"within"</span>) <span class="sc">+</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="fu">aes</span>(<span class="at">group =</span> <span class="st">"id"</span>), <span class="at">alpha =</span> <span class="fl">0.3</span>) <span class="sc">+</span>  </span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="fu">aes</span>(<span class="at">group =</span> <span class="st">"id"</span>), <span class="at">size =</span> <span class="dv">2</span>) <span class="sc">+</span>  </span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>() <span class="sc">+</span></span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">title =</span> <span class="st">"Unterschiede Selbstvertrauen über Bedingungen"</span>, </span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> <span class="st">"___"</span>, <span class="co"># y-Achse mit AV anschreiben</span></span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>       <span class="at">x =</span> <span class="st">"___"</span> <span class="co"># x-Achse mit UV anschreiben</span></span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>plot_anova</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+<p><strong>b.</strong> Erstellen Sie anhand des Outputs aus 8.2.c. eine Anova-Tabelle.</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 9%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+<col style="width: 15%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Quelle der Variation</th>
+<th style="text-align: center;"><em>QS</em></th>
+<th style="text-align: center;"><em>df</em></th>
+<th style="text-align: center;"><em>MQS</em></th>
+<th style="text-align: center;"><em>F</em></th>
+<th style="text-align: center;"><em>p</em></th>
+<th style="text-align: center;"><span class="math inline">\(\eta^2_p\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>Faktor A</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td>Person</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="odd">
+<td>Residuum</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+<tr class="even">
+<td>Total</td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+<td style="text-align: center;"></td>
+</tr>
+</tbody>
+</table>
+<!-- drin lassen: 
+| Quelle der Variation |  _QS_  | _df_ |  _MQS_  | _F_ |  _p_  | $\eta^2_p$ |
+|---|:---:|:---:|:---:|:---:|:---:|:---:|
+| Faktor A |  2920 | 2  | 1460  | 24.13  |  0.0004 | 0.86  |
+| Person |  1128 | 4  | 282  |   |   |   |
+| Residuum |  484 | 8  |  60.5 |   |   |   |
+| Total | 4532  | 14  | 323.71  |   |   |   |
+-->
+<p><br></p>
+<p><strong>c.</strong> Ergänzen Sie den folgenden Ergebnisbericht für einen Artikel mit Ihren Resultaten.</p>
+<div class="webex-check webex-box">
+<p>Die einfaktorielle Varianzanalyse mit Messwiederholung zeigte, dass es einen <select class="webex-select"><option value="blank"></option><option value="answer">signifikanten</option><option value="">nicht signifikanten</option></select> Effekt von <select class="webex-select"><option value="blank"></option><option value="">Selbstvertrauen</option><option value="answer">Feedback</option><option value="">Bedingungen</option></select> auf <select class="webex-select"><option value="blank"></option><option value="answer">Selbstvertrauen</option><option value="">Feedback</option><option value="">Bedingungen</option></select> gab, <select class="webex-select"><option value="blank"></option><option value="">F(2, 12)</option><option value="">F(4)</option><option value="answer">F(2, 8)</option></select> = 24.13, <em>p</em> <select class="webex-select"><option value="blank"></option><option value="answer">&lt; .001</option><option value="">= .006</option><option value="">= .067</option></select>, <span class="math inline">\(\eta^2\)</span> =, <select class="webex-select"><option value="blank"></option><option value="">0.86</option><option value="answer">0.64</option></select>.</p>
+<p>Der Mauchly-Test war <select class="webex-select"><option value="blank"></option><option value="">signifikant</option><option value="answer">nicht signifikant</option></select>, <span class="math inline">\(W\)</span> = .16, <em>p</em> <select class="webex-select"><option value="blank"></option><option value="">&lt; .001</option><option value="">= .006</option><option value="answer">= .067</option></select>, womit Sphärizität angenommen werden kann.</p>
+<p>Post-hoc-Tests mit Tukey-Korrektur ergaben, dass das Selbstvertrauen in der Bedingung <select class="webex-select"><option value="blank"></option><option value="">negatives Feedback</option><option value="answer">positives Feedback</option><option value="">neutrales Feedback</option></select> (<em>M</em> = 58.00, <em>SD</em> = 11.36) signifikant <select class="webex-select"><option value="blank"></option><option value="">niedriger</option><option value="">gleich</option><option value="answer">höher</option></select> war, als in der Bedingung <select class="webex-select"><option value="blank"></option><option value="answer">negatives Feedback</option><option value="">positives Feedback</option><option value="">neutrales Feedback</option></select> (<em>M</em> = 24.00, <em>SD</em> = 12.00), <em>p</em> &lt; .001), und in der Bedingung <select class="webex-select"><option value="blank"></option><option value="">negatives Feedback</option><option value="">positives Feedback</option><option value="answer">neutrales Feedback</option></select> (<em>M</em> = 38.00, <em>SD</em> = 11.40), <em>p</em> = .0495.</p>
+<p>Die Ergebnisse deuten darauf hin, dass positives Feedback im Vergleich zu negativem und neutralem Feedback <select class="webex-select"><option value="blank"></option><option value="">keinen</option><option value="answer">einen positiven</option><option value="">einen negativen</option></select> Effekt auf das Selbstvertrauen von Jugendlichen hat.</p>
+</div>
+<p><br></p>
+</section>
+<section id="zusatzaufgabe" class="level2">
+<h2 class="anchored" data-anchor-id="zusatzaufgabe">Zusatzaufgabe</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Zusatzaufgaben">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Zusatzaufgaben
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Zusatzaufgaben müssen nicht gelöst werden.</strong></p>
+</div>
+</div>
+<p><strong>a.</strong> Erklären Sie die Varianzanalyse in eigenen Worten einer Person, die nicht Psychologie studiert.</p>
+<p><strong>b.</strong> Suchen Sie über eine Datenbank nach einem Paper, welches eine Anova als Analysemethode verwendet. Welche Faktoren und Faktorstufen wurden verwendet? Was war die AV? Wie werden die Resultate berichtet und dargestellt?</p>
 
 
+</section>
 
 </main> <!-- /main -->
 <script>
@@ -1195,13 +1545,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../appendix/thanks.html" class="pagination-link" aria-label="Danke">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Danke</span>
+      <a href="../uebungen/uebung-07.html" class="pagination-link" aria-label="Übung 7">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Übung 7</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../appendix/faq.html" class="pagination-link" aria-label="FAQ">
+        <span class="nav-page-text">FAQ</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

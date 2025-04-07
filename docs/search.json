@@ -1340,6 +1340,72 @@
     ]
   },
   {
+    "objectID": "uebungen/uebung-08.html",
+    "href": "uebungen/uebung-08.html",
+    "title": "Übung 8",
+    "section": "",
+    "text": "Aufgabe 8.0: Projektumgebung erstellen\nFalls obige Anforderungen noch nicht erfüllt:\na. Öffnen Sie das RProjekt anova.\nb. Erstellen Sie ein RNotebook namens uebung-08.",
+    "crumbs": [
+      "Übungen",
+      "Übung 8"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-08.html#aufgabe-8.0-projektumgebung-erstellen",
+    "href": "uebungen/uebung-08.html#aufgabe-8.0-projektumgebung-erstellen",
+    "title": "Übung 8",
+    "section": "",
+    "text": "Laden Sie den Datensatz anova_confidence2.csv herunter und speichern Sie ihn im RProjekt anova im Ordner data ab.\nInstallieren Sie die benötigten Packages (falls noch nicht geschehen) unter Tools &gt; Install Packages... oder in der Konsole mit\ninstall.packages(\"afex\")\ninstall.packages(\"emmeans\")\ninstall.packages(\"effectsize\")",
+    "crumbs": [
+      "Übungen",
+      "Übung 8"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-08.html#aufgabe-8.1-einstieg",
+    "href": "uebungen/uebung-08.html#aufgabe-8.1-einstieg",
+    "title": "Übung 8",
+    "section": "Aufgabe 8.1: Einstieg",
+    "text": "Aufgabe 8.1: Einstieg\na. Wie unterscheidet sich eine einfaktorielle Varianzanalyse mit und ohne Messwiederholung bezüglich der Quadratsummenzerlegung?\nb. Formulieren Sie die Null- und Alternativhypothese einer einfaktoriellen Varianzanalyse bei \\(J = 3\\) Faktorstufen mit Messwiederholung.\nc. Was besagt die Sphärizitätsannahme?\nd. Was versteht man unter der Intraklassen-Korrelation bei der einfaktoriellen Varianzanalyse mit Messwiederholung? In welchem Bereich können die Werte liegen?",
+    "crumbs": [
+      "Übungen",
+      "Übung 8"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-08.html#aufgabe-8.2-einfaktorielle-varianzanalyse-mit-messwiederholung",
+    "href": "uebungen/uebung-08.html#aufgabe-8.2-einfaktorielle-varianzanalyse-mit-messwiederholung",
+    "title": "Übung 8",
+    "section": "Aufgabe 8.2: Einfaktorielle Varianzanalyse mit Messwiederholung",
+    "text": "Aufgabe 8.2: Einfaktorielle Varianzanalyse mit Messwiederholung\n\n\n\n\n\n\nDatensatz anova_confidence2.csv\n\n\n\n\n\nBeschreibung der Studie\nIn der (fiktiven) Studie wurde der Einfluss von Feedback während eines evidenzbasierten Trainings auf das Selbstvertrauen (confidence) bei Jugendlichen untersucht. Die Versuchspersonen absolvierten dabei drei verschiedene Durchgänge (condition). Sie erhielten zuerst ein positives Feedback, dann ein negatives Feedback und beim dritten Durchgang ein neutrales Feedback. Es wurden fünf Jugendliche untersucht. Nach jedem Durchgang wurde die Höhe des Selbstvertrauens mit einem Fragebogen gemessen.\nUnabhängige Variable: Aufeinanderfolgende Bedingungen mit unterschiedlichem Feedback (condition: positive, negative, neutral)\nAbhängige Variable: Höhe des Selbstvertrauens (confidence) auf einer Skala von 0 - 100 möglichen Punkten (Fragebogen)\nForschungsfrage: Beeinflusst die Art des Feedbacks während des Trainings das Selbstvertrauen?\nDie Hypothese soll auf einem Signifikanzniveau von \\(\\alpha = 0.05\\) geprüft werden.\n\n\n\n\na. Lesen Sie den Datensatz anova_confidence2.csv aus dem data-Ordner ein und konvertieren Sie die Variablen idund condition zu Faktoren. Schauen Sie sich den Datensatz mit glimpse() an.\n\n# tidyverse laden\n\n# Datensatz einlesen\nd_anova1rm &lt;- ___\n\n# Faktoren konvertieren\n\n# Datensatz anschauen\n\nb. Schauen Sie sich den Datensatz zum Beispiel mit print() genauer an.\n\nWie viele Stufen hat der Faktor (condition) und wie heissen die Faktorstufen?\nWie viele Messwerte gibt es insgesamt?\nWie lauten die Mittelwerte und Standardabweichungen der abhängigen Variable confidence in den einzelnen Bedingungen?\n\n\n# Mittelwerte und Standardabweichungen berechnen\n\nc. Laden die das Package {afex} und berechnen Sie das Anova-Modell m_anova1rm mit Messwiederholung auf dem Faktor condition.\n\nPrüfen Sie die Voraussetzung der Sphärizität. Welche Nullhypothese wird mit dem Mauchly-Test geprüft? Muss die Nullhypothese abgelehnt werden?\nMuss eine Korrektur vorgenommen werden oder nicht? Welche?\nInterpretieren Sie das entsprechende Anova-Modell. Gibt es einen Effekt für condition und was bedeutet das?\n\n\n\n\n\n\n\nTipp \\(\\varepsilon_{GG}\\)\n\n\n\n\n\nBeachten Sie, dass das \\(\\varepsilon_{GG}\\) ein Mass dafür ist, inwiefern die Sphärizität verletzt ist. Ein Wert von 1 bedeutet keine Abweichung von der Sphärizität (alle Varianzen der Bedingungsunterschiede sind gleich). Ein Verstoss gegen die Sphärizität führt zu einem \\(\\varepsilon_{GG}\\) unter 1. Je weiter Epsilon von 1 entfernt ist, desto schlimmer ist der Verstoss.\nDer Mauchly-Test sollte nicht signifikant sein, wenn wir annehmen, dass die Annahme der Sphärizität erfüllt ist.\n\n\n\n\n# afex laden\n___\n\n# Zweifaktorielle Anova ohne Messwiederholung\nm_anova1rm &lt;- aov_4(___ ~ 1 + (___ | id), # av ~ 1 + (uv | id)\n                      data = ___) # Datensatz\n\n# Resultate ausgeben\nsummary(___)\n\nd. Bei nur 5 Versuchspersonen hat der Mauchly-Test mit einem Signifikanzniveau von \\(\\alpha=0.05\\) eine sehr geringe Power und ist daher zu streng. Das bedeutet, dass die Wahrscheinlichkeit die Nullhypothese selbst bei grossen Abweichungen von der sphärischen Matrix abzulehnen, sehr gering ist. Wenn wir ein weniger strenges \\(\\alpha\\)-Niveau festlegen, ist die Teststärke grösser. Überprüfen Sie daher die Sphärizität für dieses Beispiel auf dem weniger strengen \\(\\alpha=0.1\\)-Niveau.\n\nMuss eine Korrektur vorgenommen werden oder nicht? Welche?\nInterpretieren Sie das entsprechende Anova-Modell. Gibt es einen Effekt für condition und was bedeutet das?\n\ne. Berechnen Sie einen vollständigen Paarvergleich mit dem entsprechenden Post-hoc Test.\n\nWelchen Test (bzw. welche Korrektur) wählen Sie und warum?\nWelche Mittelwertsvergleiche sind auf dem (adjustierten) \\(\\alpha=0.05\\)-Niveau signifikant?\n\n\n# Emmeans laden\nlibrary(___)\n\n# Resultate in Objekt speichern\nresult_anova1_rm &lt;- ___\nresult_anova1_rm\n\n# Post-hoc Test\npairs(x = ___, adjust = \"___\")",
+    "crumbs": [
+      "Übungen",
+      "Übung 8"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-08.html#aufgabe-8.3-ergebnisse-darstellen",
+    "href": "uebungen/uebung-08.html#aufgabe-8.3-ergebnisse-darstellen",
+    "title": "Übung 8",
+    "section": "Aufgabe 8.3: Ergebnisse darstellen",
+    "text": "Aufgabe 8.3: Ergebnisse darstellen\na. Nutzen Sie den untenstehenden Code, um die Ergebnisse in R mit Hilfe von afex_plot() grafisch darzustellen. Ersetzen Sie dazu die vier Platzhalter ___.\n\n# Plot mit afex_plot\nplot_anova &lt;- afex_plot(object = ___, # Anova-Modell\n                        x = \"___\", error = \"within\") +\n  geom_line(aes(group = \"id\"), alpha = 0.3) +  \n  geom_point(aes(group = \"id\"), size = 2) +  \n  theme_minimal() +\n  labs(title = \"Unterschiede Selbstvertrauen über Bedingungen\", \n       y = \"___\", # y-Achse mit AV anschreiben\n       x = \"___\" # x-Achse mit UV anschreiben\n  )\n\nplot_anova\n\n\nb. Erstellen Sie anhand des Outputs aus 8.2.c. eine Anova-Tabelle.\n\n\n\n\n\n\n\n\n\n\n\n\nQuelle der Variation\nQS\ndf\nMQS\nF\np\n\\(\\eta^2_p\\)\n\n\n\n\nFaktor A\n\n\n\n\n\n\n\n\nPerson\n\n\n\n\n\n\n\n\nResiduum\n\n\n\n\n\n\n\n\nTotal\n\n\n\n\n\n\n\n\n\n\n\nc. Ergänzen Sie den folgenden Ergebnisbericht für einen Artikel mit Ihren Resultaten.\n\nDie einfaktorielle Varianzanalyse mit Messwiederholung zeigte, dass es einen signifikantennicht signifikanten Effekt von SelbstvertrauenFeedbackBedingungen auf SelbstvertrauenFeedbackBedingungen gab, F(2, 12)F(4)F(2, 8) = 24.13, p &lt; .001= .006= .067, \\(\\eta^2\\) =, 0.860.64.\nDer Mauchly-Test war signifikantnicht signifikant, \\(W\\) = .16, p &lt; .001= .006= .067, womit Sphärizität angenommen werden kann.\nPost-hoc-Tests mit Tukey-Korrektur ergaben, dass das Selbstvertrauen in der Bedingung negatives Feedbackpositives Feedbackneutrales Feedback (M = 58.00, SD = 11.36) signifikant niedrigergleichhöher war, als in der Bedingung negatives Feedbackpositives Feedbackneutrales Feedback (M = 24.00, SD = 12.00), p &lt; .001), und in der Bedingung negatives Feedbackpositives Feedbackneutrales Feedback (M = 38.00, SD = 11.40), p = .0495.\nDie Ergebnisse deuten darauf hin, dass positives Feedback im Vergleich zu negativem und neutralem Feedback keineneinen positiveneinen negativen Effekt auf das Selbstvertrauen von Jugendlichen hat.",
+    "crumbs": [
+      "Übungen",
+      "Übung 8"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-08.html#zusatzaufgabe",
+    "href": "uebungen/uebung-08.html#zusatzaufgabe",
+    "title": "Übung 8",
+    "section": "Zusatzaufgabe",
+    "text": "Zusatzaufgabe\n\n\n\n\n\n\nZusatzaufgaben\n\n\n\nZusatzaufgaben müssen nicht gelöst werden.\n\n\na. Erklären Sie die Varianzanalyse in eigenen Worten einer Person, die nicht Psychologie studiert.\nb. Suchen Sie über eine Datenbank nach einem Paper, welches eine Anova als Analysemethode verwendet. Welche Faktoren und Faktorstufen wurden verwendet? Was war die AV? Wie werden die Resultate berichtet und dargestellt?",
+    "crumbs": [
+      "Übungen",
+      "Übung 8"
+    ]
+  },
+  {
     "objectID": "appendix/faq.html",
     "href": "appendix/faq.html",
     "title": "FAQ",
