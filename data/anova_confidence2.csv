@@ -1,0 +1,16 @@
+"id","condition","confidence"
+"sub-001","t1_positive",57
+"sub-002","t1_positive",45
+"sub-003","t1_positive",49
+"sub-004","t1_positive",69
+"sub-005","t1_positive",70
+"sub-001","t2_negative",18
+"sub-002","t2_negative",15
+"sub-003","t2_negative",13
+"sub-004","t2_negative",37
+"sub-005","t2_negative",37
+"sub-001","t3_neutral",36
+"sub-002","t3_neutral",27
+"sub-003","t3_neutral",43
+"sub-004","t3_neutral",29
+"sub-005","t3_neutral",55

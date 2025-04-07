@@ -1,0 +1,222 @@
+# Einfaktorielle Varianzanalyse mit Messwiederholung {#sec-anova3-ind}
+
+```{r}
+#| include: false
+# Set working directory of R
+knitr::opts_knit$set(root.dir = '../')
+```
+
+
+## Anwendungsbeispiel in R
+
+::: {.callout-note appearance="default" title="Beispiel: Therapiemethoden bei Angstsymptomen" icon=false}
+In einem fiktiven Experiment wurden drei verschiedene Therapiemethoden verglichen und untersucht, welchen Effekt die drei Therapiemethoden bei Patient:innen mit Angstsymptomatik haben. Dazu wurden fünf Personen untersucht und alle Personen absolvierten die drei Bedingungen in derselben Reihenfolge.
+
+- Die _unabhängige Variable_ `condition`: Therapiemethoden mit drei Faktorstufen (`mindfulness`, `relaxation`, `restructuring`) (messwiederholter Faktor)
+
+- Die _abhängige Variable_ `symptoms`: Höhe der Angstsymptome nach jeder Therapiemethode (metrisch)
+
+Forschungsfrage: Beeinflusst die Bedingung Therapiemethode die Angstsymptome?
+
+:::
+
+
+### Planung
+
+#### __Statistische Hypothesen und Signifikanzniveau festlegen__
+
+$H_0$ : Die Angstsymptome (Bedingungsmittelwerte in der Population) unterscheiden sich nicht: $\mu_{\bullet 1} = \mu_{\bullet 2} = \mu_{\bullet 3}$ oder allgemein $\mu_{\bullet j} - \mu = 0$ für alle $j$
+
+$H_1$: Mindestens zwei Bedingungsmittelwerte der Angstsymptome unterscheiden sich, bzw. mindestens ein Bedingungseffekt ist ungleich null. $\mu_{\bullet j} - \mu \neq 0$ für mindestens ein $j$
+
+Das Alphaniveau wird auf $5 \%$ festgelegt. 
+
+
+### Vorverarbeitung
+
+#### __Daten einlesen und vorverarbeiten__
+
+::: {.callout-caution appearance="default" title="Hands-on: Beispieldatensatz Therapiemethoden"}
+
+__Daten herunterladen und einlesen__
+
+Der Datensatz [`anova_therapy_rm.csv`](../data/anova_therapy_rm.csv) kann hier heruntergeladen werden. Der Datensatz muss im `data`-Ordner des _RProject_ namens `anova.Rproj` abgespeichert werden.
+
+- Es werden folgende Packages verwendet:  {tidyverse}, {afex}, {emmeans}, {effectsize}
+
+- Datensatz `anova_therapy_rm.csv` einlesen: 
+
+```{r, message=FALSE}
+# Package laden
+  library(tidyverse)
+
+# Daten laden und anschauen
+d_therapy_rm <- read.csv("data/anova_therapy_rm.csv") |>
+    glimpse() 
+```
+
+__Datensatz transformieren__
+
+Die Daten liegen bereits im `long` Format vor. Jede Person (`sub-001` bis `sub-005`) hat drei Messwerte. 
+Die Variablen `id` und `condition` müssen zu Faktoren konvertiert werden. Schauen Sie sich den Datensatz mit `glimpse()` an.
+
+```{r}
+# Faktoren konvertieren
+d_therapy_rm <- d_therapy_rm |>
+  mutate(id = as.factor(id)) |>
+  mutate(condition = as.factor(condition)) 
+
+# Datensatz anschauen
+glimpse(d_therapy_rm)
+```
+
+:::
+
+#### __Voraussetzungen überprüfen__
+
+Das Modell der einfaktoriellen Varianzanalyse mit Messwiederholung nimmt an, dass die Messwerte normalverteilt sind, eine konstante Varianz in allen Faktorstufen und eine konstante Kovarianz zwischen allen Faktorstufen-Paaren vorliegt (Compound-Symmetry-Annahme). 
+
+Eine Möglichkeit, die Abweichung der empirischen Kovarianzmatrix von einer perfekt sphärischen Matrix zu testen, stellt der Mauchly-Test dar. Üblicherweise wird der Test auf dem $\alpha = 0.05$-Niveau durchgeführt. 
+
+Ist die Sphärizitätsannahme verletzt, sollte der _F_-Test nur mit Vorsicht interpretiert werden, da er dann zu liberal wird. 
+
+In diesem Fall empfiehlt es sich, den _F_-Test strenger machen, indem man die Freiheitsgrade zur Bestimmung des kritischen _F_-Wertes reduziert und somit den kritischen Wert erhöht.
+
+Je weiter die Kovarianzmatrix von einer sphärischen Matrix abweicht, desto kleiner wird der Index $\varepsilon$.
+
+  - Bei einer starken Verletzung der Sphärizitätsannahme ($\varepsilon_{GG} < 0.75$) wird die Greenhouse-Geisser-Korrektur gewählt.
+
+  - Bei einer schwachen Verletzung der Sphärizitätsannahme ($\varepsilon_{GG} > 0.75$) wird die Huynh-Feldt-Korrektur gewählt.
+
+In _R_ wird die Teststatistik zur Überprüfung der Sphärizitätsannahme gleichzeitig mit dem Anova-Modell ausgegeben (siehe unten).
+
+### Analyse
+
+#### __Deskriptivstatistik und Visualisierungen__
+
+Für die deskriptive Statistik können die Daten nach Bedingung gruppiert und dann die Kennwerte berechnet werden. Hier werden die Funktionen `group_by()` und `summarise()` genutzt. 
+
+```{r}
+# Mittelwerte und Standardabweichungen berechnen
+d_summary <- d_therapy_rm |>
+  group_by(condition) |> # Gruppierung 
+  summarise(mean_symptoms = mean(symptoms), # Mittelwert
+            sd_symptoms = sd(symptoms)) # Standardabweichung
+d_summary
+```
+
+
+#### __Teststatistik berechnen__
+
+Falls der empirische _F_-Wert grösser als der kritische _F_-Wert ist, wird von einem signifikanten Unterschied zwischen mindestens zwei Bedingungen ausgegangen.
+
+__Berechnung Teststatistik in R mit der Funktion `aov_4()`__
+
+Eine einfaktorielle Varianzanalyse mit Messwiederholung kann mit der Funktion `aov_4(av ~ 1 + (uv | id), data)` aus dem Package {afex} berechnet werden.
+
+- `av`: Abhängige Variable (metrisch)
+- `uv`: Unabhängige Variable  (Bedingung)
+- `1`: Definiert, dass im Modell jede Person einen eigenen Intercept (Grundniveau) haben darf.
+- `(uv | id)`: Die Funktion benötigt eine Identifikationsvariable (hier `id`), d.h. eine Variable, in der jede Person einen einzigartigen Wert hat. Bei einem messwiederholten Faktor wird ausserdem der Faktor definiert, der sich innerhalb von `id`  wiederholt.
+
+<aside> Vor dem ersten Verwenden muss das Package {afex} heruntergeladen/installiert werden, z.B. in der Konsole mit `install.packages("afex")`. </aside>
+
+```{r, message=FALSE, warning=FALSE}
+# afex laden
+library(afex)
+
+# Einfaktorielle Anova ohne Messwiederholung
+m_anova_rm <- aov_4(symptoms ~ 1 + (condition | id),  # av ~ 1 + (uv | id)
+                      data = d_therapy_rm) # Datensatz
+
+# Resultate ausgeben
+summary(m_anova_rm)
+m_anova_rm$anova_table
+```
+  - __Schritt 1__: Zuerst wird die Annahme der Sphärizität mit dem Mauchly-Test überprüft. 
+  
+  - __Schritt 2__: Falls die Sphärizitätsannahme verletzt ist, ist eine Korrektur der Freiheitsgrade empfohlen. Dabei kann anhand von $\varepsilon_{GG}$ eruiert werden, inwiefern die Sphärizität verletzt ist. Ein Wert von 1 bedeutet keine Abweichung von der Sphärizität (alle Varianzen der Bedingungsunterschiede sind gleich). Ein Verstoss gegen die Sphärizität führt zu einem $\varepsilon_{GG}$ unter 1. Je weiter $\varepsilon$ von 1 entfernt ist, desto schlimmer ist der Verstoss. 
+Bei $\varepsilon_{GG} < 0.75$ wird die Greenhouse-Geisser-Korrektur verwendet. Bei $\varepsilon_{GG} > 0.75$ wird die Huynh-Feldt-Korrektur angewendet. 
+  
+ - __Schritt 3__: Erst nach der allfälligen Korrektur kann das Ergebnis der Varianzanalyse interpretiert werden. 
+ 
+In diesem Beispiel ist der Mauchly-Test nicht signifikant $p = .602$ und wir nehmen daher Sphärizität an. Der _F_-Test muss nicht korrigiert werden. Der _F_-Wert $F = 9.55$ liegt über dem kritischen Wert von $F_{0.95;2;8}=4.56$. Die Bedingungen unterscheiden sich signifikant, $p = .007$. Die Therapiemethode hat somit einen Einfluss auf die Angstsymptome. 
+Jedoch ist nicht klar, welche Bedingungen sich unterscheiden. Dies kann mit einem generellen Post-hoc Test oder geplanten Kontrastanalysen überprüft werden.
+
+__Post-hoc Tests__
+
+Eine Variante, um sämtliche Unterschiede zwischen den Bedingungen zu testen, ist ein Post-Hoc Test ohne konkrete a-priori Hypothesen. Wir untersuchen lediglich, welche Bedingungen sich unterscheiden. Für einen vollständigen Paarvergleich mit ausbalanciertem Design sollte der Tukey-Test verwendet werden.
+
+```{r, message = FALSE}
+# Package emmeans laden
+library(emmeans)
+
+# Resultate in Objekt speichern
+result_anova_rm <- emmeans(object = m_anova_rm, specs = ~ condition)
+result_anova_rm
+
+# Post-hoc Test
+pairs(x = result_anova_rm, adjust = "tukey")
+```  
+
+Mindestens zwei Bedingungen unterscheiden sich zwar signifikant, aber durch die Adjustierung sind keine zwei Bedingungen signifikant unterschiedlich im Vergleich. 
+
+
+#### __Effektstärke bestimmen__
+
+__Berechnung der Effektgrösse $\eta^2_p$__
+
+Um die Effektgrösse $\eta^2_p$ zu berechnen, kann in _R_ die Funktion `eta_squared()` aus dem Package {effectsize} verwendet werden. Als Argument für die Funktion muss das Anova-Modell (Objekt) verwendet werden. Durch `partial = TRUE` berechnet _R_ hier das partielle Etaquadrat.
+
+<aside> Vor dem ersten Verwenden muss das Package {effectsize} heruntergeladen/installiert werden, z.B. in der Konsole mit `install.packages("effectsize")`. </aside>
+
+::: {.callout-note appearance="default" title="Hinweis"}
+Für messwiederholte Daten ergeben sich einige Herausforderungen, die hier nicht weiter angeschaut werden. Der Vergleich über Studien hinweg ist nicht ohne weiteres möglich, da der Anteil stabiler interindividueller Unterschiede berücksichtigt werden muss. Dies ist mit der Intraklassen-Korrelation möglich, welcher zur Korrektur $\eta^2$ verwendet werden kann. 
+:::
+
+
+```{r}
+library(effectsize)
+
+# Effektstärke partielles Etaquadrat berechnen
+eta_squared(m_anova_rm, # Funktion, Modell
+            partial = TRUE)
+```
+
+
+### Schlussfolgerungen
+
+#### __Ergebnisse interpretieren und berichten__
+
+__Ergebnisse der einfaktoriellen Varianzanalyse mit Messwiederholung__
+
+> A one-way repeated measures ANOVA was conducted to examine the effects of therapy method (mindfulness, relaxation, and restructuring) on anxiety symptoms. Mauchly's test indicated that the assumption of sphericity was met, $W$ = 0.71, _p_ = .602, and sphericity could be assumed.
+
+> The main effect of therapy method was significant, _F_(2, 8) = 9.55, _p_ = .008, suggesting that there was an overall difference in anxiety symptoms between the conditions.
+
+> However, the tukey post-hoc test revealed no significant differences between specific conditions. This indicates that no therapy method is significantly better compared to other.  
+
+> __mit Korrektur $\varepsilon < .75$__: Mauchly's test indicated that the assumption of sphericity had been violated, $W$ = 0.25, _p_ = .005. Therefore, degrees of freedom were corrected using Greenhouse-Geisser ($\varepsilon_{GG}$ = 0.58). 
+
+> __mit Korrektur $\varepsilon > .75$__: Mauchly's test indicated that the assumption of sphericity had been violated, $W$ = 0.68, _p_ = .030. Therefore, degrees of freedom were corrected using Huynh-Feldt ($\varepsilon_{GG}$ = 0.78). 
+
+```{r}
+#| echo: false
+  
+# Plot mit afex_plot
+plot_anova <- afex_plot(object = m_anova_rm, # Anova-Modell
+                        x = "condition", error = "within") +
+  geom_line(aes(group = "id"), alpha = 0.3) +  
+  geom_point(aes(group = "id"), size = 2) +  
+  theme_minimal() +
+  labs(title = "Influence of therapy method on anxiety symptoms", 
+       y = "symptoms", # av
+       x = "condition" # uv
+  )
+
+plot_anova
+```
+
+
+
+
