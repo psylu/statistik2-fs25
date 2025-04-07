@@ -52,7 +52,7 @@ book:
     - uebungen/uebung-05.qmd
     - uebungen/uebung-06.qmd
     - uebungen/uebung-07.qmd
-    #- uebungen/uebung-08-solution.qmd
+    - uebungen/uebung-08.qmd
     
   - part: Anhang
     chapters:
