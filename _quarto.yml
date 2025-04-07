@@ -38,6 +38,7 @@ book:
     - datenanalyse/ttest_abhaengig.qmd
     - datenanalyse/anova1.qmd
     - datenanalyse/anova2.qmd
+    - datenanalyse/anova3.qmd
     
   - part: Datenvisualisierung
 #    chapters:
@@ -51,6 +52,7 @@ book:
     - uebungen/uebung-05.qmd
     - uebungen/uebung-06.qmd
     - uebungen/uebung-07.qmd
+    #- uebungen/uebung-08-solution.qmd
     
   - part: Anhang
     chapters:

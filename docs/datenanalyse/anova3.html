@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>5&nbsp; Workflow – Datenanalyse mit R</title>
+<title>13&nbsp; Einfaktorielle Varianzanalyse mit Messwiederholung – Datenanalyse mit R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../datenverarbeitung/readandwrite.html" rel="next">
-<link href="../r/help.html" rel="prev">
+<link href="../uebungen/uebungen.html" rel="next">
+<link href="../datenanalyse/anova2.html" rel="prev">
 <link href="../imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -70,6 +104,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../include/webex.css">
 </head>
@@ -83,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenverarbeitung/workflow.html">Datenverarbeitung</a></li><li class="breadcrumb-item"><a href="../datenverarbeitung/workflow.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenanalyse/descriptive.html">Datenanalyse</a></li><li class="breadcrumb-item"><a href="../datenanalyse/anova3.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Einfaktorielle Varianzanalyse mit Messwiederholung</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -160,7 +223,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../datenverarbeitung/workflow.html" class="sidebar-item-text sidebar-link active">
+  <a href="../datenverarbeitung/workflow.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></span></a>
   </div>
 </li>
@@ -219,7 +282,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../datenanalyse/anova3.html" class="sidebar-item-text sidebar-link">
+  <a href="../datenanalyse/anova3.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Einfaktorielle Varianzanalyse mit Messwiederholung</span></span></a>
   </div>
 </li>
@@ -327,20 +390,22 @@ ul.task-list li input[type="checkbox"] {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#datensatz-formate" id="toc-datensatz-formate" class="nav-link active" data-scroll-target="#datensatz-formate"><span class="header-section-number">5.1</span> Datensatz-Formate</a>
+  <li><a href="#anwendungsbeispiel-in-r" id="toc-anwendungsbeispiel-in-r" class="nav-link active" data-scroll-target="#anwendungsbeispiel-in-r"><span class="header-section-number">13.1</span> Anwendungsbeispiel in R</a>
   <ul class="collapse">
-  <li><a href="#long-format" id="toc-long-format" class="nav-link" data-scroll-target="#long-format"><span class="header-section-number">5.1.1</span> <em>Long</em>-Format</a></li>
-  <li><a href="#wide-format" id="toc-wide-format" class="nav-link" data-scroll-target="#wide-format"><span class="header-section-number">5.1.2</span> <em>Wide</em>-Format</a></li>
+  <li><a href="#planung" id="toc-planung" class="nav-link" data-scroll-target="#planung"><span class="header-section-number">13.1.1</span> Planung</a></li>
+  <li><a href="#vorverarbeitung" id="toc-vorverarbeitung" class="nav-link" data-scroll-target="#vorverarbeitung"><span class="header-section-number">13.1.2</span> Vorverarbeitung</a></li>
+  <li><a href="#analyse" id="toc-analyse" class="nav-link" data-scroll-target="#analyse"><span class="header-section-number">13.1.3</span> Analyse</a></li>
+  <li><a href="#schlussfolgerungen" id="toc-schlussfolgerungen" class="nav-link" data-scroll-target="#schlussfolgerungen"><span class="header-section-number">13.1.4</span> Schlussfolgerungen</a></li>
   </ul></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content">
+<main class="content page-columns page-full column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenverarbeitung/workflow.html">Datenverarbeitung</a></li><li class="breadcrumb-item"><a href="../datenverarbeitung/workflow.html"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../datenanalyse/descriptive.html">Datenanalyse</a></li><li class="breadcrumb-item"><a href="../datenanalyse/anova3.html"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Einfaktorielle Varianzanalyse mit Messwiederholung</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></h1>
+<h1 class="title"><span id="sec-anova3-ind" class="quarto-section-identifier"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Einfaktorielle Varianzanalyse mit Messwiederholung</span></span></h1>
 </div>
 
 
@@ -357,72 +422,301 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Zur Analyse von Daten gehören viele einzelne Schritte in <em>R</em>. Um den Überblick zu behalten hilft es die wichtigsten Prozesse zu kennen.</p>
+<section id="anwendungsbeispiel-in-r" class="level2 page-columns page-full" data-number="13.1">
+<h2 data-number="13.1" class="anchored" data-anchor-id="anwendungsbeispiel-in-r"><span class="header-section-number">13.1</span> Anwendungsbeispiel in R</h2>
+<div class="callout callout-style-default callout-note no-icon callout-titled" title="Beispiel: Therapiemethoden bei Angstsymptomen">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon no-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Beispiel: Therapiemethoden bei Angstsymptomen
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In einem fiktiven Experiment wurden drei verschiedene Therapiemethoden verglichen und untersucht, welchen Effekt die drei Therapiemethoden bei Patient:innen mit Angstsymptomatik haben. Dazu wurden fünf Personen untersucht und alle Personen absolvierten die drei Bedingungen in derselben Reihenfolge.</p>
 <ul>
-<li><strong>Import</strong>: Importieren des Datensatzes</li>
-<li><strong>Tidy</strong>: Bereinigen des Datensatzes (z.B. Identifizieren von fehlenden Werten)</li>
-<li><strong>Transform</strong>: Transformieren des Datensatzes (z.B. Erstellen neuer Variablen, Umformattierung von <em>long</em> zu <em>wide</em>)</li>
-<li><strong>Visualize</strong>: Visualisieren des Datensatzes</li>
-<li><strong>Model</strong>: Analysieren des Datensatzes (z.B. Ausführen eines <em>t</em>-Tests)</li>
-<li><strong>Communicate</strong>: Kommunizieren der Daten, Analysen und Schlussfolgerungen</li>
+<li><p>Die <em>unabhängige Variable</em> <code>condition</code>: Therapiemethoden mit drei Faktorstufen (<code>mindfulness</code>, <code>relaxation</code>, <code>restructuring</code>) (messwiederholter Faktor)</p></li>
+<li><p>Die <em>abhängige Variable</em> <code>symptoms</code>: Höhe der Angstsymptome nach jeder Therapiemethode (metrisch)</p></li>
 </ul>
-<p>Das Transformieren, Visualisieren und Modellieren dient dazu, die Daten zu verstehen und daraus Schlussfolgerungen ziehen zu können.</p>
-<div id="fig-tidyverseworkflow" class="quarto-float quarto-figure quarto-figure-center anchored">
-<figure class="quarto-float quarto-float-fig figure">
-<div aria-describedby="fig-tidyverseworkflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-<img src="../imgs/process_datawrangling.png" class="img-fluid figure-img">
+<p>Forschungsfrage: Beeinflusst die Bedingung Therapiemethode die Angstsymptome?</p>
 </div>
-<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig" id="fig-tidyverseworkflow-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
-Figure&nbsp;5.1: Wichtige Schritte im Data Science Prozess.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
-</figcaption>
-</figure>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Wollen Sie mehr darüber wissen?">
+<section id="planung" class="level3" data-number="13.1.1">
+<h3 data-number="13.1.1" class="anchored" data-anchor-id="planung"><span class="header-section-number">13.1.1</span> Planung</h3>
+<section id="statistische-hypothesen-und-signifikanzniveau-festlegen" class="level4">
+<h4 class="anchored" data-anchor-id="statistische-hypothesen-und-signifikanzniveau-festlegen"><strong>Statistische Hypothesen und Signifikanzniveau festlegen</strong></h4>
+<p><span class="math inline">\(H_0\)</span> : Die Angstsymptome (Bedingungsmittelwerte in der Population) unterscheiden sich nicht: <span class="math inline">\(\mu_{\bullet 1} = \mu_{\bullet 2} = \mu_{\bullet 3}\)</span> oder allgemein <span class="math inline">\(\mu_{\bullet j} - \mu = 0\)</span> für alle <span class="math inline">\(j\)</span></p>
+<p><span class="math inline">\(H_1\)</span>: Mindestens zwei Bedingungsmittelwerte der Angstsymptome unterscheiden sich, bzw. mindestens ein Bedingungseffekt ist ungleich null. <span class="math inline">\(\mu_{\bullet j} - \mu \neq 0\)</span> für mindestens ein <span class="math inline">\(j\)</span></p>
+<p>Das Alphaniveau wird auf <span class="math inline">\(5 \%\)</span> festgelegt.</p>
+</section>
+</section>
+<section id="vorverarbeitung" class="level3" data-number="13.1.2">
+<h3 data-number="13.1.2" class="anchored" data-anchor-id="vorverarbeitung"><span class="header-section-number">13.1.2</span> Vorverarbeitung</h3>
+<section id="daten-einlesen-und-vorverarbeiten" class="level4">
+<h4 class="anchored" data-anchor-id="daten-einlesen-und-vorverarbeiten"><strong>Daten einlesen und vorverarbeiten</strong></h4>
+<div class="callout callout-style-default callout-caution callout-titled" title="Hands-on: Beispieldatensatz Therapiemethoden">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Wollen Sie mehr darüber wissen?
+Hands-on: Beispieldatensatz Therapiemethoden
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Hier finden Sie das Buch <a href="https://r4ds.hadley.nz/"><em>R for Data Science</em></a></p>
-</div>
-</div>
-<section id="datensatz-formate" class="level2" data-number="5.1">
-<h2 data-number="5.1" class="anchored" data-anchor-id="datensatz-formate"><span class="header-section-number">5.1</span> Datensatz-Formate</h2>
-<p>Datensätze können im <em>Long</em>-Format und im <em>Wide</em>-Format formattiert sein.</p>
-<section id="long-format" class="level3" data-number="5.1.1">
-<h3 data-number="5.1.1" class="anchored" data-anchor-id="long-format"><span class="header-section-number">5.1.1</span> <em>Long</em>-Format</h3>
+<p><strong>Daten herunterladen und einlesen</strong></p>
+<p>Der Datensatz <a href="../data/anova_therapy_rm.csv"><code>anova_therapy_rm.csv</code></a> kann hier heruntergeladen werden. Der Datensatz muss im <code>data</code>-Ordner des <em>RProject</em> namens <code>anova.Rproj</code> abgespeichert werden.</p>
 <ul>
-<li>Jede Variable (jede gemessene Eigenschaft) entspricht einer Spalte (column)</li>
-<li>Jede Messung entspricht einer Zeile (row)</li>
+<li><p>Es werden folgende Packages verwendet: {tidyverse}, {afex}, {emmeans}, {effectsize}</p></li>
+<li><p>Datensatz <code>anova_therapy_rm.csv</code> einlesen:</p></li>
 </ul>
-<p>Wird eine Variable innerhalb einer Person mehrmals gemessen (z.B. error), dann hat jede Messung eine neue Zeile und die anderen Variablenwerte werden wiederholt (z.B. <code>id</code>). Dieses Format eignet sich sehr gut für die Datenvisualisierung und für die Datenanalyse in R.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Package laden</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Daten laden und anschauen</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>d_therapy_rm <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/anova_therapy_rm.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">glimpse</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 15
+Columns: 3
+$ id        &lt;chr&gt; "sub-001", "sub-002", "sub-003", "sub-004", "sub-005", "sub-…
+$ condition &lt;chr&gt; "t1_mindfulness", "t1_mindfulness", "t1_mindfulness", "t1_mi…
+$ symptoms  &lt;int&gt; 6, 9, 7, 5, 3, 9, 7, 8, 7, 4, 1, 3, 1, 1, 4</code></pre>
+</div>
+</div>
+<p><strong>Datensatz transformieren</strong></p>
+<p>Die Daten liegen bereits im <code>long</code> Format vor. Jede Person (<code>sub-001</code> bis <code>sub-005</code>) hat drei Messwerte. Die Variablen <code>id</code> und <code>condition</code> müssen zu Faktoren konvertiert werden. Schauen Sie sich den Datensatz mit <code>glimpse()</code> an.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Faktoren konvertieren</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>d_therapy_rm <span class="ot">&lt;-</span> d_therapy_rm <span class="sc">|&gt;</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">as.factor</span>(id)) <span class="sc">|&gt;</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">condition =</span> <span class="fu">as.factor</span>(condition)) </span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz anschauen</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(d_therapy_rm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 15
+Columns: 3
+$ id        &lt;fct&gt; sub-001, sub-002, sub-003, sub-004, sub-005, sub-001, sub-00…
+$ condition &lt;fct&gt; t1_mindfulness, t1_mindfulness, t1_mindfulness, t1_mindfulne…
+$ symptoms  &lt;int&gt; 6, 9, 7, 5, 3, 9, 7, 8, 7, 4, 1, 3, 1, 1, 4</code></pre>
+</div>
+</div>
+</div>
+</div>
 </section>
-<section id="wide-format" class="level3" data-number="5.1.2">
-<h3 data-number="5.1.2" class="anchored" data-anchor-id="wide-format"><span class="header-section-number">5.1.2</span> <em>Wide</em>-Format</h3>
+<section id="voraussetzungen-überprüfen" class="level4">
+<h4 class="anchored" data-anchor-id="voraussetzungen-überprüfen"><strong>Voraussetzungen überprüfen</strong></h4>
+<p>Das Modell der einfaktoriellen Varianzanalyse mit Messwiederholung nimmt an, dass die Messwerte normalverteilt sind, eine konstante Varianz in allen Faktorstufen und eine konstante Kovarianz zwischen allen Faktorstufen-Paaren vorliegt (Compound-Symmetry-Annahme).</p>
+<p>Eine Möglichkeit, die Abweichung der empirischen Kovarianzmatrix von einer perfekt sphärischen Matrix zu testen, stellt der Mauchly-Test dar. Üblicherweise wird der Test auf dem <span class="math inline">\(\alpha = 0.05\)</span>-Niveau durchgeführt.</p>
+<p>Ist die Sphärizitätsannahme verletzt, sollte der <em>F</em>-Test nur mit Vorsicht interpretiert werden, da er dann zu liberal wird.</p>
+<p>In diesem Fall empfiehlt es sich, den <em>F</em>-Test strenger machen, indem man die Freiheitsgrade zur Bestimmung des kritischen <em>F</em>-Wertes reduziert und somit den kritischen Wert erhöht.</p>
+<p>Je weiter die Kovarianzmatrix von einer sphärischen Matrix abweicht, desto kleiner wird der Index <span class="math inline">\(\varepsilon\)</span>.</p>
 <ul>
-<li>Jede Einheit hat eine Zeile (row)</li>
-<li>Jede Messung entspricht einer Spalte (column)</li>
+<li><p>Bei einer starken Verletzung der Sphärizitätsannahme (<span class="math inline">\(\varepsilon_{GG} &lt; 0.75\)</span>) wird die Greenhouse-Geisser-Korrektur gewählt.</p></li>
+<li><p>Bei einer schwachen Verletzung der Sphärizitätsannahme (<span class="math inline">\(\varepsilon_{GG} &gt; 0.75\)</span>) wird die Huynh-Feldt-Korrektur gewählt.</p></li>
 </ul>
-<p>Dieses Format eignet sich, um fehlende Werte schnell zu entdecken und um Daten einzugeben.</p>
-<div class="quarto-figure quarto-figure-center">
+<p>In <em>R</em> wird die Teststatistik zur Überprüfung der Sphärizitätsannahme gleichzeitig mit dem Anova-Modell ausgegeben (siehe unten).</p>
+</section>
+</section>
+<section id="analyse" class="level3 page-columns page-full" data-number="13.1.3">
+<h3 data-number="13.1.3" class="anchored" data-anchor-id="analyse"><span class="header-section-number">13.1.3</span> Analyse</h3>
+<section id="deskriptivstatistik-und-visualisierungen" class="level4">
+<h4 class="anchored" data-anchor-id="deskriptivstatistik-und-visualisierungen"><strong>Deskriptivstatistik und Visualisierungen</strong></h4>
+<p>Für die deskriptive Statistik können die Daten nach Bedingung gruppiert und dann die Kennwerte berechnet werden. Hier werden die Funktionen <code>group_by()</code> und <code>summarise()</code> genutzt.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mittelwerte und Standardabweichungen berechnen</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>d_summary <span class="ot">&lt;-</span> d_therapy_rm <span class="sc">|&gt;</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(condition) <span class="sc">|&gt;</span> <span class="co"># Gruppierung </span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_symptoms =</span> <span class="fu">mean</span>(symptoms), <span class="co"># Mittelwert</span></span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_symptoms =</span> <span class="fu">sd</span>(symptoms)) <span class="co"># Standardabweichung</span></span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>d_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 3
+  condition        mean_symptoms sd_symptoms
+  &lt;fct&gt;                    &lt;dbl&gt;       &lt;dbl&gt;
+1 t1_mindfulness               6        2.24
+2 t2_relaxation                7        1.87
+3 t3_restructuring             2        1.41</code></pre>
+</div>
+</div>
+</section>
+<section id="teststatistik-berechnen" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="teststatistik-berechnen"><strong>Teststatistik berechnen</strong></h4>
+<p>Falls der empirische <em>F</em>-Wert grösser als der kritische <em>F</em>-Wert ist, wird von einem signifikanten Unterschied zwischen mindestens zwei Bedingungen ausgegangen.</p>
+<p><strong>Berechnung Teststatistik in R mit der Funktion <code>aov_4()</code></strong></p>
+<p>Eine einfaktorielle Varianzanalyse mit Messwiederholung kann mit der Funktion <code>aov_4(av ~ 1 + (uv | id), data)</code> aus dem Package {afex} berechnet werden.</p>
+<ul>
+<li><code>av</code>: Abhängige Variable (metrisch)</li>
+<li><code>uv</code>: Unabhängige Variable (Bedingung)</li>
+<li><code>1</code>: Definiert, dass im Modell jede Person einen eigenen Intercept (Grundniveau) haben darf.</li>
+<li><code>(uv | id)</code>: Die Funktion benötigt eine Identifikationsvariable (hier <code>id</code>), d.h. eine Variable, in der jede Person einen einzigartigen Wert hat. Bei einem messwiederholten Faktor wird ausserdem der Faktor definiert, der sich innerhalb von <code>id</code> wiederholt.</li>
+</ul>
+<aside>
+Vor dem ersten Verwenden muss das Package {afex} heruntergeladen/installiert werden, z.B. in der Konsole mit <code>install.packages("afex")</code>.
+</aside>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># afex laden</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(afex)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfaktorielle Anova ohne Messwiederholung</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>m_anova_rm <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(symptoms <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> (condition <span class="sc">|</span> id),  <span class="co"># av ~ 1 + (uv | id)</span></span>
+<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> d_therapy_rm) <span class="co"># Datensatz</span></span>
+<span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-8"><a href="#cb7-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultate ausgeben</span></span>
+<span id="cb7-9"><a href="#cb7-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_anova_rm)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Univariate Type III Repeated-Measures ANOVA Assuming Sphericity
+
+            Sum Sq num Df Error SS den Df  F value    Pr(&gt;F)    
+(Intercept)    375      1   12.667      4 118.4211 0.0004048 ***
+condition       70      2   29.333      8   9.5455 0.0076044 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+
+Mauchly Tests for Sphericity
+
+          Test statistic p-value
+condition        0.71281 0.60181
+
+
+Greenhouse-Geisser and Huynh-Feldt Corrections
+ for Departure from Sphericity
+
+           GG eps Pr(&gt;F[GG])  
+condition 0.77689    0.01517 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+            HF eps  Pr(&gt;F[HF])
+condition 1.179134 0.007604412</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>m_anova_rm<span class="sc">$</span>anova_table</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Anova Table (Type 3 tests)
+
+Response: symptoms
+          num Df den Df    MSE      F   ges  Pr(&gt;F)  
+condition 1.5538 6.2151 4.7197 9.5455 0.625 0.01517 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<ul>
+<li><p><strong>Schritt 1</strong>: Zuerst wird die Annahme der Sphärizität mit dem Mauchly-Test überprüft.</p></li>
+<li><p><strong>Schritt 2</strong>: Falls die Sphärizitätsannahme verletzt ist, ist eine Korrektur der Freiheitsgrade empfohlen. Dabei kann anhand von <span class="math inline">\(\varepsilon_{GG}\)</span> eruiert werden, inwiefern die Sphärizität verletzt ist. Ein Wert von 1 bedeutet keine Abweichung von der Sphärizität (alle Varianzen der Bedingungsunterschiede sind gleich). Ein Verstoss gegen die Sphärizität führt zu einem <span class="math inline">\(\varepsilon_{GG}\)</span> unter 1. Je weiter <span class="math inline">\(\varepsilon\)</span> von 1 entfernt ist, desto schlimmer ist der Verstoss. Bei <span class="math inline">\(\varepsilon_{GG} &lt; 0.75\)</span> wird die Greenhouse-Geisser-Korrektur verwendet. Bei <span class="math inline">\(\varepsilon_{GG} &gt; 0.75\)</span> wird die Huynh-Feldt-Korrektur angewendet.</p></li>
+<li><p><strong>Schritt 3</strong>: Erst nach der allfälligen Korrektur kann das Ergebnis der Varianzanalyse interpretiert werden.</p></li>
+</ul>
+<p>In diesem Beispiel ist der Mauchly-Test nicht signifikant <span class="math inline">\(p = .602\)</span> und wir nehmen daher Sphärizität an. Der <em>F</em>-Test muss nicht korrigiert werden. Der <em>F</em>-Wert <span class="math inline">\(F = 9.55\)</span> liegt über dem kritischen Wert von <span class="math inline">\(F_{0.95;2;8}=4.56\)</span>. Die Bedingungen unterscheiden sich signifikant, <span class="math inline">\(p = .007\)</span>. Die Therapiemethode hat somit einen Einfluss auf die Angstsymptome. Jedoch ist nicht klar, welche Bedingungen sich unterscheiden. Dies kann mit einem generellen Post-hoc Test oder geplanten Kontrastanalysen überprüft werden.</p>
+<p><strong>Post-hoc Tests</strong></p>
+<p>Eine Variante, um sämtliche Unterschiede zwischen den Bedingungen zu testen, ist ein Post-Hoc Test ohne konkrete a-priori Hypothesen. Wir untersuchen lediglich, welche Bedingungen sich unterscheiden. Für einen vollständigen Paarvergleich mit ausbalanciertem Design sollte der Tukey-Test verwendet werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Package emmeans laden</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'emmeans' was built under R version 4.4.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultate in Objekt speichern</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>result_anova_rm <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(<span class="at">object =</span> m_anova_rm, <span class="at">specs =</span> <span class="sc">~</span> condition)</span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>result_anova_rm</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> condition        emmean    SE df lower.CL upper.CL
+ t1_mindfulness        6 1.000  4    3.224     8.78
+ t2_relaxation         7 0.837  4    4.677     9.32
+ t3_restructuring      2 0.632  4    0.244     3.76
+
+Confidence level used: 0.95 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Post-hoc Test</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">pairs</span>(<span class="at">x =</span> result_anova_rm, <span class="at">adjust =</span> <span class="st">"tukey"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> contrast                          estimate    SE df t.ratio p.value
+ t1_mindfulness - t2_relaxation          -1 0.837  4  -1.195  0.5157
+ t1_mindfulness - t3_restructuring        4 1.300  4   3.068  0.0783
+ t2_relaxation - t3_restructuring         5 1.410  4   3.536  0.0513
+
+P value adjustment: tukey method for comparing a family of 3 estimates </code></pre>
+</div>
+</div>
+<p>Mindestens zwei Bedingungen unterscheiden sich zwar signifikant, aber durch die Adjustierung sind keine zwei Bedingungen signifikant unterschiedlich im Vergleich.</p>
+</section>
+<section id="effektstärke-bestimmen" class="level4 page-columns page-full">
+<h4 class="anchored" data-anchor-id="effektstärke-bestimmen"><strong>Effektstärke bestimmen</strong></h4>
+<p><strong>Berechnung der Effektgrösse <span class="math inline">\(\eta^2_p\)</span></strong></p>
+<p>Um die Effektgrösse <span class="math inline">\(\eta^2_p\)</span> zu berechnen, kann in <em>R</em> die Funktion <code>eta_squared()</code> aus dem Package {effectsize} verwendet werden. Als Argument für die Funktion muss das Anova-Modell (Objekt) verwendet werden. Durch <code>partial = TRUE</code> berechnet <em>R</em> hier das partielle Etaquadrat.</p>
+<aside>
+Vor dem ersten Verwenden muss das Package {effectsize} heruntergeladen/installiert werden, z.B. in der Konsole mit <code>install.packages("effectsize")</code>.
+</aside>
+<div class="callout callout-style-default callout-note callout-titled" title="Hinweis">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Hinweis
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Für messwiederholte Daten ergeben sich einige Herausforderungen, die hier nicht weiter angeschaut werden. Der Vergleich über Studien hinweg ist nicht ohne weiteres möglich, da der Anteil stabiler interindividueller Unterschiede berücksichtigt werden muss. Dies ist mit der Intraklassen-Korrelation möglich, welcher zur Korrektur <span class="math inline">\(\eta^2\)</span> verwendet werden kann.</p>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(effectsize)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'effectsize' was built under R version 4.4.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektstärke partielles Etaquadrat berechnen</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">eta_squared</span>(m_anova_rm, <span class="co"># Funktion, Modell</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">partial =</span> <span class="cn">TRUE</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># Effect Size for ANOVA (Type III)
+
+Parameter | Eta2 (partial) |       95% CI
+-----------------------------------------
+condition |           0.70 | [0.25, 1.00]
+
+- One-sided CIs: upper bound fixed at [1.00].</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="schlussfolgerungen" class="level3" data-number="13.1.4">
+<h3 data-number="13.1.4" class="anchored" data-anchor-id="schlussfolgerungen"><span class="header-section-number">13.1.4</span> Schlussfolgerungen</h3>
+<section id="ergebnisse-interpretieren-und-berichten" class="level4">
+<h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten"><strong>Ergebnisse interpretieren und berichten</strong></h4>
+<p><strong>Ergebnisse der einfaktoriellen Varianzanalyse mit Messwiederholung</strong></p>
+<blockquote class="blockquote">
+<p>A one-way repeated measures ANOVA was conducted to examine the effects of therapy method (mindfulness, relaxation, and restructuring) on anxiety symptoms. Mauchly’s test indicated that the assumption of sphericity was met, <span class="math inline">\(W\)</span> = 0.71, <em>p</em> = .602, and sphericity could be assumed.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>The main effect of therapy method was significant, <em>F</em>(2, 8) = 9.55, <em>p</em> = .008, suggesting that there was an overall difference in anxiety symptoms between the conditions.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>However, the tukey post-hoc test revealed no significant differences between specific conditions. This indicates that no therapy method is significantly better compared to other.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>mit Korrektur <span class="math inline">\(\varepsilon &lt; .75\)</span></strong>: Mauchly’s test indicated that the assumption of sphericity had been violated, <span class="math inline">\(W\)</span> = 0.25, <em>p</em> = .005. Therefore, degrees of freedom were corrected using Greenhouse-Geisser (<span class="math inline">\(\varepsilon_{GG}\)</span> = 0.58).</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><strong>mit Korrektur <span class="math inline">\(\varepsilon &gt; .75\)</span></strong>: Mauchly’s test indicated that the assumption of sphericity had been violated, <span class="math inline">\(W\)</span> = 0.68, <em>p</em> = .030. Therefore, degrees of freedom were corrected using Huynh-Feldt (<span class="math inline">\(\varepsilon_{GG}\)</span> = 0.78).</p>
+</blockquote>
+<div class="cell">
+<div class="cell-output-display">
+<div>
 <figure class="figure">
-<p><img src="../imgs/longwide.jpg" class="img-fluid figure-img"></p>
-<figcaption>Long und Wide Format</figcaption>
+<p><img src="anova3_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
+</div>
+</div>
 
 
 </section>
 </section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>Wickham, H., Çetinkaya-Rundel, M., Grolemund, G. (2025). R for Data Science (2e). https://r4ds.hadley.nz<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
 </section>
 
 </main> <!-- /main -->
@@ -1265,13 +1559,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../r/help.html" class="pagination-link" aria-label="Help center">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Help center</span></span>
+      <a href="../datenanalyse/anova2.html" class="pagination-link" aria-label="Zweifaktorielle Varianzanalyse ohne Messwiederholung">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Zweifaktorielle Varianzanalyse ohne Messwiederholung</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../datenverarbeitung/readandwrite.html" class="pagination-link" aria-label="Datensätze einlesen und schreiben">
-        <span class="nav-page-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Datensätze einlesen und schreiben</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../uebungen/uebungen.html" class="pagination-link" aria-label="Informationen">
+        <span class="nav-page-text">Informationen</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
