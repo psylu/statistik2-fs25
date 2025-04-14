@@ -1,0 +1,299 @@
+# Übung 9 {.unnumbered #sec-uebung-09}
+
+```{r}
+#| include: false
+# Set working directory of R
+knitr::opts_knit$set(root.dir = '../')
+```
+
+::: {.callout-note appearance="default" title="Lernziele dieser Übung"}
+Nach der heutigen Übung können Sie:
+
+- _R_ und _RStudio_ zur Analyse von Daten verwenden
+- Verschiedene Varianzanalysen in _R_ durchführen
+- Resultate interpretieren
+
+:::
+
+
+:::{.callout-note appearance="default" title="Voraussetzungen"}
+
+Die bisherigen Übungen wurden absolviert. 
+
+:::
+
+
+::: {.callout-note appearance="default" title="Hinweise"}
+Für diese Übung wird kein Datensatz benötigt.
+
+Falls nicht anders erwähnt, wird davon ausgegangen, dass die Voraussetzungen für die entsprechenden Analysen erfüllt sind. 
+
+:::
+
+## Aufgabe 9.1: Outputs interpretieren 1
+
+__Beantworten Sie die Fragen zum folgenden _R_-Output.__
+
+  - Welche Analyse wurde hier durchgeführt? 
+  
+  - Falls Voraussetzungen überprüft werden (müssen), sind die Annahmen verletzt?
+  
+  - Welche Variablen bzw. Faktoren wurden analysiert? Wieviel Faktorstufen gibt es pro Faktor?
+  
+  - Welche Hypothese(n) kann/können mit dieser Analyse überprüft werden? 
+  
+  - Welche Effekte sind auf dem $\alpha = 0.1$ Niveau signifikant? 
+  
+  - Wie werden die Resultate interpretiert (empirische Prüfgrösse, _p_-Wert, Testentscheidung)? 
+
+```{r}
+#| include: false
+library(tidyverse)
+library(afex)
+library(effectsize)
+
+dataset_speed <- tibble(
+                  group1 = c(4, 4, 4, 4.1, 4),
+                  group2 = c(5, 4, 3, 8, 1),
+                  group3 = c(9, 9, 5, 1, 1)
+)
+
+dataset_speed <- dataset_speed |>
+  pivot_longer(cols = c(group1, group2, group3),
+               names_to = "condition",
+               values_to = "speed") |>
+  arrange(condition) |>
+  mutate(id = row_number())|>
+  mutate(id = as.factor(id)) |>
+  mutate(condition = as.factor(condition)) |>
+  select (id, condition, speed)
+```
+
+```{r, message=FALSE}
+car::leveneTest(speed ~ condition, 
+                data = dataset_speed)
+```
+
+
+```{r, message=FALSE}
+m_anova_speed <- aov_4(speed ~ condition + (1 | id), 
+                data = dataset_speed) 
+
+summary(m_anova_speed) 
+```
+
+<br>
+
+## Aufgabe 9.2: Outputs interpretieren 2
+
+```{r}
+#| include: false
+library(tidyverse)
+library(afex)
+library(effectsize)
+
+dataset_learn <- tibble(id = c("sub-001", "sub-002", "sub-003", "sub-004", "sub-005", "sub-006", "sub-007", "sub-008"),
+                   t1_beginn = c(18, 15, 17, 16, 16, 19, 15, 14),
+                   t2_threemonths = c(15, 16, 16, 14, 19, 14, 12, 15),
+                   t3_sixmonths = c(15, 14, 17, 15, 17, 15, 13, 13),
+                   t4_ninemonths = c(12, 11, 10, 15, 18, 10, 12, 1)
+)
+
+dataset_learn <- dataset_learn |>
+  mutate(id = as.factor(id))
+
+dataset_learn_new <- dataset_learn |>
+  pivot_longer(cols = c(t1_beginn, t2_threemonths, t3_sixmonths, t4_ninemonths),
+               names_to = "condition",
+               values_to = "examscore") |>
+  arrange(condition) |>
+  mutate(id = as.factor(id)) |>
+  mutate(condition = as.factor(condition)) |>
+  select (id, condition, examscore)
+
+d_summary_learn <- dataset_learn_new |>
+  group_by(condition) |>
+  summarise(mean_examscore = mean(examscore),
+            sd_examscore = sd(examscore))
+```
+
+__a.__ Schauen Sie sich die folgenden Datensätze `dataset_learn` und `dataset_learn_new` an. 
+  
+  - Welches Skalenniveau haben die jeweiligen Variablen? 
+  
+  - Wie unterscheiden sich die Datensätze in ihrem Format? 
+  
+  - Welchen der beiden Datensätze können Sie für eine Varianzanalyse mit der Funktion `aov_4()` verwenden?
+  
+  - Inwiefern ist das Format des Datensatzes wichtig für die Berechnung von Mittelwert und Standardabweichung in R?
+
+
+```{r}
+print(dataset_learn)
+print(dataset_learn_new)
+```
+
+<br>
+
+__b.__ Beantworten Sie die Fragen zum folgenden _R_-Output.
+
+  - Welche Analyse wurde hier durchgeführt? 
+  
+  - Falls Voraussetzungen überprüft werden (müssen), ist die Annahme verletzt?
+  
+  - Welche Variablen bzw. Faktoren wurden analysiert? Wieviel Faktorstufen gibt es pro Faktor?
+  
+  - Welche Hypothese(n) kann/können mit dieser Analyse überprüft werden? 
+  
+  - Welche Effekte sind auf dem $\alpha = 0.05$ Niveau signifikant? 
+  
+  - Wie werden die Resultate interpretiert (empirische Prüfgrösse, _p_-Wert, Testentscheidung, Interaktion)?
+
+```{r, message=FALSE}
+#| echo: false
+m_learn <- aov_4(examscore ~ 1 + (condition | id),  
+                      data = dataset_learn_new) 
+
+summary(m_learn) 
+```
+
+<br>
+
+## Aufgabe 9.3: Outputs interpretieren 3
+
+```{r}
+#| include: false
+library(tidyverse)
+library(afex)
+library(effectsize)
+
+dataset_team <- tibble(
+  team = rep(c("team1", "team2"), each = 6),
+  payment = rep(c("high", "low"), each = 3, 2),
+  motivation = c(90, 70, 80,  # t1 h 
+               50, 30, 40,  
+               58, 20, 30,  
+               19, 30, 41)  
+)
+
+# Datenformat long erstellen
+dataset_team <- dataset_team |>
+  mutate(id = row_number())|>
+  mutate(id = as.factor(id)) |>
+  mutate(team = as.factor(team)) |>
+  mutate(payment = as.factor(payment))
+
+d_summary_team <- dataset_team |>
+  group_by(team, payment) |> 
+  summarise(mean_motivation = mean(motivation),
+            sd_motivation = sd(motivation)) 
+```
+
+__a.__ Beantworten Sie die Fragen zum folgenden _R_-Output.
+
+  - Welche Analyse wurde hier durchgeführt? 
+  
+  - Welche Variablen bzw. Faktoren wurden analysiert? Wieviel Faktorstufen gibt es pro Faktor?
+  
+  - Welche Hypothese(n) kann/können mit dieser Analyse überprüft werden? 
+  
+  - Welche Effekte sind auf dem $\alpha = 0.05$ Niveau signifikant? 
+  
+  - Wie werden die Resultate interpretiert (empirische Prüfgrösse, _p_-Wert, Testentscheidung, Interaktion)?
+
+```{r, message = FALSE}
+#| echo: false
+d_summary_team
+
+m_team <- aov_4(motivation ~ team * payment + (1 | id),
+                  data = dataset_team)
+
+summary(m_team) 
+```
+<br>
+
+__b.__ Gibt es einen bedingten Haupteffekt für Faktor A (`team`)? Wie wird er interpretiert?
+
+```{r, message=FALSE, warning=FALSE}
+#| echo: false
+library(emmeans)
+# Bedingte Haupteffekte Faktor A
+joint_tests(m_team, 
+            by = "payment") 
+```
+ 
+<br>
+
+__c.__ Effektgrössen 
+
+  - Wie gross ist das $\eta^2_p$ für den signifikanten Haupteffekte des Faktors `team`?
+
+```{r}
+#| echo: false
+# Package laden
+library(effectsize)
+
+# Effektgrösse berechnen
+eta_squared(m_team, partial = TRUE)
+```
+
+
+- Welche weitere Möglichkeit gibt es, um das Package {effectsize} zu verwenden, ohne es mit der Funktion `library()` zu laden?
+
+<br>
+
+## Aufgabe 9.4: Kontraste
+
+__a.__ Für den Datensatz `dataset_learn_new` wurde eine Kontrastanalyse gerechnet, um zu überprüfen, ob sich der Messzeitpunkt 1 vom Mittel der anderen Messzeitpunkten unterscheidet.  
+
+```{r, message=FALSE}
+#| include: false
+library(emmeans)
+
+# Resultate (estimated marginal means) speichern
+m_learn_results <- emmeans(object = m_learn, specs = ~ condition) # object = anova modell, ~ uv
+```
+
+  - Wie lautet die Testentscheidung?
+  
+```{r}
+#| echo: false
+m_learn_contrast <- list("t1 vs. rest" = c(3, -1, -1, -1)) 
+contrast(object = m_learn_results, method = m_learn_contrast)
+```
+
+<br>
+
+__b.__ Im unteren Beispiel wurde der geplante Kontrast falsch spezifiziert. Wie müsste er korrekt spezifiziert sein?
+
+```{r}
+m_learn_contrast <- list("t1 vs. rest" = c(1, -1, -1, -1)) 
+contrast(object = m_learn_results, method = m_learn_contrast)
+```
+
+<br>
+
+__c.__ Im Datensatz `dataset_learn_new` wurden Daten von Personen zu vier Messzeitpunkte erhoben. Eine Forscherin interessiert sich jedoch nur für den ersten und zweiten Messzeitpunkt der Studie und analysiert die Unterschiede der beiden Messzeitpunkte mit einem _t_-Test für abhängige Stichproben. Ein anderer Forscher verwendet die selben Daten und untersucht Messzeitpunkt 1 und 4 - ebenfalls mit einem _t_-Test für abhängige Stichproben. 
+
+  - Welches Problem entsteht dadurch bzw. weshalb ist dies nicht zulässig?
+  
+  - Wie würden Sie die Hypothese testen, dass sich zwei Messzeitpunkte unterscheiden?
+
+<br>
+
+__d.__ Nun möchte die Forscherin wissen, ob die Versuchspersonen zum letzten Messzeitpunkt signifikant __höhere__  Testwerte hatten als zum ersten Messzeitpunkt und überprüft die gerichtete Alternativhypothese $\mu_1 < \mu_4$ (entspricht auch $\mu_4 - \mu_1 > 0$). 
+
+  - Wie lautet die Testentscheidung?
+  
+
+```{r}
+d_summary_learn
+
+m_learn_contrast <- list("t1 < t4" = c(-1, 0, 0, 1)) 
+contrast(object = m_learn_results, method = m_learn_contrast)
+```
+
+
+
+
+

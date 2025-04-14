@@ -1406,6 +1406,61 @@
     ]
   },
   {
+    "objectID": "uebungen/uebung-09.html",
+    "href": "uebungen/uebung-09.html",
+    "title": "Übung 9",
+    "section": "",
+    "text": "Aufgabe 9.1: Outputs interpretieren 1\nBeantworten Sie die Fragen zum folgenden R-Output.\ncar::leveneTest(speed ~ condition, \n                data = dataset_speed)\n\nLevene's Test for Homogeneity of Variance (center = median)\n      Df F value  Pr(&gt;F)  \ngroup  2  6.4558 0.01249 *\n      12                  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\nm_anova_speed &lt;- aov_4(speed ~ condition + (1 | id), \n                data = dataset_speed) \n\nsummary(m_anova_speed) \n\nAnova Table (Type 3 tests)\n\nResponse: speed\n          num Df den Df    MSE      F      ges Pr(&gt;F)\ncondition      2     12 7.5673 0.1798 0.029096 0.8376",
+    "crumbs": [
+      "Übungen",
+      "Übung 9"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-09.html#aufgabe-9.1-outputs-interpretieren-1",
+    "href": "uebungen/uebung-09.html#aufgabe-9.1-outputs-interpretieren-1",
+    "title": "Übung 9",
+    "section": "",
+    "text": "Welche Analyse wurde hier durchgeführt?\nFalls Voraussetzungen überprüft werden (müssen), sind die Annahmen verletzt?\nWelche Variablen bzw. Faktoren wurden analysiert? Wieviel Faktorstufen gibt es pro Faktor?\nWelche Hypothese(n) kann/können mit dieser Analyse überprüft werden?\nWelche Effekte sind auf dem \\(\\alpha = 0.1\\) Niveau signifikant?\nWie werden die Resultate interpretiert (empirische Prüfgrösse, p-Wert, Testentscheidung)?",
+    "crumbs": [
+      "Übungen",
+      "Übung 9"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-09.html#aufgabe-9.2-outputs-interpretieren-2",
+    "href": "uebungen/uebung-09.html#aufgabe-9.2-outputs-interpretieren-2",
+    "title": "Übung 9",
+    "section": "Aufgabe 9.2: Outputs interpretieren 2",
+    "text": "Aufgabe 9.2: Outputs interpretieren 2\na. Schauen Sie sich die folgenden Datensätze dataset_learn und dataset_learn_new an.\n\nWelches Skalenniveau haben die jeweiligen Variablen?\nWie unterscheiden sich die Datensätze in ihrem Format?\nWelchen der beiden Datensätze können Sie für eine Varianzanalyse mit der Funktion aov_4() verwenden?\nInwiefern ist das Format des Datensatzes wichtig für die Berechnung von Mittelwert und Standardabweichung in R?\n\n\nprint(dataset_learn)\n\n# A tibble: 8 × 5\n  id      t1_beginn t2_threemonths t3_sixmonths t4_ninemonths\n  &lt;fct&gt;       &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;\n1 sub-001        18             15           15            12\n2 sub-002        15             16           14            11\n3 sub-003        17             16           17            10\n4 sub-004        16             14           15            15\n5 sub-005        16             19           17            18\n6 sub-006        19             14           15            10\n7 sub-007        15             12           13            12\n8 sub-008        14             15           13             1\n\nprint(dataset_learn_new)\n\n# A tibble: 32 × 3\n   id      condition      examscore\n   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;\n 1 sub-001 t1_beginn             18\n 2 sub-002 t1_beginn             15\n 3 sub-003 t1_beginn             17\n 4 sub-004 t1_beginn             16\n 5 sub-005 t1_beginn             16\n 6 sub-006 t1_beginn             19\n 7 sub-007 t1_beginn             15\n 8 sub-008 t1_beginn             14\n 9 sub-001 t2_threemonths        15\n10 sub-002 t2_threemonths        16\n# ℹ 22 more rows\n\n\n\nb. Beantworten Sie die Fragen zum folgenden R-Output.\n\nWelche Analyse wurde hier durchgeführt?\nFalls Voraussetzungen überprüft werden (müssen), ist die Annahme verletzt?\nWelche Variablen bzw. Faktoren wurden analysiert? Wieviel Faktorstufen gibt es pro Faktor?\nWelche Hypothese(n) kann/können mit dieser Analyse überprüft werden?\nWelche Effekte sind auf dem \\(\\alpha = 0.05\\) Niveau signifikant?\nWie werden die Resultate interpretiert (empirische Prüfgrösse, p-Wert, Testentscheidung, Interaktion)?\n\n\n\n\nUnivariate Type III Repeated-Measures ANOVA Assuming Sphericity\n\n            Sum Sq num Df Error SS den Df  F value    Pr(&gt;F)    \n(Intercept) 6583.8      1   104.47      7 441.1508 1.395e-07 ***\ncondition    119.1      3   129.66     21   6.4297  0.002926 ** \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\nMauchly Tests for Sphericity\n\n          Test statistic  p-value\ncondition       0.077568 0.013356\n\n\nGreenhouse-Geisser and Huynh-Feldt Corrections\n for Departure from Sphericity\n\n           GG eps Pr(&gt;F[GG])  \ncondition 0.50243    0.01985 *\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n             HF eps Pr(&gt;F[HF])\ncondition 0.6104115 0.01300484",
+    "crumbs": [
+      "Übungen",
+      "Übung 9"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-09.html#aufgabe-9.3-outputs-interpretieren-3",
+    "href": "uebungen/uebung-09.html#aufgabe-9.3-outputs-interpretieren-3",
+    "title": "Übung 9",
+    "section": "Aufgabe 9.3: Outputs interpretieren 3",
+    "text": "Aufgabe 9.3: Outputs interpretieren 3\na. Beantworten Sie die Fragen zum folgenden R-Output.\n\nWelche Analyse wurde hier durchgeführt?\nWelche Variablen bzw. Faktoren wurden analysiert? Wieviel Faktorstufen gibt es pro Faktor?\nWelche Hypothese(n) kann/können mit dieser Analyse überprüft werden?\nWelche Effekte sind auf dem \\(\\alpha = 0.05\\) Niveau signifikant?\nWie werden die Resultate interpretiert (empirische Prüfgrösse, p-Wert, Testentscheidung, Interaktion)?\n\n\n\n# A tibble: 4 × 4\n# Groups:   team [2]\n  team  payment mean_motivation sd_motivation\n  &lt;fct&gt; &lt;fct&gt;             &lt;dbl&gt;         &lt;dbl&gt;\n1 team1 high                 80          10  \n2 team1 low                  40          10  \n3 team2 high                 36          19.7\n4 team2 low                  30          11  \n\n\nAnova Table (Type 3 tests)\n\nResponse: motivation\n             num Df den Df    MSE       F     ges   Pr(&gt;F)   \nteam              1      8 177.25 12.3385 0.60666 0.007931 **\npayment           1      8 177.25  8.9535 0.52812 0.017275 * \nteam:payment      1      8 177.25  4.8914 0.37943 0.057932 . \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nb. Gibt es einen bedingten Haupteffekt für Faktor A (team)? Wie wird er interpretiert?\n\n\npayment = high:\n model term df1 df2 F.ratio p.value\n team         1   8  16.384  0.0037\n\npayment = low:\n model term df1 df2 F.ratio p.value\n team         1   8   0.846  0.3845\n\n\n\nc. Effektgrössen\n\nWie gross ist das \\(\\eta^2_p\\) für den signifikanten Haupteffekte des Faktors team?\n\n\n\n# Effect Size for ANOVA (Type III)\n\nParameter    | Eta2 (partial) |       95% CI\n--------------------------------------------\nteam         |           0.61 | [0.17, 1.00]\npayment      |           0.53 | [0.09, 1.00]\nteam:payment |           0.38 | [0.00, 1.00]\n\n- One-sided CIs: upper bound fixed at [1.00].\n\n\n\nWelche weitere Möglichkeit gibt es, um das Package {effectsize} zu verwenden, ohne es mit der Funktion library() zu laden?",
+    "crumbs": [
+      "Übungen",
+      "Übung 9"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-09.html#aufgabe-9.4-kontraste",
+    "href": "uebungen/uebung-09.html#aufgabe-9.4-kontraste",
+    "title": "Übung 9",
+    "section": "Aufgabe 9.4: Kontraste",
+    "text": "Aufgabe 9.4: Kontraste\na. Für den Datensatz dataset_learn_new wurde eine Kontrastanalyse gerechnet, um zu überprüfen, ob sich der Messzeitpunkt 1 vom Mittel der anderen Messzeitpunkten unterscheidet.\n\nWie lautet die Testentscheidung?\n\n\n\n contrast    estimate   SE df t.ratio p.value\n t1 vs. rest     7.62 2.56  7   2.975  0.0207\n\n\n\nb. Im unteren Beispiel wurde der geplante Kontrast falsch spezifiziert. Wie müsste er korrekt spezifiziert sein?\n\nm_learn_contrast &lt;- list(\"t1 vs. rest\" = c(1, -1, -1, -1)) \ncontrast(object = m_learn_results, method = m_learn_contrast)\n\n contrast    estimate   SE df t.ratio p.value\n t1 vs. rest    -24.9 2.37  7 -10.490  &lt;.0001\n\n\n\nc. Im Datensatz dataset_learn_new wurden Daten von Personen zu vier Messzeitpunkte erhoben. Eine Forscherin interessiert sich jedoch nur für den ersten und zweiten Messzeitpunkt der Studie und analysiert die Unterschiede der beiden Messzeitpunkte mit einem t-Test für abhängige Stichproben. Ein anderer Forscher verwendet die selben Daten und untersucht Messzeitpunkt 1 und 4 - ebenfalls mit einem t-Test für abhängige Stichproben.\n\nWelches Problem entsteht dadurch bzw. weshalb ist dies nicht zulässig?\nWie würden Sie die Hypothese testen, dass sich zwei Messzeitpunkte unterscheiden?\n\n\nd. Nun möchte die Forscherin wissen, ob die Versuchspersonen zum letzten Messzeitpunkt signifikant höhere Testwerte hatten als zum ersten Messzeitpunkt und überprüft die gerichtete Alternativhypothese \\(\\mu_1 &lt; \\mu_4\\) (entspricht auch \\(\\mu_4 - \\mu_1 &gt; 0\\)).\n\nWie lautet die Testentscheidung?\n\n\nd_summary_learn\n\n# A tibble: 4 × 3\n  condition      mean_examscore sd_examscore\n  &lt;fct&gt;                   &lt;dbl&gt;        &lt;dbl&gt;\n1 t1_beginn                16.2         1.67\n2 t2_threemonths           15.1         2.03\n3 t3_sixmonths             14.9         1.55\n4 t4_ninemonths            11.1         4.91\n\nm_learn_contrast &lt;- list(\"t1 &lt; t4\" = c(-1, 0, 0, 1)) \ncontrast(object = m_learn_results, method = m_learn_contrast)\n\n contrast estimate   SE df t.ratio p.value\n t1 &lt; t4     -5.12 1.66  7  -3.082  0.0178",
+    "crumbs": [
+      "Übungen",
+      "Übung 9"
+    ]
+  },
+  {
     "objectID": "appendix/faq.html",
     "href": "appendix/faq.html",
     "title": "FAQ",

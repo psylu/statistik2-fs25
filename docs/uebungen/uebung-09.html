@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Übung 5 – Datenanalyse mit R</title>
+<title>Übung 9 – Datenanalyse mit R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../uebungen/uebung-06.html" rel="next">
-<link href="../uebungen/uebung-04.html" rel="prev">
+<link href="../appendix/faq.html" rel="next">
+<link href="../uebungen/uebung-08.html" rel="prev">
 <link href="../imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -146,7 +146,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-05.html">Übung 5</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-09.html">Übung 9</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -327,7 +327,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../uebungen/uebung-05.html" class="sidebar-item-text sidebar-link active">
+  <a href="../uebungen/uebung-05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Übung 5</span></a>
   </div>
 </li>
@@ -351,7 +351,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../uebungen/uebung-09.html" class="sidebar-item-text sidebar-link">
+  <a href="../uebungen/uebung-09.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Übung 9</span></a>
   </div>
 </li>
@@ -402,19 +402,19 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#aufgabe-5.0-projektumgebung-erstellen" id="toc-aufgabe-5.0-projektumgebung-erstellen" class="nav-link active" data-scroll-target="#aufgabe-5.0-projektumgebung-erstellen">Aufgabe 5.0: Projektumgebung erstellen</a></li>
-  <li><a href="#aufgabe-5.1-einstieg" id="toc-aufgabe-5.1-einstieg" class="nav-link" data-scroll-target="#aufgabe-5.1-einstieg">Aufgabe 5.1: Einstieg</a></li>
-  <li><a href="#aufgabe-5.2-einfaktorielle-varianzanalyse-ohne-messwiederholung" id="toc-aufgabe-5.2-einfaktorielle-varianzanalyse-ohne-messwiederholung" class="nav-link" data-scroll-target="#aufgabe-5.2-einfaktorielle-varianzanalyse-ohne-messwiederholung">Aufgabe 5.2: Einfaktorielle Varianzanalyse ohne Messwiederholung</a></li>
-  <li><a href="#aufgabe-5.3-zusatzaufgabe" id="toc-aufgabe-5.3-zusatzaufgabe" class="nav-link" data-scroll-target="#aufgabe-5.3-zusatzaufgabe">Aufgabe 5.3: Zusatzaufgabe</a></li>
+  <li><a href="#aufgabe-9.1-outputs-interpretieren-1" id="toc-aufgabe-9.1-outputs-interpretieren-1" class="nav-link active" data-scroll-target="#aufgabe-9.1-outputs-interpretieren-1">Aufgabe 9.1: Outputs interpretieren 1</a></li>
+  <li><a href="#aufgabe-9.2-outputs-interpretieren-2" id="toc-aufgabe-9.2-outputs-interpretieren-2" class="nav-link" data-scroll-target="#aufgabe-9.2-outputs-interpretieren-2">Aufgabe 9.2: Outputs interpretieren 2</a></li>
+  <li><a href="#aufgabe-9.3-outputs-interpretieren-3" id="toc-aufgabe-9.3-outputs-interpretieren-3" class="nav-link" data-scroll-target="#aufgabe-9.3-outputs-interpretieren-3">Aufgabe 9.3: Outputs interpretieren 3</a></li>
+  <li><a href="#aufgabe-9.4-kontraste" id="toc-aufgabe-9.4-kontraste" class="nav-link" data-scroll-target="#aufgabe-9.4-kontraste">Aufgabe 9.4: Kontraste</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
 <main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-05.html">Übung 5</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-09.html">Übung 9</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-uebung-05" class="quarto-section-identifier">Übung 5</span></h1>
+<h1 class="title"><span id="sec-uebung-09" class="quarto-section-identifier">Übung 9</span></h1>
 </div>
 
 
@@ -443,14 +443,9 @@ Lernziele dieser Übung
 <div class="callout-body-container callout-body">
 <p>Nach der heutigen Übung können Sie:</p>
 <ul>
-<li><p><em>R</em> und <em>RStudio</em> zur Analyse von Daten verwenden</p></li>
-<li><p>einfaktorielle Varianzanalysen ohne Messwiederholung in <em>R</em> durchführen</p>
-<ul>
-<li>Hypothesen zum Vergleich von mehr als zwei Stichprobenmittelwerten von unabhängigen Gruppen durchführen</li>
-<li>Voraussetzungen überprüfen</li>
-<li>Test berechnen</li>
+<li><em>R</em> und <em>RStudio</em> zur Analyse von Daten verwenden</li>
+<li>Verschiedene Varianzanalysen in <em>R</em> durchführen</li>
 <li>Resultate interpretieren</li>
-</ul></li>
 </ul>
 </div>
 </div>
@@ -464,166 +459,267 @@ Voraussetzungen
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<ol type="1">
-<li><p>Packages {tidyverse}, {afex}, {emmeans}, {beeswarm}, {effectsize} sind installiert.</p></li>
-<li><p><a href="../data/anova.zip">Hier</a> kann der Projektordner mit den Daten heruntergeladen werden. Vor dem ersten Verwenden muss der Ordner <strong>entzippt</strong> werden, dann kann das <em>RProject</em> namens <code>anova.Rproj</code> geöffnet werden. Der Ordner enthält:</p></li>
-</ol>
-<ul>
-<li><em>RProject</em> namens <code>anova.Rproj</code></li>
-<li>Datensätze für die Vorlesung und die Übung 5 im <code>data</code>-Ordner des <em>RProjects</em> <code>anova</code>:
-<ul>
-<li><a href="../data/anova_music.csv"><code>anova_music.csv</code></a></li>
-</ul></li>
-<li>(die weiteren Dateien und <em>RNotebooks</em> werden in der Vorlesung verwendet)</li>
-</ul>
+<p>Die bisherigen Übungen wurden absolviert.</p>
 </div>
 </div>
-<p><br></p>
-<section id="aufgabe-5.0-projektumgebung-erstellen" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-5.0-projektumgebung-erstellen">Aufgabe 5.0: Projektumgebung erstellen</h2>
-<p><em>Falls obige Anforderungen noch nicht erfüllt:</em></p>
-<ul>
-<li><p>Laden Sie den Projektordner herunter und <strong>entzippen</strong> Sie den Ordner.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
-</li>
-<li><p>Installieren Sie die benötigten Packages (falls noch nicht geschehen) unter <code>Tools</code> &gt; <code>Install Packages...</code> oder in der Konsole mit</p>
-<p><code>install.packages("afex")</code></p>
-<p><code>install.packages("emmeans")</code></p>
-<p><code>install.packages("beeswarm")</code></p>
-<p><code>install.packages("effectsize")</code></p></li>
-</ul>
-<p><strong>a.</strong> Öffnen Sie das <em>RProjekt</em> <code>anova</code>.</p>
-<p><strong>b.</strong> Erstellen Sie ein <em>RNotebook</em> namens <code>uebung-05</code>.</p>
-<p><br></p>
-</section>
-<section id="aufgabe-5.1-einstieg" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-5.1-einstieg">Aufgabe 5.1: Einstieg</h2>
-<ul>
-<li><p>Welche <span class="math inline">\(H_0\)</span> wird mit einer einfaktoriellen Varianzanalyse mit <strong>vier</strong> Bedingungen überprüft? Wie lautet die entsprechende <span class="math inline">\(H_1\)</span> dazu?</p></li>
-<li><p>Formulieren Sie zwei Forschungsfragen, die mit einer einfaktoriellen Varianzanalyse ohne Messwiederholung untersucht werden können.</p></li>
-</ul>
-</section>
-<section id="aufgabe-5.2-einfaktorielle-varianzanalyse-ohne-messwiederholung" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-5.2-einfaktorielle-varianzanalyse-ohne-messwiederholung">Aufgabe 5.2: Einfaktorielle Varianzanalyse ohne Messwiederholung</h2>
-<p><strong>Beschreibung der Studie</strong></p>
-<p>In diesem Musik-Experiment<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> wurde die Hypothese untersucht, dass die Konzentrationsleistung von Personen unter dem Einfluss klassischer Instrumentalmusik (Bedingung 1) höher ist als unter dem Einfluss von Rockmusik (Bedingung 2), von Opernmusik (Bedingung 3) oder von Schlagermusik (Bedingung 4). Die Versuchspersonen wurden randomisiert einer der vier experimentellen Bedingungen zugeteilt und sollten sich entsprechende Musikstücke für ca. 15 Minuten anhören. Gleichzeitig sollten sie einen Konzentrationstest bearbeiten. Das Alphaniveau wurde auf <span class="math inline">\(5 \%\)</span> festgelegt.</p>
-<p><strong>Forschungsfrage</strong>: Besteht ein Unterschied in der Konzentrationsleistung zwischen mindestens zwei Gruppen?</p>
-<p><strong>Unabhängige Variable</strong>: Art der Musik in vier Bedingungen (<code>condition</code>: Instrumental, Rock, Oper, Schlager)</p>
-<p><strong>Abhängige Variable</strong>: Erreichte Punktzahl in einem Konzentrationstest (<code>testscore</code>) als Indikator für Konzentrationsleistung auf einer Skala von 0 - 35 möglichen Punkten.</p>
-<p><br></p>
-<p><strong>Bearbeiten Sie nun Schritt für Schritt folgenden Aufgaben:</strong></p>
-<p><strong>a.</strong> Wird eine gerichtete oder eine ungerichtete Hypothese überprüft? Wie lautet die <span class="math inline">\(H_0\)</span> und die <span class="math inline">\(H_1\)</span>?</p>
-<p><strong>b.</strong> Welches Signifikanzniveau wurde festgelegt? Was bedeutet das?</p>
-<p><strong>c.</strong> Laden Sie das {tidyverse}. Lesen Sie den Datensatz <code>anova_music.csv</code> aus dem Ordner <code>data</code> ein und speichern Sie ihn in die Variable <code>d_music</code>. Konvertieren Sie die Variablen <code>id</code> und <code>condition</code> zu einem Faktor.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tidyverse laden</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">___</span>(___)</span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz einlesen</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>___ <span class="ot">&lt;-</span> <span class="fu">___</span>(<span class="st">"___/___.csv"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Faktoren konvertieren</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>d_music <span class="ot">&lt;-</span> ___ <span class="sc">|&gt;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">___</span>(<span class="at">id =</span> <span class="fu">___</span>(___)) <span class="sc">|&gt;</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">___</span>(<span class="at">condition =</span> <span class="fu">___</span>(___))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>d.</strong> Schauen Sie sich den Datensatz genauer an, z.B. mit <code>glimpse()</code> und <code>Hmisc::describe()</code>.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Daten anschauen mit glimpse()</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">___</span>(___)</span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Daten anschauen mit describe() aus Hmisc</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>___<span class="sc">::</span><span class="fu">___</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li><p>Wie heissen die vier Bedingungen im Datensatz?</p></li>
-<li><p>Wie viele Personen sind in welcher Bedingung?</p></li>
-<li><p>Gibt es fehlende Werte (missings)?</p></li>
-<li><p>Wie lauten die Mittelwerte und Standardabweichungen der Testscores in den vier Bedingungen? Fassen Sie hierzu die Daten mit <code>group_by()</code> und <code>summarise()</code> zusammen (eine Anleitung dazu finden Sie <a href="../datenverarbeitung/transform.html#daten-gruppieren-und-zusammenfassen-group_by-und-summarise">hier</a>).</p></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gruppieren und zusammenfassen</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>d_summary <span class="ot">&lt;-</span> ___ <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">___</span>(___) <span class="sc">|&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">___</span>(<span class="at">mean_testscore =</span> <span class="fu">___</span>(___),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">sd_testscore =</span> <span class="fu">___</span>(___))</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>d_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<ul>
-<li>Was wissen Sie nun bereits über die Daten?</li>
-</ul>
-<p><strong>e.</strong> Welchen statistischen Test führen Sie durch und weshalb?</p>
-<p><strong>f.</strong> Überprüfen Sie, ob die Voraussetzungen für die Anwendung eines <em>F</em>-Tests erfüllt sind.</p>
-<p>Die Varianzhomogenität wird mit dem Levene-Test überprüft. Dafür kann die Funktion <code>leveneTest()</code> aus dem Package {car} verwendet werden. Wir wählen das Signifikanzniveau von 5%. Wie fällt das Ergebnis des Levene-Tests aus?</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Levene Test</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>___<span class="sc">::</span><span class="fu">___</span>(___ <span class="sc">~</span> ___, <span class="co"># av ~ uv</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> ___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>g.</strong> Führen Sie nun eine einfaktorielle Varianzanalyse mit der Funktion <code>aov_4()</code> durch. Sie benötigen dazu das Package {afex}.</p>
-<ul>
-<li><p>Berechnen Sie eine einfaktorielle Varianzanalyse und speichern Sie das Modell als Objekt namens <code>m_anova1</code>.</p></li>
-<li><p>Lassen Sie sich eine <code>summary()</code> und eine vollständige Anova-Tabelle mit <code>___$Anova</code> ausgeben.</p></li>
-<li><p>Welche Werte in der Tabelle sind relevant? Suchen Sie die wichtigen Kennwerte heraus.</p></li>
-<li><p>Wie lautet Ihre Testentscheidung?</p></li>
-</ul>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># afex laden</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(afex)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfaktorielle Anova </span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>m_anova1 <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(___ <span class="sc">~</span> ___ <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> ___), <span class="co"># av ~ uv + (1 | Identifikationsvariable)</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> ___) <span class="co"># dataset</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultate ausgeben</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(___) </span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>___<span class="sc">$</span>Anova</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>h.</strong> Visualisierung</p>
-<p>Verwendet Sie den folgenden Code, um die Mittelwerte und Standardfehler zu plotten. Stellen Sie Vermutungen an, welche Gruppen sich signifikant unterscheiden und welche nicht.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plot_anova <span class="ot">&lt;-</span> <span class="fu">afex_plot</span>(<span class="at">object =</span> ___, <span class="co"># Objekt mit Anovamodell</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"___"</span>,  <span class="co"># uv (Faktor)</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">error_ci =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="co"># Anzeigen von Standardfehler der Mittelwerte</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plot_anova</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><strong>i.</strong> Effektstärke berechnen</p>
-<p>Die Effektgrösse <span class="math inline">\(\eta^2\)</span> lässt sich anhand des Quotienten aus der Zwischen-Quadratsumme und der Gesamtquadratsumme berechnen. In R kann dieses Mass direkt mit der Funktion <code>eta_squared()</code> aus dem Package {effectsize} ausgegeben werden. Als Argument für die Funktion muss das Anova-Modell (Objekt), also hier <code>m_anova1</code>, eingegeben werden.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>___<span class="sc">::</span><span class="fu">___</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
-<p><br></p>
-</section>
-<section id="aufgabe-5.3-zusatzaufgabe" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-5.3-zusatzaufgabe">Aufgabe 5.3: Zusatzaufgabe</h2>
-<div class="callout callout-style-default callout-tip callout-titled" title="Zusatzaufgaben">
+<div class="callout callout-style-default callout-note callout-titled" title="Hinweise">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Zusatzaufgaben
+Hinweise
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Zusatzaufgaben müssen nicht gelöst werden.</strong></p>
+<p>Für diese Übung wird kein Datensatz benötigt.</p>
+<p>Falls nicht anders erwähnt, wird davon ausgegangen, dass die Voraussetzungen für die entsprechenden Analysen erfüllt sind.</p>
+</div>
+</div>
+<section id="aufgabe-9.1-outputs-interpretieren-1" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-9.1-outputs-interpretieren-1">Aufgabe 9.1: Outputs interpretieren 1</h2>
+<p><strong>Beantworten Sie die Fragen zum folgenden <em>R</em>-Output.</strong></p>
+<ul>
+<li><p>Welche Analyse wurde hier durchgeführt?</p></li>
+<li><p>Falls Voraussetzungen überprüft werden (müssen), sind die Annahmen verletzt?</p></li>
+<li><p>Welche Variablen bzw. Faktoren wurden analysiert? Wieviel Faktorstufen gibt es pro Faktor?</p></li>
+<li><p>Welche Hypothese(n) kann/können mit dieser Analyse überprüft werden?</p></li>
+<li><p>Welche Effekte sind auf dem <span class="math inline">\(\alpha = 0.1\)</span> Niveau signifikant?</p></li>
+<li><p>Wie werden die Resultate interpretiert (empirische Prüfgrösse, <em>p</em>-Wert, Testentscheidung)?</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">leveneTest</span>(speed <span class="sc">~</span> condition, </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> dataset_speed)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Levene's Test for Homogeneity of Variance (center = median)
+      Df F value  Pr(&gt;F)  
+group  2  6.4558 0.01249 *
+      12                  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>m_anova_speed <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(speed <span class="sc">~</span> condition <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id), </span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> dataset_speed) </span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m_anova_speed) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Anova Table (Type 3 tests)
+
+Response: speed
+          num Df den Df    MSE      F      ges Pr(&gt;F)
+condition      2     12 7.5673 0.1798 0.029096 0.8376</code></pre>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="aufgabe-9.2-outputs-interpretieren-2" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-9.2-outputs-interpretieren-2">Aufgabe 9.2: Outputs interpretieren 2</h2>
+<p><strong>a.</strong> Schauen Sie sich die folgenden Datensätze <code>dataset_learn</code> und <code>dataset_learn_new</code> an.</p>
+<ul>
+<li><p>Welches Skalenniveau haben die jeweiligen Variablen?</p></li>
+<li><p>Wie unterscheiden sich die Datensätze in ihrem Format?</p></li>
+<li><p>Welchen der beiden Datensätze können Sie für eine Varianzanalyse mit der Funktion <code>aov_4()</code> verwenden?</p></li>
+<li><p>Inwiefern ist das Format des Datensatzes wichtig für die Berechnung von Mittelwert und Standardabweichung in R?</p></li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(dataset_learn)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 8 × 5
+  id      t1_beginn t2_threemonths t3_sixmonths t4_ninemonths
+  &lt;fct&gt;       &lt;dbl&gt;          &lt;dbl&gt;        &lt;dbl&gt;         &lt;dbl&gt;
+1 sub-001        18             15           15            12
+2 sub-002        15             16           14            11
+3 sub-003        17             16           17            10
+4 sub-004        16             14           15            15
+5 sub-005        16             19           17            18
+6 sub-006        19             14           15            10
+7 sub-007        15             12           13            12
+8 sub-008        14             15           13             1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(dataset_learn_new)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 32 × 3
+   id      condition      examscore
+   &lt;fct&gt;   &lt;fct&gt;              &lt;dbl&gt;
+ 1 sub-001 t1_beginn             18
+ 2 sub-002 t1_beginn             15
+ 3 sub-003 t1_beginn             17
+ 4 sub-004 t1_beginn             16
+ 5 sub-005 t1_beginn             16
+ 6 sub-006 t1_beginn             19
+ 7 sub-007 t1_beginn             15
+ 8 sub-008 t1_beginn             14
+ 9 sub-001 t2_threemonths        15
+10 sub-002 t2_threemonths        16
+# ℹ 22 more rows</code></pre>
+</div>
+</div>
+<p><br></p>
+<p><strong>b.</strong> Beantworten Sie die Fragen zum folgenden <em>R</em>-Output.</p>
+<ul>
+<li><p>Welche Analyse wurde hier durchgeführt?</p></li>
+<li><p>Falls Voraussetzungen überprüft werden (müssen), ist die Annahme verletzt?</p></li>
+<li><p>Welche Variablen bzw. Faktoren wurden analysiert? Wieviel Faktorstufen gibt es pro Faktor?</p></li>
+<li><p>Welche Hypothese(n) kann/können mit dieser Analyse überprüft werden?</p></li>
+<li><p>Welche Effekte sind auf dem <span class="math inline">\(\alpha = 0.05\)</span> Niveau signifikant?</p></li>
+<li><p>Wie werden die Resultate interpretiert (empirische Prüfgrösse, <em>p</em>-Wert, Testentscheidung, Interaktion)?</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Univariate Type III Repeated-Measures ANOVA Assuming Sphericity
+
+            Sum Sq num Df Error SS den Df  F value    Pr(&gt;F)    
+(Intercept) 6583.8      1   104.47      7 441.1508 1.395e-07 ***
+condition    119.1      3   129.66     21   6.4297  0.002926 ** 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+
+Mauchly Tests for Sphericity
+
+          Test statistic  p-value
+condition       0.077568 0.013356
+
+
+Greenhouse-Geisser and Huynh-Feldt Corrections
+ for Departure from Sphericity
+
+           GG eps Pr(&gt;F[GG])  
+condition 0.50243    0.01985 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+             HF eps Pr(&gt;F[HF])
+condition 0.6104115 0.01300484</code></pre>
+</div>
+</div>
+<p><br></p>
+</section>
+<section id="aufgabe-9.3-outputs-interpretieren-3" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-9.3-outputs-interpretieren-3">Aufgabe 9.3: Outputs interpretieren 3</h2>
+<p><strong>a.</strong> Beantworten Sie die Fragen zum folgenden <em>R</em>-Output.</p>
+<ul>
+<li><p>Welche Analyse wurde hier durchgeführt?</p></li>
+<li><p>Welche Variablen bzw. Faktoren wurden analysiert? Wieviel Faktorstufen gibt es pro Faktor?</p></li>
+<li><p>Welche Hypothese(n) kann/können mit dieser Analyse überprüft werden?</p></li>
+<li><p>Welche Effekte sind auf dem <span class="math inline">\(\alpha = 0.05\)</span> Niveau signifikant?</p></li>
+<li><p>Wie werden die Resultate interpretiert (empirische Prüfgrösse, <em>p</em>-Wert, Testentscheidung, Interaktion)?</p></li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 4
+# Groups:   team [2]
+  team  payment mean_motivation sd_motivation
+  &lt;fct&gt; &lt;fct&gt;             &lt;dbl&gt;         &lt;dbl&gt;
+1 team1 high                 80          10  
+2 team1 low                  40          10  
+3 team2 high                 36          19.7
+4 team2 low                  30          11  </code></pre>
+</div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Anova Table (Type 3 tests)
+
+Response: motivation
+             num Df den Df    MSE       F     ges   Pr(&gt;F)   
+team              1      8 177.25 12.3385 0.60666 0.007931 **
+payment           1      8 177.25  8.9535 0.52812 0.017275 * 
+team:payment      1      8 177.25  4.8914 0.37943 0.057932 . 
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<p><br></p>
+<p><strong>b.</strong> Gibt es einen bedingten Haupteffekt für Faktor A (<code>team</code>)? Wie wird er interpretiert?</p>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code>payment = high:
+ model term df1 df2 F.ratio p.value
+ team         1   8  16.384  0.0037
+
+payment = low:
+ model term df1 df2 F.ratio p.value
+ team         1   8   0.846  0.3845</code></pre>
+</div>
+</div>
+<p><br></p>
+<p><strong>c.</strong> Effektgrössen</p>
+<ul>
+<li>Wie gross ist das <span class="math inline">\(\eta^2_p\)</span> für den signifikanten Haupteffekte des Faktors <code>team</code>?</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code># Effect Size for ANOVA (Type III)
+
+Parameter    | Eta2 (partial) |       95% CI
+--------------------------------------------
+team         |           0.61 | [0.17, 1.00]
+payment      |           0.53 | [0.09, 1.00]
+team:payment |           0.38 | [0.00, 1.00]
+
+- One-sided CIs: upper bound fixed at [1.00].</code></pre>
 </div>
 </div>
 <ul>
-<li><p>Berechnen Sie den <em>F</em>-Wert und den <span class="math inline">\(\eta^2\)</span>-Wert mithilfe der Quadratsummen aus dem Output selbst.</p></li>
-<li><p>Erstellen Sie mit <code>esquisse::esquisser()</code> eine andere Grafik (z.B. Boxplot), welche die Testscores der vier Bedingungen in einer Grafik abbildet.</p></li>
+<li>Welche weitere Möglichkeit gibt es, um das Package {effectsize} zu verwenden, ohne es mit der Funktion <code>library()</code> zu laden?</li>
 </ul>
-
-
+<p><br></p>
 </section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>Für das Entzippen mit <em>Windows</em> machen Sie einen Rechtsklick auf den Ordner mit dem Reissverschluss und wählen Sie <code>Entpacken nach</code> und geben Sie den Ordner an, in dem Sie alle Ihre <em>RProject-Ordner</em> speichern. Für das Entzippen mit <em>Mac</em> speichern Sie den heruntergeladenen Ordner in den Ordner, in dem Sie alle Ihre <em>RProject-Ordner</em> speichern und Doppelklicken Sie danach auf den Ordner. Nur entzippte Ordner können einwandfrei verwendet werden.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Eid, M., Gollwitzer, M., &amp; Schmitt, M. (2017). Statistik und Forschungsmethoden: Mit Online-Materialien (5., korrigierte Auflage). Beltz. S. 459<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
+<section id="aufgabe-9.4-kontraste" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-9.4-kontraste">Aufgabe 9.4: Kontraste</h2>
+<p><strong>a.</strong> Für den Datensatz <code>dataset_learn_new</code> wurde eine Kontrastanalyse gerechnet, um zu überprüfen, ob sich der Messzeitpunkt 1 vom Mittel der anderen Messzeitpunkten unterscheidet.</p>
+<ul>
+<li>Wie lautet die Testentscheidung?</li>
+</ul>
+<div class="cell">
+<div class="cell-output cell-output-stdout">
+<pre><code> contrast    estimate   SE df t.ratio p.value
+ t1 vs. rest     7.62 2.56  7   2.975  0.0207</code></pre>
+</div>
+</div>
+<p><br></p>
+<p><strong>b.</strong> Im unteren Beispiel wurde der geplante Kontrast falsch spezifiziert. Wie müsste er korrekt spezifiziert sein?</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a>m_learn_contrast <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"t1 vs. rest"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>)) </span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contrast</span>(<span class="at">object =</span> m_learn_results, <span class="at">method =</span> m_learn_contrast)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> contrast    estimate   SE df t.ratio p.value
+ t1 vs. rest    -24.9 2.37  7 -10.490  &lt;.0001</code></pre>
+</div>
+</div>
+<p><br></p>
+<p><strong>c.</strong> Im Datensatz <code>dataset_learn_new</code> wurden Daten von Personen zu vier Messzeitpunkte erhoben. Eine Forscherin interessiert sich jedoch nur für den ersten und zweiten Messzeitpunkt der Studie und analysiert die Unterschiede der beiden Messzeitpunkte mit einem <em>t</em>-Test für abhängige Stichproben. Ein anderer Forscher verwendet die selben Daten und untersucht Messzeitpunkt 1 und 4 - ebenfalls mit einem <em>t</em>-Test für abhängige Stichproben.</p>
+<ul>
+<li><p>Welches Problem entsteht dadurch bzw. weshalb ist dies nicht zulässig?</p></li>
+<li><p>Wie würden Sie die Hypothese testen, dass sich zwei Messzeitpunkte unterscheiden?</p></li>
+</ul>
+<p><br></p>
+<p><strong>d.</strong> Nun möchte die Forscherin wissen, ob die Versuchspersonen zum letzten Messzeitpunkt signifikant <strong>höhere</strong> Testwerte hatten als zum ersten Messzeitpunkt und überprüft die gerichtete Alternativhypothese <span class="math inline">\(\mu_1 &lt; \mu_4\)</span> (entspricht auch <span class="math inline">\(\mu_4 - \mu_1 &gt; 0\)</span>).</p>
+<ul>
+<li>Wie lautet die Testentscheidung?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>d_summary_learn</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 3
+  condition      mean_examscore sd_examscore
+  &lt;fct&gt;                   &lt;dbl&gt;        &lt;dbl&gt;
+1 t1_beginn                16.2         1.67
+2 t2_threemonths           15.1         2.03
+3 t3_sixmonths             14.9         1.55
+4 t4_ninemonths            11.1         4.91</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>m_learn_contrast <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"t1 &lt; t4"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">0</span>, <span class="dv">1</span>)) </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="fu">contrast</span>(<span class="at">object =</span> m_learn_results, <span class="at">method =</span> m_learn_contrast)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> contrast estimate   SE df t.ratio p.value
+ t1 &lt; t4     -5.12 1.66  7  -3.082  0.0178</code></pre>
+</div>
+</div>
+
+
 </section>
 
 </main> <!-- /main -->
@@ -1466,13 +1562,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../uebungen/uebung-04.html" class="pagination-link" aria-label="Übung 4">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Übung 4</span>
+      <a href="../uebungen/uebung-08.html" class="pagination-link" aria-label="Übung 8">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Übung 8</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../uebungen/uebung-06.html" class="pagination-link" aria-label="Übung 6">
-        <span class="nav-page-text">Übung 6</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../appendix/faq.html" class="pagination-link" aria-label="FAQ">
+        <span class="nav-page-text">FAQ</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
