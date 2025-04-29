@@ -1146,7 +1146,7 @@
     "href": "uebungen/uebung-05.html#aufgabe-5.0-projektumgebung-erstellen",
     "title": "Übung 5",
     "section": "",
-    "text": "Laden Sie den Projektordner herunter und entzippen Sie den Ordner.1\n\nInstallieren Sie die benötigten Packages (falls noch nicht geschehen) unter Tools &gt; Install Packages... oder in der Konsole mit\ninstall.packages(\"afex\")\ninstall.packages(\"emmeans\")\ninstall.packages(\"beeswarm\")\ninstall.packages(\"effectsize\")",
+    "text": "Laden Sie den Projektordner herunter und entzippen Sie den Ordner.1\nInstallieren Sie die benötigten Packages (falls noch nicht geschehen) unter Tools &gt; Install Packages... oder in der Konsole mit\ninstall.packages(\"afex\")\ninstall.packages(\"emmeans\")\ninstall.packages(\"beeswarm\")\ninstall.packages(\"effectsize\")",
     "crumbs": [
       "Übungen",
       "Übung 5"
@@ -1212,7 +1212,7 @@
     "href": "uebungen/uebung-06.html#aufgabe-6.0-projektumgebung-erstellen",
     "title": "Übung 6",
     "section": "",
-    "text": "Laden Sie den Projektordner herunter und entzippen Sie den Ordner.1\n\nInstallieren Sie die benötigten Packages (falls noch nicht geschehen) unter Tools &gt; Install Packages... oder in der Konsole mit\ninstall.packages(\"afex\")\ninstall.packages(\"emmeans\")\ninstall.packages(\"beeswarm\")\ninstall.packages(\"effectsize\")",
+    "text": "Laden Sie den Projektordner herunter und entzippen Sie den Ordner.1\nInstallieren Sie die benötigten Packages (falls noch nicht geschehen) unter Tools &gt; Install Packages... oder in der Konsole mit\ninstall.packages(\"afex\")\ninstall.packages(\"emmeans\")\ninstall.packages(\"beeswarm\")\ninstall.packages(\"effectsize\")",
     "crumbs": [
       "Übungen",
       "Übung 6"
@@ -1458,6 +1458,94 @@
     "crumbs": [
       "Übungen",
       "Übung 9"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-10.html",
+    "href": "uebungen/uebung-10.html",
+    "title": "Übung 10",
+    "section": "",
+    "text": "Aufgabe 10.1: Voraussetzungen und deren Überprüfung\na. Welche Voraussetzungen müssen für die einfache lineare Regression gegeben sein?\nb. Schauen Sie sich untenstehende Punktdiagramme (scatterplots) an. Bei welchen Daten würden Sie eine lineare Regression berechnen, bei welchen eher nicht? (Hinweis: Nicht alle Beispiele sind eindeutig.)",
+    "crumbs": [
+      "Übungen",
+      "Übung 10"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-10.html#aufgabe-10.1-voraussetzungen-und-deren-überprüfung",
+    "href": "uebungen/uebung-10.html#aufgabe-10.1-voraussetzungen-und-deren-überprüfung",
+    "title": "Übung 10",
+    "section": "",
+    "text": "Scatterplots verschiedener Datensets",
+    "crumbs": [
+      "Übungen",
+      "Übung 10"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-10.html#aufgabe-10.2-komponenten-der-regressionsgleichung",
+    "href": "uebungen/uebung-10.html#aufgabe-10.2-komponenten-der-regressionsgleichung",
+    "title": "Übung 10",
+    "section": "Aufgabe 10.2: Komponenten der Regressionsgleichung",
+    "text": "Aufgabe 10.2: Komponenten der Regressionsgleichung\na. Wie lautet die Bestimmungsgleichung der Regressionsgeraden in der einfachen linearen Regressionsanalyse? Schreiben Sie die Gleichung auf und ordnen Sie die untenstehenden Begriffe den Termen in der Gleichung zu:\n\nAchsenabschnitt (intercept)\nRegressionsgewicht bzw. die Steigung (slope) der Regressionsgeraden\nVorhersagefehler\nAV\n\nb. Wie lautet die Bestimmungsgleichung für \\(b_0\\) für unstandardisierte Variablen?\nc. Wie lautet die Bestimmungsgleichung für \\(b_1\\) für unstandardisierte Variablen?\nd. Welchen konstanten Wert hat \\(b_0\\) bei standardisierten Variablen?\ne. Welchem Wert entspricht \\(b_1\\) bei standardisierten Variablen?\nf. In welcher Einheit wird das unstandardisierte Regressionsgewicht angegeben?",
+    "crumbs": [
+      "Übungen",
+      "Übung 10"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-10.html#aufgabe-10.3-anwendungsbereich",
+    "href": "uebungen/uebung-10.html#aufgabe-10.3-anwendungsbereich",
+    "title": "Übung 10",
+    "section": "Aufgabe 10.3: Anwendungsbereich",
+    "text": "Aufgabe 10.3: Anwendungsbereich\nEigene Fragestellung bearbeiten.\na. Nehmen Sie an, Sie könnten sich einen Datensatz wünschen. Welche für Sie spannende Forschungsfrage könnte mit einer einfachen linearen Regression analysiert werden?\nb. Zeichnen Sie die Daten für Ihre Forschungsfrage auf.\n\nWas ist die AV und was die UV?\nZeichnen Sie die Achsen inkl. Achsenbeschriftungen (möglicher Wertebereich) auf. Wählen Sie wenn möglich Messungen/Achsen mit positiven, ganzzahligen Werten (integers). Wählen Sie für \\(x\\) (UV) eine Achse die \\(0\\) enthält.\nWelche Daten würden Sie erwarten? Zeichnen Sie ein Punktdiagramm (Scatterplot) mit 10-20 Datenpunkten zu Ihrer Forschungsfrage.\n\nc. Welcher Zusammenhang besteht zwischen den beiden Variablen?\n\nLegen Sie eine möglichst passende (lineare) Regressionsgerade durch die Punktewolke.\nMarkieren Sie den ungefähren Achsenabschnitt (intercept) \\(b_0\\). Welcher Wert hat \\(b_0\\)?\nZeichnen Sie den ungefähren Vorhersagefehler \\(e\\) für jeden Datenpunkt ein.\nWelche Steigung (slope) \\(b_1\\) hat die Gerade ungefähr? (Tipp: Zeichnen Sie auf der Gerade 2 Punkte ein und berechnen Sie die Differenz der \\(x\\) und \\(y\\)-Werten dieser zwei Punkte. Teilen Sie dann \\(dy/dx\\).)\n\nd. Nutzen Sie Ihre Analyse zur Prädiktion.\n\nWählen Sie einen neuen \\(x\\)-Wert.\nBerechnen Sie den neuen \\(y\\)-Wert mit der Regressionsgleichung (siehe Aufgabe 10.2a). Lassen Sie den Fehlerterm weg.\nZeichnen Sie den neuen Datenpunkt ein. Was stellen Sie fest?\n\ne. Welche Schlussfolgerungen würden Sie aus der Analyse ziehen? Welche Aussagen können Sie mit den berechneten Werten machen?\n\ne. Welche Schlussfolgerungen würden Sie aus der Analyse ziehen? Welche Aussagen können Sie mit den berechneten Werten machen?\nGemeinsam eine Fragestellung bearbeiten\nTauschen Sie in Kleingruppen/im Plenum die Forschungsfragen aus und wählen Sie als Gruppe eine davon aus. Sammeln Sie dieses Mal gemeinsam Daten: Jede Person zeichnet mind. einen (fiktiven) Datenpunkt ein. Gehen Sie danach obige Schritte anhand diesen Beispiels durch.\n\nWelche Schlussfolgerungen würden Sie aus der Analyse ziehen? Welche Aussagen können Sie mit den berechneten Werten machen?\n\nDiskutieren Sie zusätzlich:\n\nWelche weiteren Datenpunkte würden für sehr hohe/tiefe Werte der UV vorhergesagt werden?\nWas könnte zu Fehlschätzungen führen?\nWas würde passieren, wenn Sie die Achsen umdrehen? Bleiben die Werte für \\(b_0\\) und \\(b_1\\) gleich oder verändern diese sich?",
+    "crumbs": [
+      "Übungen",
+      "Übung 10"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-10.html#aufgabe-10.4-kleinste-quadrate-kriterium",
+    "href": "uebungen/uebung-10.html#aufgabe-10.4-kleinste-quadrate-kriterium",
+    "title": "Übung 10",
+    "section": "Aufgabe 10.4: Kleinste Quadrate-Kriterium",
+    "text": "Aufgabe 10.4: Kleinste Quadrate-Kriterium\na. Ergänzen Sie den folgenden Text zum Grundgedanken des Kleinste-Quadrate Kriteriums:\n\n“Optimale Reduktion des KriteriumsVorhersageBestimmung der Regressionsgeraden ist gegeben, wenn die Varianzdas Minimumdie Summe der quadrierten Differenzen zwischen den aus der unabhängigen Variablen beobachtetenvorhergesagten Werten der abhängigen Variablen und den beobachtetenvorhergesagten Werten der abhängigen Variablen maximalminimal ist.” (Eid et al. 2017)\n\nb. Diskutieren Sie diesen Gedanken kurz: Gibt es Unklarheiten? Fassen Sie den obigen Satz für Laienpersonen verständlich in 1-2 Sätzen zusammen.",
+    "crumbs": [
+      "Übungen",
+      "Übung 10"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-10.html#aufgabe-10.5-berechnen-der-regressionsgeraden",
+    "href": "uebungen/uebung-10.html#aufgabe-10.5-berechnen-der-regressionsgeraden",
+    "title": "Übung 10",
+    "section": "Aufgabe 10.5: Berechnen der Regressionsgeraden",
+    "text": "Aufgabe 10.5: Berechnen der Regressionsgeraden\n\n\n\n\n\n\nSchlafstudie\n\n\n\n\n\nBeschreibung der Studie\nIn der (fiktiven) Studie wurde der Einfluss von Schlafdauer bei Jugendlichen auf Konzentrationsleistung in einem neuropsychologischen Test (mögliche Scores zwischen 0 und 20) untersucht.\nForschungsfrage: Hängt die nächtliche Schlafdauer mit der Konzentration am nächsten Tag zusammen?\nDaten: Die Grafik zeigt Messungen von 10 Jugendlichen.\n\n\n\n\n\n\n\n\n\n\n\n\n\nBerechnen Sie den Regressionskoeffizienten \\(b_1\\) und den Achsenabschnitt \\(b_0\\) dieser Daten.\na. Schreiben Sie alle Werte in eine Tabelle mit je einer Spalte für jede Variable oder geben Sie diese in R ein. Benennen Sie die UV \\(x\\) und die AV \\(y\\).\n\n# Packages laden\nlibrary(tidyverse)\n\n# Erstellen des Datensatzes\nd &lt;- tibble(x = ___,\n            y = ___)\n\nb. Berechnen Sie \\(r_{XY}\\) (die Korrelation der beiden Variablen) und die Standardabweichungen von Hand oder mit den Funktionen cor() und sd() in R.\n\n# Korrelation berechnen\nr_xy &lt;- ___\n\n# Standardabweichungen berechnen\nsd_x &lt;- ___\nsd_y &lt;- ___\n\nc. Berechnen Sie den Regressionskoeffizienten \\(b_1\\) von Hand oder in R.\nTipp: Multiplizieren Sie \\(r_{XY}\\) mit den Quotienten der Standardabweichungen von \\(Y\\) und \\(X\\), um das Regressionsgewicht \\(b_1\\) zu erhalten.\n\n# Regressionskoeffizient berechnen\nb_1 &lt;- ___\n\nd. Berechnen Sie den Achsenabschnitt \\(b_0\\). Hierfür brauchen Sie die Durchschnittswerte für \\(x\\) und \\(y\\).\n\n# Achsenabschnitt berechnen\nmean_x &lt;- ___\nmean_y &lt;- ___\nb_0 &lt;- ___\n\ne. Sagen Sie einen neuen Wert \\(y\\) für eine gegebenen Wert \\(x\\) vorher.\n\n# Prädiktion\ny_hat &lt;- ___\n\nf. Fügen Sie in den Plot die Werte für die Regressionsgerade ein. (Nur möglich, wenn Sie die Daten in R eingegeben haben.)\n\nd |&gt;\n  ggplot(aes(x = x, y = y)) +\n  geom_point() +\n  xlim(0, 13) +\n  ylim(-5, 20) +\n  geom_abline(intercept = ___, slope = ___) +\n  theme_minimal()\n\ng. Welche Schlussfolgerungen würden Sie aus der Analyse ziehen? Welche Aussagen können Sie mit den berechneten Werten machen?",
+    "crumbs": [
+      "Übungen",
+      "Übung 10"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-10.html#aufgabe-10.6-berechnen-der-regressionsgeraden-für-eigenes-beispiel",
+    "href": "uebungen/uebung-10.html#aufgabe-10.6-berechnen-der-regressionsgeraden-für-eigenes-beispiel",
+    "title": "Übung 10",
+    "section": "Aufgabe 10.6: Berechnen der Regressionsgeraden für eigenes Beispiel",
+    "text": "Aufgabe 10.6: Berechnen der Regressionsgeraden für eigenes Beispiel\nBerechnen Sie, wie in der vorherigen Aufgabe, den Regressionskoeffizienten \\(b_1\\) und den Achsenabschnitt \\(b_0\\) für das in Aufgabe 10.3a-c selber erarbeitete Beispiel.\na. Schreiben Sie die Werte in eine Tabelle mit je einer Spalte für jede Variable oder geben Sie diese in R ein.\n\n# Packages laden\nlibrary(tidyverse)\n\n# Erstellen des Datensatzes\n___\n\nb. Berechnen Sie \\(b_1\\) und \\(b_0\\). Tipp: Verwenden Sie hierfür die Funktionen mean(), sd(), cor() in R.\nc. Zeichnen Sie die Regressionslinie in Ihr zu Beginn erstelltes Punktediagramm ein und vergleichen Sie diese mit der zuvor von Ihnen geschätzten Regressionsgerade. Oder plotten Sie die Daten alternativ mit {ggplot2}, siehe Aufgabe 10.5f.\nd. Welche Schlussfolgerungen würden Sie aus der Analyse ziehen? Welche Aussagen können Sie mit den berechneten Werten machen?",
+    "crumbs": [
+      "Übungen",
+      "Übung 10"
+    ]
+  },
+  {
+    "objectID": "uebungen/uebung-10.html#zusatzaufgaben",
+    "href": "uebungen/uebung-10.html#zusatzaufgaben",
+    "title": "Übung 10",
+    "section": "Zusatzaufgaben",
+    "text": "Zusatzaufgaben\n\n\n\n\n\n\nZusatzaufgaben\n\n\n\nZusatzaufgaben müssen nicht gelöst werden.\n\n\na. Berechnen Sie die Varianzen: von \\(y\\), \\(\\hat{y}\\) und der Residuen \\(e\\), und berechnen Sie den Determinationskoeffizienten \\(R^2\\) und Indeterminationskoeffizienten. Was sagen diese aus?\n\n\n\n\n\n\nTipp\n\n\n\n\n\nErstellen Sie hierfür eine Tabelle wie in den Vorlesungsfolien und berechnen Sie die Zwischenschritte mit den Funktionen mean(), sd(), cor(), var() (siehe Deskriptive Statistik)\n\n\n\n\n\\(m\\)\n\\(x_m\\)\n\\(y_m\\)\n\\(\\hat{y}\\)\n\\(e_m = y_m - \\hat{y}_m\\)\n\n\n\n\n1\n\n\n\n\n\n\n2\n\n\n\n\n\n\n3\n\n\n\n\n\n\n4\n\n\n\n\n\n\n5\n\n\n\n\n\n\nSumme\n\n\n\n\n\n\nM\n\n\n\n\n\n\nSD\n\n\n\n\n\n\nVarianz\n\n\\(s_{y}^2 =\\)\n\\(s_{\\hat{y}}^2 =\\)\n\\(s_e^2 =\\)\n\n\n\n\n\n\nb. Osterspecial: Lesen Sie in diesem Artikel was lineare Regression mit Jesus zu tun hat.",
+    "crumbs": [
+      "Übungen",
+      "Übung 10"
     ]
   },
   {
