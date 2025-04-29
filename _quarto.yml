@@ -39,6 +39,7 @@ book:
     - datenanalyse/anova1.qmd
     - datenanalyse/anova2.qmd
     - datenanalyse/anova3.qmd
+    - datenanalyse/einfachelineareregression.qmd
     
   - part: Datenvisualisierung
 #    chapters:
