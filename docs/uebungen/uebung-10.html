@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Übung 5 – Datenanalyse mit R</title>
+<title>Übung 10 – Datenanalyse mit R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,8 +64,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../uebungen/uebung-06.html" rel="next">
-<link href="../uebungen/uebung-04.html" rel="prev">
+<link href="../appendix/faq.html" rel="next">
+<link href="../uebungen/uebung-09.html" rel="prev">
 <link href="../imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -146,7 +146,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-05.html">Übung 5</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-10.html">Übung 10</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -327,7 +327,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../uebungen/uebung-05.html" class="sidebar-item-text sidebar-link active">
+  <a href="../uebungen/uebung-05.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Übung 5</span></a>
   </div>
 </li>
@@ -357,7 +357,7 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../uebungen/uebung-10.html" class="sidebar-item-text sidebar-link">
+  <a href="../uebungen/uebung-10.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Übung 10</span></a>
   </div>
 </li>
@@ -408,19 +408,22 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#aufgabe-5.0-projektumgebung-erstellen" id="toc-aufgabe-5.0-projektumgebung-erstellen" class="nav-link active" data-scroll-target="#aufgabe-5.0-projektumgebung-erstellen">Aufgabe 5.0: Projektumgebung erstellen</a></li>
-  <li><a href="#aufgabe-5.1-einstieg" id="toc-aufgabe-5.1-einstieg" class="nav-link" data-scroll-target="#aufgabe-5.1-einstieg">Aufgabe 5.1: Einstieg</a></li>
-  <li><a href="#aufgabe-5.2-einfaktorielle-varianzanalyse-ohne-messwiederholung" id="toc-aufgabe-5.2-einfaktorielle-varianzanalyse-ohne-messwiederholung" class="nav-link" data-scroll-target="#aufgabe-5.2-einfaktorielle-varianzanalyse-ohne-messwiederholung">Aufgabe 5.2: Einfaktorielle Varianzanalyse ohne Messwiederholung</a></li>
-  <li><a href="#aufgabe-5.3-zusatzaufgabe" id="toc-aufgabe-5.3-zusatzaufgabe" class="nav-link" data-scroll-target="#aufgabe-5.3-zusatzaufgabe">Aufgabe 5.3: Zusatzaufgabe</a></li>
+  <li><a href="#aufgabe-10.1-voraussetzungen-und-deren-überprüfung" id="toc-aufgabe-10.1-voraussetzungen-und-deren-überprüfung" class="nav-link active" data-scroll-target="#aufgabe-10.1-voraussetzungen-und-deren-überprüfung">Aufgabe 10.1: Voraussetzungen und deren Überprüfung</a></li>
+  <li><a href="#aufgabe-10.2-komponenten-der-regressionsgleichung" id="toc-aufgabe-10.2-komponenten-der-regressionsgleichung" class="nav-link" data-scroll-target="#aufgabe-10.2-komponenten-der-regressionsgleichung">Aufgabe 10.2: Komponenten der Regressionsgleichung</a></li>
+  <li><a href="#aufgabe-10.3-anwendungsbereich" id="toc-aufgabe-10.3-anwendungsbereich" class="nav-link" data-scroll-target="#aufgabe-10.3-anwendungsbereich">Aufgabe 10.3: Anwendungsbereich</a></li>
+  <li><a href="#aufgabe-10.4-kleinste-quadrate-kriterium" id="toc-aufgabe-10.4-kleinste-quadrate-kriterium" class="nav-link" data-scroll-target="#aufgabe-10.4-kleinste-quadrate-kriterium">Aufgabe 10.4: Kleinste Quadrate-Kriterium</a></li>
+  <li><a href="#aufgabe-10.5-berechnen-der-regressionsgeraden" id="toc-aufgabe-10.5-berechnen-der-regressionsgeraden" class="nav-link" data-scroll-target="#aufgabe-10.5-berechnen-der-regressionsgeraden">Aufgabe 10.5: Berechnen der Regressionsgeraden</a></li>
+  <li><a href="#aufgabe-10.6-berechnen-der-regressionsgeraden-für-eigenes-beispiel" id="toc-aufgabe-10.6-berechnen-der-regressionsgeraden-für-eigenes-beispiel" class="nav-link" data-scroll-target="#aufgabe-10.6-berechnen-der-regressionsgeraden-für-eigenes-beispiel">Aufgabe 10.6: Berechnen der Regressionsgeraden für eigenes Beispiel</a></li>
+  <li><a href="#zusatzaufgaben" id="toc-zusatzaufgaben" class="nav-link" data-scroll-target="#zusatzaufgaben">Zusatzaufgaben</a></li>
   </ul>
 </nav>
     </div>
 <!-- main -->
-<main class="content column-body" id="quarto-document-content">
+<main class="content page-columns page-full column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-05.html">Übung 5</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-10.html">Übung 10</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-uebung-05" class="quarto-section-identifier">Übung 5</span></h1>
+<h1 class="title"><span id="sec-uebung-10" class="quarto-section-identifier">Übung 10</span></h1>
 </div>
 
 
@@ -449,160 +452,191 @@ Lernziele dieser Übung
 <div class="callout-body-container callout-body">
 <p>Nach der heutigen Übung können Sie:</p>
 <ul>
-<li><p><em>R</em> und <em>RStudio</em> zur Analyse von Daten verwenden</p></li>
-<li><p>einfaktorielle Varianzanalysen ohne Messwiederholung in <em>R</em> durchführen</p>
-<ul>
-<li>Hypothesen zum Vergleich von mehr als zwei Stichprobenmittelwerten von unabhängigen Gruppen durchführen</li>
-<li>Voraussetzungen überprüfen</li>
-<li>Test berechnen</li>
-<li>Resultate interpretieren</li>
-</ul></li>
+<li><em>R</em> und <em>RStudio</em> zur Analyse von Daten verwenden</li>
+<li>Die Voraussetzungen für einfache lineare Regressionen überprüfen</li>
+<li>Einfache lineare Regressionen anhand der Formeln selber berechnen</li>
+<li>Regressionskoeffizienten und Achsenabschnitte interpretieren</li>
 </ul>
 </div>
 </div>
-<div class="callout callout-style-default callout-note callout-titled" title="Voraussetzungen">
-<div class="callout-header d-flex align-content-center">
+<aside>
+Hilfreiche Visualisierungsoption um die Regression zu verstehen: <a href="https://rpsychologist.com/correlation/" class="uri">https://rpsychologist.com/correlation/</a>
+</aside>
+<p><br></p>
+<section id="aufgabe-10.1-voraussetzungen-und-deren-überprüfung" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-10.1-voraussetzungen-und-deren-überprüfung">Aufgabe 10.1: Voraussetzungen und deren Überprüfung</h2>
+<p><strong>a.</strong> Welche Voraussetzungen müssen für die einfache lineare Regression gegeben sein?</p>
+<p><strong>b.</strong> Schauen Sie sich untenstehende Punktdiagramme (<em>scatterplots</em>) an. Bei welchen Daten würden Sie eine lineare Regression berechnen, bei welchen eher nicht? (<em>Hinweis: Nicht alle Beispiele sind eindeutig.</em>)</p>
+<div class="quarto-figure quarto-figure-center">
+<figure class="figure">
+<p><img src="../imgs/uebung-10_scatterplots.jpeg" class="img-fluid figure-img"></p>
+<figcaption>Scatterplots verschiedener Datensets</figcaption>
+</figure>
+</div>
+<p><br></p>
+</section>
+<section id="aufgabe-10.2-komponenten-der-regressionsgleichung" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-10.2-komponenten-der-regressionsgleichung">Aufgabe 10.2: Komponenten der Regressionsgleichung</h2>
+<p><strong>a.</strong> Wie lautet die Bestimmungsgleichung der Regressionsgeraden in der einfachen linearen Regressionsanalyse? Schreiben Sie die Gleichung auf und ordnen Sie die untenstehenden Begriffe den Termen in der Gleichung zu:</p>
+<ul>
+<li>Achsenabschnitt (<em>intercept</em>)</li>
+<li>Regressionsgewicht bzw. die Steigung (<em>slope</em>) der Regressionsgeraden</li>
+<li>Vorhersagefehler</li>
+<li>AV</li>
+</ul>
+<p><strong>b.</strong> Wie lautet die Bestimmungsgleichung für <span class="math inline">\(b_0\)</span> für unstandardisierte Variablen?</p>
+<p><strong>c.</strong> Wie lautet die Bestimmungsgleichung für <span class="math inline">\(b_1\)</span> für unstandardisierte Variablen?</p>
+<p><strong>d.</strong> Welchen konstanten Wert hat <span class="math inline">\(b_0\)</span> bei standardisierten Variablen?</p>
+<p><strong>e.</strong> Welchem Wert entspricht <span class="math inline">\(b_1\)</span> bei standardisierten Variablen?</p>
+<p><strong>f.</strong> In welcher Einheit wird das unstandardisierte Regressionsgewicht angegeben?</p>
+<p><br></p>
+</section>
+<section id="aufgabe-10.3-anwendungsbereich" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-10.3-anwendungsbereich">Aufgabe 10.3: Anwendungsbereich</h2>
+<p><strong>Eigene Fragestellung bearbeiten.</strong></p>
+<p><strong>a.</strong> Nehmen Sie an, Sie könnten sich einen Datensatz <em>wünschen</em>. Welche für Sie spannende Forschungsfrage könnte mit einer einfachen linearen Regression analysiert werden?</p>
+<p><strong>b.</strong> Zeichnen Sie die Daten für Ihre Forschungsfrage auf.</p>
+<ul>
+<li><p>Was ist die AV und was die UV?</p></li>
+<li><p>Zeichnen Sie die Achsen inkl. Achsenbeschriftungen (möglicher Wertebereich) auf. Wählen Sie wenn möglich Messungen/Achsen mit positiven, ganzzahligen Werten (<em>integers</em>). Wählen Sie für <span class="math inline">\(x\)</span> (UV) eine Achse die <span class="math inline">\(0\)</span> enthält.</p></li>
+<li><p>Welche Daten würden Sie erwarten? Zeichnen Sie ein Punktdiagramm (<em>Scatterplot</em>) mit 10-20 Datenpunkten zu Ihrer Forschungsfrage.</p></li>
+</ul>
+<p><strong>c.</strong> Welcher Zusammenhang besteht zwischen den beiden Variablen?</p>
+<ul>
+<li><p>Legen Sie eine möglichst passende (lineare) Regressionsgerade durch die Punktewolke.</p></li>
+<li><p>Markieren Sie den ungefähren Achsenabschnitt (<em>intercept</em>) <span class="math inline">\(b_0\)</span>. Welcher Wert hat <span class="math inline">\(b_0\)</span>?</p></li>
+<li><p>Zeichnen Sie den ungefähren Vorhersagefehler <span class="math inline">\(e\)</span> für jeden Datenpunkt ein.</p></li>
+<li><p>Welche Steigung (<em>slope</em>) <span class="math inline">\(b_1\)</span> hat die Gerade ungefähr? (<em>Tipp: Zeichnen Sie auf der Gerade 2 Punkte ein und berechnen Sie die Differenz der <span class="math inline">\(x\)</span> und <span class="math inline">\(y\)</span>-Werten dieser zwei Punkte. Teilen Sie dann <span class="math inline">\(dy/dx\)</span>.</em>)</p></li>
+</ul>
+<p><strong>d.</strong> Nutzen Sie Ihre Analyse zur Prädiktion.</p>
+<ul>
+<li><p>Wählen Sie einen neuen <span class="math inline">\(x\)</span>-Wert.</p></li>
+<li><p>Berechnen Sie den neuen <span class="math inline">\(y\)</span>-Wert mit der Regressionsgleichung (siehe <em>Aufgabe 10.2a</em>). Lassen Sie den Fehlerterm weg.</p></li>
+<li><p>Zeichnen Sie den neuen Datenpunkt ein. Was stellen Sie fest?</p></li>
+</ul>
+<p><strong>e.</strong> Welche Schlussfolgerungen würden Sie aus der Analyse ziehen? Welche Aussagen können Sie mit den berechneten Werten machen?</p>
+<p><br></p>
+<p><strong>e.</strong> Welche Schlussfolgerungen würden Sie aus der Analyse ziehen? Welche Aussagen können Sie mit den berechneten Werten machen?</p>
+<p><strong>Gemeinsam eine Fragestellung bearbeiten</strong></p>
+<p>Tauschen Sie in Kleingruppen/im Plenum die Forschungsfragen aus und wählen Sie als Gruppe eine davon aus. Sammeln Sie dieses Mal gemeinsam Daten: Jede Person zeichnet mind. einen (fiktiven) Datenpunkt ein. Gehen Sie danach obige Schritte anhand diesen Beispiels durch.</p>
+<ul>
+<li>Welche Schlussfolgerungen würden Sie aus der Analyse ziehen? Welche Aussagen können Sie mit den berechneten Werten machen?</li>
+</ul>
+<p>Diskutieren Sie zusätzlich:</p>
+<ul>
+<li><p>Welche weiteren Datenpunkte würden für sehr hohe/tiefe Werte der UV vorhergesagt werden?</p></li>
+<li><p>Was könnte zu Fehlschätzungen führen?</p></li>
+<li><p>Was würde passieren, wenn Sie die Achsen umdrehen? Bleiben die Werte für <span class="math inline">\(b_0\)</span> und <span class="math inline">\(b_1\)</span> gleich oder verändern diese sich?</p></li>
+</ul>
+<p><br></p>
+</section>
+<section id="aufgabe-10.4-kleinste-quadrate-kriterium" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-10.4-kleinste-quadrate-kriterium">Aufgabe 10.4: Kleinste Quadrate-Kriterium</h2>
+<p><strong>a.</strong> Ergänzen Sie den folgenden Text zum Grundgedanken des Kleinste-Quadrate Kriteriums:</p>
+<div class="webex-check webex-box">
+<p>“Optimale <select class="webex-select"><option value="blank"></option><option value="">Reduktion des Kriteriums</option><option value="answer">Vorhersage</option><option value="">Bestimmung der Regressionsgeraden</option></select> ist gegeben, wenn <select class="webex-select"><option value="blank"></option><option value="">die Varianz</option><option value="">das Minimum</option><option value="answer">die Summe</option></select> der quadrierten Differenzen zwischen den aus der unabhängigen Variablen <select class="webex-select"><option value="blank"></option><option value="">beobachteten</option><option value="answer">vorhergesagten</option></select> Werten der abhängigen Variablen und den <select class="webex-select"><option value="blank"></option><option value="answer">beobachteten</option><option value="">vorhergesagten</option></select> Werten der abhängigen Variablen <select class="webex-select"><option value="blank"></option><option value="">maximal</option><option value="answer">minimal</option></select> ist.” (Eid et al.&nbsp;2017)</p>
+</div>
+<p><strong>b.</strong> Diskutieren Sie diesen Gedanken kurz: Gibt es Unklarheiten? Fassen Sie den obigen Satz für Laienpersonen verständlich in 1-2 Sätzen zusammen.</p>
+</section>
+<section id="aufgabe-10.5-berechnen-der-regressionsgeraden" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-10.5-berechnen-der-regressionsgeraden">Aufgabe 10.5: Berechnen der Regressionsgeraden</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Schlafstudie">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
 <div class="callout-title-container flex-fill">
-Voraussetzungen
+Schlafstudie
 </div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
 <div class="callout-body-container callout-body">
-<ol type="1">
-<li><p>Packages {tidyverse}, {afex}, {emmeans}, {beeswarm}, {effectsize} sind installiert.</p></li>
-<li><p><a href="../data/anova.zip">Hier</a> kann der Projektordner mit den Daten heruntergeladen werden. Vor dem ersten Verwenden muss der Ordner <strong>entzippt</strong> werden, dann kann das <em>RProject</em> namens <code>anova.Rproj</code> geöffnet werden. Der Ordner enthält:</p></li>
-</ol>
-<ul>
-<li><em>RProject</em> namens <code>anova.Rproj</code></li>
-<li>Datensätze für die Vorlesung und die Übung 5 im <code>data</code>-Ordner des <em>RProjects</em> <code>anova</code>:
-<ul>
-<li><a href="../data/anova_music.csv"><code>anova_music.csv</code></a></li>
-</ul></li>
-<li>(die weiteren Dateien und <em>RNotebooks</em> werden in der Vorlesung verwendet)</li>
-</ul>
-</div>
-</div>
-<p><br></p>
-<section id="aufgabe-5.0-projektumgebung-erstellen" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-5.0-projektumgebung-erstellen">Aufgabe 5.0: Projektumgebung erstellen</h2>
-<p><em>Falls obige Anforderungen noch nicht erfüllt:</em></p>
-<ul>
-<li><p>Laden Sie den Projektordner herunter und <strong>entzippen</strong> Sie den Ordner.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p></li>
-<li><p>Installieren Sie die benötigten Packages (falls noch nicht geschehen) unter <code>Tools</code> &gt; <code>Install Packages...</code> oder in der Konsole mit</p>
-<p><code>install.packages("afex")</code></p>
-<p><code>install.packages("emmeans")</code></p>
-<p><code>install.packages("beeswarm")</code></p>
-<p><code>install.packages("effectsize")</code></p></li>
-</ul>
-<p><strong>a.</strong> Öffnen Sie das <em>RProjekt</em> <code>anova</code>.</p>
-<p><strong>b.</strong> Erstellen Sie ein <em>RNotebook</em> namens <code>uebung-05</code>.</p>
-<p><br></p>
-</section>
-<section id="aufgabe-5.1-einstieg" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-5.1-einstieg">Aufgabe 5.1: Einstieg</h2>
-<ul>
-<li><p>Welche <span class="math inline">\(H_0\)</span> wird mit einer einfaktoriellen Varianzanalyse mit <strong>vier</strong> Bedingungen überprüft? Wie lautet die entsprechende <span class="math inline">\(H_1\)</span> dazu?</p></li>
-<li><p>Formulieren Sie zwei Forschungsfragen, die mit einer einfaktoriellen Varianzanalyse ohne Messwiederholung untersucht werden können.</p></li>
-</ul>
-</section>
-<section id="aufgabe-5.2-einfaktorielle-varianzanalyse-ohne-messwiederholung" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-5.2-einfaktorielle-varianzanalyse-ohne-messwiederholung">Aufgabe 5.2: Einfaktorielle Varianzanalyse ohne Messwiederholung</h2>
 <p><strong>Beschreibung der Studie</strong></p>
-<p>In diesem Musik-Experiment<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> wurde die Hypothese untersucht, dass die Konzentrationsleistung von Personen unter dem Einfluss klassischer Instrumentalmusik (Bedingung 1) höher ist als unter dem Einfluss von Rockmusik (Bedingung 2), von Opernmusik (Bedingung 3) oder von Schlagermusik (Bedingung 4). Die Versuchspersonen wurden randomisiert einer der vier experimentellen Bedingungen zugeteilt und sollten sich entsprechende Musikstücke für ca. 15 Minuten anhören. Gleichzeitig sollten sie einen Konzentrationstest bearbeiten. Das Alphaniveau wurde auf <span class="math inline">\(5 \%\)</span> festgelegt.</p>
-<p><strong>Forschungsfrage</strong>: Besteht ein Unterschied in der Konzentrationsleistung zwischen mindestens zwei Gruppen?</p>
-<p><strong>Unabhängige Variable</strong>: Art der Musik in vier Bedingungen (<code>condition</code>: Instrumental, Rock, Oper, Schlager)</p>
-<p><strong>Abhängige Variable</strong>: Erreichte Punktzahl in einem Konzentrationstest (<code>testscore</code>) als Indikator für Konzentrationsleistung auf einer Skala von 0 - 35 möglichen Punkten.</p>
+<p>In der (fiktiven) Studie wurde der Einfluss von Schlafdauer bei Jugendlichen auf Konzentrationsleistung in einem neuropsychologischen Test (mögliche Scores zwischen 0 und 20) untersucht.</p>
+<p><strong>Forschungsfrage</strong>: Hängt die nächtliche Schlafdauer mit der Konzentration am nächsten Tag zusammen?</p>
+<p><strong>Daten:</strong> Die Grafik zeigt Messungen von 10 Jugendlichen.</p>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="uebung-10_files/figure-html/unnamed-chunk-4-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
 <p><br></p>
-<p><strong>Bearbeiten Sie nun Schritt für Schritt folgenden Aufgaben:</strong></p>
-<p><strong>a.</strong> Wird eine gerichtete oder eine ungerichtete Hypothese überprüft? Wie lautet die <span class="math inline">\(H_0\)</span> und die <span class="math inline">\(H_1\)</span>?</p>
-<p><strong>b.</strong> Welches Signifikanzniveau wurde festgelegt? Was bedeutet das?</p>
-<p><strong>c.</strong> Laden Sie das {tidyverse}. Lesen Sie den Datensatz <code>anova_music.csv</code> aus dem Ordner <code>data</code> ein und speichern Sie ihn in die Variable <code>d_music</code>. Konvertieren Sie die Variablen <code>id</code> und <code>condition</code> zu einem Faktor.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># tidyverse laden</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">___</span>(___)</span>
+<p>Berechnen Sie den Regressionskoeffizienten <span class="math inline">\(b_1\)</span> und den Achsenabschnitt <span class="math inline">\(b_0\)</span> dieser Daten.</p>
+<p><strong>a.</strong> Schreiben Sie alle Werte in eine Tabelle mit je einer Spalte für jede Variable oder geben Sie diese in <em>R</em> ein. Benennen Sie die UV <span class="math inline">\(x\)</span> und die AV <span class="math inline">\(y\)</span>.</p>
+<div class="cell" data-messages="false">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Packages laden</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz einlesen</span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>___ <span class="ot">&lt;-</span> <span class="fu">___</span>(<span class="st">"___/___.csv"</span>)</span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Faktoren konvertieren</span></span>
-<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a>d_music <span class="ot">&lt;-</span> ___ <span class="sc">|&gt;</span></span>
-<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">___</span>(<span class="at">id =</span> <span class="fu">___</span>(___)) <span class="sc">|&gt;</span></span>
-<span id="cb1-10"><a href="#cb1-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">___</span>(<span class="at">condition =</span> <span class="fu">___</span>(___))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Erstellen des Datensatzes</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>d <span class="ot">&lt;-</span> <span class="fu">tibble</span>(<span class="at">x =</span> ___,</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">y =</span> ___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>d.</strong> Schauen Sie sich den Datensatz genauer an, z.B. mit <code>glimpse()</code> und <code>Hmisc::describe()</code>.</p>
+<p><strong>b.</strong> Berechnen Sie <span class="math inline">\(r_{XY}\)</span> (die Korrelation der beiden Variablen) und die Standardabweichungen von Hand oder mit den Funktionen <code>cor()</code> und <code>sd()</code> in <em>R</em>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Daten anschauen mit glimpse()</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="fu">___</span>(___)</span>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Korrelation berechnen</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>r_xy <span class="ot">&lt;-</span> ___</span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Daten anschauen mit describe() aus Hmisc</span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>___<span class="sc">::</span><span class="fu">___</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Standardabweichungen berechnen</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>sd_x <span class="ot">&lt;-</span> ___</span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>sd_y <span class="ot">&lt;-</span> ___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ul>
-<li><p>Wie heissen die vier Bedingungen im Datensatz?</p></li>
-<li><p>Wie viele Personen sind in welcher Bedingung?</p></li>
-<li><p>Gibt es fehlende Werte (missings)?</p></li>
-<li><p>Wie lauten die Mittelwerte und Standardabweichungen der Testscores in den vier Bedingungen? Fassen Sie hierzu die Daten mit <code>group_by()</code> und <code>summarise()</code> zusammen (eine Anleitung dazu finden Sie <a href="../datenverarbeitung/transform.html#daten-gruppieren-und-zusammenfassen-group_by-und-summarise">hier</a>).</p></li>
-</ul>
+<p><strong>c.</strong> Berechnen Sie den Regressionskoeffizienten <span class="math inline">\(b_1\)</span> von Hand oder in <em>R</em>.</p>
+<p><strong>Tipp</strong>: Multiplizieren Sie <span class="math inline">\(r_{XY}\)</span> mit den Quotienten der Standardabweichungen von <span class="math inline">\(Y\)</span> und <span class="math inline">\(X\)</span>, um das Regressionsgewicht <span class="math inline">\(b_1\)</span> zu erhalten.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Gruppieren und zusammenfassen</span></span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>d_summary <span class="ot">&lt;-</span> ___ <span class="sc">|&gt;</span></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">___</span>(___) <span class="sc">|&gt;</span></span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">___</span>(<span class="at">mean_testscore =</span> <span class="fu">___</span>(___),</span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>      <span class="at">sd_testscore =</span> <span class="fu">___</span>(___))</span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>d_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Regressionskoeffizient berechnen</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>b_1 <span class="ot">&lt;-</span> ___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<ul>
-<li>Was wissen Sie nun bereits über die Daten?</li>
-</ul>
-<p><strong>e.</strong> Welchen statistischen Test führen Sie durch und weshalb?</p>
-<p><strong>f.</strong> Überprüfen Sie, ob die Voraussetzungen für die Anwendung eines <em>F</em>-Tests erfüllt sind.</p>
-<p>Die Varianzhomogenität wird mit dem Levene-Test überprüft. Dafür kann die Funktion <code>leveneTest()</code> aus dem Package {car} verwendet werden. Wir wählen das Signifikanzniveau von 5%. Wie fällt das Ergebnis des Levene-Tests aus?</p>
+<p><strong>d.</strong> Berechnen Sie den Achsenabschnitt <span class="math inline">\(b_0\)</span>. Hierfür brauchen Sie die Durchschnittswerte für <span class="math inline">\(x\)</span> und <span class="math inline">\(y\)</span>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Levene Test</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>___<span class="sc">::</span><span class="fu">___</span>(___ <span class="sc">~</span> ___, <span class="co"># av ~ uv</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">data =</span> ___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Achsenabschnitt berechnen</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>mean_x <span class="ot">&lt;-</span> ___</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>mean_y <span class="ot">&lt;-</span> ___</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>b_0 <span class="ot">&lt;-</span> ___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>g.</strong> Führen Sie nun eine einfaktorielle Varianzanalyse mit der Funktion <code>aov_4()</code> durch. Sie benötigen dazu das Package {afex}.</p>
-<ul>
-<li><p>Berechnen Sie eine einfaktorielle Varianzanalyse und speichern Sie das Modell als Objekt namens <code>m_anova1</code>.</p></li>
-<li><p>Lassen Sie sich eine <code>summary()</code> und eine vollständige Anova-Tabelle mit <code>___$Anova</code> ausgeben.</p></li>
-<li><p>Welche Werte in der Tabelle sind relevant? Suchen Sie die wichtigen Kennwerte heraus.</p></li>
-<li><p>Wie lautet Ihre Testentscheidung?</p></li>
-</ul>
+<p><strong>e.</strong> Sagen Sie einen neuen Wert <span class="math inline">\(y\)</span> für eine gegebenen Wert <span class="math inline">\(x\)</span> vorher.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># afex laden</span></span>
-<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(afex)</span>
-<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfaktorielle Anova </span></span>
-<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>m_anova1 <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(___ <span class="sc">~</span> ___ <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> ___), <span class="co"># av ~ uv + (1 | Identifikationsvariable)</span></span>
-<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> ___) <span class="co"># dataset</span></span>
-<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultate ausgeben</span></span>
-<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(___) </span>
-<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a>___<span class="sc">$</span>Anova</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Prädiktion</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>y_hat <span class="ot">&lt;-</span> ___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>h.</strong> Visualisierung</p>
-<p>Verwendet Sie den folgenden Code, um die Mittelwerte und Standardfehler zu plotten. Stellen Sie Vermutungen an, welche Gruppen sich signifikant unterscheiden und welche nicht.</p>
+<p><strong>f.</strong> Fügen Sie in den Plot die Werte für die Regressionsgerade ein. (Nur möglich, wenn Sie die Daten in R eingegeben haben.)</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plot</span></span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>plot_anova <span class="ot">&lt;-</span> <span class="fu">afex_plot</span>(<span class="at">object =</span> ___, <span class="co"># Objekt mit Anovamodell</span></span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>          <span class="at">x =</span> <span class="st">"___"</span>,  <span class="co"># uv (Faktor)</span></span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">error_ci =</span> <span class="cn">FALSE</span>) <span class="sc">+</span> <span class="co"># Anzeigen von Standardfehler der Mittelwerte</span></span>
-<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">theme_minimal</span>()</span>
-<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>plot_anova</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">|&gt;</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">13</span>) <span class="sc">+</span></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="sc">-</span><span class="dv">5</span>, <span class="dv">20</span>) <span class="sc">+</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> ___, <span class="at">slope =</span> ___) <span class="sc">+</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
-<p><strong>i.</strong> Effektstärke berechnen</p>
-<p>Die Effektgrösse <span class="math inline">\(\eta^2\)</span> lässt sich anhand des Quotienten aus der Zwischen-Quadratsumme und der Gesamtquadratsumme berechnen. In R kann dieses Mass direkt mit der Funktion <code>eta_squared()</code> aus dem Package {effectsize} ausgegeben werden. Als Argument für die Funktion muss das Anova-Modell (Objekt), also hier <code>m_anova1</code>, eingegeben werden.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>___<span class="sc">::</span><span class="fu">___</span>(___)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
+<p><strong>g.</strong> Welche Schlussfolgerungen würden Sie aus der Analyse ziehen? Welche Aussagen können Sie mit den berechneten Werten machen?</p>
 <p><br></p>
 </section>
-<section id="aufgabe-5.3-zusatzaufgabe" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-5.3-zusatzaufgabe">Aufgabe 5.3: Zusatzaufgabe</h2>
+<section id="aufgabe-10.6-berechnen-der-regressionsgeraden-für-eigenes-beispiel" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-10.6-berechnen-der-regressionsgeraden-für-eigenes-beispiel">Aufgabe 10.6: Berechnen der Regressionsgeraden für eigenes Beispiel</h2>
+<p>Berechnen Sie, wie in der vorherigen Aufgabe, den Regressionskoeffizienten <span class="math inline">\(b_1\)</span> und den Achsenabschnitt <span class="math inline">\(b_0\)</span> für das in <em>Aufgabe 10.3a-c</em> selber erarbeitete Beispiel.</p>
+<p><strong>a.</strong> Schreiben Sie die Werte in eine Tabelle mit je einer Spalte für jede Variable oder geben Sie diese in <em>R</em> ein.</p>
+<div class="cell" data-messages="false">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Packages laden</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Erstellen des Datensatzes</span></span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>b.</strong> Berechnen Sie <span class="math inline">\(b_1\)</span> und <span class="math inline">\(b_0\)</span>. <em>Tipp</em>: Verwenden Sie hierfür die Funktionen <code>mean()</code>, <code>sd()</code>, <code>cor()</code> in <em>R</em>.</p>
+<p><strong>c.</strong> Zeichnen Sie die Regressionslinie in Ihr zu Beginn erstelltes Punktediagramm ein und vergleichen Sie diese mit der zuvor von Ihnen geschätzten Regressionsgerade. Oder plotten Sie die Daten alternativ mit {ggplot2}, siehe <em>Aufgabe 10.5f</em>.</p>
+<p><strong>d.</strong> Welche Schlussfolgerungen würden Sie aus der Analyse ziehen? Welche Aussagen können Sie mit den berechneten Werten machen?</p>
+<p><br></p>
+</section>
+<section id="zusatzaufgaben" class="level2">
+<h2 class="anchored" data-anchor-id="zusatzaufgaben">Zusatzaufgaben</h2>
 <div class="callout callout-style-default callout-tip callout-titled" title="Zusatzaufgaben">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -616,19 +650,103 @@ Zusatzaufgaben
 <p><strong>Zusatzaufgaben müssen nicht gelöst werden.</strong></p>
 </div>
 </div>
-<ul>
-<li><p>Berechnen Sie den <em>F</em>-Wert und den <span class="math inline">\(\eta^2\)</span>-Wert mithilfe der Quadratsummen aus dem Output selbst.</p></li>
-<li><p>Erstellen Sie mit <code>esquisse::esquisser()</code> eine andere Grafik (z.B. Boxplot), welche die Testscores der vier Bedingungen in einer Grafik abbildet.</p></li>
-</ul>
+<p><strong>a.</strong> Berechnen Sie die Varianzen: von <span class="math inline">\(y\)</span>, <span class="math inline">\(\hat{y}\)</span> und der Residuen <span class="math inline">\(e\)</span>, und berechnen Sie den Determinationskoeffizienten <span class="math inline">\(R^2\)</span> und Indeterminationskoeffizienten. Was sagen diese aus?</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Tipp">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Tipp
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-4" class="callout-4-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Erstellen Sie hierfür eine Tabelle wie in den Vorlesungsfolien und berechnen Sie die Zwischenschritte mit den Funktionen <code>mean()</code>, <code>sd()</code>, <code>cor()</code>, <code>var()</code> (siehe <a href="../datenanalyse/descriptive.html">Deskriptive Statistik</a>)</p>
+<p><br></p>
+<table class="caption-top table">
+<thead>
+<tr class="header">
+<th><span class="math inline">\(m\)</span></th>
+<th><span class="math inline">\(x_m\)</span></th>
+<th><span class="math inline">\(y_m\)</span></th>
+<th><span class="math inline">\(\hat{y}\)</span></th>
+<th><span class="math inline">\(e_m = y_m - \hat{y}_m\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td>1</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>2</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>3</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td>4</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td>5</td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong><em>Summe</em></strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong><em>M</em></strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><strong><em>SD</em></strong></td>
+<td></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><strong><em>Varianz</em></strong></td>
+<td></td>
+<td><span class="math inline">\(s_{y}^2 =\)</span></td>
+<td><span class="math inline">\(s_{\hat{y}}^2 =\)</span></td>
+<td><span class="math inline">\(s_e^2 =\)</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<p><strong>b.</strong> Osterspecial: Lesen Sie in <a href="https://statmodeling.stat.columbia.edu/2025/03/11/what-does-jesus-have-to-do-with-linear-regression/">diesem Artikel</a> was lineare Regression mit Jesus zu tun hat.</p>
 
 
-</section>
-<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
-<hr>
-<ol>
-<li id="fn1"><p>Für das Entzippen mit <em>Windows</em> machen Sie einen Rechtsklick auf den Ordner mit dem Reissverschluss und wählen Sie <code>Entpacken nach</code> und geben Sie den Ordner an, in dem Sie alle Ihre <em>RProject-Ordner</em> speichern. Für das Entzippen mit <em>Mac</em> speichern Sie den heruntergeladenen Ordner in den Ordner, in dem Sie alle Ihre <em>RProject-Ordner</em> speichern und Doppelklicken Sie danach auf den Ordner. Nur entzippte Ordner können einwandfrei verwendet werden.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn2"><p>Eid, M., Gollwitzer, M., &amp; Schmitt, M. (2017). Statistik und Forschungsmethoden: Mit Online-Materialien (5., korrigierte Auflage). Beltz. S. 459<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-</ol>
 </section>
 
 </main> <!-- /main -->
@@ -1471,13 +1589,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../uebungen/uebung-04.html" class="pagination-link" aria-label="Übung 4">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Übung 4</span>
+      <a href="../uebungen/uebung-09.html" class="pagination-link" aria-label="Übung 9">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Übung 9</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../uebungen/uebung-06.html" class="pagination-link" aria-label="Übung 6">
-        <span class="nav-page-text">Übung 6</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../appendix/faq.html" class="pagination-link" aria-label="FAQ">
+        <span class="nav-page-text">FAQ</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

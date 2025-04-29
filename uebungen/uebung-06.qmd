@@ -39,7 +39,7 @@ Diese Übung ist eine Weiterführung von [Übung 5](uebung-05.qmd). Absolvieren 
 
 _Falls obige Anforderungen noch nicht erfüllt:_ 
 
-- Laden Sie den Projektordner herunter und __entzippen__ Sie den Ordner.^[Für das Entzippen mit _Windows_ machen Sie einen Rechtsklick auf den Ordner mit dem Reissverschluss und wählen Sie `Entpacken nach` und geben Sie den Ordner an, in dem Sie alle Ihre _RProject-Ordner_ speichern. Für das Entzippen mit _Mac_ speichern Sie den heruntergeladenen Ordner in den Ordner, in dem Sie alle Ihre _RProject-Ordner_ speichern und Doppelklicken Sie danach auf den Ordner. Nur entzippte Ordner können einwandfrei verwendet werden.] </aside>
+- Laden Sie den Projektordner herunter und __entzippen__ Sie den Ordner.^[Für das Entzippen mit _Windows_ machen Sie einen Rechtsklick auf den Ordner mit dem Reissverschluss und wählen Sie `Entpacken nach` und geben Sie den Ordner an, in dem Sie alle Ihre _RProject-Ordner_ speichern. Für das Entzippen mit _Mac_ speichern Sie den heruntergeladenen Ordner in den Ordner, in dem Sie alle Ihre _RProject-Ordner_ speichern und Doppelklicken Sie danach auf den Ordner. Nur entzippte Ordner können einwandfrei verwendet werden.] 
 
 - Installieren Sie die benötigten Packages (falls noch nicht geschehen) unter `Tools` > `Install Packages...` oder in der Konsole mit
 

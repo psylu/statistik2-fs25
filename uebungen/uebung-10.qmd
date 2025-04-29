@@ -1,0 +1,439 @@
+# Übung 10 {.unnumbered #sec-uebung-10}
+
+```{r}
+#| include: false
+# Set working directory of R
+knitr::opts_knit$set(root.dir = '../')
+```
+
+::: {.callout-note appearance="default" title="Lernziele dieser Übung"}
+Nach der heutigen Übung können Sie:
+
+- _R_ und _RStudio_ zur Analyse von Daten verwenden
+- Die Voraussetzungen für einfache lineare Regressionen überprüfen
+- Einfache lineare Regressionen anhand der Formeln selber berechnen
+- Regressionskoeffizienten und Achsenabschnitte interpretieren
+:::
+
+<aside> Hilfreiche Visualisierungsoption um die Regression zu verstehen: <https://rpsychologist.com/correlation/> </aside>
+
+<br>
+
+## Aufgabe 10.1: Voraussetzungen und deren Überprüfung 
+
+__a.__ Welche Voraussetzungen müssen für die einfache lineare Regression gegeben sein?
+
+__b.__ Schauen Sie sich untenstehende Punktdiagramme (_scatterplots_) an. Bei welchen Daten würden Sie eine lineare Regression berechnen, bei welchen eher nicht? (_Hinweis: Nicht alle Beispiele sind eindeutig._)
+
+```{r}
+#| message: false
+#| warning: false
+#| include: false
+
+library(tidyverse)
+
+## simulate data
+
+## (A) AV metrisch, UV metrisch, Linearität nicht gegeben
+
+# set parameters
+n <- 100
+b0 <- 10
+b1 <- 0.01
+b2 <- 0.00001
+sigma = 5
+
+# generate counts
+sim_df <- tibble(x = runif(n, 5, 18)) |>
+  mutate(mu = b0 + b1*x + b2*x^5.5)|> 
+  mutate(y = rnorm(n = n, mu, sigma) )
+
+# plot
+p1 <- ggplot(data = sim_df, aes(x = x, y = y)) + 
+  geom_point(size = 2.5, alpha = .2, color = "blue") +
+  theme_classic() +
+  labs(title = "(A) Testleistung nach Alter",
+       x = "Alter in Jahren",
+       y = "Testleistung in korrekten Items")
+
+## (B) AV metrisch, UV metrisch, Linearität gegeben
+
+# set parameters
+n <- 100
+b0 <- 5
+b1 <- 0.4
+sigma = 3
+
+# generate counts
+sim_df <- tibble(x = runif(n, 2, 20)) |>
+  mutate(mu = b0 + b1*x) |> 
+  mutate(y = rnorm(n = n, mu, sigma) )
+
+# plot
+p2 <- ggplot(data = sim_df, aes(x = x, y = y)) + 
+  geom_point(size = 2.5, alpha = .2, color = "blue") +
+  theme_classic() +
+  labs(title = "(B) Laufgeschwindigkeit nach Trainingsintensität",
+       x = "Trainingsintensität in Stunden pro Woche",
+       y = "Laufgeschwindigkeit in kmh")
+
+## (C) AV metrisch, UV nicht metrisch, Linearität gegeben
+
+# set parameters
+n <- 100
+b0 <- 2
+b1 <- 0.5
+sigma = 2
+
+# generate counts
+sim_df <- tibble(x = runif(n, 1, 26)) |>
+  mutate(mu = b0 + b1*x) |> 
+  mutate(y = rnorm(n = n, mu, sigma) )|>
+  mutate(x_int = round(x, digits = 0))
+
+# plot
+p3 <- ggplot(data = sim_df, aes(x = x_int, y = y)) + 
+  geom_point(size = 2.5, alpha = .2, color = "blue") +
+  theme_classic() +
+  labs(title = "(C) Laufgeschwindigkeit nach Kanton",
+       x = "Herkunftskanton (Identifikationsnummer)",
+       y = "Laufgeschwindigkeit in kmh")
+
+## (D) AV nicht metrisch, UV nicht metrisch, Linearität gegeben
+
+# set parameters
+n <- 100
+b0 <- 55
+b1 <- -2.5
+sigma <- 5
+
+# generate counts
+sim_df <- tibble(x = runif(n, 5, 18)) |>
+  mutate(mu = b0 + b1*x) |> 
+  mutate(y = rnorm(n = n, mu, sigma) )|>
+  mutate(x_int = round(x, digits = 0),
+         y_int = round(y, digits = 0))
+
+# plot
+p4 <- ggplot(data = sim_df, aes(x = x_int, y = y_int)) + 
+  geom_point(size = 2.5, alpha = .2, color = "blue") +
+  theme_classic() +
+  labs(title = "(D) Farbpräferenz je nach Studiengang",
+       x = "Studiengang (codiert)",
+       y = "Farbpräferenz (50 Varianten)")
+
+## (E) AV nicht metrisch, UV metrisch, Linearität nicht gegeben
+
+# set parameters
+n <- 100
+b0 <- 3
+b1 <- 0.1
+b2 <- 0.0001
+sigma <- 1
+
+# generate counts
+sim_df <- tibble(x = runif(n, 0, 15)) |>
+  mutate(mu = b0 + b1*x + b2*x^4) |> 
+  mutate(y = rnorm(n = n, mu, sigma)) |>
+  mutate(y_int = round(y, digits = 0))
+
+# plot
+p5 <- ggplot(data = sim_df, aes(x = x, y = y_int)) + 
+  geom_point(size = 2.5, alpha = .2, color = "blue") +
+  theme_classic() +
+  labs(title = "(E) Trauminhalte  je nach Schlafdauer",
+       x = "Schlafdauer in Stunden",
+       y = "Trauminhalte")
+
+## (F) AV metrisch, UV metrisch, Quasi-Linearität gegeben
+
+# set parameters
+n <- 100
+b0 <- 70
+b1 <- -1.5
+b2 <- -0.001
+sigma <- 5
+
+# generate counts
+sim_df <- tibble(x = runif(n, 2, 12)) |>
+  mutate(mu = b0 + b1*x + b2*x^4) |> 
+  mutate(y = rnorm(n = n, mu, sigma))
+
+# plot
+p6 <- ggplot(data = sim_df, aes(x = x, y)) + 
+  geom_point(size = 2.5, alpha = .2, color = "blue") +
+  theme_classic() +
+  labs(title = "(F) Stresssymptome je nach Schlafdauer",
+       x = "Schlafdauer in Stunden",
+       y = "Stressymptome (Wert 0-100)")
+```
+
+```{r}
+#| message: false
+#| warning: false
+#| include: false
+library(patchwork)
+p1 + p2 + p3 + p4 + p5 + p6 +
+  plot_layout(widths = unit(c(7, 7), c('cm', 'cm')), heights = unit(c(7, 7, 7), c('cm', 'cm', 'cm')))
+```
+
+![Scatterplots verschiedener Datensets](../imgs/uebung-10_scatterplots.jpeg)
+
+<br>
+
+## Aufgabe 10.2: Komponenten der Regressionsgleichung
+
+__a.__ Wie lautet die Bestimmungsgleichung der Regressionsgeraden in der einfachen linearen Regressionsanalyse? Schreiben Sie die Gleichung auf und ordnen Sie die untenstehenden Begriffe den Termen in der Gleichung zu: 
+
+- Achsenabschnitt (_intercept_)
+- Regressionsgewicht bzw. die Steigung (_slope_) der Regressionsgeraden
+- Vorhersagefehler
+- AV
+
+__b.__ Wie lautet die Bestimmungsgleichung für $b_0$ für unstandardisierte Variablen?
+
+__c.__ Wie lautet die Bestimmungsgleichung für $b_1$ für unstandardisierte Variablen?
+
+__d.__ Welchen konstanten Wert hat $b_0$ bei standardisierten Variablen?
+
+__e.__ Welchem Wert entspricht $b_1$ bei standardisierten Variablen?
+
+__f.__ In welcher Einheit wird das unstandardisierte Regressionsgewicht angegeben?
+
+<br>
+
+## Aufgabe 10.3: Anwendungsbereich 
+
+__Eigene Fragestellung bearbeiten.__
+
+__a.__ Nehmen Sie an, Sie könnten sich einen Datensatz _wünschen_. Welche für Sie spannende Forschungsfrage könnte mit einer einfachen linearen Regression analysiert werden?
+
+__b.__ Zeichnen Sie die Daten für Ihre Forschungsfrage auf. 
+
+- Was ist die AV und was die UV?
+
+- Zeichnen Sie die Achsen inkl. Achsenbeschriftungen (möglicher Wertebereich) auf. Wählen Sie wenn möglich Messungen/Achsen mit positiven, ganzzahligen Werten (_integers_). Wählen Sie für $x$ (UV) eine Achse die $0$ enthält.
+
+- Welche Daten würden Sie erwarten? Zeichnen Sie ein Punktdiagramm (_Scatterplot_) mit 10-20 Datenpunkten zu Ihrer Forschungsfrage.
+
+__c.__ Welcher Zusammenhang besteht zwischen den beiden Variablen?
+
+- Legen Sie eine möglichst passende (lineare) Regressionsgerade durch die Punktewolke.
+
+- Markieren Sie den ungefähren Achsenabschnitt (_intercept_) $b_0$. Welcher Wert hat $b_0$?
+
+- Zeichnen Sie den ungefähren Vorhersagefehler $e$ für jeden Datenpunkt ein.
+
+- Welche Steigung (_slope_) $b_1$ hat die Gerade ungefähr? (_Tipp: Zeichnen Sie auf der Gerade 2 Punkte ein und berechnen Sie die Differenz der $x$ und $y$-Werten dieser zwei Punkte. Teilen Sie dann $dy/dx$._)
+
+__d.__ Nutzen Sie Ihre Analyse zur Prädiktion.
+
+- Wählen Sie einen neuen $x$-Wert.
+
+- Berechnen Sie den neuen $y$-Wert mit der Regressionsgleichung (siehe _Aufgabe 10.2a_). Lassen Sie den Fehlerterm weg.
+
+- Zeichnen Sie den neuen Datenpunkt ein. Was stellen Sie fest?
+
+__e.__ Welche Schlussfolgerungen würden Sie aus der Analyse ziehen? Welche Aussagen können Sie mit den berechneten Werten machen?
+
+<br>
+
+__e.__ Welche Schlussfolgerungen würden Sie aus der Analyse ziehen? Welche Aussagen können Sie mit den berechneten Werten machen?
+
+__Gemeinsam eine Fragestellung bearbeiten__
+
+Tauschen Sie in Kleingruppen/im Plenum die Forschungsfragen aus und wählen Sie als Gruppe eine davon aus. Sammeln Sie dieses Mal gemeinsam Daten: Jede Person zeichnet mind. einen (fiktiven) Datenpunkt ein. Gehen Sie danach obige Schritte anhand diesen Beispiels durch. 
+
+- Welche Schlussfolgerungen würden Sie aus der Analyse ziehen? Welche Aussagen können Sie mit den berechneten Werten machen?
+
+Diskutieren Sie zusätzlich:
+
+- Welche weiteren Datenpunkte würden für sehr hohe/tiefe Werte der UV vorhergesagt werden?
+
+- Was könnte zu Fehlschätzungen führen?
+
+- Was würde passieren, wenn Sie die Achsen umdrehen? Bleiben die Werte für $b_0$ und $b_1$ gleich oder verändern diese sich?
+
+<br>
+
+## Aufgabe 10.4: Kleinste Quadrate-Kriterium
+
+__a.__ Ergänzen Sie den folgenden Text zum Grundgedanken des Kleinste-Quadrate Kriteriums:
+
+::: {.webex-check .webex-box}
+"Optimale `r webexercises::mcq(c("Reduktion des Kriteriums", answer= "Vorhersage", "Bestimmung der Regressionsgeraden"))` ist gegeben, wenn `r webexercises::mcq(c("die Varianz", "das Minimum", answer="die Summe"))` der quadrierten Differenzen zwischen den aus der unabhängigen Variablen `r webexercises::mcq(c("beobachteten", answer="vorhergesagten"))` Werten der abhängigen Variablen und den `r webexercises::mcq(c(answer="beobachteten", "vorhergesagten"))` Werten der abhängigen Variablen `r webexercises::mcq(c("maximal", answer="minimal"))` ist." (Eid et al. 2017)
+:::
+
+__b.__ Diskutieren Sie diesen Gedanken kurz: Gibt es Unklarheiten? Fassen Sie den obigen Satz für Laienpersonen verständlich in 1-2 Sätzen zusammen.
+
+## Aufgabe 10.5: Berechnen der Regressionsgeraden 
+
+:::{.callout-note appearance="default" title="Schlafstudie" collapse="false"}
+
+__Beschreibung der Studie__
+
+In der (fiktiven) Studie wurde der Einfluss von Schlafdauer bei Jugendlichen auf Konzentrationsleistung in einem neuropsychologischen Test (mögliche Scores zwischen 0 und 20) untersucht. 
+
+__Forschungsfrage__: Hängt die nächtliche Schlafdauer mit der Konzentration am nächsten Tag zusammen?
+
+__Daten:__ Die Grafik zeigt Messungen von 10 Jugendlichen.
+
+:::
+
+```{r}
+#| echo: false
+d <- tibble(x = c(7, 8, 5, 6, 9, 10, 9, 7, 11, 12),
+            y = c(12, 12, 6, 10, 16, 18, 12, 6, 14, 18))
+
+p1 <- d|>
+  ggplot(aes(x, y)) +
+  geom_point(size = 3, alpha = 0.4, color = "blue") +
+  scale_x_continuous("Schlafdauer in Stunden",
+                     breaks=c(0,1,2,3,4,5,6,7,8,9,10,11,12), 
+                     minor_breaks = NULL,
+                     limits=c(4,12)) +
+  scale_y_continuous("Leistung in Konzentrationstest",
+                     breaks=c(0,2,4,6,8,10,12,14,16,18,20),
+                     minor_breaks = NULL,
+                     limits=c(0,20)) +
+  theme_minimal()
+p1
+```
+
+<br>
+
+Berechnen Sie den Regressionskoeffizienten $b_1$ und den Achsenabschnitt $b_0$ dieser Daten.
+
+__a.__ Schreiben Sie alle Werte in eine Tabelle mit je einer Spalte für jede Variable oder geben Sie diese in _R_ ein. Benennen Sie die UV $x$ und die AV $y$.
+
+```{r}
+#| messages: false
+#| warning: false
+#| eval: false
+# Packages laden
+library(tidyverse)
+
+# Erstellen des Datensatzes
+d <- tibble(x = ___,
+            y = ___)
+```
+
+__b.__ Berechnen Sie $r_{XY}$ (die Korrelation der beiden Variablen) und die Standardabweichungen von Hand oder mit den Funktionen `cor()` und `sd()` in _R_.
+
+```{r}
+#| eval: false
+# Korrelation berechnen
+r_xy <- ___
+
+# Standardabweichungen berechnen
+sd_x <- ___
+sd_y <- ___
+```
+
+__c.__ Berechnen Sie den Regressionskoeffizienten $b_1$ von Hand oder in _R_. 
+
+__Tipp__: Multiplizieren Sie $r_{XY}$ mit den Quotienten der Standardabweichungen von $Y$ und $X$, um das Regressionsgewicht $b_1$ zu erhalten.
+
+```{r}
+#| eval: false
+# Regressionskoeffizient berechnen
+b_1 <- ___
+```
+
+__d.__ Berechnen Sie den Achsenabschnitt $b_0$. Hierfür brauchen Sie die Durchschnittswerte für $x$ und $y$.
+
+```{r}
+#| eval: false
+# Achsenabschnitt berechnen
+mean_x <- ___
+mean_y <- ___
+b_0 <- ___
+```
+
+__e.__ Sagen Sie einen neuen Wert $y$ für eine gegebenen Wert $x$ vorher.
+
+```{r}
+#| eval: false
+# Prädiktion
+y_hat <- ___
+```
+
+
+__f.__ Fügen Sie in den Plot die Werte für die Regressionsgerade ein. (Nur möglich, wenn Sie die Daten in R eingegeben haben.)
+
+```{r}
+#| eval: false
+d |>
+  ggplot(aes(x = x, y = y)) +
+  geom_point() +
+  xlim(0, 13) +
+  ylim(-5, 20) +
+  geom_abline(intercept = ___, slope = ___) +
+  theme_minimal()
+```
+
+__g.__ Welche Schlussfolgerungen würden Sie aus der Analyse ziehen? Welche Aussagen können Sie mit den berechneten Werten machen?
+
+<br>
+
+## Aufgabe 10.6: Berechnen der Regressionsgeraden für eigenes Beispiel 
+
+Berechnen Sie, wie in der vorherigen Aufgabe, den Regressionskoeffizienten $b_1$ und den Achsenabschnitt $b_0$ für das in _Aufgabe 10.3a-c_ selber erarbeitete Beispiel.
+
+__a.__ Schreiben Sie die Werte in eine Tabelle mit je einer Spalte für jede Variable oder geben Sie diese in _R_ ein.
+
+```{r}
+#| messages: false
+#| warning: false
+#| eval: false
+# Packages laden
+library(tidyverse)
+
+# Erstellen des Datensatzes
+___
+```
+
+__b.__ Berechnen Sie $b_1$ und $b_0$. _Tipp_: Verwenden Sie hierfür die Funktionen `mean()`, `sd()`, `cor()` in _R_.
+
+__c.__ Zeichnen Sie die Regressionslinie in Ihr zu Beginn erstelltes Punktediagramm ein und vergleichen Sie diese mit der zuvor von Ihnen geschätzten Regressionsgerade. Oder plotten Sie die Daten alternativ mit {ggplot2}, siehe _Aufgabe 10.5f_.
+
+__d.__ Welche Schlussfolgerungen würden Sie aus der Analyse ziehen? Welche Aussagen können Sie mit den berechneten Werten machen?
+
+<br>
+
+## Zusatzaufgaben 
+
+
+:::{.callout-tip appearance="default" title="Zusatzaufgaben"}
+
+__Zusatzaufgaben müssen nicht gelöst werden.__
+
+:::
+
+__a.__ Berechnen Sie die Varianzen: von $y$, $\hat{y}$ und der Residuen $e$, und berechnen Sie den Determinationskoeffizienten $R^2$ und Indeterminationskoeffizienten. Was sagen diese aus?
+
+
+:::{.callout-note appearance="default" collapse="true" title="Tipp"}
+
+Erstellen Sie hierfür eine Tabelle wie in den Vorlesungsfolien und berechnen Sie die Zwischenschritte mit den Funktionen `mean()`, `sd()`, `cor()`, `var()` (siehe [Deskriptive Statistik](../datenanalyse/descriptive.html))
+
+<br>
+
+| $m$ | $x_m$ | $y_m$  | $\hat{y}$ | $e_m = y_m - \hat{y}_m$ |
+|-------|-------|---|---|---|
+| 1     |       |   |   |   |
+| 2     |       |   |   |   |
+| 3     |       |   |   |   |
+| 4     |       |   |   |   |
+| 5     |       |   |   |   |
+| __*Summe*__   |   |   |   |   |
+| __*M*__       |   |   |   |   |
+| __*SD*__      |   |   |   |   |
+| __*Varianz*__ |   | $s_{y}^2 =$  | $s_{\hat{y}}^2 =$  | $s_e^2 =$   |
+
+
+:::
+
+__b.__ Osterspecial: Lesen Sie in [diesem Artikel](https://statmodeling.stat.columbia.edu/2025/03/11/what-does-jesus-have-to-do-with-linear-regression/) was lineare Regression mit Jesus zu tun hat.
+
+
