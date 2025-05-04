@@ -365,7 +365,7 @@ Der _t_-Test für abhängige Stichproben kann mit der Funktion `t.test()` durchg
 
 
 ```{r}
-# t-Test für unabhängige Stichproben durchführen
+# t-Test für abhängige Stichproben durchführen
 t.test(x = d_fear$fear_post, # av t2
        y = d_fear$fear_pre, # av t1
        alternative = "two.sided",

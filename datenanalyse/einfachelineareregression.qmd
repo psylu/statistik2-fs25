@@ -1,0 +1,736 @@
+# Einfache lineare Regression {#sec-einfache-lineare-regression}
+
+```{r}
+#| include: false
+# Set working directory of R
+knitr::opts_knit$set(root.dir = '../')
+```
+
+```{r}
+#| eval: false
+#| include: false 
+
+## simulate data
+library(tidyverse)
+
+# Linearer positiver Zusammenhang
+
+# set parameters
+n <- 100
+b0_1 <- 10
+b1_1 <- 5
+sigma_1 = 2
+
+# generate counts
+sim_df <- tibble(x = runif(n, 5, 18)) |>
+  mutate(mu = b0_1 + b1_1*x)|> 
+  mutate(y = rnorm(n = n, mu, sigma_1) )
+
+# plot
+p1 <- ggplot(data = sim_df, aes(x = x, y = y)) + 
+  geom_point(size = 2.5, alpha = .2, color = "blue") +
+  theme_classic() +
+  labs(title = "Linearer positiver Zusammenhang") +
+  theme(axis.text.x=element_blank(), 
+      axis.ticks.x=element_blank(), 
+      axis.text.y=element_blank(), 
+      axis.ticks.y=element_blank()) 
+
+# Linearer negativer Zusammenhang
+
+# set parameters
+n <- 100
+b0_2 <- 10
+b1_2 <- -5
+sigma_2 = 2
+
+# generate counts
+sim_df <- tibble(x = runif(n, 5, 18)) |>
+  mutate(mu = b0_2 + b1_2*x)|> 
+  mutate(y = rnorm(n = n, mu, sigma_2) )
+
+# plot
+p2 <- ggplot(data = sim_df, aes(x = x, y = y)) + 
+  geom_point(size = 2.5, alpha = .2, color = "blue") +
+  theme_classic() +
+  labs(title = "Linearer negativer Zusammenhang") +
+  theme(axis.text.x=element_blank(), 
+      axis.ticks.x=element_blank(), 
+      axis.text.y=element_blank(), 
+      axis.ticks.y=element_blank()) 
+
+# Kein Zusammenhang
+
+# set parameters
+n <- 100
+b0_3 <- 10
+b1_3 <- 0
+sigma_3 = 5
+
+# generate counts
+sim_df <- tibble(x = runif(n, 5, 18)) |>
+  mutate(mu = b0_3 + b1_3*x)|> 
+  mutate(y = rnorm(n = n, mu, sigma_3) )
+
+# plot
+p3 <- ggplot(data = sim_df, aes(x = x, y = y)) + 
+  geom_point(size = 2.5, alpha = .2, color = "blue") +
+  theme_classic() +
+  labs(title = "Kein Zusammenhang") +
+  theme(axis.text.x=element_blank(), 
+      axis.ticks.x=element_blank(), 
+      axis.text.y=element_blank(), 
+      axis.ticks.y=element_blank()) 
+
+# Nichtlinerarer Zusammenhang
+# set parameters
+n <- 100
+b0_4 <- 10
+b1_4 <- 0.01
+b2_4 <- 0.00001
+sigma_4 = 5
+
+# generate counts
+sim_df <- tibble(x = runif(n, 5, 18)) |>
+  mutate(mu = b0_4 + b1_4*x + b2_4*x^5.8)|> 
+  mutate(y = rnorm(n = n, mu, sigma_4) )
+
+# plot
+p4 <- ggplot(data = sim_df, aes(x = x, y = y)) + 
+  geom_point(size = 2.5, alpha = .2, color = "blue") +
+  theme_classic() +
+  labs(title = "Nichtlinearer Zusammenhang") +
+  theme(axis.text.x=element_blank(), 
+      axis.ticks.x=element_blank(), 
+      axis.text.y=element_blank(), 
+      axis.ticks.y=element_blank()) 
+
+library(patchwork)
+p1 + p2 + p3 + p4
+
+p1 + p2 + p3 + p4 +
+  plot_layout(ncol = 4)
+
+p1_line <- p1 +
+  geom_smooth(method = "lm", se = FALSE, colour = "black", size = 1)
+
+p2_line <- p2 +
+  geom_smooth(method = "lm", se = FALSE, colour = "black", size = 1)
+
+p3_line <- p3 +
+  geom_smooth(method = "lm", se = FALSE, colour = "black", size = 1)
+
+p4_line <- p4 +
+  geom_smooth(method = "lm", se = FALSE, colour = "black", size = 1)
+
+p1_line + p2_line + p3_line + p4_line
+   
+#ggsave("../imgs/regression_linearity.jpg", width = 13, height = 3.5)
+
+```
+
+```{r}
+#| eval: false
+#| include: false
+# data
+d <- tibble(x = (c(1, 3, 5, 7, 9)),
+            y = c(1, 5, 8, 6, 9)) |>
+  mutate(x = as.integer(x),
+         y = as.integer(y))
+# Korrelation berechnen
+r_xy <- cor(d$x, d$y)
+
+# Standardabweichungen berechnen
+sd_x <- sd(d$x)
+sd_y <- sd(d$y)
+
+# Regressionskoeffizient berechnen
+b_1 <- r_xy * (sd_y/sd_x)
+
+# Achsenabschnitt berechnen
+mean_x <- mean(d$x)
+mean_y <- mean(d$y)
+b_0 <- mean_y - b_1 * mean_x
+# check
+lm(y~x, data = d)
+
+
+# plot raw data
+d|>
+  ggplot(aes(x, y)) +
+  geom_point(size = 3, alpha = 0.4, color = "blue") +
+  scale_y_continuous("y",
+                     breaks=c(0,1,2,3,4,5,6,7,8,9,10), 
+                     minor_breaks = NULL,
+                     limits=c(0,10)) +
+  scale_x_continuous(breaks=c(0, 1,2,3,4,5,6,7,8,9,10),
+                     minor_breaks = NULL,
+                     limits=c(0,10)) +
+  #geom_abline(intercept = b_0, slope = b_1) +
+  theme_minimal() +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) 
+#ggsave("../imgs/regression_raw.jpg", height = 3, width = 3)
+
+
+# plot mean line
+d|>
+  ggplot(aes(x, y)) +
+  geom_point(size = 3, alpha = 0.4, color = "blue") +
+  scale_y_continuous("y",
+                     breaks=c(0,1,2,3,4,5,6,7,8,9,10), 
+                     minor_breaks = NULL,
+                     limits=c(0,10)) +
+  scale_x_continuous(breaks=c(0, 1,2,3,4,5,6,7,8,9,10),
+                     minor_breaks = NULL,
+                     limits=c(0,10)) +
+  geom_hline(yintercept = mean_y, color = "red", size = 1.5) +
+   # geom_abline(intercept = b_0, slope = b_1) +
+  theme_minimal() +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) 
+#ggsave("../imgs/regression_unweighted_mean.jpg", height = 3, width = 3)
+
+# plot mean line
+d|>
+  ggplot(aes(x, y)) +
+  geom_point(size = 3, alpha = 0.4, color = "blue") +
+  scale_y_continuous("y",
+                     breaks=c(0,1,2,3,4,5,6,7,8,9,10), 
+                     minor_breaks = NULL,
+                     limits=c(0,10)) +
+  scale_x_continuous(breaks=c(0, 1,2,3,4,5,6,7,8,9,10),
+                     minor_breaks = NULL,
+                     limits=c(0,10)) +
+  #geom_hline(yintercept = mean_y, color = "red", size = 1.5) +
+  geom_abline(intercept = b_0, slope = b_1, colour = "red", size = 1.5) +
+  theme_minimal() +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) 
+ggsave("../imgs/regression_weighted_mean.jpg", height = 3, width = 3)
+
+# plot regression line
+d|>
+  ggplot(aes(x, y)) +
+  geom_point(size = 3, alpha = 0.4, color = "blue") +
+  scale_y_continuous("y",
+                     breaks=c(0,1,2,3,4,5,6,7,8,9,10), 
+                     minor_breaks = NULL,
+                     limits=c(0,10)) +
+  scale_x_continuous(breaks=c(0, 1,2,3,4,5,6,7,8,9,10),
+                     minor_breaks = NULL,
+                     limits=c(0,10)) +
+  geom_abline(intercept = b_0, slope = b_1) +
+  theme_minimal() +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) 
+#ggsave("../imgs/regression_line.jpg", height = 3, width = 3)
+```
+
+## Anwendungsbereich
+
+Die lineare Regression wird zur Vorhersage einer metrischen Variable durch eine (einfache lineare Regression) oder mehrere (multiple lineare Regression) metrische Variablen verwendet. 
+
+Der Zusammenhang wird als Einfluss einer erklärenden Variable^[Prädiktorvariablen, unabhängigen Variablen, Regressor] (_predictor variable_) auf eine zu erklärende Variable^[Kriteriumsvariablen, abhhängigen Variablen, Regressand] (_outcome/response variable_) quantifiziert.
+Dabei ist wichtig, dass mit Zusammenhang nicht zwingend ein Kausalzusammenhang gemeint ist. 
+Kausalzusammenhänge müssen zusätzlich theoretisch begründet und methodisch implementiert (z.B. durch ein experimentelles Design) sein.
+
+Die lineare Regression modelliert den Zusammenhang zweier Variablen mit einer linearen Funktion (Gerade).
+Hierbei werden die Werte der zu erklärenden Variablen $y$ als Funktion der erklärenden Variable $x$ modelliert, $y = f(x_m)$.
+Berechnet wird ein Achsenabschnitt ($b_0$, _intercept_) und ein Regressionskoeffizient für die Steigung (_slope_) der Gerade, um zu quantifizieren, wie stark sich ein Variablenwert verändert wenn die andere Variable um eine Einheit zunimmt.
+Dies dient der Vorhersage der Ausprägung einer Variable (Regressor) aus der Ausprägung einer anderen Variable (Regressand). 
+
+Dieser Methode ermöglicht:
+
+- Beschreiben von Merkmalsunterschieden/-zusammenhängen ohne Wirkrichtung bzw. ohne kausalen Zusammenhang
+− Beschreiben/Feststellen von kausalen Zusammenhängen (bei  theoretischer Begründung und methodischer Implementation/experimenteller Studie)
+- Prognose bzw. Vorhersage/Prädiktion von Merkmalsausprägungen für neue Datenpunkte
+− Prädiktion von neuen Werten
+
+__Typische Fragestellungen__:
+
+- *Wie wirkt sich die wöchentliche Trainingszeit in einer Aufgabe auf die Reaktionszeit aus?*
+
+- *Beeinflusst die Berufserfahrung das Jahreseinkommen?*
+
+- *Steigt das Risiko einer psychischen Erkrankung mit zunehmendem Alter?*
+
+- *Wie gross ist das Risiko einer Erkrankung bei vorliegendem Testscore?*
+
+<!-- - *Wie hängt der Stresslevel einer Person von ihrem Alter und ihrer Ängstlichkeit ab?* (multiple lineare Regression) -->
+
+<!-- _Beispiel einer Einfachen linearen Regression__: -->
+
+
+## Voraussetzungen
+
+| Voraussetzung | Beschreibung | Vorgehen bei Verletzung |
+|---|---|---|
+| Abhängige Variable | Eine abhängige Variable mit metrischem Skalenniveau. | Bei kategorialer Variable: logistische Regression. |
+| Unabhängige Variable | Eine unabhängige Variable mit metrischem Skalenniveau. | Verwenden eines anderen statistischen Verfahrens (z.B. _t_-Test, _ANOVA_) oder Kodierung der UV durch Kodiervariablen (Dummy-Codierung). |
+| Linearität | Linearer Zusammenhang zwischen den beiden Variablen. Die Linearitätsannahme kann durch die visuelle Inspektion des Punktediagramms (_Scatterplot_) überprüft werden. | Bei nichtlinearem Zusammenhang zwischen den Variablen: Variablen transformieren (z.B. Logarithmierung) oder Anwenden von Multipler Regressionsanalyse zur Analyse nichtlinearer Zusammenhänge. |
+| Varianzhomogenität / Homoskedastizität | Die Abweichung von $y$ von der Regressionsgeraden sollte über verschiedene Werte der Prädiktorvariablen $x$ ähnlich sein und nimmt nicht signifikant zu oder ab. | Transformation von $y$, alternative Schätzmethoden oder Bootstrapping. |
+| Normalverteilung der Residuen | Die Residuen sind normalverteilt. Wird durch Q-Q-Plots und Shapiro-Wilk-Tests überprüft. | Transformation von $y$, alternative Schätzmethoden oder Bootstrapping. |
+| Unabhängigkeit der Fehler| Die Stichprobe muss so erhoben werden, dass die Merkmalsträger voneinander unabhängig sind. | Hierarchisch lineares Modell, dass die Abhängigkeit innerhalb der Datenstruktur berücksichtigt. |
+
+: __Voraussetzungen einfache lineare Regression__, Überprüfung und mögliche Alternativen bei Verletzung der Annahmen {.hover}
+
+<br>
+
+<aside> Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transformationen oder _Multiple Regressionsanalyse für nichtlineare Zusammenhänge_) wird in diesem Semester nicht eingegangen. </aside>
+                                                                                          
+
+## Grundkonzepte und Vorgehen
+
+![Allgemeiner Workflow der Datenanalyse](../imgs/flowchart_analysis.png)
+
+
+### Vorverarbeitung
+
+#### __Daten einlesen, vorverarbeiten und visualisieren__
+
+Zuerst müssen die Daten eingelesen und je nach Bedarf vorverarbeitet werden.
+
+Daten für eine einfache lineare Regression können mit einem Punktediagramm (_scatterplot_) diagnostisch visualisiert werden. 
+Üblicherweise (aber nicht zwingend) wird die Prädiktorvariable (unabhängige Variable) auf der $x$-Achse und Kriteriumsvariable (abhängige Variable) auf der $y$-Achse abgetragen.
+
+Scatterplots eignen sich besonders gut um folgende Probleme zu identifizieren: 
+
+- Schlechte Datenqualität durch fehlende Werte
+- Verzerrung der Resultate durch Extremwerte (Outlier)
+- Nichtlinearer Zusammenhang der beiden Variablen
+
+#### __Voraussetzungen überprüfen__
+
+__Vor dem Berechnen der Regressionsanalyse__
+
+- __Skalenniveau der beiden Variablen__: Beide Variablen sollten metrisch sein. 
+
+- __Linearitätsannahme__: Durch ein Punktediagramm bzw. _Scatterplot_ kann ein starker, nichtlinearer Zusammenhang der Variablen ausgeschlossen werden.
+Die meisten Zusammenhänge in der Psychologie und in den Verhaltenswissenschaften sind nur annähernd linear.
+Bei leichten Abweichungen kann trotzdem eine einfache lineare Regression ausgeführt werden.
+
+![Punktediagramme für Datensätze mit gegebener und nicht gegebener Linearität](../imgs/linearity.jpg)
+
+__Nach dem Berechnen der Regressionsanalyse__
+
+- __Homoskedastizität__ 
+
+- __Normalverteilung der Fehlervariablen__
+
+- __Unabhängigkeit der Fehler__
+
+<br>
+
+### Analyse
+
+#### __Regressionsgleichung__
+
+Bei der Regressionsanalyse wird eine Regressionsgerade in die Datenpunkte gelegt. 
+
+Die Regressionsgerade wird durch den Achsenabschnitt $b_0$ (_intercept_) und den Regressionskoeffizienten $b_1$ (_slope_) definiert.
+
+Die Bestimmungsgleichung für die Regressionsgerade lautet:
+
+$\hat{y} = b_0 + b_1 \cdot x$
+
+Für einzelne Datenpunkte lautet die Bestimmungsgleichung
+
+$\hat{y}_m = b_0 + b_1 \cdot x_m$
+
+wobei
+
+- $m$: Beobachtungseinheit (Person)
+
+- $y_m$: Wert der Kriteriumsvariable (AV) der Beobachtungseinheit $m$
+
+- $x_m$: Wert der Prädiktorvariable (UV) der Beobachtungseinheit $m$
+
+- $b_0$: __Achsenabschnitt (*intercept*)__: Wert, welcher $y$ annimmt, wenn $x = 0$ bzw. bei welchem die Regressionsgerade die y-Achse schneidet beim Wert 0 auf der x-Achse. 
+
+- $b_1$: __Regressionskoeffizient/Steigung (*slope*)__: Steigung der Regressionsgeraden. 
+
+
+<aside>![Regressionsmodell](../imgs/regression_model.png){width=100%}</aside>
+
+#### __Bestimmung des Regressionskoeffizienten $b_1$__
+
+Der Regressionskoeffizient bzw. die Steigung (_slope_) wird mit folgender Gleichung bestimmt:
+
+$b_1 = r_{xy} \cdot \frac{s_y}{s_x} = \frac{s_{xy}}{s^2_x}$
+
+wobei 
+
+- $r_{xy}$: Produkt-Moment-Korrelation von $x$ und $y$
+- $s_y$: Standardabweichung von $y$
+- $s_x$: Standardabweichung von $x$
+- $s_xy$: Kovarianz von $x$ und $y$
+
+Bei der __Regression standardisierter Werte__ entspricht die Steigung $b_{1s}$ der Produkt-Moment-Korrelation $r_{xy}$ zwischen den beiden Variablen.
+
+#### __Bestimmung des Achsenabschnitts $b_0$__
+
+Der Achsenabschnitt (_intercept_) wird mit folgender Gleichung bestimmt:
+
+$b_0 = \bar{y} - b_1 \cdot \bar{x}$
+
+wobei 
+
+- \bar{x}: Mittelwert von $x$
+- \bar{y}: Mittelwert von $y$
+
+Bei der __Regression standardisierter Werte__ entspricht der Achsenabschnitt immer 0, also $b_{0s} = 0$. 
+
+
+#### __Prädiktion neuer Werte__
+
+Wenn $b_0$ und $b_1$ bekannt sind, kann ein beliebiger Wert $x_m$ gewählt^[hierbei muss beachtet werden, dass der Wert oft nicht extrem von dem vorhandenen Datenbereich abweichen darf, um eine gute Schätzung zu erzeugen] und der dazugehörige Wert $\bar{y}_m$ geschätzt werden. 
+
+$\hat{y}_m = b_0 + b_1 \cdot x_m$
+
+Für die Vorhersage neuer Werte wird der Fehlerterm $e$ hierbei weggelassen. 
+Sollen Daten simuliert werden (beispielsweise zur Planung von Datenanalysen wie Poweranalysen oder Präregistrationen), kann der Fehlerterm hinzugefügt werden, um möglichst "natürliche" Daten zu erhalten.
+
+#### __Regressionsresiduum, Quadratsummenzerlegung und Varianzzerlegung__
+
+Die Differenz zwischen dem durch die Regressionsgleichung vorhergesagten Wert ($\hat{y}_m$) und dem tatsächlichen (beobachteten) Wert ($y_m$) wird Regressionsresiduum/Fehlerwert genannt.
+
+$y_m = \hat{y}_m + e = b_0 + b_1 \cdot x_m + e_m$
+
+wobei
+
+- $e_m$: __Regressionsresiduum/Fehlerwert__ (Unterschied zwischen dem vorhergesagten und tatsächlichen Wert) der Beobachtungseinheit $m$ 
+
+Der Fehlerterm ist nötig, weil in der Praxis die Regressionsgerade nie genau auf allen Punkten zu liegen kommt, dh. kein perfekter Zusammenhang der Variablen vorhanden ist. 
+
+![Regressionsmodell](../imgs/regression_model_errorterms.png){width=40%}
+
+Die Residualvarianz (Fehlervarianz) wird berechnet mit
+
+$s^2_e =\frac{\sum^n_{m=1} (y_{m} - \hat{y}_m)^2}{n}$.
+
+Die Standardabweichung des Regressionsresiduums ist die Quadratwurzel daraus
+
+$s_e = \sqrt{s^2_e} = \sqrt{\frac{\sum^n_{m=1} (y_{m}- \hat{y}_m)^2}{n}}$.
+
+Es gilt 
+
+$s_e = s_y \cdot \sqrt{1 - r^2_{xy} }$.
+
+Die Quadratsumme beobachteten Abweichungen $QS_y$ besteht aus der Quadratsumme der Regressionsresiduen $QS_e$ und der geschätzten $y$-Werte $QS_\hat{y}$.
+
+$\sum^n_{m=1}(y_{m}- \bar{y})^2 = \sum^n_{m=1} (y_{m}- \hat{y}_m)^2 + \sum^n_{m=1} (\hat{y}_m - \bar{y})^2$
+
+$QS_y = QS_e + QS_\hat{y}$
+
+Die Varianz kann wie folgt zerlegt werden
+
+$\frac{\sum^n_{m=1}(y_{m}- \bar{y})^2}{n} = \frac{\sum^n_{m=1} (y_{m}- \hat{y}_m)^2}{n} + \frac{\sum^n_{m=1} (\hat{y}_m - \bar{y})^2}{n}$
+
+$s^2_y = s^2_e + s^2_\hat{y}$.
+
+
+#### __Determinations- und Indeterminationskoeffizient__
+
+Der Determinationskoeffizient $R^2$ kann einen Wert zwischen 0 und 1 annehmen.
+Bei keiner Korrelation entspricht $R^2 = 0$, bei einer perfekten Korrelation entspricht $R^2 = 1$.
+Für Werte zwischen 0 und 1 gilt, dass $c \cdot 100%$ der Varianz in $y$ durch Variation in $x$ erklärt wird, also zurückgeführt werden kann.
+Ein Determinationskoeffizient von $0.45$ bedeutet also, dass 45% der Varianz in $y$ durch Variation in $x$ erklärt werden kann.
+
+Determinationskoeffizient: $R^2 = \frac{s^2_\hat{y}}{s^2_y}$
+
+Indeterminationskoeffizient: $1- R^2 = \frac{s^2_e}{s^2_y}$
+
+
+#### __Teststatistik berechnen__
+
+Um zu überprüfen, ob die beiden Variablen signifikant zusammenhängen, kann die Nullhypothese überprüft werden durch das Vergleichen des Prüfwerts mit einer $t$-Verteilung mit $df = n-2$ Freiheitsgraden und/oder durch das Konstruieren von Konfidenzintervallen berechnet.
+
+
+__Regressionskoeffizient $b_1$ überprüfen__
+
+Die Nullhypothese lautet üblicherweise $H_0: b_1 = \beta_{10}$: Der Regressionskoeffizient unterscheidet sich nicht von 0.^[Es kann auch ein anderer Wert als 0 für $\beta_{10}$ gewählt werden.]
+
+Zur Überprüfung der Nullhypothese wird die Prüfgrösse berechnet, die einer $t$-Verteilung folgt mit $df = 2$
+
+- $t_{emp} : \frac{b_1 - \beta_{10}}{\hat{\sigma}_{B_1}}$
+- $t_{krit}: t_{(1-\frac{\alpha}{2};n-2)}$
+
+Wenn $t_{emp} > t_{krit}$ kann die Nullhypothese abgelehnt werden.
+
+::: {.callout-note collapse="true" title="Geschätzte Populationsresidualvarianz $\hat{\sigma}^2_{\varepsilon}$ und Varianz von $B_1$ $\hat{\sigma}^2_{B_1}$"}
+
+Die geschätzte Varianz (quadrierter Standardfehler) von $B_1$, $\hat{\sigma}^2_{B_1}$ kann berechnet werden mit:
+
+$\hat{\sigma}^2_{B_1} = \frac{\hat{\sigma}_{\varepsilon}}{\sqrt{n - s^2_x}}$
+
+wobei:
+
+- Die Populationsresidualvarianz $\sigma^2_{\varepsilon}$ meist nicht bekannt ist und geschätzt wird mit
+
+$\hat{\sigma}^2_{\varepsilon} = \frac{\sum^n_{m=1} e^2_m}{n-2} = \frac{\sum^n_{m=1} (y_m - \hat{y}_m)^2}{n-2}$.
+
+- Der geschätzte Standardschätzfehler (die geschätzte Standardabweichung der Residuen) entspricht somit
+
+$\hat{\sigma}_{\varepsilon} = \sqrt{\frac{\sum^n_{m=1} e^2_m}{n-2}} = \sqrt{\frac{\sum^n_{m=1} (y_m - \hat{y}_m)^2}{n-2}}$.
+
+![Residualwerte](../imgs/regression_residuals.png){width=40%}
+:::
+
+Das Konfidenzintervall entspricht
+
+[$b_1 - t_{(1-\frac{\alpha}{2};n-2)} \cdot \hat{\sigma}_{B_1}$ \m ; \m $b_1 + t_{(1-\frac{\alpha}{2};n-2)} \cdot \hat{\sigma}_{B_1}$].
+
+Wenn das Konfidenzintervall 0 nicht enthält, kann die Nullhypothese abgelehnt werden.
+
+__Überprüfen Achsenabschnitt $b_0$__:
+
+- $H_0: b_0 = \beta_{00}$: Der Achsenabschnitt unterscheidet sich nicht von Null.^[Hier kann darüber nachgedacht werden, ob ein Achsenabschnitt geprüft werden soll, da er sich oft von 0 unterscheidet. In _R_ wird er standardmässig mitüberprüft, aber oft ist der Achsenabschnitt irrelevant und wird nur deskriptiv in den Resultaten berichtet. Bei standardisierten Variablen ist der Achsenabschnitt zwangsläufig 0.]
+
+Zur Überprüfung der Nullhypothese wird die Prüfgrösse berechnet, die einer $t$-Verteilung folgt mit $df = 2$
+
+- $t_{emp} = \frac{b_0- \beta_{00}}{\hat{\sigma}_{B_0}}$
+- $t_{krit}: t_{(1-\frac{\alpha}{2};n-2)}$
+
+Wenn $t_{emp} > t_{krit}$ kann die Nullhypothese abgelehnt werden.
+
+::: {.callout-note collapse="true" title="Geschätzte Populationsresidualvarianz $\hat{\sigma}^2_{\varepsilon}$ und Varianz von $B_0$ $\hat{\sigma}^2_{B_0}$ "}
+
+Die geschätzte Varianz (quadrierter Standardfehler) von $B_0$, $\hat{\sigma}^2_{B_0}$ kann berechnet werden mit:
+
+$\hat{\sigma}^2_{B_0} = \hat{\sigma}^2_{\varepsilon} \cdot (\frac{1}{n} + \frac{\bar{x}^2}{n \cdot s^2_x})$
+
+somit:
+
+$\hat{\sigma}_{B_0} = \hat{\sigma}_{\varepsilon} \cdot \sqrt{\frac{1}{n} + \frac{\bar{x}^2}{n \cdot s^2_x}}$
+
+wobei:
+
+- Die Populationsresidualvarianz $\sigma^2_{\varepsilon}$ meist nicht bekannt ist und geschätzt wird mit
+
+$\hat{\sigma}^2_{\varepsilon} = \frac{\sum^n_{m=1} e^2_m}{n-2} = \frac{\sum^n_{m=1} (y_m - \hat{y}_m)^2}{n-2}$.
+
+- Der geschätzte Standardschätzfehler (die geschätzte Standardabweichung der Residuen) entspricht somit
+
+$\hat{\sigma}_{\varepsilon} = \sqrt{\frac{\sum^n_{m=1} e^2_m}{n-2}} = \sqrt{\frac{\sum^n_{m=1} (y_m - \hat{y}_m)^2}{n-2}}$.
+
+![Residualwerte](../imgs/regression_residuals.png){width=40%}
+:::
+
+Das Konfidenzintervall entspricht
+
+[$b_0 - t_{(1-\frac{\alpha}{2} ; n-2)} \cdot \hat{\sigma}_{B_0}$ \m ; \m $b_0 + t_{(1-\frac{\alpha}{2};n-2)} \cdot \hat{\sigma}_{B_0}$].
+
+Wenn das Konfidenzintervall 0 nicht enthält, kann die Nullhypothese abgelehnt werden.
+
+### Schlussfolgerungen
+
+#### __Ergebnisse interpretieren und berichten__
+
+Für die einfache lineare Regressionsanalyse werden in der Regel der Regressionskoeffizient $b_1$ und der dazugehörige $t$-Test für den Prädiktor berichtet sowie mit dem _R^2_, wie viel der Varianz in der abhängigen Variable aufgeklärt wurde durch den Prädiktor.
+
+Inferenzstatistische Kennwerte (z.B. $t$) werden mit zwei Dezimalen berichtet.^[https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf]
+
+> Simple linear regression analysis was used to test if the hours of sleep significantly predicted performance in a concentration test in young adults. The analysis showed that more hours of sleep predict higher scores in the  test ($\beta = 1.63$, $p = 002$). The results of the regression indicated that hours of sleep explained 71.0% of the variance ($R^2 = .71$,  $F(1,8) = 1 19.54$, $p = .002$).
+
+## Anwendungsbeispiel in R
+
+::: {.callout-note appearance="default" title="Beispiel: Schlaf und Konzentration" icon=false}
+
+__Studienbeschrieb__: In der (fiktiven) Studie wurde der Einfluss von Schlafdauer bei Jugendlichen auf Konzentrationsleistung in einem neuropsychologischen Test (mögliche Scores zwischen 0 und 20) untersucht. 
+
+__Forschungsfrage__: Hängt die nächtliche Schlafdauer mit der Konzentration am nächsten Tag zusammen?
+
+- Die _unabhängige Variable_ `sleep` enthält Daten über die Schlafdauer in der vorherigen Nacht.
+- Die _abhängige Variable_ `concentration` enthält Daten über die Leistung in einem neuropsychologischen Konzentrationstest. Die maximale Punktzahl beträgt 20.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+library(tidyverse)
+d <- tibble(sleep = c(5, 5, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12),
+            concentration = c(6, 10,  10, 12, 6, 12, 17, 12, 8, 16, 12, 16, 18, 8, 14, 10, 12, 18))
+
+p1 <- d|>
+  ggplot(aes(x = sleep, y = concentration)) +
+  geom_point(size = 3, alpha = 0.4, color = "blue") +
+  scale_x_continuous("Schlafdauer in Stunden",
+                     breaks=c(0,1,2,3,4,5,6,7,8,9,10,11,12), 
+                     minor_breaks = NULL,
+                     limits=c(4,12)) +
+  scale_y_continuous("Leistung in Konzentrationstest",
+                     breaks=c(0,2,4,6,8,10,12,14,16,18,20),
+                     minor_breaks = NULL,
+                     limits=c(0,20)) +
+  theme_minimal()
+p1
+
+m1 <- lm(concentration ~sleep, data = d)
+```
+:::
+
+### Planung
+
+#### __Statistische Hypothesen und Signifikanzniveau festlegen__
+
+$H_0$: Die Schlafdauer hat keinen Einfluss auf die Leistung im Konzentrationstest: $b_1=\beta_{10}$ 
+
+$H_1$: Die Schlafdauer sagt die Leistung im Konzentrationstest vorher $b_1 \neq\beta_{10}$ 
+
+Das Alphaniveau wird auf $5 \%$ festgelegt. Da es sich um eine ungerichtete Hypothese handelt, wird zweiseitig getestet. 
+
+#### __Daten einlesen und vorverarbeiten__
+
+::: {.callout-caution appearance="default" title="Hands-on: Beispieldatensatz Schlaf und Konzentration"}
+
+```{r}
+# Laden tidyverse
+library(tidyverse)
+
+# Erstellen des Datensatzes
+d <- tibble(sleep = c(5, 5, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12),
+            concentration = c(6, 10,  10, 12, 6, 12, 17, 12, 8, 16, 12, 16, 18, 8, 14, 10, 12, 18))
+```
+:::
+
+Für die Regressionsanalyse sollten die Variablenwerte im Zahlenformat, also beispielsweise als `integer` oder `double` gespeichert sein.
+
+#### __Voraussetzungen überprüfen__
+
+__Metrisch skalierte Variablen und Linearität__
+
+```{r}
+glimpse(d)
+```
+
+__Linearität__
+
+```{r}
+d |> ggplot(aes(x = sleep, y = concentration)) +
+  geom_point() +
+  ylim(0, 20+0.5) +
+  xlim(0, 12+0.5) +
+  theme_minimal()
+```
+
+
+Sobald das Regressionsmodell geschätzt wurde, können die weiteren Voraussetzungen überprüft werden. 
+
+### Analyse
+
+
+#### __Regressionsmodell__
+
+Die einfache lineare Regression kann mit der Funktion `lm()` aus dem schon in R installierten Package {stats} berechnet werden.
+
+Als Argumente benötigt die Funktion `lm()` die Modellgleichung (`av ~ uv`) und den Datensatz mit den Variablen (`data = ...`).
+Die Resultate der Regressionsanalyse können mit der Funktion `summary()` zusammengefasst werden.
+
+```{r}
+# Einfache lineare Regression berechnen
+m1 <- lm(concentration ~ sleep,
+      		data = d)
+
+# Output ausgeben
+summary(m1)
+
+```
+
+#### __Modellannahmen überprüfen__
+
+Mit dem Package {performance} können die Modellannahmen einer einfachen linearen Regression überprüft werden. 
+
+<aside> Vor dem ersten Verwenden muss das Package {performance} heruntergeladen/installiert werden, z.B. in der Konsole mit `install.packages("performance")`.</aside>
+
+Die Funktion `check_model()` gibt diagnostische Plots aus:
+
+```{r}
+#| eval: false
+performance::check_model(m1)
+```
+![](../imgs/regression_diagnostics.jpeg)
+
+<aside>Weiterführend können auch die partiellen Residuen überprüft werden, wie [hier](https://strengejacke.github.io/ggeffects/articles/introduction_partial_residuals.html) beschrieben. </aside>
+
+Wie die Plots gelesen werden sollten und was getan werden kann, wenn die Annahmen nicht erfüllt sind wird auf der [Website des Packages {performance}]() sehr gut beschrieben.
+
+__Linearität__
+
+Ob die Linearität gegeben ist, kann in folgendem Plot visuell beurteilt werden. Die Referenzlinie (grün) sollte ungefähr gerade sein und horizontal liegen.
+
+```{r}
+diagnostic_plots <- plot(performance::check_model(m1, panel = FALSE))
+
+# check linearity
+diagnostic_plots[[2]]
+```
+
+__Homoskedastizität__
+
+```{r}
+# check homogeneity of variance
+diagnostic_plots[[3]]
+```
+
+Die Homoskedastizität kann weiter mit der Funktion `check_heteroskedasticity()` überprüft werden (Breusch-Pagan test).
+
+```{r}
+performance::check_heteroskedasticity(m1)
+```
+
+__Normalverteilung der Fehlervariablen__
+
+
+```{r}
+# check normality of residuals
+diagnostic_plots[[5]]
+```
+
+Die Normalverteilung der Fehlervariablen kann weiter mit der Funktion `check_normality()` überprüft werden (Shapiro-Wilk test).
+
+```{r}
+performance::check_normality(m1)
+```
+
+__Outlier erkennen__
+
+```{r}
+# detect outliers
+diagnostic_plots[[4]]
+```
+
+
+#### __Deskriptivstatistik und Visualisierungen__
+
+Zur Visualisierung von Unterschieden eignen sich Punktdiagramme (_Scatterplots_) und das Einzeichnen der Regressionsgeraden.
+
+Die Regressionsgerade (schwarz) kann mit `+ geom_abline(intercept = ..., slope = ...)` hinzugefügt werden.
+Weiter verfügt {ggplot2} auch über Funktionen, die die Regressionsgerade (blau) direkt berechnen, wie beispielsweise ` + geom_smooth()`.
+
+```{r}
+#| message: false
+d |> ggplot(aes(x = sleep, y = concentration)) +
+  geom_point() +
+  geom_abline(intercept = 6.1623, slope = 0.7025) +
+  geom_smooth(method = "lm", se = FALSE, color = "blue") +
+  ylim(0, 20+0.5) +
+  xlim(0, 12+0.5) +
+  theme_minimal()
+```
+
+Durch die Visualisierung der Rohwerte und der Regressionsgeraden, kann der "Fit", also die Passung der Geraden zu den Daten gut visuell überprüft werden.
+Sichtbar wird auch, wenn die Daten nichtlineare Zusammenhänge aufweisen, die nicht mit einer linearen Regression analysiert werden können, wie beispielsweise kurvilineare Zusammenhänge.
+
+### Schlussfolgerungen
+
+#### __Ergebnisse interpretieren und berichten__
+
+> Simple linear regression analysis was used to test if the hours of sleep significantly predicted performance in a concentration test in young adults. Hours of sleep did not significantly predict performance in the concentration test ($\beta = 0.70$, $p = .089$). 
+
+
+### Weiterführende Informationen
+
+- Interaktive Visualisierung von Zusammenhängen von _RPsychologist_: <https://rpsychologist.com/correlation/>
+
+- Informationen zu den Modellchecks mit {performance}: <https://easystats.github.io/performance/index.html>

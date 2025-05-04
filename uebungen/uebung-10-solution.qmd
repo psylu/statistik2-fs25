@@ -201,10 +201,6 @@ p1 + p2 + p3 + p4 + p5 + p6 +
 
 > _[10 min]_ 
 
-> Hier sammeln wir alle Formeln, damit wir sie später verwenden können und dort keine Geschwindigkeitsunterschiede entstehen. Sie sollen sich kurz damit auseinandersetzen, ob sie die Formeln verstehen/Terme zuordnen können. 
-
-> Zeitmanagement: Die Aufgabe sollte nicht länger als 15 Minuten dauern! Wichtig ist, dass sie die Formeln der Aufgaben a.-c. für die heutige Übung ready haben. Fragen zu den Formeln klären sich evtl. im Verlauf der Übung und können am Schluss nochmals aufgegriffen werden, wenn noch Zeit.
-
 __a.__ Wie lautet die Bestimmungsgleichung der Regressionsgeraden in der einfachen linearen Regressionsanalyse? Schreiben Sie die Gleichung auf und ordnen Sie die untenstehenden Begriffe den Termen in der Gleichung zu: 
 
 - Achsenabschnitt (_intercept_)
@@ -258,8 +254,6 @@ __f.__ In welcher Einheit wird das unstandardisierte Regressionsgewicht angegebe
 
 __Eigene Fragestellung bearbeiten.__
 
-> Vorschlag: Hier sollen Sie einfach mal durcharbeiten, was sie können. Fragen dazu werden im zweiten Teil beantwortet.
-
 __a.__ Nehmen Sie an, Sie könnten sich einen Datensatz _wünschen_. Welche für Sie spannende Forschungsfrage könnte mit einer einfachen linearen Regression analysiert werden?
 
 __b.__ Zeichnen Sie die Daten für Ihre Forschungsfrage auf. 
@@ -309,17 +303,13 @@ Diskutieren Sie zusätzlich:
 
 > Es ist einfacher, wenn die UV auf der x-Achse liegt und die AV auf der y-Achse.
 
-> Falls die Wolke keine Korrelation anzeigt: selber noch ein paar Punkte hinzufügen.
-
-> Falls ein nichtlinearer Zusammenhang entsteht: Fragen, was das Problem sein könnte. Danach Datenpunkte löschen/hinzufügen für linearen Zusammenhang um fortzufahren.
-
 > Take home: (1) Regressionen eignen sich für "Vorhersagen" je nach Fragestellung/Design muss man vorsichtig sein mit der Extrapolation, beispielsweise wenn Schlüsse ausserhalb des Datensbereichs gezogen werden (evtl. ist der Zusammenhang dort nicht mehr linear!). (2) Extremwerte können die Regression sehr stark verändern. (3) Selektionsbias in der Datenauswahl (also wenn nur ein Teil der "Punktewolke" ausgewählt/erhoben/einbezogen werden würde) kann zu Fehlern führen.
 
 > Wenn unstandardisiert: Eine starke Steigung bedeutet NICHT eine hohe Korrelation, da die Steilheit von der Dateneinheit abhängt nicht (nur) von der Stärke des Zusammenhangs! D.h. die Stärke des Zusammenhangs kann nur aus den standardisiert aufgezeichneten Datenpunkten geschlossen werden oder wenn die Achsen dieselbe Metrik enthalten. (Oder wenn man die Einheiten inhaltlich gut versteht und die Steigung so einordnen kann.)
 
 - Was würde passieren, wenn Sie die Achsen umdrehen? Bleiben die Werte für $b_0$ und $b_1$ gleich oder verändern diese sich?
 
-> Die Werte verändern sich ziemlich sicher. Regressionskoeffizienten sind in der Einheit der AV angegeben. Siehe auch letzter Punkt oben. 
+> Die Werte verändern sich in den meisten Fällen. Regressionskoeffizienten sind in der Einheit der AV angegeben. Siehe auch letzter Punkt oben. 
 
 <br>
 
@@ -356,8 +346,12 @@ __Daten:__ Die Grafik zeigt Messungen von 10 Jugendlichen.
 
 ```{r}
 #| echo: false
-d <- tibble(x = c(7, 8, 5, 6, 9, 10, 9, 7, 11, 12),
-            y = c(12, 12, 6, 10, 16, 18, 12, 6, 14, 18))
+# Packages laden
+library(tidyverse)
+
+# Erstellen des Datensatzes
+d <- tibble(x = c(5, 6, 6, 7, 7, 8, 8, 8, 9, 9, 10, 10, 11, 12),
+            y = c(6, 10, 12, 6, 12, 12, 8, 16, 12, 16, 18, 8, 14, 18))
 
 p1 <- d|>
   ggplot(aes(x, y)) +
@@ -414,7 +408,7 @@ library(tidyverse)
 
 # Erstellen des Datensatzes
 d <- tibble(x = c(5, 6, 7, 7, 8, 9, 9, 10, 11, 12),
-            y = c(6, 10, 6, 12, 12, 12, 16, 18, 14, 12))
+            y = c(6, 10, 6, 12, 12, 12, 16, 18, 14, 18))
 ```
 
 
@@ -502,7 +496,7 @@ d |>
 
 ## Aufgabe 10.6: Berechnen der Regressionsgeraden für eigenes Beispiel 
 
-> _[15 min]_ Aufgabe kann problemlos weggelassen werden, wenn es nicht mehr reicht, da Lösung individuell und Lösungsweg oben festgehalten.
+> _[15 min]_ 
 
 Berechnen Sie, wie in der vorherigen Aufgabe, den Regressionskoeffizienten $b_1$ und den Achsenabschnitt $b_0$ für das in _Aufgabe 10.3a-c_ selber erarbeitete Beispiel.
 
@@ -558,7 +552,6 @@ Erstellen Sie hierfür eine Tabelle wie in den Vorlesungsfolien und berechnen Si
 
 :::
 
-
-__b.__ Osterspecial: Lesen Sie in [diesem Artikel](https://statmodeling.stat.columbia.edu/2025/03/11/what-does-jesus-have-to-do-with-linear-regression/) was lineare Regression mit Jesus zu tun hat.
+__b.__ Zum Schmunzeln: Lesen Sie in [diesem Artikel](https://statmodeling.stat.columbia.edu/2025/03/11/what-does-jesus-have-to-do-with-linear-regression/) was lineare Regression mit Jesus zu tun hat.
 
 

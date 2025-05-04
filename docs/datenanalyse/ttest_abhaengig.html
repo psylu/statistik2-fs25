@@ -286,6 +286,12 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Einfaktorielle Varianzanalyse mit Messwiederholung</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenanalyse/einfachelineareregression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Einfache lineare Regression</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -359,6 +365,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../uebungen/uebung-10.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Übung 10</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 11</span></a>
   </div>
 </li>
       </ul>
@@ -870,7 +882,7 @@ Die Voraussetzung der Normalverteilung wird in diesem Semester nicht überprüft
 <li><code>var.equal</code>: festlegen, ob die Annahme homogener Varianzen zutrifft (<code>TRUE</code>) oder nicht (<code>FALSE</code>)</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test für unabhängige Stichproben durchführen</span></span>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test für abhängige Stichproben durchführen</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">x =</span> d_fear<span class="sc">$</span>fear_post, <span class="co"># av t2</span></span>
 <span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">y =</span> d_fear<span class="sc">$</span>fear_pre, <span class="co"># av t1</span></span>
 <span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
