@@ -1,0 +1,263 @@
+# Übung 11 {.unnumbered #sec-uebung-11}
+
+```{r}
+#| include: false
+# Set working directory of R
+knitr::opts_knit$set(root.dir = '../')
+```
+
+## Aufgabe 11.0: Projektumgebung erstellen
+
+__a.__ Laden Sie den [Projektordner `regression`](../data/regression.zip) herunter und __entzippen__ Sie den Ordner.^[Für das Entzippen mit _Windows_ machen Sie einen Rechtsklick auf den Ordner mit dem Reissverschluss und wählen Sie `Entpacken nach` und geben Sie den Ordner an, in dem Sie alle Ihre _RProject-Ordner_ speichern. Für das Entzippen mit _Mac_ speichern Sie den heruntergeladenen Ordner in den Ordner, in dem Sie alle Ihre _RProject-Ordner_ speichern und Doppelklicken Sie danach auf den Ordner. Nur entzippte Ordner können einwandfrei verwendet werden.]
+
+Der Projektordner enthält:
+
+- _RProjekt_ `regression.RProj`
+- Datensätze `stressanxiety.csv`
+
+__b.__ Öffnen Sie das _RProjekt_ `regression`.
+
+__c.__ Installieren Sie (falls noch nicht vorhanden) die benötigten Packages unter `Tools` > `Install Packages...` oder in der Konsole mit
+
+- `install.packages("performance")`^[Es werden beim Herunterladen zusätzliche Packages installiert, geben Sie dafür bei Aufforderung in der Konsole `y` ein.]
+
+__d.__ Erstellen Sie ein _RNotebook_ namens `uebung-11`.
+
+
+## Aufgabe 11.1: Einstieg
+
+__a.__ Welches sind die wichtigen Kennwerte, welche die Regressionsanalyse liefert?
+
+__b.__ Suchen Sie mit dem Suchbegriff "_we used a simple linear regression_" oder "_a simple linear regression model was used_" sowie einem Begriff für ein Thema in der Psychologie, dass Sie interessiert in einer Datenbank nach Artikeln. 
+
+Schauen Sie sich dann an, was diese Studien untersucht haben und lesen Sie die _Results-Section_. Finden Sie die Kennwerte der Regressionsanalyse? Was verstehen Sie bezüglich der Analyse, welche gemacht wurde und welche Resultate sie lieferten? Was bleibt unklar?
+
+Diskutieren Sie kurz miteinander, was Sie gefunden haben.
+
+<br>
+
+## Aufgabe 11.2: Regression berechnen I 
+
+Bearbeiten Sie diese Aufgabe im _RNotebook_ `uebung-11`.
+
+In dieser Aufgabe berechnen wir die Regression für das Datenbeispiel der [Aufgabe 10.5 von Übung 10](uebung-10.qmd#aufgabe-10.5-berechnen-der-regressionsgeraden) mit der Funktion `lm()` statt Schritt für Schritt.
+
+:::{.callout-note appearance="default" title="Schlafstudie" collapse="true"}
+
+__Beschreibung der Studie__
+
+In der (fiktiven) Studie wurde der Einfluss von Schlafdauer bei Jugendlichen (`sleep`) auf Konzentrationsleistung in einem neuropsychologischen Test (mögliche Scores zwischen 0 und 20) (`concentration`) untersucht. 
+
+__Forschungsfrage__: Beeinflusst die nächtliche Schlafdauer mit die Konzentration am nächsten Tag?
+
+__Daten:__ Die Grafik zeigt Messungen von 10 Jugendlichen.
+
+|  $x$ | $y$  |
+|---|---|
+| 5 | 6 |
+| 6 | 10 |
+| 7 | 6 |
+| 7 | 12 |
+| 8 | 12 |
+| 9 | 12 |
+| 9 | 16 | 
+| 10 | 18 |
+| 11 | 14 |
+| 12 | 12 |
+: __Daten der Schlafstudie__ {.hover}
+
+:::
+```{r}
+#| echo: false
+#| warnings: false
+#| message: false
+library(tidyverse)
+
+d <- tibble(x = c(7, 8, 5, 6, 9, 10, 9, 7, 11, 12),
+            y = c(12, 12, 6, 10, 16, 18, 12, 6, 14, 18))
+
+p1 <- d|>
+  ggplot(aes(x, y)) +
+  geom_point(size = 3, alpha = 0.4, color = "blue") +
+  scale_x_continuous("Schlafdauer in Stunden",
+                     breaks=c(0,1,2,3,4,5,6,7,8,9,10,11,12), 
+                     minor_breaks = NULL,
+                     limits=c(4,12)) +
+  scale_y_continuous("Leistung in Konzentrationstest",
+                     breaks=c(0,2,4,6,8,10,12,14,16,18,20),
+                     minor_breaks = NULL,
+                     limits=c(0,20)) +
+  theme_minimal()
+p1
+```
+
+
+__a.__ Geben Sie die Daten in _R_ ein.
+
+```{r}
+#| eval: false
+# Package(s) laden
+___
+
+# Daten eingeben
+d_sleep <- ___(sleep = ___,
+               concentration = ___)
+```
+
+__b.__ Berechnen Sie eine einfache lineare Regression mit Schlaf als Prädiktorvariablen (unabhängiger Variablen) und Konzentration als Kriteriumsvariablen (abhängiger Variablen).
+
+```{r}
+#| eval: false
+# Modell für einfache lineare Regression
+m1_sleep <- lm(___ ~ ___, 
+                        data = ___)
+
+summary(___)
+```
+
+__c.__ Interpretieren Sie den Output: Wie gross waren folgende Kennwerte und was bedeutet das?
+
+- Achsenabschnitt $b_0$ 
+
+- Regressionskoeffizient $b_1$
+  
+- $p$
+  
+- $R^2$
+
+Was bedeuten die restlichen Werte des Outputs?
+
+<br>
+
+## Aufgabe 11.3: Regression berechnen II
+
+Bearbeiten Sie diese Aufgabe im _RNotebook_ `uebung-11`.
+
+:::{.callout-note appearance="default" title="Beschreibung des Datensatzes"}
+Der Datensatz wurde simuliert mit Werten angelehnt an die Informationen^[Mittelwerte, Standardabweichungen, Korrelation] einer nicht-klinischen Stichprobe aus dem Originalartikel zu den Depression Anxiety Stress Scales (DASS)  ([Lovibond & Lovibond, 1995](https://www.sciencedirect.com/science/article/abs/pii/000579679400075U)). Die Subskalen reichen von 0-42, wobei höhere Werte eine höhere Ausprägung (von Angst bzw. Stress) bedeuten.
+:::
+
+__Bearbeiten Sie nun Schritt für Schritt folgenden Aufgaben:__ 
+
+__a.__ Formulieren Sie eine Fragestellung und halten Sie diese in Ihrem _RNotebook_ `uebung-11` fest. 
+
+- Was ist die Prädiktorvariable (unabhängige Variable)? 
+- Was die Kriteriumsvariable (abhängige Variable)?
+- Welcher Anwendung (Beschreiben, Erklären, Prognose) entspricht Ihre Forschungsfrage? 
+
+__b.__ Lesen Sie aus dem `data`-Ordner des _RProjekts_ `regression` den Datensatz `stressanxiety.csv` ein und schauen Sie ihn an. 
+
+```{r}
+#| eval: false
+# Datensatz einlesen
+___
+
+# Datensatz anschauen
+___
+```
+
+__c.__ Welche Voraussetzungen müssen für die einfache lineare Regression erfüllt sein? Überprüfen Sie diese sofern möglich.
+
+```{r}
+#| eval: false
+# Datensatz plotten
+
+```
+
+__d.__ Berechnen Sie eine einfache lineare Regression für die beiden Variablen.
+
+```{r}
+#| eval: false
+# Regressionsmodell
+m1_stressanxiety <- ___
+
+# Output
+___
+```
+
+__e.__ Überprüfen Sie die Modellannahmen für das berechnete Modell mit den Funktionen
+
+- `check_model()`
+- `check_heteroscedasticity()`
+- `check_normality()` 
+
+aus dem Package {performance}.
+
+<aside>[Hier](https://easystats.github.io/performance/articles/check_model.html) finden Sie weiterführende, hilfreiche Informationen zum Package {performance}.</aside>
+
+```{r}
+#| eval: false
+# Check Modelannahmen
+___
+```
+
+__f.__ Lassen Sie sich den Modelloutput ausgeben mit der Funktion `summary()`: Wie gross waren folgende Kennwerte und was bedeutet das?
+
+```{r}
+#| eval: false
+# Output
+___
+```
+
+- Achsenabschnitt $b_0$ und entsprechender $p$-Wert
+
+- Regressionskoeffizient $b_1$ und entsprechender $p$-Wert
+  
+- $df$
+  
+- $R^2$
+
+Was bedeuten die restlichen Werte des Outputs?
+
+__g.__ Berechnen Sie das andere mögliche Modell in dem Sie `stress` und `anxiety` tauschen.
+
+```{r}
+#| eval: false
+# Regressionsmodell
+m1_stressanxiety2 <- ___
+
+# Output
+___
+```
+
+- Was können Sie jetzt für eine Aussage machen? 
+
+- Stimmen die beiden Regressionskoeffizienten überein? Was denken Sie sagt die Höhe des Regressionskoeffizienten über die Stärke des Zusammenhangs aus?
+
+__g.__ Berechnen Sie den standardisierten Regressionskoeffizienten in dem Sie `scale()` nutzen ($z$-transformiert die Variablen)
+
+```{r}
+#| eval: false
+lm(scale(___) ~ scale(___), 
+   data = ___)
+```
+
+- Was passiert, wenn Sie die beiden Variablen wie oben austauschen?
+
+- Was bedeutet der Regressionskoeffizient nun?
+
+<br>
+
+## Aufgabe 11.4: Resultate berichten
+
+__a.__ Erstellen Sie nun einen Bericht über die in Aufgabe _11.3_ berechneten Ergebnisse der Regressionsanalyse. Achten Sie darauf, dass alle wichtigen Kennwerte enthalten sind. Informationen hierfür finden Sie [hier](../datenanalyse/einfachelineareregression.qmd#ergebnisse-interpretieren-und-berichten).
+
+__b.__ Erstellen Sie einen Bericht über die in _Aufgabe 11.2_ berechneten Ergebnisse der Regressionsanalyse.
+<br>
+
+
+## Zusatzaufgabe
+
+:::{.callout-tip appearance="default" title="Zusatzaufgaben"}
+
+__Zusatzaufgaben müssen nicht gelöst werden.__
+
+:::
+
+__a.__ Schauen Sie für _Aufgabe 11.3__ mit der Funktion `check_model()` aus dem Package {performance}, ob die Voraussetzungen für die Regressionsanalyse gegeben sind. 
+
+__b.__ Vergleichen Sie den berechneten standardisierten Regressionskoeffizienten aus _Aufgabe 11.3_  mit der Korrelationsmatrix der Variablen _Angst_ und _Stress_ aus dem Originalpaper von [Lovibond & Lovibond, 1995](https://www.sciencedirect.com/science/article/abs/pii/000579679400075U).
+
+- Ist er vergleichbar? 
+- Hätten Sie den Zusammenhang der Variablen der berichteten Stärke angenommen?
+
