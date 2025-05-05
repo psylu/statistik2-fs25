@@ -236,28 +236,26 @@ Dabei ist wichtig, dass mit Zusammenhang nicht zwingend ein Kausalzusammenhang g
 Kausalzusammenhänge müssen zusätzlich theoretisch begründet und methodisch implementiert (z.B. durch ein experimentelles Design) sein.
 
 Die lineare Regression modelliert den Zusammenhang zweier Variablen mit einer linearen Funktion (Gerade).
-Hierbei werden die Werte der zu erklärenden Variablen $y$ als Funktion der erklärenden Variable $x$ modelliert, $y = f(x_m)$.
-Berechnet wird ein Achsenabschnitt ($b_0$, _intercept_) und ein Regressionskoeffizient für die Steigung (_slope_) der Gerade, um zu quantifizieren, wie stark sich ein Variablenwert verändert wenn die andere Variable um eine Einheit zunimmt.
+Hierbei werden die Werte der zu erklärenden Variablen $y$ als Funktion der erklärenden Variable $x$ modelliert, $y = f(x)$.
+Berechnet wird ein Achsenabschnitt (_intercept_) und ein Regressionskoeffizient für die Steigung (_slope_) der Gerade, um zu quantifizieren, wie stark sich ein Variablenwert verändert wenn die andere Variable um eine Einheit zu nimmt.
 Dies dient der Vorhersage der Ausprägung einer Variable (Regressor) aus der Ausprägung einer anderen Variable (Regressand). 
 
 Dieser Methode ermöglicht:
 
 - Beschreiben von Merkmalsunterschieden/-zusammenhängen ohne Wirkrichtung bzw. ohne kausalen Zusammenhang
-− Beschreiben/Feststellen von kausalen Zusammenhängen (bei  theoretischer Begründung und methodischer Implementation/experimenteller Studie)
+- Beschreiben/Feststellen von kausalen Zusammenhängen (bei theoretischer Begründung und methodischer Implementation/experimenteller Studie)
 - Prognose bzw. Vorhersage/Prädiktion von Merkmalsausprägungen für neue Datenpunkte
-− Prädiktion von neuen Werten
+- Prädiktion von neuen Werten
 
 __Typische Fragestellungen__:
 
 - *Wie wirkt sich die wöchentliche Trainingszeit in einer Aufgabe auf die Reaktionszeit aus?*
 
-- *Beeinflusst die Berufserfahrung das Jahreseinkommen?*
+- *Beeinflusst die Berufserfahrung in Jahren das Jahreseinkommen?*
 
 - *Steigt das Risiko einer psychischen Erkrankung mit zunehmendem Alter?*
 
 - *Wie gross ist das Risiko einer Erkrankung bei vorliegendem Testscore?*
-
-<!-- - *Wie hängt der Stresslevel einer Person von ihrem Alter und ihrer Ängstlichkeit ab?* (multiple lineare Regression) -->
 
 <!-- _Beispiel einer Einfachen linearen Regression__: -->
 
@@ -266,11 +264,11 @@ __Typische Fragestellungen__:
 
 | Voraussetzung | Beschreibung | Vorgehen bei Verletzung |
 |---|---|---|
-| Abhängige Variable | Eine abhängige Variable mit metrischem Skalenniveau. | Bei kategorialer Variable: logistische Regression. |
-| Unabhängige Variable | Eine unabhängige Variable mit metrischem Skalenniveau. | Verwenden eines anderen statistischen Verfahrens (z.B. _t_-Test, _ANOVA_) oder Kodierung der UV durch Kodiervariablen (Dummy-Codierung). |
-| Linearität | Linearer Zusammenhang zwischen den beiden Variablen. Die Linearitätsannahme kann durch die visuelle Inspektion des Punktediagramms (_Scatterplot_) überprüft werden. | Bei nichtlinearem Zusammenhang zwischen den Variablen: Variablen transformieren (z.B. Logarithmierung) oder Anwenden von Multipler Regressionsanalyse zur Analyse nichtlinearer Zusammenhänge. |
-| Varianzhomogenität / Homoskedastizität | Die Abweichung von $y$ von der Regressionsgeraden sollte über verschiedene Werte der Prädiktorvariablen $x$ ähnlich sein und nimmt nicht signifikant zu oder ab. | Transformation von $y$, alternative Schätzmethoden oder Bootstrapping. |
-| Normalverteilung der Residuen | Die Residuen sind normalverteilt. Wird durch Q-Q-Plots und Shapiro-Wilk-Tests überprüft. | Transformation von $y$, alternative Schätzmethoden oder Bootstrapping. |
+| Abhängige Variable | eine abhängige Variable mit metrischem Skalenniveau | bei kategorialer Variable: logistische Regression. |
+| Unabhängige Variable | eine unabhängige Variable mit metrischem Skalenniveau | Verwenden eines anderen statistischen Verfahrens (z.B. _t_-Test, _ANOVA_) oder Kodierung der UV durch Kodiervariablen (Dummy-Codierung) |
+| Linearität | Linearer Zusammenhang zwischen den beiden Variablen. Die Linearitätsannahme kann durch die visuelle Inspektion des Punktediagramms (_Scatterplot_) überprüft werden. | bei nichtlinearem Zusammenhang zwischen den Variablen: Variablen transformieren (z.B. Logarithmierung) oder Anwenden von Multipler Regressionsanalyse zur Analyse nichtlinearer Zusammenhänge |
+| Varianzhomogenität / Homoskedastizität | Die Abweichung von $y$ von der Regressionsgeraden sollte über verschiedene Werte der Prädiktorvariablen $x$ ähnlich sein und nimmt nicht signifikant zu oder ab. | Transformation von $y$, alternative Schätzmethoden oder Bootstrapping |
+| Normalverteilung der Residuen | Ob die Residuen normalverteilt sind, kann mit einem Q-Q-Plot und dem Shapiro-Wilk-Test überprüft werden. | Transformation von $y$, alternative Schätzmethoden oder Bootstrapping |
 | Unabhängigkeit der Fehler| Die Stichprobe muss so erhoben werden, dass die Merkmalsträger voneinander unabhängig sind. | Hierarchisch lineares Modell, dass die Abhängigkeit innerhalb der Datenstruktur berücksichtigt. |
 
 : __Voraussetzungen einfache lineare Regression__, Überprüfung und mögliche Alternativen bei Verletzung der Annahmen {.hover}
@@ -294,7 +292,7 @@ Zuerst müssen die Daten eingelesen und je nach Bedarf vorverarbeitet werden.
 Daten für eine einfache lineare Regression können mit einem Punktediagramm (_scatterplot_) diagnostisch visualisiert werden. 
 Üblicherweise (aber nicht zwingend) wird die Prädiktorvariable (unabhängige Variable) auf der $x$-Achse und Kriteriumsvariable (abhängige Variable) auf der $y$-Achse abgetragen.
 
-Scatterplots eignen sich besonders gut um folgende Probleme zu identifizieren: 
+Scatterplots eignen sich besonders gut, um folgende Probleme zu identifizieren: 
 
 - Schlechte Datenqualität durch fehlende Werte
 - Verzerrung der Resultate durch Extremwerte (Outlier)
@@ -364,7 +362,7 @@ wobei
 - $r_{xy}$: Produkt-Moment-Korrelation von $x$ und $y$
 - $s_y$: Standardabweichung von $y$
 - $s_x$: Standardabweichung von $x$
-- $s_xy$: Kovarianz von $x$ und $y$
+- $s_{xy}$: Kovarianz von $x$ und $y$
 
 Bei der __Regression standardisierter Werte__ entspricht die Steigung $b_{1s}$ der Produkt-Moment-Korrelation $r_{xy}$ zwischen den beiden Variablen.
 
@@ -376,15 +374,15 @@ $b_0 = \bar{y} - b_1 \cdot \bar{x}$
 
 wobei 
 
-- \bar{x}: Mittelwert von $x$
-- \bar{y}: Mittelwert von $y$
+- $\bar{x}$: Mittelwert von $x$
+- $\bar{y}$: Mittelwert von $y$
 
 Bei der __Regression standardisierter Werte__ entspricht der Achsenabschnitt immer 0, also $b_{0s} = 0$. 
 
 
 #### __Prädiktion neuer Werte__
 
-Wenn $b_0$ und $b_1$ bekannt sind, kann ein beliebiger Wert $x_m$ gewählt^[hierbei muss beachtet werden, dass der Wert oft nicht extrem von dem vorhandenen Datenbereich abweichen darf, um eine gute Schätzung zu erzeugen] und der dazugehörige Wert $\bar{y}_m$ geschätzt werden. 
+Wenn $b_0$ und $b_1$ bekannt sind, kann ein beliebiger Wert $x_m$ gewählt^[hierbei muss beachtet werden, dass der Wert oft nicht extrem von dem vorhandenen Datenbereich abweichen darf, um eine gute Schätzung zu erzeugen] und der dazugehörige Wert $\hat{y}_m$ geschätzt werden. 
 
 $\hat{y}_m = b_0 + b_1 \cdot x_m$
 
@@ -411,11 +409,11 @@ $s^2_e =\frac{\sum^n_{m=1} (y_{m} - \hat{y}_m)^2}{n}$.
 
 Die Standardabweichung des Regressionsresiduums ist die Quadratwurzel daraus
 
-$s_e = \sqrt{s^2_e} = \sqrt{\frac{\sum^n_{m=1} (y_{m}- \hat{y}_m)^2}{n}}$.
+$s_e = \sqrt{s^2_e} = \sqrt{\frac{\sum^n_{m=1} (y_{m}- \hat{y}_m)^2}{n}}$
 
-Es gilt 
+Es gilt
 
-$s_e = s_y \cdot \sqrt{1 - r^2_{xy} }$.
+$s_e = s_y \cdot \sqrt{1 - r^2_{xy} }$
 
 Die Quadratsumme beobachteten Abweichungen $QS_y$ besteht aus der Quadratsumme der Regressionsresiduen $QS_e$ und der geschätzten $y$-Werte $QS_\hat{y}$.
 
@@ -444,12 +442,16 @@ Indeterminationskoeffizient: $1- R^2 = \frac{s^2_e}{s^2_y}$
 
 #### __Teststatistik berechnen__
 
-Um zu überprüfen, ob die beiden Variablen signifikant zusammenhängen, kann die Nullhypothese überprüft werden durch das Vergleichen des Prüfwerts mit einer $t$-Verteilung mit $df = n-2$ Freiheitsgraden und/oder durch das Konstruieren von Konfidenzintervallen berechnet.
-
+Um zu überprüfen, ob die beiden Variablen signifikant zusammenhängen, kann die Teststatistik berechnet werden.
+Die Nullhypothese kann durch das Vergleichen des Prüfwerts mit einer $t$-Verteilung mit $df = n-2$ Freiheitsgraden und/oder durch das Konstruieren von Konfidenzintervallen überprüft werden.
 
 __Regressionskoeffizient $b_1$ überprüfen__
 
-Die Nullhypothese lautet üblicherweise $H_0: b_1 = \beta_{10}$: Der Regressionskoeffizient unterscheidet sich nicht von 0.^[Es kann auch ein anderer Wert als 0 für $\beta_{10}$ gewählt werden.]
+Die Nullhypothese lautet üblicherweise 
+
+$H_0: \beta_1 = \beta_{10}$
+
+Wenn $\beta_{10} = 0$: Der Regressionskoeffizient unterscheidet sich nicht von 0.^[Es kann auch ein anderer Wert als 0 für $\beta_{10}$ gewählt werden.]
 
 Zur Überprüfung der Nullhypothese wird die Prüfgrösse berechnet, die einer $t$-Verteilung folgt mit $df = 2$
 
@@ -483,9 +485,11 @@ Das Konfidenzintervall entspricht
 
 Wenn das Konfidenzintervall 0 nicht enthält, kann die Nullhypothese abgelehnt werden.
 
-__Überprüfen Achsenabschnitt $b_0$__:
+__Achsenabschnitt $b_0$ überprüfen__:
 
-- $H_0: b_0 = \beta_{00}$: Der Achsenabschnitt unterscheidet sich nicht von Null.^[Hier kann darüber nachgedacht werden, ob ein Achsenabschnitt geprüft werden soll, da er sich oft von 0 unterscheidet. In _R_ wird er standardmässig mitüberprüft, aber oft ist der Achsenabschnitt irrelevant und wird nur deskriptiv in den Resultaten berichtet. Bei standardisierten Variablen ist der Achsenabschnitt zwangsläufig 0.]
+- $H_0: \beta_0 = \beta_{00}$
+
+Wenn $\beta_{00} = 0$: Der Achsenabschnitt unterscheidet sich nicht von Null.^[Hier kann darüber nachgedacht werden, ob zur Untersuchung eines Zusammenhangs der Achsenabschnitt geprüft werden soll, da er sich in den meisten Fällen sowieso von 0 unterscheidet. In _R_ wird er standardmässig mitüberprüft. Bei standardisierten Variablen ist der Achsenabschnitt zwangsläufig 0.]
 
 Zur Überprüfung der Nullhypothese wird die Prüfgrösse berechnet, die einer $t$-Verteilung folgt mit $df = 2$
 
@@ -527,17 +531,17 @@ Wenn das Konfidenzintervall 0 nicht enthält, kann die Nullhypothese abgelehnt w
 
 #### __Ergebnisse interpretieren und berichten__
 
-Für die einfache lineare Regressionsanalyse werden in der Regel der Regressionskoeffizient $b_1$ und der dazugehörige $t$-Test für den Prädiktor berichtet sowie mit dem _R^2_, wie viel der Varianz in der abhängigen Variable aufgeklärt wurde durch den Prädiktor.
+Für die einfache lineare Regressionsanalyse werden in der Regel der Regressionskoeffizient $b_1$ und der dazugehörige $t$-Test für den Prädiktor berichtet sowie mit dem $R^2$, wie viel der Varianz in der abhängigen Variable aufgeklärt wurde durch den Prädiktor.
 
 Inferenzstatistische Kennwerte (z.B. $t$) werden mit zwei Dezimalen berichtet.^[https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf]
 
-> Simple linear regression analysis was used to test if the hours of sleep significantly predicted performance in a concentration test in young adults. The analysis showed that more hours of sleep predict higher scores in the  test ($\beta = 1.63$, $p = 002$). The results of the regression indicated that hours of sleep explained 71.0% of the variance ($R^2 = .71$,  $F(1,8) = 1 19.54$, $p = .002$).
+> Simple linear regression analysis was used to test if hours of sleep predicted performance in a concentration test in young adults. The analysis showed that more hours of sleep significantly predict higher scores in the  test ($\beta$ = 1.63, $p$ = .002). The results of the regression indicated that hours of sleep explained 71% of the variance ($R^2$ = .71,  $F$(1,8) = 119.54, $p$ = .002).
 
 ## Anwendungsbeispiel in R
 
 ::: {.callout-note appearance="default" title="Beispiel: Schlaf und Konzentration" icon=false}
 
-__Studienbeschrieb__: In der (fiktiven) Studie wurde der Einfluss von Schlafdauer bei Jugendlichen auf Konzentrationsleistung in einem neuropsychologischen Test (mögliche Scores zwischen 0 und 20) untersucht. 
+__Studienbeschrieb__: In der (fiktiven) Studie wurde der Einfluss von Schlafdauer bei Jugendlichen auf Konzentrationsleistung in einem neuropsychologischen Test (mögliche Scores von 0 bis 20) untersucht. 
 
 __Forschungsfrage__: Hängt die nächtliche Schlafdauer mit der Konzentration am nächsten Tag zusammen?
 
@@ -637,6 +641,18 @@ summary(m1)
 
 ```
 
+#### __Konfidenzintervalle__
+
+Konfidenzintervalle können mit der Funktion `confint()` bestimmt werden.
+
+```{r}
+# 95%-Konfidenzintervall bestimmen
+confint(m1, level = 0.95)
+
+# 90%-Konfidenzintervall bestimmen
+confint(m1, level = 0.90)
+```
+
 #### __Modellannahmen überprüfen__
 
 Mit dem Package {performance} können die Modellannahmen einer einfachen linearen Regression überprüft werden. 
@@ -653,7 +669,7 @@ performance::check_model(m1)
 
 <aside>Weiterführend können auch die partiellen Residuen überprüft werden, wie [hier](https://strengejacke.github.io/ggeffects/articles/introduction_partial_residuals.html) beschrieben. </aside>
 
-Wie die Plots gelesen werden sollten und was getan werden kann, wenn die Annahmen nicht erfüllt sind wird auf der [Website des Packages {performance}]() sehr gut beschrieben.
+Wie die Plots gelesen werden sollten und was getan werden kann, wenn die Annahmen nicht erfüllt sind, wird auf der [Website des Packages {performance}]() sehr gut beschrieben.
 
 __Linearität__
 
@@ -673,10 +689,10 @@ __Homoskedastizität__
 diagnostic_plots[[3]]
 ```
 
-Die Homoskedastizität kann weiter mit der Funktion `check_heteroskedasticity()` überprüft werden (Breusch-Pagan test).
+Die Homoskedastizität kann weiter mit der Funktion `check_heteroscedasticity()` überprüft werden (Breusch-Pagan test).
 
 ```{r}
-performance::check_heteroskedasticity(m1)
+performance::check_heteroscedasticity(m1)
 ```
 
 __Normalverteilung der Fehlervariablen__
@@ -726,7 +742,7 @@ Sichtbar wird auch, wenn die Daten nichtlineare Zusammenhänge aufweisen, die ni
 
 #### __Ergebnisse interpretieren und berichten__
 
-> Simple linear regression analysis was used to test if the hours of sleep significantly predicted performance in a concentration test in young adults. Hours of sleep did not significantly predict performance in the concentration test ($\beta = 0.70$, $p = .089$). 
+> Simple linear regression analysis was used to test if hours of sleep significantly predicted performance in a concentration test in young adults. Hours of sleep did not significantly predict performance in the concentration test ($\beta$ = 0.70, $p$ = .088). 
 
 
 ### Weiterführende Informationen

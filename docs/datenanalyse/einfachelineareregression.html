@@ -464,20 +464,21 @@ window.Quarto = {
 <h2 data-number="14.1" class="anchored" data-anchor-id="anwendungsbereich"><span class="header-section-number">14.1</span> Anwendungsbereich</h2>
 <p>Die lineare Regression wird zur Vorhersage einer metrischen Variable durch eine (einfache lineare Regression) oder mehrere (multiple lineare Regression) metrische Variablen verwendet.</p>
 <p>Der Zusammenhang wird als Einfluss einer erklärenden Variable<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (<em>predictor variable</em>) auf eine zu erklärende Variable<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> (<em>outcome/response variable</em>) quantifiziert. Dabei ist wichtig, dass mit Zusammenhang nicht zwingend ein Kausalzusammenhang gemeint ist. Kausalzusammenhänge müssen zusätzlich theoretisch begründet und methodisch implementiert (z.B. durch ein experimentelles Design) sein.</p>
-<p>Die lineare Regression modelliert den Zusammenhang zweier Variablen mit einer linearen Funktion (Gerade). Hierbei werden die Werte der zu erklärenden Variablen <span class="math inline">\(y\)</span> als Funktion der erklärenden Variable <span class="math inline">\(x\)</span> modelliert, <span class="math inline">\(y = f(x_m)\)</span>. Berechnet wird ein Achsenabschnitt (<span class="math inline">\(b_0\)</span>, <em>intercept</em>) und ein Regressionskoeffizient für die Steigung (<em>slope</em>) der Gerade, um zu quantifizieren, wie stark sich ein Variablenwert verändert wenn die andere Variable um eine Einheit zunimmt. Dies dient der Vorhersage der Ausprägung einer Variable (Regressor) aus der Ausprägung einer anderen Variable (Regressand).</p>
+<p>Die lineare Regression modelliert den Zusammenhang zweier Variablen mit einer linearen Funktion (Gerade). Hierbei werden die Werte der zu erklärenden Variablen <span class="math inline">\(y\)</span> als Funktion der erklärenden Variable <span class="math inline">\(x\)</span> modelliert, <span class="math inline">\(y = f(x)\)</span>. Berechnet wird ein Achsenabschnitt (<em>intercept</em>) und ein Regressionskoeffizient für die Steigung (<em>slope</em>) der Gerade, um zu quantifizieren, wie stark sich ein Variablenwert verändert wenn die andere Variable um eine Einheit zu nimmt. Dies dient der Vorhersage der Ausprägung einer Variable (Regressor) aus der Ausprägung einer anderen Variable (Regressand).</p>
 <p>Dieser Methode ermöglicht:</p>
 <ul>
-<li>Beschreiben von Merkmalsunterschieden/-zusammenhängen ohne Wirkrichtung bzw. ohne kausalen Zusammenhang − Beschreiben/Feststellen von kausalen Zusammenhängen (bei theoretischer Begründung und methodischer Implementation/experimenteller Studie)</li>
-<li>Prognose bzw. Vorhersage/Prädiktion von Merkmalsausprägungen für neue Datenpunkte − Prädiktion von neuen Werten</li>
+<li>Beschreiben von Merkmalsunterschieden/-zusammenhängen ohne Wirkrichtung bzw. ohne kausalen Zusammenhang</li>
+<li>Beschreiben/Feststellen von kausalen Zusammenhängen (bei theoretischer Begründung und methodischer Implementation/experimenteller Studie)</li>
+<li>Prognose bzw. Vorhersage/Prädiktion von Merkmalsausprägungen für neue Datenpunkte</li>
+<li>Prädiktion von neuen Werten</li>
 </ul>
 <p><strong>Typische Fragestellungen</strong>:</p>
 <ul>
 <li><p><em>Wie wirkt sich die wöchentliche Trainingszeit in einer Aufgabe auf die Reaktionszeit aus?</em></p></li>
-<li><p><em>Beeinflusst die Berufserfahrung das Jahreseinkommen?</em></p></li>
+<li><p><em>Beeinflusst die Berufserfahrung in Jahren das Jahreseinkommen?</em></p></li>
 <li><p><em>Steigt das Risiko einer psychischen Erkrankung mit zunehmendem Alter?</em></p></li>
 <li><p><em>Wie gross ist das Risiko einer Erkrankung bei vorliegendem Testscore?</em></p></li>
 </ul>
-<!-- - *Wie hängt der Stresslevel einer Person von ihrem Alter und ihrer Ängstlichkeit ab?* (multiple lineare Regression) -->
 <!-- _Beispiel einer Einfachen linearen Regression__: -->
 </section>
 <section id="voraussetzungen" class="level2 page-columns page-full" data-number="14.2">
@@ -499,28 +500,28 @@ window.Quarto = {
 <tbody>
 <tr class="odd">
 <td>Abhängige Variable</td>
-<td>Eine abhängige Variable mit metrischem Skalenniveau.</td>
-<td>Bei kategorialer Variable: logistische Regression.</td>
+<td>eine abhängige Variable mit metrischem Skalenniveau</td>
+<td>bei kategorialer Variable: logistische Regression.</td>
 </tr>
 <tr class="even">
 <td>Unabhängige Variable</td>
-<td>Eine unabhängige Variable mit metrischem Skalenniveau.</td>
-<td>Verwenden eines anderen statistischen Verfahrens (z.B. <em>t</em>-Test, <em>ANOVA</em>) oder Kodierung der UV durch Kodiervariablen (Dummy-Codierung).</td>
+<td>eine unabhängige Variable mit metrischem Skalenniveau</td>
+<td>Verwenden eines anderen statistischen Verfahrens (z.B. <em>t</em>-Test, <em>ANOVA</em>) oder Kodierung der UV durch Kodiervariablen (Dummy-Codierung)</td>
 </tr>
 <tr class="odd">
 <td>Linearität</td>
 <td>Linearer Zusammenhang zwischen den beiden Variablen. Die Linearitätsannahme kann durch die visuelle Inspektion des Punktediagramms (<em>Scatterplot</em>) überprüft werden.</td>
-<td>Bei nichtlinearem Zusammenhang zwischen den Variablen: Variablen transformieren (z.B. Logarithmierung) oder Anwenden von Multipler Regressionsanalyse zur Analyse nichtlinearer Zusammenhänge.</td>
+<td>bei nichtlinearem Zusammenhang zwischen den Variablen: Variablen transformieren (z.B. Logarithmierung) oder Anwenden von Multipler Regressionsanalyse zur Analyse nichtlinearer Zusammenhänge</td>
 </tr>
 <tr class="even">
 <td>Varianzhomogenität / Homoskedastizität</td>
 <td>Die Abweichung von <span class="math inline">\(y\)</span> von der Regressionsgeraden sollte über verschiedene Werte der Prädiktorvariablen <span class="math inline">\(x\)</span> ähnlich sein und nimmt nicht signifikant zu oder ab.</td>
-<td>Transformation von <span class="math inline">\(y\)</span>, alternative Schätzmethoden oder Bootstrapping.</td>
+<td>Transformation von <span class="math inline">\(y\)</span>, alternative Schätzmethoden oder Bootstrapping</td>
 </tr>
 <tr class="odd">
 <td>Normalverteilung der Residuen</td>
-<td>Die Residuen sind normalverteilt. Wird durch Q-Q-Plots und Shapiro-Wilk-Tests überprüft.</td>
-<td>Transformation von <span class="math inline">\(y\)</span>, alternative Schätzmethoden oder Bootstrapping.</td>
+<td>Ob die Residuen normalverteilt sind, kann mit einem Q-Q-Plot und dem Shapiro-Wilk-Test überprüft werden.</td>
+<td>Transformation von <span class="math inline">\(y\)</span>, alternative Schätzmethoden oder Bootstrapping</td>
 </tr>
 <tr class="even">
 <td>Unabhängigkeit der Fehler</td>
@@ -548,7 +549,7 @@ Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transfo
 <h4 class="anchored" data-anchor-id="daten-einlesen-vorverarbeiten-und-visualisieren"><strong>Daten einlesen, vorverarbeiten und visualisieren</strong></h4>
 <p>Zuerst müssen die Daten eingelesen und je nach Bedarf vorverarbeitet werden.</p>
 <p>Daten für eine einfache lineare Regression können mit einem Punktediagramm (<em>scatterplot</em>) diagnostisch visualisiert werden. Üblicherweise (aber nicht zwingend) wird die Prädiktorvariable (unabhängige Variable) auf der <span class="math inline">\(x\)</span>-Achse und Kriteriumsvariable (abhängige Variable) auf der <span class="math inline">\(y\)</span>-Achse abgetragen.</p>
-<p>Scatterplots eignen sich besonders gut um folgende Probleme zu identifizieren:</p>
+<p>Scatterplots eignen sich besonders gut, um folgende Probleme zu identifizieren:</p>
 <ul>
 <li>Schlechte Datenqualität durch fehlende Werte</li>
 <li>Verzerrung der Resultate durch Extremwerte (Outlier)</li>
@@ -613,7 +614,7 @@ Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transfo
 <li><span class="math inline">\(r_{xy}\)</span>: Produkt-Moment-Korrelation von <span class="math inline">\(x\)</span> und <span class="math inline">\(y\)</span></li>
 <li><span class="math inline">\(s_y\)</span>: Standardabweichung von <span class="math inline">\(y\)</span></li>
 <li><span class="math inline">\(s_x\)</span>: Standardabweichung von <span class="math inline">\(x\)</span></li>
-<li><span class="math inline">\(s_xy\)</span>: Kovarianz von <span class="math inline">\(x\)</span> und <span class="math inline">\(y\)</span></li>
+<li><span class="math inline">\(s_{xy}\)</span>: Kovarianz von <span class="math inline">\(x\)</span> und <span class="math inline">\(y\)</span></li>
 </ul>
 <p>Bei der <strong>Regression standardisierter Werte</strong> entspricht die Steigung <span class="math inline">\(b_{1s}\)</span> der Produkt-Moment-Korrelation <span class="math inline">\(r_{xy}\)</span> zwischen den beiden Variablen.</p>
 </section>
@@ -623,14 +624,14 @@ Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transfo
 <p><span class="math inline">\(b_0 = \bar{y} - b_1 \cdot \bar{x}\)</span></p>
 <p>wobei</p>
 <ul>
-<li>{x}: Mittelwert von <span class="math inline">\(x\)</span></li>
-<li>{y}: Mittelwert von <span class="math inline">\(y\)</span></li>
+<li><span class="math inline">\(\bar{x}\)</span>: Mittelwert von <span class="math inline">\(x\)</span></li>
+<li><span class="math inline">\(\bar{y}\)</span>: Mittelwert von <span class="math inline">\(y\)</span></li>
 </ul>
 <p>Bei der <strong>Regression standardisierter Werte</strong> entspricht der Achsenabschnitt immer 0, also <span class="math inline">\(b_{0s} = 0\)</span>.</p>
 </section>
 <section id="prädiktion-neuer-werte" class="level4">
 <h4 class="anchored" data-anchor-id="prädiktion-neuer-werte"><strong>Prädiktion neuer Werte</strong></h4>
-<p>Wenn <span class="math inline">\(b_0\)</span> und <span class="math inline">\(b_1\)</span> bekannt sind, kann ein beliebiger Wert <span class="math inline">\(x_m\)</span> gewählt<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> und der dazugehörige Wert <span class="math inline">\(\bar{y}_m\)</span> geschätzt werden.</p>
+<p>Wenn <span class="math inline">\(b_0\)</span> und <span class="math inline">\(b_1\)</span> bekannt sind, kann ein beliebiger Wert <span class="math inline">\(x_m\)</span> gewählt<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> und der dazugehörige Wert <span class="math inline">\(\hat{y}_m\)</span> geschätzt werden.</p>
 <p><span class="math inline">\(\hat{y}_m = b_0 + b_1 \cdot x_m\)</span></p>
 <p>Für die Vorhersage neuer Werte wird der Fehlerterm <span class="math inline">\(e\)</span> hierbei weggelassen. Sollen Daten simuliert werden (beispielsweise zur Planung von Datenanalysen wie Poweranalysen oder Präregistrationen), kann der Fehlerterm hinzugefügt werden, um möglichst “natürliche” Daten zu erhalten.</p>
 </section>
@@ -652,9 +653,9 @@ Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transfo
 <p>Die Residualvarianz (Fehlervarianz) wird berechnet mit</p>
 <p><span class="math inline">\(s^2_e =\frac{\sum^n_{m=1} (y_{m} - \hat{y}_m)^2}{n}\)</span>.</p>
 <p>Die Standardabweichung des Regressionsresiduums ist die Quadratwurzel daraus</p>
-<p><span class="math inline">\(s_e = \sqrt{s^2_e} = \sqrt{\frac{\sum^n_{m=1} (y_{m}- \hat{y}_m)^2}{n}}\)</span>.</p>
+<p><span class="math inline">\(s_e = \sqrt{s^2_e} = \sqrt{\frac{\sum^n_{m=1} (y_{m}- \hat{y}_m)^2}{n}}\)</span></p>
 <p>Es gilt</p>
-<p><span class="math inline">\(s_e = s_y \cdot \sqrt{1 - r^2_{xy} }\)</span>.</p>
+<p><span class="math inline">\(s_e = s_y \cdot \sqrt{1 - r^2_{xy} }\)</span></p>
 <p>Die Quadratsumme beobachteten Abweichungen <span class="math inline">\(QS_y\)</span> besteht aus der Quadratsumme der Regressionsresiduen <span class="math inline">\(QS_e\)</span> und der geschätzten <span class="math inline">\(y\)</span>-Werte <span class="math inline">\(QS_\hat{y}\)</span>.</p>
 <p><span class="math inline">\(\sum^n_{m=1}(y_{m}- \bar{y})^2 = \sum^n_{m=1} (y_{m}- \hat{y}_m)^2 + \sum^n_{m=1} (\hat{y}_m - \bar{y})^2\)</span></p>
 <p><span class="math inline">\(QS_y = QS_e + QS_\hat{y}\)</span></p>
@@ -670,9 +671,11 @@ Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transfo
 </section>
 <section id="teststatistik-berechnen" class="level4">
 <h4 class="anchored" data-anchor-id="teststatistik-berechnen"><strong>Teststatistik berechnen</strong></h4>
-<p>Um zu überprüfen, ob die beiden Variablen signifikant zusammenhängen, kann die Nullhypothese überprüft werden durch das Vergleichen des Prüfwerts mit einer <span class="math inline">\(t\)</span>-Verteilung mit <span class="math inline">\(df = n-2\)</span> Freiheitsgraden und/oder durch das Konstruieren von Konfidenzintervallen berechnet.</p>
+<p>Um zu überprüfen, ob die beiden Variablen signifikant zusammenhängen, kann die Teststatistik berechnet werden. Die Nullhypothese kann durch das Vergleichen des Prüfwerts mit einer <span class="math inline">\(t\)</span>-Verteilung mit <span class="math inline">\(df = n-2\)</span> Freiheitsgraden und/oder durch das Konstruieren von Konfidenzintervallen überprüft werden.</p>
 <p><strong>Regressionskoeffizient <span class="math inline">\(b_1\)</span> überprüfen</strong></p>
-<p>Die Nullhypothese lautet üblicherweise <span class="math inline">\(H_0: b_1 = \beta_{10}\)</span>: Der Regressionskoeffizient unterscheidet sich nicht von 0.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
+<p>Die Nullhypothese lautet üblicherweise</p>
+<p><span class="math inline">\(H_0: \beta_1 = \beta_{10}\)</span></p>
+<p>Wenn <span class="math inline">\(\beta_{10} = 0\)</span>: Der Regressionskoeffizient unterscheidet sich nicht von 0.<a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a></p>
 <p>Zur Überprüfung der Nullhypothese wird die Prüfgrösse berechnet, die einer <span class="math inline">\(t\)</span>-Verteilung folgt mit <span class="math inline">\(df = 2\)</span></p>
 <ul>
 <li><span class="math inline">\(t_{emp} : \frac{b_1 - \beta_{10}}{\hat{\sigma}_{B_1}}\)</span></li>
@@ -714,10 +717,11 @@ Geschätzte Populationsresidualvarianz <span class="math inline">\(\hat{\sigma}^
 <p>Das Konfidenzintervall entspricht</p>
 <p>[<span class="math inline">\(b_1 - t_{(1-\frac{\alpha}{2};n-2)} \cdot \hat{\sigma}_{B_1}\)</span> ; <span class="math inline">\(b_1 + t_{(1-\frac{\alpha}{2};n-2)} \cdot \hat{\sigma}_{B_1}\)</span>].</p>
 <p>Wenn das Konfidenzintervall 0 nicht enthält, kann die Nullhypothese abgelehnt werden.</p>
-<p><strong>Überprüfen Achsenabschnitt <span class="math inline">\(b_0\)</span></strong>:</p>
+<p><strong>Achsenabschnitt <span class="math inline">\(b_0\)</span> überprüfen</strong>:</p>
 <ul>
-<li><span class="math inline">\(H_0: b_0 = \beta_{00}\)</span>: Der Achsenabschnitt unterscheidet sich nicht von Null.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></li>
+<li><span class="math inline">\(H_0: \beta_0 = \beta_{00}\)</span></li>
 </ul>
+<p>Wenn <span class="math inline">\(\beta_{00} = 0\)</span>: Der Achsenabschnitt unterscheidet sich nicht von Null.<a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
 <p>Zur Überprüfung der Nullhypothese wird die Prüfgrösse berechnet, die einer <span class="math inline">\(t\)</span>-Verteilung folgt mit <span class="math inline">\(df = 2\)</span></p>
 <ul>
 <li><span class="math inline">\(t_{emp} = \frac{b_0- \beta_{00}}{\hat{\sigma}_{B_0}}\)</span></li>
@@ -767,10 +771,10 @@ Geschätzte Populationsresidualvarianz <span class="math inline">\(\hat{\sigma}^
 <h3 data-number="14.3.3" class="anchored" data-anchor-id="schlussfolgerungen"><span class="header-section-number">14.3.3</span> Schlussfolgerungen</h3>
 <section id="ergebnisse-interpretieren-und-berichten" class="level4">
 <h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten"><strong>Ergebnisse interpretieren und berichten</strong></h4>
-<p>Für die einfache lineare Regressionsanalyse werden in der Regel der Regressionskoeffizient <span class="math inline">\(b_1\)</span> und der dazugehörige <span class="math inline">\(t\)</span>-Test für den Prädiktor berichtet sowie mit dem <em>R^2</em>, wie viel der Varianz in der abhängigen Variable aufgeklärt wurde durch den Prädiktor.</p>
+<p>Für die einfache lineare Regressionsanalyse werden in der Regel der Regressionskoeffizient <span class="math inline">\(b_1\)</span> und der dazugehörige <span class="math inline">\(t\)</span>-Test für den Prädiktor berichtet sowie mit dem <span class="math inline">\(R^2\)</span>, wie viel der Varianz in der abhängigen Variable aufgeklärt wurde durch den Prädiktor.</p>
 <p>Inferenzstatistische Kennwerte (z.B. <span class="math inline">\(t\)</span>) werden mit zwei Dezimalen berichtet.<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
 <blockquote class="blockquote">
-<p>Simple linear regression analysis was used to test if the hours of sleep significantly predicted performance in a concentration test in young adults. The analysis showed that more hours of sleep predict higher scores in the test (<span class="math inline">\(\beta = 1.63\)</span>, <span class="math inline">\(p = 002\)</span>). The results of the regression indicated that hours of sleep explained 71.0% of the variance (<span class="math inline">\(R^2 = .71\)</span>, <span class="math inline">\(F(1,8) = 1 19.54\)</span>, <span class="math inline">\(p = .002\)</span>).</p>
+<p>Simple linear regression analysis was used to test if hours of sleep predicted performance in a concentration test in young adults. The analysis showed that more hours of sleep significantly predict higher scores in the test (<span class="math inline">\(\beta\)</span> = 1.63, <span class="math inline">\(p\)</span> = .002). The results of the regression indicated that hours of sleep explained 71% of the variance (<span class="math inline">\(R^2\)</span> = .71, <span class="math inline">\(F\)</span>(1,8) = 119.54, <span class="math inline">\(p\)</span> = .002).</p>
 </blockquote>
 </section>
 </section>
@@ -787,7 +791,7 @@ Beispiel: Schlaf und Konzentration
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p><strong>Studienbeschrieb</strong>: In der (fiktiven) Studie wurde der Einfluss von Schlafdauer bei Jugendlichen auf Konzentrationsleistung in einem neuropsychologischen Test (mögliche Scores zwischen 0 und 20) untersucht.</p>
+<p><strong>Studienbeschrieb</strong>: In der (fiktiven) Studie wurde der Einfluss von Schlafdauer bei Jugendlichen auf Konzentrationsleistung in einem neuropsychologischen Test (mögliche Scores von 0 bis 20) untersucht.</p>
 <p><strong>Forschungsfrage</strong>: Hängt die nächtliche Schlafdauer mit der Konzentration am nächsten Tag zusammen?</p>
 <ul>
 <li>Die <em>unabhängige Variable</em> <code>sleep</code> enthält Daten über die Schlafdauer in der vorherigen Nacht.</li>
@@ -901,6 +905,26 @@ F-statistic: 3.301 on 1 and 16 DF,  p-value: 0.088</code></pre>
 </div>
 </div>
 </section>
+<section id="konfidenzintervalle" class="level4">
+<h4 class="anchored" data-anchor-id="konfidenzintervalle"><strong>Konfidenzintervalle</strong></h4>
+<p>Konfidenzintervalle können mit der Funktion <code>confint()</code> bestimmt werden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 95%-Konfidenzintervall bestimmen</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m1, <span class="at">level =</span> <span class="fl">0.95</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                 2.5 %    97.5 %
+(Intercept) -0.9439279 13.268461
+sleep       -0.1171312  1.522154</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 90%-Konfidenzintervall bestimmen</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="fu">confint</span>(m1, <span class="at">level =</span> <span class="fl">0.90</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>                   5 %      95 %
+(Intercept) 0.30984057 12.014693
+sleep       0.02748094  1.377542</code></pre>
+</div>
+</div>
+</section>
 <section id="modellannahmen-überprüfen" class="level4 page-columns page-full">
 <h4 class="anchored" data-anchor-id="modellannahmen-überprüfen"><strong>Modellannahmen überprüfen</strong></h4>
 <p>Mit dem Package {performance} können die Modellannahmen einer einfachen linearen Regression überprüft werden.</p>
@@ -909,32 +933,20 @@ Vor dem ersten Verwenden muss das Package {performance} heruntergeladen/installi
 </aside>
 <p>Die Funktion <code>check_model()</code> gibt diagnostische Plots aus:</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a>performance<span class="sc">::</span><span class="fu">check_model</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>performance<span class="sc">::</span><span class="fu">check_model</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><img src="../imgs/regression_diagnostics.jpeg" class="img-fluid"></p>
 <aside>
 Weiterführend können auch die partiellen Residuen überprüft werden, wie <a href="https://strengejacke.github.io/ggeffects/articles/introduction_partial_residuals.html">hier</a> beschrieben.
 </aside>
-<p>Wie die Plots gelesen werden sollten und was getan werden kann, wenn die Annahmen nicht erfüllt sind wird auf der <a href="">Website des Packages {performance}</a> sehr gut beschrieben.</p>
+<p>Wie die Plots gelesen werden sollten und was getan werden kann, wenn die Annahmen nicht erfüllt sind, wird auf der <a href="">Website des Packages {performance}</a> sehr gut beschrieben.</p>
 <p><strong>Linearität</strong></p>
 <p>Ob die Linearität gegeben ist, kann in folgendem Plot visuell beurteilt werden. Die Referenzlinie (grün) sollte ungefähr gerade sein und horizontal liegen.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>diagnostic_plots <span class="ot">&lt;-</span> <span class="fu">plot</span>(performance<span class="sc">::</span><span class="fu">check_model</span>(m1, <span class="at">panel =</span> <span class="cn">FALSE</span>))</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check linearity</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>diagnostic_plots[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output-display">
-<div>
-<figure class="figure">
-<p><img src="einfachelineareregression_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
-</figure>
-</div>
-</div>
-</div>
-<p><strong>Homoskedastizität</strong></p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check homogeneity of variance</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>diagnostic_plots[[<span class="dv">3</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>diagnostic_plots <span class="ot">&lt;-</span> <span class="fu">plot</span>(performance<span class="sc">::</span><span class="fu">check_model</span>(m1, <span class="at">panel =</span> <span class="cn">FALSE</span>))</span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a><span class="co"># check linearity</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>diagnostic_plots[[<span class="dv">2</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
@@ -943,40 +955,52 @@ Weiterführend können auch die partiellen Residuen überprüft werden, wie <a h
 </div>
 </div>
 </div>
-<p>Die Homoskedastizität kann weiter mit der Funktion <code>check_heteroskedasticity()</code> überprüft werden (Breusch-Pagan test).</p>
+<p><strong>Homoskedastizität</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>performance<span class="sc">::</span><span class="fu">check_heteroskedasticity</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check homogeneity of variance</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>diagnostic_plots[[<span class="dv">3</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="einfachelineareregression_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p>Die Homoskedastizität kann weiter mit der Funktion <code>check_heteroscedasticity()</code> überprüft werden (Breusch-Pagan test).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>performance<span class="sc">::</span><span class="fu">check_heteroscedasticity</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>OK: Error variance appears to be homoscedastic (p = 0.774).</code></pre>
 </div>
 </div>
 <p><strong>Normalverteilung der Fehlervariablen</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check normality of residuals</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>diagnostic_plots[[<span class="dv">5</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check normality of residuals</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>diagnostic_plots[[<span class="dv">5</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="einfachelineareregression_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="einfachelineareregression_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
 </div>
 <p>Die Normalverteilung der Fehlervariablen kann weiter mit der Funktion <code>check_normality()</code> überprüft werden (Shapiro-Wilk test).</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>performance<span class="sc">::</span><span class="fu">check_normality</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>performance<span class="sc">::</span><span class="fu">check_normality</span>(m1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code>OK: residuals appear as normally distributed (p = 0.314).</code></pre>
 </div>
 </div>
 <p><strong>Outlier erkennen</strong></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># detect outliers</span></span>
-<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>diagnostic_plots[[<span class="dv">4</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># detect outliers</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>diagnostic_plots[[<span class="dv">4</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="einfachelineareregression_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="einfachelineareregression_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -987,17 +1011,17 @@ Weiterführend können auch die partiellen Residuen überprüft werden, wie <a h
 <p>Zur Visualisierung von Unterschieden eignen sich Punktdiagramme (<em>Scatterplots</em>) und das Einzeichnen der Regressionsgeraden.</p>
 <p>Die Regressionsgerade (schwarz) kann mit <code>+ geom_abline(intercept = ..., slope = ...)</code> hinzugefügt werden. Weiter verfügt {ggplot2} auch über Funktionen, die die Regressionsgerade (blau) direkt berechnen, wie beispielsweise <code>+ geom_smooth()</code>.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sleep, <span class="at">y =</span> concentration)) <span class="sc">+</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">6.1623</span>, <span class="at">slope =</span> <span class="fl">0.7025</span>) <span class="sc">+</span></span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">20</span><span class="fl">+0.5</span>) <span class="sc">+</span></span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">12</span><span class="fl">+0.5</span>) <span class="sc">+</span></span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>d <span class="sc">|&gt;</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> sleep, <span class="at">y =</span> concentration)) <span class="sc">+</span></span>
+<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_abline</span>(<span class="at">intercept =</span> <span class="fl">6.1623</span>, <span class="at">slope =</span> <span class="fl">0.7025</span>) <span class="sc">+</span></span>
+<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, <span class="at">color =</span> <span class="st">"blue"</span>) <span class="sc">+</span></span>
+<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylim</span>(<span class="dv">0</span>, <span class="dv">20</span><span class="fl">+0.5</span>) <span class="sc">+</span></span>
+<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlim</span>(<span class="dv">0</span>, <span class="dv">12</span><span class="fl">+0.5</span>) <span class="sc">+</span></span>
+<span id="cb20-7"><a href="#cb20-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_minimal</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <div>
 <figure class="figure">
-<p><img src="einfachelineareregression_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid figure-img" width="672"></p>
+<p><img src="einfachelineareregression_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid figure-img" width="672"></p>
 </figure>
 </div>
 </div>
@@ -1010,7 +1034,7 @@ Weiterführend können auch die partiellen Residuen überprüft werden, wie <a h
 <section id="ergebnisse-interpretieren-und-berichten-1" class="level4">
 <h4 class="anchored" data-anchor-id="ergebnisse-interpretieren-und-berichten-1"><strong>Ergebnisse interpretieren und berichten</strong></h4>
 <blockquote class="blockquote">
-<p>Simple linear regression analysis was used to test if the hours of sleep significantly predicted performance in a concentration test in young adults. Hours of sleep did not significantly predict performance in the concentration test (<span class="math inline">\(\beta = 0.70\)</span>, <span class="math inline">\(p = .089\)</span>).</p>
+<p>Simple linear regression analysis was used to test if hours of sleep significantly predicted performance in a concentration test in young adults. Hours of sleep did not significantly predict performance in the concentration test (<span class="math inline">\(\beta\)</span> = 0.70, <span class="math inline">\(p\)</span> = .088).</p>
 </blockquote>
 </section>
 </section>
@@ -1031,7 +1055,7 @@ Weiterführend können auch die partiellen Residuen überprüft werden, wie <a h
 <li id="fn2"><p>Kriteriumsvariablen, abhhängigen Variablen, Regressand<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn3"><p>hierbei muss beachtet werden, dass der Wert oft nicht extrem von dem vorhandenen Datenbereich abweichen darf, um eine gute Schätzung zu erzeugen<a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn4"><p>Es kann auch ein anderer Wert als 0 für <span class="math inline">\(\beta_{10}\)</span> gewählt werden.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
-<li id="fn5"><p>Hier kann darüber nachgedacht werden, ob ein Achsenabschnitt geprüft werden soll, da er sich oft von 0 unterscheidet. In <em>R</em> wird er standardmässig mitüberprüft, aber oft ist der Achsenabschnitt irrelevant und wird nur deskriptiv in den Resultaten berichtet. Bei standardisierten Variablen ist der Achsenabschnitt zwangsläufig 0.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p>Hier kann darüber nachgedacht werden, ob zur Untersuchung eines Zusammenhangs der Achsenabschnitt geprüft werden soll, da er sich in den meisten Fällen sowieso von 0 unterscheidet. In <em>R</em> wird er standardmässig mitüberprüft. Bei standardisierten Variablen ist der Achsenabschnitt zwangsläufig 0.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn6"><p>https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
