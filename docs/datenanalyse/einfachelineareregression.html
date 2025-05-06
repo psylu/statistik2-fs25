@@ -956,6 +956,8 @@ Weiterführend können auch die partiellen Residuen überprüft werden, wie <a h
 </div>
 </div>
 <p><strong>Homoskedastizität</strong></p>
+<p>Die Homoskedastizität kann ebenfalls im oberen Plot überprüft werden. Wenn die Streuung der Residuen um die Regressionsgerade unterschiedlich ist, dann ist die Annahme der Varianzhomogenität nicht erfüllt. Heteroskedastizität kann beispielsweise so aussehen, dass die Residuen bei tiefen Werten von <span class="math inline">\(x\)</span> sehr wenig streuen und bei hohen Werten von <span class="math inline">\(x\)</span> stärker streuen (wie ein Trichter).</p>
+<p>Folgender Plot zeigt die Wurzel der absoluten<a href="#fn7" class="footnote-ref" id="fnref7" role="doc-noteref"><sup>7</sup></a> Residuen (standardisiert). Weil es so keine negativen Abweichungen mehr gibt, kann in die Abweichung der Residuen eine Linie hineingelegt werden, die möglichst parallel zu <span class="math inline">\(0\)</span> sein sollte. Im Beispiel der obigen Trichterform würde dann eine ansteigende Linie zu sehen sein.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check homogeneity of variance</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>diagnostic_plots[[<span class="dv">3</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -975,6 +977,7 @@ Weiterführend können auch die partiellen Residuen überprüft werden, wie <a h
 </div>
 </div>
 <p><strong>Normalverteilung der Fehlervariablen</strong></p>
+<p>Die Normalverteilung der Residuen kann mit einem Q-Q-Plot überprüft werden.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="co"># check normality of residuals</span></span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>diagnostic_plots[[<span class="dv">5</span>]]</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
@@ -1057,6 +1060,7 @@ Weiterführend können auch die partiellen Residuen überprüft werden, wie <a h
 <li id="fn4"><p>Es kann auch ein anderer Wert als 0 für <span class="math inline">\(\beta_{10}\)</span> gewählt werden.<a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn5"><p>Hier kann darüber nachgedacht werden, ob zur Untersuchung eines Zusammenhangs der Achsenabschnitt geprüft werden soll, da er sich in den meisten Fällen sowieso von 0 unterscheidet. In <em>R</em> wird er standardmässig mitüberprüft. Bei standardisierten Variablen ist der Achsenabschnitt zwangsläufig 0.<a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 <li id="fn6"><p>https://apastyle.apa.org/instructional-aids/numbers-statistics-guide.pdf<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn7"><p>das bedeutet, dass für ein Residuum von <span class="math inline">\(-2\)</span> der Wert <span class="math inline">\(2\)</span> vewendet würde<a href="#fnref7" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section>
 

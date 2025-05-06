@@ -684,6 +684,12 @@ diagnostic_plots[[2]]
 
 __Homoskedastizität__
 
+Die Homoskedastizität kann ebenfalls im oberen Plot überprüft werden. 
+Wenn die Streuung der Residuen um die Regressionsgerade unterschiedlich ist, dann ist die Annahme der Varianzhomogenität nicht erfüllt. 
+Heteroskedastizität kann beispielsweise so aussehen, dass die Residuen bei tiefen Werten von $x$ sehr wenig streuen und bei hohen Werten von $x$ stärker streuen (wie ein Trichter).
+
+Folgender Plot zeigt die Wurzel der absoluten^[das bedeutet, dass für ein Residuum von $-2$ der Wert $2$ vewendet würde] Residuen (standardisiert). Weil es so keine negativen Abweichungen mehr gibt, kann in die Abweichung der Residuen eine Linie hineingelegt werden, die möglichst parallel zu $0$ sein sollte. Im Beispiel der obigen Trichterform würde dann eine ansteigende Linie zu sehen sein.
+
 ```{r}
 # check homogeneity of variance
 diagnostic_plots[[3]]
@@ -697,6 +703,7 @@ performance::check_heteroscedasticity(m1)
 
 __Normalverteilung der Fehlervariablen__
 
+Die Normalverteilung der Residuen kann mit einem Q-Q-Plot überprüft werden.
 
 ```{r}
 # check normality of residuals

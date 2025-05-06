@@ -224,7 +224,7 @@ ___
 ```{r}
 #| warning: false
 # Datensatz einlesen
-d_stressanxiety <- read.csv("data/stressanxiety.csv")
+d_stressanxiety <- read.csv("../data/stressanxiety.csv")
 
 # Datensatz anschauen 
 # z.B. mit (siehe Kapitel 6-7: Datensätze einlesen/bearbeiten)
