@@ -229,7 +229,7 @@ d|>
 
 ## Anwendungsbereich
 
-Die lineare Regression wird zur Vorhersage einer metrischen Variable durch eine (einfache lineare Regression) oder mehrere (multiple lineare Regression) metrische Variablen verwendet. 
+Die einfache lineare Regression wird zur Vorhersage einer metrischen Variable durch eine metrische Variable verwendet. 
 
 Der Zusammenhang wird als Einfluss einer erklärenden Variable^[Prädiktorvariablen, unabhängigen Variablen, Regressor] (_predictor variable_) auf eine zu erklärende Variable^[Kriteriumsvariablen, abhhängigen Variablen, Regressand] (_outcome/response variable_) quantifiziert.
 Dabei ist wichtig, dass mit Zusammenhang nicht zwingend ein Kausalzusammenhang gemeint ist. 
@@ -240,7 +240,7 @@ Hierbei werden die Werte der zu erklärenden Variablen $y$ als Funktion der erkl
 Berechnet wird ein Achsenabschnitt (_intercept_) und ein Regressionskoeffizient für die Steigung (_slope_) der Gerade, um zu quantifizieren, wie stark sich ein Variablenwert verändert wenn die andere Variable um eine Einheit zu nimmt.
 Dies dient der Vorhersage der Ausprägung einer Variable (Regressor) aus der Ausprägung einer anderen Variable (Regressand). 
 
-Dieser Methode ermöglicht:
+Diese Methode ermöglicht:
 
 - Beschreiben von Merkmalsunterschieden/-zusammenhängen ohne Wirkrichtung bzw. ohne kausalen Zusammenhang
 - Beschreiben/Feststellen von kausalen Zusammenhängen (bei theoretischer Begründung und methodischer Implementation/experimenteller Studie)
@@ -276,6 +276,12 @@ __Typische Fragestellungen__:
 <br>
 
 <aside> Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transformationen oder _Multiple Regressionsanalyse für nichtlineare Zusammenhänge_) wird in diesem Semester nicht eingegangen. </aside>
+
+::: {.callout-note title="Metrische Prädiktoren"}
+In diesem Kapitel werden Modelle für metrische Prädiktoren behandelt. 
+
+Im Kapitel [Allgemeines lineares Modell](alm.qmd) wird darauf eingegangen, dass Regressionen auch mit kategorialen Prädiktoren verwendet berechnet werden können.
+:::
                                                                                           
 
 ## Grundkonzepte und Vorgehen

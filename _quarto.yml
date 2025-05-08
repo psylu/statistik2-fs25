@@ -40,6 +40,8 @@ book:
     - datenanalyse/anova2.qmd
     - datenanalyse/anova3.qmd
     - datenanalyse/einfachelineareregression.qmd
+    - datenanalyse/multipleregression.qmd
+    - datenanalyse/alm.qmd
     
   - part: Datenvisualisierung
 #    chapters:
@@ -57,6 +59,7 @@ book:
     - uebungen/uebung-09.qmd
     - uebungen/uebung-10.qmd
     - uebungen/uebung-11.qmd
+    - inprep/uebung-12-solution.qmd
     
   - part: Anhang
     chapters:

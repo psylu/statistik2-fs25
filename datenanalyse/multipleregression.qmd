@@ -1,0 +1,237 @@
+# Multiple Regression {#sec-multiple-regression}
+
+```{r}
+#| include: false
+# Set working directory of R
+knitr::opts_knit$set(root.dir = '../')
+```
+
+## Anwendungsbereich
+
+Die multiple Regression wird zur Vorhersage einer metrischen Variable durch mehrere metrische Variablen verwendet. 
+
+Der Zusammenhang wird als Einfluss mehrerer erklärenden Variablen^[Prädiktorvariablen, unabhängigen Variablen, Regressoren] (_predictor variables_) auf eine zu erklärende Variable^[Kriteriumsvariablen, abhhängigen Variablen, Regressand] (_outcome/response variable_) quantifiziert.
+Dabei ist wichtig, dass mit Zusammenhang nicht zwingend ein Kausalzusammenhang gemeint ist. 
+Kausalzusammenhänge müssen zusätzlich theoretisch begründet und methodisch implementiert (z.B. durch ein experimentelles Design) sein. 
+
+Die multiple Regression modelliert den Zusammenhang von Variablen mit einer linearen Funktionen. 
+Hierbei werden die Werte der zu erklärenden Variablen $y$ als Funktion der erklärenden Variable $x$ modelliert. 
+Berechnet wird ein Achsenabschnitt (_intercept_) und ein Regressionskoeffizient für jeden Prädiktor. 
+
+
+Diese Methode ermöglicht:
+
+- Beschreiben von Merkmalsunterschieden/-zusammenhängen ohne Wirkrichtung bzw. ohne kausalen Zusammenhang
+- Beschreiben/Feststellen von kausalen Zusammenhängen (bei theoretischer Begründung und methodischer Implementation/experimenteller Studie)
+- Prognose bzw. Vorhersage/Prädiktion von Merkmalsausprägungen für neue Datenpunkte
+- Prädiktion von neuen Werten
+
+
+__Typische Fragestellungen__:
+
+- *Wie wirkt sich die wöchentliche Trainingszeit in einer Aufgabe auf die Reaktionszeit aus?*
+
+- *Beeinflusst die Berufserfahrung das Jahreseinkommen?*
+
+- *Steigt das Risiko einer psychischen Erkrankung mit zunehmendem Alter?*
+
+- *Wie gross ist das Risiko einer Erkrankung bei vorliegendem Testscore?*
+
+
+<!-- __Beispiel einer mehrfaktorielle ANOVA__:  -->
+
+<!-- - [Gonsalvez, C. J., Riebel, T., Nolan, L. J., Pohlman, S., & Bartik, W. (2023). Supervisor versus self-assessment of trainee competence: Differences across developmental stages and competency domains. Journal of Clinical Psychology, 79, 2959–2973. https://doi.org/10.1002/jclp.23590](https://onlinelibrary.wiley.com/doi/epdf/10.1002/jclp.23590) -->
+
+## Voraussetzungen
+
+| Voraussetzung | Beschreibung | Vorgehen bei Verletzung |
+|---|---|---|
+| Abhängige Variable | eine abhängige Variable mit metrischem Skalenniveau | bei kategorialer Variable: logistische Regression. |
+| Unabhängige Variable | eine unabhängige Variable mit metrischem Skalenniveau | Verwenden eines anderen statistischen Verfahrens (z.B. _t_-Test, _ANOVA_) oder Kodierung der UV durch Kodiervariablen (Dummy-Codierung) |
+| Linearität | Linearer Zusammenhang zwischen den beiden Variablen. Die Linearitätsannahme kann durch die visuelle Inspektion des Punktediagramms (_Scatterplot_) überprüft werden. | bei nichtlinearem Zusammenhang zwischen den Variablen: Variablen transformieren (z.B. Logarithmierung) oder Anwenden von Multipler Regressionsanalyse zur Analyse nichtlinearer Zusammenhänge |
+| Varianzhomogenität / Homoskedastizität | Die Abweichung von $y$ von der Regressionsgeraden sollte über verschiedene Werte der Prädiktorvariablen $x$ ähnlich sein und nimmt nicht signifikant zu oder ab. | Transformation von $y$, alternative Schätzmethoden oder Bootstrapping |
+| Normalverteilung der Residuen | Ob die Residuen normalverteilt sind, kann mit einem Q-Q-Plot und dem Shapiro-Wilk-Test überprüft werden. | Transformation von $y$, alternative Schätzmethoden oder Bootstrapping |
+| Unabhängigkeit der Fehler| Die Stichprobe muss so erhoben werden, dass die Merkmalsträger voneinander unabhängig sind. | Hierarchisch lineares Modell, dass die Abhängigkeit innerhalb der Datenstruktur berücksichtigt. |
+
+: __Voraussetzungen multiple Regression__, Überprüfung und mögliche Alternativen bei Verletzung der Annahmen {.hover}
+
+<br>
+
+<aside> Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transformationen oder _Multiple Regressionsanalyse für nichtlineare Zusammenhänge_) wird in diesem Semester nicht eingegangen. </aside>
+                                                                                          
+::: {.callout-note title="Metrische Prädiktoren"}
+In diesem Kapitel werden Modelle für metrische Prädiktoren behandelt. 
+
+Im Unterkapitel [Allgemeines lineares Modell](multipleregression#Allgemeines_lineares_Modell.qmd) wird darauf eingegangen, dass Regressionen auch mit kategorialen Prädiktoren verwendet berechnet werden können.
+:::
+                                                                                     
+
+## Grundkonzepte und Vorgehen
+
+![Allgemeiner Workflow der Datenanalyse](../imgs/flowchart_analysis.png)
+
+### Analyse
+
+#### __Regressionsgleichungen__
+
+In der multiplen Regression entspricht die Anzahl der Prädiktorvariablen (plus allfälliger Interaktionsterme).
+
+Folgende Regressionsgleichungen gelten für __zwei Prädiktoren__:
+
+- Population: $y = \beta_0 + \beta_1 \cdot x_1 + \beta_2 \cdot x_2 + \varepsilon$
+
+- Stichprobe: $y = b_0 + b_1 \cdot x_1 + b_2 \cdot x_2 + e$
+
+
+Folgende Regressionsgleichungen gelten für __mehr als zwei Prädiktoren__:
+
+- Population: $y = \beta_0 + \beta_1 \cdot x_1 + \beta_2 \cdot x_2 + ... + \beta_j \cdot x_j + ... + \beta_k \cdot x_k + \varepsilon$
+
+- Stichprobe: $y = b_0 + b_1 \cdot x_1 + b_2 \cdot x_2 + ... + b_j \cdot x_j + ... + b_k \cdot x_k + e$
+
+<aside> In diesem Kapitel wird nur der Fall einer Regressionsanalsyen mit zwei Prädiktoren behandelt. </aside>
+
+#### __Regressionsebene__
+
+Bei der 
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+# load package plotly for interactive 3d plots
+library(plotly)
+
+# set seed for reproducibility
+set.seed(42)
+
+#-------------------------------------------------------------------------------
+# HERE YOU CAN CHANGE VALUES TO ALTER PLOT DATA
+
+# change for example the intercept and the slopes
+# when finished, run all the code below...
+
+n <- 100 # number of datapoints
+b_0 = 10 # intercept
+b_1 = 0.5 # slope x1
+b_2 = -0.5 # slope x2
+
+mean_error <- 0
+sd_errors <- 2 # make bigger for larger residuals
+
+min_x = 0 # lower range of x
+max_x = 20 # upper range of x
+
+x1 <- runif(n, min = min_x, max = max_x)
+x2 <- runif(n, min = min_x, max = max_x)
+
+y <- b_0 + b_1 * x1 + b_2 * x2 + rnorm(n, mean = mean_error, sd = sd_errors)
+
+#-------------------------------------------------------------------------------
+#linear regression model
+model <- lm(y ~ x1 + x2)
+
+# data
+x1_seq <- seq(min_x, max_x, length.out = 30)
+x2_seq <- seq(min_x, max_x, length.out = 30)
+grid <- expand.grid(x1 = x1_seq, x2 = x2_seq)
+grid$y <- predict(model, newdata = grid)
+
+
+#-------------------------------------------------------------------------------
+# HERE YOU CAN CHANGE PARAMETERS TO ALTER PLOT 
+
+# plot
+plot_ly() |>
+  add_markers(x = x1, y = x2, z = y,
+              marker = list(size = 3),
+              name = "Data Points",
+              showlegend = FALSE) |>
+  # add_markers(x = x1, y = x2, z = 0,
+  #             marker = list(color = "black", size = 3, opacity =  0.2),
+  #             name = "Projected Data Points",
+  #             showlegend = FALSE) |>
+  add_surface(x = ~x1_seq, 
+              y = ~x2_seq, 
+              z = matrix(grid$y, nrow = length(x1_seq), byrow = TRUE),
+              opacity = 0.2,
+              surfacecolor =  y,
+              # colorscale = list(c(0, 1), c("lightblue", "black")),
+              colorscale = "Cool",
+              showscale = FALSE,
+              name = "Plane") |>
+  layout(scene = list(
+    xaxis = list(title = "x1"),
+    yaxis = list(title = "x2"),
+    zaxis = list(title = "y")),
+    title = "Linear Regression Plane")
+#-------------------------------------------------------------------------------
+```
+
+<aside> Im _R-Skript_ [`regressionplane_3dmodel.R`](../data/regressionplane_3dmodel.R) können Sie die Werte für $b_0$, $x_1$, $x_2$ und $e$ verändern, und sich die angepasste Regressionsebene anschauen. </aside>
+
+
+
+> Multiple regression analysis was used to test if the personality traits significantly
+predicted participants' ratings of aggression. The results of the regression indicated the
+two predictors explained 35.8% of the variance (R2=.38, F(2,55)=5.56, p<.01). It was
+found that extraversion significantly predicted aggressive tendencies (β = .56, p<.001), as
+did agreeableness (β = -.36, p<.01).
+
+### Allgemeines lineares Modell
+
+Mit einem allgemeinen linearen Modell (ALM) können mittels Regression Merkmalsunterschiede in einer abhängigen metrischen Variable vorhergesagt werden. 
+
+> "Das ALM ist eine verallgemeinerte Annahme über Datenzusammenhänge, die es gestattet, die Ausprägungen der Kriteriumsvariablen (...) als gewichtete Summe (Linearkombination) von Prädiktorvariablen (...) und einer Fehlerkomponente (Residuum) darzustellen." <https://dorsch.hogrefe.com/stichwort/allgemeines-lineares-modell>
+
+Im allgemeinen linearen Modell können Prädiktoren sowohl metrisch, wie auch kategorial sein (z.B. dichotom mit 2 Ausprägungen). 
+Für die Berechnung der Regression werden die kategorialen Prädiktorvariablen kodiert (Dummy-Codierung). 
+$t$-Tests und ANOVAs sind somit eine Form der Regressionsanalyse mit einem kategorialen Prädiktor.
+Von Vorteil ist vor allem, dass kategoriale und metrische Prädiktoren gleichzeitig ins Modell einbezogen werden können. 
+Dies ist in der Psychologie und den Verhaltenswissenschaften oft von Nutzen.
+
+__Einteilung der Modelle__
+
+Lineare Modelle werden je nach Skalenniveau der Prädiktorvariablebn und Anzahl Modelparameter anders genannt.
+
+_Skalenniveau der Prädiktorvariablen:_
+
+- Modelle mit __metrischen__^[quantitativ abgestuften] (kontinuierlichen oder mindestens intervallskalierten) Prädiktorvariablen werden _Regressionsanalysen_ genannt.
+
+- Modelle mit __kategorialen__ (ordinal- oder nominalskalierten)^[qualitativ abgestuften] Variablen werden _Varianzanalysen_ genannt.
+
+_Anzahl Prädiktoren:_
+
+- Modelle mit __einer__ Prädiktorvariable (AV und UV) entsprechen einer _einfachen Regressionsanalyse_ bzw. eine _$t$-Test_.
+
+- Modelle mit __mehr als einer__ Prädiktorvariablen entsprechen einer _multiple Regressionsanalyse_ bzw. einer _ANOVA_.
+
+![Tabelle Lineare Modelle mit einem und mehreren Prädiktoren](../imgs/alm_models.png)
+
+<!-- Bei einer Kriteriumsvariable (AV) wird von einem univariaten Analyseverfahren, bei mehrere Kriteriumsvariablen (AVn) von einem multivariablen Analyseverfahren. -->
+
+
+__Beispiel: $t$-Test als einfache lineare Regression__
+
+Angenommen die Gruppenzugehörigkeit (Gruppe $A$ oder $B$) ist in der Variablen $x$ enthalten und soll $y$ vorhersagen. 
+Die Variable $x$ ist also eine kategoriale Prädiktorvariable.
+Für die Berechnung der der Regression wird die kategoriale Prädiktorvariable kodiert (Dummy-Codierung).
+In der Variablen $x$ (Gruppe) wird der Gruppe $A$ beispielsweise der Wert 0 ($x_A = 0$) und Gruppe $B$ der Wert 1 ($x_B = 1$) zugeordnet. 
+Die Gruppe $A$ entspricht somit dem Achsenabschnitt $b_0$ (da der Wert $x_A = 0$ das Regressionsgewicht aufhebt).
+Wenn $x$ also eine Einheit ansteigt zu $x_B$ (von 0 zu 1), dann entspricht der Wert des Regressionskoeffizienten dem Unterschied in $y$ zwischen der Gruppe $A$ und $B$.
+
+Das bedeutet, dass in _R_ ein $t$-Test sowie eine ANOVA mittels der Funktion `lm()` berechnet werden können. Entscheidend ist, dass die Modell-Formel korrekt spezifiziert wird.
+
+
+### Schlussfolgerungen
+
+#### __Ergebnisse interpretieren und berichten__
+
+
+## Anwendungsbeispiel in R
+
+
+### Weiterführende Informationen
+
+- Interaktive Visualisierung von Zusammenhängen von [RPsychologist](https://rpsychologist.com/correlation/)

@@ -64,7 +64,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../uebungen/uebungen.html" rel="next">
+<link href="../datenanalyse/multipleregression.html" rel="next">
 <link href="../datenanalyse/anova3.html" rel="prev">
 <link href="../imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
@@ -292,6 +292,18 @@ window.Quarto = {
  <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Einfache lineare Regression</span></span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenanalyse/multipleregression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenanalyse/alm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Allgemeines lineares Modell</span></span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -371,6 +383,12 @@ window.Quarto = {
   <div class="sidebar-item-container"> 
   <a href="../uebungen/uebung-11.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Übung 11</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../inprep/uebung-12-solution.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 12</span></a>
   </div>
 </li>
       </ul>
@@ -462,10 +480,10 @@ window.Quarto = {
 
 <section id="anwendungsbereich" class="level2" data-number="14.1">
 <h2 data-number="14.1" class="anchored" data-anchor-id="anwendungsbereich"><span class="header-section-number">14.1</span> Anwendungsbereich</h2>
-<p>Die lineare Regression wird zur Vorhersage einer metrischen Variable durch eine (einfache lineare Regression) oder mehrere (multiple lineare Regression) metrische Variablen verwendet.</p>
+<p>Die einfache lineare Regression wird zur Vorhersage einer metrischen Variable durch eine metrische Variable verwendet.</p>
 <p>Der Zusammenhang wird als Einfluss einer erklärenden Variable<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> (<em>predictor variable</em>) auf eine zu erklärende Variable<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a> (<em>outcome/response variable</em>) quantifiziert. Dabei ist wichtig, dass mit Zusammenhang nicht zwingend ein Kausalzusammenhang gemeint ist. Kausalzusammenhänge müssen zusätzlich theoretisch begründet und methodisch implementiert (z.B. durch ein experimentelles Design) sein.</p>
 <p>Die lineare Regression modelliert den Zusammenhang zweier Variablen mit einer linearen Funktion (Gerade). Hierbei werden die Werte der zu erklärenden Variablen <span class="math inline">\(y\)</span> als Funktion der erklärenden Variable <span class="math inline">\(x\)</span> modelliert, <span class="math inline">\(y = f(x)\)</span>. Berechnet wird ein Achsenabschnitt (<em>intercept</em>) und ein Regressionskoeffizient für die Steigung (<em>slope</em>) der Gerade, um zu quantifizieren, wie stark sich ein Variablenwert verändert wenn die andere Variable um eine Einheit zu nimmt. Dies dient der Vorhersage der Ausprägung einer Variable (Regressor) aus der Ausprägung einer anderen Variable (Regressand).</p>
-<p>Dieser Methode ermöglicht:</p>
+<p>Diese Methode ermöglicht:</p>
 <ul>
 <li>Beschreiben von Merkmalsunterschieden/-zusammenhängen ohne Wirkrichtung bzw. ohne kausalen Zusammenhang</li>
 <li>Beschreiben/Feststellen von kausalen Zusammenhängen (bei theoretischer Begründung und methodischer Implementation/experimenteller Studie)</li>
@@ -534,6 +552,20 @@ window.Quarto = {
 <aside>
 Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transformationen oder <em>Multiple Regressionsanalyse für nichtlineare Zusammenhänge</em>) wird in diesem Semester nicht eingegangen.
 </aside>
+<div class="callout callout-style-default callout-note callout-titled" title="Metrische Prädiktoren">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Metrische Prädiktoren
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>In diesem Kapitel werden Modelle für metrische Prädiktoren behandelt.</p>
+<p>Im Kapitel <a href="../datenanalyse/alm.html">Allgemeines lineares Modell</a> wird darauf eingegangen, dass Regressionen auch mit kategorialen Prädiktoren verwendet berechnet werden können.</p>
+</div>
+</div>
 </section>
 <section id="grundkonzepte-und-vorgehen" class="level2 page-columns page-full" data-number="14.3">
 <h2 data-number="14.3" class="anchored" data-anchor-id="grundkonzepte-und-vorgehen"><span class="header-section-number">14.3</span> Grundkonzepte und Vorgehen</h2>
@@ -683,7 +715,7 @@ Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transfo
 </ul>
 <p>Wenn <span class="math inline">\(t_{emp} &gt; t_{krit}\)</span> kann die Nullhypothese abgelehnt werden.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Geschätzte Populationsresidualvarianz $\hat{\sigma}^2_{\varepsilon}$ und Varianz von $B_1$ $\hat{\sigma}^2_{B_1}$">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -692,7 +724,7 @@ Geschätzte Populationsresidualvarianz <span class="math inline">\(\hat{\sigma}^
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Die geschätzte Varianz (quadrierter Standardfehler) von <span class="math inline">\(B_1\)</span>, <span class="math inline">\(\hat{\sigma}^2_{B_1}\)</span> kann berechnet werden mit:</p>
 <p><span class="math inline">\(\hat{\sigma}^2_{B_1} = \frac{\hat{\sigma}_{\varepsilon}}{\sqrt{n - s^2_x}}\)</span></p>
@@ -729,7 +761,7 @@ Geschätzte Populationsresidualvarianz <span class="math inline">\(\hat{\sigma}^
 </ul>
 <p>Wenn <span class="math inline">\(t_{emp} &gt; t_{krit}\)</span> kann die Nullhypothese abgelehnt werden.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Geschätzte Populationsresidualvarianz $\hat{\sigma}^2_{\varepsilon}$ und Varianz von $B_0$ $\hat{\sigma}^2_{B_0}$ ">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -738,7 +770,7 @@ Geschätzte Populationsresidualvarianz <span class="math inline">\(\hat{\sigma}^
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p>Die geschätzte Varianz (quadrierter Standardfehler) von <span class="math inline">\(B_0\)</span>, <span class="math inline">\(\hat{\sigma}^2_{B_0}\)</span> kann berechnet werden mit:</p>
 <p><span class="math inline">\(\hat{\sigma}^2_{B_0} = \hat{\sigma}^2_{\varepsilon} \cdot (\frac{1}{n} + \frac{\bar{x}^2}{n \cdot s^2_x})\)</span></p>
@@ -1909,8 +1941,8 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../uebungen/uebungen.html" class="pagination-link" aria-label="Informationen">
-        <span class="nav-page-text">Informationen</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../datenanalyse/multipleregression.html" class="pagination-link" aria-label="Multiple Regression">
+        <span class="nav-page-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
