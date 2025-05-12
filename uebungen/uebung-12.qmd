@@ -13,7 +13,7 @@ Dateien und Packages für die Übung vorbereiten:
 - Laden Sie den Datensatz [`sat_act.csv`](../data/sat_act.csv) herunter und speichern Sie den Datensatz im `data`-Ordner des RProjekts `regression`.
 
 :::{.callout-tip appearance="default" title="Falls Übung 11 nicht durchgeführt" collapse="true"}
-- Laden Sie den [Projektordner `regression`](data/regression.zip) herunter und __entzippen__ Sie den Ordner.^[Für das Entzippen mit _Windows_ machen Sie einen Rechtsklick auf den Ordner mit dem Reissverschluss und wählen Sie `Entpacken nach` und geben Sie den Ordner an, in dem Sie alle Ihre _RProject-Ordner_ speichern. Für das Entzippen mit _Mac_ speichern Sie den heruntergeladenen Ordner in den Ordner, in dem Sie alle Ihre _RProject-Ordner_ speichern und Doppelklicken Sie danach auf den Ordner. Nur entzippte Ordner können einwandfrei verwendet werden.] Der Projektordner enthält:
+- Laden Sie den [Projektordner `regression`](../data/regression.zip) herunter und __entzippen__ Sie den Ordner.^[Für das Entzippen mit _Windows_ machen Sie einen Rechtsklick auf den Ordner mit dem Reissverschluss und wählen Sie `Entpacken nach` und geben Sie den Ordner an, in dem Sie alle Ihre _RProject-Ordner_ speichern. Für das Entzippen mit _Mac_ speichern Sie den heruntergeladenen Ordner in den Ordner, in dem Sie alle Ihre _RProject-Ordner_ speichern und Doppelklicken Sie danach auf den Ordner. Nur entzippte Ordner können einwandfrei verwendet werden.] Der Projektordner enthält:
   -  _RProjekt_ `regression.RProj`
   - Datensatz `stressanxiety.csv` für Übung 11
   - Datensatz `sat_act.csv` für Übung 12
