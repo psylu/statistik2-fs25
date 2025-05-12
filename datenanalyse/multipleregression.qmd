@@ -207,6 +207,8 @@ plot_ly() |>
 #-------------------------------------------------------------------------------
 ```
 
+<aside> Im _R-Skript_ [`regressionplane_3dmodel.R`](../data/regressionplane_3dmodel.R) können Sie die Werte für $b_0$, $x_1$, $x_2$ und $e$ verändern, und sich die angepasste Regressionsebene anschauen. Im _R-Skript_ [`regressionplane_3dmodel_tibble.R`](../data/regressionplane_3dmodel_tibble.R) können Sie eigene Werte für $x_1$, $x_2$, und $y$ definieren. </aside>
+
 
 ::: {.callout-tip title="Welche Werte haben $b_0$, $b_1$ und $b_2$?" collapse="true"}
 
@@ -216,8 +218,6 @@ plot_ly() |>
 
 :::
 
-
-<aside> Im _R-Skript_ [`regressionplane_3dmodel.R`](../data/regressionplane_3dmodel.R) können Sie die Werte für $b_0$, $x_1$, $x_2$ und $e$ verändern, und sich die angepasste Regressionsebene anschauen. </aside>
 
 #### __Bestimmung der Regressionskoeffizienten $b_1$__
 
@@ -242,6 +242,17 @@ Wenn $x_1$ und $x_2$ nicht korrelieren, $r_{x_1x_2} = 0$, dann verändert sich d
 
 Wenn hingegen die Korrelation zwischen $x_1$ und $x_2$ nicht null ist, $r_{x_1x_2} \neq 0$, dann entspricht ein Regressionskoeffizient (bei zwei Prädiktoren) der Steigung der Regressionsgeraden, wenn die Ausprägungen auf der zweiten Prädiktorvariablen konstant gehalten wird. 
 Mit der multiplen Regressionsanalyse wird der Einfluss einer Prädiktorvariablen auf die abhängige Variable bei Konstanthaltung aller anderer Prädiktorvariablen untersucht.
+
+
+#### __Bestimmung der Achsenabschnitts $b_0$__
+
+Der Achsenabschnitt $b_0$ entspricht dem Wert von $y$, wenn $x_1$ und $x_2$ beide 0 sind.
+
+Berechnet wird er wie folgt:
+
+$b_0 = \bar{y} - b_1 \cdot \bar{x}_1 - b_2 \cdot \bar{x}_2$
+
+![Achsenabschnitt: Der orange Punkt entspricht dem Achsenabschnitt. Er liegt dort, wo $x_1 = 0$ und $x_2 = 0$.](../imgs/intercept.png){width=50%}
 
 #### __Determinations- und Indeterminationskoeffizient__
 
