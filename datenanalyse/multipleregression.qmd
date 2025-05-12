@@ -1,0 +1,502 @@
+# Multiple Regression {#sec-multiple-regression}
+
+```{r}
+#| include: false
+# Set working directory of R
+knitr::opts_knit$set(root.dir = '../')
+```
+
+## Anwendungsbereich
+
+Die multiple Regression wird zur Vorhersage einer metrischen Variable durch mehrere metrische Variablen verwendet. 
+
+Der Zusammenhang wird als Einfluss mehrerer erklärenden Variablen^[Prädiktorvariablen, unabhängigen Variablen, Regressoren] (_predictor variables_) auf eine zu erklärende Variable^[Kriteriumsvariablen, abhhängigen Variablen, Regressand] (_outcome/response variable_) quantifiziert.
+Dabei ist wichtig, dass mit Zusammenhang nicht zwingend ein Kausalzusammenhang gemeint ist. 
+Kausalzusammenhänge müssen zusätzlich theoretisch begründet und methodisch implementiert (z.B. durch ein experimentelles Design) sein. 
+
+Die multiple Regression modelliert den Zusammenhang von Variablen mit einer linearen Funktionen. 
+Hierbei werden die Werte der zu erklärenden Variablen $y$ als Funktion der erklärenden Variable $x$ modelliert. 
+Berechnet wird ein Achsenabschnitt (_intercept_) und ein Regressionskoeffizient für jeden Prädiktor. 
+
+
+Diese Methode ermöglicht das Untersuchen von Fragestellungen, die mehrere Einflussfaktoren einbeziehen: 
+
+- Beschreiben von Merkmalsunterschieden/-zusammenhängen ohne Wirkrichtung bzw. ohne kausalen Zusammenhang
+- Beschreiben/Feststellen von kausalen Zusammenhängen (bei theoretischer Begründung und methodischer Implementation/experimenteller Studie)
+- Prognose bzw. Vorhersage/Prädiktion von Merkmalsausprägungen für neue Datenpunkte
+- Prädiktion von neuen Werten
+
+
+__Typische Fragestellungen__:
+
+- *Wie wirkt sich Training in einer Aufgabe und Schlafdauer in der vorherigen Nacht auf die Reaktionszeit aus?*
+
+- *Beeinflussen Berufserfahrung und Weiterbildungstage das Jahreseinkommen?*
+
+- *Steigt das Risiko einer psychischen Erkrankung mit zunehmendem Alter und körperlichen Erkrankungen?*
+
+- *Wie gross ist das Risiko einer Erkrankung bei vorliegendem Testscore und Alter?*
+
+
+<!-- __Beispiel einer multiplen Regression__:  -->
+
+## Voraussetzungen
+
+| Voraussetzung | Beschreibung | Vorgehen bei Verletzung |
+|---|---|---|
+| Abhängige Variable | eine abhängige Variable mit metrischem Skalenniveau | bei kategorialer Variable: logistische Regression. |
+| Unabhängige Variable | eine unabhängige Variable mit metrischem Skalenniveau | Verwenden eines anderen statistischen Verfahrens (z.B. _t_-Test, _ANOVA_) oder Kodierung der UV durch Kodiervariablen (Dummy-Codierung) |
+| Linearität | Linearer Zusammenhang zwischen den beiden Variablen. Die Linearitätsannahme kann durch die visuelle Inspektion des Punktediagramms (_Scatterplot_) überprüft werden. | bei nichtlinearem Zusammenhang zwischen den Variablen: Variablen transformieren (z.B. Logarithmierung) oder Anwenden von Multipler Regressionsanalyse zur Analyse nichtlinearer Zusammenhänge |
+| Varianzhomogenität / Homoskedastizität | Die Abweichung von $y$ von der Regressionsgeraden sollte über verschiedene Werte der Prädiktorvariablen $x$ ähnlich sein und nimmt nicht signifikant zu oder ab. | Transformation von $y$, alternative Schätzmethoden oder Bootstrapping |
+| Normalverteilung der Residuen | Ob die Residuen normalverteilt sind, kann mit einem Q-Q-Plot und dem Shapiro-Wilk-Test überprüft werden. | Transformation von $y$, alternative Schätzmethoden oder Bootstrapping |
+| Unabhängigkeit der Fehler| Die Stichprobe muss so erhoben werden, dass die Merkmalsträger voneinander unabhängig sind. | Hierarchisch lineares Modell, dass die Abhängigkeit innerhalb der Datenstruktur berücksichtigt. |
+
+: __Voraussetzungen multiple Regression__, Überprüfung und mögliche Alternativen bei Verletzung der Annahmen {.hover}
+
+<br>
+
+<aside> Auf alternative statistische Verfahren bei Verletzung der Annahmen (z.B. Transformationen oder _Multiple Regressionsanalyse für nichtlineare Zusammenhänge_) wird in diesem Semester nicht eingegangen. </aside>
+                                                                                          
+::: {.callout-note title="Metrische Prädiktoren"}
+In diesem Kapitel werden Modelle für zwei metrische Prädiktoren behandelt. Multiple Regressionen können aber auch mit mehr als zwei Prädiktoren berechnet werden.
+
+Im Kapitel [Allgemeines lineares Modell](alm.qmd) wird darauf eingegangen, dass Regressionen auch mit kategorialen Prädiktoren verwendet berechnet werden können.
+:::
+                                                                                     
+
+## Grundkonzepte und Vorgehen
+
+![Allgemeiner Workflow der Datenanalyse](../imgs/flowchart_analysis.png)
+
+### Vorverarbeitung
+
+#### __Daten einlesen, vorverarbeiten und visualisieren__
+
+Zuerst müssen die Daten eingelesen und je nach Bedarf vorverarbeitet werden.
+
+Daten für eine einfache lineare Regression können mit einem Punktediagramm (_scatterplot_) diagnostisch visualisiert werden. 
+Üblicherweise (aber nicht zwingend) wird die Prädiktorvariable (unabhängige Variable) auf der $x$-Achse und Kriteriumsvariable (abhängige Variable) auf der $y$-Achse abgetragen.
+
+Scatterplots eignen sich besonders gut, um folgende Probleme zu identifizieren: 
+
+- Schlechte Datenqualität durch fehlende Werte
+- Verzerrung der Resultate durch Extremwerte (Outlier)
+- Nichtlinearer Zusammenhang der beiden Variablen
+
+#### __Voraussetzungen überprüfen__
+
+__Vor dem Berechnen der Regressionsanalyse__
+
+- __Skalenniveau der beiden Variablen__: Beide Variablen sollten metrisch sein.^[Die multiple Regression kann auch mit kategorialen Variablen berechnet werden. Dies wird in diesem Kapitel nicht behandelt, siehe [Allgemeines lineares Modell](alm.qmd) für mehr Informationen.] 
+
+- __Linearitätsannahme__: Durch ein Punktediagramm bzw. _Scatterplot_ kann ein starker, nichtlinearer Zusammenhang der Variablen ausgeschlossen werden.
+Die meisten Zusammenhänge in der Psychologie und in den Verhaltenswissenschaften sind nur annähernd linear.
+Bei leichten Abweichungen kann trotzdem eine einfache lineare Regression ausgeführt werden.
+
+![Punktediagramme für Datensätze mit gegebener und nicht gegebener Linearität](../imgs/linearity.jpg)
+
+### Analyse
+
+#### __Regressionsgleichungen__
+
+In der multiplen Regression entspricht die Anzahl der Prädiktorvariablen (plus allfälliger Interaktionsterme).
+
+Folgende Regressionsgleichungen gelten für __zwei Prädiktoren__:
+
+- Population: $y = \beta_0 + \beta_1 \cdot x_1 + \beta_2 \cdot x_2 + \varepsilon$
+
+- Stichprobe: $y = b_0 + b_1 \cdot x_1 + b_2 \cdot x_2 + e$
+
+
+Folgende Regressionsgleichungen gelten für __mehr als zwei Prädiktoren__:
+
+- Population: $y = \beta_0 + \beta_1 \cdot x_1 + \beta_2 \cdot x_2 + ... + \beta_j \cdot x_j + ... + \beta_k \cdot x_k + \varepsilon$
+
+- Stichprobe: $y = b_0 + b_1 \cdot x_1 + b_2 \cdot x_2 + ... + b_j \cdot x_j + ... + b_k \cdot x_k + e$
+
+wobei $k$ die Summe aller Prädiktorvariablen bezeichnet, und $j$ eine Laufvariable ist, die bezeichnet, welche Variable gemeint ist.
+
+<aside> In diesem Kapitel wird nur der "Spezial"-Fall einer Regressionsanalyse mit zwei Prädiktoren ($k = 2$ behandelt.</aside>
+
+#### __Regressionsebene__
+
+Bei der multiplen Regression mit zwei Prädiktoren wird für jeden Prädiktor ein Regressionskoeffizient geschätzt. 
+Man kann sich dies vorstellen, wie 2 Geraden, die durch eine 3-dimensionale Punktewolke gelegt werden. 
+Das Verbinden der beiden Geraden ergibt eine Ebene.
+Durch das Drehen des untenstehenden Plots kann erkannt werden, dass die Seite der Ebene für $x_1$ und $x_2$ eine Gerade bildet.
+
+Die Regressionskoeffizienten werden wie bei der einfachen Regression] mittels OLS (_Ordinary Least Squares_) geschätzt: Nach dem Kleinste-Quadrate-Kriterium wird die Summe der Abweichungsquadrate minimiert.
+
+Die interaktive Grafik zeigt, wie die beiden Regressionsgeraden zusammen eine Regressionsebene bilden. 
+Der orange Punkt ist kein Datenpunkt, sondern markiert den Intercept $b_0$.
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+
+# load package plotly for interactive 3d plots
+library(plotly)
+
+# set seed for reproducibility
+set.seed(42)
+
+#-------------------------------------------------------------------------------
+# HERE YOU CAN CHANGE VALUES TO ALTER PLOT DATA
+
+# change for example the intercept and the slopes
+# when finished, run all the code below...
+
+n <- 100 # number of datapoints
+b_0 = 10 # intercept
+b_1 = 0.5 # slope x1
+b_2 = -0.5 # slope x2
+
+mean_error <- 0
+sd_errors <- 2 # make bigger for larger residuals
+
+min_x = 0 # lower range of x
+max_x = 20 # upper range of x
+
+x1 <- runif(n, min = min_x, max = max_x)
+x2 <- runif(n, min = min_x, max = max_x)
+
+y <- b_0 + b_1 * x1 + b_2 * x2 + rnorm(n, mean = mean_error, sd = sd_errors)
+
+#-------------------------------------------------------------------------------
+#linear regression model
+model <- lm(y ~ x1 + x2)
+
+# data
+x1_seq <- seq(min_x, max_x, length.out = 30)
+x2_seq <- seq(min_x, max_x, length.out = 30)
+grid <- expand.grid(x1 = x1_seq, x2 = x2_seq)
+grid$y <- predict(model, newdata = grid)
+
+
+#-------------------------------------------------------------------------------
+# HERE YOU CAN CHANGE PARAMETERS TO ALTER PLOT 
+
+# plot
+plot_ly() |>
+  add_markers(x = x1, y = x2, z = y,
+              marker = list(size = 3),
+              name = "Data Points",
+              showlegend = FALSE) |>
+  add_markers(x = 0, y = 0, z = model$coefficients[1], # plot intercept
+              marker = list(size = 5),
+              name = "Data Points",
+              showlegend = FALSE) |>
+  add_surface(x = ~x1_seq, 
+              y = ~x2_seq, 
+              z = matrix(grid$y, nrow = length(x1_seq), byrow = TRUE),
+              opacity = 0.2,
+              surfacecolor =  y,
+              # colorscale = list(c(0, 1), c("lightblue", "black")),
+              colorscale = "Cool",
+              showscale = FALSE,
+              name = "Plane") |>
+  layout(scene = list(
+    xaxis = list(title = "x1"),
+    yaxis = list(title = "x2"),
+    zaxis = list(title = "y")),
+    title = "Linear Regression Plane")
+#-------------------------------------------------------------------------------
+```
+
+
+::: {.callout-tip title="Welche Werte haben $b_0$, $b_1$ und $b_2$?" collapse="true"}
+
+- $b_0 = 10$
+- $b_1 = 0.5$
+- $b_2 = -0.5$
+
+:::
+
+
+<aside> Im _R-Skript_ [`regressionplane_3dmodel.R`](../data/regressionplane_3dmodel.R) können Sie die Werte für $b_0$, $x_1$, $x_2$ und $e$ verändern, und sich die angepasste Regressionsebene anschauen. </aside>
+
+#### __Bestimmung der Regressionskoeffizienten $b_1$__
+
+Der Regressionskoeffizient bzw. die Steigung (_slope_) bei zwei Prädiktorvariablen wird mit folgender Gleichung bestimmt:
+
+$b_1 = b_{1s} \cdot \frac{s_y}{s_{x_1}}$
+
+wobei 
+
+$b_{1s} = \frac{r_{yx_1}-r_{yx_2} \cdot r_{x_1x_2}}{1 - r^2_{x_1x_2}}$
+
+
+wobei 
+
+- $r_{yx_j}$: Produkt-Moment-Korrelation von $y$ und $x_j$
+- $s_y$: Standardabweichung von $y$
+- $s_{x_j}$: Standardabweichung von $x_j$
+
+Dies bedeutet, dass die Korrelation der Variablen $x_1$ und $x_2$ stark Einfluss auf den Regressionskoeffizienten nimmt.
+
+Wenn $x_1$ und $x_2$ nicht korrelieren, $r_{x_1x_2} = 0$, dann verändert sich der Regressionskoeffizient der Variablen $x1$ nicht zwischen einer einfachen Regression (mit nur Prädiktor $x_1$) und einer multiplen Regression (mit Prädiktoren $x_1$ und $x_2$).
+
+Wenn hingegen die Korrelation zwischen $x_1$ und $x_2$ nicht null ist, $r_{x_1x_2} \neq 0$, dann entspricht ein Regressionskoeffizient (bei zwei Prädiktoren) der Steigung der Regressionsgeraden, wenn die Ausprägungen auf der zweiten Prädiktorvariablen konstant gehalten wird. 
+Mit der multiplen Regressionsanalyse wird der Einfluss einer Prädiktorvariablen auf die abhängige Variable bei Konstanthaltung aller anderer Prädiktorvariablen untersucht.
+
+#### __Determinations- und Indeterminationskoeffizient__
+
+Der multiple Determinationskoeffizient $R^2$ entspricht der Wurzel aus der multiplen Korrelation ($R$). 
+Er kann einen Wert zwischen 0 und 1 annehmen. 
+Für Werte zwischen 0 und 1 gilt, dass $c \cdot 100%$ der Varianz in $y$ durch Variation in den Prädiktorvariablen erklärt wird, also zurückgeführt werden kann.
+Ein Determinationskoeffizient von $0.45$ bedeutet also, dass 45% der Varianz in $y$ durch Variation in den Prädiktorvariablen erklärt werden kann.
+
+Determinationskoeffizient: $R^2 = \frac{s^2_\hat{y}}{s^2_y}$
+
+Indeterminationskoeffizient: $1- R^2 = \frac{s^2_e}{s^2_y}$
+
+#### __Teststatistik berechnen__ -->
+
+Um zu überprüfen, ob die Prädiktorvariablen insgesamt einen Beitrag zur Erklärung in Unterschieden der abhängigen Variablen erklären, kann die ein $F$-Test durchgeführt werden.
+
+$F = \frac{MQSR}{MQSE}$
+
+Ob einzelne Regressionskoeffizienten signifikanten sind, kann mit einer $t$-Statistik berechnet werden.
+
+$t = \frac{b_j - \beta_{0j}}{\hat{\sigma}_{B_j}}$
+
+<!-- Hierbei ist gilt -->
+
+<!-- - $H_0 -->
+
+<!--  -->
+
+<!-- __Regressionskoeffizienten__ -->
+<!-- Die Signifikanz der Regressionskoeffizienten -->
+
+<!-- beiden Variablen signifikant zusammenhängen, kann die Teststatistik berechnet werden. -->
+
+<!-- Die Nullhypothese kann durch das Vergleichen des Prüfwerts mit einer $t$-Verteilung mit $df = n-2$ Freiheitsgraden und/oder durch das Konstruieren von Konfidenzintervallen überprüft werden. -->
+
+
+### Schlussfolgerungen
+
+#### __Ergebnisse interpretieren und berichten__
+
+> Multiple regression analysis was used to test if the personality traits significantly predicted participants' ratings of aggression. The results of the regression indicated the two predictors explained 35.8% of the variance (R2=.38, F(2,55)=5.56, p<.01). It was found that extraversion significantly predicted aggressive tendencies (β = .56, p<.001), as did agreeableness (β = -.36, p<.01).
+
+<!-- ## Anwendungsbeispiel in R -->
+
+
+<!-- ::: {.callout-note appearance="default" title="Beispiel: Schlaf und Konzentration" icon=false} -->
+
+<!-- __Studienbeschrieb__: In der (fiktiven) Studie wurde der Einfluss von Schlafdauer bei Jugendlichen auf Konzentrationsleistung in einem neuropsychologischen Test (mögliche Scores von 0 bis 20) untersucht.  -->
+
+<!-- __Forschungsfrage__: Hängt die nächtliche Schlafdauer mit der Konzentration am nächsten Tag zusammen? -->
+
+<!-- - Die _unabhängige Variable_ `sleep` enthält Daten über die Schlafdauer in der vorherigen Nacht. -->
+<!-- - Die _abhängige Variable_ `concentration` enthält Daten über die Leistung in einem neuropsychologischen Konzentrationstest. Die maximale Punktzahl beträgt 20. -->
+
+<!-- ```{r} -->
+<!-- #| echo: false -->
+<!-- #| warning: false -->
+<!-- #| message: false -->
+<!-- library(tidyverse) -->
+<!-- d <- tibble(sleep = c(5, 5, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12), -->
+<!--             concentration = c(6, 10,  10, 12, 6, 12, 17, 12, 8, 16, 12, 16, 18, 8, 14, 10, 12, 18)) -->
+
+<!-- p1 <- d|> -->
+<!--   ggplot(aes(x = sleep, y = concentration)) + -->
+<!--   geom_point(size = 3, alpha = 0.4, color = "blue") + -->
+<!--   scale_x_continuous("Schlafdauer in Stunden", -->
+<!--                      breaks=c(0,1,2,3,4,5,6,7,8,9,10,11,12),  -->
+<!--                      minor_breaks = NULL, -->
+<!--                      limits=c(4,12)) + -->
+<!--   scale_y_continuous("Leistung in Konzentrationstest", -->
+<!--                      breaks=c(0,2,4,6,8,10,12,14,16,18,20), -->
+<!--                      minor_breaks = NULL, -->
+<!--                      limits=c(0,20)) + -->
+<!--   theme_minimal() -->
+<!-- p1 -->
+
+<!-- m1 <- lm(concentration ~sleep, data = d) -->
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- ### Planung -->
+
+<!-- #### __Statistische Hypothesen und Signifikanzniveau festlegen__ -->
+
+<!-- $H_0$: Die Schlafdauer hat keinen Einfluss auf die Leistung im Konzentrationstest: $b_1 = 0$  -->
+
+<!-- $H_1$: Die Schlafdauer sagt die Leistung im Konzentrationstest vorher $b_1 \neq 0$  -->
+
+<!-- Das Alphaniveau wird auf $5 \%$ festgelegt. Da es sich um eine ungerichtete Hypothese handelt, wird zweiseitig getestet.  -->
+
+<!-- #### __Daten einlesen und vorverarbeiten__ -->
+
+<!-- ::: {.callout-caution appearance="default" title="Hands-on: Beispieldatensatz Schlaf und Konzentration"} -->
+
+<!-- ```{r} -->
+<!-- # Laden tidyverse -->
+<!-- library(tidyverse) -->
+
+<!-- # Erstellen des Datensatzes -->
+<!-- d <- tibble(sleep = c(5, 5, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12), -->
+<!--             concentration = c(6, 10,  10, 12, 6, 12, 17, 12, 8, 16, 12, 16, 18, 8, 14, 10, 12, 18)) -->
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- Für die Regressionsanalyse sollten die Variablenwerte im Zahlenformat, also beispielsweise als `integer` oder `double` gespeichert sein. -->
+
+<!-- #### __Voraussetzungen überprüfen__ -->
+
+<!-- __Metrisch skalierte Variablen und Linearität__ -->
+
+<!-- ```{r} -->
+<!-- glimpse(d) -->
+<!-- ``` -->
+
+<!-- __Linearität__ -->
+
+<!-- ```{r} -->
+<!-- d |> ggplot(aes(x = sleep, y = concentration)) + -->
+<!--   geom_point() + -->
+<!--   ylim(0, 20+0.5) + -->
+<!--   xlim(0, 12+0.5) + -->
+<!--   theme_minimal() -->
+<!-- ``` -->
+
+
+<!-- Sobald das Regressionsmodell geschätzt wurde, können die weiteren Voraussetzungen überprüft werden.  -->
+
+<!-- ### Analyse -->
+
+
+<!-- #### __Regressionsmodell__ -->
+
+<!-- Die einfache lineare Regression kann mit der Funktion `lm()` aus dem schon in R installierten Package {stats} berechnet werden. -->
+
+<!-- Als Argumente benötigt die Funktion `lm()` die Modellgleichung (`av ~ uv`) und den Datensatz mit den Variablen (`data = ...`). -->
+<!-- Die Resultate der Regressionsanalyse können mit der Funktion `summary()` zusammengefasst werden. -->
+
+<!-- ```{r} -->
+<!-- # Einfache lineare Regression berechnen -->
+<!-- m1 <- lm(concentration ~ sleep, -->
+<!--       		data = d) -->
+
+<!-- # Output ausgeben -->
+<!-- summary(m1) -->
+
+<!-- ``` -->
+
+<!-- #### __Konfidenzintervalle__ -->
+
+<!-- Konfidenzintervalle können mit der Funktion `confint()` bestimmt werden. -->
+
+<!-- ```{r} -->
+<!-- # 95%-Konfidenzintervall bestimmen -->
+<!-- confint(m1, level = 0.95) -->
+
+<!-- # 90%-Konfidenzintervall bestimmen -->
+<!-- confint(m1, level = 0.90) -->
+<!-- ``` -->
+
+<!-- #### __Modellannahmen überprüfen__ -->
+
+<!-- Mit dem Package {performance} können die Modellannahmen einer einfachen linearen Regression überprüft werden.  -->
+
+<!-- <aside> Vor dem ersten Verwenden muss das Package {performance} heruntergeladen/installiert werden, z.B. in der Konsole mit `install.packages("performance")`.</aside> -->
+
+<!-- Die Funktion `check_model()` gibt diagnostische Plots aus: -->
+
+<!-- ```{r} -->
+<!-- #| eval: false -->
+<!-- performance::check_model(m1) -->
+<!-- ``` -->
+<!-- ![](../imgs/regression_diagnostics.jpeg) -->
+
+<!-- <aside>Weiterführend können auch die partiellen Residuen überprüft werden, wie [hier](https://strengejacke.github.io/ggeffects/articles/introduction_partial_residuals.html) beschrieben. </aside> -->
+
+<!-- Wie die Plots gelesen werden sollten und was getan werden kann, wenn die Annahmen nicht erfüllt sind, wird auf der [Website des Packages {performance}]() sehr gut beschrieben. -->
+
+<!-- __Linearität__ -->
+
+<!-- Ob die Linearität gegeben ist, kann in folgendem Plot visuell beurteilt werden. Die Referenzlinie (grün) sollte ungefähr gerade sein und horizontal liegen. -->
+
+<!-- ```{r} -->
+<!-- diagnostic_plots <- plot(performance::check_model(m1, panel = FALSE)) -->
+
+<!-- # check linearity -->
+<!-- diagnostic_plots[[2]] -->
+<!-- ``` -->
+
+<!-- __Homoskedastizität__ -->
+
+<!-- Die Homoskedastizität kann ebenfalls im oberen Plot überprüft werden.  -->
+<!-- Wenn die Streuung der Residuen um die Regressionsgerade unterschiedlich ist, dann ist die Annahme der Varianzhomogenität nicht erfüllt.  -->
+<!-- Heteroskedastizität kann beispielsweise so aussehen, dass die Residuen bei tiefen Werten von $x$ sehr wenig streuen und bei hohen Werten von $x$ stärker streuen (wie ein Trichter). -->
+
+<!-- Folgender Plot zeigt die Wurzel der absoluten^[das bedeutet, dass für ein Residuum von $-2$ der Wert $2$ vewendet würde] Residuen (standardisiert). Weil es so keine negativen Abweichungen mehr gibt, kann in die Abweichung der Residuen eine Linie hineingelegt werden, die möglichst parallel zu $0$ sein sollte. Im Beispiel der obigen Trichterform würde dann eine ansteigende Linie zu sehen sein. -->
+
+<!-- ```{r} -->
+<!-- # check homogeneity of variance -->
+<!-- diagnostic_plots[[3]] -->
+<!-- ``` -->
+
+<!-- Die Homoskedastizität kann weiter mit der Funktion `check_heteroscedasticity()` überprüft werden (Breusch-Pagan test). -->
+
+<!-- ```{r} -->
+<!-- performance::check_heteroscedasticity(m1) -->
+<!-- ``` -->
+
+<!-- __Normalverteilung der Fehlervariablen__ -->
+
+<!-- Die Normalverteilung der Residuen kann mit einem Q-Q-Plot überprüft werden. -->
+
+<!-- ```{r} -->
+<!-- # check normality of residuals -->
+<!-- diagnostic_plots[[5]] -->
+<!-- ``` -->
+
+<!-- Die Normalverteilung der Fehlervariablen kann weiter mit der Funktion `check_normality()` überprüft werden (Shapiro-Wilk test). -->
+
+<!-- ```{r} -->
+<!-- performance::check_normality(m1) -->
+<!-- ``` -->
+
+<!-- __Outlier erkennen__ -->
+
+<!-- ```{r} -->
+<!-- # detect outliers -->
+<!-- diagnostic_plots[[4]] -->
+<!-- ``` -->
+
+
+<!-- #### __Deskriptivstatistik und Visualisierungen__ -->
+
+<!-- Zur Visualisierung von Unterschieden eignen sich Punktdiagramme (_Scatterplots_) und das Einzeichnen der Regressionsgeraden. -->
+
+<!-- Die Regressionsgerade (schwarz) kann mit `+ geom_abline(intercept = ..., slope = ...)` hinzugefügt werden. -->
+<!-- Weiter verfügt {ggplot2} auch über Funktionen, die die Regressionsgerade (blau) direkt berechnen, wie beispielsweise ` + geom_smooth()`. -->
+
+<!-- ```{r} -->
+<!-- #| message: false -->
+<!-- d |> ggplot(aes(x = sleep, y = concentration)) + -->
+<!--   geom_point() + -->
+<!--   geom_abline(intercept = 6.1623, slope = 0.7025) + -->
+<!--   geom_smooth(method = "lm", se = FALSE, color = "blue") + -->
+<!--   ylim(0, 20+0.5) + -->
+<!--   xlim(0, 12+0.5) + -->
+<!--   theme_minimal() -->
+<!-- ``` -->
+
+<!-- Durch die Visualisierung der Rohwerte und der Regressionsgeraden, kann der "Fit", also die Passung der Geraden zu den Daten gut visuell überprüft werden. -->
+<!-- Sichtbar wird auch, wenn die Daten nichtlineare Zusammenhänge aufweisen, die nicht mit einer linearen Regression analysiert werden können, wie beispielsweise kurvilineare Zusammenhänge. -->
+
+<!-- ### Schlussfolgerungen -->
+
+<!-- #### __Ergebnisse interpretieren und berichten__ -->
+
+<!-- > Simple linear regression analysis was used to test if hours of sleep significantly predicted performance in a concentration test in young adults. Hours of sleep did not significantly predict performance in the concentration test ($\beta$ = 0.70, $p$ = .088).  -->
+
+
+### Weiterführende Informationen
+
+- Interaktive Visualisierung von Zusammenhängen von [RPsychologist](https://rpsychologist.com/correlation/)

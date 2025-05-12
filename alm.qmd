@@ -1,0 +1,45 @@
+# Allgemeines lineares Modell
+
+Mit einem allgemeinen linearen Modell (ALM) können mittels Regression Merkmalsunterschiede in einer abhängigen metrischen Variable vorhergesagt werden. Die in den vorherigen Kapitel beschriebenen Analysemodelle gehören alle zu den allgemeinen linearen Modellen.
+
+## Definition
+
+> "Das ALM ist eine verallgemeinerte Annahme über Datenzusammenhänge, die es gestattet, die Ausprägungen der Kriteriumsvariablen (...) als gewichtete Summe (Linearkombination) von Prädiktorvariablen (...) und einer Fehlerkomponente (Residuum) darzustellen." <https://dorsch.hogrefe.com/stichwort/allgemeines-lineares-modell>
+
+Im allgemeinen linearen Modell können Prädiktoren sowohl metrisch, wie auch kategorial sein (z.B. dichotom mit 2 Ausprägungen). 
+Für die Berechnung der Regression werden die kategorialen Prädiktorvariablen kodiert (Dummy-Codierung). 
+$t$-Tests und ANOVAs sind somit eine Form der Regressionsanalyse mit einem kategorialen Prädiktor.
+Von Vorteil ist vor allem, dass kategoriale und metrische Prädiktoren gleichzeitig ins Modell einbezogen werden können. 
+Dies ist in der Psychologie und den Verhaltenswissenschaften oft von Nutzen.
+
+## Einteilung linearer Modelle
+
+Lineare Modelle werden je nach Skalenniveau der Prädiktorvariablebn und Anzahl Modelparameter anders genannt.
+
+_Skalenniveau der Prädiktorvariablen:_
+
+- Modelle mit __metrischen__^[quantitativ abgestuften] (kontinuierlichen oder mindestens intervallskalierten) Prädiktorvariablen werden _Regressionsanalysen_ genannt.
+
+- Modelle mit __kategorialen__ (ordinal- oder nominalskalierten)^[qualitativ abgestuften] Variablen werden _Varianzanalysen_ genannt.
+
+_Anzahl Prädiktoren:_
+
+- Modelle mit __einer__ Prädiktorvariable (AV und UV) entsprechen einer _einfachen Regressionsanalyse_ bzw. eine _$t$-Test_.
+
+- Modelle mit __mehr als einer__ Prädiktorvariablen entsprechen einer _multiple Regressionsanalyse_ bzw. einer _ANOVA_.
+
+![Tabelle Lineare Modelle mit einem und mehreren Prädiktoren](../imgs/alm_models.png)
+
+<!-- Bei einer Kriteriumsvariable (AV) wird von einem univariaten Analyseverfahren, bei mehrere Kriteriumsvariablen (AVn) von einem multivariablen Analyseverfahren. -->
+
+
+### Beispiel: $t$-Test als einfache lineare Regression
+
+Angenommen die Gruppenzugehörigkeit (Gruppe $A$ oder $B$) ist in der Variablen $x$ enthalten und soll $y$ vorhersagen. 
+Die Variable $x$ ist also eine kategoriale Prädiktorvariable.
+Für die Berechnung der der Regression wird die kategoriale Prädiktorvariable kodiert (Dummy-Codierung).
+In der Variablen $x$ (Gruppe) wird der Gruppe $A$ beispielsweise der Wert 0 ($x_A = 0$) und Gruppe $B$ der Wert 1 ($x_B = 1$) zugeordnet. 
+Die Gruppe $A$ entspricht somit dem Achsenabschnitt $b_0$ (da der Wert $x_A = 0$ das Regressionsgewicht aufhebt).
+Wenn $x$ also eine Einheit ansteigt zu $x_B$ (von 0 zu 1), dann entspricht der Wert des Regressionskoeffizienten dem Unterschied in $y$ zwischen der Gruppe $A$ und $B$.
+
+Das bedeutet, dass in _R_ ein $t$-Test sowie eine ANOVA mittels der Funktion `lm()` berechnet werden können. Entscheidend ist, dass die Modell-Formel korrekt spezifiziert wird.
