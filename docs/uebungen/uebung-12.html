@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>Danke – Datenanalyse mit R</title>
+<title>Übung 12 – Datenanalyse mit R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,8 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../appendix/license.html" rel="next">
-<link href="../appendix/webrconsole.html" rel="prev">
+<link href="../appendix/faq.html" rel="next">
+<link href="../uebungen/uebung-11.html" rel="prev">
 <link href="../imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -70,6 +104,35 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../include/webex.css">
 </head>
@@ -83,7 +146,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/faq.html">Anhang</a></li><li class="breadcrumb-item"><a href="../appendix/thanks.html">Danke</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-12.html">Übung 12</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -322,6 +385,12 @@ ul.task-list li input[type="checkbox"] {
  <span class="menu-text">Übung 11</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-12.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Übung 12</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -347,7 +416,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendix/thanks.html" class="sidebar-item-text sidebar-link active">
+  <a href="../appendix/thanks.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">Danke</span></a>
   </div>
 </li>
@@ -364,20 +433,33 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#aufgabe-12.0-projektumgebung-erstellen" id="toc-aufgabe-12.0-projektumgebung-erstellen" class="nav-link active" data-scroll-target="#aufgabe-12.0-projektumgebung-erstellen">Aufgabe 12.0: Projektumgebung erstellen</a></li>
+  <li><a href="#aufgabe-12.1-positive-und-negative-regressionsgewichte" id="toc-aufgabe-12.1-positive-und-negative-regressionsgewichte" class="nav-link" data-scroll-target="#aufgabe-12.1-positive-und-negative-regressionsgewichte">Aufgabe 12.1: Positive und negative Regressionsgewichte</a></li>
+  <li><a href="#aufgabe-12.2-einstieg-in-multiple-regression" id="toc-aufgabe-12.2-einstieg-in-multiple-regression" class="nav-link" data-scroll-target="#aufgabe-12.2-einstieg-in-multiple-regression">Aufgabe 12.2: Einstieg in multiple Regression</a></li>
+  <li><a href="#aufgabe-12.3-regressionsgleichung-der-multiplen-regression" id="toc-aufgabe-12.3-regressionsgleichung-der-multiplen-regression" class="nav-link" data-scroll-target="#aufgabe-12.3-regressionsgleichung-der-multiplen-regression">Aufgabe 12.3: Regressionsgleichung der multiplen Regression</a></li>
+  <li><a href="#aufgabe-12.4-multiple-regression-berechnen-i" id="toc-aufgabe-12.4-multiple-regression-berechnen-i" class="nav-link" data-scroll-target="#aufgabe-12.4-multiple-regression-berechnen-i">Aufgabe 12.4: Multiple Regression berechnen I</a></li>
+  <li><a href="#aufgabe-12.5-varianzaufklärung-und-determinationskoeffizienten" id="toc-aufgabe-12.5-varianzaufklärung-und-determinationskoeffizienten" class="nav-link" data-scroll-target="#aufgabe-12.5-varianzaufklärung-und-determinationskoeffizienten">Aufgabe 12.5: Varianzaufklärung und Determinationskoeffizienten</a></li>
+  <li><a href="#aufgabe-12.6-resultate-berichten" id="toc-aufgabe-12.6-resultate-berichten" class="nav-link" data-scroll-target="#aufgabe-12.6-resultate-berichten">Aufgabe 12.6: Resultate berichten</a></li>
+  <li><a href="#zusatzaufgaben" id="toc-zusatzaufgaben" class="nav-link" data-scroll-target="#zusatzaufgaben">Zusatzaufgaben</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content page-columns page-full column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/faq.html">Anhang</a></li><li class="breadcrumb-item"><a href="../appendix/thanks.html">Danke</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-12.html">Übung 12</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span id="sec-thanks" class="quarto-section-identifier">Danke</span></h1>
+<h1 class="title"><span id="sec-uebung-12" class="quarto-section-identifier">Übung 12</span></h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -389,22 +471,304 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
-<p>Wir danken folgenden Personen herzlich für ihren Beitrag zu diesem Skript (alphabetische Reihenfolge).</p>
+<section id="aufgabe-12.0-projektumgebung-erstellen" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-12.0-projektumgebung-erstellen">Aufgabe 12.0: Projektumgebung erstellen</h2>
+<p>Dateien und Packages für die Übung vorbereiten:</p>
 <ul>
-<li><p>Liv Noelle Bachmann</p></li>
-<li><p>Annika Naujoks</p></li>
+<li>Laden Sie den Datensatz <a href="../data/sat_act.csv"><code>sat_act.csv</code></a> herunter und speichern Sie den Datensatz im <code>data</code>-Ordner des RProjekts <code>regression</code>.</li>
 </ul>
-<p>und allen Studierenden HS24/FS25!</p>
+<div class="callout callout-style-default callout-tip callout-titled" title="Falls Übung 11 nicht durchgeführt">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Falls Übung 11 nicht durchgeführt
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<ul>
+<li>Laden Sie den <a href="../data/regression.zip">Projektordner <code>regression</code></a> herunter und <strong>entzippen</strong> Sie den Ordner.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Der Projektordner enthält:
+<ul>
+<li><em>RProjekt</em> <code>regression.RProj</code></li>
+<li>Datensatz <code>stressanxiety.csv</code> für Übung 11</li>
+<li>Datensatz <code>sat_act.csv</code> für Übung 12</li>
+</ul></li>
+<li>Installieren Sie (falls noch nicht vorhanden) die benötigten Packages unter <code>Tools</code> &gt; <code>Install Packages...</code> oder in der Konsole mit
+<ul>
+<li><code>install.packages("performance")</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
+</ul></li>
+</ul>
+</div>
+</div>
+</div>
+<ul>
+<li><p>Öffnen Sie das <em>RProjekt</em> <code>regression</code>.</p></li>
+<li><p>Erstellen Sie ein <em>RNotebook</em> namens <code>uebung-12</code>.</p></li>
+</ul>
 <p><br></p>
+</section>
+<section id="aufgabe-12.1-positive-und-negative-regressionsgewichte" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-12.1-positive-und-negative-regressionsgewichte">Aufgabe 12.1: Positive und negative Regressionsgewichte</h2>
+<p>Was bedeuten folgende (fiktive) Resultate?</p>
+<blockquote class="blockquote">
+<p><em><strong>A</strong>. Eine Studie hat den Einfluss von Musikstunden pro Woche auf das Abschneiden in einem Intelligenztest bei 15-jährigen untersucht. Die Studie hat ein <span class="math inline">\(b_0\)</span> = 98.72 und ein <span class="math inline">\(b_1\)</span> = 0.25 gefunden.</em></p>
+</blockquote>
+<blockquote class="blockquote">
+<p><em><strong>B</strong>. Eine Studie hat den Zusammenhang von Musikstunden pro Woche und dem dem Abschneiden in einem Sportleistungstest bei 15-jährigen untersucht. Die Studie hat ein <span class="math inline">\(b_0\)</span> = 34.3 und ein <span class="math inline">\(b_1\)</span> = -1.21 gefunden.</em></p>
+</blockquote>
+<blockquote class="blockquote">
+<p><em><strong>C</strong>. Eine Studie hat untersucht, wie sich die Lebenszufriedenheit verändert wenn Personen mehr oder weniger Unterstützung durch die Spitex erhalten. Die Studie hat ein <span class="math inline">\(b_0\)</span> = 5.7 und ein <span class="math inline">\(b_1\)</span> = -0.002 gefunden.</em></p>
+</blockquote>
+<p>Wie würden Sie das Resultat einer Person erklären, die die Regressionsanalyse nicht kennt? Formulieren Sie in einem Satz aus, was die Ergebnisse bedeuten.</p>
+<p>Evtl. helfen folgende Unterfragen dabei:</p>
+<ul>
+<li><p>Was ist die AV, was ist die UV?</p></li>
+<li><p>Wie verändert sich die AV in Abhängigkeit von der UV?</p></li>
+<li><p>In welchen Beispielen finden Sie standardisierte und in welchen unstandardisierte Variablen sinnvoller?</p></li>
+</ul>
 <p><br></p>
+</section>
+<section id="aufgabe-12.2-einstieg-in-multiple-regression" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-12.2-einstieg-in-multiple-regression">Aufgabe 12.2: Einstieg in multiple Regression</h2>
+<p><strong>a.</strong> Was unterscheidet die einfach von der multiplen Regression? Was ist der Mehrwert?</p>
+<p><strong>b.</strong> Was sind die Voraussetzungen für die multiple Regression?</p>
+<p><strong>c.</strong> Welche Fragestellung würden Sie untersuchen wollen, bei der eine multiple Regression zur Anwendung kommen könnte?</p>
+<p><strong>d.</strong> Suchen Sie mit dem Suchbegriff “<em>we used a multiple regression</em>” oder “<em>a multiple linear regression model was used</em>” sowie einem Begriff für ein Thema in der Psychologie, dass Sie interessiert in einer Datenbank nach Artikeln.</p>
+<p>Schauen Sie sich dann an, was diese Studien untersucht haben und lesen Sie die <em>Results-Section</em>. Finden Sie die Kennwerte der Regressionsanalyse? Was verstehen Sie bezüglich der Analyse, welche gemacht wurde und welche Resultate sie lieferten? Was bleibt unklar?</p>
+<p>Diskutieren Sie kurz miteinander, was Sie gefunden haben.</p>
 <p><br></p>
-<div class="quarto-figure quarto-figure-left">
+</section>
+<section id="aufgabe-12.3-regressionsgleichung-der-multiplen-regression" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-12.3-regressionsgleichung-der-multiplen-regression">Aufgabe 12.3: Regressionsgleichung der multiplen Regression</h2>
+<p><strong>a.</strong> Wie lautet die Bestimmungsgleichung der Regressionsgeraden in der multiplen Regressionsanalyse? Schreiben Sie die Gleichung für zwei Prädiktorvariablen auf.</p>
+<p><strong>b.</strong> Was bedeutet der Wert <span class="math inline">\(b_1\)</span> in der multiplen Regression?</p>
+<p><strong>c.</strong> Ergänzen Sie den folgenden Text zur Additivität der Regressionskomponenten:</p>
+<div class="webex-check webex-box">
+<p>Ein beobachteter <select class="webex-select"><option value="blank"></option><option value="answer">y</option><option value="">x</option><option value="">e</option></select>-Wert lässt sich additiv zerlegen in <select class="webex-select"><option value="blank"></option><option value="">die Kriteriumsvariable</option><option value="answer">den Achsenabschnitt</option><option value="">den Regressionskoeffizienten</option></select> <span class="math inline">\(b_0\)</span>, den mit <span class="math inline">\(b_1\)</span> <select class="webex-select"><option value="blank"></option><option value="answer">korrelierten</option><option value="">quadrierten</option><option value="answer">gewichteten</option></select> Wert von <span class="math inline">\(x_{m1}\)</span> (<select class="webex-select"><option value="blank"></option><option value="answer">Kriteriumsvariable</option><option value="answer">erste Prädiktorvariable</option><option value="">zweite Prädiktorvariable</option></select>), den mit <span class="math inline">\(b_2\)</span> <select class="webex-select"><option value="blank"></option><option value="answer">korrelierten</option><option value="">quadrierten</option><option value="answer">gewichteten</option></select> Wert von <span class="math inline">\(x_{m2}\)</span> (<select class="webex-select"><option value="blank"></option><option value="answer">Kriteriumsvariable</option><option value="">erste Prädiktorvariable</option><option value="answer">zweite Prädiktorvariable</option></select>), und den <select class="webex-select"><option value="blank"></option><option value="answer">Residualwert</option><option value="answer">Varianzen der Residuen</option><option value="">die kleinste Quadratsumme</option></select> <span class="math inline">\(e_m\)</span>.</p>
+</div>
+<p>Fassen Sie in einfachen Worten zusammen, was <em>Additivität der Regressionskomponenten</em> bedeutet und tauschen Sie Ihre Definitionen aus.</p>
+<p><br></p>
+</section>
+<section id="aufgabe-12.4-multiple-regression-berechnen-i" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="aufgabe-12.4-multiple-regression-berechnen-i">Aufgabe 12.4: Multiple Regression berechnen I</h2>
+<p>Bearbeiten Sie diese Aufgabe im <em>RNotebook</em> <code>uebung-12</code>.</p>
+<p>In dieser Aufgabe berechnen wir die Regression für das Datenbeispiel <code>sat_act.csv</code>.</p>
+<div class="callout callout-style-default callout-note callout-titled" title="Prüfungsscores">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Prüfungsscores
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><strong>Beschreibung der Daten</strong></p>
+<p>Diese Daten wurden im Rahmen des SAPA-Projekts<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> erhoben, um Online-Messungen von Testleistungen zu entwickeln (Revelle, Wilt und Rosenthal, 2009).</p>
+<p>Der Datensatz (n = 700) beinhaltet die Variablen:</p>
+<ul>
+<li><code>age</code>: Alter in Jahren</li>
+<li><code>gender</code><a href="#fn4" class="footnote-ref" id="fnref4" role="doc-noteref"><sup>4</sup></a>: m (1), f (2)</li>
+<li><code>education</code>: Selbstberichteter Bildungsgrad (1 = high school … 5 = graduate work)</li>
+<li><code>ACT</code>: Testscore ACT (American College Testing)</li>
+<li><code>SATV</code>: Testscore SAT (Scholastic Assessment Test) Verbal</li>
+<li><code>SATQ</code>: Testscore SAT (Scholastic Assessment Test) Quantitativ</li>
+</ul>
+<p><em>Quelle: Revelle, William, Wilt, Joshua, und Rosenthal, Allen (2009) Personality and Cognition: The Personality-Cognition Link. In Gruszka, Alexandra, Matthews, Gerald und Szymura, Blazej (Hrsg.) Handbook of Individual Differences in Cognition: Attention, Memory and Executive Control, Springer.</em><a href="#fn5" class="footnote-ref" id="fnref5" role="doc-noteref"><sup>5</sup></a></p>
+</div>
+</div>
+</div>
+<p><strong>a. Fragestellung</strong></p>
+<p>Welche Fragestellung möchten Sie bearbeiten mit den oben gegebenen Variablen? Überprüfen Sie die Voraussetzungen für die Regression (metrische Variablen und Linearität).</p>
+<ul>
+<li>Wählen Sie dafür drei Variablen aus (eine AV und zwei UVn).</li>
+<li>Formulieren Sie die Fragestellung und schreiben Sie sie in Ihr <em>RNotebook</em>.</li>
+<li>Schreiben Sie sich auf: Welche Variable ist <span class="math inline">\(y\)</span>? Welche <span class="math inline">\(x_1\)</span> und welche <span class="math inline">\(x_2\)</span>?</li>
+<li>Denken Sie, dass <span class="math inline">\(x_1\)</span> und <span class="math inline">\(x_2\)</span> zusammenhängen?</li>
+</ul>
+<p><strong>b. “Präregistrierung”</strong></p>
+<p>Verfassen Sie ein Resultatetext ohne zu wissen welche Resultate die Analyse ergeben wird. Lassen Sie die Werte deshalb noch weg. Schreiben Sie einen Text für das für Sie wahrscheinlichste Ergebnis.</p>
+<p><strong>c.&nbsp;Datensatz vorbereiten</strong></p>
+<ul>
+<li>Lesen Sie den Datensatz <code>sat_act.csv</code> aus dem <code>data</code>-Ordner Ihres <code>regression</code>-Projekts ein und speichern Sie ihn unter <code>d_sat_act</code>.</li>
+<li>Transformieren Sie die Variable <code>gender</code> in eine kategoriale Variable.</li>
+<li>In den <em>SATQ</em>-Scores gibt es einige fehlende Werte (missings). Filtern Sie diese heraus <a href="../datenverarbeitung/transform.html#messungen-auswählen-filter">wie hier beschrieben</a>.</li>
+</ul>
+<p>Führen Sie diese Schritte idealerweise mit der Pipe (<code>|&gt;</code>) aus, damit sie die Objekte nicht überschreiben/neu benennen müssen. Bei korrekter Ausführung bleiben 687 Datenpunkte (<code>obs.</code>) in 6 Variablen..</p>
+<p><strong>d.&nbsp;Variablen bestimmen und Voraussetzungen prüfen</strong></p>
+<ul>
+<li>Schauen Sie für beide Variablenpaare <span class="math inline">\(y ~ x_1\)</span> und <span class="math inline">\(y ~x_2\)</span> den Zusammenhang mit je einem Plot an. Ist die Annahme der (Quasi-)Linearität ok?</li>
+</ul>
+<p><strong>e. Regressionsmodelle berechnen und vergleichen</strong></p>
+<ul>
+<li>Berechnen Sie das einfache lineare Regressionsmodell mit <span class="math inline">\(x_1\)</span> als Prädiktorvariable.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modell mit x1 als Prädiktor</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>m_x1 <span class="ot">&lt;-</span> ___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Berechnen Sie das einfache lineare Regressionsmodell mit <span class="math inline">\(x_2\)</span> als Prädiktorvariable.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modell mit x2 als Prädiktor</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>m_x2 <span class="ot">&lt;-</span> ___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Berechnen Sie die multiple Regression mit <span class="math inline">\(x_1\)</span> und <span class="math inline">\(x_2\)</span> als Prädiktorvariablen.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modell mit x1 und x2 als Prädiktoren</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>m_x1x2 <span class="ot">&lt;-</span> ___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Vergleichen Sie den Achsenabschnitt und die Regressionskoeffizienten zwischen den Modellen. Was sehen Sie?</p>
+<p><strong>f.&nbsp;Voraussetzungen überprüfen</strong></p>
+<p>Schauen Sie sich mit den Model-Check Funktionen aus dem {performance}-Package an, ob die Voraussetzungen für die multiple Regression gegeben sind. Falls die Annahmen verletzt sind: Sehen Sie in den Plots, weshalb?</p>
+<aside>
+<em>Tipp: Ganz schnell können diagnostische Plots auch mit der Funktion <code>plot()</code> erstellt werden, als Argumentnamen wird nur das Modell-Objekt z.B. <code>m_x1</code> benötigt. Welche Form der Plots mögen Sie mehr?</em>
+</aside>
+<p><br></p>
+</section>
+<section id="aufgabe-12.5-varianzaufklärung-und-determinationskoeffizienten" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-12.5-varianzaufklärung-und-determinationskoeffizienten">Aufgabe 12.5: Varianzaufklärung und Determinationskoeffizienten</h2>
+<ul>
+<li><p>Was sagt ein Determinationskoeffizient aus? Wann ist er 0? Wann ist er 1?</p></li>
+<li><p>Erstellen Sie eine Tabelle mit den Spalten <em>Modell</em>, <em>Prädiktor(en)</em>, <span class="math inline">\(R^2\)</span>, <span class="math inline">\(\triangle R^2\)</span>. Fügen Sie aus den obigen Modellen die Prädiktoren, das <span class="math inline">\(R^2\)</span> sowie die in dem Modell zusätzlich erklärte Varianz (<span class="math inline">\(\triangle R^2\)</span>), also die Differenz von <span class="math inline">\(R^2\)</span> zum vorherigen <span class="math inline">\(R^2\)</span>, ein.</p></li>
+</ul>
+<table class="table-hover caption-top table">
+<caption>Determinationskoeffizienten</caption>
+<thead>
+<tr class="header">
+<th>Modell</th>
+<th>Prädiktor(en)</th>
+<th><span class="math inline">\(R^2\)</span></th>
+<th><span class="math inline">\(\triangle R^2\)</span></th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><span class="math inline">\(m_{x1}\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(m_{x2}\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="odd">
+<td><span class="math inline">\(m_{x1x2}\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+<tr class="even">
+<td><span class="math inline">\(m_{x2x1}\)</span></td>
+<td></td>
+<td></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li>Was passiert mit <span class="math inline">\(R^2\)</span>, wenn Sie die Reihenfolge der Prädiktorvariablen umdrehen?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modell mit x2 und x1 als Prädiktoren</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>m_x2x1 <span class="ot">&lt;-</span> ___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><p>Vergleichen und diskutieren Sie kurz mit jemandem, der andere Modelle gerechnet hat. Was fällt Ihnen auf?</p></li>
+<li><p>Wieso heisst der Determinationskoeffizient <span class="math inline">\(R^2\)</span>? (<em>Tipp</em>: Auf <a href="https://rpsychologist.com/correlation/" class="uri">https://rpsychologist.com/correlation/</a> können Sie Daten/Korrelationen simulieren und die Korrelation und den <span class="math inline">\(R^2\)</span>-Wert vergleichen)</p></li>
+<li><p>Zeichnen Sie auf, wie viel Varianz Ihre gewählten Variablen in der Varianz von <span class="math inline">\(y\)</span> aufklären. Zeichnen Sie dies mittels 3 Kreisen auf.</p></li>
+</ul>
+<div class="quarto-figure quarto-figure-center">
 <figure class="figure">
-<p><img src="../imgs/thanks.png" class="img-fluid quarto-figure quarto-figure-left figure-img" style="width:30.0%"></p>
+<p><img src="../imgs/variance_explained.png" class="img-fluid figure-img"></p>
+<figcaption>Erklärte Varianz zwischen Kriteriumsvariable und Prädiktoren (Venn Diagramme)</figcaption>
 </figure>
 </div>
+<!-- - Vergleichen Sie das Modell mit einem mit dem mit beiden Prädiktoren mit der Funktion `anova()`. Führt das Hinzufügen des zweiten Prädiktors zu signifikant mehr erklärter Varianz?  -->
+<!-- ```{r} -->
+<!-- anova(m_x1, m_x1x2) -->
+<!-- ``` -->
+<p><br></p>
+</section>
+<section id="aufgabe-12.6-resultate-berichten" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-12.6-resultate-berichten">Aufgabe 12.6: Resultate berichten</h2>
+<p>Lassen Sie sich mit <code>summary()</code> den Output des Modells <span class="math inline">\(m_x1x2\)</span> ausgeben. Um nur die Regressionskoeffizienten anzuschauen, können auch <code>model$coefficients</code> oder <code>summary(model)$cofficients</code> verwenden.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">___</span>(___)</span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>___<span class="sc">$</span>coefficients</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(____)<span class="sc">$</span>coefficients</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li><p>Füllen Sie nun die Werte in den Resultate-Text, den Sie in <em>Aufgabe 12.4b</em> vorbereitet haben.</p></li>
+<li><p>Fügen Sie noch einen Satz zu den Modellannahmen ein (erfüllt, nicht erfüllt?).</p></li>
+<li><p>Hätten Sie dieses Resultat erwartet? Diskutieren Sie zusammen, ob Ihre Intuition und die Resultate übereingestimmt haben.</p></li>
+</ul>
+<p><br></p>
+</section>
+<section id="zusatzaufgaben" class="level2">
+<h2 class="anchored" data-anchor-id="zusatzaufgaben">Zusatzaufgaben</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Zusatzaufgaben">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Zusatzaufgaben
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Zusatzaufgaben müssen nicht gelöst werden.</strong></p>
+</div>
+</div>
+<p><strong>a. Interaktiver Plot: Regressionsebene</strong></p>
+<p>Mit dem <em>R-Skript</em> können Sie Datenpunkte simulieren und diese dann mit der gefitteten Regressionsebene in R plotten. Das Skript erstellt einen interaktiven 3D-Plot im <code>Plots</code>-Fenster (rechter unterer Quadrant). Der 3D-Plot visualisert, wie bei zwei Prädiktoren eine zwei Regressionsgeraden eine Ebene ergeben.</p>
+<p>Vorgehen:</p>
+<ul>
+<li>Installieren Sie das Package {plotly} mit <code>install.packages("plotly")</code> in der Konsole.</li>
+<li>Laden Sie das <em>R-Skript</em> <a href="../data/regressionplane_3dmodel.R"><code>regressionplane_3dmodel.R</code></a> herunter, um neue Daten zu simulieren oder das <em>R-Skript</em> <a href="../data/regressionplane_3dmodel_tibble.R"><code>regressionplane_3dmodel_tibble.R</code></a>, um die Werte der Variablen einzuheben.</li>
+<li>Plotten Sie die Grafik. Finden Sie ungefähr die Werte von <span class="math inline">\(b_0\)</span>, <span class="math inline">\(b_1\)</span> und <span class="math inline">\(b_2\)</span>?</li>
+<li>Verändern Sie die Werte und plotten Sie die Grafik erneut.</li>
+</ul>
+<p><img src="../imgs/regression_plane.png" class="img-fluid"></p>
+<p><strong>b. Regressionskoeffizienten vergleichen (für Interessierte)</strong></p>
+<p>Vergleichen Sie die Regressionskoeffizienten <span class="math inline">\(b_1\)</span> zwischen den Modellen <span class="math inline">\(m_x1\)</span> und <span class="math inline">\(m_{x1x2}\)</span>. Welcher Fall trifft zu? Was bedeutet das?<a href="#fn6" class="footnote-ref" id="fnref6" role="doc-noteref"><sup>6</sup></a></p>
+<ul>
+<li>A. <span class="math inline">\(b_{einf}\)</span> = <span class="math inline">\(b_{mult}\)</span>: Das Regressionsgewicht <span class="math inline">\(b_1\)</span> ist im Modell <span class="math inline">\(m_{x1}\)</span> entspricht dem Regressionsgewicht <span class="math inline">\(b_1\)</span> im Modell <span class="math inline">\(m_{x1x2}\)</span>.</li>
+</ul>
+<!-- > Die Prädiktorvariablen sind nicht korreliert. Kann überprüft werden mit der Funktion `cor()`. -->
+<ul>
+<li>B. <span class="math inline">\(b_{einf}\)</span> &gt; <span class="math inline">\(b_{mult}\)</span>: Das Regressionsgewicht von <span class="math inline">\(b_1\)</span> ist im Modell <span class="math inline">\(m_{x1}\)</span> grösser als <span class="math inline">\(b_1\)</span> im Modell <span class="math inline">\(m_{x1x2}\)</span>.</li>
+</ul>
+<!-- > Die Prädiktorvariablen sind korreliert. Beide korrelieren zudem mit der Kriteriumsvariablen. Die Prädiktorvariable $x_2$ korreliert stärker mit  $y$ als die Variable $x_1$. Bei Korrelation = 1 zwischen den Prädiktorvariablen: exakte Kollinearität. -->
+<ul>
+<li>C. <span class="math inline">\(b_{einf}\)</span> &lt; <span class="math inline">\(b_{mult}\)</span>: Das Regressionsgewicht von <span class="math inline">\(b_1\)</span> ist im Modell <span class="math inline">\(m_{x1}\)</span> kleiner als <span class="math inline">\(b_1\)</span> im Modell <span class="math inline">\(m_{x1x2}\)</span>.</li>
+</ul>
+<!-- > Die Prädiktorvariable $x_2$ korreliert mit $x_1$, aber nicht mit der Kriteriumsvariablen: Suppression. -->
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Für das Entzippen mit <em>Windows</em> machen Sie einen Rechtsklick auf den Ordner mit dem Reissverschluss und wählen Sie <code>Entpacken nach</code> und geben Sie den Ordner an, in dem Sie alle Ihre <em>RProject-Ordner</em> speichern. Für das Entzippen mit <em>Mac</em> speichern Sie den heruntergeladenen Ordner in den Ordner, in dem Sie alle Ihre <em>RProject-Ordner</em> speichern und Doppelklicken Sie danach auf den Ordner. Nur entzippte Ordner können einwandfrei verwendet werden.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Es werden beim Herunterladen zusätzliche Packages installiert, geben Sie dafür bei Aufforderung in der Konsole <code>y</code> ein.<a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn3"><p><a href="https://www.sapa-project.org/" class="uri">https://www.sapa-project.org/</a><a href="#fnref3" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn4"><p>Dies ist ein älterer Datensatz, heute werden <em>sex</em> und <em>gender</em> unterschieden und weitere Antwortkategorien gegeben z.B. <em>d</em><a href="#fnref4" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn5"><p><a href="https://vincentarelbundock.github.io/Rdatasets/doc/psych/sat.act.html" class="uri">https://vincentarelbundock.github.io/Rdatasets/doc/psych/sat.act.html</a><a href="#fnref5" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn6"><p>siehe S. 635 in Eid et al.&nbsp;(2017)<a href="#fnref6" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
 <script>
@@ -1244,15 +1608,15 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../appendix/webrconsole.html" class="pagination-link" aria-label="WebR Konsole">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">WebR Konsole</span>
+      <a href="../uebungen/uebung-11.html" class="pagination-link" aria-label="Übung 11">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Übung 11</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="../appendix/license.html" class="pagination-link" aria-label="License">
-        <span class="nav-page-text">License</span> <i class="bi bi-arrow-right-short"></i>
+      <a href="../appendix/faq.html" class="pagination-link" aria-label="FAQ">
+        <span class="nav-page-text">FAQ</span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>
