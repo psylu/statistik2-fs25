@@ -99,7 +99,7 @@ Bei leichten Abweichungen kann trotzdem eine einfache lineare Regression ausgef�
 
 #### __Regressionsgleichungen__
 
-In der multiplen Regression entspricht die Anzahl der Prädiktorvariablen (plus allfälliger Interaktionsterme).
+Die Anzahl der Regressionskoeffizienten entspricht der Anzahl der Prädiktorvariablen (plus allfälliger Interaktionsterme).
 
 Folgende Regressionsgleichungen gelten für __zwei Prädiktoren__:
 
@@ -125,10 +125,12 @@ Man kann sich dies vorstellen, wie 2 Geraden, die durch eine 3-dimensionale Punk
 Das Verbinden der beiden Geraden ergibt eine Ebene.
 Durch das Drehen des untenstehenden Plots kann erkannt werden, dass die Seite der Ebene für $x_1$ und $x_2$ eine Gerade bildet.
 
-Die Regressionskoeffizienten werden wie bei der einfachen Regression] mittels OLS (_Ordinary Least Squares_) geschätzt: Nach dem Kleinste-Quadrate-Kriterium wird die Summe der Abweichungsquadrate minimiert.
+Die Regressionskoeffizienten werden wie bei der einfachen Regression mittels OLS (_Ordinary Least Squares_) geschätzt: Nach dem Kleinste-Quadrate-Kriterium wird die Summe der Abweichungsquadrate minimiert.
 
 Die interaktive Grafik zeigt, wie die beiden Regressionsgeraden zusammen eine Regressionsebene bilden. 
 Der orange Punkt ist kein Datenpunkt, sondern markiert den Intercept $b_0$.
+
+<br>
 
 ```{r}
 #| echo: false
@@ -251,7 +253,7 @@ Determinationskoeffizient: $R^2 = \frac{s^2_\hat{y}}{s^2_y}$
 
 Indeterminationskoeffizient: $1- R^2 = \frac{s^2_e}{s^2_y}$
 
-#### __Teststatistik berechnen__ -->
+#### __Teststatistik berechnen__
 
 Um zu überprüfen, ob die Prädiktorvariablen insgesamt einen Beitrag zur Erklärung in Unterschieden der abhängigen Variablen erklären, kann die ein $F$-Test durchgeführt werden.
 
@@ -279,7 +281,7 @@ $t = \frac{b_j - \beta_{0j}}{\hat{\sigma}_{B_j}}$
 
 #### __Ergebnisse interpretieren und berichten__
 
-> Multiple regression analysis was used to test if the personality traits significantly predicted participants' ratings of aggression. The results of the regression indicated the two predictors explained 35.8% of the variance (R2=.38, F(2,55)=5.56, p<.01). It was found that extraversion significantly predicted aggressive tendencies (β = .56, p<.001), as did agreeableness (β = -.36, p<.01).
+> Multiple regression analysis was used to test if the personality traits significantly predicted participants' ratings of aggression. The results of the regression indicated the two predictors explained 35.8% of the variance ($R^2$ = .38, $F$(2,55) = 5.56, $p$ < .01). It was found that extraversion significantly predicted aggressive tendencies ($\beta$ = .56, $p$ < .001), as did agreeableness ($\beta$ = -.36, $p$ < .01).
 
 <!-- ## Anwendungsbeispiel in R -->
 
