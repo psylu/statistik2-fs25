@@ -1,0 +1,271 @@
+# Übung 12 {.unnumbered #sec-uebung-12}
+
+```{r}
+#| include: false
+# Set working directory of R
+knitr::opts_knit$set(root.dir = '../')
+```
+
+## Aufgabe 12.0: Projektumgebung erstellen
+
+Dateien und Packages für die Übung vorbereiten:
+
+- Laden Sie den Datensatz [`sat_act.csv`](../data/sat_act.csv) herunter und speichern Sie den Datensatz im `data`-Ordner des RProjekts `regression`.
+
+:::{.callout-tip appearance="default" title="Falls Übung 11 nicht durchgeführt" collapse="true"}
+- Laden Sie den [Projektordner `regression`](data/regression.zip) herunter und __entzippen__ Sie den Ordner.^[Für das Entzippen mit _Windows_ machen Sie einen Rechtsklick auf den Ordner mit dem Reissverschluss und wählen Sie `Entpacken nach` und geben Sie den Ordner an, in dem Sie alle Ihre _RProject-Ordner_ speichern. Für das Entzippen mit _Mac_ speichern Sie den heruntergeladenen Ordner in den Ordner, in dem Sie alle Ihre _RProject-Ordner_ speichern und Doppelklicken Sie danach auf den Ordner. Nur entzippte Ordner können einwandfrei verwendet werden.] Der Projektordner enthält:
+  -  _RProjekt_ `regression.RProj`
+  - Datensatz `stressanxiety.csv` für Übung 11
+  - Datensatz `sat_act.csv` für Übung 12
+
+- Installieren Sie (falls noch nicht vorhanden) die benötigten Packages unter `Tools` > `Install Packages...` oder in der Konsole mit
+  - `install.packages("performance")`^[Es werden beim Herunterladen zusätzliche Packages installiert, geben Sie dafür bei Aufforderung in der Konsole `y` ein.]
+  
+:::
+
+- Öffnen Sie das _RProjekt_ `regression`.
+
+- Erstellen Sie ein _RNotebook_ namens `uebung-12`.
+
+<br>
+
+## Aufgabe 12.1: Positive und negative Regressionsgewichte
+
+Was bedeuten folgende (fiktive) Resultate?
+
+> _**A**. Eine Studie hat den Einfluss von Musikstunden pro Woche auf das Abschneiden in einem Intelligenztest bei 15-jährigen untersucht. Die Studie hat ein $b_0$ = 98.72 und ein $b_1$ = 0.25 gefunden._ 
+
+> _**B**. Eine Studie hat den Zusammenhang von Musikstunden pro Woche und dem dem Abschneiden in einem Sportleistungstest bei 15-jährigen untersucht. Die Studie hat ein $b_0$ = 34.3 und ein $b_1$ = -1.21 gefunden._ 
+
+> _**C**. Eine Studie hat untersucht, wie sich die Lebenszufriedenheit verändert wenn Personen mehr oder weniger Unterstützung durch die Spitex erhalten. Die Studie hat ein $b_0$ = 5.7 und ein $b_1$ = -0.002 gefunden._
+
+Wie würden Sie das Resultat einer Person erklären, die die Regressionsanalyse nicht kennt? Formulieren Sie in einem Satz aus, was die Ergebnisse bedeuten. 
+
+Evtl. helfen folgende Unterfragen dabei:
+
+- Was ist die AV, was ist die UV?
+
+- Wie verändert sich die AV in Abhängigkeit von der UV? 
+
+- In welchen Beispielen finden Sie standardisierte und in welchen unstandardisierte Variablen sinnvoller?
+
+<br>
+
+## Aufgabe 12.2: Einstieg in multiple Regression
+
+__a.__ Was unterscheidet die einfach von der multiplen Regression? Was ist der Mehrwert?
+
+__b.__ Was sind die Voraussetzungen für die multiple Regression?
+
+__c.__ Welche Fragestellung würden Sie untersuchen wollen, bei der eine multiple Regression zur Anwendung kommen könnte?
+
+__d.__ Suchen Sie mit dem Suchbegriff "_we used a multiple regression_" oder "_a multiple linear regression model was used_" sowie einem Begriff für ein Thema in der Psychologie, dass Sie interessiert in einer Datenbank nach Artikeln. 
+
+Schauen Sie sich dann an, was diese Studien untersucht haben und lesen Sie die _Results-Section_. Finden Sie die Kennwerte der Regressionsanalyse? Was verstehen Sie bezüglich der Analyse, welche gemacht wurde und welche Resultate sie lieferten? Was bleibt unklar?
+
+Diskutieren Sie kurz miteinander, was Sie gefunden haben.
+
+<br>
+
+## Aufgabe 12.3: Regressionsgleichung der multiplen Regression
+
+__a.__ Wie lautet die Bestimmungsgleichung der Regressionsgeraden in der multiplen Regressionsanalyse? Schreiben Sie die Gleichung für zwei Prädiktorvariablen auf.
+
+__b.__ Was bedeutet der Wert $b_1$ in der multiplen Regression?
+
+__c.__ Ergänzen Sie den folgenden Text zur Additivität der Regressionskomponenten:
+
+::: {.webex-check .webex-box}
+Ein beobachteter `r webexercises::mcq(c(answer = "y", "x", "e"))`-Wert lässt sich additiv zerlegen 
+in `r webexercises::mcq(c("die Kriteriumsvariable", answer= "den Achsenabschnitt", "den Regressionskoeffizienten"))` $b_0$, 
+den mit $b_1$ `r webexercises::mcq(c(answer = "korrelierten", "quadrierten", answer = "gewichteten"))` Wert von $x_{m1}$ (`r webexercises::mcq(c(answer = "Kriteriumsvariable", answer = "erste Prädiktorvariable", "zweite Prädiktorvariable"))`), 
+den mit $b_2$ `r webexercises::mcq(c(answer = "korrelierten", "quadrierten", answer = "gewichteten"))` Wert von $x_{m2}$ (`r webexercises::mcq(c(answer = "Kriteriumsvariable", "erste Prädiktorvariable", answer = "zweite Prädiktorvariable"))`), 
+und den `r webexercises::mcq(c(answer = "Residualwert", answer = "Varianzen der Residuen", "die kleinste Quadratsumme"))` $e_m$. 
+:::
+
+Fassen Sie in einfachen Worten zusammen, was _Additivität der Regressionskomponenten_ bedeutet und tauschen Sie Ihre Definitionen aus.
+
+<br>
+
+## Aufgabe 12.4: Multiple Regression berechnen I 
+
+Bearbeiten Sie diese Aufgabe im _RNotebook_ `uebung-12`.
+
+In dieser Aufgabe berechnen wir die Regression für das Datenbeispiel `sat_act.csv`.
+
+:::{.callout-note appearance="default" title="Prüfungsscores" collapse="false"}
+
+__Beschreibung der Daten__
+
+Diese Daten wurden im Rahmen des SAPA-Projekts^[<https://www.sapa-project.org/>] erhoben, um Online-Messungen von Testleistungen zu entwickeln (Revelle, Wilt und Rosenthal, 2009).
+
+Der Datensatz (n = 700) beinhaltet die Variablen:
+
+- `age`: Alter in Jahren
+- `gender`^[Dies ist ein älterer Datensatz, heute werden _sex_ und _gender_ unterschieden und weitere Antwortkategorien gegeben z.B. _d_]: m (1), f (2)
+- `education`: Selbstberichteter Bildungsgrad (1 = high school ... 5 = graduate work)
+- `ACT`: Testscore ACT (American College Testing)
+- `SATV`: Testscore SAT (Scholastic Assessment Test) Verbal 
+- `SATQ`: Testscore SAT (Scholastic Assessment Test) Quantitativ
+
+_Quelle: Revelle, William, Wilt, Joshua, und Rosenthal, Allen (2009) Personality and Cognition: The Personality-Cognition Link. In Gruszka, Alexandra, Matthews, Gerald und Szymura, Blazej (Hrsg.) Handbook of Individual Differences in Cognition: Attention, Memory and Executive Control, Springer._^[<https://vincentarelbundock.github.io/Rdatasets/doc/psych/sat.act.html>]
+:::
+
+__a. Fragestellung__
+
+Welche Fragestellung möchten Sie bearbeiten mit den oben gegebenen Variablen? Überprüfen Sie die Voraussetzungen für die Regression (metrische Variablen und Linearität).
+
+- Wählen Sie dafür drei Variablen aus (eine AV und zwei UVn). 
+- Formulieren Sie die Fragestellung und schreiben Sie sie in Ihr _RNotebook_.
+- Schreiben Sie sich auf: Welche Variable ist $y$? Welche $x_1$ und welche $x_2$?
+- Denken Sie, dass $x_1$ und $x_2$ zusammenhängen?
+
+__b. "Präregistrierung"__
+
+Verfassen Sie ein Resultatetext ohne zu wissen welche Resultate die Analyse ergeben wird. Lassen Sie die Werte deshalb noch weg. Schreiben Sie einen Text für das für Sie wahrscheinlichste Ergebnis.
+
+__c. Datensatz vorbereiten__
+
+- Lesen Sie den Datensatz `sat_act.csv` aus dem `data`-Ordner Ihres `regression`-Projekts ein und speichern Sie ihn unter `d_sat_act`.
+- Transformieren Sie die Variable `gender` in eine kategoriale Variable. 
+- In den _SATQ_-Scores gibt es einige fehlende Werte (missings). Filtern Sie diese heraus [wie hier beschrieben](../datenverarbeitung/transform.html#messungen-auswählen-filter). 
+
+Führen Sie diese Schritte idealerweise mit der Pipe (`|>`) aus, damit sie die Objekte nicht überschreiben/neu benennen müssen. Bei korrekter Ausführung bleiben 687 Datenpunkte (`obs.`) in 6 Variablen..
+
+__d. Variablen bestimmen und Voraussetzungen prüfen__
+
+- Schauen Sie für beide Variablenpaare $y ~ x_1$ und $y ~x_2$ den Zusammenhang mit je einem Plot an. Ist die Annahme der (Quasi-)Linearität ok?
+
+__e. Regressionsmodelle berechnen und vergleichen__
+
+- Berechnen Sie das einfache lineare Regressionsmodell mit $x_1$ als Prädiktorvariable.
+
+```{r}
+#| eval: false
+# Modell mit x1 als Prädiktor
+m_x1 <- ___
+```
+
+- Berechnen Sie das einfache lineare Regressionsmodell mit $x_2$ als Prädiktorvariable.
+
+```{r}
+#| eval: false
+# Modell mit x2 als Prädiktor
+m_x2 <- ___
+```
+
+- Berechnen Sie die multiple Regression mit $x_1$ und $x_2$ als Prädiktorvariablen.
+
+```{r}
+#| eval: false
+# Modell mit x1 und x2 als Prädiktoren
+m_x1x2 <- ___
+```
+
+Vergleichen Sie den Achsenabschnitt und die Regressionskoeffizienten zwischen den Modellen. Was sehen Sie?
+
+__f. Voraussetzungen überprüfen__
+
+Schauen Sie sich mit den Model-Check Funktionen aus dem {performance}-Package an, ob die Voraussetzungen für die multiple Regression gegeben sind. Falls die Annahmen verletzt sind: Sehen Sie in den Plots, weshalb? 
+
+<aside> _Tipp: Ganz schnell können diagnostische Plots auch mit der Funktion `plot()` erstellt werden, als Argumentnamen wird nur das Modell-Objekt z.B. `m_x1` benötigt. Welche Form der Plots mögen Sie mehr?_ </aside>
+
+<br>
+
+
+## Aufgabe 12.5: Varianzaufklärung und Determinationskoeffizienten
+
+- Was sagt ein Determinationskoeffizient aus? Wann ist er 0? Wann ist er 1?
+
+- Erstellen Sie eine Tabelle mit den Spalten _Modell_, _Prädiktor(en)_, $R^2$, $\triangle R^2$. Fügen Sie aus den obigen Modellen die Prädiktoren, das $R^2$ sowie die in dem Modell zusätzlich erklärte Varianz ($\triangle R^2$), also die Differenz von $R^2$ zum vorherigen $R^2$, ein. 
+
+| Modell | Prädiktor(en) | $R^2$ | $\triangle R^2$ |
+|---------|---------|---------|--------|
+| $m_{x1}$ | | | |
+| $m_{x2}$ | | | | 
+| $m_{x1x2}$ | | | |
+| $m_{x2x1}$ | | | |
+:Determinationskoeffizienten {.hover}
+
+- Was passiert mit $R^2$, wenn Sie die Reihenfolge der Prädiktorvariablen umdrehen?
+
+```{r}
+#| eval: false
+# Modell mit x2 und x1 als Prädiktoren
+m_x2x1 <- ___
+```
+
+- Vergleichen und diskutieren Sie kurz mit jemandem, der andere Modelle gerechnet hat. Was fällt Ihnen auf?
+
+- Wieso heisst der Determinationskoeffizient $R^2$? (_Tipp_: Auf <https://rpsychologist.com/correlation/> können Sie Daten/Korrelationen simulieren und die Korrelation und den $R^2$-Wert vergleichen)
+
+- Zeichnen Sie auf, wie viel Varianz Ihre gewählten Variablen in der Varianz von $y$ aufklären. Zeichnen Sie dies mittels 3 Kreisen auf.
+
+![Erklärte Varianz zwischen Kriteriumsvariable und Prädiktoren (Venn Diagramme)](../imgs/variance_explained.png)
+
+<!-- - Vergleichen Sie das Modell mit einem mit dem mit beiden Prädiktoren mit der Funktion `anova()`. Führt das Hinzufügen des zweiten Prädiktors zu signifikant mehr erklärter Varianz?  -->
+
+<!-- ```{r} -->
+<!-- anova(m_x1, m_x1x2) -->
+<!-- ``` -->
+
+<br>
+
+## Aufgabe 12.6: Resultate berichten
+
+Lassen Sie sich mit `summary()` den Output des Modells $m_x1x2$ ausgeben. 
+Um nur die Regressionskoeffizienten anzuschauen, können auch `model$coefficients` oder `summary(model)$cofficients` verwenden. 
+
+```{r}
+#| eval: false
+___(___)
+___$coefficients
+summary(____)$coefficients
+```
+
+- Füllen Sie nun die Werte in den Resultate-Text, den Sie in _Aufgabe 12.4b_ vorbereitet haben. 
+
+- Fügen Sie noch einen Satz zu den Modellannahmen ein (erfüllt, nicht erfüllt?).
+
+- Hätten Sie dieses Resultat erwartet? Diskutieren Sie zusammen, ob Ihre Intuition und die Resultate übereingestimmt haben.
+
+<br>
+
+## Zusatzaufgaben
+
+:::{.callout-tip appearance="default" title="Zusatzaufgaben"}
+
+__Zusatzaufgaben müssen nicht gelöst werden.__
+
+:::
+
+__a. Interaktiver Plot: Regressionsebene__
+
+Mit dem _R-Skript_ können Sie Datenpunkte simulieren und diese dann mit der gefitteten Regressionsebene in R plotten. 
+Das Skript erstellt einen interaktiven 3D-Plot im `Plots`-Fenster (rechter unterer Quadrant).
+Der 3D-Plot visualisert, wie bei zwei Prädiktoren eine zwei Regressionsgeraden eine Ebene ergeben.
+
+Vorgehen:
+
+- Installieren Sie das Package {plotly} mit `install.packages("plotly")` in der Konsole.
+- Laden Sie das _R-Skript_ [`regressionplane_3dmodel.R`](../data/regressionplane_3dmodel.R) herunter, um neue Daten zu simulieren oder das _R-Skript_ [`regressionplane_3dmodel_tibble.R`](../data/regressionplane_3dmodel_tibble.R), um die Werte der Variablen einzuheben.
+- Plotten Sie die Grafik. Finden Sie ungefähr die Werte von $b_0$, $b_1$ und $b_2$?
+- Verändern Sie die Werte und plotten Sie die Grafik erneut.
+
+![](../imgs/regression_plane.png)
+
+__b. Regressionskoeffizienten vergleichen (für Interessierte)__
+
+Vergleichen Sie die Regressionskoeffizienten $b_1$ zwischen den Modellen $m_x1$ und $m_{x1x2}$. Welcher Fall trifft zu? Was bedeutet das?^[siehe S. 635 in Eid et al. (2017)] 
+
+- A. $b_{einf}$ = $b_{mult}$: Das Regressionsgewicht $b_1$ ist im Modell $m_{x1}$ entspricht dem Regressionsgewicht $b_1$ im Modell $m_{x1x2}$.
+
+<!-- > Die Prädiktorvariablen sind nicht korreliert. Kann überprüft werden mit der Funktion `cor()`. -->
+
+- B. $b_{einf}$ > $b_{mult}$: Das Regressionsgewicht von $b_1$ ist im Modell $m_{x1}$ grösser als $b_1$ im Modell $m_{x1x2}$.
+
+<!-- > Die Prädiktorvariablen sind korreliert. Beide korrelieren zudem mit der Kriteriumsvariablen. Die Prädiktorvariable $x_2$ korreliert stärker mit  $y$ als die Variable $x_1$. Bei Korrelation = 1 zwischen den Prädiktorvariablen: exakte Kollinearität. -->
+
+- C. $b_{einf}$ < $b_{mult}$: Das Regressionsgewicht von $b_1$ ist im Modell $m_{x1}$ kleiner als $b_1$ im Modell $m_{x1x2}$.
+
+<!-- > Die Prädiktorvariable $x_2$ korreliert mit $x_1$, aber nicht mit der Kriteriumsvariablen: Suppression. -->

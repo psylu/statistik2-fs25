@@ -513,7 +513,7 @@ Oder wir können mit der Funktion `c()` einen numerischen Vektor erstellen, und 
 
 ```{r}
 # mean with a numeric vector
-iq <- c(100, 88, 115, 102, 104, 96, 85, 112, 98)
+iq <- c(105, 88, 115, 102, 104, 96, 85, 112, 98)
 mean(iq)
 ```
 
