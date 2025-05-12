@@ -59,8 +59,7 @@ book:
     - uebungen/uebung-09.qmd
     - uebungen/uebung-10.qmd
     - uebungen/uebung-11.qmd
-    - inprep/uebung-12-solution.qmd
-    
+
   - part: Anhang
     chapters:
     - appendix/faq.qmd
