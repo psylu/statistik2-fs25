@@ -121,13 +121,14 @@ wobei $k$ die Summe aller Prädiktorvariablen bezeichnet, und $j$ eine Laufvaria
 #### __Regressionsebene__
 
 Bei der multiplen Regression mit zwei Prädiktoren wird für jeden Prädiktor ein Regressionskoeffizient geschätzt. 
-Man kann sich dies vorstellen, wie 2 Geraden, die durch eine 3-dimensionale Punktewolke gelegt werden. 
-Das Verbinden der beiden Geraden ergibt eine Ebene.
-Durch das Drehen des untenstehenden Plots kann erkannt werden, dass die Seite der Ebene für $x_1$ und $x_2$ eine Gerade bildet.
-
 Die Regressionskoeffizienten werden wie bei der einfachen Regression mittels OLS (_Ordinary Least Squares_) geschätzt: Nach dem Kleinste-Quadrate-Kriterium wird die Summe der Abweichungsquadrate minimiert.
 
-Die interaktive Grafik zeigt, wie die beiden Regressionsgeraden zusammen eine Regressionsebene bilden. 
+Man kann sich die Schätzung zweier Regressionskoeffizienten vorstellen, wie 2 Geraden, die durch eine 3-dimensionale Punktewolke (Daten) gelegt werden. 
+Die beiden Regressionsgeraden ergeben die Ränder der Regressionsebene.
+
+![Zwei Regressionsgeraden ergeben eine Regressionsebene](../imgs/gif_regression_plane.gif)
+
+Durch das Drehen des untenstehenden Plots kann erkannt werden, dass die Seite der Ebene für $x_1$ und $x_2$ eine Gerade bildet. Die interaktive Grafik zeigt, wie die beiden Regressionsgeraden zusammen eine Regressionsebene bilden. 
 Der orange Punkt ist kein Datenpunkt, sondern markiert den Intercept $b_0$.
 
 <br>

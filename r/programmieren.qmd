@@ -502,12 +502,11 @@ Hierbei gibt es Argumente die unbedingt benötigt werden, und solche, die weggel
 __Beispiele für Funktionen__
 
 Die Funktion `mean()`berechnet den arithmetischen Mittelwert.
-In der Dokumentation (also z.B. durch eingeben von `?mean()` wird angegeben, dass `mean()` mindestens ein Argument benötigt, nämlich ein Objekt mit Zahlen darin oder mehrere Zahlen: mean(x, ...)`.
-
-`mean()` kann also mit einzelnen Zahlen als Argument verwendet werden:
+In der Dokumentation (also z.B. durch eingeben von `?mean()` wird angegeben, dass `mean()` mindestens ein Argument benötigt, nämlich ein Objekt mit Zahlen darin: mean(x, ...)`. 
+Um mehrere Zahlen als Objekt zu speichern, wird die `column`-Funktion `c()` verwendet.
 
 ```{r}
-mean(100, 88, 115, 102, 104, 96, 85, 112, 98)
+mean(c(105, 88, 115, 102, 104, 96, 85, 112, 98))
 ```
 
 Oder wir können mit der Funktion `c()` einen numerischen Vektor erstellen, und dann diesen Vektor als Argument verwenden:
@@ -550,13 +549,12 @@ Wichtige Funktionen für statistische Berechnungen:
 
 - `mean()`: berechnet den Mittelwert
 - `median()`: berechnet den Median
-- `sd()`: berechnet die Standardabweichung
+- `sd()`: berechnet die Standardabweichung^[Hier wird die geschätzte Standardabweichung berechnet mit $n-1$]
+- `var()`: berechnet die Varianz^[Hier wird die geschätzte Varianz berechnet mit $n-1$]
 - `sum()`: berechnet die Summe
 - `min()`: extrahiert den kleinsten Wert
 - `max()`: extrahiert den grössten Wert
-<!-- - `scale()`: z-transformiert die Daten -->
-
-
+- `scale()`: z-transformiert die Daten
 
 ::: {.callout-note appearance="simple" icon=false}
 ## {{< fa circle-question >}}&emsp;Quiz: Funktionen nutzen
