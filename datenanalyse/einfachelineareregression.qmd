@@ -238,7 +238,7 @@ Kausalzusammenhänge müssen zusätzlich theoretisch begründet und methodisch i
 Die lineare Regression modelliert den Zusammenhang zweier Variablen mit einer linearen Funktion (Gerade).
 Hierbei werden die Werte der zu erklärenden Variablen $y$ als Funktion der erklärenden Variable $x$ modelliert, $y = f(x)$.
 Berechnet wird ein Achsenabschnitt (_intercept_) und ein Regressionskoeffizient für die Steigung (_slope_) der Gerade, um zu quantifizieren, wie stark sich ein Variablenwert verändert wenn die andere Variable um eine Einheit zu nimmt.
-Dies dient der Vorhersage der Ausprägung einer Variable (Regressor) aus der Ausprägung einer anderen Variable (Regressand). 
+Dies dient der Vorhersage der Ausprägung einer Kriteriumsvariable (Regressand) aus der Ausprägung einer Prädiktorvariablen (Regressor). 
 
 Diese Methode ermöglicht:
 
