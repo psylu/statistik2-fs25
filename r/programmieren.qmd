@@ -502,7 +502,7 @@ Hierbei gibt es Argumente die unbedingt benötigt werden, und solche, die weggel
 __Beispiele für Funktionen__
 
 Die Funktion `mean()`berechnet den arithmetischen Mittelwert.
-In der Dokumentation (also z.B. durch eingeben von `?mean()` wird angegeben, dass `mean()` mindestens ein Argument benötigt, nämlich ein Objekt mit Zahlen darin: mean(x, ...)`. 
+In der Dokumentation (also z.B. durch eingeben von `?mean()` wird angegeben, dass `mean()` mindestens ein Argument benötigt, nämlich ein Objekt mit Zahlen darin: `mean(x, ...)`. 
 Um mehrere Zahlen als Objekt zu speichern, wird die `column`-Funktion `c()` verwendet.
 
 ```{r}
