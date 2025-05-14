@@ -125,7 +125,7 @@ Eine einfaktorielle Varianzanalyse mit Messwiederholung kann mit der Funktion `a
 # afex laden
 library(afex)
 
-# Einfaktorielle Anova ohne Messwiederholung
+# Einfaktorielle Anova mit Messwiederholung
 m_anova_rm <- aov_4(symptoms ~ 1 + (condition | id),  # av ~ 1 + (uv | id)
                       data = d_therapy_rm) # Datensatz
 

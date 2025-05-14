@@ -609,7 +609,7 @@ Vor dem ersten Verwenden muss das Package {afex} heruntergeladen/installiert wer
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># afex laden</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(afex)</span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfaktorielle Anova ohne Messwiederholung</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Einfaktorielle Anova mit Messwiederholung</span></span>
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>m_anova_rm <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(symptoms <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> (condition <span class="sc">|</span> id),  <span class="co"># av ~ 1 + (uv | id)</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">data =</span> d_therapy_rm) <span class="co"># Datensatz</span></span>
 <span id="cb7-7"><a href="#cb7-7" aria-hidden="true" tabindex="-1"></a></span>
