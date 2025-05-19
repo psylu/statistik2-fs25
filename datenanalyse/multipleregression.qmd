@@ -238,7 +238,7 @@ wobei
 
 Dies bedeutet, dass die Korrelation der Variablen $x_1$ und $x_2$ stark Einfluss auf den Regressionskoeffizienten nimmt.
 
-Wenn $x_1$ und $x_2$ nicht korrelieren, $r_{x_1x_2} = 0$, dann verändert sich der Regressionskoeffizient der Variablen $x1$ nicht zwischen einer einfachen Regression (mit nur Prädiktor $x_1$) und einer multiplen Regression (mit Prädiktoren $x_1$ und $x_2$).
+Wenn $x_1$ und $x_2$ nicht korrelieren, $r_{x_1x_2} = 0$, dann verändert sich der Regressionskoeffizient der Variablen $x_1$ nicht zwischen einer einfachen Regression (mit nur Prädiktor $x_1$) und einer multiplen Regression (mit Prädiktoren $x_1$ und $x_2$).
 
 Wenn hingegen die Korrelation zwischen $x_1$ und $x_2$ nicht null ist, $r_{x_1x_2} \neq 0$, dann entspricht ein Regressionskoeffizient (bei zwei Prädiktoren) der Steigung der Regressionsgeraden, wenn die Ausprägungen auf der zweiten Prädiktorvariablen konstant gehalten wird. 
 Mit der multiplen Regressionsanalyse wird der Einfluss einer Prädiktorvariablen auf die abhängige Variable bei Konstanthaltung aller anderer Prädiktorvariablen untersucht.
@@ -285,7 +285,7 @@ $F = \frac{MQSR}{MQSE}$
 
 __Regressionskoeffizienten__
 
-$H_0: \beta_j = \beta_{0j}$ wobei $\beta_0j$ das Regressionsgewicht unter der Nullhypothese ist
+$H_0: \beta_j = \beta_{0j}$ wobei $\beta_{0j}$ das Regressionsgewicht unter der Nullhypothese ist
 
 $H_1: \beta_j \neq \beta_{0j}$
 
@@ -297,7 +297,7 @@ $H_1: \beta_j \neq 0$
 
 Es können wie bei vorherigen Tests auch gerichtete Hypothesen formuliert werden.
 
-Die Signifikanz einzelner RegressionskoeffizientenS, kann mit einer $t$-Statistik berechnet werden.
+Die Signifikanz einzelner Regressionskoeffizienten, kann mit einer $t$-Statistik berechnet werden.
 
 Prüfgrösse ist $t$ mit $df = n-k-1$.
 
@@ -311,14 +311,14 @@ $[(b_j - t_{(1 - \frac{\alpha}{2}; df)} \cdot \hat{\sigma}_{B_j}) ; (b_j + t_{(1
 
 #### __Ergebnisse interpretieren und berichten__
 
-> Multiple regression analysis was used to test if the personality traits significantly predicted participants' ratings of aggression. The results of the regression indicated the two predictors explained 35.8% of the variance ($R^2$ = .38, $F$(2,55) = 5.56, $p$ < .01). It was found that extraversion significantly predicted aggressive tendencies ($\beta$ = .56, $p$ < .001), as did agreeableness ($\beta$ = -.36, $p$ < .01).
+> Multiple regression analysis was used to test if personality traits significantly predicted participants' ratings of aggression. The results of the regression analysis show that the two predictors explained 35.8% of the variance ($R^2$ = .38, $F$(2,55) = 5.56, $p$ < .01). It was found that extraversion significantly predicted aggressive tendencies ($\beta$ = .56, $p$ < .001), as did agreeableness ($\beta$ = -.36, $p$ < .01).
 
 ## Anwendungsbeispiel in R
 
 
 ::: {.callout-note appearance="default" title="Beispiel: Schlaf und Konzentration" icon=false}
 
-__Studienbeschrieb__: In der (fiktiven) Studie wurde in Jugendlichen der Einfluss von Schlafdauer und Sport-Training auf die Konzentrationsleistung mit einem neuropsychologischen Test (`concentration`: mögliche Scores von 0 bis 20) untersucht.
+__Studienbeschrieb__: In der (fiktiven) Studie wurde bei Jugendlichen der Einfluss von Schlafdauer und Sport-Training auf die Konzentrationsleistung mit einem neuropsychologischen Test (`concentration`: mögliche Scores von 0 bis 20) untersucht.
 
 __Forschungsfrage__: Hängt die Dauer des Sportrainings und die nächtliche Schlafdauer mit der Konzentration am nächsten Tag zusammen?
 
@@ -443,7 +443,7 @@ Als Argumente benötigt die Funktion `lm()` die Modellgleichung (`av ~ uv1 + uv2
 Die Resultate der Regressionsanalyse können mit der Funktion `summary()` zusammengefasst werden.
 
 ```{r}
-# Einfache lineare Regression berechnen
+# Multiple Regression berechnen
 m1 <- lm(concentration ~ sleep + sport,
       		data = d_sport)
 
@@ -461,7 +461,7 @@ Konfidenzintervalle können mit der Funktion `confint()` bestimmt werden.
 confint(m1, level = 0.95)
 ```
 
-Die 95%-Konfidenzintervalle zeigen beinhalten 0 sowohl für den Achsenabschnitt (_intercept_), wie auch für die Variable `sport`. Für `sleep` beinhalten die 95%-Konfidenzintervalle 0 nicht.
+Die 95%-Konfidenzintervalle beinhalten 0 sowohl für den Achsenabschnitt (_intercept_), wie auch für die Variable `sport`. Für `sleep` beinhaltet das 95%-Konfidenzintervall 0 nicht.
 
 Es können auch 90%-Konfidenzintervalle (oder jede andere Prozentzahl) bestimmt werden:
 
@@ -566,7 +566,7 @@ In diesem Modell sind keine Interaktionen zugelassen, deshalb sind alle Linien p
 
 ::: {.callout-tip appearance="default" title="Für Interessierte: Modell mit Interaktion" collapse="true"}
 
-Soll die Interaktion von Schlaf und Sport in das Modell einbezogen werden, kann dies mit einem `*` in der Modellgleichung gekennzeichnet werden:
+Soll die Interaktion von Schlaf und Sport in das Modell einbezogen werden, kann dies mit einem `*` in der Modellgleichung implementiert werden:
 
 ```{r}
 m1_interaction <- lm(concentration ~ sleep * sport, 
@@ -585,8 +585,8 @@ Visualisiert sieht das wie folgt aus:
 ggiraphExtra::ggPredict(m1_interaction,interactive=TRUE)
 ```
 
-Deskriptiv hat Schlaf immer einen positiven Einfluss auf die Konzentration. Dieser Einfluss nimmt jedoch ab, je höher der Werten für Sport (mehr Training). 
-Dies wird sichtbar daran, dass der Regressionskoeffizient bei den dunkleren Werten (tieferere Sportwerte) kleiner ist, als bei den höheren.^[Verwirrenderweise ist der Regressionskoeffizient hier der erste Wert, der Achsenabschnitt kommt am Schluss.]
+Deskriptiv hat Schlaf immer einen positiven Einfluss auf die Konzentration. Dieser Einfluss nimmt jedoch ab, je höher die Werte für Sport sind (je mehr Trainingsstunden absolviert wurden). 
+Dies wird sichtbar daran, dass der Regressionskoeffizient bei den tieferen Sportwerten (dunkleres Blau) kleiner ist, als bei den höheren Sportwerten (helleres Blau).^[Verwirrenderweise ist der Regressionskoeffizient hier der erste Wert, der Achsenabschnitt kommt am Schluss.]
 Inferenzstatistisch sind die Effekte von Schlaf, Sport wie auch der Interaktion nicht signifkant.
 
 :::
@@ -598,7 +598,7 @@ Sichtbar wird auch, wenn die Daten nichtlineare Zusammenhänge aufweisen, die ni
 
 #### __Ergebnisse interpretieren und berichten__
 
-> Multiple regression analysis was used to test if duration of sport training and sleep significantly predicted performance in a concentration test in young adults. The results of the regression indicated the two predictors explained 35% of the variance ($R^2$ = .35, $F$(2,15) = 3.99, $p$ = .041). It was found that sleep duration significantly predicted concentration performance ($\beta_{sleep}$ = .87, $p$ = .030), whereas sport duration did not show a significant effect on concentration ($\beta_{sport}$ = 1.08, $p$ = .062).
+> Multiple regression analysis was used to test if duration of sport training and sleep significantly predicted performance in a concentration test in young adults. The results of the regression analysis show that the two predictors explained 35% of the variance ($R^2$ = .35, $F$(2,15) = 3.99, $p$ = .041). It was found that sleep duration significantly predicted concentration ($\beta_{sleep}$ = .87, $p$ = .030), whereas sport duration did not show a significant effect on concentration ($\beta_{sport}$ = 1.08, $p$ = .062).
 
 
 ## Weiterführende Informationen
