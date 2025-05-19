@@ -1,0 +1,479 @@
+# Übung 13 {.unnumbered #sec-uebung-13}
+
+```{r}
+#| include: false
+# Set working directory of R
+knitr::opts_knit$set(root.dir = '../')
+```
+
+
+## Aufgabe 13.0: Projektumgebung erstellen
+
+- Laden Sie den [Projektordner `repetition`](data/repetition.zip) herunter und __entzippen__ Sie den Ordner.^[Für das Entzippen mit _Windows_ machen Sie einen Rechtsklick auf den Ordner mit dem Reissverschluss und wählen Sie `Entpacken nach` und geben Sie den Ordner an, in dem Sie alle Ihre _RProject-Ordner_ speichern. Für das Entzippen mit _Mac_ speichern Sie den heruntergeladenen Ordner in den Ordner, in dem Sie alle Ihre _RProject-Ordner_ speichern und Doppelklicken Sie danach auf den Ordner. Nur entzippte Ordner können einwandfrei verwendet werden.] 
+Der Projektordner enthält:
+  - _RProjekt_ `repetition`.RProj`
+  - Datensatz `dataset_vacation.csv` im `data`-Ordner des _RProjekts_
+  
+- Öffnen Sie das _RProjekt_ `repetition`.
+
+- Erstellen Sie ein _RNotebook_ namens `uebung-13`.
+
+<br>
+
+## Einführung
+
+In dieser Übung erhalten Sie einen Datensatz und mehrere Fragestellungen.
+Für jede Fragestellung ist es Ihre Aufgabe den Datensatz vorzuverarbeiten, die passende Analysemethode zu wählen und durchzuführen und die Fragestellung zum Schluss in wenigen Sätzen zu beantworten.
+
+- Lesen Sie den Studienbeschrieb.
+
+- Lesen Sie dann den Datensatz `dataset_vacation.csv` ein und machen Sie sich mit ihm vertraut. 
+
+Gehen Sie für jede Fragestellung wie folgt vor:
+
+__a.__ Datenanalyse festlegen
+
+__b.__ Daten vorverarbeiten
+
+__c.__ Datenanalyse ausführen und Voraussetzungen prüfen
+
+__d.__ Resultate beschreiben 
+
+<br>
+
+:::{.callout-note appearance="default" title="Datensatz `dataset_vacation.csv`" collapse="false"}
+
+__Beschreibung der Studie__
+
+In der (fiktiven) Studie wurde untersucht, welchen Effekt eine Woche Ferien auf das Wohlbefinden hat. 
+Dazu wurden 160 Personen zu drei Messzeitpunkten befragt. 
+Die Ferienwoche fand zu unterschiedlichen Jahreszeit statt (je 40 Personen im Frühling, Sommer, Herbst und Winter) (`group`). 
+Alle 160 Personen wurden jeweils vor, während und nach den Ferien zu ihrem Energielevel (`energy`) und ihrer Schlafqualität (`sleep`) befragt. Weiter wurde für jede Person einen Wert für ihre allgemeine Gesundheit (`health`) aus verschiedenen Tests (u.a. Blutdruck, Stresshormone, etc.) bestimmt. Zudem wurde von jeder Person erhoben, ob sie in einem "high stress" oder "low stress"-Job arbeitet (`job`).
+
+__Variablen:__
+
+- `id`: Personenidentifikation
+
+- `group`: Jahreszeit der Ferien
+
+- `time`: Messzeitpunkt vor (`t1`), während (`t2`) und nach (`t3`) den Ferien
+
+- `energy`: Energielevel (Fragebogendaten (kontinuierlich) mit `-20: sehr wenig` bis `20: sehr viel` Energie)
+
+- `sleep`: Schlafqualität (Fragebogendaten (kontinuierlich) mit `0: sehr schlecht` bis `30: sehr gut`)
+
+- `health`: Gesundheitswert jeder Person (`0`: tiefer Gesundheitswert (viele Krankheitsanzeichen) bis `100`: hoher Gesundheitswert (keine Krankheitsanzeichen))
+
+:::
+
+__Lesen Sie die Daten ein.__
+
+- Finden Sie alle nötigen Variablen?
+- Welche Variablen, Variablentypen, etc. sind vorhanden?
+- Sind die Variablen richtig kodiert? (Die kategorialen Variablen sollten als `factor` kodiert sein. Dies kann mit `mutate(var = as.factor(var))` erreicht werden.)
+- Welche Variablen wurden _within-subjects_ und welche _between-subjects_ erhoben?
+- Gibt es fehlende Werte, die bereinigt werden müssen?
+
+```{r}
+#| warning: false
+#| message: false
+library(tidyverse)
+# Datensatz einlesen
+d_vacation <- read.csv("data/dataset_vacation.csv") |>
+  glimpse() 
+```
+
+> Variablen anpassen
+
+```{r}
+d_vacation <- read.csv("data/dataset_vacation.csv") |>
+  mutate(id = as.factor(id),
+         group = as.factor(group),
+         time = as.factor(time),
+         job = as.factor(job))
+
+glimpse(d_vacation)
+```
+
+
+## Aufgabe 13.1: Gesundheit und Jahreszeiten
+
+> __Wie unterscheiden sich die Gesundheitswerte von Personen in _high-stress_-Jobs von Personen in _low-stress_-Jobs in der Zeit vor den Ferien?__
+
+__a. Datenanalyse festlegen__
+
+> evtl. in Plenum: zusammen Analyse  sowie AV und UV festlegen.
+
+> $t$-Test für unabhängige Stichproben (AV: `health`, UV: `job` mit 2 Stufen (`highstress`, `lowstress`)). Es wird zweiseitig getestet (ungerichtet).
+
+__b.__ Daten vorverarbeiten
+
+> evtl. in Plenum: zusammen erarbeiten, welches Datensubset notwendig ist für die Fragestellung und zusammen Code für filtern anschauen.
+
+> hier kurz auf Namensgebung hinweisen, z.B. `_1` für Objekte (z.B. Dataframes oder Models) von _Aufgabe 13.1_
+
+```{r}
+d_vacation_1 <- d_vacation |> 
+  filter(time == "t1")
+```
+
+__c.__ Datenanalyse ausführen und Voraussetzungen sicherstellen
+
+> LEVENE TEST
+
+>Der $t$-Test setzt voraus, dass das Merkmal in der Population stetig und normalverteilt ist und die beiden Populationsvarianzen gleich (homogen) sind. Die Varianzhomogenität (Homoskedastizität) kann mit dem Levene-Test überprüft werden. Es wird ein konventionelles Signifikanzniveau von $\alpha = 0.05$ angenommen. Ein Levene-Test mit $p < 0.05$ bedeutet, dass der Varianzunterschied signifikant ist. Die Nullhypothese, dass die beiden Varianzen auf Populationsebene identisch sind, muss in diesem Fall verworfen werden. 
+
+```{r}
+# Levene-Test mit dem package {car}
+car::leveneTest(health ~ job, # av ~ uv
+                data = d_vacation_1) # Datensatz
+```
+
+> Der Test ist hier nicht signifikant ($p$ = 0.54), daher wird davon ausgegangen, dass die Varianzen in beiden Gruppen homogen sind. Somit kann ein Student’s $t$-Test verwendet werden.
+
+
+> DESKRIPTIVE STATISTIK
+
+```{r}
+# Nach job gruppieren und performance zusammenfassen
+d1_summary <- d_vacation_1 |>
+  group_by(job) |> # Gruppieren
+  summarise(mean_health = mean(health), # Mittelwert
+            sd_health = sd(health)) # Standardabweichung
+d1_summary
+```
+
+
+> $t$-TEST FÜR UNABHÄNGIGE STICHPROBEN
+
+```{r}
+# t-Test für unabhängige Stichproben durchführen
+t.test(formula = health ~ job, # av ~ uv
+       alternative = "two.sided",
+       var.equal = TRUE,
+       data = d_vacation_1)
+```
+
+> EFFEKTGRÖSSE BERECHNEN (muss nicht gemacht werden, da nicht signifikant)
+
+```{r}
+# Effektgrösse berechnen
+effsize::cohen.d(formula = health ~ job, # av ~ uv
+                 data = d_vacation_1) # Datensatz
+
+```
+
+__d.__ Resultate beschreiben
+
+> siehe Kapitel 9
+
+> "We examined whether stress in the job had an effect on health in the time before the holidays. No significant difference in health scores between high stress jobs ($M$ = 46.63, $SD$ = 16.45) and low stress jobs ($M$ = 50.72, $SD$ = 16.90) was found, $t$(158) = -1.55, $p$ = .123)."
+
+<br>
+
+
+## Aufgabe 13.2: Schlaf, Energie und Gesundheit
+
+> __Wie sagen Schlafqualität und Energielevel während den Ferien den Gesundheitswert vorher?__
+
+__a. Datenanalyse festlegen__
+
+> Multiple Regression, UV: `health`, AVn: `sleep` und `energy`
+
+> Wir berechnen hier keine Interaktion (kommt im nächsten Studienjahr hinzu)
+
+__b.__ Daten vorverarbeiten
+
+> filtern für "t2": während den Ferien
+
+```{r}
+d_vacation_2 <- d_vacation |> 
+  filter(time == "t2")
+```
+
+__c.__ Datenanalyse ausführen und Voraussetzungen sicherstellen
+
+> Voraussetzungen prüfen (metrische Variablen, nonlinearer Zusammenhang ausschliessen)
+
+```{r}
+plot(d_vacation_2$energy, d_vacation_2$health)
+plot(d_vacation_2$sleep, d_vacation_2$health)
+```
+
+> Regressionsmodell
+
+```{r}
+# Multiple Regression berechnen
+m2 <- lm(health ~ sleep + energy,
+            data = d_vacation_2)
+
+# Output ausgeben
+summary(m2)
+```
+
+> Modellannahmen prüfen (Homoskedastizität, Normalverteilung der Fehler)
+
+```{r}
+performance::check_heteroscedasticity(m2)
+```
+
+```{r}
+performance::check_normality(m2)
+```
+
+```{r}
+performance::check_model(m2)
+```
+
+__d.__ Resultate beschreiben
+
+> Siehe Kapitel 15
+
+> Multiple regression analysis was used to test if the energy level and sleep quality  during holidays significantly predicted participants’ health scores. The results of the regression indicated the two predictors explained 87% of the variance ($R^2_adj$ = .87, $F$(2,157) = 5.56, $p$ < .000). It was found that sleep quality did significantly predict health scores ($\beta$ = 2.88, $p$ < .000), whereas energy level did not ($\beta$ = 0.04, $p$ = .595).
+
+<br>
+
+
+## Aufgabe 13.3: Jahreszeit und Wohlbefinden
+
+> __Welchen Effekt hat die Jahreszeit der Ferien auf das Wohlbefinden nach den Ferien (Energielevel und Schlaf)?__
+
+__a. Datenanalyse festlegen__
+
+> Einfaktorielle ANOVA ohne Messwiederholung (keine Messwiederholung, weil nur ein Messzeitpunkt untersucht wird in Fragestellung)
+
+> UV/Faktor: Jahreszeit mit 4 Stufen, AV: zuerst `energy` dann evtl. noch `sleep`
+
+__b. Daten vorverarbeiten__
+
+Welche Datenpunkte müssen für diese Fragestellung in die Analyse einbezogen werden, und welche nicht? Erstellen Sie falls nötig einen neuen Datensatz (siehe Funktion `filter()`).
+
+```{r}
+# Filtern für den 3. Messzeitpunkt
+d_vacation_3 <- d_vacation |> 
+  filter(time == "t3")
+```
+
+__c. Datenanalyse ausführen und Voraussetzungen prüfen__
+
+> Levene Test ausführen
+
+```{r}
+# Levene-Test mit dem package {car}
+car::leveneTest(energy ~ group, 
+                data = d_vacation_3) 
+
+car::leveneTest(sleep ~ group, 
+                data = d_vacation_3) 
+```
+
+> Die Tests sind hier nicht signifikant (energy: $p$ = .658, sleep: $p$ = .934), daher wird davon ausgegangen, dass die Varianzen der Gruppen homogen sind und der F-Test durchgeführt werden kann.
+
+
+> Deskriptive Statistik 
+
+```{r}
+# Mittelwerte und Standardabweichungen berechnen
+d3_summary <- d_vacation_3 |>
+  group_by(group) |> 
+  summarise(mean_energy = mean(energy), 
+            sd_energy = sd(energy),
+            mean_sleep = mean(sleep),
+            sd_sleep = sd(sleep)) 
+d3_summary
+```
+
+> Energy: Deskriptiv ist der Mittelwert im Winter deutlich höher, Frühling/Herbst gleich und im Sommer am tiefsten. 
+
+> Sleep: Die Gruppenmittelwerte sind sehr ähnlich.
+
+
+> ANOVA berechnen
+
+```{r}
+#| warning: false
+#| message: false
+library(afex)
+
+# anova energy
+m3_energy <- aov_4(energy ~ group + (1 | id), data = d_vacation_3)
+
+summary(m3_energy)
+m3_energy$Anova
+```
+> Energy: Der F-Test ist signifikant ($p = .02968), da der empirische F-Wert (F(3,156) = 3.068) über dem kritische F-Wert (f = 2.66) (5%-Alphanivau) liegt. Die Gruppen unterscheiden sich somit signifikant. Wir wissen aber ohne Post-hoc-Test nicht, welche Gruppen sich unterscheiden. Bei Interesse kann hier zB ein Tukey-Test gemacht werden. 
+
+> qf(0.95, 3, 156)
+
+
+```{r}
+m3_sleep <- aov_4(sleep ~ group + (1 | id), data = d_vacation_3)
+
+summary(m3_sleep)
+m3_sleep$Anova
+```
+> Sleep: Kein signifikanter F-Test, daher keine signifikanten Gruppenunterschiede bezüglich Schlafqualität. 
+
+
+__d. Resultate beschreiben__
+
+> Die Jahreszeit hat einen Effekt auf den Energielevel, aber nicht auf die Schlafqualität nach den Ferien. 
+
+> Satz bilden mit statistischen Kennwerten (siehe Kapitel 11)
+
+> Die einfaktorielle Varianzanalyse ergab, dass sich die Gruppen signifikant in ihrer Energielevel unterscheiden, _F_(3, 156) = 3.07, _p_ = .030. 
+
+<br>
+
+
+## Aufgabe 13.4: Energielevel und Jahreszeit
+
+> __Unterscheidet sich das Energielevel nach den Winterferien vom Mittel des Energielevels nach den Frühlings- & Herbstferien? __
+
+__a.__ Datenanalyse festlegen
+
+
+> Kontrastanalyse nach einfaktorieller ANOVA ohne Messwiederholung 
+
+> UV/Faktor: Jahreszeit mit 4 Stufen, AV:  `energy`
+
+__b.__ Daten vorverarbeiten
+
+
+__c.__ Datenanalyse ausführen und Voraussetzungen sicherstellen
+
+```{r}
+#| warning: false
+#| message: false
+
+library(emmeans)
+
+# Resultate (estimated marginal means) speichern
+m4_result <- emmeans(object = m3_energy, specs = ~ group) 
+m4_result
+
+levels(d_vacation_2$group)
+
+# Kontrastanalyse
+## H: Winter vs. Frühling/Herbst
+m4_contrast1 <- list("winter vs. spring/fall" = c(-1, -1, 0, 2)) 
+contrast(object = m4_result, method = m4_contrast1) 
+```
+
+> Kontrast muss korrekt spezifiziert werden. Daher muss in R zuerst überprüft werden, wie die Levels geordnet sind. Andere äquivalente Varianten wären c(-0.5, -0.5, 0, 1) (wird oft so gemacht). Die Summe muss 0 sein. 
+
+> Da es ein ungerichteter Kontrast ist, wäre auch c(1, 1, 0, -2) oder c(0.5, 0.5, 0, -1) möglich, da wir das Vorzeichen nicht beachten müssen.
+
+> Gerichteter Kontrast (-1, -1, 0, 2) würde heissen, dass man überprüft, ob Winter HÖHER ist als Mittel von Frühling/Herbst. Wenn der Kontrast a priori gerichtet formuliert wurde, würde der p-Wert noch halbiert werden, da gerichtet getestet.
+
+
+__d.__ Resultate beschreiben
+
+> siehe Kapitel 11.3.6
+
+> Eine Kontrastanalyse ergab, dass die Gruppe “Winter” (M = 8.10, SD = 4.83) signifikant höhere Werte aufwies als das Mittel der beiden Gruppen Frühling und Herbst (_p_ = .032).
+
+<br>
+
+## Aufgabe 13.5: Messzeitpunkt und Wohlbefinden
+
+> __Welchen Effekt haben die Ferien auf das Wohlbefinden (Energielevel und Schlaf), d.h. unterscheidet sich das Wohlbefinden vor, während und nach den Ferien?__
+
+__a.__ Datenanalyse festlegen
+
+> Einfaktorielle ANOVA mit Messwiederholung
+
+> UV/Faktor Messzeitpunkt/`time` mit 3 Stufen (`t1`, `t2`, `t3`), AV: zuerst `energy` dann evtl. noch `sleep`
+
+__b.__ Daten vorverarbeiten
+
+```{r}
+# Datensatz anschauen
+glimpse(d_vacation)
+```
+
+> kein Filtern notwendig
+
+__c.__ Datenanalyse ausführen und Voraussetzungen sicherstellen
+
+
+> Deskriptive Statistik
+
+```{r}
+# Mittelwerte und Standardabweichungen berechnen
+d5_summary <- d_vacation |>
+  group_by(time) |> 
+  summarise(mean_energy = mean(energy), 
+            sd_energy = sd(energy),
+            mean_sleep = mean(sleep),
+            sd_sleep = sd(sleep)) 
+d5_summary
+```
+
+> ANOVA
+
+```{r}
+#| warning: false
+#| message: false
+library(afex)
+m5_energy <- aov_4(energy ~ 1 + (time | id), data = d_vacation)
+
+summary(m5_energy)
+```
+
+> Mauchly-Test nicht signifikant.
+
+> Keine signifikanten Unterschiede im Energielevel über die Zeit (leider...).
+
+```{r}
+m5_sleep <- aov_4(sleep ~ 1 + (time | id), data = d_vacation)
+
+summary(m5_sleep)
+```
+
+> Mauchly-Test ist (auf dem 5%-Niveau) signifikant (_p_ = .013), d.h. Annahme der Sphärizität wird abgelehnt (Annahme verletzt).
+
+> Der kann der F-Test nicht regulär durchgeführt werden, sondern es muss eine Korrektur der Freiheitsgrade vorgenommen werden. Ein Wert von 1 bedeutet keine Abweichung von der Sphärizität (alle Varianzen der Bedingungsunterschiede sind gleich). Ein Verstoss gegen die Sphärizität führt zu einem $\varepsilon_{GG}$ unter 1. Je weiter $\varepsilon$ von 1 entfernt ist, desto schlimmer ist der Verstoss. Bei $\varepsilon_{GG} < 0.75$ wird die Greenhouse-Geisser-Korrektur verwendet. Bei $\varepsilon_{GG} > 0.75$ wird die Huynh-Feldt-Korrektur angewendet
+
+> Da $\epsilon_{GG}$ > 0.75 (nämlich 0.94918) wird die Huynh-Feldt-Korrektur verwendet und der p-Wert beträgt dadurch _p_ = .04658, d.h. _p_ = .047.
+
+
+
+__d.__ Resultate beschreiben
+
+> Ferien haben signifikanten Effekt auf Schlaf (_p_ = .047).
+
+> A one-way repeated measures ANOVA was conducted to examine the effects of vacation (beforde, during, and after) on sleep quality. Mauchly's test indicated that the assumption of sphericity had been violated, $W$ = 0.95, _p_ = .013. Therefore, degrees of freedom were corrected using Huynh-Feldt ($\varepsilon_{GG}$ = 0.95). 
+
+> The main effect of vacation was significant, _F_(2, 318) = 3.14, _p_ = .044, suggesting that there was an overall difference in sleeping quality over time.
+
+
+<br>
+
+
+:::{.callout-note appearance="default" title="Interessiert am Effekt von Ferien?" collapse="true"}
+
+Die Idee für diesen Übungsdatensatz stammt von diesem Artikel:
+
+Bloom et al. (2010). Effects of vacation from work on health and well-being: Lots of fun, quickly gone. Work & Stress, 24(2), 196–216. <https://doi.org/10.1080/02678373.2010.493385>
+
+:::
+
+## Zusatzaufgaben
+
+:::{.callout-tip appearance="default" title="Zusatzaufgaben"}
+
+__Zusatzaufgaben müssen nicht gelöst werden.__
+
+:::
+
+__a.__ Visualisieren Sie die obigen Ergebnisse, um den Resultateteil zu ergänzen.
+
+__b.__ Lösen Sie die noch nicht gelösten Aufgaben und Zusatzaufgaben des Semesters.
+
+
+## Herzliche Gratulation
+
+Sie haben alle Übungen durchgearbeitet!!
+
+BILD?

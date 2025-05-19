@@ -1,0 +1,2078 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.5.57">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>Übung 13 – Datenanalyse mit R</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../appendix/faq.html" rel="next">
+<link href="../uebungen/uebung-12.html" rel="prev">
+<link href="../imgs/favicon.png" rel="icon" type="image/png">
+<script src="../site_libs/quarto-html/quarto.js"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+  <script src="https://cdnjs.cloudflare.com/polyfill/v3/polyfill.min.js?features=es6"></script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
+
+<link rel="stylesheet" href="../include/webex.css">
+</head>
+
+<body class="nav-sidebar floating">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-13-solution.html">Übung 13</a></li></ol></nav>
+        <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-full">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+    <div class="sidebar-title mb-0 py-0">
+      <a href="../">Datenanalyse mit R</a> 
+    </div>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Überblick</span></a>
+  </div>
+</li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">R und RStudio</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/installation.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Installation</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/rrstudio.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Basics R und RStudio</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/programmieren.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">Basics Programmieren</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../r/help.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Help center</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">Datenverarbeitung</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenverarbeitung/workflow.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Workflow</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenverarbeitung/readandwrite.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Datensätze einlesen und schreiben</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenverarbeitung/transform.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Datensätze bearbeiten</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">Datenanalyse</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenanalyse/descriptive.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Deskriptive Statistik</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenanalyse/ttest_unabhaengig.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title"><em>t</em>-Test für unabhängige Stichproben</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenanalyse/ttest_abhaengig.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title"><em>t</em>-Test für abhängige Stichproben</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenanalyse/anova1.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Einfaktorielle Varianzanalyse ohne Messwiederholung</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenanalyse/anova2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Zweifaktorielle Varianzanalyse ohne Messwiederholung</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenanalyse/anova3.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Einfaktorielle Varianzanalyse mit Messwiederholung</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenanalyse/einfachelineareregression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Einfache lineare Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenanalyse/multipleregression.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Multiple Regression</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenanalyse/alm.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">16</span>&nbsp; <span class="chapter-title">Allgemeines lineares Modell</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">
+ <span class="menu-text">Datenvisualisierung</span></span>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">Übungen</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebungen.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Informationen</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 1</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 2</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-04.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 4</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-05.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 5</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-06.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 6</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-07.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 7</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-08.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 8</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-09.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 9</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-10.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 10</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-11.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 11</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-12.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 12</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-13-solution.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Übung 13</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Anhang</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/faq.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">FAQ</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/webrconsole.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">WebR Konsole</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/thanks.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Danke</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../appendix/license.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">License</span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#aufgabe-13.0-projektumgebung-erstellen" id="toc-aufgabe-13.0-projektumgebung-erstellen" class="nav-link active" data-scroll-target="#aufgabe-13.0-projektumgebung-erstellen">Aufgabe 13.0: Projektumgebung erstellen</a></li>
+  <li><a href="#einführung" id="toc-einführung" class="nav-link" data-scroll-target="#einführung">Einführung</a></li>
+  <li><a href="#aufgabe-13.1-gesundheit-und-jahreszeiten" id="toc-aufgabe-13.1-gesundheit-und-jahreszeiten" class="nav-link" data-scroll-target="#aufgabe-13.1-gesundheit-und-jahreszeiten">Aufgabe 13.1: Gesundheit und Jahreszeiten</a></li>
+  <li><a href="#aufgabe-13.2-schlaf-energie-und-gesundheit" id="toc-aufgabe-13.2-schlaf-energie-und-gesundheit" class="nav-link" data-scroll-target="#aufgabe-13.2-schlaf-energie-und-gesundheit">Aufgabe 13.2: Schlaf, Energie und Gesundheit</a></li>
+  <li><a href="#aufgabe-13.3-jahreszeit-und-wohlbefinden" id="toc-aufgabe-13.3-jahreszeit-und-wohlbefinden" class="nav-link" data-scroll-target="#aufgabe-13.3-jahreszeit-und-wohlbefinden">Aufgabe 13.3: Jahreszeit und Wohlbefinden</a></li>
+  <li><a href="#aufgabe-13.4-energielevel-und-jahreszeit" id="toc-aufgabe-13.4-energielevel-und-jahreszeit" class="nav-link" data-scroll-target="#aufgabe-13.4-energielevel-und-jahreszeit">Aufgabe 13.4: Energielevel und Jahreszeit</a></li>
+  <li><a href="#aufgabe-13.5-messzeitpunkt-und-wohlbefinden" id="toc-aufgabe-13.5-messzeitpunkt-und-wohlbefinden" class="nav-link" data-scroll-target="#aufgabe-13.5-messzeitpunkt-und-wohlbefinden">Aufgabe 13.5: Messzeitpunkt und Wohlbefinden</a></li>
+  <li><a href="#zusatzaufgaben" id="toc-zusatzaufgaben" class="nav-link" data-scroll-target="#zusatzaufgaben">Zusatzaufgaben</a></li>
+  <li><a href="#herzliche-gratulation" id="toc-herzliche-gratulation" class="nav-link" data-scroll-target="#herzliche-gratulation">Herzliche Gratulation</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content column-body" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-13-solution.html">Übung 13</a></li></ol></nav>
+<div class="quarto-title">
+<h1 class="title"><span id="sec-uebung-13" class="quarto-section-identifier">Übung 13</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta column-body">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="aufgabe-13.0-projektumgebung-erstellen" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-13.0-projektumgebung-erstellen">Aufgabe 13.0: Projektumgebung erstellen</h2>
+<ul>
+<li><p>Laden Sie den <a href="data/repetition.zip">Projektordner <code>repetition</code></a> herunter und <strong>entzippen</strong> Sie den Ordner.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a> Der Projektordner enthält:</p>
+<ul>
+<li><em>RProjekt</em> <code>repetition</code>.RProj`</li>
+<li>Datensatz <code>dataset_vacation.csv</code> im <code>data</code>-Ordner des <em>RProjekts</em></li>
+</ul></li>
+<li><p>Öffnen Sie das <em>RProjekt</em> <code>repetition</code>.</p></li>
+<li><p>Erstellen Sie ein <em>RNotebook</em> namens <code>uebung-13</code>.</p></li>
+</ul>
+<p><br></p>
+</section>
+<section id="einführung" class="level2">
+<h2 class="anchored" data-anchor-id="einführung">Einführung</h2>
+<p>In dieser Übung erhalten Sie einen Datensatz und mehrere Fragestellungen. Für jede Fragestellung ist es Ihre Aufgabe den Datensatz vorzuverarbeiten, die passende Analysemethode zu wählen und durchzuführen und die Fragestellung zum Schluss in wenigen Sätzen zu beantworten.</p>
+<ul>
+<li><p>Lesen Sie den Studienbeschrieb.</p></li>
+<li><p>Lesen Sie dann den Datensatz <code>dataset_vacation.csv</code> ein und machen Sie sich mit ihm vertraut.</p></li>
+</ul>
+<p>Gehen Sie für jede Fragestellung wie folgt vor:</p>
+<p><strong>a.</strong> Datenanalyse festlegen</p>
+<p><strong>b.</strong> Daten vorverarbeiten</p>
+<p><strong>c.</strong> Datenanalyse ausführen und Voraussetzungen prüfen</p>
+<p><strong>d.</strong> Resultate beschreiben</p>
+<p><br></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Datensatz `dataset_vacation.csv`">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Datensatz <code>dataset_vacation.csv</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-1" class="callout-1-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><strong>Beschreibung der Studie</strong></p>
+<p>In der (fiktiven) Studie wurde untersucht, welchen Effekt eine Woche Ferien auf das Wohlbefinden hat. Dazu wurden 160 Personen zu drei Messzeitpunkten befragt. Die Ferienwoche fand zu unterschiedlichen Jahreszeit statt (je 40 Personen im Frühling, Sommer, Herbst und Winter) (<code>group</code>). Alle 160 Personen wurden jeweils vor, während und nach den Ferien zu ihrem Energielevel (<code>energy</code>) und ihrer Schlafqualität (<code>sleep</code>) befragt. Weiter wurde für jede Person einen Wert für ihre allgemeine Gesundheit (<code>health</code>) aus verschiedenen Tests (u.a. Blutdruck, Stresshormone, etc.) bestimmt. Zudem wurde von jeder Person erhoben, ob sie in einem “high stress” oder “low stress”-Job arbeitet (<code>job</code>).</p>
+<p><strong>Variablen:</strong></p>
+<ul>
+<li><p><code>id</code>: Personenidentifikation</p></li>
+<li><p><code>group</code>: Jahreszeit der Ferien</p></li>
+<li><p><code>time</code>: Messzeitpunkt vor (<code>t1</code>), während (<code>t2</code>) und nach (<code>t3</code>) den Ferien</p></li>
+<li><p><code>energy</code>: Energielevel (Fragebogendaten (kontinuierlich) mit <code>-20: sehr wenig</code> bis <code>20: sehr viel</code> Energie)</p></li>
+<li><p><code>sleep</code>: Schlafqualität (Fragebogendaten (kontinuierlich) mit <code>0: sehr schlecht</code> bis <code>30: sehr gut</code>)</p></li>
+<li><p><code>health</code>: Gesundheitswert jeder Person (<code>0</code>: tiefer Gesundheitswert (viele Krankheitsanzeichen) bis <code>100</code>: hoher Gesundheitswert (keine Krankheitsanzeichen))</p></li>
+</ul>
+</div>
+</div>
+</div>
+<p><strong>Lesen Sie die Daten ein.</strong></p>
+<ul>
+<li>Finden Sie alle nötigen Variablen?</li>
+<li>Welche Variablen, Variablentypen, etc. sind vorhanden?</li>
+<li>Sind die Variablen richtig kodiert? (Die kategorialen Variablen sollten als <code>factor</code> kodiert sein. Dies kann mit <code>mutate(var = as.factor(var))</code> erreicht werden.)</li>
+<li>Welche Variablen wurden <em>within-subjects</em> und welche <em>between-subjects</em> erhoben?</li>
+<li>Gibt es fehlende Werte, die bereinigt werden müssen?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz einlesen</span></span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a>d_vacation <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/dataset_vacation.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>() </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 480
+Columns: 7
+$ id     &lt;int&gt; 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, …
+$ group  &lt;chr&gt; "fall", "fall", "fall", "fall", "fall", "fall", "fall", "fall",…
+$ time   &lt;chr&gt; "t1", "t2", "t3", "t1", "t2", "t3", "t1", "t2", "t3", "t1", "t2…
+$ energy &lt;dbl&gt; 6.52882093, 9.42640201, 4.74669984, 9.72188274, 6.39756719, 8.2…
+$ sleep  &lt;dbl&gt; 10.571558, 18.801246, 10.601306, 21.581462, 10.417833, 16.24744…
+$ health &lt;dbl&gt; 38.30967, 64.04421, 30.92046, 67.61738, 26.78774, 54.43207, 57.…
+$ job    &lt;chr&gt; "highstress", "highstress", "highstress", "highstress", "highst…</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Variablen anpassen</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>d_vacation <span class="ot">&lt;-</span> <span class="fu">read.csv</span>(<span class="st">"data/dataset_vacation.csv"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">id =</span> <span class="fu">as.factor</span>(id),</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">group =</span> <span class="fu">as.factor</span>(group),</span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">time =</span> <span class="fu">as.factor</span>(time),</span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>         <span class="at">job =</span> <span class="fu">as.factor</span>(job))</span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(d_vacation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 480
+Columns: 7
+$ id     &lt;fct&gt; 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, …
+$ group  &lt;fct&gt; fall, fall, fall, fall, fall, fall, fall, fall, fall, summer, s…
+$ time   &lt;fct&gt; t1, t2, t3, t1, t2, t3, t1, t2, t3, t1, t2, t3, t1, t2, t3, t1,…
+$ energy &lt;dbl&gt; 6.52882093, 9.42640201, 4.74669984, 9.72188274, 6.39756719, 8.2…
+$ sleep  &lt;dbl&gt; 10.571558, 18.801246, 10.601306, 21.581462, 10.417833, 16.24744…
+$ health &lt;dbl&gt; 38.30967, 64.04421, 30.92046, 67.61738, 26.78774, 54.43207, 57.…
+$ job    &lt;fct&gt; highstress, highstress, highstress, highstress, highstress, hig…</code></pre>
+</div>
+</div>
+</section>
+<section id="aufgabe-13.1-gesundheit-und-jahreszeiten" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-13.1-gesundheit-und-jahreszeiten">Aufgabe 13.1: Gesundheit und Jahreszeiten</h2>
+<blockquote class="blockquote">
+<p><strong>Wie unterscheiden sich die Gesundheitswerte von Personen in <em>high-stress</em>-Jobs von Personen in <em>low-stress</em>-Jobs in der Zeit vor den Ferien?</strong></p>
+</blockquote>
+<p><strong>a. Datenanalyse festlegen</strong></p>
+<blockquote class="blockquote">
+<p>evtl. in Plenum: zusammen Analyse sowie AV und UV festlegen.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p><span class="math inline">\(t\)</span>-Test für unabhängige Stichproben (AV: <code>health</code>, UV: <code>job</code> mit 2 Stufen (<code>highstress</code>, <code>lowstress</code>)). Es wird zweiseitig getestet (ungerichtet).</p>
+</blockquote>
+<p><strong>b.</strong> Daten vorverarbeiten</p>
+<blockquote class="blockquote">
+<p>evtl. in Plenum: zusammen erarbeiten, welches Datensubset notwendig ist für die Fragestellung und zusammen Code für filtern anschauen.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>hier kurz auf Namensgebung hinweisen, z.B. <code>_1</code> für Objekte (z.B. Dataframes oder Models) von <em>Aufgabe 13.1</em></p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>d_vacation_1 <span class="ot">&lt;-</span> d_vacation <span class="sc">|&gt;</span> </span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(time <span class="sc">==</span> <span class="st">"t1"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>c.</strong> Datenanalyse ausführen und Voraussetzungen sicherstellen</p>
+<blockquote class="blockquote">
+<p>LEVENE TEST</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Der <span class="math inline">\(t\)</span>-Test setzt voraus, dass das Merkmal in der Population stetig und normalverteilt ist und die beiden Populationsvarianzen gleich (homogen) sind. Die Varianzhomogenität (Homoskedastizität) kann mit dem Levene-Test überprüft werden. Es wird ein konventionelles Signifikanzniveau von <span class="math inline">\(\alpha = 0.05\)</span> angenommen. Ein Levene-Test mit <span class="math inline">\(p &lt; 0.05\)</span> bedeutet, dass der Varianzunterschied signifikant ist. Die Nullhypothese, dass die beiden Varianzen auf Populationsebene identisch sind, muss in diesem Fall verworfen werden.</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Levene-Test mit dem package {car}</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">leveneTest</span>(health <span class="sc">~</span> job, <span class="co"># av ~ uv</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> d_vacation_1) <span class="co"># Datensatz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Levene's Test for Homogeneity of Variance (center = median)
+       Df F value Pr(&gt;F)
+group   1  0.3784 0.5393
+      158               </code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Der Test ist hier nicht signifikant (<span class="math inline">\(p\)</span> = 0.54), daher wird davon ausgegangen, dass die Varianzen in beiden Gruppen homogen sind. Somit kann ein Student’s <span class="math inline">\(t\)</span>-Test verwendet werden.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>DESKRIPTIVE STATISTIK</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Nach job gruppieren und performance zusammenfassen</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>d1_summary <span class="ot">&lt;-</span> d_vacation_1 <span class="sc">|&gt;</span></span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(job) <span class="sc">|&gt;</span> <span class="co"># Gruppieren</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_health =</span> <span class="fu">mean</span>(health), <span class="co"># Mittelwert</span></span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_health =</span> <span class="fu">sd</span>(health)) <span class="co"># Standardabweichung</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>d1_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 2 × 3
+  job        mean_health sd_health
+  &lt;fct&gt;            &lt;dbl&gt;     &lt;dbl&gt;
+1 highstress        46.6      16.4
+2 lowstress         50.7      16.9</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p><span class="math inline">\(t\)</span>-TEST FÜR UNABHÄNGIGE STICHPROBEN</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># t-Test für unabhängige Stichproben durchführen</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a><span class="fu">t.test</span>(<span class="at">formula =</span> health <span class="sc">~</span> job, <span class="co"># av ~ uv</span></span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>       <span class="at">alternative =</span> <span class="st">"two.sided"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>       <span class="at">var.equal =</span> <span class="cn">TRUE</span>,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>       <span class="at">data =</span> d_vacation_1)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+    Two Sample t-test
+
+data:  health by job
+t = -1.5495, df = 158, p-value = 0.1233
+alternative hypothesis: true difference in means between group highstress and group lowstress is not equal to 0
+95 percent confidence interval:
+ -9.294995  1.122240
+sample estimates:
+mean in group highstress  mean in group lowstress 
+                46.63026                 50.71664 </code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>EFFEKTGRÖSSE BERECHNEN (muss nicht gemacht werden, da nicht signifikant)</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>effsize<span class="sc">::</span><span class="fu">cohen.d</span>(<span class="at">formula =</span> health <span class="sc">~</span> job, <span class="co"># av ~ uv</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                 <span class="at">data =</span> d_vacation_1) <span class="co"># Datensatz</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Cohen's d
+
+d estimate: -0.2450233 (small)
+95 percent confidence interval:
+      lower       upper 
+-0.55850666  0.06846013 </code></pre>
+</div>
+</div>
+<p><strong>d.</strong> Resultate beschreiben</p>
+<blockquote class="blockquote">
+<p>siehe Kapitel 9</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>“We examined whether stress in the job had an effect on health in the time before the holidays. No significant difference in health scores between high stress jobs (<span class="math inline">\(M\)</span> = 46.63, <span class="math inline">\(SD\)</span> = 16.45) and low stress jobs (<span class="math inline">\(M\)</span> = 50.72, <span class="math inline">\(SD\)</span> = 16.90) was found, <span class="math inline">\(t\)</span>(158) = -1.55, <span class="math inline">\(p\)</span> = .123).”</p>
+</blockquote>
+<p><br></p>
+</section>
+<section id="aufgabe-13.2-schlaf-energie-und-gesundheit" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-13.2-schlaf-energie-und-gesundheit">Aufgabe 13.2: Schlaf, Energie und Gesundheit</h2>
+<blockquote class="blockquote">
+<p><strong>Wie sagen Schlafqualität und Energielevel während den Ferien den Gesundheitswert vorher?</strong></p>
+</blockquote>
+<p><strong>a. Datenanalyse festlegen</strong></p>
+<blockquote class="blockquote">
+<p>Multiple Regression, UV: <code>health</code>, AVn: <code>sleep</code> und <code>energy</code></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Wir berechnen hier keine Interaktion (kommt im nächsten Studienjahr hinzu)</p>
+</blockquote>
+<p><strong>b.</strong> Daten vorverarbeiten</p>
+<blockquote class="blockquote">
+<p>filtern für “t2”: während den Ferien</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>d_vacation_2 <span class="ot">&lt;-</span> d_vacation <span class="sc">|&gt;</span> </span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(time <span class="sc">==</span> <span class="st">"t2"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>c.</strong> Datenanalyse ausführen und Voraussetzungen sicherstellen</p>
+<blockquote class="blockquote">
+<p>Voraussetzungen prüfen (metrische Variablen, nonlinearer Zusammenhang ausschliessen)</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(d_vacation_2<span class="sc">$</span>energy, d_vacation_2<span class="sc">$</span>health)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="uebung-13-solution_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(d_vacation_2<span class="sc">$</span>sleep, d_vacation_2<span class="sc">$</span>health)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="uebung-13-solution_files/figure-html/unnamed-chunk-10-2.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Regressionsmodell</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Multiple Regression berechnen</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> <span class="fu">lm</span>(health <span class="sc">~</span> sleep <span class="sc">+</span> energy,</span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>            <span class="at">data =</span> d_vacation_2)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Output ausgeben</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Call:
+lm(formula = health ~ sleep + energy, data = d_vacation_2)
+
+Residuals:
+     Min       1Q   Median       3Q      Max 
+-11.2630  -3.1787  -0.1896   3.1412  11.6076 
+
+Coefficients:
+            Estimate Std. Error t value Pr(&gt;|t|)    
+(Intercept)  6.44982    1.54810   4.166  5.1e-05 ***
+sleep        2.88107    0.08833  32.615  &lt; 2e-16 ***
+energy       0.03932    0.07381   0.533    0.595    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+Residual standard error: 4.831 on 157 degrees of freedom
+Multiple R-squared:  0.8718,    Adjusted R-squared:  0.8702 
+F-statistic: 533.9 on 2 and 157 DF,  p-value: &lt; 2.2e-16</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Modellannahmen prüfen (Homoskedastizität, Normalverteilung der Fehler)</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>performance<span class="sc">::</span><span class="fu">check_heteroscedasticity</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>OK: Error variance appears to be homoscedastic (p = 0.092).</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>performance<span class="sc">::</span><span class="fu">check_normality</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>OK: residuals appear as normally distributed (p = 0.633).</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a>performance<span class="sc">::</span><span class="fu">check_model</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="uebung-13-solution_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
+</div>
+<p><strong>d.</strong> Resultate beschreiben</p>
+<blockquote class="blockquote">
+<p>Siehe Kapitel 15</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Multiple regression analysis was used to test if the energy level and sleep quality during holidays significantly predicted participants’ health scores. The results of the regression indicated the two predictors explained 87% of the variance (<span class="math inline">\(R^2_adj\)</span> = .87, <span class="math inline">\(F\)</span>(2,157) = 5.56, <span class="math inline">\(p\)</span> &lt; .000). It was found that sleep quality did significantly predict health scores (<span class="math inline">\(\beta\)</span> = 2.88, <span class="math inline">\(p\)</span> &lt; .000), whereas energy level did not (<span class="math inline">\(\beta\)</span> = 0.04, <span class="math inline">\(p\)</span> = .595).</p>
+</blockquote>
+<p><br></p>
+</section>
+<section id="aufgabe-13.3-jahreszeit-und-wohlbefinden" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-13.3-jahreszeit-und-wohlbefinden">Aufgabe 13.3: Jahreszeit und Wohlbefinden</h2>
+<blockquote class="blockquote">
+<p><strong>Welchen Effekt hat die Jahreszeit der Ferien auf das Wohlbefinden nach den Ferien (Energielevel und Schlaf)?</strong></p>
+</blockquote>
+<p><strong>a. Datenanalyse festlegen</strong></p>
+<blockquote class="blockquote">
+<p>Einfaktorielle ANOVA ohne Messwiederholung (keine Messwiederholung, weil nur ein Messzeitpunkt untersucht wird in Fragestellung)</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>UV/Faktor: Jahreszeit mit 4 Stufen, AV: zuerst <code>energy</code> dann evtl. noch <code>sleep</code></p>
+</blockquote>
+<p><strong>b. Daten vorverarbeiten</strong></p>
+<p>Welche Datenpunkte müssen für diese Fragestellung in die Analyse einbezogen werden, und welche nicht? Erstellen Sie falls nötig einen neuen Datensatz (siehe Funktion <code>filter()</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Filtern für den 3. Messzeitpunkt</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a>d_vacation_3 <span class="ot">&lt;-</span> d_vacation <span class="sc">|&gt;</span> </span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(time <span class="sc">==</span> <span class="st">"t3"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>c.&nbsp;Datenanalyse ausführen und Voraussetzungen prüfen</strong></p>
+<blockquote class="blockquote">
+<p>Levene Test ausführen</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb25"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Levene-Test mit dem package {car}</span></span>
+<span id="cb25-2"><a href="#cb25-2" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">leveneTest</span>(energy <span class="sc">~</span> group, </span>
+<span id="cb25-3"><a href="#cb25-3" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> d_vacation_3) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Levene's Test for Homogeneity of Variance (center = median)
+       Df F value Pr(&gt;F)
+group   3   0.537 0.6576
+      156               </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a>car<span class="sc">::</span><span class="fu">leveneTest</span>(sleep <span class="sc">~</span> group, </span>
+<span id="cb27-2"><a href="#cb27-2" aria-hidden="true" tabindex="-1"></a>                <span class="at">data =</span> d_vacation_3) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Levene's Test for Homogeneity of Variance (center = median)
+       Df F value Pr(&gt;F)
+group   3  0.1435 0.9337
+      156               </code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Die Tests sind hier nicht signifikant (energy: <span class="math inline">\(p\)</span> = .658, sleep: <span class="math inline">\(p\)</span> = .934), daher wird davon ausgegangen, dass die Varianzen der Gruppen homogen sind und der F-Test durchgeführt werden kann.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Deskriptive Statistik</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mittelwerte und Standardabweichungen berechnen</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>d3_summary <span class="ot">&lt;-</span> d_vacation_3 <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(group) <span class="sc">|&gt;</span> </span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_energy =</span> <span class="fu">mean</span>(energy), </span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_energy =</span> <span class="fu">sd</span>(energy),</span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_sleep =</span> <span class="fu">mean</span>(sleep),</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_sleep =</span> <span class="fu">sd</span>(sleep)) </span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>d3_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 4 × 5
+  group  mean_energy sd_energy mean_sleep sd_sleep
+  &lt;fct&gt;        &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
+1 fall          5.91      4.07       15.6     4.95
+2 spring        5.96      5.18       15.2     5.44
+3 summer        4.76      4.80       15.5     5.49
+4 winter        8.10      4.83       15.6     5.43</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Energy: Deskriptiv ist der Mittelwert im Winter deutlich höher, Frühling/Herbst gleich und im Sommer am tiefsten.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Sleep: Die Gruppenmittelwerte sind sehr ähnlich.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>ANOVA berechnen</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(afex)</span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a><span class="co"># anova energy</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>m3_energy <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(energy <span class="sc">~</span> group <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id), <span class="at">data =</span> d_vacation_3)</span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3_energy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Anova Table (Type 3 tests)
+
+Response: energy
+      num Df den Df    MSE     F      ges  Pr(&gt;F)  
+group      3    156 22.105 3.068 0.055712 0.02968 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>m3_energy<span class="sc">$</span>Anova</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Anova Table (Type III tests)
+
+Response: dv
+            Sum Sq  Df F value  Pr(&gt;F)    
+(Intercept) 5924.1   1 267.999 &lt; 2e-16 ***
+group        203.4   3   3.068 0.02968 *  
+Residuals   3448.4 156                    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Energy: Der F-Test ist signifikant ($p = .02968), da der empirische F-Wert (F(3,156) = 3.068) über dem kritische F-Wert (f = 2.66) (5%-Alphanivau) liegt. Die Gruppen unterscheiden sich somit signifikant. Wir wissen aber ohne Post-hoc-Test nicht, welche Gruppen sich unterscheiden. Bei Interesse kann hier zB ein Tukey-Test gemacht werden.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>qf(0.95, 3, 156)</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>m3_sleep <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(sleep <span class="sc">~</span> group <span class="sc">+</span> (<span class="dv">1</span> <span class="sc">|</span> id), <span class="at">data =</span> d_vacation_3)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Contrasts set to contr.sum for the following variables: group</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m3_sleep)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Anova Table (Type 3 tests)
+
+Response: sleep
+      num Df den Df    MSE      F        ges Pr(&gt;F)
+group      3    156 28.264 0.0427 0.00082133 0.9882</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb39"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>m3_sleep<span class="sc">$</span>Anova</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Anova Table (Type III tests)
+
+Response: dv
+            Sum Sq  Df   F value Pr(&gt;F)    
+(Intercept)  37139   1 1314.0247 &lt;2e-16 ***
+group            4   3    0.0427 0.9882    
+Residuals     4409 156                     
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Sleep: Kein signifikanter F-Test, daher keine signifikanten Gruppenunterschiede bezüglich Schlafqualität.</p>
+</blockquote>
+<p><strong>d.&nbsp;Resultate beschreiben</strong></p>
+<blockquote class="blockquote">
+<p>Die Jahreszeit hat einen Effekt auf den Energielevel, aber nicht auf die Schlafqualität nach den Ferien.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Satz bilden mit statistischen Kennwerten (siehe Kapitel 11)</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Die einfaktorielle Varianzanalyse ergab, dass sich die Gruppen signifikant in ihrer Energielevel unterscheiden, <em>F</em>(3, 156) = 3.07, <em>p</em> = .030.</p>
+</blockquote>
+<p><br></p>
+</section>
+<section id="aufgabe-13.4-energielevel-und-jahreszeit" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-13.4-energielevel-und-jahreszeit">Aufgabe 13.4: Energielevel und Jahreszeit</h2>
+<blockquote class="blockquote">
+<p><strong>Unterscheidet sich das Energielevel nach den Winterferien vom Mittel des Energielevels nach den Frühlings- &amp; Herbstferien? </strong></p>
+</blockquote>
+<p><strong>a.</strong> Datenanalyse festlegen</p>
+<blockquote class="blockquote">
+<p>Kontrastanalyse nach einfaktorieller ANOVA ohne Messwiederholung</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>UV/Faktor: Jahreszeit mit 4 Stufen, AV: <code>energy</code></p>
+</blockquote>
+<p><strong>b.</strong> Daten vorverarbeiten</p>
+<p><strong>c.</strong> Datenanalyse ausführen und Voraussetzungen sicherstellen</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(emmeans)</span>
+<span id="cb41-2"><a href="#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="#cb41-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Resultate (estimated marginal means) speichern</span></span>
+<span id="cb41-4"><a href="#cb41-4" aria-hidden="true" tabindex="-1"></a>m4_result <span class="ot">&lt;-</span> <span class="fu">emmeans</span>(<span class="at">object =</span> m3_energy, <span class="at">specs =</span> <span class="sc">~</span> group) </span>
+<span id="cb41-5"><a href="#cb41-5" aria-hidden="true" tabindex="-1"></a>m4_result</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> group  emmean    SE  df lower.CL upper.CL
+ fall     5.91 0.693 156     4.54     7.27
+ spring   5.96 0.763 156     4.45     7.46
+ summer   4.76 0.693 156     3.39     6.13
+ winter   8.10 0.858 156     6.40     9.79
+
+Confidence level used: 0.95 </code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb43"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a><span class="fu">levels</span>(d_vacation_2<span class="sc">$</span>group)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "fall"   "spring" "summer" "winter"</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Kontrastanalyse</span></span>
+<span id="cb45-2"><a href="#cb45-2" aria-hidden="true" tabindex="-1"></a><span class="do">## H: Winter vs. Frühling/Herbst</span></span>
+<span id="cb45-3"><a href="#cb45-3" aria-hidden="true" tabindex="-1"></a>m4_contrast1 <span class="ot">&lt;-</span> <span class="fu">list</span>(<span class="st">"winter vs. spring/fall"</span> <span class="ot">=</span> <span class="fu">c</span>(<span class="sc">-</span><span class="dv">1</span>, <span class="sc">-</span><span class="dv">1</span>, <span class="dv">0</span>, <span class="dv">2</span>)) </span>
+<span id="cb45-4"><a href="#cb45-4" aria-hidden="true" tabindex="-1"></a><span class="fu">contrast</span>(<span class="at">object =</span> m4_result, <span class="at">method =</span> m4_contrast1) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> contrast               estimate SE  df t.ratio p.value
+ winter vs. spring/fall     4.33  2 156   2.163  0.0321</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Kontrast muss korrekt spezifiziert werden. Daher muss in R zuerst überprüft werden, wie die Levels geordnet sind. Andere äquivalente Varianten wären c(-0.5, -0.5, 0, 1) (wird oft so gemacht). Die Summe muss 0 sein.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Da es ein ungerichteter Kontrast ist, wäre auch c(1, 1, 0, -2) oder c(0.5, 0.5, 0, -1) möglich, da wir das Vorzeichen nicht beachten müssen.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Gerichteter Kontrast (-1, -1, 0, 2) würde heissen, dass man überprüft, ob Winter HÖHER ist als Mittel von Frühling/Herbst. Wenn der Kontrast a priori gerichtet formuliert wurde, würde der p-Wert noch halbiert werden, da gerichtet getestet.</p>
+</blockquote>
+<p><strong>d.</strong> Resultate beschreiben</p>
+<blockquote class="blockquote">
+<p>siehe Kapitel 11.3.6</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Eine Kontrastanalyse ergab, dass die Gruppe “Winter” (M = 8.10, SD = 4.83) signifikant höhere Werte aufwies als das Mittel der beiden Gruppen Frühling und Herbst (<em>p</em> = .032).</p>
+</blockquote>
+<p><br></p>
+</section>
+<section id="aufgabe-13.5-messzeitpunkt-und-wohlbefinden" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-13.5-messzeitpunkt-und-wohlbefinden">Aufgabe 13.5: Messzeitpunkt und Wohlbefinden</h2>
+<blockquote class="blockquote">
+<p><strong>Welchen Effekt haben die Ferien auf das Wohlbefinden (Energielevel und Schlaf), d.h. unterscheidet sich das Wohlbefinden vor, während und nach den Ferien?</strong></p>
+</blockquote>
+<p><strong>a.</strong> Datenanalyse festlegen</p>
+<blockquote class="blockquote">
+<p>Einfaktorielle ANOVA mit Messwiederholung</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>UV/Faktor Messzeitpunkt/<code>time</code> mit 3 Stufen (<code>t1</code>, <code>t2</code>, <code>t3</code>), AV: zuerst <code>energy</code> dann evtl. noch <code>sleep</code></p>
+</blockquote>
+<p><strong>b.</strong> Daten vorverarbeiten</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb47"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz anschauen</span></span>
+<span id="cb47-2"><a href="#cb47-2" aria-hidden="true" tabindex="-1"></a><span class="fu">glimpse</span>(d_vacation)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 480
+Columns: 7
+$ id     &lt;fct&gt; 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, …
+$ group  &lt;fct&gt; fall, fall, fall, fall, fall, fall, fall, fall, fall, summer, s…
+$ time   &lt;fct&gt; t1, t2, t3, t1, t2, t3, t1, t2, t3, t1, t2, t3, t1, t2, t3, t1,…
+$ energy &lt;dbl&gt; 6.52882093, 9.42640201, 4.74669984, 9.72188274, 6.39756719, 8.2…
+$ sleep  &lt;dbl&gt; 10.571558, 18.801246, 10.601306, 21.581462, 10.417833, 16.24744…
+$ health &lt;dbl&gt; 38.30967, 64.04421, 30.92046, 67.61738, 26.78774, 54.43207, 57.…
+$ job    &lt;fct&gt; highstress, highstress, highstress, highstress, highstress, hig…</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>kein Filtern notwendig</p>
+</blockquote>
+<p><strong>c.</strong> Datenanalyse ausführen und Voraussetzungen sicherstellen</p>
+<blockquote class="blockquote">
+<p>Deskriptive Statistik</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Mittelwerte und Standardabweichungen berechnen</span></span>
+<span id="cb49-2"><a href="#cb49-2" aria-hidden="true" tabindex="-1"></a>d5_summary <span class="ot">&lt;-</span> d_vacation <span class="sc">|&gt;</span></span>
+<span id="cb49-3"><a href="#cb49-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(time) <span class="sc">|&gt;</span> </span>
+<span id="cb49-4"><a href="#cb49-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_energy =</span> <span class="fu">mean</span>(energy), </span>
+<span id="cb49-5"><a href="#cb49-5" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_energy =</span> <span class="fu">sd</span>(energy),</span>
+<span id="cb49-6"><a href="#cb49-6" aria-hidden="true" tabindex="-1"></a>            <span class="at">mean_sleep =</span> <span class="fu">mean</span>(sleep),</span>
+<span id="cb49-7"><a href="#cb49-7" aria-hidden="true" tabindex="-1"></a>            <span class="at">sd_sleep =</span> <span class="fu">sd</span>(sleep)) </span>
+<span id="cb49-8"><a href="#cb49-8" aria-hidden="true" tabindex="-1"></a>d5_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 5
+  time  mean_energy sd_energy mean_sleep sd_sleep
+  &lt;fct&gt;       &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;
+1 t1           6.47      5.18       14.3     5.23
+2 t2           6.65      5.21       15.6     4.35
+3 t3           6.00      4.79       15.5     5.27</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>ANOVA</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb51"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb51-1"><a href="#cb51-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(afex)</span>
+<span id="cb51-2"><a href="#cb51-2" aria-hidden="true" tabindex="-1"></a>m5_energy <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(energy <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> (time <span class="sc">|</span> id), <span class="at">data =</span> d_vacation)</span>
+<span id="cb51-3"><a href="#cb51-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb51-4"><a href="#cb51-4" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m5_energy)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Univariate Type III Repeated-Measures ANOVA Assuming Sphericity
+
+            Sum Sq num Df Error SS den Df  F value Pr(&gt;F)    
+(Intercept)  19489      1   4380.3    159 707.4286 &lt;2e-16 ***
+time            36      2   7842.0    318   0.7293 0.4831    
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+
+Mauchly Tests for Sphericity
+
+     Test statistic p-value
+time        0.98355 0.26975
+
+
+Greenhouse-Geisser and Huynh-Feldt Corrections
+ for Departure from Sphericity
+
+      GG eps Pr(&gt;F[GG])
+time 0.98382      0.481
+
+        HF eps Pr(&gt;F[HF])
+time 0.9960417  0.4825676</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Mauchly-Test nicht signifikant.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Keine signifikanten Unterschiede im Energielevel über die Zeit (leider…).</p>
+</blockquote>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb53"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb53-1"><a href="#cb53-1" aria-hidden="true" tabindex="-1"></a>m5_sleep <span class="ot">&lt;-</span> <span class="fu">aov_4</span>(sleep <span class="sc">~</span> <span class="dv">1</span> <span class="sc">+</span> (time <span class="sc">|</span> id), <span class="at">data =</span> d_vacation)</span>
+<span id="cb53-2"><a href="#cb53-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb53-3"><a href="#cb53-3" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m5_sleep)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>
+Univariate Type III Repeated-Measures ANOVA Assuming Sphericity
+
+            Sum Sq num Df Error SS den Df   F value  Pr(&gt;F)    
+(Intercept) 110117      1   3837.6    159 4562.3246 &lt; 2e-16 ***
+time           157      2   7930.4    318    3.1431 0.04449 *  
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+
+Mauchly Tests for Sphericity
+
+     Test statistic  p-value
+time        0.94646 0.012944
+
+
+Greenhouse-Geisser and Huynh-Feldt Corrections
+ for Departure from Sphericity
+
+      GG eps Pr(&gt;F[GG])  
+time 0.94918    0.04718 *
+---
+Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+
+        HF eps Pr(&gt;F[HF])
+time 0.9603268 0.04658035</code></pre>
+</div>
+</div>
+<blockquote class="blockquote">
+<p>Mauchly-Test ist (auf dem 5%-Niveau) signifikant (<em>p</em> = .013), d.h. Annahme der Sphärizität wird abgelehnt (Annahme verletzt).</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Der kann der F-Test nicht regulär durchgeführt werden, sondern es muss eine Korrektur der Freiheitsgrade vorgenommen werden. Ein Wert von 1 bedeutet keine Abweichung von der Sphärizität (alle Varianzen der Bedingungsunterschiede sind gleich). Ein Verstoss gegen die Sphärizität führt zu einem <span class="math inline">\(\varepsilon_{GG}\)</span> unter 1. Je weiter <span class="math inline">\(\varepsilon\)</span> von 1 entfernt ist, desto schlimmer ist der Verstoss. Bei <span class="math inline">\(\varepsilon_{GG} &lt; 0.75\)</span> wird die Greenhouse-Geisser-Korrektur verwendet. Bei <span class="math inline">\(\varepsilon_{GG} &gt; 0.75\)</span> wird die Huynh-Feldt-Korrektur angewendet</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Da <span class="math inline">\(\epsilon_{GG}\)</span> &gt; 0.75 (nämlich 0.94918) wird die Huynh-Feldt-Korrektur verwendet und der p-Wert beträgt dadurch <em>p</em> = .04658, d.h. <em>p</em> = .047.</p>
+</blockquote>
+<p><strong>d.</strong> Resultate beschreiben</p>
+<blockquote class="blockquote">
+<p>Ferien haben signifikanten Effekt auf Schlaf (<em>p</em> = .047).</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>A one-way repeated measures ANOVA was conducted to examine the effects of vacation (beforde, during, and after) on sleep quality. Mauchly’s test indicated that the assumption of sphericity had been violated, <span class="math inline">\(W\)</span> = 0.95, <em>p</em> = .013. Therefore, degrees of freedom were corrected using Huynh-Feldt (<span class="math inline">\(\varepsilon_{GG}\)</span> = 0.95).</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>The main effect of vacation was significant, <em>F</em>(2, 318) = 3.14, <em>p</em> = .044, suggesting that there was an overall difference in sleeping quality over time.</p>
+</blockquote>
+<p><br></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Interessiert am Effekt von Ferien?">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Interessiert am Effekt von Ferien?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Die Idee für diesen Übungsdatensatz stammt von diesem Artikel:</p>
+<p>Bloom et al.&nbsp;(2010). Effects of vacation from work on health and well-being: Lots of fun, quickly gone. Work &amp; Stress, 24(2), 196–216. <a href="https://doi.org/10.1080/02678373.2010.493385" class="uri">https://doi.org/10.1080/02678373.2010.493385</a></p>
+</div>
+</div>
+</div>
+</section>
+<section id="zusatzaufgaben" class="level2">
+<h2 class="anchored" data-anchor-id="zusatzaufgaben">Zusatzaufgaben</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Zusatzaufgaben">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Zusatzaufgaben
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Zusatzaufgaben müssen nicht gelöst werden.</strong></p>
+</div>
+</div>
+<p><strong>a.</strong> Visualisieren Sie die obigen Ergebnisse, um den Resultateteil zu ergänzen.</p>
+<p><strong>b.</strong> Lösen Sie die noch nicht gelösten Aufgaben und Zusatzaufgaben des Semesters.</p>
+</section>
+<section id="herzliche-gratulation" class="level2">
+<h2 class="anchored" data-anchor-id="herzliche-gratulation">Herzliche Gratulation</h2>
+<p>Sie haben alle Übungen durchgearbeitet!!</p>
+<p>BILD?</p>
+
+
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Für das Entzippen mit <em>Windows</em> machen Sie einen Rechtsklick auf den Ordner mit dem Reissverschluss und wählen Sie <code>Entpacken nach</code> und geben Sie den Ordner an, in dem Sie alle Ihre <em>RProject-Ordner</em> speichern. Für das Entzippen mit <em>Mac</em> speichern Sie den heruntergeladenen Ordner in den Ordner, in dem Sie alle Ihre <em>RProject-Ordner</em> speichern und Doppelklicken Sie danach auf den Ordner. Nur entzippte Ordner können einwandfrei verwendet werden.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
+
+</main> <!-- /main -->
+<script>
+
+
+
+/* update total correct if #webex-total_correct exists */
+
+update_total_correct = function() {
+
+  console.log("webex: update total_correct");
+
+
+
+  var t = document.getElementsByClassName("webex-total_correct");
+
+  for (var i = 0; i < t.length; i++) {
+
+    p = t[i].parentElement;
+
+    var correct = p.getElementsByClassName("webex-correct").length;
+
+    var solvemes = p.getElementsByClassName("webex-solveme").length;
+
+    var radiogroups = p.getElementsByClassName("webex-radiogroup").length;
+
+    var selects = p.getElementsByClassName("webex-select").length;
+
+
+
+    t[i].innerHTML = correct + " of " + (solvemes + radiogroups + selects) + " correct";
+
+  }
+
+}
+
+
+
+/* webex-solution button toggling function */
+
+b_func = function() {
+
+  console.log("webex: toggle hide");
+
+
+
+  var cl = this.parentElement.classList;
+
+  if (cl.contains('open')) {
+
+    cl.remove("open");
+
+  } else {
+
+    cl.add("open");
+
+  }
+
+}
+
+
+
+/* check answers */
+
+check_func = function() {
+
+  console.log("webex: check answers");
+
+
+
+  var cl = this.parentElement.classList;
+
+  if (cl.contains('unchecked')) {
+
+    cl.remove("unchecked");
+
+    this.innerHTML = "Hide Answers";
+
+  } else {
+
+    cl.add("unchecked");
+
+    this.innerHTML = "Show Answers";
+
+  }
+
+}
+
+
+
+/* function for checking solveme answers */
+
+solveme_func = function(e) {
+
+  console.log("webex: check solveme");
+
+
+
+  var real_answers = JSON.parse(this.dataset.answer);
+
+  var my_answer = this.value;
+
+  var cl = this.classList;
+
+  if (cl.contains("ignorecase")) {
+
+    my_answer = my_answer.toLowerCase();
+
+  }
+
+  if (cl.contains("nospaces")) {
+
+    my_answer = my_answer.replace(/ /g, "")
+
+  }
+
+
+
+  if (my_answer == "") {
+
+    cl.remove("webex-correct");
+
+    cl.remove("webex-incorrect");
+
+  } else if (real_answers.includes(my_answer)) {
+
+    cl.add("webex-correct");
+
+    cl.remove("webex-incorrect");
+
+  } else {
+
+    cl.add("webex-incorrect");
+
+    cl.remove("webex-correct");
+
+  }
+
+
+
+  // match numeric answers within a specified tolerance
+
+  if(this.dataset.tol > 0){
+
+    var tol = JSON.parse(this.dataset.tol);
+
+    var matches = real_answers.map(x => Math.abs(x - my_answer) < tol)
+
+    if (matches.reduce((a, b) => a + b, 0) > 0) {
+
+      cl.add("webex-correct");
+
+    } else {
+
+      cl.remove("webex-correct");
+
+    }
+
+  }
+
+
+
+  // added regex bit
+
+  if (cl.contains("regex")){
+
+    answer_regex = RegExp(real_answers.join("|"))
+
+    if (answer_regex.test(my_answer)) {
+
+      cl.add("webex-correct");
+
+    }
+
+  }
+
+
+
+  update_total_correct();
+
+}
+
+
+
+/* function for checking select answers */
+
+select_func = function(e) {
+
+  console.log("webex: check select");
+
+
+
+  var cl = this.classList
+
+
+
+  /* add style */
+
+  cl.remove("webex-incorrect");
+
+  cl.remove("webex-correct");
+
+  if (this.value == "answer") {
+
+    cl.add("webex-correct");
+
+  } else if (this.value != "blank") {
+
+    cl.add("webex-incorrect");
+
+  }
+
+
+
+  update_total_correct();
+
+}
+
+
+
+/* function for checking radiogroups answers */
+
+radiogroups_func = function(e) {
+
+  console.log("webex: check radiogroups");
+
+
+
+  var checked_button = document.querySelector('input[name=' + this.id + ']:checked');
+
+  var cl = checked_button.parentElement.classList;
+
+  var labels = checked_button.parentElement.parentElement.children;
+
+
+
+  /* get rid of styles */
+
+  for (i = 0; i < labels.length; i++) {
+
+    labels[i].classList.remove("webex-incorrect");
+
+    labels[i].classList.remove("webex-correct");
+
+  }
+
+
+
+  /* add style */
+
+  if (checked_button.value == "answer") {
+
+    cl.add("webex-correct");
+
+  } else {
+
+    cl.add("webex-incorrect");
+
+  }
+
+
+
+  update_total_correct();
+
+}
+
+
+
+window.onload = function() {
+
+  console.log("webex onload");
+
+  /* set up solution buttons */
+
+  var buttons = document.getElementsByTagName("button");
+
+
+
+  for (var i = 0; i < buttons.length; i++) {
+
+    if (buttons[i].parentElement.classList.contains('webex-solution')) {
+
+      buttons[i].onclick = b_func;
+
+    }
+
+  }
+
+
+
+  var check_sections = document.getElementsByClassName("webex-check");
+
+  console.log("check:", check_sections.length);
+
+  for (var i = 0; i < check_sections.length; i++) {
+
+    check_sections[i].classList.add("unchecked");
+
+
+
+    let btn = document.createElement("button");
+
+    btn.innerHTML = "Show Answers";
+
+    btn.classList.add("webex-check-button");
+
+    btn.onclick = check_func;
+
+    check_sections[i].appendChild(btn);
+
+
+
+    let spn = document.createElement("span");
+
+    spn.classList.add("webex-total_correct");
+
+    check_sections[i].appendChild(spn);
+
+  }
+
+
+
+  /* set up webex-solveme inputs */
+
+  var solveme = document.getElementsByClassName("webex-solveme");
+
+
+
+  for (var i = 0; i < solveme.length; i++) {
+
+    /* make sure input boxes don't auto-anything */
+
+    solveme[i].setAttribute("autocomplete","off");
+
+    solveme[i].setAttribute("autocorrect", "off");
+
+    solveme[i].setAttribute("autocapitalize", "off");
+
+    solveme[i].setAttribute("spellcheck", "false");
+
+    solveme[i].value = "";
+
+
+
+    /* adjust answer for ignorecase or nospaces */
+
+    var cl = solveme[i].classList;
+
+    var real_answer = solveme[i].dataset.answer;
+
+    if (cl.contains("ignorecase")) {
+
+      real_answer = real_answer.toLowerCase();
+
+    }
+
+    if (cl.contains("nospaces")) {
+
+      real_answer = real_answer.replace(/ /g, "");
+
+    }
+
+    solveme[i].dataset.answer = real_answer;
+
+
+
+    /* attach checking function */
+
+    solveme[i].onkeyup = solveme_func;
+
+    solveme[i].onchange = solveme_func;
+
+
+
+    solveme[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+
+  }
+
+
+
+  /* set up radiogroups */
+
+  var radiogroups = document.getElementsByClassName("webex-radiogroup");
+
+  for (var i = 0; i < radiogroups.length; i++) {
+
+    radiogroups[i].onchange = radiogroups_func;
+
+  }
+
+
+
+  /* set up selects */
+
+  var selects = document.getElementsByClassName("webex-select");
+
+  for (var i = 0; i < selects.length; i++) {
+
+    selects[i].onchange = select_func;
+
+    selects[i].insertAdjacentHTML("afterend", " <span class='webex-icon'></span>")
+
+  }
+
+
+
+  update_total_correct();
+
+}
+
+
+
+</script>
+
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
+  const onCopySuccess = function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  }
+  const getTextToCopy = function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+  }
+  const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+    text: getTextToCopy
+  });
+  clipboard.on('success', onCopySuccess);
+  if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+    // For code content inside modals, clipBoardJS needs to be initialized with a container option
+    // TODO: Check when it could be a function (https://github.com/zenorocha/clipboard.js/issues/860)
+    const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+      text: getTextToCopy,
+      container: window.document.getElementById('quarto-embedded-source-code-modal')
+    });
+    clipboardModal.on('success', onCopySuccess);
+  }
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/psylu\.github\.io\/statistik2-fs25");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+          // target, if specified
+          link.setAttribute("target", "_blank");
+          if (link.getAttribute("rel") === null) {
+            link.setAttribute("rel", "noopener");
+          }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+    const config = {
+      allowHTML: true,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start',
+    };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            div.style.left = 0;
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+<nav class="page-navigation column-body">
+  <div class="nav-page nav-page-previous">
+      <a href="../uebungen/uebung-12.html" class="pagination-link" aria-label="Übung 12">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Übung 12</span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+      <a href="../appendix/faq.html" class="pagination-link" aria-label="FAQ">
+        <span class="nav-page-text">FAQ</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Copyright 2025, Gerda Wyssen &amp; Mirjam Senn</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+
+
+
+
+</body></html>

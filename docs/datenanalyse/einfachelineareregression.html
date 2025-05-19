@@ -971,9 +971,9 @@ Vor dem ersten Verwenden muss das Package {performance} heruntergeladen/installi
 <aside>
 Weiterführend können auch die partiellen Residuen überprüft werden, wie <a href="https://strengejacke.github.io/ggeffects/articles/introduction_partial_residuals.html">hier</a> beschrieben.
 </aside>
-<p>Wie die Plots gelesen werden sollten und was getan werden kann, wenn die Annahmen nicht erfüllt sind, wird auf der <a href="">Website des Packages {performance}</a> sehr gut beschrieben.</p>
+<p>Wie die Plots gelesen werden sollten und was getan werden kann, wenn die Annahmen nicht erfüllt sind, wird auf der <a href="https://easystats.github.io/performance/articles/check_model.html">Website des Packages {performance}</a> sehr gut beschrieben.</p>
 <p><strong>Linearität</strong></p>
-<p>Ob die Linearität gegeben ist, kann in folgendem Plot visuell beurteilt werden. Die Referenzlinie (grün) sollte ungefähr gerade sein und horizontal liegen.</p>
+<p>Ob die Linearität gegeben ist, kann in folgendem Plot visuell beurteilt werden. Die Referenzlinie (grün) sollte ungefähr gerade sein und horizontal liegen. Der graue Bereich sollte immer die gerade schwarze Linie beinhalten.</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>diagnostic_plots <span class="ot">&lt;-</span> <span class="fu">plot</span>(performance<span class="sc">::</span><span class="fu">check_model</span>(m1, <span class="at">panel =</span> <span class="cn">FALSE</span>))</span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a></span>
