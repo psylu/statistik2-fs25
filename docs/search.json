@@ -1010,6 +1010,17 @@
     ]
   },
   {
+    "objectID": "datenanalyse/multipleregression.html#weiterführende-informationen",
+    "href": "datenanalyse/multipleregression.html#weiterführende-informationen",
+    "title": "15  Multiple Regression",
+    "section": "15.5 Weiterführende Informationen",
+    "text": "15.5 Weiterführende Informationen\n\nInteraktive Visualisierung von Zusammenhängen von RPsychologist\nInteraktive Visualisierung von Konfidenzintervallen von RPsychologist\n{performance}-Package für Modelltests mit check_model()\n{ggiraph}-Package für interaktive Visualisierungen von Modellen",
+    "crumbs": [
+      "Datenanalyse",
+      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Multiple Regression</span>"
+    ]
+  },
+  {
     "objectID": "datenanalyse/multipleregression.html#footnotes",
     "href": "datenanalyse/multipleregression.html#footnotes",
     "title": "15  Multiple Regression",
@@ -1923,127 +1934,6 @@
     ]
   },
   {
-    "objectID": "uebungen/uebung-13-solution.html",
-    "href": "uebungen/uebung-13-solution.html",
-    "title": "Übung 13",
-    "section": "",
-    "text": "Aufgabe 13.0: Projektumgebung erstellen",
-    "crumbs": [
-      "Übungen",
-      "Übung 13"
-    ]
-  },
-  {
-    "objectID": "uebungen/uebung-13-solution.html#aufgabe-13.0-projektumgebung-erstellen",
-    "href": "uebungen/uebung-13-solution.html#aufgabe-13.0-projektumgebung-erstellen",
-    "title": "Übung 13",
-    "section": "",
-    "text": "Laden Sie den Projektordner repetition herunter und entzippen Sie den Ordner.1 Der Projektordner enthält:\n\nRProjekt repetition.RProj`\nDatensatz dataset_vacation.csv im data-Ordner des RProjekts\n\nÖffnen Sie das RProjekt repetition.\nErstellen Sie ein RNotebook namens uebung-13.",
-    "crumbs": [
-      "Übungen",
-      "Übung 13"
-    ]
-  },
-  {
-    "objectID": "uebungen/uebung-13-solution.html#einführung",
-    "href": "uebungen/uebung-13-solution.html#einführung",
-    "title": "Übung 13",
-    "section": "Einführung",
-    "text": "Einführung\nIn dieser Übung erhalten Sie einen Datensatz und mehrere Fragestellungen. Für jede Fragestellung ist es Ihre Aufgabe den Datensatz vorzuverarbeiten, die passende Analysemethode zu wählen und durchzuführen und die Fragestellung zum Schluss in wenigen Sätzen zu beantworten.\n\nLesen Sie den Studienbeschrieb.\nLesen Sie dann den Datensatz dataset_vacation.csv ein und machen Sie sich mit ihm vertraut.\n\nGehen Sie für jede Fragestellung wie folgt vor:\na. Datenanalyse festlegen\nb. Daten vorverarbeiten\nc. Datenanalyse ausführen und Voraussetzungen prüfen\nd. Resultate beschreiben\n\n\n\n\n\n\n\nDatensatz dataset_vacation.csv\n\n\n\n\n\nBeschreibung der Studie\nIn der (fiktiven) Studie wurde untersucht, welchen Effekt eine Woche Ferien auf das Wohlbefinden hat. Dazu wurden 160 Personen zu drei Messzeitpunkten befragt. Die Ferienwoche fand zu unterschiedlichen Jahreszeit statt (je 40 Personen im Frühling, Sommer, Herbst und Winter) (group). Alle 160 Personen wurden jeweils vor, während und nach den Ferien zu ihrem Energielevel (energy) und ihrer Schlafqualität (sleep) befragt. Weiter wurde für jede Person einen Wert für ihre allgemeine Gesundheit (health) aus verschiedenen Tests (u.a. Blutdruck, Stresshormone, etc.) bestimmt. Zudem wurde von jeder Person erhoben, ob sie in einem “high stress” oder “low stress”-Job arbeitet (job).\nVariablen:\n\nid: Personenidentifikation\ngroup: Jahreszeit der Ferien\ntime: Messzeitpunkt vor (t1), während (t2) und nach (t3) den Ferien\nenergy: Energielevel (Fragebogendaten (kontinuierlich) mit -20: sehr wenig bis 20: sehr viel Energie)\nsleep: Schlafqualität (Fragebogendaten (kontinuierlich) mit 0: sehr schlecht bis 30: sehr gut)\nhealth: Gesundheitswert jeder Person (0: tiefer Gesundheitswert (viele Krankheitsanzeichen) bis 100: hoher Gesundheitswert (keine Krankheitsanzeichen))\n\n\n\n\nLesen Sie die Daten ein.\n\nFinden Sie alle nötigen Variablen?\nWelche Variablen, Variablentypen, etc. sind vorhanden?\nSind die Variablen richtig kodiert? (Die kategorialen Variablen sollten als factor kodiert sein. Dies kann mit mutate(var = as.factor(var)) erreicht werden.)\nWelche Variablen wurden within-subjects und welche between-subjects erhoben?\nGibt es fehlende Werte, die bereinigt werden müssen?\n\n\nlibrary(tidyverse)\n# Datensatz einlesen\nd_vacation &lt;- read.csv(\"data/dataset_vacation.csv\") |&gt;\n  glimpse() \n\nRows: 480\nColumns: 7\n$ id     &lt;int&gt; 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, …\n$ group  &lt;chr&gt; \"fall\", \"fall\", \"fall\", \"fall\", \"fall\", \"fall\", \"fall\", \"fall\",…\n$ time   &lt;chr&gt; \"t1\", \"t2\", \"t3\", \"t1\", \"t2\", \"t3\", \"t1\", \"t2\", \"t3\", \"t1\", \"t2…\n$ energy &lt;dbl&gt; 6.52882093, 9.42640201, 4.74669984, 9.72188274, 6.39756719, 8.2…\n$ sleep  &lt;dbl&gt; 10.571558, 18.801246, 10.601306, 21.581462, 10.417833, 16.24744…\n$ health &lt;dbl&gt; 38.30967, 64.04421, 30.92046, 67.61738, 26.78774, 54.43207, 57.…\n$ job    &lt;chr&gt; \"highstress\", \"highstress\", \"highstress\", \"highstress\", \"highst…\n\n\n\nVariablen anpassen\n\n\nd_vacation &lt;- read.csv(\"data/dataset_vacation.csv\") |&gt;\n  mutate(id = as.factor(id),\n         group = as.factor(group),\n         time = as.factor(time),\n         job = as.factor(job))\n\nglimpse(d_vacation)\n\nRows: 480\nColumns: 7\n$ id     &lt;fct&gt; 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, …\n$ group  &lt;fct&gt; fall, fall, fall, fall, fall, fall, fall, fall, fall, summer, s…\n$ time   &lt;fct&gt; t1, t2, t3, t1, t2, t3, t1, t2, t3, t1, t2, t3, t1, t2, t3, t1,…\n$ energy &lt;dbl&gt; 6.52882093, 9.42640201, 4.74669984, 9.72188274, 6.39756719, 8.2…\n$ sleep  &lt;dbl&gt; 10.571558, 18.801246, 10.601306, 21.581462, 10.417833, 16.24744…\n$ health &lt;dbl&gt; 38.30967, 64.04421, 30.92046, 67.61738, 26.78774, 54.43207, 57.…\n$ job    &lt;fct&gt; highstress, highstress, highstress, highstress, highstress, hig…",
-    "crumbs": [
-      "Übungen",
-      "Übung 13"
-    ]
-  },
-  {
-    "objectID": "uebungen/uebung-13-solution.html#aufgabe-13.1-gesundheit-und-jahreszeiten",
-    "href": "uebungen/uebung-13-solution.html#aufgabe-13.1-gesundheit-und-jahreszeiten",
-    "title": "Übung 13",
-    "section": "Aufgabe 13.1: Gesundheit und Jahreszeiten",
-    "text": "Aufgabe 13.1: Gesundheit und Jahreszeiten\n\nWie unterscheiden sich die Gesundheitswerte von Personen in high-stress-Jobs von Personen in low-stress-Jobs in der Zeit vor den Ferien?\n\na. Datenanalyse festlegen\n\nevtl. in Plenum: zusammen Analyse sowie AV und UV festlegen.\n\n\n\\(t\\)-Test für unabhängige Stichproben (AV: health, UV: job mit 2 Stufen (highstress, lowstress)). Es wird zweiseitig getestet (ungerichtet).\n\nb. Daten vorverarbeiten\n\nevtl. in Plenum: zusammen erarbeiten, welches Datensubset notwendig ist für die Fragestellung und zusammen Code für filtern anschauen.\n\n\nhier kurz auf Namensgebung hinweisen, z.B. _1 für Objekte (z.B. Dataframes oder Models) von Aufgabe 13.1\n\n\nd_vacation_1 &lt;- d_vacation |&gt; \n  filter(time == \"t1\")\n\nc. Datenanalyse ausführen und Voraussetzungen sicherstellen\n\nLEVENE TEST\n\n\nDer \\(t\\)-Test setzt voraus, dass das Merkmal in der Population stetig und normalverteilt ist und die beiden Populationsvarianzen gleich (homogen) sind. Die Varianzhomogenität (Homoskedastizität) kann mit dem Levene-Test überprüft werden. Es wird ein konventionelles Signifikanzniveau von \\(\\alpha = 0.05\\) angenommen. Ein Levene-Test mit \\(p &lt; 0.05\\) bedeutet, dass der Varianzunterschied signifikant ist. Die Nullhypothese, dass die beiden Varianzen auf Populationsebene identisch sind, muss in diesem Fall verworfen werden.\n\n\n# Levene-Test mit dem package {car}\ncar::leveneTest(health ~ job, # av ~ uv\n                data = d_vacation_1) # Datensatz\n\nLevene's Test for Homogeneity of Variance (center = median)\n       Df F value Pr(&gt;F)\ngroup   1  0.3784 0.5393\n      158               \n\n\n\nDer Test ist hier nicht signifikant (\\(p\\) = 0.54), daher wird davon ausgegangen, dass die Varianzen in beiden Gruppen homogen sind. Somit kann ein Student’s \\(t\\)-Test verwendet werden.\n\n\nDESKRIPTIVE STATISTIK\n\n\n# Nach job gruppieren und performance zusammenfassen\nd1_summary &lt;- d_vacation_1 |&gt;\n  group_by(job) |&gt; # Gruppieren\n  summarise(mean_health = mean(health), # Mittelwert\n            sd_health = sd(health)) # Standardabweichung\nd1_summary\n\n# A tibble: 2 × 3\n  job        mean_health sd_health\n  &lt;fct&gt;            &lt;dbl&gt;     &lt;dbl&gt;\n1 highstress        46.6      16.4\n2 lowstress         50.7      16.9\n\n\n\n\\(t\\)-TEST FÜR UNABHÄNGIGE STICHPROBEN\n\n\n# t-Test für unabhängige Stichproben durchführen\nt.test(formula = health ~ job, # av ~ uv\n       alternative = \"two.sided\",\n       var.equal = TRUE,\n       data = d_vacation_1)\n\n\n    Two Sample t-test\n\ndata:  health by job\nt = -1.5495, df = 158, p-value = 0.1233\nalternative hypothesis: true difference in means between group highstress and group lowstress is not equal to 0\n95 percent confidence interval:\n -9.294995  1.122240\nsample estimates:\nmean in group highstress  mean in group lowstress \n                46.63026                 50.71664 \n\n\n\nEFFEKTGRÖSSE BERECHNEN (muss nicht gemacht werden, da nicht signifikant)\n\n\n# Effektgrösse berechnen\neffsize::cohen.d(formula = health ~ job, # av ~ uv\n                 data = d_vacation_1) # Datensatz\n\n\nCohen's d\n\nd estimate: -0.2450233 (small)\n95 percent confidence interval:\n      lower       upper \n-0.55850666  0.06846013 \n\n\nd. Resultate beschreiben\n\nsiehe Kapitel 9\n\n\n“We examined whether stress in the job had an effect on health in the time before the holidays. No significant difference in health scores between high stress jobs (\\(M\\) = 46.63, \\(SD\\) = 16.45) and low stress jobs (\\(M\\) = 50.72, \\(SD\\) = 16.90) was found, \\(t\\)(158) = -1.55, \\(p\\) = .123).”",
-    "crumbs": [
-      "Übungen",
-      "Übung 13"
-    ]
-  },
-  {
-    "objectID": "uebungen/uebung-13-solution.html#aufgabe-13.2-schlaf-energie-und-gesundheit",
-    "href": "uebungen/uebung-13-solution.html#aufgabe-13.2-schlaf-energie-und-gesundheit",
-    "title": "Übung 13",
-    "section": "Aufgabe 13.2: Schlaf, Energie und Gesundheit",
-    "text": "Aufgabe 13.2: Schlaf, Energie und Gesundheit\n\nWie sagen Schlafqualität und Energielevel während den Ferien den Gesundheitswert vorher?\n\na. Datenanalyse festlegen\n\nMultiple Regression, UV: health, AVn: sleep und energy\n\n\nWir berechnen hier keine Interaktion (kommt im nächsten Studienjahr hinzu)\n\nb. Daten vorverarbeiten\n\nfiltern für “t2”: während den Ferien\n\n\nd_vacation_2 &lt;- d_vacation |&gt; \n  filter(time == \"t2\")\n\nc. Datenanalyse ausführen und Voraussetzungen sicherstellen\n\nVoraussetzungen prüfen (metrische Variablen, nonlinearer Zusammenhang ausschliessen)\n\n\nplot(d_vacation_2$energy, d_vacation_2$health)\n\n\n\n\n\n\n\nplot(d_vacation_2$sleep, d_vacation_2$health)\n\n\n\n\n\n\n\n\n\nRegressionsmodell\n\n\n# Multiple Regression berechnen\nm2 &lt;- lm(health ~ sleep + energy,\n            data = d_vacation_2)\n\n# Output ausgeben\nsummary(m2)\n\n\nCall:\nlm(formula = health ~ sleep + energy, data = d_vacation_2)\n\nResiduals:\n     Min       1Q   Median       3Q      Max \n-11.2630  -3.1787  -0.1896   3.1412  11.6076 \n\nCoefficients:\n            Estimate Std. Error t value Pr(&gt;|t|)    \n(Intercept)  6.44982    1.54810   4.166  5.1e-05 ***\nsleep        2.88107    0.08833  32.615  &lt; 2e-16 ***\nenergy       0.03932    0.07381   0.533    0.595    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nResidual standard error: 4.831 on 157 degrees of freedom\nMultiple R-squared:  0.8718,    Adjusted R-squared:  0.8702 \nF-statistic: 533.9 on 2 and 157 DF,  p-value: &lt; 2.2e-16\n\n\n\nModellannahmen prüfen (Homoskedastizität, Normalverteilung der Fehler)\n\n\nperformance::check_heteroscedasticity(m2)\n\nOK: Error variance appears to be homoscedastic (p = 0.092).\n\n\n\nperformance::check_normality(m2)\n\nOK: residuals appear as normally distributed (p = 0.633).\n\n\n\nperformance::check_model(m2)\n\n\n\n\n\n\n\n\nd. Resultate beschreiben\n\nSiehe Kapitel 15\n\n\nMultiple regression analysis was used to test if the energy level and sleep quality during holidays significantly predicted participants’ health scores. The results of the regression indicated the two predictors explained 87% of the variance (\\(R^2_adj\\) = .87, \\(F\\)(2,157) = 5.56, \\(p\\) &lt; .000). It was found that sleep quality did significantly predict health scores (\\(\\beta\\) = 2.88, \\(p\\) &lt; .000), whereas energy level did not (\\(\\beta\\) = 0.04, \\(p\\) = .595).",
-    "crumbs": [
-      "Übungen",
-      "Übung 13"
-    ]
-  },
-  {
-    "objectID": "uebungen/uebung-13-solution.html#aufgabe-13.3-jahreszeit-und-wohlbefinden",
-    "href": "uebungen/uebung-13-solution.html#aufgabe-13.3-jahreszeit-und-wohlbefinden",
-    "title": "Übung 13",
-    "section": "Aufgabe 13.3: Jahreszeit und Wohlbefinden",
-    "text": "Aufgabe 13.3: Jahreszeit und Wohlbefinden\n\nWelchen Effekt hat die Jahreszeit der Ferien auf das Wohlbefinden nach den Ferien (Energielevel und Schlaf)?\n\na. Datenanalyse festlegen\n\nEinfaktorielle ANOVA ohne Messwiederholung (keine Messwiederholung, weil nur ein Messzeitpunkt untersucht wird in Fragestellung)\n\n\nUV/Faktor: Jahreszeit mit 4 Stufen, AV: zuerst energy dann evtl. noch sleep\n\nb. Daten vorverarbeiten\nWelche Datenpunkte müssen für diese Fragestellung in die Analyse einbezogen werden, und welche nicht? Erstellen Sie falls nötig einen neuen Datensatz (siehe Funktion filter()).\n\n# Filtern für den 3. Messzeitpunkt\nd_vacation_3 &lt;- d_vacation |&gt; \n  filter(time == \"t3\")\n\nc. Datenanalyse ausführen und Voraussetzungen prüfen\n\nLevene Test ausführen\n\n\n# Levene-Test mit dem package {car}\ncar::leveneTest(energy ~ group, \n                data = d_vacation_3) \n\nLevene's Test for Homogeneity of Variance (center = median)\n       Df F value Pr(&gt;F)\ngroup   3   0.537 0.6576\n      156               \n\ncar::leveneTest(sleep ~ group, \n                data = d_vacation_3) \n\nLevene's Test for Homogeneity of Variance (center = median)\n       Df F value Pr(&gt;F)\ngroup   3  0.1435 0.9337\n      156               \n\n\n\nDie Tests sind hier nicht signifikant (energy: \\(p\\) = .658, sleep: \\(p\\) = .934), daher wird davon ausgegangen, dass die Varianzen der Gruppen homogen sind und der F-Test durchgeführt werden kann.\n\n\nDeskriptive Statistik\n\n\n# Mittelwerte und Standardabweichungen berechnen\nd3_summary &lt;- d_vacation_3 |&gt;\n  group_by(group) |&gt; \n  summarise(mean_energy = mean(energy), \n            sd_energy = sd(energy),\n            mean_sleep = mean(sleep),\n            sd_sleep = sd(sleep)) \nd3_summary\n\n# A tibble: 4 × 5\n  group  mean_energy sd_energy mean_sleep sd_sleep\n  &lt;fct&gt;        &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;\n1 fall          5.91      4.07       15.6     4.95\n2 spring        5.96      5.18       15.2     5.44\n3 summer        4.76      4.80       15.5     5.49\n4 winter        8.10      4.83       15.6     5.43\n\n\n\nEnergy: Deskriptiv ist der Mittelwert im Winter deutlich höher, Frühling/Herbst gleich und im Sommer am tiefsten.\n\n\nSleep: Die Gruppenmittelwerte sind sehr ähnlich.\n\n\nANOVA berechnen\n\n\nlibrary(afex)\n\n# anova energy\nm3_energy &lt;- aov_4(energy ~ group + (1 | id), data = d_vacation_3)\n\nsummary(m3_energy)\n\nAnova Table (Type 3 tests)\n\nResponse: energy\n      num Df den Df    MSE     F      ges  Pr(&gt;F)  \ngroup      3    156 22.105 3.068 0.055712 0.02968 *\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\nm3_energy$Anova\n\nAnova Table (Type III tests)\n\nResponse: dv\n            Sum Sq  Df F value  Pr(&gt;F)    \n(Intercept) 5924.1   1 267.999 &lt; 2e-16 ***\ngroup        203.4   3   3.068 0.02968 *  \nResiduals   3448.4 156                    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nEnergy: Der F-Test ist signifikant ($p = .02968), da der empirische F-Wert (F(3,156) = 3.068) über dem kritische F-Wert (f = 2.66) (5%-Alphanivau) liegt. Die Gruppen unterscheiden sich somit signifikant. Wir wissen aber ohne Post-hoc-Test nicht, welche Gruppen sich unterscheiden. Bei Interesse kann hier zB ein Tukey-Test gemacht werden.\n\n\nqf(0.95, 3, 156)\n\n\nm3_sleep &lt;- aov_4(sleep ~ group + (1 | id), data = d_vacation_3)\n\nContrasts set to contr.sum for the following variables: group\n\nsummary(m3_sleep)\n\nAnova Table (Type 3 tests)\n\nResponse: sleep\n      num Df den Df    MSE      F        ges Pr(&gt;F)\ngroup      3    156 28.264 0.0427 0.00082133 0.9882\n\nm3_sleep$Anova\n\nAnova Table (Type III tests)\n\nResponse: dv\n            Sum Sq  Df   F value Pr(&gt;F)    \n(Intercept)  37139   1 1314.0247 &lt;2e-16 ***\ngroup            4   3    0.0427 0.9882    \nResiduals     4409 156                     \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\n\nSleep: Kein signifikanter F-Test, daher keine signifikanten Gruppenunterschiede bezüglich Schlafqualität.\n\nd. Resultate beschreiben\n\nDie Jahreszeit hat einen Effekt auf den Energielevel, aber nicht auf die Schlafqualität nach den Ferien.\n\n\nSatz bilden mit statistischen Kennwerten (siehe Kapitel 11)\n\n\nDie einfaktorielle Varianzanalyse ergab, dass sich die Gruppen signifikant in ihrer Energielevel unterscheiden, F(3, 156) = 3.07, p = .030.",
-    "crumbs": [
-      "Übungen",
-      "Übung 13"
-    ]
-  },
-  {
-    "objectID": "uebungen/uebung-13-solution.html#aufgabe-13.4-energielevel-und-jahreszeit",
-    "href": "uebungen/uebung-13-solution.html#aufgabe-13.4-energielevel-und-jahreszeit",
-    "title": "Übung 13",
-    "section": "Aufgabe 13.4: Energielevel und Jahreszeit",
-    "text": "Aufgabe 13.4: Energielevel und Jahreszeit\n\nUnterscheidet sich das Energielevel nach den Winterferien vom Mittel des Energielevels nach den Frühlings- & Herbstferien? \n\na. Datenanalyse festlegen\n\nKontrastanalyse nach einfaktorieller ANOVA ohne Messwiederholung\n\n\nUV/Faktor: Jahreszeit mit 4 Stufen, AV: energy\n\nb. Daten vorverarbeiten\nc. Datenanalyse ausführen und Voraussetzungen sicherstellen\n\nlibrary(emmeans)\n\n# Resultate (estimated marginal means) speichern\nm4_result &lt;- emmeans(object = m3_energy, specs = ~ group) \nm4_result\n\n group  emmean    SE  df lower.CL upper.CL\n fall     5.91 0.693 156     4.54     7.27\n spring   5.96 0.763 156     4.45     7.46\n summer   4.76 0.693 156     3.39     6.13\n winter   8.10 0.858 156     6.40     9.79\n\nConfidence level used: 0.95 \n\nlevels(d_vacation_2$group)\n\n[1] \"fall\"   \"spring\" \"summer\" \"winter\"\n\n# Kontrastanalyse\n## H: Winter vs. Frühling/Herbst\nm4_contrast1 &lt;- list(\"winter vs. spring/fall\" = c(-1, -1, 0, 2)) \ncontrast(object = m4_result, method = m4_contrast1) \n\n contrast               estimate SE  df t.ratio p.value\n winter vs. spring/fall     4.33  2 156   2.163  0.0321\n\n\n\nKontrast muss korrekt spezifiziert werden. Daher muss in R zuerst überprüft werden, wie die Levels geordnet sind. Andere äquivalente Varianten wären c(-0.5, -0.5, 0, 1) (wird oft so gemacht). Die Summe muss 0 sein.\n\n\nDa es ein ungerichteter Kontrast ist, wäre auch c(1, 1, 0, -2) oder c(0.5, 0.5, 0, -1) möglich, da wir das Vorzeichen nicht beachten müssen.\n\n\nGerichteter Kontrast (-1, -1, 0, 2) würde heissen, dass man überprüft, ob Winter HÖHER ist als Mittel von Frühling/Herbst. Wenn der Kontrast a priori gerichtet formuliert wurde, würde der p-Wert noch halbiert werden, da gerichtet getestet.\n\nd. Resultate beschreiben\n\nsiehe Kapitel 11.3.6\n\n\nEine Kontrastanalyse ergab, dass die Gruppe “Winter” (M = 8.10, SD = 4.83) signifikant höhere Werte aufwies als das Mittel der beiden Gruppen Frühling und Herbst (p = .032).",
-    "crumbs": [
-      "Übungen",
-      "Übung 13"
-    ]
-  },
-  {
-    "objectID": "uebungen/uebung-13-solution.html#aufgabe-13.5-messzeitpunkt-und-wohlbefinden",
-    "href": "uebungen/uebung-13-solution.html#aufgabe-13.5-messzeitpunkt-und-wohlbefinden",
-    "title": "Übung 13",
-    "section": "Aufgabe 13.5: Messzeitpunkt und Wohlbefinden",
-    "text": "Aufgabe 13.5: Messzeitpunkt und Wohlbefinden\n\nWelchen Effekt haben die Ferien auf das Wohlbefinden (Energielevel und Schlaf), d.h. unterscheidet sich das Wohlbefinden vor, während und nach den Ferien?\n\na. Datenanalyse festlegen\n\nEinfaktorielle ANOVA mit Messwiederholung\n\n\nUV/Faktor Messzeitpunkt/time mit 3 Stufen (t1, t2, t3), AV: zuerst energy dann evtl. noch sleep\n\nb. Daten vorverarbeiten\n\n# Datensatz anschauen\nglimpse(d_vacation)\n\nRows: 480\nColumns: 7\n$ id     &lt;fct&gt; 1, 1, 1, 2, 2, 2, 3, 3, 3, 4, 4, 4, 5, 5, 5, 6, 6, 6, 7, 7, 7, …\n$ group  &lt;fct&gt; fall, fall, fall, fall, fall, fall, fall, fall, fall, summer, s…\n$ time   &lt;fct&gt; t1, t2, t3, t1, t2, t3, t1, t2, t3, t1, t2, t3, t1, t2, t3, t1,…\n$ energy &lt;dbl&gt; 6.52882093, 9.42640201, 4.74669984, 9.72188274, 6.39756719, 8.2…\n$ sleep  &lt;dbl&gt; 10.571558, 18.801246, 10.601306, 21.581462, 10.417833, 16.24744…\n$ health &lt;dbl&gt; 38.30967, 64.04421, 30.92046, 67.61738, 26.78774, 54.43207, 57.…\n$ job    &lt;fct&gt; highstress, highstress, highstress, highstress, highstress, hig…\n\n\n\nkein Filtern notwendig\n\nc. Datenanalyse ausführen und Voraussetzungen sicherstellen\n\nDeskriptive Statistik\n\n\n# Mittelwerte und Standardabweichungen berechnen\nd5_summary &lt;- d_vacation |&gt;\n  group_by(time) |&gt; \n  summarise(mean_energy = mean(energy), \n            sd_energy = sd(energy),\n            mean_sleep = mean(sleep),\n            sd_sleep = sd(sleep)) \nd5_summary\n\n# A tibble: 3 × 5\n  time  mean_energy sd_energy mean_sleep sd_sleep\n  &lt;fct&gt;       &lt;dbl&gt;     &lt;dbl&gt;      &lt;dbl&gt;    &lt;dbl&gt;\n1 t1           6.47      5.18       14.3     5.23\n2 t2           6.65      5.21       15.6     4.35\n3 t3           6.00      4.79       15.5     5.27\n\n\n\nANOVA\n\n\nlibrary(afex)\nm5_energy &lt;- aov_4(energy ~ 1 + (time | id), data = d_vacation)\n\nsummary(m5_energy)\n\n\nUnivariate Type III Repeated-Measures ANOVA Assuming Sphericity\n\n            Sum Sq num Df Error SS den Df  F value Pr(&gt;F)    \n(Intercept)  19489      1   4380.3    159 707.4286 &lt;2e-16 ***\ntime            36      2   7842.0    318   0.7293 0.4831    \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\nMauchly Tests for Sphericity\n\n     Test statistic p-value\ntime        0.98355 0.26975\n\n\nGreenhouse-Geisser and Huynh-Feldt Corrections\n for Departure from Sphericity\n\n      GG eps Pr(&gt;F[GG])\ntime 0.98382      0.481\n\n        HF eps Pr(&gt;F[HF])\ntime 0.9960417  0.4825676\n\n\n\nMauchly-Test nicht signifikant.\n\n\nKeine signifikanten Unterschiede im Energielevel über die Zeit (leider…).\n\n\nm5_sleep &lt;- aov_4(sleep ~ 1 + (time | id), data = d_vacation)\n\nsummary(m5_sleep)\n\n\nUnivariate Type III Repeated-Measures ANOVA Assuming Sphericity\n\n            Sum Sq num Df Error SS den Df   F value  Pr(&gt;F)    \n(Intercept) 110117      1   3837.6    159 4562.3246 &lt; 2e-16 ***\ntime           157      2   7930.4    318    3.1431 0.04449 *  \n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n\nMauchly Tests for Sphericity\n\n     Test statistic  p-value\ntime        0.94646 0.012944\n\n\nGreenhouse-Geisser and Huynh-Feldt Corrections\n for Departure from Sphericity\n\n      GG eps Pr(&gt;F[GG])  \ntime 0.94918    0.04718 *\n---\nSignif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1\n\n        HF eps Pr(&gt;F[HF])\ntime 0.9603268 0.04658035\n\n\n\nMauchly-Test ist (auf dem 5%-Niveau) signifikant (p = .013), d.h. Annahme der Sphärizität wird abgelehnt (Annahme verletzt).\n\n\nDer kann der F-Test nicht regulär durchgeführt werden, sondern es muss eine Korrektur der Freiheitsgrade vorgenommen werden. Ein Wert von 1 bedeutet keine Abweichung von der Sphärizität (alle Varianzen der Bedingungsunterschiede sind gleich). Ein Verstoss gegen die Sphärizität führt zu einem \\(\\varepsilon_{GG}\\) unter 1. Je weiter \\(\\varepsilon\\) von 1 entfernt ist, desto schlimmer ist der Verstoss. Bei \\(\\varepsilon_{GG} &lt; 0.75\\) wird die Greenhouse-Geisser-Korrektur verwendet. Bei \\(\\varepsilon_{GG} &gt; 0.75\\) wird die Huynh-Feldt-Korrektur angewendet\n\n\nDa \\(\\epsilon_{GG}\\) &gt; 0.75 (nämlich 0.94918) wird die Huynh-Feldt-Korrektur verwendet und der p-Wert beträgt dadurch p = .04658, d.h. p = .047.\n\nd. Resultate beschreiben\n\nFerien haben signifikanten Effekt auf Schlaf (p = .047).\n\n\nA one-way repeated measures ANOVA was conducted to examine the effects of vacation (beforde, during, and after) on sleep quality. Mauchly’s test indicated that the assumption of sphericity had been violated, \\(W\\) = 0.95, p = .013. Therefore, degrees of freedom were corrected using Huynh-Feldt (\\(\\varepsilon_{GG}\\) = 0.95).\n\n\nThe main effect of vacation was significant, F(2, 318) = 3.14, p = .044, suggesting that there was an overall difference in sleeping quality over time.\n\n\n\n\n\n\n\n\nInteressiert am Effekt von Ferien?\n\n\n\n\n\nDie Idee für diesen Übungsdatensatz stammt von diesem Artikel:\nBloom et al. (2010). Effects of vacation from work on health and well-being: Lots of fun, quickly gone. Work & Stress, 24(2), 196–216. https://doi.org/10.1080/02678373.2010.493385",
-    "crumbs": [
-      "Übungen",
-      "Übung 13"
-    ]
-  },
-  {
-    "objectID": "uebungen/uebung-13-solution.html#zusatzaufgaben",
-    "href": "uebungen/uebung-13-solution.html#zusatzaufgaben",
-    "title": "Übung 13",
-    "section": "Zusatzaufgaben",
-    "text": "Zusatzaufgaben\n\n\n\n\n\n\nZusatzaufgaben\n\n\n\nZusatzaufgaben müssen nicht gelöst werden.\n\n\na. Visualisieren Sie die obigen Ergebnisse, um den Resultateteil zu ergänzen.\nb. Lösen Sie die noch nicht gelösten Aufgaben und Zusatzaufgaben des Semesters.",
-    "crumbs": [
-      "Übungen",
-      "Übung 13"
-    ]
-  },
-  {
-    "objectID": "uebungen/uebung-13-solution.html#herzliche-gratulation",
-    "href": "uebungen/uebung-13-solution.html#herzliche-gratulation",
-    "title": "Übung 13",
-    "section": "Herzliche Gratulation",
-    "text": "Herzliche Gratulation\nSie haben alle Übungen durchgearbeitet!!\nBILD?",
-    "crumbs": [
-      "Übungen",
-      "Übung 13"
-    ]
-  },
-  {
-    "objectID": "uebungen/uebung-13-solution.html#footnotes",
-    "href": "uebungen/uebung-13-solution.html#footnotes",
-    "title": "Übung 13",
-    "section": "",
-    "text": "Für das Entzippen mit Windows machen Sie einen Rechtsklick auf den Ordner mit dem Reissverschluss und wählen Sie Entpacken nach und geben Sie den Ordner an, in dem Sie alle Ihre RProject-Ordner speichern. Für das Entzippen mit Mac speichern Sie den heruntergeladenen Ordner in den Ordner, in dem Sie alle Ihre RProject-Ordner speichern und Doppelklicken Sie danach auf den Ordner. Nur entzippte Ordner können einwandfrei verwendet werden.↩︎",
-    "crumbs": [
-      "Übungen",
-      "Übung 13"
-    ]
-  },
-  {
     "objectID": "appendix/faq.html",
     "href": "appendix/faq.html",
     "title": "FAQ",
@@ -2140,17 +2030,6 @@
     "crumbs": [
       "Anhang",
       "License"
-    ]
-  },
-  {
-    "objectID": "datenanalyse/multipleregression.html#weiterführende-informationen",
-    "href": "datenanalyse/multipleregression.html#weiterführende-informationen",
-    "title": "15  Multiple Regression",
-    "section": "15.5 Weiterführende Informationen",
-    "text": "15.5 Weiterführende Informationen\n\nInteraktive Visualisierung von Zusammenhängen von RPsychologist\nInteraktive Visualisierung von Konfidenzintervallen von RPsychologist\n{performance}-Package für Modelltests mit check_model()\n{ggiraph}-Package für interaktive Visualisierungen von Modellen",
-    "crumbs": [
-      "Datenanalyse",
-      "<span class='chapter-number'>15</span>  <span class='chapter-title'>Multiple Regression</span>"
     ]
   }
 ]
