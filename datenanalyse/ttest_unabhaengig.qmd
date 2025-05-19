@@ -315,7 +315,7 @@ car::leveneTest(performance ~ condition, # av ~ uv
                 data = d_mood_long) # Datensatz
 ```
 
-Der Test ist hier nicht signifikant ($p = .071$), daher wird davon ausgegangen, dass die Varianzen in beiden Gruppen homogen sind. Somit kann ein Student's _t_-Test verwenden werden.  
+Der Test ist hier nicht signifikant ($p = .071$), daher wird davon ausgegangen, dass die Varianzen in beiden Gruppen homogen sind. Somit kann ein Student's _t_-Test verwendet werden.  
 
 ### Analyse
 

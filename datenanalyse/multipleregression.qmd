@@ -267,27 +267,45 @@ Indeterminationskoeffizient: $1- R^2 = \frac{s^2_e}{s^2_y}$
 
 #### __Teststatistik berechnen__
 
+Für die statistische Absicherung der multiplen Regression gegen $0$ können folgende Teststatistiken berechnet werden:
+
+__Gesamtmodell__
+
+$H_0: \beta_1 = ... = \beta_j = ... = \beta_k = 0$
+
+$H_1:$ mindestens ein $\beta_j \neq 0$
+
 Um zu überprüfen, ob die Prädiktorvariablen insgesamt einen Beitrag zur Erklärung in Unterschieden der abhängigen Variablen erklären, kann die ein $F$-Test durchgeführt werden.
+
+Prüfgrösse ist $F$ mit $df_1 = k$ und $df_2 = n-k-1$ Freiheitsgraden. 
+Vereinfacht kann gesagt werden:
 
 $F = \frac{MQSR}{MQSE}$
 
-Ob einzelne Regressionskoeffizienten signifikanten sind, kann mit einer $t$-Statistik berechnet werden.
+
+__Regressionskoeffizienten__
+
+$H_0: \beta_j = \beta_{0j}$ wobei $\beta_0j$ das Regressionsgewicht unter der Nullhypothese ist
+
+$H_1: \beta_j \neq \beta_{0j}$
+
+Gegen $0$ (häufigster Fall) wäre das
+
+$H_0: \beta_j = 0$
+$H_1: \beta_j \neq 0$
+
+
+Es können wie bei vorherigen Tests auch gerichtete Hypothesen formuliert werden.
+
+Die Signifikanz einzelner RegressionskoeffizientenS, kann mit einer $t$-Statistik berechnet werden.
+
+Prüfgrösse ist $t$ mit $df = n-k-1$.
 
 $t = \frac{b_j - \beta_{0j}}{\hat{\sigma}_{B_j}}$
 
-<!-- Hierbei ist gilt -->
+Ein Konfidenzintervall kann konstruiert werden mit
 
-<!-- - $H_0 -->
-
-<!--  -->
-
-<!-- __Regressionskoeffizienten__ -->
-<!-- Die Signifikanz der Regressionskoeffizienten -->
-
-<!-- beiden Variablen signifikant zusammenhängen, kann die Teststatistik berechnet werden. -->
-
-<!-- Die Nullhypothese kann durch das Vergleichen des Prüfwerts mit einer $t$-Verteilung mit $df = n-2$ Freiheitsgraden und/oder durch das Konstruieren von Konfidenzintervallen überprüft werden. -->
-
+$[(b_j - t_{(1 - \frac{\alpha}{2}; df)} \cdot \hat{\sigma}_{B_j}) ; (b_j + t_{(1 - \frac{\alpha}{2}; df)} \cdot \hat{\sigma}_{B_j}) ]$
 
 ### Schlussfolgerungen
 
@@ -295,222 +313,297 @@ $t = \frac{b_j - \beta_{0j}}{\hat{\sigma}_{B_j}}$
 
 > Multiple regression analysis was used to test if the personality traits significantly predicted participants' ratings of aggression. The results of the regression indicated the two predictors explained 35.8% of the variance ($R^2$ = .38, $F$(2,55) = 5.56, $p$ < .01). It was found that extraversion significantly predicted aggressive tendencies ($\beta$ = .56, $p$ < .001), as did agreeableness ($\beta$ = -.36, $p$ < .01).
 
-<!-- ## Anwendungsbeispiel in R -->
+## Anwendungsbeispiel in R
 
 
-<!-- ::: {.callout-note appearance="default" title="Beispiel: Schlaf und Konzentration" icon=false} -->
+::: {.callout-note appearance="default" title="Beispiel: Schlaf und Konzentration" icon=false}
 
-<!-- __Studienbeschrieb__: In der (fiktiven) Studie wurde der Einfluss von Schlafdauer bei Jugendlichen auf Konzentrationsleistung in einem neuropsychologischen Test (mögliche Scores von 0 bis 20) untersucht.  -->
+__Studienbeschrieb__: In der (fiktiven) Studie wurde in Jugendlichen der Einfluss von Schlafdauer und Sport-Training auf die Konzentrationsleistung mit einem neuropsychologischen Test (`concentration`: mögliche Scores von 0 bis 20) untersucht.
 
-<!-- __Forschungsfrage__: Hängt die nächtliche Schlafdauer mit der Konzentration am nächsten Tag zusammen? -->
+__Forschungsfrage__: Hängt die Dauer des Sportrainings und die nächtliche Schlafdauer mit der Konzentration am nächsten Tag zusammen?
 
-<!-- - Die _unabhängige Variable_ `sleep` enthält Daten über die Schlafdauer in der vorherigen Nacht. -->
-<!-- - Die _abhängige Variable_ `concentration` enthält Daten über die Leistung in einem neuropsychologischen Konzentrationstest. Die maximale Punktzahl beträgt 20. -->
+- Die _unabhängige Variable_ `sleep` enthält Daten über die Schlafdauer (in Stunden) in der vorherigen Nacht.
+- Die _unabhängige Variable_ `sport` enthält Daten über die Traingsdauer (in Stunden) am vorherigen Tag.
+- Die _abhängige Variable_ `concentration` enthält Daten über die Leistung in einem neuropsychologischen Konzentrationstest. Die minimale Punktzahl beträgt `0`, die maximale Punktzahl beträgt `20`.
 
-<!-- ```{r} -->
-<!-- #| echo: false -->
-<!-- #| warning: false -->
-<!-- #| message: false -->
-<!-- library(tidyverse) -->
-<!-- d <- tibble(sleep = c(5, 5, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12), -->
-<!--             concentration = c(6, 10,  10, 12, 6, 12, 17, 12, 8, 16, 12, 16, 18, 8, 14, 10, 12, 18)) -->
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+library(tidyverse)
+# Erstellen des Datensatzes
+d_sport <- tibble(sleep = c(5, 5, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12),
+            sport = c(0.5, 5.4, 2.3, 2.3, 0.2, 0.4, 3.4, 1.2, 1.9, 3.1, 2.0, 5.2, 0.5, 0.6, 1.1, 2.1, 1.1, 1.9),
+            concentration = c(6, 10, 10, 12, 6, 12, 17, 12, 8, 16, 12, 16, 18, 8, 14, 10, 12, 18))
+```
 
-<!-- p1 <- d|> -->
-<!--   ggplot(aes(x = sleep, y = concentration)) + -->
-<!--   geom_point(size = 3, alpha = 0.4, color = "blue") + -->
-<!--   scale_x_continuous("Schlafdauer in Stunden", -->
-<!--                      breaks=c(0,1,2,3,4,5,6,7,8,9,10,11,12),  -->
-<!--                      minor_breaks = NULL, -->
-<!--                      limits=c(4,12)) + -->
-<!--   scale_y_continuous("Leistung in Konzentrationstest", -->
-<!--                      breaks=c(0,2,4,6,8,10,12,14,16,18,20), -->
-<!--                      minor_breaks = NULL, -->
-<!--                      limits=c(0,20)) + -->
-<!--   theme_minimal() -->
-<!-- p1 -->
+:::
 
-<!-- m1 <- lm(concentration ~sleep, data = d) -->
-<!-- ``` -->
-<!-- ::: -->
+Wenn man zwei einzelne Regressionen für die beiden Prädiktorvariablen rechnen würde ergäbe dies zwei Variablenpaare: `concentration ~ sleep` (blaue Datenpunkte) und `concentration ~ sport` (rote Datenpunkte).
 
-<!-- ### Planung -->
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+library(patchwork)
+p1 <- d_sport |>
+  ggplot(aes(x = sleep, y = concentration)) +
+  geom_point(size = 3, alpha = 0.3, color = "blue") +
+  geom_smooth(method = "lm", se = FALSE) +
+  scale_x_continuous("Schlafdauer in Stunden",
+                     breaks=c(0,1,2,3,4,5,6,7,8,9,10,11,12),
+                     minor_breaks = NULL,
+                     limits=c(0,12)) + 
+  scale_y_continuous("Leistung in Konzentrationstest",
+                     breaks=c(0,2,4,6,8,10,12,14,16,18,20), 
+                     minor_breaks = NULL,
+                     limits=c(0,20)) +
+  theme_minimal()
 
-<!-- #### __Statistische Hypothesen und Signifikanzniveau festlegen__ -->
+p2 <- d_sport |>
+  ggplot(aes(x = sport, y = concentration)) +
+  geom_point(size = 3, alpha = 0.3, color = "red") +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  scale_x_continuous("Sportdauer in Stunden",
+                     breaks=c(0,1,2,3,4,5,6,7,8,9,10,11,12),
+                     minor_breaks = NULL,
+                     limits=c(0,12)) + 
+  scale_y_continuous("Leistung in Konzentrationstest",
+                     breaks=c(0,2,4,6,8,10,12,14,16,18,20), 
+                     minor_breaks = NULL,
+                     limits=c(0,20)) +
+  theme_minimal()
 
-<!-- $H_0$: Die Schlafdauer hat keinen Einfluss auf die Leistung im Konzentrationstest: $b_1 = 0$  -->
+p1 / p2
+```
 
-<!-- $H_1$: Die Schlafdauer sagt die Leistung im Konzentrationstest vorher $b_1 \neq 0$  -->
+Bei der multiplen Regression werden beide Prädiktorvariablen gleichzeitig in ein Modell einbezogen.
 
-<!-- Das Alphaniveau wird auf $5 \%$ festgelegt. Da es sich um eine ungerichtete Hypothese handelt, wird zweiseitig getestet.  -->
+### Planung
 
-<!-- #### __Daten einlesen und vorverarbeiten__ -->
+#### __Statistische Hypothesen und Signifikanzniveau festlegen__
 
-<!-- ::: {.callout-caution appearance="default" title="Hands-on: Beispieldatensatz Schlaf und Konzentration"} -->
+Das Alphaniveau wird auf $5 \%$ festgelegt. Da es sich um eine ungerichtete Hypothese handelt, wird zweiseitig getestet.
 
-<!-- ```{r} -->
-<!-- # Laden tidyverse -->
-<!-- library(tidyverse) -->
+__Hypothesen für den Gesamttest:__
 
-<!-- # Erstellen des Datensatzes -->
-<!-- d <- tibble(sleep = c(5, 5, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12), -->
-<!--             concentration = c(6, 10,  10, 12, 6, 12, 17, 12, 8, 16, 12, 16, 18, 8, 14, 10, 12, 18)) -->
-<!-- ``` -->
-<!-- ::: -->
+$H_0$: Die Schlafdauer und die Sportdauer haben keinen Einfluss auf die Leistung im Konzentrationstest. $\beta_{sleep} = \beta_{sport} = 0$
 
-<!-- Für die Regressionsanalyse sollten die Variablenwerte im Zahlenformat, also beispielsweise als `integer` oder `double` gespeichert sein. -->
+$H_1$: Die Schlafdauer und/oder die Sportdauer sagen die Leistung im Konzentrationstest vorher. $\beta_{sleep}$ und/oder $\beta_{sport} \neq 0$
 
-<!-- #### __Voraussetzungen überprüfen__ -->
+__Hypothese für einen Regressionskoeffizienten:__
 
-<!-- __Metrisch skalierte Variablen und Linearität__ -->
+$H_0$: Die Sportdauer hat keinen Einfluss auf die Leistung im Konzentrationstest. $\beta_{sport} = 0$
 
-<!-- ```{r} -->
-<!-- glimpse(d) -->
-<!-- ``` -->
+$H_1$: Die Sportdauer sagt die Leistung im Konzentrationstest vorher. $\beta_{sport} \neq 0$
 
-<!-- __Linearität__ -->
+#### __Daten einlesen und vorverarbeiten__
 
-<!-- ```{r} -->
-<!-- d |> ggplot(aes(x = sleep, y = concentration)) + -->
-<!--   geom_point() + -->
-<!--   ylim(0, 20+0.5) + -->
-<!--   xlim(0, 12+0.5) + -->
-<!--   theme_minimal() -->
-<!-- ``` -->
+::: {.callout-caution appearance="default" title="Hands-on: Beispieldatensatz Schlaf, Sport und Konzentration"}
 
+Der Datensatz kann selber generiert werden mit folgendem Code:
 
-<!-- Sobald das Regressionsmodell geschätzt wurde, können die weiteren Voraussetzungen überprüft werden.  -->
+```{r}
+# Laden tidyverse
+library(tidyverse)
 
-<!-- ### Analyse -->
+# Erstellen des Datensatzes
+d_sport <- tibble(sleep = c(5, 5, 6, 6, 7, 7, 7, 8, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12),
+            sport = c(0.5, 5.4, 2.3, 2.3, 0.2, 0.4, 3.4, 1.2, 1.9, 3.1, 2.0, 5.2, 0.5, 0.6, 1.1, 2.1, 1.1, 1.9),
+            concentration = c(6, 10, 10, 12, 6, 12, 17, 12, 8, 16, 12, 16, 18, 8, 14, 10, 12, 18))
+```
 
+_Tipp: Sie können dies auch in einer [*WebR*-Konsole](../appendix/webrconsole.qmd) tun._ 
 
-<!-- #### __Regressionsmodell__ -->
+:::
 
-<!-- Die einfache lineare Regression kann mit der Funktion `lm()` aus dem schon in R installierten Package {stats} berechnet werden. -->
+Für die Regressionsanalyse mit metrischen Variablen sollten die Variablenwerte im Zahlenformat, also beispielsweise als `integer` oder `double` gespeichert sein.
 
-<!-- Als Argumente benötigt die Funktion `lm()` die Modellgleichung (`av ~ uv`) und den Datensatz mit den Variablen (`data = ...`). -->
-<!-- Die Resultate der Regressionsanalyse können mit der Funktion `summary()` zusammengefasst werden. -->
+#### __Voraussetzungen überprüfen__
 
-<!-- ```{r} -->
-<!-- # Einfache lineare Regression berechnen -->
-<!-- m1 <- lm(concentration ~ sleep, -->
-<!--       		data = d) -->
+__Metrisch skalierte Variablen und Linearität__
 
-<!-- # Output ausgeben -->
-<!-- summary(m1) -->
+```{r}
+glimpse(d_sport)
+```
 
-<!-- ``` -->
+__Linearität__
 
-<!-- #### __Konfidenzintervalle__ -->
+Im obigen Plot sind keine auffälligen nonlinearen Beziehungen zwischen der `concentration` und `sleep` bzw. `concentration` sichtbar.
 
-<!-- Konfidenzintervalle können mit der Funktion `confint()` bestimmt werden. -->
+Sobald das Regressionsmodell geschätzt wurde, können die weiteren Voraussetzungen überprüft werden.  
 
-<!-- ```{r} -->
-<!-- # 95%-Konfidenzintervall bestimmen -->
-<!-- confint(m1, level = 0.95) -->
+### Analyse
 
-<!-- # 90%-Konfidenzintervall bestimmen -->
-<!-- confint(m1, level = 0.90) -->
-<!-- ``` -->
+#### __Regressionsmodell__
 
-<!-- #### __Modellannahmen überprüfen__ -->
+Die multiple Regression kann, sofern die Daten nicht hierarchisch geordnet sind, mit der Funktion `lm()` aus dem schon in R installierten Package {stats} berechnet werden.
 
-<!-- Mit dem Package {performance} können die Modellannahmen einer einfachen linearen Regression überprüft werden.  -->
+Als Argumente benötigt die Funktion `lm()` die Modellgleichung (`av ~ uv1 + uv2`) und den Datensatz mit den Variablen (`data = ...`).
+Die Resultate der Regressionsanalyse können mit der Funktion `summary()` zusammengefasst werden.
 
-<!-- <aside> Vor dem ersten Verwenden muss das Package {performance} heruntergeladen/installiert werden, z.B. in der Konsole mit `install.packages("performance")`.</aside> -->
+```{r}
+# Einfache lineare Regression berechnen
+m1 <- lm(concentration ~ sleep + sport,
+      		data = d_sport)
 
-<!-- Die Funktion `check_model()` gibt diagnostische Plots aus: -->
+# Output ausgeben
+summary(m1)
 
-<!-- ```{r} -->
-<!-- #| eval: false -->
-<!-- performance::check_model(m1) -->
-<!-- ``` -->
-<!-- ![](../imgs/regression_diagnostics.jpeg) -->
+```
 
-<!-- <aside>Weiterführend können auch die partiellen Residuen überprüft werden, wie [hier](https://strengejacke.github.io/ggeffects/articles/introduction_partial_residuals.html) beschrieben. </aside> -->
+#### __Konfidenzintervalle__
 
-<!-- Wie die Plots gelesen werden sollten und was getan werden kann, wenn die Annahmen nicht erfüllt sind, wird auf der [Website des Packages {performance}]() sehr gut beschrieben. -->
+Konfidenzintervalle können mit der Funktion `confint()` bestimmt werden.
 
-<!-- __Linearität__ -->
+```{r}
+# 95%-Konfidenzintervall bestimmen
+confint(m1, level = 0.95)
+```
 
-<!-- Ob die Linearität gegeben ist, kann in folgendem Plot visuell beurteilt werden. Die Referenzlinie (grün) sollte ungefähr gerade sein und horizontal liegen. -->
+Die 95%-Konfidenzintervalle zeigen beinhalten 0 sowohl für den Achsenabschnitt (_intercept_), wie auch für die Variable `sport`. Für `sleep` beinhalten die 95%-Konfidenzintervalle 0 nicht.
 
-<!-- ```{r} -->
-<!-- diagnostic_plots <- plot(performance::check_model(m1, panel = FALSE)) -->
+Es können auch 90%-Konfidenzintervalle (oder jede andere Prozentzahl) bestimmt werden:
 
-<!-- # check linearity -->
-<!-- diagnostic_plots[[2]] -->
-<!-- ``` -->
+```{r}
+# 90%-Konfidenzintervall bestimmen
+confint(m1, level = 0.90)
+```
 
-<!-- __Homoskedastizität__ -->
+#### __Modellannahmen überprüfen__
 
-<!-- Die Homoskedastizität kann ebenfalls im oberen Plot überprüft werden.  -->
-<!-- Wenn die Streuung der Residuen um die Regressionsgerade unterschiedlich ist, dann ist die Annahme der Varianzhomogenität nicht erfüllt.  -->
-<!-- Heteroskedastizität kann beispielsweise so aussehen, dass die Residuen bei tiefen Werten von $x$ sehr wenig streuen und bei hohen Werten von $x$ stärker streuen (wie ein Trichter). -->
+Mit dem Package {performance} können die Modellannahmen einer multiplen Regression überprüft werden.
 
-<!-- Folgender Plot zeigt die Wurzel der absoluten^[das bedeutet, dass für ein Residuum von $-2$ der Wert $2$ vewendet würde] Residuen (standardisiert). Weil es so keine negativen Abweichungen mehr gibt, kann in die Abweichung der Residuen eine Linie hineingelegt werden, die möglichst parallel zu $0$ sein sollte. Im Beispiel der obigen Trichterform würde dann eine ansteigende Linie zu sehen sein. -->
+<aside> Vor dem ersten Verwenden muss das Package {performance} heruntergeladen/installiert werden, z.B. in der Konsole mit `install.packages("performance")`.</aside>
 
-<!-- ```{r} -->
-<!-- # check homogeneity of variance -->
-<!-- diagnostic_plots[[3]] -->
-<!-- ``` -->
+Die Funktion `check_model()` gibt diagnostische Plots aus:
 
-<!-- Die Homoskedastizität kann weiter mit der Funktion `check_heteroscedasticity()` überprüft werden (Breusch-Pagan test). -->
+```{r}
+#| eval: false
+performance::check_model(m1)
+```
+![](../imgs/multipleregression_checkmodel.jpeg)
 
-<!-- ```{r} -->
-<!-- performance::check_heteroscedasticity(m1) -->
-<!-- ``` -->
+Wie die Plots gelesen werden sollten und was getan werden kann, wenn die Annahmen nicht erfüllt sind, wird auf der [Website des Packages {performance}](https://easystats.github.io/performance/articles/check_model.html) sehr gut beschrieben.
 
-<!-- __Normalverteilung der Fehlervariablen__ -->
+__Linearität__
 
-<!-- Die Normalverteilung der Residuen kann mit einem Q-Q-Plot überprüft werden. -->
+Ob die Linearität gegeben ist, kann in folgendem Plot visuell beurteilt werden. Die Referenzlinie (grün) sollte ungefähr gerade sein und horizontal liegen. Der graue Bereich sollte immer die gerade schwarze Linie beinhalten.
 
-<!-- ```{r} -->
-<!-- # check normality of residuals -->
-<!-- diagnostic_plots[[5]] -->
-<!-- ``` -->
+```{r}
+diagnostic_plots <- plot(performance::check_model(m1, panel = FALSE))
 
-<!-- Die Normalverteilung der Fehlervariablen kann weiter mit der Funktion `check_normality()` überprüft werden (Shapiro-Wilk test). -->
+# check linearity
+diagnostic_plots[[2]]
+```
 
-<!-- ```{r} -->
-<!-- performance::check_normality(m1) -->
-<!-- ``` -->
+__Homoskedastizität__
 
-<!-- __Outlier erkennen__ -->
+Die Homoskedastizität kann ebenfalls im oberen Plot überprüft werden.
+Wenn die Streuung der Residuen um die Regressionsgerade unterschiedlich ist, dann ist die Annahme der Varianzhomogenität nicht erfüllt.
+Heteroskedastizität kann beispielsweise so aussehen, dass die Residuen bei tiefen Werten von $x$ sehr wenig streuen und bei hohen Werten von $x$ stärker streuen (wie ein Trichter).
 
-<!-- ```{r} -->
-<!-- # detect outliers -->
-<!-- diagnostic_plots[[4]] -->
-<!-- ``` -->
+Folgender Plot zeigt die Wurzel der absoluten^[Das bedeutet, dass für ein Residuum von $-2$ der Wert $2$ verwendet würde.] Residuen (standardisiert). Weil es so keine negativen Abweichungen mehr gibt, kann in die Abweichung der Residuen eine Linie hineingelegt werden, die möglichst parallel zu $0$ sein sollte. Im Beispiel der obigen Trichterform würde dann eine ansteigende Linie zu sehen sein.
 
+```{r}
+# check homogeneity of variance
+diagnostic_plots[[3]]
+```
 
-<!-- #### __Deskriptivstatistik und Visualisierungen__ -->
+Die Homoskedastizität kann weiter mit der Funktion `check_heteroscedasticity()` überprüft werden (Breusch-Pagan test).
 
-<!-- Zur Visualisierung von Unterschieden eignen sich Punktdiagramme (_Scatterplots_) und das Einzeichnen der Regressionsgeraden. -->
+```{r}
+performance::check_heteroscedasticity(m1)
+```
 
-<!-- Die Regressionsgerade (schwarz) kann mit `+ geom_abline(intercept = ..., slope = ...)` hinzugefügt werden. -->
-<!-- Weiter verfügt {ggplot2} auch über Funktionen, die die Regressionsgerade (blau) direkt berechnen, wie beispielsweise ` + geom_smooth()`. -->
+__Normalverteilung der Fehlervariablen__
 
-<!-- ```{r} -->
-<!-- #| message: false -->
-<!-- d |> ggplot(aes(x = sleep, y = concentration)) + -->
-<!--   geom_point() + -->
-<!--   geom_abline(intercept = 6.1623, slope = 0.7025) + -->
-<!--   geom_smooth(method = "lm", se = FALSE, color = "blue") + -->
-<!--   ylim(0, 20+0.5) + -->
-<!--   xlim(0, 12+0.5) + -->
-<!--   theme_minimal() -->
-<!-- ``` -->
+Die Normalverteilung der Residuen kann mit einem Q-Q-Plot überprüft werden.
 
-<!-- Durch die Visualisierung der Rohwerte und der Regressionsgeraden, kann der "Fit", also die Passung der Geraden zu den Daten gut visuell überprüft werden. -->
-<!-- Sichtbar wird auch, wenn die Daten nichtlineare Zusammenhänge aufweisen, die nicht mit einer linearen Regression analysiert werden können, wie beispielsweise kurvilineare Zusammenhänge. -->
+```{r}
+# check normality of residuals
+diagnostic_plots[[6]]
+```
 
-<!-- ### Schlussfolgerungen -->
+Die Normalverteilung der Fehlervariablen kann weiter mit der Funktion `check_normality()` überprüft werden (Shapiro-Wilk test).
 
-<!-- #### __Ergebnisse interpretieren und berichten__ -->
+```{r}
+performance::check_normality(m1)
+```
 
-<!-- > Simple linear regression analysis was used to test if hours of sleep significantly predicted performance in a concentration test in young adults. Hours of sleep did not significantly predict performance in the concentration test ($\beta$ = 0.70, $p$ = .088).  -->
+__Outlier erkennen__
 
+```{r}
+# detect outliers
+diagnostic_plots[[4]]
+```
 
-### Weiterführende Informationen
+
+__Multikollinearität__
+
+Wenn die Prädiktor miteinander sehr stark korrelieren wird dies Multikollinearität genannt. Dies kann zu ungenauen Parameterschätzungen führen (durch einen erhöhten Standardfehler des Regressionskoeffizienten).
+Die Werte im grünen Bereich sind hier ok.
+
+```{r}
+# detect collinearity
+diagnostic_plots[[5]]
+```
+
+
+#### __Visualisierungen__
+
+Zur Visualisierung von Unterschieden eignen sich Punktdiagramme (_Scatterplots_) und das Einzeichnen der Regressionsgeraden (z.B. mit `geom_abline()` oder `geom_smooth()` für jedes Variablenpaar.
+
+Möchte man den Einfluss beider Prädiktorvariablen gleichzeitig visualisieren, kann man für eine Variable eine Farbkodierung nutzen. Dies ist auch interaktiv möglich^[Verwirrenderweise ist der Regressionskoeffizient hier der erste Wert, der Achsenabschnitt kommt am Schluss.], z.B. so:
+
+```{r}
+ggiraphExtra::ggPredict(m1,interactive=TRUE)
+```
+
+<aside>[{ggiraph}-Package](https://davidgohel.github.io/ggiraph/)</aside>
+
+In diesem Modell sind keine Interaktionen zugelassen, deshalb sind alle Linien parallel.
+
+::: {.callout-tip appearance="default" title="Für Interessierte: Modell mit Interaktion" collapse="true"}
+
+Soll die Interaktion von Schlaf und Sport in das Modell einbezogen werden, kann dies mit einem `*` in der Modellgleichung gekennzeichnet werden:
+
+```{r}
+m1_interaction <- lm(concentration ~ sleep * sport, 
+                     data = d_sport)
+```
+
+So wird ein zusätzlicher Regressionskoeffizient für die Interaktion geschätzt:
+
+```{r}
+summary(m1_interaction)
+```
+
+Visualisiert sieht das wie folgt aus:
+
+```{r}
+ggiraphExtra::ggPredict(m1_interaction,interactive=TRUE)
+```
+
+Deskriptiv hat Schlaf immer einen positiven Einfluss auf die Konzentration. Dieser Einfluss nimmt jedoch ab, je höher der Werten für Sport (mehr Training). 
+Dies wird sichtbar daran, dass der Regressionskoeffizient bei den dunkleren Werten (tieferere Sportwerte) kleiner ist, als bei den höheren.^[Verwirrenderweise ist der Regressionskoeffizient hier der erste Wert, der Achsenabschnitt kommt am Schluss.]
+Inferenzstatistisch sind die Effekte von Schlaf, Sport wie auch der Interaktion nicht signifkant.
+
+:::
+
+Durch die Visualisierung der Rohwerte und der Regressionsgeraden, kann der "Fit", also die Passung der Geraden zu den Daten gut visuell überprüft werden.
+Sichtbar wird auch, wenn die Daten nichtlineare Zusammenhänge aufweisen, die nicht mit einer linearen Regression analysiert werden können, wie beispielsweise kurvilineare Zusammenhänge.
+
+### Schlussfolgerungen
+
+#### __Ergebnisse interpretieren und berichten__
+
+> Multiple regression analysis was used to test if duration of sport training and sleep significantly predicted performance in a concentration test in young adults. The results of the regression indicated the two predictors explained 35% of the variance ($R^2$ = .35, $F$(2,15) = 3.99, $p$ = .041). It was found that sleep duration significantly predicted concentration performance ($\beta_{sleep}$ = .87, $p$ = .030), whereas sport duration did not show a significant effect on concentration ($\beta_{sport}$ = 1.08, $p$ = .062).
+
+
+## Weiterführende Informationen
 
 - Interaktive Visualisierung von Zusammenhängen von [RPsychologist](https://rpsychologist.com/correlation/)
+- Interaktive Visualisierung von Konfidenzintervallen von [RPsychologist](https://rpsychologist.com/d3/ci/)
+- [{performance}-Package](https://easystats.github.io/performance/index.html) für Modelltests mit [`check_model()`](https://easystats.github.io/performance/articles/check_model.html)
+- [{ggiraph}-Package](https://davidgohel.github.io/ggiraph/) für interaktive Visualisierungen von Modellen

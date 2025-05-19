@@ -225,6 +225,30 @@ d|>
   geom_vline(xintercept = 0) +
   geom_hline(yintercept = 0) 
 #ggsave("../imgs/regression_line.jpg", height = 3, width = 3)
+
+
+# reverse
+b_1_reverse <- r_xy * (sd_x/sd_y)
+b_0_reverse <- mean_x - b_1 * mean_y
+
+# check
+lm(x ~y, data = d)
+
+# plot regression line reverse
+d|>
+  ggplot(aes(y, x)) +
+  geom_point(size = 3, alpha = 0.4, color = "blue") +
+  scale_y_continuous(breaks=c(0,1,2,3,4,5,6,7,8,9,10), 
+                     minor_breaks = NULL,
+                     limits=c(0,10)) +
+  scale_x_continuous(breaks=c(0, 1,2,3,4,5,6,7,8,9,10),
+                     minor_breaks = NULL,
+                     limits=c(0,10)) +
+  geom_abline(intercept = b_0_reverse, slope = b_1_reverse) +
+  theme_minimal() +
+  geom_vline(xintercept = 0) +
+  geom_hline(yintercept = 0) 
+ggsave("../imgs/regression_line_reverse.jpg", height = 3, width = 3)
 ```
 
 ## Anwendungsbereich
@@ -675,11 +699,11 @@ performance::check_model(m1)
 
 <aside>Weiterführend können auch die partiellen Residuen überprüft werden, wie [hier](https://strengejacke.github.io/ggeffects/articles/introduction_partial_residuals.html) beschrieben. </aside>
 
-Wie die Plots gelesen werden sollten und was getan werden kann, wenn die Annahmen nicht erfüllt sind, wird auf der [Website des Packages {performance}]() sehr gut beschrieben.
+Wie die Plots gelesen werden sollten und was getan werden kann, wenn die Annahmen nicht erfüllt sind, wird auf der [Website des Packages {performance}](https://easystats.github.io/performance/articles/check_model.html) sehr gut beschrieben.
 
 __Linearität__
 
-Ob die Linearität gegeben ist, kann in folgendem Plot visuell beurteilt werden. Die Referenzlinie (grün) sollte ungefähr gerade sein und horizontal liegen.
+Ob die Linearität gegeben ist, kann in folgendem Plot visuell beurteilt werden. Die Referenzlinie (grün) sollte ungefähr gerade sein und horizontal liegen. Der graue Bereich sollte immer die gerade schwarze Linie beinhalten.
 
 ```{r}
 diagnostic_plots <- plot(performance::check_model(m1, panel = FALSE))
