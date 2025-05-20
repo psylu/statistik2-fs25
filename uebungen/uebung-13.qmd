@@ -80,7 +80,7 @@ __Daten einlesen__
 
 - Lesen Sie den Datensatz `dataset_vacation.csv` ein und machen Sie sich mit ihm vertraut. 
 - Finden Sie alle nötigen Variablen?
-- Sind die Variablen richtig kodiert? (Die kategorialen Variablen sollten als `factor` kodiert sein. Dies kann mit `mutate(var = as.factor(var))` erreicht werden.)
+- Sind die Variablen richtig kodiert? (Die kategorialen Variablen sollten als `factor` kodiert sein. Dies kann mit `mutate(variable = as.factor(variable))` erreicht werden.)
 - Welche Variablen wurden _within-subjects_ und welche _between-subjects_ erhoben?
 - Gibt es fehlende Werte, die bereinigt werden müssen?
 
@@ -200,7 +200,7 @@ __Welchen Effekt hat die Jahreszeit der Ferien auf das Wohlbefinden (Energieleve
 __a.__ Datenanalyse festlegen
 
 
-__b. Daten vorverarbeiten__
+__b.__ Daten vorverarbeiten
 
 Welche Datenpunkte müssen für diese Fragestellung in die Analyse einbezogen werden, und welche nicht? Erstellen Sie falls nötig einen neuen Datensatz (siehe Funktion `filter()`).
 
@@ -209,7 +209,7 @@ Welche Datenpunkte müssen für diese Fragestellung in die Analyse einbezogen we
 d_vacation_3 <- ___
 ```
 
-__c. Datenanalyse ausführen und Voraussetzungen prüfen__
+__c.__ Datenanalyse ausführen und Voraussetzungen prüfen
 
 ```{r}
 #| eval: false
