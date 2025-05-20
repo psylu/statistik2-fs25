@@ -116,7 +116,7 @@ Folgende Regressionsgleichungen gelten für __mehr als zwei Prädiktoren__:
 
 wobei $k$ die Summe aller Prädiktorvariablen bezeichnet, und $j$ eine Laufvariable ist, die bezeichnet, welche Variable gemeint ist.
 
-<aside> In diesem Kapitel wird nur der "Spezial"-Fall einer Regressionsanalyse mit zwei Prädiktoren ($k = 2$ behandelt.</aside>
+<aside> In diesem Kapitel wird nur der "Spezial"-Fall einer Regressionsanalyse mit zwei Prädiktoren ($k = 2$) behandelt.</aside>
 
 #### __Regressionsebene__
 

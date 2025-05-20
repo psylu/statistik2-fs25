@@ -391,6 +391,12 @@ window.Quarto = {
  <span class="menu-text">Übung 12</span></a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../uebungen/uebung-13.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Übung 13</span></a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -438,8 +444,7 @@ window.Quarto = {
     <h2 id="toc-title">Table of contents</h2>
    
   <ul>
-  <li><a href="#aufgabe-11.0-projektumgebung-erstellen" id="toc-aufgabe-11.0-projektumgebung-erstellen" class="nav-link active" data-scroll-target="#aufgabe-11.0-projektumgebung-erstellen">Aufgabe 11.0: Projektumgebung erstellen</a></li>
-  <li><a href="#aufgabe-11.1-einstieg" id="toc-aufgabe-11.1-einstieg" class="nav-link" data-scroll-target="#aufgabe-11.1-einstieg">Aufgabe 11.1: Einstieg</a></li>
+  <li><a href="#aufgabe-11.1-einstieg" id="toc-aufgabe-11.1-einstieg" class="nav-link active" data-scroll-target="#aufgabe-11.1-einstieg">Aufgabe 11.1: Einstieg</a></li>
   <li><a href="#aufgabe-11.2-regression-berechnen-i" id="toc-aufgabe-11.2-regression-berechnen-i" class="nav-link" data-scroll-target="#aufgabe-11.2-regression-berechnen-i">Aufgabe 11.2: Regression berechnen I</a></li>
   <li><a href="#aufgabe-11.3-regression-berechnen-ii" id="toc-aufgabe-11.3-regression-berechnen-ii" class="nav-link" data-scroll-target="#aufgabe-11.3-regression-berechnen-ii">Aufgabe 11.3: Regression berechnen II</a></li>
   <li><a href="#aufgabe-11.4-resultate-berichten" id="toc-aufgabe-11.4-resultate-berichten" class="nav-link" data-scroll-target="#aufgabe-11.4-resultate-berichten">Aufgabe 11.4: Resultate berichten</a></li>
@@ -469,8 +474,26 @@ window.Quarto = {
 </header>
 
 
-<section id="aufgabe-11.0-projektumgebung-erstellen" class="level2">
-<h2 class="anchored" data-anchor-id="aufgabe-11.0-projektumgebung-erstellen">Aufgabe 11.0: Projektumgebung erstellen</h2>
+<div class="callout callout-style-default callout-note callout-titled" title="Lernziele dieser Übung">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Lernziele dieser Übung
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Nach der heutigen Übung können Sie:</p>
+<ul>
+<li>beschreiben, wofür sich die einfache lineare Regression eignet und welche Voraussetzungen sie erfordert</li>
+<li>für einen Datensatz die Voraussetzungen für eine multiple Regression prüfen</li>
+<li>eine einfache lineare Regressionsanalysen berechnen</li>
+<li>Ergebnisse einer multiplen Regressionsanalyse interpretieren und berichten</li>
+</ul>
+</div>
+</div>
+<p><br> ## Aufgabe 11.0: Projektumgebung erstellen</p>
 <p><strong>a.</strong> Laden Sie den <a href="../data/regression.zip">Projektordner <code>regression</code></a> herunter und <strong>entzippen</strong> Sie den Ordner.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></p>
 <p>Der Projektordner enthält:</p>
 <ul>
@@ -483,7 +506,6 @@ window.Quarto = {
 <li><code>install.packages("performance")</code><a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a></li>
 </ul>
 <p><strong>d.</strong> Erstellen Sie ein <em>RNotebook</em> namens <code>uebung-11</code>.</p>
-</section>
 <section id="aufgabe-11.1-einstieg" class="level2">
 <h2 class="anchored" data-anchor-id="aufgabe-11.1-einstieg">Aufgabe 11.1: Einstieg</h2>
 <p><strong>a.</strong> Welches sind die wichtigen Kennwerte, welche die Regressionsanalyse liefert?</p>
@@ -497,7 +519,7 @@ window.Quarto = {
 <p>Bearbeiten Sie diese Aufgabe im <em>RNotebook</em> <code>uebung-11</code>.</p>
 <p>In dieser Aufgabe berechnen wir die Regression für das Datenbeispiel der <a href="../uebungen/uebung-10.html#aufgabe-10.5-berechnen-der-regressionsgeraden">Aufgabe 10.5 von Übung 10</a> mit der Funktion <code>lm()</code> statt Schritt für Schritt.</p>
 <div class="callout callout-style-default callout-note callout-titled" title="Schlafstudie">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-1-contents" aria-controls="callout-1" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="false" aria-label="Toggle callout">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
@@ -506,7 +528,7 @@ Schlafstudie
 </div>
 <div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
 </div>
-<div id="callout-1" class="callout-1-contents callout-collapse collapse">
+<div id="callout-2" class="callout-2-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <p><strong>Beschreibung der Studie</strong></p>
 <p>In der (fiktiven) Studie wurde der Einfluss von Schlafdauer bei Jugendlichen (<code>sleep</code>) auf Konzentrationsleistung in einem neuropsychologischen Test (mögliche Scores zwischen 0 und 20) (<code>concentration</code>) untersucht.</p>

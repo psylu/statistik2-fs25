@@ -45,7 +45,8 @@ book:
 
     
   - part: Datenvisualisierung
-#    chapters:
+    #chapters:
+    #- 
     
   - part: Übungen
     chapters:
@@ -61,7 +62,7 @@ book:
     - uebungen/uebung-10.qmd
     - uebungen/uebung-11.qmd
     - uebungen/uebung-12.qmd
-    #- uebungen/uebung-13.qmd
+    - uebungen/uebung-13.qmd
 
   - part: Anhang
     chapters:

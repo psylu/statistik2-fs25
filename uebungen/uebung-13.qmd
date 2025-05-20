@@ -1,0 +1,328 @@
+# Übung 13 {.unnumbered #sec-uebung-13}
+
+```{r}
+#| include: false
+# Set working directory of R
+knitr::opts_knit$set(root.dir = '../')
+```
+
+::: {.callout-note appearance="default" title="Lernziele dieser Übung"}
+Nach der heutigen Übung können Sie:
+
+- aufgrund einer Fragestellung, Forschungsdesign und Daten die passende Analysemethode auswählen
+- einen Datensatz mit _R_ in _RStudio_ einlesen, bearbeiten und visualisieren
+- _R_ in _RStudio_ zur Datenanalyse verwenden
+- die Voraussetzungen für das gewählte Analyseverfahren prüfen
+- Outputs der Analysen interpretieren und im Format einer wissenschaftlichen Zeitschrift berichten
+
+:::
+
+<br>
+
+## Aufgabe 13.0: Projektumgebung erstellen
+
+- Laden Sie den [Projektordner `repetition`](../data/repetition.zip) herunter und __entzippen__ Sie den Ordner.^[Für das Entzippen mit _Windows_ machen Sie einen Rechtsklick auf den Ordner mit dem Reissverschluss und wählen Sie `Entpacken nach` und geben Sie den Ordner an, in dem Sie alle Ihre _RProject-Ordner_ speichern. Für das Entzippen mit _Mac_ speichern Sie den heruntergeladenen Ordner in den Ordner, in dem Sie alle Ihre _RProject-Ordner_ speichern und Doppelklicken Sie danach auf den Ordner. Nur entzippte Ordner können einwandfrei verwendet werden.] 
+- Oder laden Sie den Datensatz direkt [hier](../data/dataset_vacation.csv) herunter und speichern Sie ihn in einen selber erstellten Projektordner.
+
+Der Projektordner enthält:
+  - _RProjekt_ `repetition`.RProj`
+  - Datensatz `dataset_vacation.csv` im `data`-Ordner des _RProjekts_
+  
+- Öffnen Sie das _RProjekt_ `repetition`.
+
+- Erstellen Sie ein _RNotebook_ namens `uebung-13`.
+
+<br>
+
+## Einführung
+
+In dieser Übung erhalten Sie einen Datensatz und mehrere Fragestellungen.
+Für jede Fragestellung ist es Ihre Aufgabe den Datensatz vorzuverarbeiten, die passende Analysemethode zu wählen und durchzuführen und die Fragestellung zum Schluss in wenigen Sätzen zu beantworten.
+
+Lesen Sie zuerst den Studienbeschrieb und lesen Sie dann die Daten ein. Anschliessend können Sie für jede Fragestellung wie folgt vorgehen:
+
+__a.__ Datenanalyse festlegen
+
+__b.__ Daten vorverarbeiten
+
+__c.__ Datenanalyse ausführen und Voraussetzungen prüfen
+
+__d.__ Resultate beschreiben 
+
+<br>
+
+:::{.callout-note appearance="default" title="Datensatz `dataset_vacation.csv`" collapse="false"}
+
+__Beschreibung der Studie__
+
+In der (fiktiven) Studie wurde untersucht, welchen Effekt eine Woche Ferien auf das Wohlbefinden hat. 
+Dazu wurden 160 Personen zu drei Messzeitpunkten (`time`) befragt. 
+Die Ferienwoche fand zu unterschiedlichen Jahreszeit statt (je 40 Personen im Frühling, Sommer, Herbst und Winter) (`group`). 
+Alle 160 Personen wurden jeweils vor, während und nach den Ferien zu ihrem Energielevel (`energy`) und ihrer Schlafqualität (`sleep`) befragt. Weiter wurde an jedem Messzeitpunkt für jede Person einen Wert für ihre allgemeine Gesundheit (`health`) aus verschiedenen Tests (u.a. Blutdruck, Stresshormone, etc.) bestimmt. Zudem wurde von jeder Person erhoben, ob sie in einem "high stress" oder "low stress"-Job arbeitet (`job`).
+
+__Variablen:__
+
+- `id`: Personenidentifikation
+
+- `group`: Jahreszeit der Ferien
+
+- `time`: Messzeitpunkt vor (`t1`), während (`t2`) und nach (`t3`) den Ferien
+
+- `energy`: Energielevel (Fragebogendaten (kontinuierlich) mit `-20: sehr wenig` bis `20: sehr viel` Energie)
+
+- `sleep`: Schlafqualität (Fragebogendaten (kontinuierlich) mit `0: sehr schlecht` bis `30: sehr gut`)
+
+- `health`: Gesundheitswert jeder Person (`0`: tiefer Gesundheitswert (viele Krankheitsanzeichen) bis `100`: hoher Gesundheitswert (keine Krankheitsanzeichen))
+
+:::
+
+__Daten einlesen__
+
+- Lesen Sie den Datensatz `dataset_vacation.csv` ein und machen Sie sich mit ihm vertraut. 
+- Finden Sie alle nötigen Variablen?
+- Sind die Variablen richtig kodiert? (Die kategorialen Variablen sollten als `factor` kodiert sein. Dies kann mit `mutate(var = as.factor(var))` erreicht werden.)
+- Welche Variablen wurden _within-subjects_ und welche _between-subjects_ erhoben?
+- Gibt es fehlende Werte, die bereinigt werden müssen?
+
+```{r}
+#| eval: false
+#| warning: false
+#| message: false
+# Packages laden
+library(tidyverse)
+
+# Datensatz einlesen
+d_vacation <- ___ 
+```
+
+
+```{r}
+#| eval: false
+___
+```
+
+<br>
+
+## Aufgabe 13.1: Gesundheit und Stress im Job
+
+__Wie unterscheiden sich die Gesundheitswerte vor den Ferien zwischen Personen in _high-stress_-Jobs und Personen in _low-stress_-Jobs?__
+
+__a.__ Datenanalyse festlegen
+
+__b.__ Daten vorverarbeiten
+
+```{r}
+#| eval: false
+d_vacation_1 <- ___
+```
+
+__c.__ Datenanalyse ausführen und Voraussetzungen sicherstellen
+
+```{r}
+#| eval: false
+# Voraussetzungen testen
+____
+```
+
+```{r}
+#| eval: false
+# Deskriptivstatistik
+d1_summary <- ___
+
+d1_summary
+```
+
+```{r}
+#| eval: false
+# Statistischer Test
+___
+```
+
+```{r}
+#| eval: false
+# Effektgrösse berechnen
+___
+```
+
+__d.__ Resultate beschreiben
+
+
+<br>
+
+
+## Aufgabe 13.2: Schlaf, Energie und Gesundheit
+
+__Welchen Effekt haben Schlafqualität und Energielevel auf die Gesundheit während den Ferien?__
+
+__a.__ Datenanalyse festlegen
+
+__b.__ Daten vorverarbeiten
+
+```{r}
+#| eval: false
+d_vacation_2 <- ___
+```
+
+__c.__ Datenanalyse ausführen und Voraussetzungen sicherstellen
+
+```{r}
+#| eval: false
+# Plots
+
+```
+
+
+```{r}
+#| eval: false
+# Statistischer Test
+m2 <- ___
+
+# Output ausgeben
+summary(m2)
+```
+
+
+```{r}
+#| eval: false
+# Modellannahmen prüfen
+____
+```
+
+__d.__ Resultate beschreiben
+
+<br>
+
+
+## Aufgabe 13.3: Jahreszeit und Wohlbefinden
+
+__Welchen Effekt hat die Jahreszeit der Ferien auf das Wohlbefinden (Energielevel und Schlaf) nach den Ferien?__
+
+__a.__ Datenanalyse festlegen
+
+
+__b. Daten vorverarbeiten__
+
+Welche Datenpunkte müssen für diese Fragestellung in die Analyse einbezogen werden, und welche nicht? Erstellen Sie falls nötig einen neuen Datensatz (siehe Funktion `filter()`).
+
+```{r}
+#| eval: false
+d_vacation_3 <- ___
+```
+
+__c. Datenanalyse ausführen und Voraussetzungen prüfen__
+
+```{r}
+#| eval: false
+# Voraussetzungen prüfen
+___
+```
+
+
+```{r}
+#| eval: false
+# Deskriptive Statistik
+d3_summary <- ___ 
+d3_summary
+```
+
+```{r}
+#| eval: false
+# Statistischer Test
+m3_energy <- ___
+```
+
+```{r}
+#| eval: false
+m3_sleep <- ___
+```
+
+__d.__ Resultate beschreiben
+
+<br>
+
+
+## Aufgabe 13.4: Energielevel und Jahreszeit
+
+__Unterscheidet sich das Energielevel nach den Winterferien vom Mittel des Energielevels nach den Frühlings- & Herbstferien? __
+
+__a.__ Datenanalyse festlegen
+
+
+__b.__ Daten vorverarbeiten
+
+
+__c.__ Datenanalyse ausführen und Voraussetzungen sicherstellen
+
+```{r}
+#| eval: false
+___
+```
+
+__d.__ Resultate beschreiben
+
+<br>
+
+## Aufgabe 13.5: Messzeitpunkt und Wohlbefinden
+
+__Welchen Effekt haben die Ferien auf das Wohlbefinden (Energielevel und Schlaf), d.h. unterscheidet sich das Wohlbefinden vor, während und nach den Ferien?__
+
+
+__a.__ Datenanalyse festlegen
+
+__b.__ Daten vorverarbeiten
+
+```{r}
+#| eval: false
+# Datensatz anschauen
+___
+```
+
+__c.__ Datenanalyse ausführen und Voraussetzungen sicherstellen
+
+```{r}
+#| eval: false
+# Deskriptive Statistik
+# Mittelwerte und Standardabweichungen berechnen
+d5_summary <- ___ 
+d5_summary
+```
+
+```{r}
+#| eval: false
+___
+```
+
+
+__d.__ Resultate beschreiben
+
+
+<br>
+
+
+:::{.callout-note appearance="default" title="Interessiert am Effekt von Ferien?" collapse="true"}
+
+Die Idee für diesen Übungsdatensatz stammt von diesem Artikel:
+
+Bloom et al. (2010). Effects of vacation from work on health and well-being: Lots of fun, quickly gone. Work & Stress, 24(2), 196–216. <https://doi.org/10.1080/02678373.2010.493385>
+
+:::
+
+## Zusatzaufgaben
+
+:::{.callout-tip appearance="default" title="Zusatzaufgaben"}
+
+__Zusatzaufgaben müssen nicht gelöst werden.__
+
+:::
+
+__a.__ Visualisieren Sie die obigen Ergebnisse, um den Resultateteil zu ergänzen.
+
+__b.__ Lösen Sie die noch nicht gelösten Aufgaben und Zusatzaufgaben des Semesters.
+
+
+## Herzliche Gratulation
+
+Sie haben alle Übungen durchgearbeitet!!
+
+![](../imgs/hardwork_meme.png){width=50%}
+

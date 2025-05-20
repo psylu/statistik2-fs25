@@ -7,7 +7,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
 
-<title>License – Datenanalyse mit R</title>
+<title>Übung 13 – Datenanalyse mit R</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -20,6 +20,40 @@ ul.task-list li input[type="checkbox"] {
   margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
 </style>
 
 
@@ -30,7 +64,8 @@ ul.task-list li input[type="checkbox"] {
 <script src="../site_libs/quarto-search/fuse.min.js"></script>
 <script src="../site_libs/quarto-search/quarto-search.js"></script>
 <meta name="quarto:offset" content="../">
-<link href="../appendix/thanks.html" rel="prev">
+<link href="../appendix/faq.html" rel="next">
+<link href="../uebungen/uebung-12.html" rel="prev">
 <link href="../imgs/favicon.png" rel="icon" type="image/png">
 <script src="../site_libs/quarto-html/quarto.js"></script>
 <script src="../site_libs/quarto-html/popper.min.js"></script>
@@ -82,7 +117,7 @@ ul.task-list li input[type="checkbox"] {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/faq.html">Anhang</a></li><li class="breadcrumb-item"><a href="../appendix/license.html">License</a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-13.html">Übung 13</a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -329,7 +364,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../uebungen/uebung-13.html" class="sidebar-item-text sidebar-link">
+  <a href="../uebungen/uebung-13.html" class="sidebar-item-text sidebar-link active">
  <span class="menu-text">Übung 13</span></a>
   </div>
 </li>
@@ -364,7 +399,7 @@ ul.task-list li input[type="checkbox"] {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../appendix/license.html" class="sidebar-item-text sidebar-link active">
+  <a href="../appendix/license.html" class="sidebar-item-text sidebar-link">
  <span class="menu-text">License</span></a>
   </div>
 </li>
@@ -375,20 +410,34 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#aufgabe-13.0-projektumgebung-erstellen" id="toc-aufgabe-13.0-projektumgebung-erstellen" class="nav-link active" data-scroll-target="#aufgabe-13.0-projektumgebung-erstellen">Aufgabe 13.0: Projektumgebung erstellen</a></li>
+  <li><a href="#einführung" id="toc-einführung" class="nav-link" data-scroll-target="#einführung">Einführung</a></li>
+  <li><a href="#aufgabe-13.1-gesundheit-und-stress-im-job" id="toc-aufgabe-13.1-gesundheit-und-stress-im-job" class="nav-link" data-scroll-target="#aufgabe-13.1-gesundheit-und-stress-im-job">Aufgabe 13.1: Gesundheit und Stress im Job</a></li>
+  <li><a href="#aufgabe-13.2-schlaf-energie-und-gesundheit" id="toc-aufgabe-13.2-schlaf-energie-und-gesundheit" class="nav-link" data-scroll-target="#aufgabe-13.2-schlaf-energie-und-gesundheit">Aufgabe 13.2: Schlaf, Energie und Gesundheit</a></li>
+  <li><a href="#aufgabe-13.3-jahreszeit-und-wohlbefinden" id="toc-aufgabe-13.3-jahreszeit-und-wohlbefinden" class="nav-link" data-scroll-target="#aufgabe-13.3-jahreszeit-und-wohlbefinden">Aufgabe 13.3: Jahreszeit und Wohlbefinden</a></li>
+  <li><a href="#aufgabe-13.4-energielevel-und-jahreszeit" id="toc-aufgabe-13.4-energielevel-und-jahreszeit" class="nav-link" data-scroll-target="#aufgabe-13.4-energielevel-und-jahreszeit">Aufgabe 13.4: Energielevel und Jahreszeit</a></li>
+  <li><a href="#aufgabe-13.5-messzeitpunkt-und-wohlbefinden" id="toc-aufgabe-13.5-messzeitpunkt-und-wohlbefinden" class="nav-link" data-scroll-target="#aufgabe-13.5-messzeitpunkt-und-wohlbefinden">Aufgabe 13.5: Messzeitpunkt und Wohlbefinden</a></li>
+  <li><a href="#zusatzaufgaben" id="toc-zusatzaufgaben" class="nav-link" data-scroll-target="#zusatzaufgaben">Zusatzaufgaben</a></li>
+  <li><a href="#herzliche-gratulation" id="toc-herzliche-gratulation" class="nav-link" data-scroll-target="#herzliche-gratulation">Herzliche Gratulation</a></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
-<main class="content column-page-right" id="quarto-document-content">
+<main class="content column-body" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../appendix/faq.html">Anhang</a></li><li class="breadcrumb-item"><a href="../appendix/license.html">License</a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../uebungen/uebungen.html">Übungen</a></li><li class="breadcrumb-item"><a href="../uebungen/uebung-13.html">Übung 13</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title">License</h1>
+<h1 class="title"><span id="sec-uebung-13" class="quarto-section-identifier">Übung 13</span></h1>
 </div>
 
 
 
-<div class="quarto-title-meta column-page-right">
+<div class="quarto-title-meta column-body">
 
     
   
@@ -400,10 +449,262 @@ ul.task-list li input[type="checkbox"] {
 </header>
 
 
+<div class="callout callout-style-default callout-note callout-titled" title="Lernziele dieser Übung">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Lernziele dieser Übung
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Nach der heutigen Übung können Sie:</p>
+<ul>
+<li>aufgrund einer Fragestellung, Forschungsdesign und Daten die passende Analysemethode auswählen</li>
+<li>einen Datensatz mit <em>R</em> in <em>RStudio</em> einlesen, bearbeiten und visualisieren</li>
+<li><em>R</em> in <em>RStudio</em> zur Datenanalyse verwenden</li>
+<li>die Voraussetzungen für das gewählte Analyseverfahren prüfen</li>
+<li>Outputs der Analysen interpretieren und im Format einer wissenschaftlichen Zeitschrift berichten</li>
+</ul>
+</div>
+</div>
 <p><br></p>
-<p><a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0" src="https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png"></a><br>This work is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by-nc-sa/4.0/">Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License</a>.</p>
+<section id="aufgabe-13.0-projektumgebung-erstellen" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-13.0-projektumgebung-erstellen">Aufgabe 13.0: Projektumgebung erstellen</h2>
+<ul>
+<li>Laden Sie den <a href="../data/repetition.zip">Projektordner <code>repetition</code></a> herunter und <strong>entzippen</strong> Sie den Ordner.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a></li>
+<li>Oder laden Sie den Datensatz direkt <a href="../data/dataset_vacation.csv">hier</a> herunter und speichern Sie ihn in einen selber erstellten Projektordner.</li>
+</ul>
+<p>Der Projektordner enthält: - <em>RProjekt</em> <code>repetition</code>.RProj<code>- Datensatz</code>dataset_vacation.csv<code>im</code>data`-Ordner des <em>RProjekts</em></p>
+<ul>
+<li><p>Öffnen Sie das <em>RProjekt</em> <code>repetition</code>.</p></li>
+<li><p>Erstellen Sie ein <em>RNotebook</em> namens <code>uebung-13</code>.</p></li>
+</ul>
+<p><br></p>
+</section>
+<section id="einführung" class="level2">
+<h2 class="anchored" data-anchor-id="einführung">Einführung</h2>
+<p>In dieser Übung erhalten Sie einen Datensatz und mehrere Fragestellungen. Für jede Fragestellung ist es Ihre Aufgabe den Datensatz vorzuverarbeiten, die passende Analysemethode zu wählen und durchzuführen und die Fragestellung zum Schluss in wenigen Sätzen zu beantworten.</p>
+<p>Lesen Sie zuerst den Studienbeschrieb und lesen Sie dann die Daten ein. Anschliessend können Sie für jede Fragestellung wie folgt vorgehen:</p>
+<p><strong>a.</strong> Datenanalyse festlegen</p>
+<p><strong>b.</strong> Daten vorverarbeiten</p>
+<p><strong>c.</strong> Datenanalyse ausführen und Voraussetzungen prüfen</p>
+<p><strong>d.</strong> Resultate beschreiben</p>
+<p><br></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Datensatz `dataset_vacation.csv`">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-2-contents" aria-controls="callout-2" aria-expanded="true" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Datensatz <code>dataset_vacation.csv</code>
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-2" class="callout-2-contents callout-collapse collapse show">
+<div class="callout-body-container callout-body">
+<p><strong>Beschreibung der Studie</strong></p>
+<p>In der (fiktiven) Studie wurde untersucht, welchen Effekt eine Woche Ferien auf das Wohlbefinden hat. Dazu wurden 160 Personen zu drei Messzeitpunkten (<code>time</code>) befragt. Die Ferienwoche fand zu unterschiedlichen Jahreszeit statt (je 40 Personen im Frühling, Sommer, Herbst und Winter) (<code>group</code>). Alle 160 Personen wurden jeweils vor, während und nach den Ferien zu ihrem Energielevel (<code>energy</code>) und ihrer Schlafqualität (<code>sleep</code>) befragt. Weiter wurde an jedem Messzeitpunkt für jede Person einen Wert für ihre allgemeine Gesundheit (<code>health</code>) aus verschiedenen Tests (u.a. Blutdruck, Stresshormone, etc.) bestimmt. Zudem wurde von jeder Person erhoben, ob sie in einem “high stress” oder “low stress”-Job arbeitet (<code>job</code>).</p>
+<p><strong>Variablen:</strong></p>
+<ul>
+<li><p><code>id</code>: Personenidentifikation</p></li>
+<li><p><code>group</code>: Jahreszeit der Ferien</p></li>
+<li><p><code>time</code>: Messzeitpunkt vor (<code>t1</code>), während (<code>t2</code>) und nach (<code>t3</code>) den Ferien</p></li>
+<li><p><code>energy</code>: Energielevel (Fragebogendaten (kontinuierlich) mit <code>-20: sehr wenig</code> bis <code>20: sehr viel</code> Energie)</p></li>
+<li><p><code>sleep</code>: Schlafqualität (Fragebogendaten (kontinuierlich) mit <code>0: sehr schlecht</code> bis <code>30: sehr gut</code>)</p></li>
+<li><p><code>health</code>: Gesundheitswert jeder Person (<code>0</code>: tiefer Gesundheitswert (viele Krankheitsanzeichen) bis <code>100</code>: hoher Gesundheitswert (keine Krankheitsanzeichen))</p></li>
+</ul>
+</div>
+</div>
+</div>
+<p><strong>Daten einlesen</strong></p>
+<ul>
+<li>Lesen Sie den Datensatz <code>dataset_vacation.csv</code> ein und machen Sie sich mit ihm vertraut.</li>
+<li>Finden Sie alle nötigen Variablen?</li>
+<li>Sind die Variablen richtig kodiert? (Die kategorialen Variablen sollten als <code>factor</code> kodiert sein. Dies kann mit <code>mutate(var = as.factor(var))</code> erreicht werden.)</li>
+<li>Welche Variablen wurden <em>within-subjects</em> und welche <em>between-subjects</em> erhoben?</li>
+<li>Gibt es fehlende Werte, die bereinigt werden müssen?</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Packages laden</span></span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz einlesen</span></span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a>d_vacation <span class="ot">&lt;-</span> ___ </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><br></p>
+</section>
+<section id="aufgabe-13.1-gesundheit-und-stress-im-job" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-13.1-gesundheit-und-stress-im-job">Aufgabe 13.1: Gesundheit und Stress im Job</h2>
+<p><strong>Wie unterscheiden sich die Gesundheitswerte vor den Ferien zwischen Personen in <em>high-stress</em>-Jobs und Personen in <em>low-stress</em>-Jobs?</strong></p>
+<p><strong>a.</strong> Datenanalyse festlegen</p>
+<p><strong>b.</strong> Daten vorverarbeiten</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>d_vacation_1 <span class="ot">&lt;-</span> ___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>c.</strong> Datenanalyse ausführen und Voraussetzungen sicherstellen</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Voraussetzungen testen</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>____</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Deskriptivstatistik</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>d1_summary <span class="ot">&lt;-</span> ___</span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>d1_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistischer Test</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Effektgrösse berechnen</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>d.</strong> Resultate beschreiben</p>
+<p><br></p>
+</section>
+<section id="aufgabe-13.2-schlaf-energie-und-gesundheit" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-13.2-schlaf-energie-und-gesundheit">Aufgabe 13.2: Schlaf, Energie und Gesundheit</h2>
+<p><strong>Welchen Effekt haben Schlafqualität und Energielevel auf die Gesundheit während den Ferien?</strong></p>
+<p><strong>a.</strong> Datenanalyse festlegen</p>
+<p><strong>b.</strong> Daten vorverarbeiten</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a>d_vacation_2 <span class="ot">&lt;-</span> ___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>c.</strong> Datenanalyse ausführen und Voraussetzungen sicherstellen</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Plots</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistischer Test</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>m2 <span class="ot">&lt;-</span> ___</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Output ausgeben</span></span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(m2)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Modellannahmen prüfen</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>____</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>d.</strong> Resultate beschreiben</p>
+<p><br></p>
+</section>
+<section id="aufgabe-13.3-jahreszeit-und-wohlbefinden" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-13.3-jahreszeit-und-wohlbefinden">Aufgabe 13.3: Jahreszeit und Wohlbefinden</h2>
+<p><strong>Welchen Effekt hat die Jahreszeit der Ferien auf das Wohlbefinden (Energielevel und Schlaf) nach den Ferien?</strong></p>
+<p><strong>a.</strong> Datenanalyse festlegen</p>
+<p><strong>b. Daten vorverarbeiten</strong></p>
+<p>Welche Datenpunkte müssen für diese Fragestellung in die Analyse einbezogen werden, und welche nicht? Erstellen Sie falls nötig einen neuen Datensatz (siehe Funktion <code>filter()</code>).</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>d_vacation_3 <span class="ot">&lt;-</span> ___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>c.&nbsp;Datenanalyse ausführen und Voraussetzungen prüfen</strong></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Voraussetzungen prüfen</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Deskriptive Statistik</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>d3_summary <span class="ot">&lt;-</span> ___ </span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>d3_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Statistischer Test</span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>m3_energy <span class="ot">&lt;-</span> ___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>m3_sleep <span class="ot">&lt;-</span> ___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>d.</strong> Resultate beschreiben</p>
+<p><br></p>
+</section>
+<section id="aufgabe-13.4-energielevel-und-jahreszeit" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-13.4-energielevel-und-jahreszeit">Aufgabe 13.4: Energielevel und Jahreszeit</h2>
+<p><strong>Unterscheidet sich das Energielevel nach den Winterferien vom Mittel des Energielevels nach den Frühlings- &amp; Herbstferien? </strong></p>
+<p><strong>a.</strong> Datenanalyse festlegen</p>
+<p><strong>b.</strong> Daten vorverarbeiten</p>
+<p><strong>c.</strong> Datenanalyse ausführen und Voraussetzungen sicherstellen</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>d.</strong> Resultate beschreiben</p>
+<p><br></p>
+</section>
+<section id="aufgabe-13.5-messzeitpunkt-und-wohlbefinden" class="level2">
+<h2 class="anchored" data-anchor-id="aufgabe-13.5-messzeitpunkt-und-wohlbefinden">Aufgabe 13.5: Messzeitpunkt und Wohlbefinden</h2>
+<p><strong>Welchen Effekt haben die Ferien auf das Wohlbefinden (Energielevel und Schlaf), d.h. unterscheidet sich das Wohlbefinden vor, während und nach den Ferien?</strong></p>
+<p><strong>a.</strong> Datenanalyse festlegen</p>
+<p><strong>b.</strong> Daten vorverarbeiten</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Datensatz anschauen</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>c.</strong> Datenanalyse ausführen und Voraussetzungen sicherstellen</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Deskriptive Statistik</span></span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Mittelwerte und Standardabweichungen berechnen</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>d5_summary <span class="ot">&lt;-</span> ___ </span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>d5_summary</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>___</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p><strong>d.</strong> Resultate beschreiben</p>
+<p><br></p>
+<div class="callout callout-style-default callout-note callout-titled" title="Interessiert am Effekt von Ferien?">
+<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-3-contents" aria-controls="callout-3" aria-expanded="false" aria-label="Toggle callout">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Interessiert am Effekt von Ferien?
+</div>
+<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
+</div>
+<div id="callout-3" class="callout-3-contents callout-collapse collapse">
+<div class="callout-body-container callout-body">
+<p>Die Idee für diesen Übungsdatensatz stammt von diesem Artikel:</p>
+<p>Bloom et al.&nbsp;(2010). Effects of vacation from work on health and well-being: Lots of fun, quickly gone. Work &amp; Stress, 24(2), 196–216. <a href="https://doi.org/10.1080/02678373.2010.493385" class="uri">https://doi.org/10.1080/02678373.2010.493385</a></p>
+</div>
+</div>
+</div>
+</section>
+<section id="zusatzaufgaben" class="level2">
+<h2 class="anchored" data-anchor-id="zusatzaufgaben">Zusatzaufgaben</h2>
+<div class="callout callout-style-default callout-tip callout-titled" title="Zusatzaufgaben">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+Zusatzaufgaben
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p><strong>Zusatzaufgaben müssen nicht gelöst werden.</strong></p>
+</div>
+</div>
+<p><strong>a.</strong> Visualisieren Sie die obigen Ergebnisse, um den Resultateteil zu ergänzen.</p>
+<p><strong>b.</strong> Lösen Sie die noch nicht gelösten Aufgaben und Zusatzaufgaben des Semesters.</p>
+</section>
+<section id="herzliche-gratulation" class="level2">
+<h2 class="anchored" data-anchor-id="herzliche-gratulation">Herzliche Gratulation</h2>
+<p>Sie haben alle Übungen durchgearbeitet!!</p>
+<p><img src="../imgs/hardwork_meme.png" class="img-fluid" style="width:50.0%"></p>
 
 
+</section>
+<section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn1"><p>Für das Entzippen mit <em>Windows</em> machen Sie einen Rechtsklick auf den Ordner mit dem Reissverschluss und wählen Sie <code>Entpacken nach</code> und geben Sie den Ordner an, in dem Sie alle Ihre <em>RProject-Ordner</em> speichern. Für das Entzippen mit <em>Mac</em> speichern Sie den heruntergeladenen Ordner in den Ordner, in dem Sie alle Ihre <em>RProject-Ordner</em> speichern und Doppelklicken Sie danach auf den Ordner. Nur entzippte Ordner können einwandfrei verwendet werden.<a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section>
 
 </main> <!-- /main -->
 <script>
@@ -1243,13 +1544,16 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
   }
 });
 </script>
-<nav class="page-navigation column-page-right">
+<nav class="page-navigation column-body">
   <div class="nav-page nav-page-previous">
-      <a href="../appendix/thanks.html" class="pagination-link" aria-label="Danke">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Danke</span>
+      <a href="../uebungen/uebung-12.html" class="pagination-link" aria-label="Übung 12">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text">Übung 12</span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
+      <a href="../appendix/faq.html" class="pagination-link" aria-label="FAQ">
+        <span class="nav-page-text">FAQ</span> <i class="bi bi-arrow-right-short"></i>
+      </a>
   </div>
 </nav>
 </div> <!-- /content -->

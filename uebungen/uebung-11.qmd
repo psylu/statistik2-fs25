@@ -6,6 +6,17 @@
 knitr::opts_knit$set(root.dir = '../')
 ```
 
+::: {.callout-note appearance="default" title="Lernziele dieser Übung"}
+Nach der heutigen Übung können Sie:
+
+- beschreiben, wofür sich die einfache lineare Regression eignet und welche Voraussetzungen sie erfordert
+- für einen Datensatz die Voraussetzungen für eine multiple Regression prüfen
+- eine einfache lineare Regressionsanalysen berechnen
+- Ergebnisse einer multiplen Regressionsanalyse interpretieren und berichten
+
+:::
+
+<br>
 ## Aufgabe 11.0: Projektumgebung erstellen
 
 __a.__ Laden Sie den [Projektordner `regression`](../data/regression.zip) herunter und __entzippen__ Sie den Ordner.^[Für das Entzippen mit _Windows_ machen Sie einen Rechtsklick auf den Ordner mit dem Reissverschluss und wählen Sie `Entpacken nach` und geben Sie den Ordner an, in dem Sie alle Ihre _RProject-Ordner_ speichern. Für das Entzippen mit _Mac_ speichern Sie den heruntergeladenen Ordner in den Ordner, in dem Sie alle Ihre _RProject-Ordner_ speichern und Doppelklicken Sie danach auf den Ordner. Nur entzippte Ordner können einwandfrei verwendet werden.]

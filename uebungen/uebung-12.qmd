@@ -6,6 +6,19 @@
 knitr::opts_knit$set(root.dir = '../')
 ```
 
+::: {.callout-note appearance="default" title="Lernziele dieser Übung"}
+Nach der heutigen Übung können Sie:
+
+- beschreiben, wofür sich die multiple Regressionsanalyse eignet und welche Voraussetzungen sie erfordert
+- anhand eines Studienbeschriebs und eines Datensatzes eine Fragestellung entwickeln und ein dazu passendes Regressionsmodell spezifizieren
+- die Voraussetzungen für eine multiple Regression prüfen
+- eine multiple Regressionsanalysen berechnen
+- Ergebnisse einer multiplen Regressionsanalyse interpretieren und berichten
+
+:::
+
+<br>
+
 ## Aufgabe 12.0: Projektumgebung erstellen
 
 Dateien und Packages für die Übung vorbereiten:
