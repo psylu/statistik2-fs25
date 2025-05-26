@@ -45,8 +45,8 @@ book:
 
     
   - part: Datenvisualisierung
-    #chapters:
-    #- 
+    chapters:
+    - datenvisualisierung/dataviz.qmd
     
   - part: Übungen
     chapters:
