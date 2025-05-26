@@ -405,7 +405,7 @@ globalThis.qwebrCustomizedWebROptions = {
 };
 
 // Store cell data
-globalThis.qwebrCellDetails = [{"id":1,"code":"","options":{"autorun":"false","fig-height":5,"comment":"","classes":"","label":"unnamed-chunk-1","fig-width":7,"output":"true","out-width":"700px","message":"true","results":"markup","fig-cap":"","warning":"true","out-height":"","editor-font-scale":"1","context":"interactive","dpi":72,"read-only":"false","editor-quick-suggestions":"false","editor-max-height":"","editor-word-wrap":"true"}}];
+globalThis.qwebrCellDetails = [{"id":1,"options":{"fig-cap":"","fig-width":7,"output":"true","editor-quick-suggestions":"false","fig-height":5,"dpi":72,"read-only":"false","autorun":"false","results":"markup","editor-max-height":"","label":"unnamed-chunk-1","comment":"","editor-word-wrap":"true","warning":"true","classes":"","message":"true","out-height":"","context":"interactive","editor-font-scale":"1","out-width":"700px"},"code":""}];
 
 </script>
 <script type="module">
@@ -1833,8 +1833,21 @@ globalThis.qwebrExecuteCode = async function (
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">
- <span class="menu-text">Datenvisualisierung</span></span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">Datenvisualisierung</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../datenvisualisierung/dataviz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">17</span>&nbsp; <span class="chapter-title">Datenvisualisierung mit</span></span></a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 

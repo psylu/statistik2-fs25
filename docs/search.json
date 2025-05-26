@@ -1076,6 +1076,72 @@
     ]
   },
   {
+    "objectID": "datenvisualisierung/dataviz.html",
+    "href": "datenvisualisierung/dataviz.html",
+    "title": "17  Datenvisualisierung mit {ggplot2}",
+    "section": "",
+    "text": "17.1 Daten\nDie wichtigste Komponente einer Grafik sind die Daten. Bevor eine Grafik erstellt wird, müssen die Eigenschaften des Datensatzes bekannt sein.\n# Einlesen des Datensatzes\nd &lt;- read.csv(\"data/DatasaurusDozen.csv\") %&gt;%\n    mutate(condition = as.factor(condition)) # Variable condition zu Faktor konvertieren\n\n# Datensatz anschauen\nglimpse(d)\n\nRows: 1,846\nColumns: 3\n$ condition &lt;fct&gt; away, away, away, away, away, away, away, away, away, away, …\n$ value1    &lt;dbl&gt; 32.33111, 53.42146, 63.92020, 70.28951, 34.11883, 67.67072, …\n$ value2    &lt;dbl&gt; 61.411101, 26.186880, 30.832194, 82.533649, 45.734551, 37.11…",
+    "crumbs": [
+      "Datenvisualisierung",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Datenvisualisierung mit `{ggplot2}`</span>"
+    ]
+  },
+  {
+    "objectID": "datenvisualisierung/dataviz.html#daten",
+    "href": "datenvisualisierung/dataviz.html#daten",
+    "title": "17  Datenvisualisierung mit {ggplot2}",
+    "section": "",
+    "text": "Der verwendete Datensatz stammt von Matejka and Fitzmaurice (20171).\n\n\n\n17.1.1 Datenformat\nAm einfachsten ist das Plotten mit ggplot(), wenn die Daten im long-Format vorliegen. Das bedeutet:\n\nJede Variable, die gemessen/erhoben wird, hat eine Spalte (z.B. Versuchspersonennummer, Reaktionszeit, Taste).\nJede Messung hat eine Zeile.\n\nDie hier eingelesenen Daten sind schon im long-Format.\n\nFalls die Daten im wide-Format abgespeichert sind, lohnt es sich diese umzuformatieren z.B. mit pivot_longer().\n\n\n\n17.1.2 Variablen\nFür die Grafik ist es relevant, welches Skalenniveau die zu visualisierenden Variablen haben. Je nach Anzahl Variablen und den entsprechenden Skalenniveaus eignen sich andere Grafik-Formate. Eine häufige Schwierigkeit beim Visualisieren der Daten ist, dass die Daten nicht das für den gewählten Plot passenden Skalenniveaus haben.\n\n\n\nCC BY-SA 3.0, https://commons.wikimedia.org/w/index.php?curid=724035\n\n\n\n\n\n\n\n\nHands-on: Datensatz anschauen\n\n\n\nSchauen Sie sich den Datensatz an.\n\nWie viele unterschiedliche Variablen gibt es?\nWie heissen die Variablen?\nWelches Skalenniveau haben sie vermutlich?\n\n\n\n\n\n17.1.3 Teile des Datensatzes auswählen: Subsetting\nWenn nur ein gewisser Teil der Daten visualisiert werden soll, muss der Datensatz gefiltert werden. Der aktuelle Datensatz enthält beispielsweise verschiedene Bedingungen, jeweils mit Werten für Variable value1 und value2. Folgende 13 Bedingungen sind enthalten:\n\nunique(d$condition)\n\n [1] away       bullseye   circle     dino       dots       h_lines   \n [7] high_lines slant_down slant_up   star       v_lines    wide_lines\n[13] x_shape   \n13 Levels: away bullseye circle dino dots h_lines high_lines ... x_shape\n\n\nFürs erste entscheiden wir uns für die Bedingung away.\n\nd_away &lt;- d |&gt;\n    filter(condition == \"away\")\n\nWir können für diese Bedingung zusätzlich summary statistics berechnen, hier Mittelwert und Standardabweichung.\n\nd_away_summary &lt;- d_away %&gt;%\n    summarise(mean_value1 = mean(value1),\n              sd_value1 = sd(value1),\n              mean_value2 = mean(value2),\n              sd_value2 = sd(value2))\n\nglimpse(d_away_summary)\n\nRows: 1\nColumns: 4\n$ mean_value1 &lt;dbl&gt; 54.2661\n$ sd_value1   &lt;dbl&gt; 16.76982\n$ mean_value2 &lt;dbl&gt; 47.83472\n$ sd_value2   &lt;dbl&gt; 26.93974\n\n\nDie Werte geben einen Anhaltspunkt, in welchem Bereich sich die Werte bewegen werden. Dies ist wichtig, wenn beispielsweise die Achsenabschnitte manuell festgelegt werden sollen.\n\n\n17.1.4 Plot\nIn den folgenden Beispielen werden die Daten der Bedingung away verwendet. Als erstes Argument wird der Funktion ggplot() der Datensatz übergeben (data = data_away).\n\nggplot(data = d_away)",
+    "crumbs": [
+      "Datenvisualisierung",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Datenvisualisierung mit `{ggplot2}`</span>"
+    ]
+  },
+  {
+    "objectID": "datenvisualisierung/dataviz.html#mapping",
+    "href": "datenvisualisierung/dataviz.html#mapping",
+    "title": "17  Datenvisualisierung mit {ggplot2}",
+    "section": "17.2 Mapping",
+    "text": "17.2 Mapping\nDas mapping beschreibt, welche Variable auf der X- und Y-Achse abgetragen werden sollen. Es wird also definiert, wie die Variablen auf die Formen (aesthetics) gemappt werden sollen. Am einfachsten wird dies zu Beginn festgelegt (das mapping kann aber auch in der Funktion geom_ selbst definiert werden). Weitere Variablen könnten als Argumente z.B. unter group = ... oder color = ... eingefügt werden.\n\nggplot(data = d_away,\n       mapping = aes(x = value1,\n                     y = value2)) \n\n\n\n\n\n\n\n\nDie Grafik verfügt nun über Achsen, diese werden automatisch mit den Variablennamen beschriftet. Da noch keine Formen (geoms) hinzugefügt wurde ist die Grafik in der Mitte aber leer.",
+    "crumbs": [
+      "Datenvisualisierung",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Datenvisualisierung mit `{ggplot2}`</span>"
+    ]
+  },
+  {
+    "objectID": "datenvisualisierung/dataviz.html#geom-formen",
+    "href": "datenvisualisierung/dataviz.html#geom-formen",
+    "title": "17  Datenvisualisierung mit {ggplot2}",
+    "section": "17.3 Geom / Formen",
+    "text": "17.3 Geom / Formen\nAls dritte Komponente wird in ggplot() die Form mit geom_ hinzugefügt. Jede Form, die eingefügt wird, benötigt Angaben zum mapping. Falls kein mapping angegeben wird, wird dieses aus der ggplot()-Funktion in der ersten Zeile übernommen.\nEs stehen viele verschiedene Formen zur Auswahl. Beispielsweise werden mit geom_point() Punkte erstellt, mit geom_line() Linien, mit geom_boxplot Boxplots, usw. Bei der Wahl der passenden Form kommt es einerseits auf die Daten an. Sind die Daten z.B. Faktoren oder numerische Werte (siehe auch Skalenniveau oben)? Wie viele Variablen werden gleichzeitig in die Grafik eingebunden? Andererseits ist es wichtig, was mit der Grafik gezeigt werden soll: Unterschiede? Gemeinsamkeiten? Veränderungen über Zeit?\nGeome zur Visualisierung von Datenpunkten:\n\nPunkte / Scatterplots - geom_point()\nPunkte leicht verteilt - geom_jitter()2\n\nGeome zur Visualisierung von Verläufen:\n\nLinien - geom_line()\n\nGeome zur Zusammenfassung von Datenpunkten:\n\nHistogramme - geom_histogram()\nMittelwerte und Standardabweichungen - geom_pointrange()\nDichteplots - geom_density()\nBoxplots - geom_boxplot()\nViolinplots - geom_violin()\n\nGeome zur Visualisierung von Anteilen: - Barplots - geom_bar()\n\nEs gibt auch weitere, sehr informative Arten der Visualisierung, wie heat maps oder shift functions, auf die wir in dieser Veranstaltung nicht eingehen.\n\n\n\n\n\n\n\nHands-on: Geoms\n\n\n\nWelche geoms eignen sich für welches Skalenniveau und welche Variablenanzahl?\nTipps:\n\nSchauen Sie sich den Datensatz mit glimpse(), head() oder summary() an.\nSchauen Sie sich die verschiedenen Formen von Plots hier an. \n\n👉 {ggplot2}-Cheatsheet zum Herunterladen\n\n\n\n17.3.1 Kombinieren von mehreren geoms in einer Grafik\nTeilweise werden in Visualisierungen mehrere geoms kombiniert. In vielen Fällen macht es beispielsweise Sinn, nicht nur die Rohwerte oder Werte für jedes Subjekt, sondern in derselben Grafik auch zusammenfassende Masse, z.B. einen Boxplot, zu visualisieren.\n\nWeiterführende Info zum Kombinieren von Plots finden Sie hier.\n\nVerwenden verschiedener geoms in einem Plot:\n\nggplot(data = d_away, \n       mapping = aes(x = condition,\n                     y = value2)) +\n    geom_boxplot(width = 0.3) +\n    geom_jitter(width = 0.1) \n\n\n\n\n\n\n\n\nKombiniert werden können aber nicht nur verschiedene Formen, sondern auch mehrere Datensätze. Dies kann in ggplot() einfach umgesetzt werden indem mehrere Geoms übereinandergelegt werden und nicht das mapping aus der ggplot()-Funktion genutzt wird. Stattdessen wird für jedes geom ein separater Datensatz und ein separates mapping spezifiziert.\n\nggplot(data = d_away, \n       mapping = aes(x = condition,\n                     y = value2)) +\n    geom_jitter(width = 0.1) + # verwendet Datensatz \"d_away\"\n    geom_point(data = d_away_summary, # verwendet Datensatz \"d_away_summary\"\n               aes(x = \"away\", y = mean_value1), # condition ist nicht im Datensatz enthalten, deshalb hier hardcoded\n               color = \"red\", # Punkt rot einfärben\n               size = 3) # Punkt vergrössern",
+    "crumbs": [
+      "Datenvisualisierung",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Datenvisualisierung mit `{ggplot2}`</span>"
+    ]
+  },
+  {
+    "objectID": "datenvisualisierung/dataviz.html#beschriftungen-und-themes",
+    "href": "datenvisualisierung/dataviz.html#beschriftungen-und-themes",
+    "title": "17  Datenvisualisierung mit {ggplot2}",
+    "section": "17.4 Beschriftungen und Themes",
+    "text": "17.4 Beschriftungen und Themes\nSchönere und informativere Plots lassen sich gestalten, wenn ein Titel hinzugefügt, die Achsenbeschriftung angepasst und das theme verändert wird:\n\nggplot(data = d_away,\n       mapping = aes(x = value1,\n                     y = value2)) +\n    geom_point() +\n    labs(title = \"Ein etwas schönerer Plot\", \n         subtitle = \"Verteilung der Rohwerte\",\n        x = \"Wert 1  [a.u.]\",\n        y = \"Wert 2 [a.u.]\",\n        caption = \"Weitere Informationen.\") +\n    theme_minimal()\n\n\n\n\n\n\n\n\n\nAuch theme_classic() oder theme_bw() ergeben schlichte aber schöne Plots.\n\nUnter caption =  ... kann beispielsweise ergänzt werden, ob es sich bei den Fehlerbalken um Standardabweichungen, Standardfehler oder Konfidenzintervalle handelt.\n\n\n\n\n\n\nHands-on\n\n\n\nErstellen Sie eine Grafik.\n\nFügen Sie mit labs() passende Beschriftungen hinzu. Gibt es noch weitere, oben nicht verwendete Optionen?\nWechseln Sie das theme. Welches gefällt Ihnen am besten?\n\ntheme_bw()\ntheme_classic()\ntheme_dark()\n… (schreiben Sie theme_ und drücken Sie Tab, um weitere Vorschläge zu sehen.)",
+    "crumbs": [
+      "Datenvisualisierung",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Datenvisualisierung mit `{ggplot2}`</span>"
+    ]
+  },
+  {
+    "objectID": "datenvisualisierung/dataviz.html#daten-plotten-tipps-und-tricks",
+    "href": "datenvisualisierung/dataviz.html#daten-plotten-tipps-und-tricks",
+    "title": "17  Datenvisualisierung mit {ggplot2}",
+    "section": "17.5 Daten plotten: Tipps und Tricks",
+    "text": "17.5 Daten plotten: Tipps und Tricks\n\n\n\n\n\n\nHands-on: Informative Grafik erstellen\n\n\n\nIm Folgenden können Sie den Datensatz mit Grafiken erkunden.\nSie können entweder in Ihrem RScript / RNotebook weiterarbeiten oder Sie können das GUI (graphical user interface) von {esquisse} verwenden, welches für Sie den Code schreibt.\n\nWelche geom_s/Formen eignen sich gut für diesen Datensatz?\nWelche Abbildungen können alle 3 Variablen des Datensatzes berücksichtigen?\nWie kann man Bedingungen miteinander vergleichen?\nWie können Grösse und Farbe der geom_s bestimmt werden?\nWie passt man Schriftgrössen an?\nKönnen Sie eine Grafik speichern?\nBei der Arbeit mit {esquisse}: Lassen Sie sich den Code direkt ins RScript / RNotebook einfügen und verändern Sie den Code dort weiter.\n\n\n\n\n17.5.1 Daten plotten mit esquisser()\nUm in RStudio ein GUI für das Datenvisualisieren zu verwenden, kann das Package {esquisse} genutzt werden.\n\nInstallieren Sie das Package {esquisse} mit install.packages(\"esquisse\") in der Konsole oder über Tools &gt; Install packages...\nGeben Sie in Ihrer Konsole esquisse::esquisser() ein und wählen Sie dann unter Import Data den schon eingelesenen Datensatz DatasaurusDozen.csv aus.\n\n\nEin weiteres R-basiertes Visualisierungstool in welchem der Code per GUI erstellt wird, ist trelliscopejs\n\n\n\n17.5.2 Mehrere Plots in einer Grafik darstellen\nMit dem Package patchwork können mehrere Plots in einem geplottet werden.\n\nlibrary(patchwork)\np1 &lt;- ggplot(data = d_away,\n       mapping = aes(x = value1,\n                     y = value2)) +\n    geom_point() +\n    labs(title = \"Plot A\", \n         subtitle = \"Verteilung der Rohwerte\",\n        x = \"Wert 1  [a.u.]\",\n        y = \"Wert 2 [a.u.]\") +\n    theme_minimal()\n\np2 &lt;- ggplot(data = d_away,\n       mapping = aes(x = value1,\n                     y = value2)) +\n    geom_point() +\n    labs(title = \"Plot B\", \n         subtitle = \"Verteilung der Rohwerte\",\n        x = \"Wert 1  [a.u.]\",\n        y = \"Wert 2 [a.u.]\") +\n    theme_minimal()\n\np1 + p2\n\n\n\n\n\n\n\n\n\nWenn Sie das Package {patchwork} zum ersten Mal nutzen, können Sie es in der Konsole mit install.packages(\"patchwork\") installieren.\n\nOder auch unter einander:\n\np1 / p2\n\n\n\n\n\n\n\n\n\n\n17.5.3 Visualisieren von Modellen\nMit der Funktion ggPredict() aus dem Package {ggiraphExtra} können die Outputs von Analysemodellen dargestellt werden:\n\nd_m1 &lt;- tibble(x = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),\n               y = c(12, 42, 21, 34, 73, 40, 65, 53, 78, 89))\n\nm1 &lt;- lm(y ~x, \n         data = d_m1)\n  \nggiraphExtra::ggPredict(m1,interactive=TRUE)\n\n\n\n\n\n\n\n\n\n\n\nHands-on: Interaktive Modellplots\n\n\n\nErstellen Sie eine zusätzliche Variable z indem Sie 10 Werte für z einfügen und plotten Sie das Modell\n\nd_m2 &lt;- tibble(x = c(1, 2, 3, 4, 5, 6, 7, 8, 9, 10),\n               y = c(12, 42, 21, 34, 73, 40, 65, 53, 78, 89),\n               z = c(...))\n\nm2 &lt;- lm(y ~x + z, \n         data = d_m2)\n  \nggiraphExtra::ggPredict(m2,interactive=TRUE)\n\n\n\n\n\n17.5.4 Grafik abspeichern\nEine Grafik lässt sich abspeichern unter dem Reiter Plots &gt; Export oder mit der Funktion ggsave().",
+    "crumbs": [
+      "Datenvisualisierung",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Datenvisualisierung mit `{ggplot2}`</span>"
+    ]
+  },
+  {
     "objectID": "uebungen/uebungen.html",
     "href": "uebungen/uebungen.html",
     "title": "Informationen",
@@ -1945,11 +2011,11 @@
     ]
   },
   {
-    "objectID": "uebungen/uebung-13.html#aufgabe-13.1-gesundheit-und-jahreszeiten",
-    "href": "uebungen/uebung-13.html#aufgabe-13.1-gesundheit-und-jahreszeiten",
+    "objectID": "uebungen/uebung-13.html#aufgabe-13.1-gesundheit-und-stress-im-job",
+    "href": "uebungen/uebung-13.html#aufgabe-13.1-gesundheit-und-stress-im-job",
     "title": "Übung 13",
-    "section": "Aufgabe 13.1: Gesundheit und Jahreszeiten",
-    "text": "Aufgabe 13.1: Gesundheit und Jahreszeiten\nWie unterscheiden sich die Gesundheitswerte vor den Ferien zwischen Personen in high-stress-Jobs und Personen in low-stress-Jobs?\na. Datenanalyse festlegen\nb. Daten vorverarbeiten\n\nd_vacation_1 &lt;- ___\n\nc. Datenanalyse ausführen und Voraussetzungen sicherstellen\n\n# Voraussetzungen testen\n____\n\n\n# Deskriptivstatistik\nd1_summary &lt;- ___\n\nd1_summary\n\n\n# Statistischer Test\n___\n\n\n# Effektgrösse berechnen\n___\n\nd. Resultate beschreiben",
+    "section": "Aufgabe 13.1: Gesundheit und Stress im Job",
+    "text": "Aufgabe 13.1: Gesundheit und Stress im Job\nWie unterscheiden sich die Gesundheitswerte vor den Ferien zwischen Personen in high-stress-Jobs und Personen in low-stress-Jobs?\na. Datenanalyse festlegen\nb. Daten vorverarbeiten\n\nd_vacation_1 &lt;- ___\n\nc. Datenanalyse ausführen und Voraussetzungen sicherstellen\n\n# Voraussetzungen testen\n____\n\n\n# Deskriptivstatistik\nd1_summary &lt;- ___\n\nd1_summary\n\n\n# Statistischer Test\n___\n\n\n# Effektgrösse berechnen\n___\n\nd. Resultate beschreiben",
     "crumbs": [
       "Übungen",
       "Übung 13"
@@ -2132,47 +2198,47 @@
     ]
   },
   {
-    "objectID": "uebungen/uebung-13.html#aufgabe-13.1-gesundheit-und-stress-im-job",
-    "href": "uebungen/uebung-13.html#aufgabe-13.1-gesundheit-und-stress-im-job",
-    "title": "Übung 13",
-    "section": "Aufgabe 13.1: Gesundheit und Stress im Job",
-    "text": "Aufgabe 13.1: Gesundheit und Stress im Job\nWie unterscheiden sich die Gesundheitswerte vor den Ferien zwischen Personen in high-stress-Jobs und Personen in low-stress-Jobs?\na. Datenanalyse festlegen\nb. Daten vorverarbeiten\n\nd_vacation_1 &lt;- ___\n\nc. Datenanalyse ausführen und Voraussetzungen sicherstellen\n\n# Voraussetzungen testen\n____\n\n\n# Deskriptivstatistik\nd1_summary &lt;- ___\n\nd1_summary\n\n\n# Statistischer Test\n___\n\n\n# Effektgrösse berechnen\n___\n\nd. Resultate beschreiben",
+    "objectID": "datenvisualisierung/dataviz.html#footnotes",
+    "href": "datenvisualisierung/dataviz.html#footnotes",
+    "title": "17  Datenvisualisierung mit {ggplot2}",
+    "section": "",
+    "text": "Matejka, Justin, and George Fitzmaurice. 2017. “Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics Through Simulated Annealing.” In Proceedings of the 2017 CHI Conference on Human Factors in Computing Systems, 1290–94. Denver Colorado USA: ACM. https://doi.org/10.1145/3025453.3025912.↩︎\nAchtung: es darf immer nur in Richtung der kategorialen Variable “gejittert” werden. Sonst verfälscht man die Zahlenwerte!↩︎\nRousselet, G. A., Pernet, C. R., & Wilcox, R. R. (2017). Beyond differences in means: robust graphical methods to compare two groups in neuroscience. European Journal of Neuroscience, 46(2), 1738-1748. https://onlinelibrary.wiley.com/doi/abs/10.1111/ejn.13610↩︎",
     "crumbs": [
-      "Übungen",
-      "Übung 13"
+      "Datenvisualisierung",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Datenvisualisierung mit `{ggplot2}`</span>"
     ]
   },
   {
-    "objectID": "uebungen/uebung-13.html#aufgabe-13.3-jahreszeit-und-wohlbefinden-nach-den-ferien",
-    "href": "uebungen/uebung-13.html#aufgabe-13.3-jahreszeit-und-wohlbefinden-nach-den-ferien",
-    "title": "Übung 13",
-    "section": "Aufgabe 13.3: Jahreszeit und Wohlbefinden nach den Ferien",
-    "text": "Aufgabe 13.3: Jahreszeit und Wohlbefinden nach den Ferien\nWelchen Effekt hat die Jahreszeit der Ferien auf Energielevel und Schlaf nach den Ferien?\na. Datenanalyse festlegen\nb. Daten vorverarbeiten\nWelche Datenpunkte müssen für diese Fragestellung in die Analyse einbezogen werden, und welche nicht? Erstellen Sie falls nötig einen neuen Datensatz (siehe Funktion filter()).\n\nd_vacation_3 &lt;- ___\n\nc. Datenanalyse ausführen und Voraussetzungen prüfen\n\n# Voraussetzungen prüfen\n___\n\n\n# Deskriptive Statistik\nd3_summary &lt;- ___ \nd3_summary\n\n\n# Statistischer Test\nm3_energy &lt;- ___\n\n\nm3_sleep &lt;- ___\n\nd. Resultate beschreiben",
+    "objectID": "datenvisualisierung/dataviz.html#visualisieren-von-modellen",
+    "href": "datenvisualisierung/dataviz.html#visualisieren-von-modellen",
+    "title": "17  Datenvisualisierung mit {ggplot2}",
+    "section": "17.5 Visualisieren von Modellen",
+    "text": "17.5 Visualisieren von Modellen\nMit der Funktion ggiraph aus dem Package {ggiraph} können die Outputs von Analysemodellen dargestellt werden:\n\nlibrary(ggiraph)\n\nWarning: package 'ggiraph' was built under R version 4.4.3\n\n\n\n\n\n\n\n\nHands-on\n\n\n\nErstellen Sie eine Grafik.\n\nFügen Sie mit labs() passende Beschriftungen hinzu. Gibt es noch weitere, oben nicht verwendete Optionen?\nWechseln Sie das theme. Welches gefällt Ihnen am besten?\n\ntheme_bw()\ntheme_classic()\ntheme_dark()\n… (schreiben Sie theme_ und drücken Sie Tab, um weitere Vorschläge zu sehen.)",
     "crumbs": [
-      "Übungen",
-      "Übung 13"
+      "Datenvisualisierung",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Datenvisualisierung mit `{ggplot2}`</span>"
     ]
   },
   {
-    "objectID": "uebungen/uebung-13.html#aufgabe-13.3-einfluss-der-jahreszeit-der-ferien",
-    "href": "uebungen/uebung-13.html#aufgabe-13.3-einfluss-der-jahreszeit-der-ferien",
-    "title": "Übung 13",
-    "section": "Aufgabe 13.3: Einfluss der Jahreszeit der Ferien",
-    "text": "Aufgabe 13.3: Einfluss der Jahreszeit der Ferien\nWelchen Effekt hat die Jahreszeit der Ferien auf Energielevel und Schlaf nach den Ferien?\na. Datenanalyse festlegen\nb. Daten vorverarbeiten\nWelche Datenpunkte müssen für diese Fragestellung in die Analyse einbezogen werden, und welche nicht? Erstellen Sie falls nötig einen neuen Datensatz (siehe Funktion filter()).\n\nd_vacation_3 &lt;- ___\n\nc. Datenanalyse ausführen und Voraussetzungen prüfen\n\n# Voraussetzungen prüfen\n___\n\n\n# Deskriptive Statistik\nd3_summary &lt;- ___ \nd3_summary\n\n\n# Statistischer Test\nm3_energy &lt;- ___\n\n\nm3_sleep &lt;- ___\n\nd. Resultate beschreiben",
+    "objectID": "datenvisualisierung/dataviz.html#wieso-ist-plotten-so-wichtig",
+    "href": "datenvisualisierung/dataviz.html#wieso-ist-plotten-so-wichtig",
+    "title": "17  Datenvisualisierung mit {ggplot2}",
+    "section": "17.6 Wieso ist Plotten so wichtig?",
+    "text": "17.6 Wieso ist Plotten so wichtig?\nStudiendaten können wichtige Informationen enthalten, die ohne Grafiken übersehen werden können (vgl. Rousselet, Pernet und Wilcox, 20173). Das Visualisieren der Rohdaten kann Muster zum Vorschein bringen, die durch statistische Auswertungen nicht sichtbar sind. Die Wichtigkeit von Datenvisualisierung für das Entdecken von Mustern in den Daten zeigte Francis Anscombe 1973 mit dem Anscombe’s Quartet. Dies diente als Inspiration für das Erstellen des “künstlichen” Datensatzes DatasaurusDozen. Verschiedene Rohwerte können dieselben Mittelwerte, Standardabweichungen und Korrelationen ergeben. Nur wenn man die Rohwerte plottet, erkennt man, wie unterschiedlich die Datenpunkte verteilt sind.\nDies wird ersichtlich, wenn wir die Mittelwerte und Standardabweichungen für jede Gruppe berechnen und plotten:\n\n# Mittelwert und Standardabweichung für jede Bedingung berechnen (Variable: value1)\np_value1 &lt;- d |&gt;   \n    group_by(condition) |&gt;\n    summarise(mean_value1 = mean(value1),\n              sd_value1 = sd(value1)) |&gt;\n    ggplot(mapping = aes(x = mean_value1,\n                     y = condition)) +\n    geom_point() +\n    geom_errorbar(aes(xmin = mean_value1 - sd_value1, \n                      xmax = mean_value1 + sd_value1), \n                  width = 0.2) +\n    theme_minimal()\n\n# Mittelwert und Standardabweichung für jede Bedingung berechnen (Variable: value2)\np_value2 &lt;- d |&gt;   \n    group_by(condition) |&gt;\n    summarise(mean_value2 = mean(value2),\n              sd_value2 = sd(value2)) |&gt;\n    ggplot(mapping = aes(x = mean_value2,\n                     y = condition)) +\n    geom_point() +\n    geom_errorbar(aes(xmin = mean_value2 - sd_value2, \n                      xmax = mean_value2 + sd_value2), \n                  width = 0.2) +\n    theme_minimal()\n\n# Plotten\np_value1 + p_value2\n\n\n\n\n\n\n\n\nUnd dann die Rohwerte visualisieren:\n\n# Rohwerte plotten\nd |&gt; \n    ggplot(aes(x = value1, y = value2)) +\n    geom_point(size = 1) +\n    facet_wrap(~condition) +\n    theme_minimal()\n\n\n\n\n\n\n\n\nDie Daten sind völlig unterschiedlich verteilt, obwohl die Mittelwerte, Standardabweichungen und die Korrelation in allen 13 Bedingungen nahezu identisch ist.\nHier sehen Sie das Ganze animiert:\n\n\n\nDatensatz und Visualisierung von @matejka_same_2017",
     "crumbs": [
-      "Übungen",
-      "Übung 13"
+      "Datenvisualisierung",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Datenvisualisierung mit `{ggplot2}`</span>"
     ]
   },
   {
-    "objectID": "uebungen/uebung-13.html#aufgabe-13.3-einfluss-der-jahreszeit-auf-wohlbefinden-nach-den-ferien",
-    "href": "uebungen/uebung-13.html#aufgabe-13.3-einfluss-der-jahreszeit-auf-wohlbefinden-nach-den-ferien",
-    "title": "Übung 13",
-    "section": "Aufgabe 13.3: Einfluss der Jahreszeit auf Wohlbefinden nach den Ferien",
-    "text": "Aufgabe 13.3: Einfluss der Jahreszeit auf Wohlbefinden nach den Ferien\nWelchen Effekt hat die Jahreszeit der Ferien auf Energielevel und Schlaf nach den Ferien?\na. Datenanalyse festlegen\nb. Daten vorverarbeiten\nWelche Datenpunkte müssen für diese Fragestellung in die Analyse einbezogen werden, und welche nicht? Erstellen Sie falls nötig einen neuen Datensatz (siehe Funktion filter()).\n\nd_vacation_3 &lt;- ___\n\nc. Datenanalyse ausführen und Voraussetzungen prüfen\n\n# Voraussetzungen prüfen\n___\n\n\n# Deskriptive Statistik\nd3_summary &lt;- ___ \nd3_summary\n\n\n# Statistischer Test\nm3_energy &lt;- ___\n\n\nm3_sleep &lt;- ___\n\nd. Resultate beschreiben",
+    "objectID": "datenvisualisierung/dataviz.html#inspiration-und-weiterführende-ressourcen-zur-datenvisualisierung-mit-ggplot",
+    "href": "datenvisualisierung/dataviz.html#inspiration-und-weiterführende-ressourcen-zur-datenvisualisierung-mit-ggplot",
+    "title": "17  Datenvisualisierung mit {ggplot2}",
+    "section": "17.7 Inspiration und weiterführende Ressourcen zur Datenvisualisierung mit ggplot()",
+    "text": "17.7 Inspiration und weiterführende Ressourcen zur Datenvisualisierung mit ggplot()\n\nGrafiken für verschiedene Datenarten: From Data to Viz\nSimple bis crazy Chartideen: R Charts: Ggplot\nFarben für Grafiken: R Charts: Colors, noch mehr Farben\nDokumentation von ggplot2\nKurzweilige, kompakte und sehr informative Informationen und Videos über das Erstellen von Grafiken in ggplot finden Sie hier: Website PsyTeachR: Data Skills for reproducible research\nHier ist der Start der PsyTeachR Videoliste von Lisa deBruine, dort finden sich auch hilfreiche Kurzvideos zu Themen von Daten einlesen bis zu statistischen Analysen. Beispielsweise zu Basic Plots, Common Plots und Plot Themes and Customization\nEinführung in R von Andrew Ellis und Boris Mayer",
     "crumbs": [
-      "Übungen",
-      "Übung 13"
+      "Datenvisualisierung",
+      "<span class='chapter-number'>17</span>  <span class='chapter-title'>Datenvisualisierung mit `{ggplot2}`</span>"
     ]
   }
 ]
