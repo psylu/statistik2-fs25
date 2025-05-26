@@ -61,7 +61,7 @@ Die wichtigste Komponente einer Grafik sind die Daten. Bevor eine Grafik erstell
 
 ```{r}
 # Einlesen des Datensatzes
-d <- read.csv("data/DatasaurusDozen.csv") %>%
+d <- read.csv("data/DatasaurusDozen.csv") |>
     mutate(condition = as.factor(condition)) # Variable condition zu Faktor konvertieren
 
 # Datensatz anschauen
@@ -118,7 +118,7 @@ d_away <- d |>
 Wir können für diese Bedingung zusätzlich *summary statistics* berechnen, hier Mittelwert und Standardabweichung.
 
 ```{r}
-d_away_summary <- d_away %>%
+d_away_summary <- d_away |>
     summarise(mean_value1 = mean(value1),
               sd_value1 = sd(value1),
               mean_value2 = mean(value2),
