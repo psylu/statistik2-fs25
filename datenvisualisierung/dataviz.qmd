@@ -168,6 +168,14 @@ Sind die Daten z.B. Faktoren oder numerische Werte (siehe auch Skalenniveau oben
 Wie viele Variablen werden gleichzeitig in die Grafik eingebunden? 
 Andererseits ist es wichtig, was mit der Grafik gezeigt werden soll: Unterschiede? Gemeinsamkeiten? Veränderungen über Zeit? 
 
+
+```{r}
+ggplot(data = d_away, 
+       mapping = aes(x = condition,
+                     y = value2)) +
+    geom_point()
+```
+
 Geome zur Visualisierung von Datenpunkten:
 
 - Punkte / Scatterplots - `geom_point()`
@@ -200,7 +208,6 @@ _Tipps:_
 
 - Schauen Sie sich den Datensatz mit `glimpse()`, `head()` oder `summary()` an.
 - Schauen Sie sich die verschiedenen Formen von Plots [hier](https://www.data-to-viz.com) an.
-<!-- - Installieren Sie das _Package_ {esquisse} mit `install.packages("esquisse") und geben Sie `esquisse::esquisser()` in die Konsole ein. Wählen Sie den Datensatz __`d_away` aus. Welche `Geoms` werden Ihnen vorgeschlagen? -->
 
 👉 [{ggplot2}-Cheatsheet zum Herunterladen](https://github.com/rstudio/cheatsheets/blob/main/data-visualization.pdf)
 :::
@@ -238,6 +245,19 @@ ggplot(data = d_away,
                size = 3) # Punkt vergrössern
 ```
 
+
+<aside> Mit _Raincloud-Plots_ können Rohdaten und aggregierte Werte ideal kombiniert werden. [Hier](https://z3tt.github.io/Rainclouds/) und [hier](https://wellcomeopenresearch.org/articles/4-63) gibt es mehr Informationen dazu. 
+```{r}
+d_away |>
+  ggplot(aes(x = condition,
+             y = value1)) + 
+  ggdist::stat_halfeye(adjust = .5, width = .3, .width = c(0.5, 1)) + 
+  ggdist::stat_dots(side = "left", dotsize = 10, justification = 1.05, binwidth = .1)
+
+
+```
+
+</aside>
 
 ## Beschriftungen und Themes
 
@@ -279,17 +299,17 @@ Erstellen Sie eine Grafik.
 ::: callout-caution
 ## Hands-on: Informative Grafik erstellen
 
-Im Folgenden können Sie den Datensatz mit Grafiken erkunden. 
+Im Folgenden können Sie den ganzen Datensatz (also nicht mehr `d_away`, sondern `d`) mit Visualisierungen erkunden. 
 
 Sie können entweder in Ihrem _RScript_ / _RNotebook_ weiterarbeiten oder Sie können das GUI (graphical user interface) von {esquisse} verwenden, welches für Sie den Code schreibt.
 
 - Welche `geom_`s/Formen eignen sich gut für diesen Datensatz? 
 
-- Welche Abbildungen können alle 3 Variablen des Datensatzes berücksichtigen?
-
 - Wie kann man Bedingungen miteinander vergleichen?
 
 - Wie können Grösse und Farbe der `geom_`s bestimmt werden?
+
+- Welche Abbildungen können alle 3 Variablen des Datensatzes berücksichtigen? (_Tipp: mit `facet_wrap(~ variablennamen)` wird für jede Stufe der Variable ein eigenes Fenster erstellt._)
 
 - Wie passt man Schriftgrössen an?
 
